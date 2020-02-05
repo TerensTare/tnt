@@ -1,6 +1,13 @@
-logs/*
-obj/*
-.vscode/*
+.vscode
+bin
+logs
+obj
+project
+test
+tools
+
+include/private
+src/private
 
 *.obj
 *.lib
