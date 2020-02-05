@@ -1,9 +1,0 @@
-Sprites: #[Player, Monster, Gem]
-  - 
-    Player: 
-      Path: player.png
-      Animations: #[run, jump, idle, die]
-        Run: 
-          Offset: {_x: 0, _y: 0}
-          Size: {_w: 32, _h: 32}
-          FrameDurations: [80, 80, 80, 80, 80, 80]
