@@ -1,0 +1,1 @@
+cl /EHsc /std:c++17 /O2 *.cpp /I C:\Users\teren\vcpkg\installed\x64-windows\include /link /libpath:C:\Users\teren\vcpkg\installed\x64-windows\lib yaml-cpp.lib /machine:x64

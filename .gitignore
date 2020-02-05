@@ -1,0 +1,11 @@
+logs/*
+obj/*
+.vscode/*
+
+*.obj
+*.lib
+*.dll
+*.exe
+
+*.vcxproj
+*.sln

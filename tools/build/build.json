@@ -1,0 +1,21 @@
+{
+    "x64-release": {
+        "include": "%vcpkg_dir%\\x64-windows\\include",
+        "args": [
+            "/EHsc",
+            "/O2",
+            "/std:c++17"
+        ],
+        "cpp": "test.cpp",
+        "exe": ".\\bin\\test.exe",
+        "obj": ".\\obj\\",
+        "link": {
+            "libpath": "%vcpkg_dir%\\x64-windows\\lib",
+            "libs": "fmt.lib",
+            "linkargs": [
+                "/MACHINE:x64",
+                "/SUBSYSTEM:CONSOLE"
+            ]
+        }
+    }
+}
