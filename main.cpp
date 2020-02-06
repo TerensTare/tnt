@@ -1,5 +1,4 @@
-#include <iostream>
-import "Benchmark.hpp";
+#include "Benchmark.hpp"
 
 int main(int, char **)
 {
