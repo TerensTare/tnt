@@ -1,3 +1,8 @@
+# TODO: 
+# 1. find a way to add SDL2 to the build system.
+# 2. (maybe) build every dependency with CMake, and then build their solution with msbuild.
+# 3. find a way to check if there is a new version of the dependencies and update automatically.
+
 name: CI
 
 on: [push]
@@ -14,16 +19,42 @@ jobs:
         working-directory: fmt
         run: |
           mkdir build
-          cd build cmake ..
+          cd build 
+          cmake ..
 
     
   sol2:
     runs-on: [windows-latest]
     name: Build sol2
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: sol2 build
+        shell: cmd
+        working-directory: sol2
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+        
+        
+  json:
+    runs-on: [windows-latest]
+    name: Build json
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: nlohmann-json
+        shell: cmd
+        working-directory: sol2
+        run: |
+          mkdir build
+          cd build
+          cmake ..
     
   tnt:
     runs-on: [windows-latest]
-    needs: [fmt, sol2]
+    needs: [fmt, json, sol2]
     name: Build TnT
   build:
 
