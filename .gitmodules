@@ -1,9 +1,0 @@
-[submodule "fmt"]
-	path = fmt
-	url = https://github.com/fmtlib/fmt
-[submodule "sol2"]
-	path = sol2
-	url = https://github.com/ThePhD/sol2
-[submodule "json"]
-	path = json
-	url = https://github.com/nlohmann/json
