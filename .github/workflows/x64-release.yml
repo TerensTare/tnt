@@ -3,6 +3,28 @@ name: CI
 on: [push]
 
 jobs:
+  fmt:
+    runs-on: [windows-latest]
+    name: Build fmtlib
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: fmtlib.dll
+        shell: cmd
+        working-directory: fmt
+        run: |
+          mkdir build
+          cd build cmake ..
+
+    
+  sol2:
+    runs-on: [windows-latest]
+    name: Build sol2
+    
+  tnt:
+    runs-on: [windows-latest]
+    needs: [fmt, sol2]
+    name: Build TnT
   build:
 
     runs-on: [windows-latest]
@@ -11,4 +33,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: ilammy/msvc-dev-cmd@v1
     - name: Build TnT.exe
+      shell: cmd
+          
+          
       run: cl /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /link /subsystem:console /machine:x64
