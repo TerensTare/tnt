@@ -60,6 +60,7 @@ jobs:
           
     
   integrate:
+    needs: [fmt, sol2, json, sdl2]
     runs-on: [windows-latest]
     name:  Integrate all installed packages with the build system
     steps:
