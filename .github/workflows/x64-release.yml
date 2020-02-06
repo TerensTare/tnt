@@ -18,6 +18,7 @@ jobs:
         shell: cmd
         working-directory: fmt
         run: |
+          dir
           mkdir build
           cd build 
           cmake ..
@@ -33,6 +34,7 @@ jobs:
         shell: cmd
         working-directory: sol2
         run: |
+          dir
           mkdir build
           cd build
           cmake ..
@@ -48,6 +50,7 @@ jobs:
         shell: cmd
         working-directory: json
         run: |
+          dir
           mkdir build
           cd build
           cmake ..
@@ -62,6 +65,7 @@ jobs:
       - name: Build TnT.exe
         shell: cmd
         run: |
+          dir
           mkdir obj
           cl /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
           cls
