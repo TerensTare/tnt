@@ -11,4 +11,4 @@ jobs:
     - uses: actions/checkout@v2
     - uses: ilammy/msvc-dev-cmd@v1
     - name: Build TnT.exe
-      run: cl /EHsc /std:c++latest /O2 /W4 main.cpp src\*.cpp /FeTnT.exe /link /subsystem:console /machine:x64
+      run: cl /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /link /subsystem:console /machine:x64
