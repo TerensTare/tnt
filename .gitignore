@@ -16,3 +16,6 @@ src/private
 
 *.vcxproj
 *.sln
+
+NOTES.md
+benchmark.json

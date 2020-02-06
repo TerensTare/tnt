@@ -10,7 +10,7 @@ tnt::Logger &tnt::Logger::This()
 template <class... Args>
 void tnt::Logger::info(std::string format, Args &&... args)
 {
-    (fmt::format(format, args), ...);
+    fmt::format(format, args...);
 }
 
 template <typename... Args>
