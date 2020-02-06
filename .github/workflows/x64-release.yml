@@ -14,14 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ilammy/msvc-dev-cmd@v1
+      - uses: lukka/run-vcpkg@v0.8
       - name: fmtlib.dll
         shell: cmd
-        working-directory: fmt
         run: |
-          dir
-          mkdir build
-          cd build 
-          cmake ..
+          vcpkg install fmt
 
     
   sol2:
@@ -30,14 +27,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ilammy/msvc-dev-cmd@v1
+      - uses: lukka/run-vcpkg@v0.8
       - name: sol2 build
         shell: cmd
-        working-directory: sol2
         run: |
-          dir
-          mkdir build
-          cd build
-          cmake ..
+          vcpkg install sol2
         
         
   json:
@@ -46,14 +40,35 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ilammy/msvc-dev-cmd@v1
+      - uses: lukka/run-vcpkg@v0.8
       - name: nlohmann-json
         shell: cmd
-        working-directory: json
         run: |
-          dir
-          mkdir build
-          cd build
-          cmake ..
+          vcpkg install nlohmann-json
+          
+  sdl2:
+    runs-on: [windows-latest]
+    name: Build sdl2
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ilammy/msvc-dev-cmd@v1
+      - uses: lukka/run-vcpkg@v0.8
+      - name: SDL2
+        shell: cmd
+        run: |
+          vcpkg install sdl2 sdl2-net sdl2-image sdl2-mixer sdl2-ttf
+          
+    
+  integrate:
+    runs-on: [windows-latest]
+    name:  Integrate all installed packages with the build system
+    steps:
+      - uses: actions/checkout@v2
+      - uses: lukka/run-vcpkg@v0.8
+      - name: integrate
+        shell: cmd
+        run: |
+          vcpkg integrate install
     
   tnt:
     runs-on: [windows-latest]
@@ -62,6 +77,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ilammy/msvc-dev-cmd@v1
+      - uses: lukka/run-vcpkg@v0.8
       - name: Build TnT.exe
         shell: cmd
         run: |
