@@ -1,16 +1,4 @@
 #include <iostream>
-import "Benchmark.hpp";
-
-int main(int, char **)
-{
-    using namespace tnt;
-    Instrumentor::Get().BeginSession("testing strings");
-    {
-    }
-    Instrumentor::Get().EndSession();
-
-    return 0;
-}
 
 // #include "LuaSandbox.hpp"
 
