@@ -46,7 +46,7 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
       - name: nlohmann-json
         shell: cmd
-        working-directory: sol2
+        working-directory: json
         run: |
           mkdir build
           cd build
@@ -56,15 +56,12 @@ jobs:
     runs-on: [windows-latest]
     needs: [fmt, json, sol2]
     name: Build TnT
-  build:
-
-    runs-on: [windows-latest]
-
     steps:
-    - uses: actions/checkout@v2
-    - uses: ilammy/msvc-dev-cmd@v1
-    - name: Build TnT.exe
-      shell: cmd
-          
-          
-      run: cl /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /link /subsystem:console /machine:x64
+      - uses: actions/checkout@v2
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Build TnT.exe
+        shell: cmd
+        run: |
+          mkdir obj
+          cl /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
+          cls
