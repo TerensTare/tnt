@@ -2,6 +2,7 @@
 # 1. find a way to add SDL2 to the build system.
 # 2. (maybe) build every dependency with CMake, and then build their solution with msbuild.
 # 3. find a way to check if there is a new version of the dependencies and update automatically.
+# 4. make this cross-platform
 
 name: CI
 
@@ -9,13 +10,21 @@ on: [push]
 
 jobs:
   fmt:
-    runs-on: [windows-latest]
-    name: Build fmtlib
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ilammy/msvc-dev-cmd@v1
-      - uses: lukka/run-vcpkg@v0.8
-      - name: fmtlib.dll
+    name: ${{ matrix.os }}-fmt
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        include:
+          - os: windows-latest
+            triplet: x64-windows
+            vcpkgPackages: 'fmt'    
+        steps:
+        - uses: actions/checkout@v2
+        - uses: actions/chache@v1.1.2
+        - uses: lukka/run-vcpkg@v0.8
+        - name: fmtlib.dll
         shell: cmd
         run: |
           vcpkg install fmt
@@ -73,7 +82,7 @@ jobs:
     
   tnt:
     runs-on: [windows-latest]
-    needs: [fmt, json, sol2]
+    needs: [integrate]
     name: Build TnT
     steps:
       - uses: actions/checkout@v2
