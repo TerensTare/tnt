@@ -23,19 +23,22 @@ jobs:
           - os: windows-latest
             triplet: x64-windows
             vcpkgPackages: 'fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
+            find-tool: dir 
           - os: ubuntu-latest
             triplet: x64-linux
             vcpkgPackages: 'fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
+            find-tool: find
           - os: macos-latest
             triplet:  x64-osx
             vcpkgPackages: 'fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
+            find-tool: find
             
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v1 # submodules support
         with:
           submodules: true
       - name:  Get current running directory
-        run: find ${{ runner.workspace }}
+        run: ${{ matrix.find-tool }} ${{ runner.workspace }}
       - name: run vcpkg
         uses: lukka/run-vcpkg@v0.8
         id: runvcpkg
@@ -51,7 +54,7 @@ jobs:
     needs: [get-dependencies]
     name: Build TnT
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Build TnT.exe
         run: |
