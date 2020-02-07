@@ -31,10 +31,10 @@ jobs:
             vcpkgPackages: 'fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
             
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
         with:
           submodules: true
-      - name:  dir
+      - name:  Get current running directory
         run: find ${{ runner.workspace }}
       - name: run vcpkg
         uses: lukka/run-vcpkg@v0.8
