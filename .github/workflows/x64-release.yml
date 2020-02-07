@@ -39,13 +39,13 @@ jobs:
           submodules: true
       - name:  Get current running directory
         run: ${{ matrix.find-tool }} ${{ runner.workspace }}
-      - name: run vcpkg
+      - name: Run vcpkg
         uses: lukka/run-vcpkg@v0.8
         id: runvcpkg
         with:
           vcpkgArguments: '${{ matrix.vcpkgPackages }}'
           vcpkgTriplet: '${{ matrix.triplet }}'
-      - name: debug
+      - name: Print running commands
         run: echo "'${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT }}' '${{  steps.runvcpkg.outputs.RUNVCPKG_VCPKG_TRIPLET }}' "
         
     
