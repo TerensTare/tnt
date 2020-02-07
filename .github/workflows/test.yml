@@ -1,0 +1,57 @@
+name: CI
+
+on: [push]
+
+jobs:
+  get-dependencies:
+    name: ${{ matrix.os }}-dependencies
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        include:
+          - os: windows-latest
+            triplet: x64-windows
+            vcpkgPackages: 'fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
+            find-tool: dir 
+          - os: ubuntu-latest
+            triplet: x64-linux
+            vcpkgPackages: 'fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
+            find-tool: find
+          - os: macos-latest
+            triplet:  x64-osx
+            vcpkgPackages: 'fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
+            find-tool: find
+            
+    steps:
+      - uses: actions/checkout@v1 # submodules support
+        with:
+          submodules: true
+      - name:  Get current running directory
+        run: ${{ matrix.find-tool }} ${{ runner.workspace }}
+      - name: test run
+        run: git status
+      - name: Run vcpkg
+        uses: lukka/run-vcpkg@v0.8
+        id: runvcpkg
+        with:
+          vcpkgArguments: '${{ matrix.vcpkgPackages }}'
+          vcpkgTriplet: '${{ matrix.triplet }}'
+      - name: Print running commands
+        run: echo "'${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT }}' '${{  steps.runvcpkg.outputs.RUNVCPKG_VCPKG_TRIPLET }}' "
+        
+    
+  tnt:
+    runs-on: [windows-latest]
+    needs: [get-dependencies]
+    name: Build TnT
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Build TnT.exe
+        run: |
+          dir
+          mkdir obj
+          cl /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
+          cls
