@@ -22,15 +22,15 @@ jobs:
         include:
           - os: windows-latest
             triplet: x64-windows
-            vcpkgPackages: 'fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
+            vcpkgPackages: 'fmt' # sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
             find-tool: dir 
           - os: ubuntu-latest
             triplet: x64-linux
-            vcpkgPackages: 'fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
+            vcpkgPackages: 'fmt' # sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
             find-tool: find
           - os: macos-latest
             triplet:  x64-osx
-            vcpkgPackages: 'fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
+            vcpkgPackages: 'fmt' # sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
             find-tool: find
             
     steps:
