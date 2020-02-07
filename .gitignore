@@ -6,8 +6,8 @@ project
 test
 tools
 
-include/private
-src/private
+#include/private
+#src/private
 
 *.obj
 *.lib
@@ -17,5 +17,5 @@ src/private
 *.vcxproj
 *.sln
 
-NOTES.md
-benchmark.json
+#NOTES.md
+#benchmark.json
