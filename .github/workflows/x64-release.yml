@@ -37,8 +37,6 @@ jobs:
       - uses: actions/checkout@v1 # submodules support
         with:
           submodules: true
-      - name:  Get current running directory
-        run: ${{ matrix.find-tool }} ${{ runner.workspace }}
       - name: Run vcpkg
         uses: lukka/run-vcpkg@v0.8
         id: runvcpkg
