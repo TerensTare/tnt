@@ -32,7 +32,6 @@ jobs:
             
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/chache@v1.1.2
         with:
           submodules: true
       - name:  dir
@@ -54,7 +53,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ilammy/msvc-dev-cmd@v1
-      - uses: lukka/run-vcpkg@v0.8
       - name: Build TnT.exe
         run: |
           dir
