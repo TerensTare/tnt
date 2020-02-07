@@ -5,14 +5,15 @@
 # 4. handle vcpkg actions better.
 # 5. (maybe) add more os-es and more build configurations.
 # 6. make this cross-platform
+# 7. consider building all the dependencies in a single action.
 
 name: CI
 
 on: [push]
 
 jobs:
-  fmt:
-    name: ${{ matrix.os }}-fmt
+  get-dependencies:
+    name: ${{ matrix.os }}-dependencies
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -21,70 +22,27 @@ jobs:
         include:
           - os: windows-latest
             triplet: x64-windows
-            vcpkgPackages: 'fmt'    
-        steps:
-        - uses: actions/checkout@v2
-        - uses: actions/chache@v1.1.2
-        - uses: lukka/run-vcpkg@v0.8
-        - name: fmtlib.dll
-        shell: cmd
-        run: |
-          vcpkg install fmt
-
-    
-  sol2:
-    runs-on: [windows-latest]
-    name: Build sol2
+            vcpkgPackages: 'fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
+          - os: ubuntu-latest
+            triplet: x64-linux
+            vcpkgPackages: 'fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
+          - os: macos-latest
+            triplet:  x64-osx
+            vcpkgPackages: 'fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
+            
     steps:
       - uses: actions/checkout@v2
-      - uses: ilammy/msvc-dev-cmd@v1
+      - uses: actions/chache@v1.1.2
       - uses: lukka/run-vcpkg@v0.8
-      - name: sol2 build
+        with:
+          submodules: true
+      - name:  dependencies
         shell: cmd
-        run: |
-          vcpkg install sol2
         
-        
-  json:
-    runs-on: [windows-latest]
-    name: Build json
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ilammy/msvc-dev-cmd@v1
-      - uses: lukka/run-vcpkg@v0.8
-      - name: nlohmann-json
-        shell: cmd
-        run: |
-          vcpkg install nlohmann-json
-          
-  sdl2:
-    runs-on: [windows-latest]
-    name: Build sdl2
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ilammy/msvc-dev-cmd@v1
-      - uses: lukka/run-vcpkg@v0.8
-      - name: SDL2
-        shell: cmd
-        run: |
-          vcpkg install sdl2 sdl2-net sdl2-image sdl2-mixer sdl2-ttf
-          
-    
-  integrate:
-    needs: [fmt, sol2, json, sdl2]
-    runs-on: [windows-latest]
-    name:  Integrate all installed packages with the build system
-    steps:
-      - uses: actions/checkout@v2
-      - uses: lukka/run-vcpkg@v0.8
-      - name: integrate
-        shell: cmd
-        run: |
-          vcpkg integrate install
     
   tnt:
     runs-on: [windows-latest]
-    needs: [integrate]
+    needs: [get-dependencies]
     name: Build TnT
     steps:
       - uses: actions/checkout@v2
