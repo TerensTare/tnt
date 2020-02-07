@@ -88,7 +88,7 @@ class Matrix<void, W, H>
 
 	Matrix()
 	{
-		debug std::cout << "Creating a Matrix<void>";
+		tnt_debug std::cout << "Creating a Matrix<void>";
 	}
 };
 } // namespace experimental

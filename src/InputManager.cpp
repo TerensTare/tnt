@@ -68,6 +68,8 @@ bool tnt::InputManager::MouseButtonReleased(Uint32 button) const noexcept
     return (((prevMouse & mask) != 0) && ((currentMouse & mask) == 0));
 }
 
+#undef GET_MOUSE_MASK
+
 void tnt::InputManager::UpdateCurrentInput()
 {
     currentMouse = SDL_GetMouseState(&mX, &mY);

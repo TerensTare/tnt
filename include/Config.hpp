@@ -15,11 +15,11 @@
 #if defined(DEBUG) || defined(_DEBUG)
 #define TNT_DEBUG
 
-#define debug
-#define nodebug if (0)
+#define tnt_debug
+#define tnt_nodebug if (0)
 #elif defined(TNT_RELEASE)
-#define debug if (0)
-#define nodebug
+#define tnt_debug if (0)
+#define tnt_nodebug
 #endif // !DEBUG
 
 // used to simulate the labeled loop feature that other languages have.
