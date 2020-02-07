@@ -2,7 +2,9 @@
 # 1. find a way to add SDL2 to the build system.
 # 2. (maybe) build every dependency with CMake, and then build their solution with msbuild.
 # 3. find a way to check if there is a new version of the dependencies and update automatically.
-# 4. make this cross-platform
+# 4. handle vcpkg actions better.
+# 5. (maybe) add more os-es and more build configurations.
+# 6. make this cross-platform
 
 name: CI
 
