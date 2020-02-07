@@ -33,11 +33,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/chache@v1.1.2
-      - uses: lukka/run-vcpkg@v0.8
         with:
           submodules: true
-      - name:  dependencies
-        shell: cmd
+      - name:  dir
+        run: find ${{ runner.workspace }}
+      - name: run vcpkg
+        uses: lukka/run-vcpkg@v0.8
+        id: runvcpkg
+        with:
+          vcpkgArguments: '${{ matrix.vcpkgPackages }}'
+          vcpkgTriplet: '${{ matrix.triplet }}'
+      - name: debug
+        run: echo "'${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT }}' '${{  steps.runvcpkg.outputs.RUNVCPKG_VCPKG_TRIPLET }}' "
         
     
   tnt:
@@ -49,7 +56,6 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
       - uses: lukka/run-vcpkg@v0.8
       - name: Build TnT.exe
-        shell: cmd
         run: |
           dir
           mkdir obj
