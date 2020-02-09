@@ -25,6 +25,7 @@ jobs:
           git clone https://www.github.com/microsoft/vcpkg.git
           cd vcpkg
           pwd
+          ls
           bootstrap-vcpkg.sh
       - name: cache vcpkg
         run: find vcpkg
