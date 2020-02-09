@@ -25,8 +25,6 @@ jobs:
           git clone https://www.github.com/microsoft/vcpkg.git
           cd vcpkg
           ./bootstrap-vcpkg.sh
-          ls
-          ./vcpkg
           
       - name: cache vcpkg
         uses: actions/cache@v1.1.2
@@ -49,14 +47,17 @@ jobs:
             build: /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
             vcpkg-path: C:\\vcpkg\\installed\\x64-windows
             triplet: x64-windows
+            exe: vcpkg
           - os: ubuntu-latest
             compiler: gcc
             vcpkg-path: /usr/local/share/vcpkg/installed/x64-linux
             triplet: x64-linux
+            exe: vcpkg
           - os: macos-latest
             compiler: clang 
             vcpkg-path: sth
             triplet: x64-osx
+            exe: ./vcpkg
 
             
     steps:
