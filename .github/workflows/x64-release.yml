@@ -1,12 +1,14 @@
-# TODO: 
-# 1. find a way to add SDL2 to the build system.
-# 2. (maybe) build every dependency with CMake, and then build their solution with msbuild.
-# 3. find a way to check if there is a new version of the dependencies and update automatically.
-# 4. handle vcpkg actions better.
-# 5. (maybe) add more os-es and more build configurations.
-# 6. make this cross-platform
-# 7. consider building all the dependencies in a single action.
-# 8. consider using CMake to convert TnT into a Visual Studio solution/GCC/Clang project
+# (DONE) find a way to add SDL2 to the build system.
+# (DONE) find a way to check if there is a new version of the dependencies and update automatically.
+# (DONE) handle vcpkg actions better.
+# (DONE) consider building all the dependencies in a single action.
+
+# TODO:
+# 1. (maybe)(PARTIAL) add more os-es and more build configurations.
+# 2. (PARTIAL) make this cross-platform.
+# 3. consider using CMake to convert TnT into a Visual Studio solution/GCC/Clang project.
+# 4. vcpkg isn't pre-installed on macOSX. Fix that.
+# 5. cache installed packages and run vcpkg update once a week.
 
 name: CI
 
@@ -41,12 +43,19 @@ jobs:
         with:
           submodules: true # is this necessary?
       - name: Run vcpkg
-        run: |
-          vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
+        run: vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
+          
+  integrate:
+    needs: [get-dependencies]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: integrate installed packages.
+        run: vcpkg integrate install
+
     
   tnt:
     runs-on: [windows-latest]
-    needs: [get-dependencies]
+    needs: [integrate]
     name: Build TnT
     steps:
       - uses: actions/checkout@v1
@@ -56,4 +65,3 @@ jobs:
           dir
           mkdir obj
           cl /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
-          cls
