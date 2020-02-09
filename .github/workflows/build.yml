@@ -27,8 +27,12 @@ jobs:
           pwd
           ls
           ./bootstrap-vcpkg.sh
+          set $PATH=vcpkg/toolsrc;$PATH
       - name: cache vcpkg
-        run: find vcpkg
+        uses: actions/cache@v1.1.2
+        with:
+         path: vcpkg
+         key: mac-vcpkg
     
     
   get-dependencies:
