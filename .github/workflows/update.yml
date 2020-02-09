@@ -1,0 +1,27 @@
+# Github Action to check if dependencies have an updated version available throught vcpkg.
+
+name: Update
+on: 
+  schedule:
+    - cron: '0 0 * * 1'
+
+  jobs:
+    check-update:
+    name: ${{ matrix.os }}-update-dependencies
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        include:
+          - os: windows-latest
+            triplet: x64-windows
+          - os: ubuntu-latest
+            triplet: x64-linux
+          - os: macos-latest
+            triplet: x64-osx
+    
+    steps:
+      - name: Check for updates
+        env:
+          VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
