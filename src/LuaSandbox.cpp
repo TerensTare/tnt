@@ -60,6 +60,10 @@ void tnt::LuaSandbox::loadObject()
         "parent", sol::property(&Object::getParent, &Object::setParent));
 }
 
+void tnt::LuaSandbox::loadEasings()
+{
+}
+
 // void tnt::LuaSandbox::loadMatrix()
 // {
 //     lua.new_usertype<Matrix>(

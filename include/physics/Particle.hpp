@@ -5,16 +5,18 @@
 
 namespace tnt
 {
-struct Particle
+class Particle
 {
     void integrate(real duration);
 
+private:
     real damping;
     real inverseMass; // this way mass can't be 0
 
     Vector pos;
     Vector velocity;
     Vector acceleration;
+
     Vector forceAccumulator;
 };
 } // namespace tnt

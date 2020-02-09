@@ -1,7 +1,6 @@
 #ifndef CONFIG_HPP
 #define CONFIG_HPP
 
-#define TNT_NOVTABLE __declspec(novtable)
 #define TNT_NODISCARD [[nodiscard]]
 
 #define TNT_NON_COPYABLE(type)   \
@@ -49,6 +48,8 @@
 #endif //!TNT_BUILD_DLL
 #endif //!_MSC_VER
 
+#define TNT_NOVTABLE __declspec(novtable)
+
 #define windows
 #define linux if (0)
 #define mac if (0)
@@ -63,6 +64,8 @@
 #if defined(__ANDROID__) || defined(__ANDROID_API__)
 #define PATH_SEPARATOR "/"
 
+#define TNT_NOVTABLE
+
 #define windows if (0)
 #define linux if (0)
 #define mac if (0)
@@ -70,6 +73,8 @@
 #define ios if (0)
 
 #endif // !__ANDROID__
+
+#define TNT_NOVTABLE
 
 #define windows if (0)
 #define linux
@@ -79,11 +84,13 @@
 
 #elif defined(__APPLE__) && defined(__MACH__)
 
-// TODO(maybe): this shpuld be sth different.
+// TODO(maybe): this should be sth different.
 #define TNT_API
 
 #if TARGET_IPHONE_SIMULATOR == 1
 #define PATH_SEPARATOR "/"
+
+#define TNT_NOVTABLE
 
 #define windows if (0)
 #define linux if (0)
@@ -94,6 +101,8 @@
 #elif TARGET_OS_IPHONE == 1
 #define PATH_SEPARATOR "/"
 
+#define TNT_NOVTABLE
+
 #define windows if (0)
 #define linux if (0)
 #define mac if (0)
@@ -102,6 +111,8 @@
 
 #elif TARGET_OS_MAC == 1
 #define PATH_SEPARATOR "/"
+
+#define TNT_NOVTABLE
 
 #define windows if (0)
 #define linux if (0)
@@ -112,7 +123,7 @@
 #endif // !TARGET_IPHONE_SIMULATOR
 
 #else
-static_assert(false, "TnT couldn't detect running operating system!");
+static_assert("TnT couldn't detect running operating system!");
 #endif //!_WIN32
 
 #endif //!CONFIG_HPP

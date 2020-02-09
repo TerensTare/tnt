@@ -26,6 +26,7 @@ private:
     void loadCamera();
     void loadTimer();
     void loadObject();
+    void loadEasings();
 
     static sol::state lua;
 };
