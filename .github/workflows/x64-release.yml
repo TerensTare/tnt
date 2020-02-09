@@ -37,9 +37,9 @@ jobs:
 
             
     steps:
-      - uses: actions/checkout@v1 # submodules support
+      - uses: actions/checkout@v1 # submodules support, is this line necessary?
         with:
-          submodules: true
+          submodules: true # is this necessary?
       - name: Run vcpkg
         run: |
           vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
