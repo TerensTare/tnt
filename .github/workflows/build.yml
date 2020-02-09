@@ -49,8 +49,8 @@ jobs:
         run: vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
       - name: Linux find vcpkg
         run: ${{ matrix.find }}
-      - name: Cache packages
-        uses: actions/chache@v1.1.2
+      # - name: Cache packages
+        # uses: actions/chache@v1.1.2
         #with:
          # path: 
       - name: Integrate packages
