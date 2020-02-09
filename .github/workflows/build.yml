@@ -2,14 +2,13 @@
 # (DONE) find a way to check if there is a new version of the dependencies and update automatically.
 # (DONE) handle vcpkg actions better.
 # (DONE) consider building all the dependencies in a single action.
+# (DONE) using env: set vcpkg triplet to x64.
 
 # TODO:
 # 1. (maybe)(PARTIAL) add more os-es and more build configurations.
-# 2. (PARTIAL) make this cross-platform.
-# 3. consider using CMake to convert TnT into a Visual Studio solution/GCC/Clang project.
-# 4. vcpkg isn't pre-installed on macOSX. Fix that.
-# 5. cache installed packages and run vcpkg update once a week.
-# 6. using env: set vcpkg triplet to x64
+# 2. consider using CMake to convert TnT into a Visual Studio solution/GCC/Clang project.
+# 3. vcpkg isn't pre-installed on macOSX. Fix that. Also, cache the installation.
+# 4. (NEEDS TESTING) cache installed packages and run vcpkg update once a week.
 
 name: CI
 on: [push]
@@ -27,6 +26,7 @@ jobs:
     
   get-dependencies:
     name: ${{ matrix.os }}-dependencies
+    needs: [dl-vcpkg]
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -67,7 +67,7 @@ jobs:
     needs: [get-dependencies]
     name: Build TnT
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Build TnT.exe
         run: |
           dir
