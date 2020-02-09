@@ -27,24 +27,32 @@ jobs:
           - os: windows-latest
             compiler: cl.exe
             build: /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
-            triplet: x64-windows # is this neccesary?
-            exporter: setx # is this neccesary?
+            vcpkg-path: "%VCPKG_INSTALLATION_ROOT%"
+            separator: \\
+            find: echo
           - os: ubuntu-latest
-            compiler: gcc 
-            triplet: x64-linux # is this neccesary?
-            exporter: export # is this neccesary?
+            compiler: gcc
+            vcpkg-path: sth
+            separator: /
+            find: find vcpkg
           - os: macos-latest
             compiler: clang 
-            triplet:  x64-osx # is this neccesary?
-            exporter: export # is this neccesary?
+            vcpkg-path: sth
+            separator: /
+            find: echo
 
             
     steps:
-      - uses: actions/checkout@v1 # submodules support, is this line necessary?
-        with:
-          submodules: true # is this necessary?
       - name: Run vcpkg
+        env:
+          VCPKG_DEFAULT_TRIPLET: x64-${{ matrix.os }}
         run: vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
+      - name: Linux find vcpkg
+        run: ${{ matrix.find }}
+      - name: Cache packages
+        uses: actions/chache@v1.1.2
+        #with:
+         # path: 
       - name: Integrate packages
         run: vcpkg integrate install
 
@@ -55,7 +63,6 @@ jobs:
     name: Build TnT
     steps:
       - uses: actions/checkout@v1
-      - uses: ilammy/msvc-dev-cmd@v1
       - name: Build TnT.exe
         run: |
           dir
