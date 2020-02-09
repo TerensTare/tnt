@@ -9,6 +9,7 @@
 # 3. consider using CMake to convert TnT into a Visual Studio solution/GCC/Clang project.
 # 4. vcpkg isn't pre-installed on macOSX. Fix that.
 # 5. cache installed packages and run vcpkg update once a week.
+# 6. using env: set vcpkg triplet to x64
 
 name: CI
 
