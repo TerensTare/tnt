@@ -24,10 +24,10 @@ jobs:
           pwd
           git clone https://www.github.com/microsoft/vcpkg.git
           cd vcpkg
-          pwd
-          ls
           ./bootstrap-vcpkg.sh
-          set $PATH=vcpkg/toolsrc;$PATH
+          ls
+          ./vcpkg
+          
       - name: cache vcpkg
         uses: actions/cache@v1.1.2
         with:
