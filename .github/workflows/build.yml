@@ -15,28 +15,28 @@
 name: CI
 on: [push]
 
-jobs:
-  dl-vcpkg:
-    name: Download vcpkg
-    runs-on: [macos-latest]
-    steps:
-      - name: Cache vcpkg
-        id: vcpkg-macos-cache 
-      - uses: actions/cache@v1.1.2
-        with:
-         path: vcpkg
-         key: mac-vcpkg
+# jobs:
+#   dl-vcpkg:
+#     name: Download vcpkg
+#     runs-on: [macos-latest]
+#     steps:
+#       - name: Cache vcpkg
+#         id: vcpkg-macos-cache
+#       - uses: actions/cache@v1.1.2
+#         with:
+#          path: vcpkg
+#          key: mac-vcpkg
 
-      - name: Download vcpkg
-        if: steps.vcpkg-macos-cache.outputs.cache-hit != 'true'
-        run: |
-          pwd
-          git clone https://www.github.com/microsoft/vcpkg.git
-          cd vcpkg
-          ./bootstrap-vcpkg.sh
-          
-         
-    
+#       - name: Download vcpkg
+#         if: steps.vcpkg-macos-cache.outputs.cache-hit != 'true'
+#         run: |
+#           pwd
+#           git clone https://www.github.com/microsoft/vcpkg.git
+#           cd vcpkg
+#           ./bootstrap-vcpkg.sh
+
+
+
   get-dependencies:
     name: ${{ matrix.os }}-dependencies
     needs: [dl-vcpkg]
@@ -63,7 +63,7 @@ jobs:
             triplet: x64-osx
             exe: ./vcpkg
 
-            
+
     steps:
       - name: Run vcpkg
         env:
@@ -77,7 +77,7 @@ jobs:
       - name: Integrate packages
         run: ${{ matrix.exe }} integrate install
 
-    
+
   tnt:
     runs-on: [windows-latest]
     needs: [get-dependencies]
