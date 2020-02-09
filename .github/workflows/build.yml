@@ -50,7 +50,7 @@ jobs:
       - name: Linux find vcpkg
         run: ${{ matrix.find }}
       - name: Cache packages
-        uses: actions/chache@v1.1.2
+        uses: actions/cache@v1.1.2
         with:
          path: ${{ matrix.vcpkg-path }}
       - name: Integrate packages
