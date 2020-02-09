@@ -6,6 +6,7 @@
 # 5. (maybe) add more os-es and more build configurations.
 # 6. make this cross-platform
 # 7. consider building all the dependencies in a single action.
+# 8. consider using CMake to convert TnT into a Visual Studio solution/GCC/Clang project
 
 name: CI
 
@@ -21,31 +22,27 @@ jobs:
         os: [windows-latest, ubuntu-latest, macos-latest]
         include:
           - os: windows-latest
-            triplet: x64-windows
-            vcpkgPackages: 'fmt' # sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
-            find-tool: dir 
+            compiler: cl.exe
+            build: /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
+            triplet: x64-windows # is this neccesary?
+            exporter: setx # is this neccesary?
           - os: ubuntu-latest
-            triplet: x64-linux
-            vcpkgPackages: 'fmt' # sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
-            find-tool: find
+            compiler: gcc 
+            triplet: x64-linux # is this neccesary?
+            exporter: export # is this neccesary?
           - os: macos-latest
-            triplet:  x64-osx
-            vcpkgPackages: 'fmt' # sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net'
-            find-tool: find
+            compiler: clang 
+            triplet:  x64-osx # is this neccesary?
+            exporter: export # is this neccesary?
+
             
     steps:
       - uses: actions/checkout@v1 # submodules support
         with:
           submodules: true
       - name: Run vcpkg
-        uses: lukka/run-vcpkg@v0.8
-        id: runvcpkg
-        with:
-          vcpkgArguments: '${{ matrix.vcpkgPackages }}'
-          vcpkgTriplet: '${{ matrix.triplet }}'
-      - name: Print running commands
-        run: echo "'${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT }}' '${{  steps.runvcpkg.outputs.RUNVCPKG_VCPKG_TRIPLET }}' "
-        
+        run: |
+          vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
     
   tnt:
     runs-on: [windows-latest]
