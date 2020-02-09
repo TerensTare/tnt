@@ -64,14 +64,14 @@ jobs:
       - name: Run vcpkg
         env:
           VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
-        run: vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
+        run: ${{ matrix.exe }} install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
       - name: Cache packages
         uses: actions/cache@v1.1.2
         with:
          path: ${{ matrix.vcpkg-path }}
          key: dependencies
       - name: Integrate packages
-        run: vcpkg integrate install
+        run: ${{ matrix.exe }} integrate install
 
     
   tnt:
