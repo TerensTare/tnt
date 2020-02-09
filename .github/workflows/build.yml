@@ -9,6 +9,7 @@
 # 2. consider using CMake to convert TnT into a Visual Studio solution/GCC/Clang project.
 # 3. vcpkg isn't pre-installed on macOSX. Fix that. Also, cache the installation.
 # 4. (NEEDS TESTING) cache installed packages and run vcpkg update once a week.
+# 5. build vcpkg on macosx after downloading.
 
 name: CI
 on: [push]
@@ -19,7 +20,12 @@ jobs:
     runs-on: [macos-latest]
     steps:
       - name: download vcpkg
-        run: git clone https://www.github.com/microsoft/vcpkg.git
+        run: |
+          pwd
+          git clone https://www.github.com/microsoft/vcpkg.git
+          cd vcpkg
+          pwd
+          bootstrap-vcpkg.sh
       - name: cache vcpkg
         run: find vcpkg
     
