@@ -16,6 +16,16 @@ name: CI
 on: [push]
 
 jobs:
+  dl-vcpkg:
+    name: Download vcpkg
+    runs-on: [macos-latest]
+    steps:
+      - name: download vcpkg
+        run: git clone https://www.github.com/microsoft/vcpkg.git
+      - name: cache vcpkg
+        run: find vcpkg
+    
+    
   get-dependencies:
     name: ${{ matrix.os }}-dependencies
     runs-on: ${{ matrix.os }}
