@@ -27,21 +27,18 @@ jobs:
           - os: windows-latest
             compiler: cl.exe
             build: /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
-            vcpkg-path: "%VCPKG_INSTALLATION_ROOT%"
+            vcpkg-path: C:\\vcpkg\\installed\\x64-windows
             triplet: x64-windows
             separator: \\
-            find: echo
           - os: ubuntu-latest
             compiler: gcc
-            vcpkg-path: sth
+            vcpkg-path: /usr/local/share/vcpkg/installed/x64-linux
             separator: /
-            find: find vcpkg
             triplet: x64-linux
           - os: macos-latest
             compiler: clang 
             vcpkg-path: sth
             separator: /
-            find: echo
             triplet: x64-osx
 
             
@@ -52,10 +49,10 @@ jobs:
         run: vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
       - name: Linux find vcpkg
         run: ${{ matrix.find }}
-      # - name: Cache packages
-        # uses: actions/chache@v1.1.2
-        #with:
-         # path: 
+      - name: Cache packages
+        uses: actions/chache@v1.1.2
+        with:
+         path: ${{ matrix.vcpkg-path }}
       - name: Integrate packages
         run: vcpkg integrate install
 
