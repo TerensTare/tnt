@@ -3,13 +3,14 @@
 # (DONE) handle vcpkg actions better.
 # (DONE) consider building all the dependencies in a single action.
 # (DONE) using env: set vcpkg triplet to x64.
+# (DONE) build vcpkg on macosx after downloading.
 
 # TODO:
 # 1. (maybe)(PARTIAL) add more os-es and more build configurations.
 # 2. consider using CMake to convert TnT into a Visual Studio solution/GCC/Clang project.
 # 3. vcpkg isn't pre-installed on macOSX. Fix that. Also, cache the installation.
 # 4. (NEEDS TESTING) cache installed packages and run vcpkg update once a week.
-# 5. build vcpkg on macosx after downloading.
+# 5. check for vcpkg updates weekly on macosx.
 
 name: CI
 on: [push]
@@ -19,19 +20,22 @@ jobs:
     name: Download vcpkg
     runs-on: [macos-latest]
     steps:
-      - name: download vcpkg
+      - name: Cache vcpkg
+        id: vcpkg-macos-cache
+      - uses: actions/cache@v1.1.2
+        with:
+         path: vcpkg
+         key: mac-vcpkg
+
+      - name: Download vcpkg
+        if: steps.vcpkg-macos-cache.outputs.cache-hit != 'true'
         run: |
           pwd
           git clone https://www.github.com/microsoft/vcpkg.git
           cd vcpkg
           ./bootstrap-vcpkg.sh
           
-      - name: cache vcpkg
-        uses: actions/cache@v1.1.2
-        with:
-         path: vcpkg
-         key: mac-vcpkg
-    
+         
     
   get-dependencies:
     name: ${{ matrix.os }}-dependencies
