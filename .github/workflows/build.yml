@@ -29,16 +29,13 @@ jobs:
             build: /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
             vcpkg-path: C:\\vcpkg\\installed\\x64-windows
             triplet: x64-windows
-            separator: \\
           - os: ubuntu-latest
             compiler: gcc
             vcpkg-path: /usr/local/share/vcpkg/installed/x64-linux
-            separator: /
             triplet: x64-linux
           - os: macos-latest
             compiler: clang 
             vcpkg-path: sth
-            separator: /
             triplet: x64-osx
 
             
@@ -47,12 +44,11 @@ jobs:
         env:
           VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
         run: vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
-      - name: Linux find vcpkg
-        run: ${{ matrix.find }}
       - name: Cache packages
         uses: actions/cache@v1.1.2
         with:
          path: ${{ matrix.vcpkg-path }}
+         key: dependencies
       - name: Integrate packages
         run: vcpkg integrate install
 
