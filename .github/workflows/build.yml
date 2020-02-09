@@ -28,6 +28,7 @@ jobs:
             compiler: cl.exe
             build: /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
             vcpkg-path: "%VCPKG_INSTALLATION_ROOT%"
+            triplet: x64-windows
             separator: \\
             find: echo
           - os: ubuntu-latest
@@ -35,17 +36,19 @@ jobs:
             vcpkg-path: sth
             separator: /
             find: find vcpkg
+            triplet: x64-linux
           - os: macos-latest
             compiler: clang 
             vcpkg-path: sth
             separator: /
             find: echo
+            triplet: x64-osx
 
             
     steps:
       - name: Run vcpkg
         env:
-          VCPKG_DEFAULT_TRIPLET: x64-${{ matrix.os }}
+          VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
         run: vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
       - name: Linux find vcpkg
         run: ${{ matrix.find }}
