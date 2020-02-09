@@ -1,12 +1,13 @@
 # Github Action to check if dependencies have an updated version available throught vcpkg.
 
 name: Update
-on: 
+on:
   schedule:
     - cron: '0 0 * * 1'
-
-  jobs:
-    check-update:
+      
+      
+jobs:
+  check-update:
     name: ${{ matrix.os }}-update-dependencies
     runs-on: ${{ matrix.os }}
     strategy:
