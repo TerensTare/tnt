@@ -12,7 +12,6 @@
 # 6. using env: set vcpkg triplet to x64
 
 name: CI
-
 on: [push]
 
 jobs:
