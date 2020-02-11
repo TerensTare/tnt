@@ -36,8 +36,7 @@ on: [push]
 #           ./bootstrap-vcpkg.sh
 
 
-
-  get-dependencies:
+get-dependencies:
     name: ${{ matrix.os }}-dependencies
     # needs: [dl-vcpkg]
     runs-on: ${{ matrix.os }}
