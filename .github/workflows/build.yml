@@ -39,12 +39,12 @@ on: [push]
 
   get-dependencies:
     name: ${{ matrix.os }}-dependencies
-    needs: [dl-vcpkg]
+    # needs: [dl-vcpkg]
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-latest, ubuntu-latest] #, macos-latest]
         include:
           - os: windows-latest
             compiler: cl.exe
@@ -57,19 +57,21 @@ on: [push]
             vcpkg-path: /usr/local/share/vcpkg/installed/x64-linux
             triplet: x64-linux
             exe: vcpkg
-          - os: macos-latest
-            compiler: clang 
-            vcpkg-path: sth
-            triplet: x64-osx
-            exe: ./vcpkg
+          # - os: macos-latest
+          #   compiler: clang 
+          #   vcpkg-path: sth
+          #   triplet: x64-osx
+          #   exe: ./vcpkg
 
 
     steps:
       - name: Run vcpkg
         env:
           VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
-        run: ${{ matrix.exe }} install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
+        if: steps.pack-cache.outputs.cache-hit != 'true'
+        run: vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
       - name: Cache packages
+        id: pack-cache
         uses: actions/cache@v1.1.2
         with:
          path: ${{ matrix.vcpkg-path }}
