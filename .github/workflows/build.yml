@@ -79,14 +79,14 @@ get-dependencies:
         run: ${{ matrix.exe }} integrate install
 
 
-  tnt:
-    runs-on: [windows-latest]
-    needs: [get-dependencies]
-    name: Build TnT
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build TnT.exe
+    tnt:
+        runs-on: [windows-latest]
+        needs: [get-dependencies]
+        name: Build TnT
+        steps:
+        - uses: actions/checkout@v2
+        - name: Build TnT.exe
         run: |
-          dir
-          mkdir obj
-          cl /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
+            dir
+            mkdir obj
+            cl /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
