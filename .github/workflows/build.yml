@@ -12,6 +12,7 @@
 # 4. (NEEDS TESTING) cache installed packages and run vcpkg update once a week.
 # 5. check for vcpkg updates weekly on macosx.
 # 6. The runner on Windows doesn't know the location of vcvars64.bat. Add that to the PATH using env:.
+# 7. actions/cache knows there is some cache saved, but atill runs downlod process. FIX THAT!!!
 
 name: CI
 on: [push]
