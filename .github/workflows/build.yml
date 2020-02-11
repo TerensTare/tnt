@@ -35,58 +35,58 @@ on: [push]
 #           cd vcpkg
 #           ./bootstrap-vcpkg.sh
 
+jobs:
+    get-dependencies:
+        name: ${{ matrix.os }}-dependencies
+        # needs: [dl-vcpkg]
+        runs-on: ${{ matrix.os }}
+        strategy:
+          fail-fast: false
+          matrix:
+            os: [windows-latest, ubuntu-latest] #, macos-latest]
+            include:
+              - os: windows-latest
+                compiler: cl.exe
+                build: /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
+                vcpkg-path: C:\\vcpkg\\installed\\x64-windows
+                triplet: x64-windows
+                exe: vcpkg
+              - os: ubuntu-latest
+                compiler: gcc
+                vcpkg-path: /usr/local/share/vcpkg/installed/x64-linux
+                triplet: x64-linux
+                exe: vcpkg
+              # - os: macos-latest
+              #   compiler: clang 
+              #   vcpkg-path: sth
+              #   triplet: x64-osx
+              #   exe: ./vcpkg
 
-get-dependencies:
-    name: ${{ matrix.os }}-dependencies
-    # needs: [dl-vcpkg]
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-latest, ubuntu-latest] #, macos-latest]
-        include:
-          - os: windows-latest
-            compiler: cl.exe
-            build: /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
-            vcpkg-path: C:\\vcpkg\\installed\\x64-windows
-            triplet: x64-windows
-            exe: vcpkg
-          - os: ubuntu-latest
-            compiler: gcc
-            vcpkg-path: /usr/local/share/vcpkg/installed/x64-linux
-            triplet: x64-linux
-            exe: vcpkg
-          # - os: macos-latest
-          #   compiler: clang 
-          #   vcpkg-path: sth
-          #   triplet: x64-osx
-          #   exe: ./vcpkg
 
-
-    steps:
-      - name: Run vcpkg
-        env:
-          VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
-        if: steps.pack-cache.outputs.cache-hit != 'true'
-        run: vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
-      - name: Cache packages
-        id: pack-cache
-        uses: actions/cache@v1.1.2
-        with:
-         path: ${{ matrix.vcpkg-path }}
-         key: dependencies
-      - name: Integrate packages
-        run: ${{ matrix.exe }} integrate install
+        steps:
+          - name: Run vcpkg
+            env:
+              VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
+            if: steps.pack-cache.outputs.cache-hit != 'true'
+            run: vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
+          - name: Cache packages
+            id: pack-cache
+            uses: actions/cache@v1.1.2
+            with:
+             path: ${{ matrix.vcpkg-path }}
+             key: dependencies
+          - name: Integrate packages
+            run: ${{ matrix.exe }} integrate install
 
 
     tnt:
-        runs-on: [windows-latest]
-        needs: [get-dependencies]
-        name: Build TnT
-        steps:
-        - uses: actions/checkout@v2
-        - name: Build TnT.exe
-        run: |
-            dir
-            mkdir obj
-            cl /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
+            runs-on: [windows-latest]
+            needs: [get-dependencies]
+            name: Build TnT
+            steps:
+            - uses: actions/checkout@v2
+            - name: Build TnT.exe
+              run: |
+                dir
+                mkdir obj
+                cl /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
