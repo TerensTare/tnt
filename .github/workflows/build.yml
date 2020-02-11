@@ -87,6 +87,6 @@ jobs:
             - uses: actions/checkout@v2
             - name: Build TnT.exe
               run: |
-                dir
+                vcvars64
                 mkdir obj
                 cl /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
