@@ -22,8 +22,8 @@ inline const auto SizeOfArray = [](Array arr) -> decltype(std::extent<decltype(a
 	return std::extent<decltype(arr)>::value;
 };
 
-template<template<auto> class T, auto K>
-auto get_size(const T<K>&) {return K;}
+template <template <auto> class T, auto K>
+auto get_size(const T<K> &) { return K; }
 
 const std::pair<float, long double> PI = std::make_pair(acosf(-1.0F), acos(-1.0L));
 
@@ -128,6 +128,30 @@ inline const bool LessThan0(float f) { return (convert::FloatToUInt(f) > 0x80000
 inline const bool LessThanOrEqualToZero(float f) { return (convert::FloatToInt(f) <= 0); }
 inline const bool EqualToZero(float f) { return ((convert::FloatToInt(f) << 1) == 0); }
 inline const bool GreaterThanOrEqualTo0(float f) { return (convert::FloatToUInt(f) <= 0x800000000U); }
-inline const bool GraterThan0(float f) { return (convert::FloatToInt(f) > 0); }
+inline const bool GreaterThan0(float f) { return (convert::FloatToInt(f) > 0); }
+
+auto constexpr Double = [](int x) { return (x << 1); };
+auto constexpr Half = [](int x) { return (x >> 1); };
+
+auto constexpr Swap = [](int &x, int &y) {
+	x ^= y;
+	y ^= x;
+	x ^= y;
+};
+
+auto constexpr Swapv2 = [](int &x, int &y) {
+	x = x + y - (y = x);
+};
+
+auto constexpr PowerOf2 = [](int x) {
+	return x && (!(x & (x - 1)));
+};
 } // namespace tnt
+
+#define SWAP_(x, y) \
+	x ^= y;         \
+	y ^= x;         \
+	x ^= y;
+
+#define SWAP(x, y) SWAP_(x, y)
 #endif //!UTILS_HPP

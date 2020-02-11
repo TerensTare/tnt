@@ -3,9 +3,6 @@
 
 #include "Object.hpp"
 
-tnt::Object::Object(Vector p, float angl, Vector scal)
-    : pos{p}, angle{angle}, scale{scal}, parent{nullptr} {}
-
 tnt::Object::~Object() noexcept
 {
     parent = nullptr; // should this be like this? We don't want do delete the parent, just the pointer.

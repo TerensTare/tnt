@@ -8,7 +8,6 @@ namespace tnt
 class Object
 {
 public:
-    Object(Vector p = {}, float ang = 0.f, Vector scal = {1.f, 1.f});
     ~Object() noexcept;
 
     void setAngle(float rad) noexcept;

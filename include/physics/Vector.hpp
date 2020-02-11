@@ -37,9 +37,16 @@ struct Vector
 	real MagnitudeSqr() const noexcept { return x * x + y * y; }
 	real Magnitude() const noexcept { return sqrt(x * x + y * y); }
 
+	void Normalize() noexcept
+	{
+		real mag{Magnitude()};
+		x /= mag;
+		y /= mag;
+	}
+
 	Vector Normalized() const
 	{
-		real mag = Magnitude();
+		real mag{Magnitude()};
 		return Vector{x / mag, y / mag};
 	}
 
