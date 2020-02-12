@@ -6,9 +6,11 @@ strategy:
     linux:
       imageName: 'ubuntu-latest'
       triplet: 'x64-linux'
+      cacheLocation: '$VCPKG_ROOT/installed/x64-linux'
     windows:
       imageName: 'windows-latest'
       triplet: 'x64-windows'
+      cacheLocation: "%VCPKG_ROOT\\installed\\x64-windows"
 
 
 pool:
@@ -16,7 +18,13 @@ pool:
 
 
 steps:
+  - task: Cache@2
+    inputs:
+      key: 'vcpkg_"$(imageName)"_cache'
+      path: $(cacheLocation)
+    displayName: "Cache"
   - script: vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
+    condition: failed("Cache")
     env:
       VCPKG_DEFAULT_TRIPLET: $(triplet)
     name: "get_dependencies"
