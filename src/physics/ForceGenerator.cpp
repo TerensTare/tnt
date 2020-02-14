@@ -112,3 +112,24 @@ void tnt::BuoyancyForce::update(tnt::Particle *particle, real duration)
     force.y = liquiddensity * vol * (depth - maxdepth - waterheight) / 2 * maxdepth;
     particle->addForce(force);
 }
+
+tnt::FakeSpring::FakeSpring(tnt::Vector *anch, real springC, real damp)
+    : anchor{anch}, springc{springC}, damping{damp} {}
+
+void tnt::FakeSpring::update(tnt::Particle *particle, real duration)
+{
+    if (!particle->hasFiniteMass())
+        return;
+    Vector pos{particle->getPosition()};
+    pos -= *anchor;
+
+    real gamma{(real).5 * realsqrt(4 * springc - damping * damping)};
+    if (gamma == real0)
+        return;
+
+    Vector c{pos * (damping / ((real)2 * gamma)) + particle->getVelocity() * ((real)1 / gamma)};
+    Vector target{pos * realcos(gamma * duration) + c * realsin(gamma * duration)};
+    target *= realexp((real)(-.5) * duration * damping);
+    Vector accel{(target - pos) * ((real)1.0 / duration * duration) - particle->getVelocity() * duration};
+    particle->addForce(accel * particle->getMass());
+}

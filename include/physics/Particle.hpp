@@ -1,7 +1,7 @@
 #ifndef PARTICLE_HPP
 #define PARTICLE_HPP
 
-#include "Vector.hpp"
+#include "physics/Vector.hpp"
 
 namespace tnt
 {
@@ -24,6 +24,8 @@ public:
 
     void setAcceleration(Vector const &accel) noexcept;
     Vector getAcceleration() const noexcept;
+
+    bool hasFiniteMass() const noexcept;
 
     void addForce(Vector const &force) noexcept;
     void clearAccumulator() noexcept;

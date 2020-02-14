@@ -9,6 +9,8 @@ namespace tnt
 
 // TODO: unfinished
 // TODO: temporary use libfmt, but after MSVC will support C++20's <format>, use that instead.
+// TODO: support writing to files.
+// TODO: write time before the message.
 class Logger
 {
 public:
