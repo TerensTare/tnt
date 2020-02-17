@@ -24,15 +24,12 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+ - OS: [e.g. Ubuntu]
+ - OS Version: [e.g. 18.04]
+ - Command you used to compile the code. If you got the executable, please provide the URL where you got it.
+ - Compiler: [e.g. GCC]
+ - Compiler Version: [e.g. 9] <!--(please write the full version here)-->
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+**Additional context <!--(fully optional)-->:**
 
-**Additional context**
 Add any other context about the problem here.
