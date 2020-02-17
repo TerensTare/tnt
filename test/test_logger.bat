@@ -1,0 +1,1 @@
+cl /EHsc /std:c++17 /I..\include /I%vcpkg_dir%\x64-windows\include test_logger.cpp /link /libpath:%vcpkg_dir%\x64-windows\lib fmt.lib
