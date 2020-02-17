@@ -13,7 +13,7 @@ class ForceGenerator
 public:
     virtual ~ForceGenerator() noexcept {}
 
-    virtual void update(Particle *particle, real duration) = 0;
+    virtual void update(Particle *particle, float duration) = 0;
 };
 
 class ForceRegistry
@@ -23,7 +23,7 @@ public:
     void remove(Particle *p, ForceGenerator *gen);
     void clear();
 
-    void update(real duration);
+    void update(float duration);
 
 protected:
     struct ForceRegistration
@@ -41,7 +41,7 @@ class GravityForce : public ForceGenerator
 public:
     GravityForce(Vector const &gravity);
 
-    virtual void update(Particle *particle, real duration) override;
+    virtual void update(Particle *particle, float duration) override;
 
 private:
     Vector value;
@@ -50,79 +50,79 @@ private:
 class DragForce : public ForceGenerator
 {
 public:
-    DragForce(real c1, real c2);
+    DragForce(float c1, float c2);
 
-    virtual void update(Particle *particle, real duration) override;
+    virtual void update(Particle *particle, float duration) override;
 
 private:
-    real k1, k2;
+    float k1, k2;
 };
 
 class SpringForce : public ForceGenerator
 {
 public:
-    SpringForce(Particle *other, real c, real rest);
+    SpringForce(Particle *other, float c, float rest);
 
-    virtual void update(Particle *particle, real duration) override;
+    virtual void update(Particle *particle, float duration) override;
 
 private:
     Particle *o;
-    real k;
-    real length;
+    float k;
+    float length;
 };
 
 class AnchoredSpringForce : public ForceGenerator
 {
 public:
-    AnchoredSpringForce(Vector *anch, real c, real restl);
+    AnchoredSpringForce(Vector *anch, float c, float restl);
 
-    virtual void update(Particle *particle, real duration) override;
+    virtual void update(Particle *particle, float duration) override;
 
 private:
     Vector *anchor;
-    real springc;
-    real length;
+    float springc;
+    float length;
 };
 
 class BungeeForce : public ForceGenerator
 {
 public:
-    BungeeForce(Particle *p, real c, real l);
+    BungeeForce(Particle *p, float c, float l);
 
-    virtual void update(Particle *particle, real duration) override;
+    virtual void update(Particle *particle, float duration) override;
 
 private:
     Particle *other;
-    real springc;
-    real length;
+    float springc;
+    float length;
 };
 
 class BuoyancyForce : public ForceGenerator
 {
 public:
-    BuoyancyForce(real maxDepth, real volume, real waterHeight,
-                  real liquidDensity = (real)1000.0);
+    BuoyancyForce(float maxDepth, float volume, float waterHeight,
+                  float liquidDensity = (float)1000.0);
 
-    virtual void update(Particle *particle, real duration) override;
+    virtual void update(Particle *particle, float duration) override;
 
 private:
-    real maxdepth;
-    real vol;
-    real waterheight;
-    real liquiddensity;
+    float maxdepth;
+    float vol;
+    float waterheight;
+    float liquiddensity;
 };
 
 class FakeSpring : public ForceGenerator
 {
 public:
-    FakeSpring(Vector *anch, real springC, real damp);
+    FakeSpring(Vector *anch, float springC, float damp);
 
-    virtual void update(Particle *particle, real duration) override;
+    virtual void update(Particle *particle, float duration) override;
 
 private:
     Vector *anchor;
-    real springc;
-    real damping;
+    float springc;
+    float damping;
 };
 
 } // namespace tnt

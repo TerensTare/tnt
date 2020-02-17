@@ -1,5 +1,15 @@
-#include <iostream>
-#include "tnt_version.h"
+#include "utils/Benchmark.hpp"
+#include "utils/Logger.hpp"
+
+int main()
+{
+    tnt::Instrumentor::Get().BeginSession("new logging");
+    {
+        PROFILE_SCOPE("logger");
+        tnt::logger::info("hello {} and hello {}!", "world", "tnt");
+    }
+    tnt::Instrumentor::Get().EndSession();
+}
 
 // #include "LuaSandbox.hpp"
 

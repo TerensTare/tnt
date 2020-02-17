@@ -9,15 +9,17 @@ namespace tnt
 class Contact
 {
 protected:
-    void resolve(real duration);
-    real calcSeparatingVelocity() const;
+    void resolve(float duration);
+    float calcSeparatingVelocity() const;
 
-    Particle *particles[2];
+    float restitution; // coefficient
+    float penetration;
     Vector contactNormal;
-    real restitution; // coefficient
+    Particle *particles[2];
 
 private:
-    void resolveVel(real duration);
+    void resolveVel(float duration);
+    void resolveInterpenetration(float duration);
 };
 } // namespace tnt
 

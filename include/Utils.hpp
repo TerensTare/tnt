@@ -117,11 +117,11 @@ inline T *void_cast(void *data)
 
 inline namespace convert
 {
-inline const int FloatToInt(float f) { return (*((int *)&(f))); }
-inline const unsigned int FloatToUInt(float f) { return (*((unsigned int *)&(f))); }
+inline constexpr auto FloatToInt = [](float f) { return (*((int *)&(f))); };
+inline constexpr auto FloatToUInt = [](float f) { return (*((unsigned int *)&(f))); };
 
-inline const auto RadianToDegree = [](float rad) { return (rad * (180.0f / PI.first)); };
-inline const auto DegreeToRadian = [](float deg) { return (deg * (PI.first / 180.0f)); };
+inline constexpr auto RadianToDegree = [](float rad) { return (rad * (180.0f / PI.first)); };
+inline constexpr auto DegreeToRadian = [](float deg) { return (deg * (PI.first / 180.0f)); };
 } // namespace convert
 
 inline const bool LessThan0(float f) { return (convert::FloatToUInt(f) > 0x800000000U); }
@@ -148,10 +148,10 @@ auto constexpr PowerOf2 = [](int x) {
 };
 } // namespace tnt
 
-#define SWAP_(x, y) \
-	x ^= y;         \
-	y ^= x;         \
-	x ^= y;
+#define SWAP_IMPL(x, y) \
+	(x) ^= (y);         \
+	(y) ^= (x);         \
+	(x) ^= (y);
 
-#define SWAP(x, y) SWAP_(x, y)
+#define SWAP(x, y) SWAP_IMPL(x, y)
 #endif //!UTILS_HPP

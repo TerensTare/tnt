@@ -6,6 +6,8 @@
 
 namespace tnt
 {
+// TODO(maybe): asynchronous timer?
+// TODO: add function to benchmark another function.
 class Timer
 {
 public:
@@ -21,7 +23,6 @@ private:
     // float scale{1.f}; // 1 means second
     std::chrono::steady_clock::time_point begin{std::chrono::steady_clock::now()};
 };
-
 } // namespace tnt
 
 #endif //!TIMER_HPP

@@ -7,6 +7,8 @@
 #include <fstream>
 #include <thread>
 
+// TODO(maybe): make this an extension.
+
 namespace tnt
 {
 // code taken from
@@ -127,7 +129,7 @@ private:
 };
 } // namespace tnt
 
-#define PROFILE_SCOPE(name) InstrumentationTimer timer##__LINE__(name)
+#define PROFILE_SCOPE(name) tnt::InstrumentationTimer timer##__LINE__(name)
 #define PROFILE_FUNCTION() PROFILE_SCOPE(__FUNCSIG__)
 
 #endif //!BENCHMARK_HPP

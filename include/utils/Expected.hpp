@@ -49,6 +49,8 @@ public:
     template <typename E>
     Expected<T>(E const &e) : spam{std::make_exception_ptr(e)}, gotResult{false} {}
 
+    ~Expected() {}
+
     void swap(Expected &e)
     {
         if (gotResult)
@@ -59,7 +61,7 @@ public:
             {
                 auto t{std::move(e.spam)};
                 new (&e.result) T{std::move(result)};
-                new (&spam) std::exception_ptr;
+                new (&spam) std::exception_ptr{t};
                 std::swap(gotResult, e.gotResult);
             }
         }
@@ -69,6 +71,7 @@ public:
                 e.swap(*this);
             else
                 spam.swap(e.spam);
+            std::swap(gotResult, rhs.gotResult);
         }
     }
 
@@ -84,13 +87,23 @@ public:
     {
         Expected<T> e;
         e.gotResult = false;
-        new (&e.spam) std::exception_ptr(std::move(p));
+        new (&e.spam) std::exception_ptr{std::move(p)};
         return e;
     }
 
     static Expected<T> fromException()
     {
         return fromException(std::current_exception());
+    }
+
+    template <class F>
+    static Expected fromCode(F func) try
+    {
+        return Expected{func()};
+    }
+    catch (...)
+    {
+        return fromException();
     }
 
     Expected &operator=(Expected const &e)

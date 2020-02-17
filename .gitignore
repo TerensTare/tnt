@@ -3,7 +3,6 @@ bin
 logs
 obj
 project
-test
 tools
 
 *.obj

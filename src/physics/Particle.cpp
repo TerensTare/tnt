@@ -3,7 +3,7 @@
 
 #include "physics/Particle.hpp"
 
-void tnt::Particle::integrate(real duration)
+void tnt::Particle::integrate(float duration)
 {
     assert(duration > 0);
     pos += (velocity * duration);
@@ -16,16 +16,16 @@ void tnt::Particle::integrate(real duration)
     clearAccumulator();
 }
 
-void tnt::Particle::setDamping(const real &value) noexcept { damping = value; }
-real tnt::Particle::getDamping() const noexcept { return damping; }
+void tnt::Particle::setDamping(const float &value) noexcept { damping = value; }
+float tnt::Particle::getDamping() const noexcept { return damping; }
 
-void tnt::Particle::setMass(const real &mass) noexcept
+void tnt::Particle::setMass(const float &mass) noexcept
 {
     assert(mass > 0);
     inverseMass = (1 / mass);
 }
 
-real tnt::Particle::getMass() const noexcept
+float tnt::Particle::getMass() const noexcept
 {
     assert(inverseMass > 0);
     return (1 / inverseMass);
@@ -41,6 +41,6 @@ void tnt::Particle::setAcceleration(const tnt::Vector &accel) noexcept { acceler
 tnt::Vector tnt::Particle::getAcceleration() const noexcept { return acceleration; }
 
 void tnt::Particle::addForce(const tnt::Vector &force) noexcept { forceAccumulator += force; }
-void tnt::Particle::clearAccumulator() noexcept { forceAccumulator = {real0, real0}; }
+void tnt::Particle::clearAccumulator() noexcept { forceAccumulator = {.0f, .0f}; }
 
-bool tnt::Particle::hasFiniteMass() const noexcept { return (inverseMass > real0); }
+bool tnt::Particle::hasFiniteMass() const noexcept { return (inverseMass > .0f); }

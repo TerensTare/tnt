@@ -9,44 +9,44 @@
 //#include <compare>
 //#endif
 
-#include "physics/Core.hpp"
 #include "Easings.hpp"
 
 // TODO:
 // add noexcept at more places, if possible.
+// remove dependency from Easings.hpp, if possible.
 // add a ScalableVector struct, which has x, y and z coordinates, and uses z as a scale of itslef.
 namespace tnt
 {
 struct Vector
 {
-	constexpr Vector(real _x = 0.0, real _y = 0.0) noexcept : x{_x}, y{_y} {}
+	constexpr Vector(float _x = 0.0, float _y = 0.0) noexcept : x{_x}, y{_y} {}
 
 	// template <typename T1, typename T2 = T1,
 	// 		  typename = std::enable_if_t<
-	// 			  std::is_convertible_v<T1, real> &&
-	// 			  std::is_convertible_v<T2, real> &&
+	// 			  std::is_convertible_v<T1, float> &&
+	// 			  std::is_convertible_v<T2, float> &&
 	// 			  !std::is_pointer_v<T1> &&
 	// 			  !std::is_pointer_v<T2>>>
 	// Vector(T1 _x = 0, T2 _y = 0)
-	// 	: x{static_cast<real>(_x)},
-	// 	  y{static_cast<real>(_y)} {} // TODO(experimental)
+	// 	: x{static_cast<float>(_x)},
+	// 	  y{static_cast<float>(_y)} {} // TODO(experimental)
 
 	Vector(const Vector &) = default;
 	Vector(Vector &&) = default;
 
-	real MagnitudeSqr() const noexcept { return x * x + y * y; }
-	real Magnitude() const noexcept { return sqrt(x * x + y * y); }
+	float MagnitudeSqr() const noexcept { return x * x + y * y; }
+	float Magnitude() const noexcept { return sqrt(x * x + y * y); }
 
 	void Normalize() noexcept
 	{
-		real mag{Magnitude()};
+		float mag{Magnitude()};
 		x /= mag;
 		y /= mag;
 	}
 
 	Vector Normalized() const
 	{
-		real mag{Magnitude()};
+		float mag{Magnitude()};
 		return Vector{x / mag, y / mag};
 	}
 
@@ -100,36 +100,36 @@ struct Vector
 
 	friend std::ostream &operator<<(std::ostream &os, const Vector &rhs);
 
-	real x;
-	real y;
+	float x;
+	float y;
 };
 
 inline Vector operator+(const Vector &lhs, const Vector &rhs) { return Vector{lhs.x + rhs.x, lhs.y + rhs.y}; }
 inline Vector operator-(const Vector &lhs, const Vector &rhs) { return Vector{lhs.x - rhs.x, lhs.y - rhs.y}; }
-inline Vector operator*(const Vector &vec, const real &num) { return Vector{vec.x * num, vec.y * num}; }
-inline Vector operator/(const Vector &vec, const real &num) { return Vector{vec.x / num, vec.y / num}; }
+inline Vector operator*(const Vector &vec, const float &num) { return Vector{vec.x * num, vec.y * num}; }
+inline Vector operator/(const Vector &vec, const float &num) { return Vector{vec.x / num, vec.y / num}; }
 
-inline real Dot(const Vector &lhs, const Vector &rhs)
+inline float Dot(const Vector &lhs, const Vector &rhs)
 {
-	real angleCos = static_cast<real>((lhs.x * rhs.x + lhs.y * rhs.y) / (lhs.Magnitude() * rhs.Magnitude()));
-	real angle = convert::RadianToDegree(acosf(angleCos));
+	float angleCos = static_cast<float>((lhs.x * rhs.x + lhs.y * rhs.y) / (lhs.Magnitude() * rhs.Magnitude()));
+	float angle = convert::RadianToDegree(acosf(angleCos));
 	return angle;
 }
 
-inline real Cross(Vector const &lhs, Vector const &rhs)
+inline float Cross(Vector const &lhs, Vector const &rhs)
 {
 	return ((lhs.x * rhs.y) - (lhs.y * rhs.x));
 }
 
-inline Vector RotateVector(Vector &vec, real angle)
+inline Vector RotateVector(Vector &vec, float angle)
 {
-	real radAngle = static_cast<real>(convert::DegreeToRadian(angle));
+	float radAngle = static_cast<float>(convert::DegreeToRadian(angle));
 	return Vector{
-		static_cast<real>(vec.x * cosf(radAngle) - vec.y * sinf(radAngle)),
-		static_cast<real>(vec.x * sinf(radAngle) + vec.y * cosf(radAngle))};
+		static_cast<float>(vec.x * cosf(radAngle) - vec.y * sinf(radAngle)),
+		static_cast<float>(vec.x * sinf(radAngle) + vec.y * cosf(radAngle))};
 }
 
-inline Vector nlerp(Vector left, Vector right, real pct)
+inline Vector nlerp(Vector left, Vector right, float pct)
 {
 	return lerp<Vector>(left, right, pct).Normalized();
 }

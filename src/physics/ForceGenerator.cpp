@@ -3,7 +3,7 @@
 
 #include "physics/ForceGenerator.hpp"
 
-void tnt::ForceRegistry::update(real duration)
+void tnt::ForceRegistry::update(float duration)
 {
     for (auto it{registrations.begin()}; it != registrations.end(); ++it)
         it->generator->update(it->particle, duration);
@@ -20,20 +20,20 @@ void tnt::ForceRegistry::add(tnt::Particle *particle, tnt::ForceGenerator *gener
 tnt::GravityForce::GravityForce(Vector const &gravity)
     : value{gravity} {}
 
-void tnt::GravityForce::update(tnt::Particle *particle, real duration)
+void tnt::GravityForce::update(tnt::Particle *particle, float duration)
 {
-    if (particle->getMass() < real0)
+    if (particle->getMass() < .0f)
         return;
     particle->addForce(value * particle->getMass());
 }
 
-tnt::DragForce::DragForce(real c1, real c2)
+tnt::DragForce::DragForce(float c1, float c2)
     : k1{c1}, k2{c2} {}
 
-void tnt::DragForce::update(tnt::Particle *particle, real duration)
+void tnt::DragForce::update(tnt::Particle *particle, float duration)
 {
     Vector force{particle->getVelocity()};
-    real dcoeff{force.Magnitude()};
+    float dcoeff{force.Magnitude()};
     dcoeff = k1 * dcoeff + k2 * dcoeff * dcoeff;
 
     force.Normalize();
@@ -41,14 +41,14 @@ void tnt::DragForce::update(tnt::Particle *particle, real duration)
     particle->addForce(force);
 }
 
-tnt::SpringForce::SpringForce(tnt::Particle *other, real c, real rest)
+tnt::SpringForce::SpringForce(tnt::Particle *other, float c, float rest)
     : o{other}, k{c}, length{rest} {}
 
-void tnt::SpringForce::update(Particle *particle, real duration)
+void tnt::SpringForce::update(Particle *particle, float duration)
 {
     Vector force{particle->getPosition()};
     force -= o->getPosition();
-    real mag{force.Magnitude()};
+    float mag{force.Magnitude()};
     mag = std::abs(mag - length);
     mag *= k;
 
@@ -57,15 +57,15 @@ void tnt::SpringForce::update(Particle *particle, real duration)
     particle->addForce(force);
 }
 
-tnt::AnchoredSpringForce::AnchoredSpringForce(tnt::Vector *anch, real c, real restl)
+tnt::AnchoredSpringForce::AnchoredSpringForce(tnt::Vector *anch, float c, float restl)
     : anchor{anch}, springc{c}, length{restl} {}
 
-void tnt::AnchoredSpringForce::update(tnt::Particle *particle, real duration)
+void tnt::AnchoredSpringForce::update(tnt::Particle *particle, float duration)
 {
     Vector force{particle->getPosition()};
     force -= *anchor;
 
-    real mag{force.Magnitude()};
+    float mag{force.Magnitude()};
     mag = std::abs(mag - length);
     mag *= springc;
 
@@ -74,15 +74,15 @@ void tnt::AnchoredSpringForce::update(tnt::Particle *particle, real duration)
     particle->addForce(force);
 }
 
-tnt::BungeeForce::BungeeForce(tnt::Particle *p, real c, real l)
+tnt::BungeeForce::BungeeForce(tnt::Particle *p, float c, float l)
     : other{p}, springc{c}, length{l} {}
 
-void tnt::BungeeForce::update(tnt::Particle *particle, real duration)
+void tnt::BungeeForce::update(tnt::Particle *particle, float duration)
 {
     Vector force{particle->getPosition()};
     force -= other->getPosition();
 
-    real mag{force.Magnitude()};
+    float mag{force.Magnitude()};
     if (mag <= length)
         return;
     mag = springc * (length - mag);
@@ -92,15 +92,15 @@ void tnt::BungeeForce::update(tnt::Particle *particle, real duration)
     particle->addForce(force);
 }
 
-tnt::BuoyancyForce::BuoyancyForce(real maxDepth, real volume, real waterHeight, real liquidDensity)
+tnt::BuoyancyForce::BuoyancyForce(float maxDepth, float volume, float waterHeight, float liquidDensity)
     : maxdepth{maxDepth}, vol{volume}, waterheight{waterHeight}, liquiddensity{liquidDensity} {}
 
-void tnt::BuoyancyForce::update(tnt::Particle *particle, real duration)
+void tnt::BuoyancyForce::update(tnt::Particle *particle, float duration)
 {
-    real depth{particle->getPosition().y};
+    float depth{particle->getPosition().y};
     if (depth >= waterheight + maxdepth)
         return;
-    Vector force{real0, real0};
+    Vector force{.0f, .0f};
 
     if (depth <= waterheight - maxdepth)
     {
@@ -113,23 +113,23 @@ void tnt::BuoyancyForce::update(tnt::Particle *particle, real duration)
     particle->addForce(force);
 }
 
-tnt::FakeSpring::FakeSpring(tnt::Vector *anch, real springC, real damp)
+tnt::FakeSpring::FakeSpring(tnt::Vector *anch, float springC, float damp)
     : anchor{anch}, springc{springC}, damping{damp} {}
 
-void tnt::FakeSpring::update(tnt::Particle *particle, real duration)
+void tnt::FakeSpring::update(tnt::Particle *particle, float duration)
 {
     if (!particle->hasFiniteMass())
         return;
     Vector pos{particle->getPosition()};
     pos -= *anchor;
 
-    real gamma{(real).5 * realsqrt(4 * springc - damping * damping)};
-    if (gamma == real0)
+    float gamma{(float).5 * std::sqrtf(4 * springc - damping * damping)};
+    if (gamma == .0f)
         return;
 
-    Vector c{pos * (damping / ((real)2 * gamma)) + particle->getVelocity() * ((real)1 / gamma)};
-    Vector target{pos * realcos(gamma * duration) + c * realsin(gamma * duration)};
-    target *= realexp((real)(-.5) * duration * damping);
-    Vector accel{(target - pos) * ((real)1.0 / duration * duration) - particle->getVelocity() * duration};
+    Vector c{pos * (damping / ((float)2 * gamma)) + particle->getVelocity() * ((float)1 / gamma)};
+    Vector target{pos * std::cosf(gamma * duration) + c * std::sinf(gamma * duration)};
+    target *= std::expf((float)(-.5) * duration * damping);
+    Vector accel{(target - pos) * ((float)1.0 / duration * duration) - particle->getVelocity() * duration};
     particle->addForce(accel * particle->getMass());
 }

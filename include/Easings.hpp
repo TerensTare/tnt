@@ -3,12 +3,11 @@
 
 #include "Utils.hpp"
 
-// TODO: check the experimental namespace in the end of the file
 // NOTE: if any undesired effect happens, consider changing math functions like sinf, powf, etc... to normal form(e. sinf to sin).
 
 namespace tnt
 {
-inline constexpr float PennerNumber = 1.70158f;
+inline static constexpr float PennerNumber{1.70158f};
 
 template <typename T>
 inline auto clamp = [](T val, T min = 0, T max = 1) -> decltype(val) {
@@ -346,17 +345,6 @@ inline float EaseInOut(float time, float begin, float change, float duration)
 	return -change / 2 * (cosf(PI.first * time / duration) - 1) + begin;
 }
 } // namespace sine
-
-/*
-	namespace experimental
-	{
-		class Easing
-		{
-		public:
-			virtual float operator()(float time, float begin, float change, float duration) = 0;
-		};
-	}
-	*/
 } // namespace tnt
 
 #endif //!EASINGS_HPP

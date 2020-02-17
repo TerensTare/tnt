@@ -8,13 +8,13 @@ namespace tnt
 class Particle
 {
 public:
-    void integrate(real duration);
+    void integrate(float duration);
 
-    void setDamping(real const &value) noexcept;
-    real getDamping() const noexcept;
+    void setDamping(float const &value) noexcept;
+    float getDamping() const noexcept;
 
-    void setMass(real const &mass) noexcept;
-    real getMass() const noexcept;
+    void setMass(float const &mass) noexcept;
+    float getMass() const noexcept;
 
     void setPosition(Vector const &position) noexcept;
     Vector getPosition() const noexcept;
@@ -31,8 +31,8 @@ public:
     void clearAccumulator() noexcept;
 
 protected:
-    real damping;
-    real inverseMass; // this way mass can't be 0
+    float damping;
+    float inverseMass; // this way mass can't be 0
 
     Vector pos;
     Vector velocity;
