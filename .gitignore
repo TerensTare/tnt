@@ -14,5 +14,6 @@ tools
 *.sln
 
 NOTES.md
+TODO.md
 benchmark.json
 build.json

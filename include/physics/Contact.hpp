@@ -21,6 +21,19 @@ private:
     void resolveVel(float duration);
     void resolveInterpenetration(float duration);
 };
+
+class ContactResolver
+{
+public:
+    ContactResolver(unsigned it);
+
+    void setIterations(unsigned it) noexcept;
+    void resolve(Contact *contacts, unsigned number, float duration);
+
+protected:
+    unsigned iterations;
+    unsigned iterationsUsed;
+};
 } // namespace tnt
 
 #endif //!CONTACT_HPP
