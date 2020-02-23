@@ -8,18 +8,21 @@ namespace tnt
 // this works only on particles, momentally...
 class Contact
 {
-protected:
-    void resolve(float duration);
-    float calcSeparatingVelocity() const;
-
+public:
     float restitution; // coefficient
     float penetration;
     Vector contactNormal;
     Particle *particles[2];
 
+protected:
+    void resolve(float duration);
+    float calcSeparatingVelocity() const;
+
 private:
     void resolveVel(float duration);
     void resolveInterpenetration(float duration);
+
+    friend class ContactResolver;
 };
 
 class ContactResolver
@@ -33,6 +36,12 @@ public:
 protected:
     unsigned iterations;
     unsigned iterationsUsed;
+};
+
+class ContactGenerator
+{
+public:
+    virtual unsigned addContact(Contact *contact, unsigned limit) const = 0;
 };
 } // namespace tnt
 

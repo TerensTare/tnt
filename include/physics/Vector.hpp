@@ -9,6 +9,7 @@
 //#include <compare>
 //#endif
 
+#include <ostream>
 #include "Easings.hpp"
 
 // TODO:
