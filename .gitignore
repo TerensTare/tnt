@@ -1,19 +1,22 @@
 .vscode
 bin
+build
 logs
 obj
 project
 tools
+module
 
 *.obj
 *.lib
 *.dll
 *.exe
+*.ifc
 
 *.vcxproj
 *.sln
 
 NOTES.md
-TODO.md
+Roadmap.todo
 benchmark.json
 build.json

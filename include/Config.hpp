@@ -14,12 +14,14 @@
 #if defined(DEBUG) || defined(_DEBUG)
 #define TNT_DEBUG
 
-#define tnt_debug
-#define tnt_nodebug if (0)
+#define dbg
+#define rel if (0)
 #elif defined(TNT_RELEASE)
-#define tnt_debug if (0)
-#define tnt_nodebug
+#define dbg if (0)
+#define rel
 #endif // !DEBUG
+
+#define forever for (;;)
 
 // used to simulate the labeled loop feature that other languages have.
 // https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Named_Loop

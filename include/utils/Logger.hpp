@@ -5,6 +5,7 @@
 
 // TODO: unfinished
 // TODO(partial): try calling fmt::print less.
+// TODO: make colored output, and maybe write to html/xml files for better output.
 // TODO: temporary use libfmt, but after MSVC will support C++20's <format>, use that instead.
 // TODO: support writing to files, maybe by using fmt::vprint.
 // TODO: support writing logs to the developer console built in the engine.

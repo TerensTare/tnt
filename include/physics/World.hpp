@@ -14,6 +14,9 @@ public:
     World(unsigned maxContacts, unsigned iterations = 0);
 
     void startFrame();
+    void integrate(float duration);
+
+    unsigned generateContacts();
 
 protected:
     struct Registration
@@ -21,16 +24,18 @@ protected:
         Particle *particle;
         Registration *next;
     };
-
-    Registration *first;
-    ForceRegistry registry;
-    ContactResolver resolver;
-
     struct ContactGenRegistration
     {
         ContactGenerator *gen;
         ContactGenRegistration *next;
     };
+
+    unsigned maxContacts;
+    Registration *first;
+    ForceRegistry registry;
+    ContactResolver resolver;
+    ContactGenRegistration *firstContactGen;
+    Contact *contacts;
 };
 } // namespace tnt
 

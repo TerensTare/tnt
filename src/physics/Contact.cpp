@@ -72,3 +72,26 @@ void tnt::Contact::resolveInterpenetration(float duration)
         particles[1]->setPosition(
             particles[1]->getPosition() + movePerMass / particles[1]->getMass());
 }
+
+void tnt::ContactResolver::resolve(tnt::Contact *contacts, unsigned int number, float duration)
+{
+    iterationsUsed = 0;
+    while (iterationsUsed < iterations)
+    {
+        float max{0};
+
+        unsigned maxIdx{number};
+        for (unsigned i{0}; i < number; ++i)
+        {
+            float sepVel{contacts[i].calcSeparatingVelocity()};
+            if (sepVel < max)
+            {
+                max = sepVel;
+                maxIdx = i;
+            }
+        }
+
+        contacts[maxIdx].resolve(duration);
+        ++iterationsUsed;
+    }
+}
