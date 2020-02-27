@@ -71,7 +71,7 @@ endif()
 
 # Find vcpkg.exe and use it's path.
 find_file(VCPKG_EXE_PATH vcpkg.exe)
-include_directories("${VCPKG_EXE_PATH}/installed/x64-windows/include")
+include_directories("${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/include")
 
 include_directories(include)
 add_subdirectory(src)
