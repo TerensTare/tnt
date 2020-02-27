@@ -49,15 +49,17 @@ jobs:
             os: [windows-latest, ubuntu-latest] #, macos-latest]
             include:
               - os: windows-latest
-                compiler: cl.exe
-                build: /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
-                vcpkg-path: C:\\vcpkg\\installed\\x64-windows
                 triplet: x64-windows
+                run: |
+                     vcvars64
+                     mkdir build && cd build
+                     cmake ..
                 exe: vcpkg
               - os: ubuntu-latest
-                compiler: gcc
-                vcpkg-path: /usr/local/share/vcpkg/installed/x64-linux
                 triplet: x64-linux
+                run: |
+                    mkdir build && cd build
+                    cmake ..
                 exe: vcpkg
               # - os: macos-latest
               #   compiler: clang 
@@ -83,7 +85,7 @@ jobs:
 
 
     tnt:
-            runs-on: [windows-latest]
+            runs-on: ${{matrix.os}}
             needs: [get-dependencies]
             name: Build TnT
             steps:
