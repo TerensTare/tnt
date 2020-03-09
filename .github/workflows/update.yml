@@ -23,6 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Check for updates
-        run: vcpkg upgrade --no-dry-run
+        run: |
+          vcpkg list
+          vcpkg upgrade --no-dry-run
         env:
           VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}  
