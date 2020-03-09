@@ -5,18 +5,15 @@
 
 namespace tnt
 {
-
-template <class T>
+// WARNING: DO NOT USE IT YET. IT IS WIP.
+template <class T, std::size_t S = 64>
 class StackAllocator
 {
 public:
-    void init()
-    {
-        data = std::malloc(sizeof(T) * 64);
-        stack_ptr = 0;
-    }
+    StackAllocator()
+        : data{std::malloc(sizeof(T) * S)}, stack_ptr{0} {}
 
-    void close()
+    ~StackAllocator() noexcept(std::free(data))
     {
         std::free(data);
         stack_ptr = 0;
@@ -24,10 +21,10 @@ public:
 
     T *alloc()
     {
-        if (stack_ptr < 64)
+        if (stack_ptr < S)
         {
-            stack_ptr--;
-            return &data[stack_ptr - 1];
+            ++stack_ptr;
+            return &data[stack_ptr];
         }
         return nullptr;
     }

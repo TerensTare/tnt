@@ -112,7 +112,7 @@ inline bool within(T min, T max, Ts... ts)
 template <typename T>
 inline T *void_cast(void *data)
 {
-	return static_cast<T *>(data);
+	return reinterpret_cast<T *>(data);
 }
 
 inline namespace convert

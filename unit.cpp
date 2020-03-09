@@ -1,6 +1,0 @@
-#include "Application.cpp"
-#include "AssetManager.cpp"
-#include "AudioPlayer.cpp"
-#include "Camera.cpp"
-#include "InputManager.cpp"
-#include "main.cpp"

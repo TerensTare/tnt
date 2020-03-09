@@ -20,7 +20,7 @@ namespace tnt
 {
 struct Vector
 {
-	constexpr Vector(float _x = 0.0, float _y = 0.0) noexcept : x{_x}, y{_y} {}
+	explicit constexpr Vector(float _x = 0.0, float _y = 0.0) noexcept : x{_x}, y{_y} {}
 
 	// template <typename T1, typename T2 = T1,
 	// 		  typename = std::enable_if_t<

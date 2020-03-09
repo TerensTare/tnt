@@ -1,9 +1,21 @@
 #ifndef TESTLIB_H
 #define TESTLIB_H
 
+#ifdef DLL_EXPORT
+#define DLL_CODE __declspec(dllexport)
+#else
+#define DLL_CODE __declspec(dllimport)
+#endif
+
+#ifdef __cplusplus
 extern "C"
 {
-    int __declspec(dllimport) answer();
+#endif
+
+    DLL_CODE int answer();
+
+#ifdef __cplusplus
 }
+#endif
 
 #endif //!TESTLIB_H

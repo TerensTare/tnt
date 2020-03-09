@@ -7,14 +7,16 @@ cmake_minimum_required(VERSION 3.10)
 set(PROJECT_NAME "TnT")
 project(${PROJECT_NAME} VERSION 0.1.0 LANGUAGES CXX)
 
+set(CMAKE_TOOLCHAIN_FILE 
+    ${VCPKG_EXE_PATH}/scripts/buildsystems/vcpkg.cmake
+    CACHE PATH "TOOLCHAIN")
+
 file(TO_CMAKE_PATH "${PROJECT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
 if (EXISTS "${LOC_PATH}")
 message(FATAL_ERROR
     "CMake should not be used to build TnT in a directory that has a CMakeLists.txt file!!\n
     Please consider making a \"build\" subdirectory and run cmake .. from the \"build\" directory.")
 endif()
-
-set(CMAKE_DEBUG_POSTFIX "d")
 
 include(cmake/StandardProjectSettings.cmake)
 
@@ -30,20 +32,19 @@ include(cmake/Sanitizers.cmake)
 enable_sanitizers(project_options)
 include(cmake/StaticAnalyzers.cmake)
 
-
-set(CMAKE_TOOLCHAIN_FILE 
-    C:/Users/teren/vcpkg/scripts/buildsystems/vcpkg.cmake
-    CACHE PATH "TOOLCHAIN")
+# Find vcpkg.exe and use it's path.
+find_file(VCPKG_EXE_PATH vcpkg.exe)
+include_directories("${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/include")
 
 list(APPEND CMAKE_PREFIX_PATH
-    C:/Users/teren/vcpkg/installed/x64-windows/share/sdl2
-    C:/Users/teren/vcpkg/installed/x64-windows/share/sdl2-gfx
-    C:/Users/teren/vcpkg/installed/x64-windows/share/sdl2-image
-    C:/Users/teren/vcpkg/installed/x64-windows/share/sdl2-mixer
-    C:/Users/teren/vcpkg/installed/x64-windows/share/sdl2-net
-    C:/Users/teren/vcpkg/installed/x64-windows/share/sol2
-    C:/Users/teren/vcpkg/installed/x64-windows/share/fmt
-    C:/Users/teren/vcpkg/installed/x64-windows/share/nlohmann_json
+    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2
+    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-gfx
+    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-image
+    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-mixer
+    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-net
+    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/sol2
+    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/fmt
+    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/nlohmann_json
 )
 
 # Load required packages.
@@ -69,10 +70,6 @@ if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
         "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
-# Find vcpkg.exe and use it's path.
-find_file(VCPKG_EXE_PATH vcpkg.exe)
-include_directories("${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/include")
-
 include_directories(include)
 add_subdirectory(src)
 
@@ -90,7 +87,6 @@ target_link_libraries(TnT PRIVATE SDL2::SDL2_net)
 target_link_libraries(TnT PRIVATE sol2::sol2)
 target_link_libraries(TnT PRIVATE fmt::fmt fmt::fmt-header-only)
 target_link_libraries(TnT PRIVATE nlohmann_json nlohmann_json::nlohmann_json)
-
 
 # set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 # set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

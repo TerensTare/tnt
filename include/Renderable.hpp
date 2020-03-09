@@ -1,19 +1,19 @@
 #ifndef RENDERABLE_HPP
 #define RENDERABLE_HPP
 
-#include <SDL2/SDL_render.h>
+#include "utils/SDL_Utils.hpp"
 
 namespace tnt
 {
-class Renderable
+class __declspec(novtable) Renderable
 {
 public:
-    virtual ~Renderable() noexcept { SDL_DestroyTexture(tex); }
+    virtual ~Renderable() noexcept;
 
     virtual void Draw() = 0;
 
 protected:
-    SDL_Texture *tex;
+    std::weak_ptr<SDL_Texture> tex;
 };
 } // namespace tnt
 

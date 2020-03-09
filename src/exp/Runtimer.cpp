@@ -1,37 +1,43 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-#include <SDL2/SDL_loadso.h>
 #include "exp/Runtimer.hpp"
+#include "utils/Logger.hpp"
 
-tnt::rpp::RuntimeObject::RuntimeObject(char const *dllName)
-    : dll{SDL_LoadObject(dllName)},
-      lastTime{std::filesystem::last_write_time(dllName)},
-      valid{true}
+tnt::rpp::RuntimeManager::~RuntimeManager() noexcept
 {
-}
-
-tnt::rpp::RuntimeObject::~RuntimeObject() noexcept
-{
-    unload();
-}
-
-void tnt::rpp::RuntimeObject::unload()
-{
-    SDL_UnloadObject(dll);
-    valid = false;
+    for (auto obj : objects)
+        if (obj.second != nullptr)
+            UnloadObject(obj.first);
+    objects.clear();
 }
 
 void tnt::rpp::RuntimeManager::LoadObject(char const *name)
 {
-    if (objects[name] == nullptr)
-        objects[name] = new RuntimeObject(name);
+    if (objects[name] == nullptr || objects[name]->valid == false)
+    {
+        tnt::logger::info("loading {}.dll", name);
+        objects[name]->dll = LoadLibrary(fmt::format("{}.dll", name).c_str());
+        objects[name]->bldcmd = fmt::format("cl /EHsc /std:c++17 {}.cpp /link /DLL", name).c_str();
+        objects[name]->lastTime = std::filesystem::last_write_time(fmt::format("{}.cpp", name));
+        objects[name]->valid = true;
+    }
+}
+
+FARPROC tnt::rpp::RuntimeManager::LoadFunction(const char *handle, const char *name)
+{
+    if (objects[handle] == nullptr || objects[handle]->valid == false)
+    {
+        tnt::logger::info("LoadFunction({}) is returning nullptr", name);
+        return nullptr;
+    }
+    return GetProcAddress(objects[handle]->dll, name);
 }
 
 void tnt::rpp::RuntimeManager::Update()
 {
     for (auto it : objects)
-        if (std::filesystem::last_write_time(it.first) != it.second->lastTime)
+        if (std::filesystem::last_write_time(fmt::format("{}.cpp", it.first)) != it.second->lastTime)
             UpdateObject(it.first);
 }
 
@@ -39,9 +45,17 @@ void tnt::rpp::RuntimeManager::UpdateObject(char const *name)
 {
     if (objects[name] != nullptr)
     {
-        objects[name]->unload();
-        delete objects[name];
+        UnloadObject(name);
         objects[name] = nullptr;
     }
-    objects[name] = new RuntimeObject{name};
+    tnt::logger::info("running {}", objects[name]->bldcmd);
+    system(objects[name]->bldcmd);
+    LoadObject(name);
+}
+
+void tnt::rpp::RuntimeManager::UnloadObject(char const *name)
+{
+    tnt::logger::info("unloading {}.dll", name);
+    FreeLibrary(objects[name]->dll);
+    objects[name]->valid = false;
 }

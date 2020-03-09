@@ -12,6 +12,7 @@ module
 *.dll
 *.exe
 *.ifc
+*.exp
 
 *.vcxproj
 *.sln

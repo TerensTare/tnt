@@ -15,6 +15,7 @@ public:
 
     void startFrame();
     void integrate(float duration);
+    void runPhysics(float duration);
 
     unsigned generateContacts();
 

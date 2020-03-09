@@ -1,6 +1,7 @@
 #ifndef OBJECT_HPP
 #define OBJECT_HPP
 
+#include <memory>
 #include "Vector.hpp"
 
 namespace tnt
@@ -32,7 +33,7 @@ protected:
     float angle;
     Vector scale;
     Vector pos;
-    Object *parent;
+    std::weak_ptr<Object> parent;
 };
 } // namespace tnt
 

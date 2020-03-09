@@ -1,0 +1,1 @@
+cl /EHsc /O2 /std:c++17 /I..\include /I%vcpkg_dir%\x64-windows\include rpptest.cpp ..\src\exp\Runtimer.cpp /link /libpath:%vcpkg_dir%\x64-windows\lib kernel32.lib fmt.lib

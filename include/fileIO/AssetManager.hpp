@@ -13,7 +13,6 @@
 
 namespace tnt
 {
-
 // TODO(maybe)(x): make this a non-singleton.
 // TODO(maybe): add an animations map.
 // TODO(maybe): move modules to LuaManager.
@@ -24,7 +23,6 @@ namespace tnt
 class AssetManager
 {
 public:
-    AssetManager();
     ~AssetManager() noexcept;
 
     std::future<void> AddFont(std::string const &font, int size);

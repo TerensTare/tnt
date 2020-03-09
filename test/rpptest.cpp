@@ -1,19 +1,36 @@
 #include <iostream>
+
 #include "exp/Runtimer.hpp"
-#include "testlib.h"
+#include "utils/Logger.hpp"
+
+#undef main
 
 int main()
 {
     using tnt::rpp::RuntimeManager;
 
     RuntimeManager *man{};
-    man->LoadObject("test.dll");
+    man->LoadObject("test");
+    int (*answer)() = (int (*)())man->LoadFunction("test", "answer");
+
     bool running{true};
 
     while (running)
     {
-        man->Update();
-        std::cout << answer();
+        man->UpdateObject("test");
+
+        if (answer)
+            std::cout << answer();
+        else
+            tnt::logger::error("int answer() couldn't be loaded correctly! Error: {}.\n exiting...", GetLastError());
+
+        if (answer() == 43)
+        {
+            tnt::logger::info("Succesfully exiting...");
+            running = false;
+        }
+        else
+            continue;
     }
 
     return 0;

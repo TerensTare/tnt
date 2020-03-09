@@ -1,1 +1,0 @@
-cl /EHsc /O2 /std:c++17 /I..\include /I%vcpkg_dir%\x64-windows\include /Fetest.dll ..\src\exp\Runtimer.cpp testlib.cpp /link /DLL /libpath:%vcpkg_dir%\x64-windows\lib SDL2.lib manual-link\SDL2main.lib /subsystem:console
