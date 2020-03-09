@@ -1,5 +1,6 @@
 -- script taken from
 -- https://github.com/EmmanuelOga/easing/blob/master/lib/easing.lua
+
 local pow = math.pow
 local sin = math.sin
 local cos = math.cos
@@ -240,7 +241,7 @@ local function inElastic(time, begin, change, duration, a, p)
             begin
 end
 
--- a: amplitud
+-- a: amplitude
 -- p: period
 local function outElastic(time, begin, change, duration, a, p)
     if time == 0 then return begin end

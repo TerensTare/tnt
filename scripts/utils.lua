@@ -18,4 +18,25 @@ function utils.file_size(file)
     return size
 end
 
+function utils.to_bool(x)
+    return not not x
+end
+
+function utils.unused(...)
+    return ...
+end
+
+function utils.swap(tab)
+    local ret = {}
+    for k, v in tab do
+        ret[v] = k
+    end
+    return ret
+end
+
+function utils.index(tab, val)
+    local t = utils.swap(tab)
+    return t[val]
+end
+
 return utils
