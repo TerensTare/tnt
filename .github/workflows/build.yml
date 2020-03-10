@@ -8,35 +8,14 @@
 # TODO:
 # 1. (maybe)(PARTIAL) add more os-es and more build configurations.
 # 2. consider using CMake to convert TnT into a Visual Studio solution/GCC/Clang project.
-# 3. vcpkg isn't pre-installed on macOSX. Fix that. Also, cache the installation.
-# 4. (NEEDS TESTING) cache installed packages and run vcpkg update once a week.
-# 5. check for vcpkg updates weekly on macosx.
-# 6. The runner on Windows doesn't know the location of vcvars64.bat. Add that to the PATH using env:.
-# 7. actions/cache knows there is some cache saved, but atill runs downlod process. FIX THAT!!!
-# 8. Use PVS-Studio for statical analysis on every commit.
+# 3. (NEEDS TESTING) cache installed packages and run vcpkg update once a week.
+# 4. check for vcpkg updates weekly on macosx.
+# 5. The runner on Windows doesn't know the location of vcvars64.bat. Add that to the PATH using env:.
+# 6. actions/cache knows there is some cache saved, but atill runs downlod process. FIX THAT!!!
+# 7. Use PVS-Studio for statical analysis on every commit.
 
 name: CI
 on: [push]
-
-# jobs:
-#   dl-vcpkg:
-#     name: Download vcpkg
-#     runs-on: [macos-latest]
-#     steps:
-#       - name: Cache vcpkg
-#         id: vcpkg-macos-cache
-#       - uses: actions/cache@v1.1.2
-#         with:
-#          path: vcpkg
-#          key: mac-vcpkg
-
-#       - name: Download vcpkg
-#         if: steps.vcpkg-macos-cache.outputs.cache-hit != 'true'
-#         run: |
-#           pwd
-#           git clone https://www.github.com/microsoft/vcpkg.git
-#           cd vcpkg
-#           ./bootstrap-vcpkg.sh
 
 jobs:
     get-dependencies:
@@ -46,11 +25,11 @@ jobs:
         strategy:
           fail-fast: false
           matrix:
-            os: [windows-latest, ubuntu-latest] #, macos-latest]
+            os: [windows-latest, ubuntu-latest , macos-latest]
             include:
               - os: windows-latest
                 triplet: x64-windows
-                vcpkg-path: "${{VCPKG_INSTALLATION_PATH}}\\installed\\${{matrix.triplet}}"
+                vcpkg-path: "%VCPKG_INSTALLATION_PATH%\\installed\\${{matrix.triplet}}"
                 run: |
                      vcvars64
                      mkdir build && cd build
