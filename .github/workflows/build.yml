@@ -40,22 +40,22 @@ jobs:
                     mkdir build && cd build
                     cmake ..
               - os: macos-latest
-                vcpkg-path: "$VCPKG_INSTALLATION_PATH/installed/x64-linux"
+                vcpkg-path: "$VCPKG_INSTALLATION_PATH/installed/x64-osx"
                 triplet: x64-osx
 
 
         steps:
+          - name: Cache packages
+            uses: actions/cache@v1.1.2
+            id: pack-cache
+            with:
+             path: ${{ matrix.vcpkg-path }}
+             key: ${{ matrix.os }}-dependencies
           - name: Run vcpkg
             env:
               VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
             if: steps.pack-cache.outputs.cache-hit != 'true'
             run: vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
-          - name: Cache packages
-            id: pack-cache
-            uses: actions/cache@v1.1.2
-            with:
-             path: ${{ matrix.vcpkg-path }}
-             key: ${{ matrix.os }}-dependencies
           - name: Integrate packages
             run: vcpkg integrate install
 
