@@ -34,18 +34,15 @@ jobs:
                      vcvars64
                      mkdir build && cd build
                      cmake ..
-                exe: vcpkg
               - os: ubuntu-latest
                 triplet: x64-linux
                 run: |
                     mkdir build && cd build
                     cmake ..
-                exe: vcpkg
               # - os: macos-latest
               #   compiler: clang 
               #   vcpkg-path: sth
               #   triplet: x64-osx
-              #   exe: ./vcpkg
 
 
         steps:
