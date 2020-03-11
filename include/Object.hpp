@@ -14,18 +14,18 @@ public:
     void setAngle(float rad) noexcept;
     float getAngle() const noexcept;
 
-    void setScale(Vector s) noexcept;
+    void setScale(Vector const &s) noexcept;
     Vector getScale() const noexcept;
 
-    void setPosition(Vector p) noexcept;
+    void setPosition(Vector const &p) noexcept;
     Vector getPosition() const noexcept;
 
     void setParent(std::shared_ptr<Object> obj) noexcept;
     std::shared_ptr<Object> getParent() const noexcept;
 
     void Rotate(float rad) noexcept;
-    void Scale(Vector s) noexcept;
-    void Transform(Vector p) noexcept;
+    void Scale(Vector const &s) noexcept;
+    void Transform(Vector const &p) noexcept;
 
     virtual void Update() = 0;
 
