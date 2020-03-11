@@ -20,7 +20,6 @@ on: [push]
 jobs:
     get-dependencies:
         name: ${{ matrix.os }}-dependencies
-        # needs: [dl-vcpkg]
         runs-on: ${{ matrix.os }}
         strategy:
           fail-fast: false
@@ -29,20 +28,20 @@ jobs:
             include:
               - os: windows-latest
                 triplet: x64-windows
-                vcpkg-path: "%VCPKG_INSTALLATION_PATH%\\installed\\${{matrix.triplet}}"
+                vcpkg-path: "%VCPKG_INSTALLATION_PATH%\\installed\\x64-windows"
                 run: |
                      vcvars64
                      mkdir build && cd build
                      cmake ..
               - os: ubuntu-latest
                 triplet: x64-linux
+                vcpkg-path: "$VCPKG_INSTALLATION_PATH/installed/x64-linux"
                 run: |
                     mkdir build && cd build
                     cmake ..
-              # - os: macos-latest
-              #   compiler: clang 
-              #   vcpkg-path: sth
-              #   triplet: x64-osx
+              - os: macos-latest
+                vcpkg-path: "$VCPKG_INSTALLATION_PATH/installed/x64-linux"
+                triplet: x64-osx
 
 
         steps:
@@ -58,7 +57,7 @@ jobs:
              path: ${{ matrix.vcpkg-path }}
              key: dependencies
           - name: Integrate packages
-            run: ${{ matrix.exe }} integrate install
+            run: vcpkg integrate install
 
 
     tnt:
