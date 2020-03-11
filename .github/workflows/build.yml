@@ -11,7 +11,7 @@
 # 3. (NEEDS TESTING) cache installed packages and run vcpkg update once a week.
 # 4. check for vcpkg updates weekly on macosx.
 # 5. The runner on Windows doesn't know the location of vcvars64.bat. Add that to the PATH using env:.
-# 6. actions/cache knows there is some cache saved, but atill runs downlod process. FIX THAT!!!
+# 6. actions/cache knows there is some cache saved, but still runs downlod process. FIX THAT!!!
 # 7. Use PVS-Studio for statical analysis on every commit.
 
 name: CI
@@ -55,7 +55,7 @@ jobs:
             uses: actions/cache@v1.1.2
             with:
              path: ${{ matrix.vcpkg-path }}
-             key: dependencies
+             key: ${{ matrix.os }}-dependencies
           - name: Integrate packages
             run: vcpkg integrate install
 
@@ -67,7 +67,4 @@ jobs:
             steps:
             - uses: actions/checkout@v2
             - name: Build TnT.exe
-              run: |
-                vcvars64
-                mkdir obj
-                cl /EHsc /std:c++latest /O2 /W4 /Iinclude main.cpp src\*.cpp /FeTnT.exe /Fo.\obj\ /link /subsystem:console /machine:x64
+              run: ${{ matrix.run }}
