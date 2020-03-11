@@ -3,6 +3,9 @@
 
 #include "utils/Timer.hpp"
 
+tnt::Timer::Timer()
+    : begin{std::chrono::steady_clock::now()} {}
+
 void tnt::Timer::start() noexcept
 {
     if (isPaused)
@@ -22,9 +25,4 @@ void tnt::Timer::reset() noexcept
 bool tnt::Timer::paused() const noexcept
 {
     return isPaused;
-}
-
-long long tnt::Timer::deltaTime() const noexcept
-{
-    return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
 }

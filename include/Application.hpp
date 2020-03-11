@@ -28,8 +28,8 @@ protected:
     Scene *scene;
     Timer *timer;
     Window *window;
-    AudioPlayer audio;
-    InputManager input;
+    AudioPlayer *audio;
+    InputManager *input;
 };
 } // namespace tnt
 

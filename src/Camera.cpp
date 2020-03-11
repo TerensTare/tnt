@@ -12,7 +12,7 @@ void tnt::Camera::Move(float x, float y)
     bounds.y = bounds.y + y;
 }
 
-void tnt::Camera::Move(tnt::Vector v)
+void tnt::Camera::Move(tnt::Vector const &v)
 {
     bounds.x = bounds.x + v.x;
     bounds.y = bounds.y + v.y;
@@ -34,7 +34,7 @@ void tnt::Camera::MoveTo(float x, float y)
     bounds.y = y;
 }
 
-void tnt::Camera::MoveTo(tnt::Vector v)
+void tnt::Camera::MoveTo(tnt::Vector const &v)
 {
     bounds.x = v.x;
     bounds.y = v.y;
@@ -42,19 +42,19 @@ void tnt::Camera::MoveTo(tnt::Vector v)
 
 void tnt::Camera::CenterTo(float x, float y)
 {
-    bounds.x = (x / 2);
-    bounds.y = (y / 2);
+    bounds.x = (x - (bounds.w / 2));
+    bounds.y = (y - (bounds.h / 2));
 }
 
-void tnt::Camera::CenterTo(tnt::Vector v)
+void tnt::Camera::CenterTo(tnt::Vector const &v)
 {
-    bounds.x = (v.x / 2);
-    bounds.y = (v.y / 2);
+    bounds.x = (v.x - (bounds.w / 2));
+    bounds.y = (v.y - (bounds.h / 2));
 }
 
-SDL_FRect &tnt::Camera::FBounds() const noexcept { return SDL_FRect{bounds}; }
+SDL_FRect tnt::Camera::FBounds() const noexcept { return SDL_FRect{bounds}; }
 
-SDL_Rect &tnt::Camera::Bounds() const noexcept
+SDL_Rect tnt::Camera::Bounds() const noexcept
 {
     return SDL_Rect{.x = bounds.x, .y = bounds.y, .w = bounds.w, .h = bounds.h};
 }

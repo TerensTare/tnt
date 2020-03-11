@@ -3,7 +3,6 @@
 
 #include "AssetManager.hpp"
 
-
 // TODO(maybe): this should be an interface.
 namespace tnt
 {
@@ -18,7 +17,7 @@ public:
     void Update();
 
 private:
-    Scene **scenes; // TODO(maybe): THIS should be moved into game
+    std::weak_ptr<Scene> scenes; // TODO(maybe): THIS should be moved into game
     AssetManager *assets;
 };
 } // namespace tnt

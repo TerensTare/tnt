@@ -2,8 +2,11 @@ local class = require "class"
 
 local queue = class:create("queue")
 
-function queue:new()
-    self.s = 0
+function queue:new(...)
+    self.s = select("#", ...)
+    for _, v in pairs{...} do
+        self:push(v)
+    end
     return self
 end
 

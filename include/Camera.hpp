@@ -1,7 +1,11 @@
 #ifndef CAMERA_HPP
 #define CAMERA_HPP
 
+#include <SDL2/SDL_rect.h>
 #include "Vector.hpp"
+
+// TODO:
+// screenshake
 
 namespace tnt
 {
@@ -16,19 +20,19 @@ struct Camera
     Camera &operator=(Camera const &) = delete;
 
     void Move(float x, float y);
-    void Move(Vector v);
+    void Move(Vector const &v);
 
     void MoveX(float x);
     void MoveY(float y);
 
     void MoveTo(float x, float y);
-    void MoveTo(Vector v);
+    void MoveTo(Vector const &v);
 
     void CenterTo(float x, float y);
-    void CenterTo(Vector v);
+    void CenterTo(Vector const &v);
 
-    SDL_FRect &FBounds() const noexcept;
-    SDL_Rect &Bounds() const noexcept;
+    SDL_FRect FBounds() const noexcept;
+    SDL_Rect Bounds() const noexcept;
 
 private:
     SDL_FRect bounds;

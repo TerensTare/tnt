@@ -1,7 +1,12 @@
 #include "Application.hpp"
 
-tnt::Game &tnt::Game::This()
+tnt::Game::Game()
 {
-    static Game game;
-    return game;
+    timer = new Timer();
+}
+
+tnt::Game::~Game() noexcept
+{
+    delete timer;
+    timer = nullptr;
 }

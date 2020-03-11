@@ -12,6 +12,8 @@
 -- register this file like luafilesystem does ??
 -- do not return action and blocking ??
 -- add the ownerlist to each actiontype ??
+-- make an actionlist for each desired lane ??
+-- use a dequeue instead of a queue for the actionlist ??
 
 local class = require "class"
 local queue = require "queue"
@@ -25,6 +27,9 @@ function action:new()
     ret.blocks = false
     ret.running = false
     return ret
+end
+
+function action:update(dt)
 end
 
 -- function action:running()
@@ -57,7 +62,7 @@ end
 local sync = class:derive("sync", blocking)
 
 function sync:new()
-    setmetatable(sync, action)
+    setmetatable(sync, blocking)
 end
 
 function sync:update(dt)

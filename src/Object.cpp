@@ -18,9 +18,10 @@ tnt::Vector tnt::Object::getScale() const noexcept { return scale; }
 void tnt::Object::setPosition(Vector p) noexcept { pos = p; }
 tnt::Vector tnt::Object::getPosition() const noexcept { return pos; }
 
-void tnt::Object::setParent(Object *obj) noexcept { parent = obj; }
-tnt::Object *tnt::Object::getParent() const noexcept { return parent; }
+void tnt::Object::setParent(std::shared_ptr<Object> obj) noexcept { parent = obj; }
+
+std::shared_ptr<tnt::Object> tnt::Object::getParent() const noexcept { return parent.lock(); }
 
 void tnt::Object::Rotate(float rad) noexcept { angle += rad; }
-void tnt::Object::Scale(Vector s) noexcept { scale = {scale.x * s.x, scale.y = s.y}; }
+void tnt::Object::Scale(Vector s) noexcept { scale = std::move(Vector{scale.x * s.x, scale.y = s.y}); }
 void tnt::Object::Transform(Vector p) noexcept { pos += p; }

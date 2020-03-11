@@ -9,7 +9,7 @@ namespace tnt
 class Object
 {
 public:
-    ~Object() noexcept;
+    virtual ~Object() noexcept;
 
     void setAngle(float rad) noexcept;
     float getAngle() const noexcept;
@@ -20,8 +20,8 @@ public:
     void setPosition(Vector p) noexcept;
     Vector getPosition() const noexcept;
 
-    void setParent(Object *obj) noexcept;
-    Object *getParent() const noexcept;
+    void setParent(std::shared_ptr<Object> obj) noexcept;
+    std::shared_ptr<Object> getParent() const noexcept;
 
     void Rotate(float rad) noexcept;
     void Scale(Vector s) noexcept;

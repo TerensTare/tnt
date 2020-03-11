@@ -13,7 +13,7 @@ public:
     virtual void Draw() = 0;
 
 protected:
-    std::weak_ptr<SDL_Texture> tex;
+    std::shared_ptr<SDL_Texture> tex;
 };
 } // namespace tnt
 
