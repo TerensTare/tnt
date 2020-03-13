@@ -10,7 +10,7 @@
 //#endif
 
 #include <ostream>
-#include "utils/Easings.hpp"
+#include "math/Easings.hpp"
 
 // TODO:
 // add noexcept at more places, if possible.

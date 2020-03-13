@@ -5,11 +5,10 @@
 
 tnt::Object::~Object() noexcept
 {
-    parent = nullptr; // should this be like this? We don't want do delete the parent, just the pointer.
+    parent.reset(); // should this be like this? We don't want do delete the parent, just the pointer.
 }
 
 void tnt::Object::setAngle(float a) noexcept { angle = a; }
-
 float tnt::Object::getAngle() const noexcept { return angle; }
 
 void tnt::Object::setScale(Vector const &s) noexcept { scale = s; }

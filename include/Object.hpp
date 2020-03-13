@@ -2,11 +2,12 @@
 #define OBJECT_HPP
 
 #include <memory>
-#include "Vector.hpp"
+#include "math/Vector.hpp"
 
 // TODO:
 // Serializable interface class.
 // Add Serialization to Object and it's childrens.
+// handle global and local coordinates.
 // TODO(maybe):
 // Move this to core.
 

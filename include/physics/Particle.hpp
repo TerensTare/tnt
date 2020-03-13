@@ -1,7 +1,7 @@
 #ifndef PARTICLE_HPP
 #define PARTICLE_HPP
 
-#include "physics/Vector.hpp"
+#include "math/Vector.hpp"
 
 namespace tnt
 {
