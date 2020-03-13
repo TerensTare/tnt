@@ -11,6 +11,9 @@
 #include <sstream>
 #include <type_traits>
 
+// TODO:
+// reduce template usage by replacing with concepts
+
 #define Assert(cond, text) assert(cond &&text)
 // CAssert is used for compile time only.
 #define CAssert(expn) typedef char __C_ASSERT__[(expn) ? 1 : -1]
@@ -22,10 +25,8 @@ inline const auto SizeOfArray = [](Array arr) -> decltype(std::extent<decltype(a
 	return std::extent<decltype(arr)>::value;
 };
 
-template <template <auto> class T, auto K>
-auto get_size(const T<K> &) { return K; }
-
-const std::pair<float, long double> PI = std::make_pair(acosf(-1.0F), acos(-1.0L));
+template <class T, std::size_t K>
+constexpr std::size_t get_size(T (&)[K]) noexcept { return K; }
 
 template <typename... Ts>
 inline const auto sum(Ts... ts)
@@ -119,9 +120,6 @@ inline namespace convert
 {
 inline constexpr auto FloatToInt = [](float f) { return (*((int *)&(f))); };
 inline constexpr auto FloatToUInt = [](float f) { return (*((unsigned int *)&(f))); };
-
-inline constexpr auto RadianToDegree = [](float rad) { return (rad * (180.0f / PI.first)); };
-inline constexpr auto DegreeToRadian = [](float deg) { return (deg * (PI.first / 180.0f)); };
 } // namespace convert
 
 inline const bool LessThan0(float f) { return (convert::FloatToUInt(f) > 0x800000000U); }
@@ -143,15 +141,9 @@ auto constexpr Swapv2 = [](int &x, int &y) {
 	x = x + y - (y = x);
 };
 
-auto constexpr PowerOf2 = [](int x) {
-	return x && (!(x & (x - 1)));
+auto constexpr PowerOf2 = [](int x) -> bool {
+	return x && ((x & (x - 1)) == 0);
 };
 } // namespace tnt
 
-#define SWAP_IMPL(x, y) \
-	(x) ^= (y);         \
-	(y) ^= (x);         \
-	(x) ^= (y);
-
-#define SWAP(x, y) SWAP_IMPL(x, y)
 #endif //!UTILS_HPP

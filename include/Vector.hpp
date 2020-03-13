@@ -10,7 +10,7 @@
 //#endif
 
 #include <ostream>
-#include "Easings.hpp"
+#include "utils/Easings.hpp"
 
 // TODO:
 // add noexcept at more places, if possible.
@@ -113,7 +113,7 @@ inline Vector operator/(const Vector &vec, const float &num) { return Vector{vec
 inline float Dot(const Vector &lhs, const Vector &rhs)
 {
 	float angleCos = static_cast<float>((lhs.x * rhs.x + lhs.y * rhs.y) / (lhs.Magnitude() * rhs.Magnitude()));
-	float angle = convert::RadianToDegree(acosf(angleCos));
+	float angle = RadianToDegree(acosf(angleCos));
 	return angle;
 }
 
@@ -124,7 +124,7 @@ inline float Cross(Vector const &lhs, Vector const &rhs)
 
 inline Vector RotateVector(Vector &vec, float angle)
 {
-	float radAngle = static_cast<float>(convert::DegreeToRadian(angle));
+	float radAngle = static_cast<float>(DegreeToRadian(angle));
 	return Vector{
 		static_cast<float>(vec.x * cosf(radAngle) - vec.y * sinf(radAngle)),
 		static_cast<float>(vec.x * sinf(radAngle) + vec.y * cosf(radAngle))};

@@ -56,5 +56,5 @@ SDL_FRect tnt::Camera::FBounds() const noexcept { return SDL_FRect{bounds}; }
 
 SDL_Rect tnt::Camera::Bounds() const noexcept
 {
-    return SDL_Rect{.x = bounds.x, .y = bounds.y, .w = bounds.w, .h = bounds.h};
+    return SDL_Rect{(int)bounds.x, (int)bounds.y, (int)bounds.w, (int)bounds.h};
 }

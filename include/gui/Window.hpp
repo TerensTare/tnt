@@ -4,17 +4,18 @@
 #include <string>
 
 #include "Camera.hpp"
-#include "gui/Widget.hpp"
+#include "core/Graphics.hpp"
 #include "Renderable.hpp"
 
 // TODO: destroy EVERY Window member in it's destructor.
 // TODO: make THIS a Widget.
+// TODO: multiwindow support.
 namespace tnt
 {
-class Window : public Widget
+class Window final
 {
 public:
-    Window(std::string_view title, int xpos, int ypos, int width, int height, Uint32 flags, Uint32 renFlags);
+    Window(std::string_view title, int xpos, int ypos, int width, int height, Uint32 flags);
     ~Window() noexcept;
 
     operator SDL_Window *();
@@ -33,17 +34,16 @@ public:
 
     void SetIcon(SDL_Surface *icon);
 
-    std::tuple<int, int, int, int, int> GetBordersSize();
-
-    SDL_Renderer *getRenderer() noexcept;
+    int *GetBordersSize();
 
     void Render();
     void Draw(tnt::Renderable const *obj, const SDL_Rect *srcrect, const tnt::Camera *cam, const double angle = .0, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void Clear();
 
 private:
+    Graphics &gfx;
+    Camera camera;
     SDL_Window *window;
-    SDL_Renderer *renderer;
 };
 } // namespace tnt
 

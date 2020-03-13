@@ -6,15 +6,14 @@
 
 tnt::Window::Window(std::string_view title,
                     int xpos, int ypos, int width, int height,
-                    Uint32 flags, Uint32 renFlags)
-{
-    SDL_CreateWindowAndRenderer(width, height, flags, &window, &renderer);
-}
+                    Uint32 flags)
+    : gfx{Graphics::This()}, camera{0, 0, width, height},
+      window{SDL_CreateWindow(title.data(), xpos, ypos, width, height, flags)} {}
 
 tnt::Window::~Window() noexcept
 {
-    SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    gfx.~Graphics();
 }
 
 tnt::Window::operator SDL_Window *()
@@ -69,14 +68,11 @@ void tnt::Window::SetIcon(SDL_Surface *icon)
     SDL_SetWindowIcon(window, icon);
 }
 
-std::tuple<int, int, int, int, int> tnt::Window::GetBordersSize()
+int *tnt::Window::GetBordersSize()
 {
-    int top, left, bottom, right, result;
+    // guess this should be static, as it is always modified NOT depending to itself.
+    static int top, left, bottom, right, result;
     result = SDL_GetWindowBordersSize(window, &top, &left, &bottom, &right);
-    return std::make_tuple(top, left, bottom, right, result);
-}
-
-SDL_Renderer *tnt::Window::getRenderer() noexcept
-{
-    return renderer;
+    int arr[5]{top, left, bottom, right, result};
+    return arr;
 }

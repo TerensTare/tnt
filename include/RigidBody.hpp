@@ -8,6 +8,10 @@ namespace tnt
 class RigidBody : public Object
 {
 };
+
+class Joint : public Object
+{
+};
 } // namespace tnt
 
 #endif //!RIGID_BODY_HPP

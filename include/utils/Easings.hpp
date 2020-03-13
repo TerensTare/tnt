@@ -7,8 +7,12 @@
 
 namespace tnt
 {
-inline static constexpr float PennerNumber{1.70158f};
-inline static const float PI = std::acosf(-1.f);
+
+inline constexpr float PennerNumber{1.70158f};
+inline constexpr float PI{3.14159f};
+
+inline constexpr auto RadianToDegree = [](float rad) { return (rad * (180.0f / PI)); };
+inline constexpr auto DegreeToRadian = [](float deg) { return (deg * (PI / 180.0f)); };
 
 template <typename T>
 inline auto clamp = [](T val, T min = 0, T max = 1) -> decltype(val) {

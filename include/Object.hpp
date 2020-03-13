@@ -4,6 +4,12 @@
 #include <memory>
 #include "Vector.hpp"
 
+// TODO:
+// Serializable interface class.
+// Add Serialization to Object and it's childrens.
+// TODO(maybe):
+// Move this to core.
+
 namespace tnt
 {
 class Object

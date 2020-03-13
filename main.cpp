@@ -1,15 +1,44 @@
-#include "utils/Benchmark.hpp"
-#include "utils/Logger.hpp"
+#include "core/Graphics.hpp"
+#include "gui/Window.hpp"
 
-int main()
+int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 {
-    tnt::Instrumentor::Get().BeginSession("new logging");
+    using tnt::Graphics, tnt::Window;
+    bool quit{false};
+    SDL_Event e;
+
+    Window *win{
+        new Window{"Test",
+                   SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                   800, 600, SDL_WINDOW_SHOWN}};
+
+    while (!quit)
     {
-        PROFILE_SCOPE("logger");
-        tnt::logger::info("hello {} and hello {}!", "world", "tnt");
+        SDL_WaitEvent(&e);
+        switch (e.type)
+        {
+        case SDL_QUIT:
+            quit = true;
+            break;
+        }
     }
-    tnt::Instrumentor::Get().EndSession();
+
+    delete win;
+    return 0;
 }
+
+// #include "utils/Benchmark.hpp"
+// #include "utils/Logger.hpp"
+
+// int main()
+// {
+//     tnt::Instrumentor::Get().BeginSession("new logging");
+//     {
+//         PROFILE_SCOPE("logger");
+//         tnt::logger::info("hello {} and hello {}!", "world", "tnt");
+//     }
+//     tnt::Instrumentor::Get().EndSession();
+// }
 
 // #include "LuaSandbox.hpp"
 

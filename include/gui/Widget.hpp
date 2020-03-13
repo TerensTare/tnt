@@ -27,8 +27,13 @@ public:
 
 protected:
     bool active;
+    bool draggable;
     SDL_FRect bounds;
     SDL_Texture *texture;
+};
+
+class Draggable : public Widget
+{
 };
 
 class Text : public Widget
