@@ -28,7 +28,7 @@ jobs:
             include:
               - os: windows-latest
                 triplet: x64-windows
-                vcpkg-path: "%VCPKG_INSTALLATION_PATH%\\installed\\x64-windows"
+                vcpkg-path: "C:\\vcpkg\\installed\\x64-windows"
                 run: |
                      vcvars64
                      mkdir build && cd build
