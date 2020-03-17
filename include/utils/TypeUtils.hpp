@@ -4,6 +4,8 @@
 // TODO: check this
 // https://www.youtube.com/watch?v=Zcqwb3CWqs4&pbjreload=10
 
+#include <memory>
+
 namespace tnt
 {
 // based on
@@ -45,19 +47,93 @@ public:
     }
 };
 
-class non_copyable
+struct non_copyable
 {
-public:
     non_copyable() = delete;
     non_copyable(non_copyable const &) = delete;
     non_copyable &operator=(non_copyable const &) = delete;
 };
 
-class non_movable
+struct non_movable
 {
     non_movable() = delete;
     non_movable(non_movable const &) = delete;
     non_movable &operator=(non_movable &&) = delete;
+};
+
+template <typename T, typename Deleter = std::default_delete<T>>
+struct singleton : non_copyable
+{
+    ~singleton() noexcept(noexcept(Deleter()))
+    {
+        Deleter();
+    }
+
+    static T &This()
+    {
+        static T inst;
+        return inst;
+    }
+};
+
+template <typename T>
+struct Visitor
+{
+    virtual void Visit(T &) = 0;
+};
+
+template <typename T, typename R = void>
+struct Visitor
+{
+    typedef R ReturnType;
+    virtual ReturnType Visit(T &) = 0;
+};
+
+template <typename R = void>
+struct Visitable
+{
+    typedef R ReturnType;
+    virtual ~Visitable() {}
+    virtual ReturnType Accept(Visitor &) = 0;
+
+protected:
+    template <typename T>
+    static ReturnType AcceptImpl(T &visited, Visitor &guest)
+    {
+        if (Visitor<T> * p{dynamic_cast<Visitor<T> *>(&guest)})
+            return p->Visit(visited);
+        return ReturnType();
+    }
+};
+
+// simple sample
+// class SomeVisitor :
+//  public BaseVisitor // required
+//  public Visitor<RasterBitmap>,
+//  public Visitor<Paragraph>
+// {
+// public:
+//  void Visit(RasterBitmap&); // visit a RasterBitmap
+//  void Visit(Paragraph &); // visit a Paragraph
+// };
+
+template <typename T, typename U>
+class is_convertible
+{
+    typedef char Small;
+    class Big
+    {
+        char dummy[2];
+    };
+    static Small Test(U);
+    static Big Test(...);
+    static T MakeT();
+
+public:
+    enum
+    {
+        exists = (sizeof(Test(MakeT())) == sizeof(Small))
+    };
 };
 
 // type safe enum pattern from

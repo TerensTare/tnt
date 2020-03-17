@@ -1,7 +1,7 @@
 #ifndef AUDIO_PLAYER_HPP
 #define AUDIO_PLAYER_HPP
 
-#include "AssetManager.hpp"
+#include "fileIO/AssetManager.hpp"
 
 // Consider making this a singleton.
 namespace tnt

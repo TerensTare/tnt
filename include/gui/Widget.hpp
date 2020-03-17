@@ -8,9 +8,9 @@
 #include <string_view>
 #include <SDL2/SDL_render.h>
 
-#include "Window.hpp"
-#include "Object.hpp"
-#include "Observer.hpp"
+#include "core/Window.hpp"
+#include "ecs/Object.hpp"
+#include "utils/Observer.hpp"
 
 namespace tnt
 {
@@ -21,9 +21,11 @@ class Widget
 public:
     virtual ~Widget() noexcept {}
 
-    virtual void Draw(Window const *target); // TODO(maybe)
+    virtual void Draw(Window const *target); // TODO(maybe) non virtual
 
     bool Active() const noexcept;
+
+    // virtual void Update() override;
 
 protected:
     bool active;

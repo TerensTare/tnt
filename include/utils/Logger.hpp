@@ -4,7 +4,6 @@
 #include <fmt/core.h>
 
 // TODO: unfinished
-// TODO(partial): try calling fmt::print less.
 // TODO: make colored output, and maybe write to html/xml files for better output.
 // TODO: temporary use libfmt, but after MSVC will support C++20's <format>, use that instead.
 // TODO: support writing to files, maybe by using fmt::vprint.
@@ -20,6 +19,8 @@
 
 // Priorities are in ascending order:
 namespace tnt::logger
+{
+namespace
 {
 template <typename T>
 void trace(std::string_view format, T data)
@@ -149,6 +150,7 @@ void critical(std::string_view format)
 {
     fmt::print("{} CRITICAL: {}\n", __TIME__, format);
 }
+} // namespace
 } // namespace tnt::logger
 
 #endif //!LOGGER_HPP

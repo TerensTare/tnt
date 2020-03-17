@@ -1,4 +1,4 @@
-#include "AudioPlayer.hpp"
+#include "core/AudioPlayer.hpp"
 
 tnt::AudioPlayer::AudioPlayer(int frequency, Uint16 format, int channels, int chunksize)
 {

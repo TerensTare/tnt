@@ -4,7 +4,6 @@
 #include <string>
 
 #include "Camera.hpp"
-#include "core/Graphics.hpp"
 #include "Renderable.hpp"
 
 // TODO: destroy EVERY Window member in it's destructor.
@@ -37,12 +36,14 @@ public:
     int *GetBordersSize();
 
     void Render();
-    void Draw(tnt::Renderable const *obj, const SDL_Rect *srcrect, const tnt::Camera *cam, const double angle = .0, SDL_RendererFlip flip = SDL_FLIP_NONE);
+    void Draw(tnt::Renderable const *obj, const SDL_Rect &srcrect, const tnt::Camera &cam, const double angle = .0, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void Clear();
 
+    void SetClearColor(SDL_Color const &color);
+
 private:
-    Graphics &gfx;
     Camera camera;
+    SDL_Renderer *renderer;
     SDL_Window *window;
 };
 } // namespace tnt

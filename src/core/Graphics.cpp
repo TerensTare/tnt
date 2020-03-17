@@ -1,44 +1,16 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+#include "core/Graphics.hpp"
+#include "utils/Logger.hpp"
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
-#include "core/Graphics.hpp"
-#include "utils/Logger.hpp"
-
-bool tnt::Graphics::init = false;
-
-tnt::Graphics::Graphics()
+bool tnt::detail::gfx::Init() noexcept
 {
-    init = Init();
-}
-
-tnt::Graphics::~Graphics() noexcept
-{
-    SDL_DestroyRenderer(ren);
-    ren = nullptr;
-
-    TTF_Quit();
-    IMG_Quit();
-    SDL_Quit();
-}
-
-tnt::Graphics &tnt::Graphics::This()
-{
-    if (init)
-    {
-        static Graphics inst;
-        return inst;
-    }
-    init = Init();
-    return This();
-}
-
-bool tnt::Graphics::Init()
-{
-    if (!init)
+    if (!detail::gfx::init)
     {
         if (auto res{SDL_Init(SDL_INIT_EVERYTHING)}; res < 0)
         {
@@ -55,6 +27,8 @@ bool tnt::Graphics::Init()
             return false;
         }
 
+#undef flags
+
         if (auto res{TTF_Init()}; res == -1)
         {
             tnt::logger::error("Couldn't initalize SDL_ttf!! Error: {}\n", TTF_GetError());
@@ -67,4 +41,10 @@ bool tnt::Graphics::Init()
     return true;
 }
 
-SDL_Renderer *tnt::Graphics::getRenderer() const noexcept { return ren; }
+void tnt::detail::gfx::Quit() noexcept
+{
+    TTF_Quit();
+    IMG_Quit();
+    SDL_Quit();
+    init = false;
+}

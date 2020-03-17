@@ -15,8 +15,8 @@
 // reduce template usage by replacing with concepts
 
 #define Assert(cond, text) assert(cond &&text)
-// CAssert is used for compile time only.
-#define CAssert(expn) typedef char __C_ASSERT__[(expn) ? 1 : -1]
+// STATIC_CHECK is used for compile time only.
+#define STATIC_CHECK(expn) typedef char __C_ASSERT__[(expn) ? 1 : -1]
 
 namespace tnt
 {

@@ -7,9 +7,9 @@
 
 namespace tnt
 {
+// TODO:
+// handle deltaTime when paused
 // TODO(maybe): asynchronous timer ??
-// TODO: add function to benchmark another function.
-// TODO: update the value of begin (maybe) in deltaTime ??
 // TODO(maybe): make Timer header-only ??
 class Timer
 {
@@ -22,8 +22,8 @@ public:
 
     bool paused() const noexcept;
 
-    template <typename Duration, std::enable_if_t<std::chrono::_Is_duration_v<Duration>, int> = 0>
-    Duration &deltaTime() const noexcept
+    template <typename Duration = std::chrono::milliseconds, std::enable_if_t<std::chrono::_Is_duration_v<Duration>, int> = 0>
+    Duration &deltaTime() noexcept(noexcept(std::chrono::duration_cast<Duration>(std::chrono::steady_clock::now() - begin)))
     {
         std::atomic_thread_fence(std::memory_order_relaxed);
         auto ret{std::chrono::duration_cast<Duration>(std::chrono::steady_clock::now() - begin)};
@@ -32,7 +32,7 @@ public:
     }
 
 private:
-    bool isPaused{false};
+    bool isPaused;
     std::chrono::steady_clock::time_point begin;
 };
 
@@ -41,9 +41,12 @@ long long measure(F const &func, Args &&... args)
 {
     auto start{std::chrono::steady_clock::now()};
     func(std::forward<Args...>(args...));
-    auto end{std::chrono::steady_clock::now()};
 
-    return std::chrono::duration_cast<std::chrono::seconds>(end - start).count();
+    std::atomic_thread_fence(std::memory_order_relaxed);
+    auto ret{std::chrono::duration_cast<Duration>(std::chrono::steady_clock::now() - begin)};
+    std::atomic_thread_fence(std::memory_order_relaxed);
+
+    return ret;
 }
 } // namespace tnt
 

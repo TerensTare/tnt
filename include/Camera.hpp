@@ -2,7 +2,7 @@
 #define CAMERA_HPP
 
 #include <SDL2/SDL_rect.h>
-#include "Vector.hpp"
+#include "math/Vector.hpp"
 
 // TODO:
 // screenshake

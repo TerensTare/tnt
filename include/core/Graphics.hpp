@@ -1,31 +1,11 @@
-#ifndef GRAPHICS_HPP
-#define GRAPHICS_HPP
+#ifndef TNT_GRAPHICS_HPP
+#define TNT_GRAPHICS_HPP
 
-struct SDL_Renderer;
-typedef struct SDL_Renderer SDL_Renderer;
-
-// TODO:
-// review the whole rendering process and infrastructure.
-
-namespace tnt
+namespace tnt::detail::gfx
 {
-class Graphics
-{
-public:
-    static Graphics &This();
+bool Init() noexcept;
+void Quit() noexcept;
+inline static bool init;
+} // namespace tnt::detail::gfx
 
-private:
-    Graphics();
-    ~Graphics() noexcept;
-
-    static bool Init();
-    SDL_Renderer *getRenderer() const noexcept;
-
-    static bool init;
-    SDL_Renderer *ren;
-
-    friend class Window;
-};
-} // namespace tnt
-
-#endif //!GRAPHICS_HPP
+#endif //!TNT_GRAPHICS_HPP

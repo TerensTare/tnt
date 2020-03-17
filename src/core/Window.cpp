@@ -1,19 +1,32 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+#include "core/Graphics.hpp"
+#include "core/Window.hpp"
 #include <utility>
-#include "gui/Window.hpp"
 
-tnt::Window::Window(std::string_view title,
-                    int xpos, int ypos, int width, int height,
-                    Uint32 flags)
-    : gfx{Graphics::This()}, camera{0, 0, width, height},
-      window{SDL_CreateWindow(title.data(), xpos, ypos, width, height, flags)} {}
+tnt::Window::Window(
+    std::string_view title,
+    int xpos, int ypos, int width, int height,
+    Uint32 flags)
+    : camera{0, 0, width, height}
+{
+    detail::gfx::Init();
+
+    window = SDL_CreateWindow(title.data(), xpos, ypos, width, height, flags);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+}
 
 tnt::Window::~Window() noexcept
 {
+    SDL_DestroyRenderer(renderer);
+    renderer = nullptr;
+
     SDL_DestroyWindow(window);
-    gfx.~Graphics();
+    window = nullptr;
+
+    detail::gfx::Quit();
 }
 
 tnt::Window::operator SDL_Window *()
@@ -70,9 +83,20 @@ void tnt::Window::SetIcon(SDL_Surface *icon)
 
 int *tnt::Window::GetBordersSize()
 {
-    // guess this should be static, as it is always modified NOT depending to itself.
-    static int top, left, bottom, right, result;
-    result = SDL_GetWindowBordersSize(window, &top, &left, &bottom, &right);
-    int arr[5]{top, left, bottom, right, result};
+    int arr[5];
+    arr[4] = SDL_GetWindowBordersSize(window, &arr[0], &arr[1], &arr[2], &arr[3]);
     return arr;
+}
+
+void tnt::Window::Clear() { SDL_RenderClear(renderer); }
+void tnt::Window::Render() { SDL_RenderPresent(renderer); }
+
+void tnt::Window::Draw(tnt::Renderable const *obj, SDL_Rect const &srcrect, tnt::Camera const &cam, double angle, SDL_RendererFlip flip)
+{
+    SDL_RenderCopyEx(renderer, &*(obj->tex), &srcrect, &cam.Bounds(), angle, NULL, flip);
+}
+
+void tnt::Window::SetClearColor(SDL_Color const &color)
+{
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 }

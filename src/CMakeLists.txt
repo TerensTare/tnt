@@ -1,6 +1,6 @@
 set(SOURCE_FILES
     fileIO/VirtualFileSystem.cpp
-    gui/Widget.cpp gui/Window.cpp physics/Contact.cpp
+    gui/Widget.cpp core/Window.cpp physics/Contact.cpp
     physics/ForceGenerator.cpp physics/Link.cpp
     physics/Particle.cpp physics/World.cpp
     utils/Actions.cpp utils/Timer.cpp

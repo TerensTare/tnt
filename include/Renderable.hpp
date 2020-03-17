@@ -14,6 +14,8 @@ public:
 
 protected:
     std::shared_ptr<SDL_Texture> tex;
+
+    friend class Window;
 };
 } // namespace tnt
 

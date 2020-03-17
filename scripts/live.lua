@@ -26,7 +26,7 @@ function live.reload_if(mod, cond)
     end
 end
 
-function live:reload_all()
+function live.reload_all()
     for k, _ in pairs(package.loaded) do
         -- we don't wanna mess with the default lua modules
         if k ~= "debug" and k ~= "package" and
@@ -41,7 +41,7 @@ function live:reload_all()
     end
 end
 
-function live:reload_all_if(cond)
+function live.reload_all_if(cond)
     if not not cond then
         for k, _ in pairs(package.loaded) do
             -- we don't wanna mess with the default lua modules.

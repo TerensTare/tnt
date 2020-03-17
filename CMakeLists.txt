@@ -18,9 +18,13 @@ message(FATAL_ERROR
     Please consider making a \"build\" subdirectory and run cmake .. from the \"build\" directory.")
 endif()
 
+# TODO: an if should be here for cross-platform compiling.
+set(COMMON_COMPILE_OPTIONS "/EHsc /O2")
+set(TNT_COMPILE_OPTIONS ${COMMON_COMPILE_OPTIONS})
+
 include(cmake/StandardProjectSettings.cmake)
 
-add_library(project_options INTERFACE)
+# add_library(project_options INTERFACE)
 # target_compile_features(project_options INTERFACE cxx_std_17)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -64,11 +68,13 @@ configure_file(
 # Handle build type.
 set(default_build_type "Release")
 if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-    message(STATUS "Build the TnT Engine in \"${default_build_type}\" mode.")
+    message(STATUS "Building the TnT Engine in \"${default_build_type}\" mode.")
     set(CMAKE_BUILD_TYPE "${default_build_type}" cache string "Choose the type of build." FORCE)
     set_property(cache CMAKE_BUILD_TYPE PROPERTY STRINGS
         "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
+
+message("Building TnT in ${CMAKE_BUILD_TYPE} mode.")
 
 include_directories(include)
 add_subdirectory(src)
@@ -77,7 +83,11 @@ if(NOT TNT_UNIT_BUILD)
     list(APPEND SOURCE_FILES main.cpp)
 endif()
 
+message("Compiling ${SOURCE_FILES}.")
+
 add_executable(TnT ${SOURCE_FILES})
+
+target_include_directories(TnT PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
 
 target_link_libraries(TnT PRIVATE SDL2::SDL2 SDL2::SDL2main)
 target_link_libraries(TnT PRIVATE SDL2::SDL2_gfx)
@@ -87,6 +97,11 @@ target_link_libraries(TnT PRIVATE SDL2::SDL2_net)
 target_link_libraries(TnT PRIVATE sol2::sol2)
 target_link_libraries(TnT PRIVATE fmt::fmt fmt::fmt-header-only)
 target_link_libraries(TnT PRIVATE nlohmann_json nlohmann_json::nlohmann_json)
+
+target_link_directories(TnT PRIVATE 
+    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/lib)
+target_compile_options(TnT PRIVATE ${TNT_COMPILE_OPTIONS})
+
 
 # set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 # set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

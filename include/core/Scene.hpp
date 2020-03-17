@@ -1,7 +1,7 @@
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
-#include "AssetManager.hpp"
+#include "fileIO/AssetManager.hpp"
 
 // TODO(maybe): this should be an interface.
 namespace tnt

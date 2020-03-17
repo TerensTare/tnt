@@ -11,6 +11,7 @@ class InputManager
 {
 public:
     static InputManager &This();
+    ~InputManager() noexcept;
 
     bool KeyDown(SDL_Scancode key) const noexcept;
     bool KeyPressed(SDL_Scancode key) const noexcept;
@@ -27,7 +28,6 @@ public:
 
 private:
     InputManager();
-    ~InputManager() noexcept;
 
     const Uint8 *currentkb;
     std::vector<Uint8> prevkb;

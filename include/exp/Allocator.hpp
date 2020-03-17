@@ -6,16 +6,18 @@
 namespace tnt
 {
 // WARNING: DO NOT USE IT YET. IT IS WIP.
+// TODO:
+// add different utility functions to StackAllocator.
 template <class T, std::size_t S = 64>
 class StackAllocator
 {
 public:
     StackAllocator()
-        : data{std::malloc(sizeof(T) * S)}, stack_ptr{0} {}
+        : data{new T[S]}, stack_ptr{0} {}
 
-    ~StackAllocator() noexcept(std::free(data))
+    ~StackAllocator() noexcept
     {
-        std::free(data);
+        delete[] data;
         stack_ptr = 0;
     }
 
@@ -24,6 +26,8 @@ public:
         if (stack_ptr < S)
         {
             ++stack_ptr;
+            if (!data[stack_ptr])
+                data[stack_ptr] = new T;
             return &data[stack_ptr];
         }
         return nullptr;
@@ -32,7 +36,14 @@ public:
     void free()
     {
         if (stack_ptr > 0)
+        {
+            if (data[stack_ptr])
+            {
+                delete data[stack_ptr];
+                data[stack_ptr] = nullptr;
+            }
             stack_ptr--;
+        }
     }
 
 private:

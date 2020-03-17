@@ -4,7 +4,8 @@
 #include "utils/Timer.hpp"
 
 tnt::Timer::Timer()
-    : begin{std::chrono::steady_clock::now()} {}
+    : begin{std::chrono::steady_clock::now()},
+      isPaused{false} {}
 
 void tnt::Timer::start() noexcept
 {
@@ -22,7 +23,4 @@ void tnt::Timer::reset() noexcept
     begin = std::chrono::steady_clock::now();
 }
 
-bool tnt::Timer::paused() const noexcept
-{
-    return isPaused;
-}
+bool tnt::Timer::paused() const noexcept { return isPaused; }

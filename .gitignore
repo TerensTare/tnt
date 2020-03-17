@@ -7,8 +7,8 @@ project
 tools
 module
 
-include/exp/
-src/exp/
+include/exp/*
+src/exp/*
 
 *.obj
 *.lib
@@ -25,4 +25,3 @@ Roadmap.todo
 benchmark.json
 build.json
 bld.bat
-tnt.natvis

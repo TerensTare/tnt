@@ -13,6 +13,7 @@ void loadMatrix(sol::state &lua);
 void loadAssetManager(sol::state &lua);
 void loadVFS(sol::state &lua);
 void loadWidgets(sol::state &lua);
+void loadUtils(sol::state& lua); // last_write_time, etc
 // void loadRigidBody(sol::state& lua);
 } // namespace tnt::lua
 
