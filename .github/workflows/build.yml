@@ -4,15 +4,13 @@
 # (DONE) consider building all the dependencies in a single action.
 # (DONE) using env: set vcpkg triplet to x64.
 # (DONE) build vcpkg on macosx after downloading.
+# (DONE) add more os-es and more build configurations.
 
 # TODO:
-# 1. (maybe)(PARTIAL) add more os-es and more build configurations.
-# 2. consider using CMake to convert TnT into a Visual Studio solution/GCC/Clang project.
-# 3. (NEEDS TESTING) cache installed packages and run vcpkg update once a week.
-# 4. check for vcpkg updates weekly on macosx.
-# 5. The runner on Windows doesn't know the location of vcvars64.bat. Add that to the PATH using env:.
-# 6. actions/cache knows there is some cache saved, but still runs downlod process. FIX THAT!!!
-# 7. Use PVS-Studio for statical analysis on every commit.
+# 1. (NEEDS TESTING) cache installed packages and run vcpkg update once a week.
+# 2. The runner on Windows doesn't know the location of vcvars64.bat. Add that to the PATH using env:.
+# 3. actions/cache knows there is some cache saved, but still runs downlod process. FIX THAT!!!
+# 4. Use PVS-Studio for statical analysis on every commit.
 
 name: CI
 on: [push]
@@ -51,13 +49,13 @@ jobs:
             with:
              path: ${{ matrix.vcpkg-path }}
              key: ${{ matrix.os }}-dependencies
-          - name: Run vcpkg
+          - name: Get dependencies using vcpkg
             env:
               VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
             if: steps.pack-cache.outputs.cache-hit != 'true'
-            run: vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
-          - name: Integrate packages
-            run: vcpkg integrate install
+            run: |
+                vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
+                vcpkg integrate install
 
 
     tnt:
