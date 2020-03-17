@@ -54,6 +54,7 @@ jobs:
               VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
             if: steps.pack-cache.outputs.cache-hit != 'true'
             run: |
+                find ~/ -type f -name "vcpkg"
                 vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
                 vcpkg integrate install
 
