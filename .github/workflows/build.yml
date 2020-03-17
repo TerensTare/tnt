@@ -33,12 +33,12 @@ jobs:
                      cmake ..
               - os: ubuntu-latest
                 triplet: x64-linux
-                vcpkg-path: "$VCPKG_INSTALLATION_PATH/installed/x64-linux"
+                vcpkg-path: "/usr/local/bin/vcpkg/installed/x64-linux"
                 run: |
                     mkdir build && cd build
                     cmake ..
               - os: macos-latest
-                vcpkg-path: "$VCPKG_INSTALLATION_PATH/installed/x64-osx"
+                vcpkg-path: "/usr/local/bin/vcpkg/installed/x64-osx"
                 triplet: x64-osx
 
 
