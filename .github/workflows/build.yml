@@ -40,6 +40,9 @@ jobs:
               - os: macos-latest
                 vcpkg-path: "/usr/local/share/vcpkg/installed/x64-osx"
                 triplet: x64-osx
+                run: |
+                    mkdir build && cd build
+                    cmake ..
 
 
         steps:
