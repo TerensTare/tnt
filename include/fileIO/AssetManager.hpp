@@ -3,19 +3,19 @@
 
 #include <map>
 #include <future>
-#include <iostream>
 
-#include <sol/sol.hpp>
+#include "core/Window.hpp"
 
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL_ttf.h>
+typedef struct _Mix_Music Mix_Music;
+
+typedef struct Mix_Chunk Mix_Chunk;
+
+typedef struct _TTF_Font TTF_Font;
 
 namespace tnt
 {
 // TODO(maybe)(x): make this a non-singleton.
 // TODO(maybe): add an animations map.
-// TODO(maybe): move modules to LuaManager.
 // TODO(maybe): remove friend class AudioManager;
 
 // TODO: add better key value for text SDL_Texture*-s.
@@ -25,19 +25,17 @@ class AssetManager
 public:
     ~AssetManager() noexcept;
 
-    std::future<void> AddFont(std::string const &font, int size);
-    std::future<void> AddImage(SDL_Renderer *ren, std::string const &image);
-    std::future<void> AddText(SDL_Renderer *ren, std::string const &filename, std::string const &text, int size, SDL_Color const &color);
-    std::future<void> AddMusic(std::string const &music);
-    std::future<void> AddSfx(std::string const &chunk);
-    std::future<void> AddModule(std::string const &module);
+    void AddFont(std::string_view font, int size);
+    void AddImage(SDL_Renderer *ren, std::string_view image);
+    void AddText(SDL_Renderer *ren, std::string_view filename, std::string_view text, int size, SDL_Color const &color);
+    void AddMusic(std::string_view music);
+    void AddSfx(std::string_view chunk);
 
-    std::future<SDL_Texture *> Image(std::string const &image);
-    std::future<SDL_Texture *> Text(std::string const &txt);
-    std::future<TTF_Font *> Font(std::string const &font, int size);
-    std::future<Mix_Music *> Music(std::string const &name);
-    std::future<Mix_Chunk *> Sfx(std::string const &chunk);
-    std::future<sol::table> Module(std::string const &module);
+    std::future<SDL_Texture *> Image(std::string_view image);
+    std::future<SDL_Texture *> Text(std::string_view txt);
+    std::future<TTF_Font *> Font(std::string_view font, int size);
+    std::future<Mix_Music *> Music(std::string_view name);
+    std::future<Mix_Chunk *> Sfx(std::string_view chunk);
 
 private:
     SDL_Texture *LoadImage(SDL_Renderer *ren, std::string filename);
@@ -48,7 +46,8 @@ private:
     std::map<std::string, TTF_Font *> fonts;
     std::map<std::string, Mix_Music *> music;
     std::map<std::string, Mix_Chunk *> sfx;
-    std::map<std::string, sol::table> modules;
+
+    std::weak_ptr<Window> owner;
 
     friend class AudioPlayer;
 };

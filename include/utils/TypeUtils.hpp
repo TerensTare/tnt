@@ -1,10 +1,51 @@
 #ifndef TYPE_UTILS_HPP
 #define TYPE_UTILS_HPP
 
+// TODO:
+// separate multithreading utilities into a different file.
 // TODO: check this
 // https://www.youtube.com/watch?v=Zcqwb3CWqs4&pbjreload=10
 
+#include <mutex>
+#include <thread>
 #include <memory>
+#include <exception>
+
+// TODO(maybe): lock should be std::unique_lock<std::recursive_mutex>
+
+#if __cplusplus <= 201703L
+#define synchronized(mtx) \
+    for (std::unique_lock lock{mtx}; lock; lock.unlock())
+
+// code taken from
+// https://stackoverflow.com/questions/14931982/synchronize-entire-class-in-c11
+template <typename T>
+struct Synchronized
+{
+    explicit Synchronized(T &value) : t{value} {}
+
+    Synchronized(Synchronized const &) = delete;
+    Synchronized &operator=(Synchronized const &) = delete;
+    Synchronized(Synchronized &&) = delete;
+    Synchronized &operator=(Synchronized &&) = delete;
+
+    template <typename Func>
+    auto operator()(Func &&f) const -> decltype(f(t))
+    {
+        std::lock_guard guard{mtx};
+        return f(t);
+    }
+
+private:
+    mutable T &t;
+    mutable std::mutex mtx;
+};
+
+#if __cplusplus == 201703L
+template <typenme T>
+Synchronized(T &)->Synchronized<T>;
+#endif
+#endif
 
 namespace tnt
 {
@@ -49,14 +90,14 @@ public:
 
 struct non_copyable
 {
-    non_copyable() = delete;
+    non_copyable() = default;
     non_copyable(non_copyable const &) = delete;
     non_copyable &operator=(non_copyable const &) = delete;
 };
 
 struct non_movable
 {
-    non_movable() = delete;
+    non_movable() = default;
     non_movable(non_movable const &) = delete;
     non_movable &operator=(non_movable &&) = delete;
 };
@@ -74,6 +115,24 @@ struct singleton : non_copyable
         static T inst;
         return inst;
     }
+};
+
+class scoped_thread : public non_copyable
+{
+public:
+    explicit scoped_thread(std::thread &th) : t{std::move(th)}
+    {
+        if (!t.joinable())
+            throw std::logic_error("scoped_thread: No thread!!");
+    }
+
+    ~scoped_thread()
+    {
+        t.join();
+    }
+
+private:
+    std::thread t;
 };
 
 template <typename T>

@@ -16,10 +16,12 @@ src/exp/*
 *.exe
 *.ifc
 *.exp
+*.ipdb
 
 *.vcxproj
 *.sln
 
+WIP
 NOTES.md
 Roadmap.todo
 benchmark.json

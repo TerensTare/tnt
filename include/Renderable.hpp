@@ -3,6 +3,9 @@
 
 #include "utils/SDL_Utils.hpp"
 
+// TODO(maybe):
+// make this a class derived from Object.
+
 namespace tnt
 {
 class __declspec(novtable) Renderable

@@ -75,7 +75,6 @@ struct default_delete<Mix_Music>
 
 namespace tnt
 {
-
 } // namespace tnt
 
 #endif //!TNT_SDL_UTILS_HPP

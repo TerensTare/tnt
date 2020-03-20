@@ -5,10 +5,13 @@
 
 #include "Camera.hpp"
 #include "Renderable.hpp"
+#include "fileIO/AssetManager.hpp"
 
 // TODO: destroy EVERY Window member in it's destructor.
 // TODO: make THIS a Widget.
 // TODO: multiwindow support.
+// TODO: GetBordersSize returns a local variable. Fix that warning.
+// TODO: rename to RenderWindow ?? and use as reference/value ??
 namespace tnt
 {
 class Window final
@@ -17,34 +20,38 @@ public:
     Window(std::string_view title, int xpos, int ypos, int width, int height, Uint32 flags);
     ~Window() noexcept;
 
-    operator SDL_Window *();
+    operator SDL_Window *() noexcept;
 
-    int GetDisplayIndex();
+    SDL_Renderer *GetRenderer() const noexcept;
+    SDL_Texture *LoadTexture(std::string_view filename) noexcept;
 
-    int SetDisplayMode(const SDL_DisplayMode *mode);
-    std::pair<SDL_DisplayMode, int> GetDisplayMode();
+    int GetDisplayIndex() const noexcept;
 
-    Uint32 GetPixelFormat();
-    Uint32 GetID();
-    Uint32 GetFlags();
+    int SetDisplayMode(const SDL_DisplayMode *mode) noexcept;
+    std::pair<SDL_DisplayMode, int> GetDisplayMode() const noexcept;
 
-    void SetTitle(char const *title);
-    char const *GetTitle();
+    Uint32 GetPixelFormat() const noexcept;
+    Uint32 GetID() const noexcept;
+    Uint32 GetFlags() const noexcept;
 
-    void SetIcon(SDL_Surface *icon);
+    void SetTitle(char const *title) noexcept;
+    char const *GetTitle() const noexcept;
 
-    int *GetBordersSize();
+    void SetIcon(SDL_Surface *icon) noexcept;
 
-    void Render();
+    int *GetBordersSize() const noexcept;
+
+    void Render() noexcept;
     void Draw(tnt::Renderable const *obj, const SDL_Rect &srcrect, const tnt::Camera &cam, const double angle = .0, SDL_RendererFlip flip = SDL_FLIP_NONE);
-    void Clear();
+    void Clear() noexcept;
 
-    void SetClearColor(SDL_Color const &color);
+    void SetClearColor(SDL_Color const &color) noexcept;
 
 private:
     Camera camera;
     SDL_Renderer *renderer;
     SDL_Window *window;
+    std::shared_ptr<AssetManager> assets;
 };
 } // namespace tnt
 
