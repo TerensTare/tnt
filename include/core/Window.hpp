@@ -1,17 +1,15 @@
-#ifndef WINDOW_HPP
-#define WINDOW_HPP
+#ifndef TNT_WINDOW_HPP
+#define TNT_WINDOW_HPP
 
 #include <string>
-
-#include "Camera.hpp"
 #include "Renderable.hpp"
-#include "fileIO/AssetManager.hpp"
 
 // TODO: destroy EVERY Window member in it's destructor.
 // TODO: make THIS a Widget.
 // TODO: multiwindow support.
 // TODO: GetBordersSize returns a local variable. Fix that warning.
 // TODO: rename to RenderWindow ?? and use as reference/value ??
+// TODO: render a Scene when Draw is called.
 namespace tnt
 {
 class Window final
@@ -42,17 +40,15 @@ public:
     int *GetBordersSize() const noexcept;
 
     void Render() noexcept;
-    void Draw(tnt::Renderable const *obj, const SDL_Rect &srcrect, const tnt::Camera &cam, const double angle = .0, SDL_RendererFlip flip = SDL_FLIP_NONE);
+    void Draw(tnt::Renderable const *obj, const SDL_Rect &srcrect, SDL_Rect const &cam, const double angle = .0, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void Clear() noexcept;
 
     void SetClearColor(SDL_Color const &color) noexcept;
 
 private:
-    Camera camera;
     SDL_Renderer *renderer;
     SDL_Window *window;
-    std::shared_ptr<AssetManager> assets;
 };
 } // namespace tnt
 
-#endif //!WINDOW_HPP
+#endif //!TNT_WINDOW_HPP

@@ -11,12 +11,6 @@ concept reversable = requires(T t)
 };
 
 template <typename T>
-concept renderable = requires(T t)
-{
-    t.Draw;
-};
-
-template <typename T>
 concept observable = requires(T t)
 {
     t.Attach;
@@ -31,6 +25,12 @@ concept singleton = requires
         T::This()
     }
     ->T &;
+};
+
+template <typename T>
+concept renderable = requires(T t)
+{
+    t.tex->std::shared_ptr<SDL_Texture>;
 };
 } // namespace tnt
 

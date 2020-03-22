@@ -12,7 +12,6 @@ tnt::Window::Window(
     std::string_view title,
     int xpos, int ypos, int width, int height,
     Uint32 flags)
-    : camera{0, 0, width, height}
 {
     detail::gfx::Init();
 
@@ -110,9 +109,9 @@ int *tnt::Window::GetBordersSize() const noexcept
 void tnt::Window::Clear() noexcept { SDL_RenderClear(renderer); }
 void tnt::Window::Render() noexcept { SDL_RenderPresent(renderer); }
 
-void tnt::Window::Draw(tnt::Renderable const *obj, SDL_Rect const &srcrect, tnt::Camera const &cam, double angle, SDL_RendererFlip flip)
+void tnt::Window::Draw(tnt::Renderable const *obj, SDL_Rect const &srcrect, SDL_Rect const &cam, double angle, SDL_RendererFlip flip)
 {
-    SDL_RenderCopyEx(renderer, &*(obj->tex), &srcrect, &cam.Bounds(), angle, NULL, flip);
+    SDL_RenderCopyEx(renderer, &*(obj->tex), &srcrect, &cam, angle, NULL, flip);
 }
 
 void tnt::Window::SetClearColor(SDL_Color const &color) noexcept

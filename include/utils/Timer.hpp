@@ -7,10 +7,10 @@
 
 namespace tnt
 {
-// TODO:
-// handle deltaTime when paused
-// TODO(maybe): asynchronous timer ??
-// TODO(maybe): make Timer header-only ??
+// TODO: handle deltaTime when paused
+// TODO(maybe):
+// asynchronous timer ??
+// make Timer header-only ??
 class Timer
 {
 public:

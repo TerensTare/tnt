@@ -20,7 +20,9 @@ void tnt::Timer::stop() noexcept
 
 void tnt::Timer::reset() noexcept
 {
+    std::atomic_thread_fence(std::memory_order_relaxed);
     begin = std::chrono::steady_clock::now();
+    std::atomic_thread_fence(std::memory_order_relaxed);
 }
 
 bool tnt::Timer::paused() const noexcept { return isPaused; }

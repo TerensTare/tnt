@@ -24,18 +24,21 @@ public:
     void UpdateCurrentInput();
     void UpdatePreviousInput();
 
+    unsigned LastMouseButton() noexcept;
+
     std::pair<int, int> MousePosition() const noexcept;
 
 private:
     InputManager();
 
-    const Uint8 *currentkb;
-    std::vector<Uint8> prevkb;
     int keyLength;
+    int mX, mY;
 
     Uint32 currentMouse;
     Uint32 prevMouse;
-    int mX, mY;
+    Uint32 lastMouse;
+    const Uint8 *currentkb;
+    std::vector<Uint8> prevkb;
 };
 } // namespace tnt
 

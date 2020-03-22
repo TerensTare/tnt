@@ -7,6 +7,12 @@
 
 #include "core/Window.hpp"
 #include "fileIO/Snipper.hpp"
+#include "core/InputManager.hpp"
+#include "utils/Timer.hpp"
+
+// TODO: problems are shown when T is pressed like 3-4 time consequently.
+// (maybe): the problem is related to the time rather than the input.
+// NOTE:
 
 using nlohmann::json;
 
@@ -33,15 +39,17 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
     tnt::file::Snipper snipper;
     snipper.watchFile("test.json");
 
+    tnt::InputManager &input{tnt::InputManager::This()};
+    tnt::Timer timer;
+
     while (!quit)
     {
-        SDL_WaitEvent(&e);
-        switch (e.type)
-        {
-        case SDL_QUIT:
-            quit = true;
-            break;
-        }
+        while (SDL_PollEvent(&e))
+            if (e.type == SDL_QUIT)
+                quit = true;
+
+        if (input.KeyPressed(SDL_SCANCODE_T))
+            std::cout << "Pressed T\n";
 
         snipper.onModify("test.json", [&]() -> void {
             data = read_to_json("test.json");
@@ -50,10 +58,17 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
         window->SetTitle(data["title"].get<std::string>().c_str());
         window->SetClearColor({data["r"], data["g"], data["b"], data["a"]});
 
+        input.UpdatePreviousInput();
+        input.UpdateCurrentInput();
+
         window->Clear();
         window->Render();
-    }
 
+        auto fps{1000 / timer.deltaTime().count()};
+        timer.reset();
+        std::cout << fps << " fps\n";
+        SDL_Delay(fps);
+    }
     delete window;
     return 0;
 }

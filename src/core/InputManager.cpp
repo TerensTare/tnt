@@ -70,6 +70,20 @@ bool tnt::InputManager::MouseButtonReleased(Uint32 button) const noexcept
 
 #undef GET_MOUSE_MASK
 
+unsigned tnt::InputManager::LastMouseButton() noexcept
+{
+    Uint32 mask{0};
+
+    for (int i{0}; i < 5; ++i)
+        if (currentMouse & (1 << i))
+            lastMouse = i;
+    for (int i{0}; i < 5; ++i)
+        if (prevMouse & (1 << i))
+            lastMouse = i;
+
+    return lastMouse;
+}
+
 void tnt::InputManager::UpdateCurrentInput()
 {
     currentMouse = SDL_GetMouseState(&mX, &mY);

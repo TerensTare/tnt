@@ -1,6 +1,7 @@
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
+#include "Camera.hpp"
 #include "fileIO/AssetManager.hpp"
 
 // TODO(maybe): this should be an interface.
@@ -17,8 +18,9 @@ public:
     void Update();
 
 private:
+    StaticCamera &camera;
     std::weak_ptr<Scene> scenes; // TODO(maybe): THIS should be moved into game
-    AssetManager *assets;
+    AssetManager &assets;
 };
 } // namespace tnt
 
