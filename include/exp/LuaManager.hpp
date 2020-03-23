@@ -1,5 +1,7 @@
-#ifndef LUA_MANAGER_HPP
-#define LUA_MANAGER_HPP
+#ifdef TNT_BUILD_WITH_LUA
+
+#ifndef TNT_LUA_MANAGER_HPP
+#define TNT_LUA_MANAGER_HPP
 
 #include <sol/sol.hpp>
 
@@ -13,8 +15,9 @@ void loadMatrix(sol::state &lua);
 void loadAssetManager(sol::state &lua);
 void loadVFS(sol::state &lua);
 void loadWidgets(sol::state &lua);
-void loadUtils(sol::state& lua); // last_write_time, etc
+void loadUtils(sol::state &lua); // last_write_time, etc
 // void loadRigidBody(sol::state& lua);
 } // namespace tnt::lua
 
-#endif //!LUA_MANAGER_HPP
+#endif //!TNT_LUA_MANAGER_HPP
+#endif //!TNT_BUILD_WITH_LUA

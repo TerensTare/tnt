@@ -10,8 +10,12 @@
 // TODO: GetBordersSize returns a local variable. Fix that warning.
 // TODO: rename to RenderWindow ?? and use as reference/value ??
 // TODO: render a Scene when Draw is called.
+// TODO: support drawing fonts.
+// TODO: rendering in layers (bg1, bg2, bg3,..., player, enemies, etc)
 namespace tnt
 {
+class SpriteComponent;
+
 class Window final
 {
 public:
@@ -40,7 +44,7 @@ public:
     int *GetBordersSize() const noexcept;
 
     void Render() noexcept;
-    void Draw(tnt::Renderable const *obj, const SDL_Rect &srcrect, SDL_Rect const &cam, const double angle = .0, SDL_RendererFlip flip = SDL_FLIP_NONE);
+    void Draw(tnt::SpriteComponent const *obj, SDL_Rect const *srcrect, SDL_FRect const *cam, const double angle = .0, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void Clear() noexcept;
 
     void SetClearColor(SDL_Color const &color) noexcept;

@@ -1,5 +1,5 @@
-#ifndef EASINGS_HPP
-#define EASINGS_HPP
+#ifndef TNT_EASINGS_HPP
+#define TNT_EASINGS_HPP
 
 #include <cmath>
 
@@ -25,7 +25,7 @@ inline auto clamp = [](T val, T min = 0, T max = 1) -> decltype(val) {
 
 template <class T>
 inline const auto lerp = [](T a, T b, float pct) -> decltype(a * (1 - pct) + b * pct) {
-	return a * (1.0f - pct) + b * pct;
+	return a + (b - a) * pct;
 };
 
 // TODO: find a way so that this returns float.
@@ -352,4 +352,4 @@ inline float EaseInOut(float time, float begin, float change, float duration)
 } // namespace sine
 } // namespace tnt
 
-#endif //!EASINGS_HPP
+#endif //!TNT_EASINGS_HPP

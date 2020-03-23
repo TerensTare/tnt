@@ -3,6 +3,7 @@
 
 #include "Camera.hpp"
 #include "fileIO/AssetManager.hpp"
+#include "core/Space.hpp"
 
 // TODO(maybe): this should be an interface.
 namespace tnt

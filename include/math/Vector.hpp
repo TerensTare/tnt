@@ -1,5 +1,5 @@
-#ifndef VECTOR_HPP
-#define VECTOR_HPP
+#ifndef TNT_VECTOR_HPP
+#define TNT_VECTOR_HPP
 
 #if defined(DEBUG) || defined(_DEBUG) || defined(TNT_DEBUG)
 #include <iostream>
@@ -153,4 +153,4 @@ inline std::ostream &tnt::operator<<(std::ostream &os, const Vector &rhs)
 	return os;
 }
 
-#endif //!VECTOR_HPP
+#endif //!TNT_VECTOR_HPP

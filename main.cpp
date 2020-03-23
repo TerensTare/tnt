@@ -6,7 +6,7 @@
 #include <nlohmann/json.hpp>
 
 #include "core/Window.hpp"
-#include "fileIO/Snipper.hpp"
+// #include "fileIO/Snipper.hpp"
 #include "core/InputManager.hpp"
 #include "utils/Timer.hpp"
 
@@ -36,8 +36,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
         "Test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         800, 600, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
-    tnt::file::Snipper snipper;
-    snipper.watchFile("test.json");
+    // tnt::file::Snipper snipper;
+    // snipper.watchFile("test.json");
 
     tnt::InputManager &input{tnt::InputManager::This()};
     tnt::Timer timer;
@@ -51,9 +51,9 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
         if (input.KeyPressed(SDL_SCANCODE_T))
             std::cout << "Pressed T\n";
 
-        snipper.onModify("test.json", [&]() -> void {
-            data = read_to_json("test.json");
-        });
+        // snipper.onModify("test.json", [&]() -> void {
+        data = read_to_json("test.json");
+        // });
 
         window->SetTitle(data["title"].get<std::string>().c_str());
         window->SetClearColor({data["r"], data["g"], data["b"], data["a"]});

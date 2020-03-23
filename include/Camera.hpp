@@ -12,36 +12,25 @@
 // TODO: Lua support.
 
 // TODO(maybe):
-// make Camera's be classes rather than struct-s.
-// remove the base Camera class.
-// derive from StaticCamera.
+// make Camera's be classes rather than struct-s ??
+// remove the base Camera class ??
+// derive from StaticCamera ??
+// Camera-s should be object types ??
 
 namespace tnt
 {
 // Camera uses global coordinates.
 // The Camera class is deprecated in favour to the new StaticCamera, HorizontalCamera, FullTrackingCamera class-es, and will be removed as soon as the new Camera-s will be written and fully tested.
-class [[deprecated("The Camera class is deprecated in favour to the new StaticCamera, HorizontalCamera, FullTrackingCamera class-es, and will be removed as soon as the new Camera-s will be written and fully tested.")]] Camera
+// In fact, it may serve as a base class for the other Camera class-es.
+class Camera
 {
 public:
     Camera(float x, float y, float w, float h);
 
-    // momentally
     Camera(Camera const &) = delete;
     Camera(Camera &&) = delete;
     Camera &operator=(Camera const &) = delete;
     Camera &operator=(Camera &&) = delete;
-
-    void Move(float x, float y);
-    void Move(Vector const &v);
-
-    void MoveX(float x);
-    void MoveY(float y);
-
-    void MoveTo(float x, float y);
-    void MoveTo(Vector const &v);
-
-    void CenterTo(float x, float y);
-    void CenterTo(Vector const &v);
 
     SDL_FRect FBounds() const noexcept;
     SDL_Rect Bounds() const noexcept;

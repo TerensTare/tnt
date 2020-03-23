@@ -14,6 +14,7 @@ tnt::Window::Window(
     Uint32 flags)
 {
     detail::gfx::Init();
+    // SDL_SetHint(SDL_HINT_RENDER_BATCHING, "0");
 
     window = SDL_CreateWindow(title.data(), xpos, ypos, width, height, flags);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -109,9 +110,9 @@ int *tnt::Window::GetBordersSize() const noexcept
 void tnt::Window::Clear() noexcept { SDL_RenderClear(renderer); }
 void tnt::Window::Render() noexcept { SDL_RenderPresent(renderer); }
 
-void tnt::Window::Draw(tnt::Renderable const *obj, SDL_Rect const &srcrect, SDL_Rect const &cam, double angle, SDL_RendererFlip flip)
+void tnt::Window::Draw(tnt::SpriteComponent const *obj, SDL_Rect const *srcrect, SDL_FRect const *cam, double angle, SDL_RendererFlip flip)
 {
-    SDL_RenderCopyEx(renderer, &*(obj->tex), &srcrect, &cam, angle, NULL, flip);
+    SDL_RenderCopyExF(renderer, obj->texture, srcrect, cam, angle, NULL, flip);
 }
 
 void tnt::Window::SetClearColor(SDL_Color const &color) noexcept
