@@ -21,10 +21,13 @@ namespace tnt
 
 // TODO: add better key value for text SDL_Texture*-s.
 // TODO: getters aren't checking if asset has been loaded.
+// TODO: make everything here asynchronous.
 class AssetManager
 {
 public:
     ~AssetManager() noexcept;
+
+    static AssetManager &This();
 
     void AddFont(std::string_view font, int size);
     void AddImage(SDL_Renderer *ren, std::string_view image);
@@ -39,16 +42,17 @@ public:
     std::future<Mix_Chunk *> Sfx(std::string_view chunk);
 
 private:
+    AssetManager();
+
     SDL_Texture *LoadImage(SDL_Renderer *ren, std::string filename);
     SDL_Texture *LoadText(SDL_Renderer *ren, TTF_Font *font, std::string text, SDL_Color color);
 
+    std::recursive_mutex mtx;
     std::map<std::string, SDL_Texture *> images;
     std::map<std::string, SDL_Texture *> text;
     std::map<std::string, TTF_Font *> fonts;
     std::map<std::string, Mix_Music *> music;
     std::map<std::string, Mix_Chunk *> sfx;
-
-    std::weak_ptr<Window> owner;
 
     friend class AudioPlayer;
 };

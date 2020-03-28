@@ -20,7 +20,7 @@ namespace tnt
 {
 struct Vector
 {
-	explicit constexpr Vector(float _x = 0.0, float _y = 0.0) noexcept : x{_x}, y{_y} {}
+	explicit constexpr Vector(float _x = 0.f, float _y = 0.f) noexcept : x{_x}, y{_y} {}
 
 	// template <typename T1, typename T2 = T1,
 	// 		  typename = std::enable_if_t<
@@ -139,15 +139,22 @@ inline bool operator<=(const Vector &lhs, const Vector &rhs) noexcept { return (
 inline bool operator>=(const Vector &lhs, const Vector &rhs) noexcept { return ((lhs.x >= rhs.x) && (lhs.y >= rhs.y)); }
 inline bool operator==(const Vector &lhs, const Vector &rhs) noexcept { return ((lhs.x == rhs.x) && (lhs.y == rhs.y)); }
 
-#if __cplusplus <= 201703L || defined(TNT_OPERATOR_NEQUAL) || defined(TNT_ALLOW_DEPRECATIONS) // operator!= is deprecated in C++20
+#if __cplusplus <= 201703L || defined(TNT_ALLOW_DEPRECATIONS) // operator!= is deprecated in C++20
 inline bool operator!=(const Vector &lhs, const Vector &rhs) noexcept
 {
 	return ((lhs.x != rhs.x) || (lhs.y != rhs.y));
 }
 #endif
+
+inline static constexpr Vector VECTOR_ZERO{0.f, 0.f};
+inline static constexpr Vector VECTOR_ONE{1.f, 1.f};
+inline static constexpr Vector VECTOR_UP{0.f, 1.f};
+inline static constexpr Vector VECTOR_RIGHT{1.f, 0.f};
+inline static constexpr Vector VECTOR_DOWN{0.f, -1.f};
+inline static constexpr Vector VECTOR_LEFT{-1.f, 0.f};
 } // namespace tnt
 
-inline std::ostream &tnt::operator<<(std::ostream &os, const Vector &rhs)
+inline std::ostream &tnt::operator<<(std::ostream &os, Vector const &rhs)
 {
 	os << "{" << rhs.x << ", " << rhs.y << "}";
 	return os;

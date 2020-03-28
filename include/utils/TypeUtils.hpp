@@ -17,6 +17,8 @@
 #define synchronized(mtx) \
     for (std::unique_lock lock{mtx}; lock; lock.unlock())
 
+namespace tnt
+{
 // code taken from
 // https://stackoverflow.com/questions/14931982/synchronize-entire-class-in-c11
 template <typename T>
@@ -46,6 +48,7 @@ template <typenme T>
 Synchronized(T &)->Synchronized<T>;
 #endif
 #endif
+}
 
 namespace tnt
 {
@@ -61,6 +64,15 @@ private:
     curiously_recurring_template() {}
     friend type<T>;
 };
+
+// template <typename To, auto Data, typename std::enable_if<std::is_convertible_v<decltype(Data), To>, int> = 0>
+// struct convert
+// {
+//     enum
+//     {
+//         value = static_cast<To>(Data)
+//     };
+// };
 
 // based on
 // https://stackoverflow.com/questions/14650885/how-to-create-timer-events-using-c-11

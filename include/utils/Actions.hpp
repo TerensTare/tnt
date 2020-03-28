@@ -5,6 +5,7 @@
 
 // TODO:
 // Maybe separate ResumableAction from Action.
+// Make unblocking and blocking Actions using C++20 coroutines.
 
 // IDEA:
 // Trigger a new action when an action is finished(that's why End() is for).

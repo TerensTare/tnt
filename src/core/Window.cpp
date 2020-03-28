@@ -4,6 +4,7 @@
 #include "core/Graphics.hpp"
 #include "core/Window.hpp"
 #include "utils/Logger.hpp"
+#include "ecs/Sprite.hpp"
 
 #include <utility>
 #include <SDL2/SDL_image.h>
@@ -37,7 +38,7 @@ tnt::Window::operator SDL_Window *() noexcept
     return window;
 }
 
-SDL_Renderer *tnt::Window::GetRenderer() const noexcept
+SDL_Renderer *tnt::Window::getRenderer() const noexcept
 {
     return renderer;
 }
@@ -112,7 +113,12 @@ void tnt::Window::Render() noexcept { SDL_RenderPresent(renderer); }
 
 void tnt::Window::Draw(tnt::SpriteComponent const *obj, SDL_Rect const *srcrect, SDL_FRect const *cam, double angle, SDL_RendererFlip flip)
 {
-    SDL_RenderCopyExF(renderer, obj->texture, srcrect, cam, angle, NULL, flip);
+    SDL_RenderCopyExF(renderer, &(*obj->getTexture()), srcrect, cam, angle, NULL, flip);
+}
+
+void tnt::Window::Draw(const tnt::Sprite *obj, const SDL_Rect *srcrect, const SDL_FRect *cam, double angle, SDL_RendererFlip flip)
+{
+    SDL_RenderCopyExF(renderer, &(*obj->getSprite()->getTexture()), srcrect, cam, angle, NULL, flip);
 }
 
 void tnt::Window::SetClearColor(SDL_Color const &color) noexcept

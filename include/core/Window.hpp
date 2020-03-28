@@ -2,7 +2,7 @@
 #define TNT_WINDOW_HPP
 
 #include <string>
-#include "Renderable.hpp"
+#include <SDL2/SDL.h>
 
 // TODO: destroy EVERY Window member in it's destructor.
 // TODO: make THIS a Widget.
@@ -12,9 +12,13 @@
 // TODO: render a Scene when Draw is called.
 // TODO: support drawing fonts.
 // TODO: rendering in layers (bg1, bg2, bg3,..., player, enemies, etc)
+// which (maybe) are stored in a Scene.
+// TODO: handle window resizing.
+// TODO: batch rendering.
 namespace tnt
 {
 class SpriteComponent;
+class Sprite;
 
 class Window final
 {
@@ -24,7 +28,7 @@ public:
 
     operator SDL_Window *() noexcept;
 
-    SDL_Renderer *GetRenderer() const noexcept;
+    SDL_Renderer *getRenderer() const noexcept;
     SDL_Texture *LoadTexture(std::string_view filename) noexcept;
 
     int GetDisplayIndex() const noexcept;
@@ -45,6 +49,7 @@ public:
 
     void Render() noexcept;
     void Draw(tnt::SpriteComponent const *obj, SDL_Rect const *srcrect, SDL_FRect const *cam, const double angle = .0, SDL_RendererFlip flip = SDL_FLIP_NONE);
+    void Draw(tnt::Sprite const *obj, SDL_Rect const *srcrect, SDL_FRect const *cam, const double angle = .0, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void Clear() noexcept;
 
     void SetClearColor(SDL_Color const &color) noexcept;

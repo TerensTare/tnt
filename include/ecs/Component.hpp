@@ -1,41 +1,22 @@
 #ifndef TNT_COMPONENT_HPP
 #define TNT_COMPONENT_HPP
 
+#include <SDL2/SDL.h>
 #include "math/Vector.hpp"
 
 // TODO:
 // Rotate/Scale/Transform: use global coordinates & translate to local coordinates.
 // Find a way to handle rendering.
-// Find a way to create a Component class/struct that represents all Component types
-// (maybe) an Update function.
 
 // TODO(maybe):
-// AddForce, Renderable, Widget, Animation, AI ??
-// PhysicsComponent::{add/remove}Mass ??
+// Widget, Animation, AI ??
+// PhysicsComponent::{add/remove}Mass ?? also modify collision_box on runtime ??
 // Rename every component to a shorter name, ex. *Comp ??
 // Write a Polygon class so that PhysicsComponent can use it as collision_shape ??
-// constructors for Component-s ??
 // SpriteComponent should handle a weak_ptr<Window> not a friend class Window
 // or get the texture from AssetManager ??
-
-struct SDL_Texture;
-typedef struct SDL_Texture SDL_Texture;
-
-typedef struct SDL_Rect
-{
-    int x;
-    int y;
-    int w;
-    int h;
-} SDL_Rect;
-
-typedef struct SDL_FRect
-{
-    float x;
-    float y;
-    float w;
-    float h;
-} SDL_FRect;
+// also SpriteComponent::Draw(SDL_FRect const &location) ??
+// remove all getters/setters and use Components like C-style structures or POD. ??
 
 namespace tnt
 {
@@ -52,11 +33,15 @@ struct infinite_mass : std::exception
 
 class Component
 {
+protected:
     std::weak_ptr<Object> owner;
 };
 
 class RotateComponent : public Component
 {
+public:
+    explicit RotateComponent(float radian);
+
     void setAngle(float &radian) noexcept;
     float getAngle() const noexcept;
 
@@ -68,6 +53,10 @@ protected:
 
 class ScaleComponent : public Component
 {
+public:
+    explicit ScaleComponent(Vector const &ratio);
+    ScaleComponent(float x, float y);
+
     void setScale(Vector const &ratio) noexcept;
     Vector getScale() const noexcept;
 
@@ -80,39 +69,57 @@ protected:
 class PhysicsComponent
 {
 public:
+    PhysicsComponent(float &mass, SDL_FRect const &collision_box);
+    PhysicsComponent(float &mass, float x, float y, float &w, float &h);
+
     void setMass(float &mass);
     float getMass() const noexcept(noexcept(invMass > 0.f));
 
     Vector getVelocity() const noexcept;
     Vector getAcceleration() const noexcept;
 
+    SDL_FRect getCollisionBox() const noexcept;
+
     void applyForce(Vector const &force) noexcept(noexcept(invMass > 0.f));
 
 private:
     float invMass;
     Vector velocity;
+    Vector maxVelocity; // necessary ??
     Vector acceleration;
-    SDL_FRect collision_box;
+
+    SDL_FRect collisionBox;
 };
 
+// TODO: incomplete ctor/class (load texture and set renderRect)
+// TODO(maybe): handle font textures ??
+// TODO(maybe): get/set renderTarget
 class SpriteComponent
     : public RotateComponent,
       public ScaleComponent
 {
 public:
-    // TODO: incomplete
-    SpriteComponent(std::string_view file);
-    ~SpriteComponent() noexcept;
+    SpriteComponent(Window const *win, std::string_view file);
+    SpriteComponent(std::string_view file, SDL_Rect const &location);
 
-    void Render(Window *target) noexcept;
+    virtual ~SpriteComponent() noexcept;
+
+    void Draw(Window *target) noexcept; // TODO: do you need this?
+
+    std::shared_ptr<SDL_Texture> getTexture() const noexcept;
 
 private:
     bool clipped;
     SDL_Rect clipRect;
     SDL_FRect renderRect;
-    SDL_Texture *texture;
+    std::shared_ptr<SDL_Texture> texture; // maybe this or the AssetManager's maps values should be weak_ptr's.
+};
 
-    friend class Window;
+class AnimationComponent
+    : public SpriteComponent
+{
+protected:
+    // TODO: WIP
 };
 } // namespace tnt
 

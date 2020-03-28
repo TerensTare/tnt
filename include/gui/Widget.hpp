@@ -21,8 +21,6 @@ class Widget
 public:
     virtual ~Widget() noexcept {}
 
-    virtual void Draw(Window const *target); // TODO(maybe) non virtual
-
     bool Active() const noexcept;
 
     // virtual void Update() override;
@@ -30,8 +28,7 @@ public:
 protected:
     bool active;
     bool draggable;
-    SDL_FRect bounds;
-    SDL_Texture *texture;
+    SpriteComponent *sprite;
 };
 
 class Draggable : public Widget

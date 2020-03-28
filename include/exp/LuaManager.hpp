@@ -1,4 +1,4 @@
-#ifdef TNT_BUILD_WITH_LUA
+#ifdef TNT_USE_LUA
 
 #ifndef TNT_LUA_MANAGER_HPP
 #define TNT_LUA_MANAGER_HPP
@@ -17,7 +17,8 @@ void loadVFS(sol::state &lua);
 void loadWidgets(sol::state &lua);
 void loadUtils(sol::state &lua); // last_write_time, etc
 // void loadRigidBody(sol::state& lua);
+
 } // namespace tnt::lua
 
 #endif //!TNT_LUA_MANAGER_HPP
-#endif //!TNT_BUILD_WITH_LUA
+#endif //!TNT_USE_LUA

@@ -2,6 +2,9 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 #include <iostream>
+
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_image.h>
 
 #include "fileIO/AssetManager.hpp"
@@ -85,11 +88,11 @@ SDL_Texture *tnt::AssetManager::LoadText(SDL_Renderer *ren, TTF_Font *font, std:
     return tex;
 }
 
-void tnt::AssetManager::AddImage(SDL_Renderer *ren, const std::string &image)
+void tnt::AssetManager::AddImage(SDL_Renderer *ren, std::string_view image)
 {
-    if (auto it{images.find(image)}; it != images.end() && it->second != nullptr)
+    if (auto it{images.find(image.data())}; it != images.end() && it->second != nullptr)
         return;
-    images[image] = LoadImage(ren, image);
+    images[image.data()] = LoadImage(ren, image);
 }
 
 void tnt::AssetManager::AddFont(const std::string &font, int size)

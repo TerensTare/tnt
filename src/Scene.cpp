@@ -5,4 +5,6 @@
 
 tnt::Scene::~Scene() noexcept
 {
+    delete camera;
+    camera = nullptr;
 }

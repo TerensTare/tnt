@@ -1,12 +1,14 @@
-#ifndef INPUT_MANAGER_HPP
-#define INPUT_MANAGER_HPP
+#ifndef TNT_INPUT_MANAGER_HPP
+#define TNT_INPUT_MANAGER_HPP
 
 #include <vector>
 #include <SDL2/SDL_events.h>
 
+// TODO: lastKeyPressed.
+// TODO: Joystick and GameController support.
+
 namespace tnt
 {
-
 class InputManager
 {
 public:
@@ -42,4 +44,4 @@ private:
 };
 } // namespace tnt
 
-#endif //!INPUT_MANAGER_HPP
+#endif //!TNT_INPUT_MANAGER_HPP

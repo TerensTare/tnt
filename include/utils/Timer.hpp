@@ -3,14 +3,16 @@
 
 #include <chrono>
 #include <atomic>
-#include <fstream>
 
-namespace tnt
-{
 // TODO: handle deltaTime when paused
+// TODO: reduce the number of std::atomic_thread_fence(std::memory_order_relaxed); calls
+
 // TODO(maybe):
 // asynchronous timer ??
 // make Timer header-only ??
+
+namespace tnt
+{
 class Timer
 {
 public:
@@ -22,32 +24,20 @@ public:
 
     bool paused() const noexcept;
 
-    template <typename Duration = std::chrono::milliseconds, std::enable_if_t<std::chrono::_Is_duration_v<Duration>, int> = 0>
-    Duration &deltaTime() noexcept(noexcept(std::chrono::duration_cast<Duration>(std::chrono::steady_clock::now() - begin)))
+    template <typename Duration = std::chrono::milliseconds>
+    Duration &deltaTime() noexcept(noexcept(std::chrono::duration_cast<Duration>(std::chrono::steady_clock::now() - beginning)))
     {
         std::atomic_thread_fence(std::memory_order_relaxed);
-        auto ret{std::chrono::duration_cast<Duration>(std::chrono::steady_clock::now() - begin)};
-        std::atomic_thread_fence(std::memory_order_relaxed);
+        auto ret{std::chrono::duration_cast<Duration>(std::chrono::steady_clock::now() - beginning)};
+        // std::atomic_thread_fence(std::memory_order_relaxed);
         return ret;
     }
 
 private:
     bool isPaused;
-    std::chrono::steady_clock::time_point begin;
+    std::chrono::steady_clock::time_point beginning;
 };
 
-template <typename F, typename... Args>
-long long measure(F const &func, Args &&... args)
-{
-    auto start{std::chrono::steady_clock::now()};
-    func(std::forward<Args...>(args...));
-
-    std::atomic_thread_fence(std::memory_order_relaxed);
-    auto ret{std::chrono::duration_cast<Duration>(std::chrono::steady_clock::now() - begin)};
-    std::atomic_thread_fence(std::memory_order_relaxed);
-
-    return ret;
-}
 } // namespace tnt
 
 #endif //!TIMER_HPP
