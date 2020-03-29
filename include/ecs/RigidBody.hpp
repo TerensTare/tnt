@@ -14,14 +14,13 @@
 
 namespace tnt
 {
-class RigidBody : public Object
+// TODO: collision_box is not used. Find a way to use it.
+class RigidBody : virtual public Object
 {
 public:
-    RigidBody();
+    RigidBody(float &mass, SDL_FRect const &collision_box);
 
-protected:
-    RotateComponent *rotate;
-    PhysicsComponent *physics;
+    PhysicsComponent *getPhysics() const noexcept; // (maybe) not const
 };
 
 class Joint

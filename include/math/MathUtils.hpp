@@ -4,6 +4,7 @@
 // TODO:
 // fractions
 // sine, cosine, abs, ceil, clamp (maybe) log, lerp ??
+// (maybe) compile-time easings
 
 namespace tnt
 {
@@ -164,6 +165,12 @@ struct ceiling
     };
 };
 
+inline double constexpr operator""_pi(unsigned long long num)
+{
+    return (num * 3.1415926);
+}
+
+// TODO: WIP
 template <int Angle>
 struct sine
 {

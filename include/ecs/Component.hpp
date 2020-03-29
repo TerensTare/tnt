@@ -95,24 +95,24 @@ private:
 // TODO(maybe): handle font textures ??
 // TODO(maybe): get/set renderTarget
 class SpriteComponent
-    : public RotateComponent,
-      public ScaleComponent
+    : virtual public RotateComponent,
+      virtual public ScaleComponent
 {
 public:
     SpriteComponent(Window const *win, std::string_view file);
-    SpriteComponent(std::string_view file, SDL_Rect const &location);
+    SpriteComponent(Window const *win, std::string_view file, SDL_Rect const &location);
 
     virtual ~SpriteComponent() noexcept;
 
-    void Draw(Window *target) noexcept; // TODO: do you need this?
+    void Draw(Window *target, SDL_FRect const &dest) noexcept; // TODO: do you need this?
 
-    std::shared_ptr<SDL_Texture> getTexture() const noexcept;
+    SDL_Texture *getTexture() const noexcept;
+    void setTexture(Window const *win, std::string_view filename) noexcept;
 
 private:
     bool clipped;
     SDL_Rect clipRect;
-    SDL_FRect renderRect;
-    std::shared_ptr<SDL_Texture> texture; // maybe this or the AssetManager's maps values should be weak_ptr's.
+    SDL_Texture *texture; // maybe this or the AssetManager's maps values should be weak_ptr's.
 };
 
 class AnimationComponent

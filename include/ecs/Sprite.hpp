@@ -11,10 +11,12 @@ namespace tnt
 {
 class Window;
 
-class Sprite : public Object
+class Sprite : virtual public Object
 {
 public:
     Sprite(Window const *win, std::string_view filename, float angle = 0.f);
+    Sprite(Window const *win, std::string_view filename, SDL_Rect const &area, float angle = 0.f);
+
     virtual ~Sprite() noexcept;
 
     RotateComponent *getRotate() const noexcept;

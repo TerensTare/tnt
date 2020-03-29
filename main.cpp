@@ -8,11 +8,13 @@
 #include "core/Window.hpp"
 #include "fileIO/Snipper.hpp"
 #include "core/InputManager.hpp"
-#include "exp/AssetManagerv2.hpp"
+#include "fileIO/AssetManager.hpp"
 #include "utils/Timer.hpp"
 #include "ecs/Sprite.hpp"
 
 using nlohmann::json;
+
+// TODO: "dissolve" this code into classes, like Game/Scene/Space, etc.
 
 auto read_to_json = [](std::string_view filename) {
     json j;
@@ -27,7 +29,9 @@ class Player : public tnt::Sprite
 {
 public:
     explicit Player(tnt::Window const *win)
-        : tnt::Sprite{win, ".\\bin\\x64\\release\\player.png"} {}
+        : tnt::Sprite{
+              win, ".\\bin\\x64\\release\\player.png",
+              SDL_Rect{0, 0, 100, 100}} {}
 
     virtual void Update() override
     {
@@ -42,10 +46,10 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
     SDL_Event e;
 
     tnt::Window *window{new tnt::Window{
-        "Test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+        "The TnT Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
-    auto assets{tnt::exp::AssetManager::This()};
+    auto assets{tnt::AssetManager::This()};
 
     tnt::Sprite *player{new Player{window}};
 
@@ -54,6 +58,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
     tnt::InputManager &input{tnt::InputManager::This()};
     tnt::Timer timer;
+
+    window->SetClearColor({data["r"], data["g"], data["b"], data["a"]});
 
     while (!quit)
     {
@@ -65,22 +71,22 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
             std::cout << "Pressed T\n";
 
         snipper.onModify("test.json", [&]() -> void {
-            std::cout << "edited test.json";
+            std::cout << "edited test.json\n";
             data = read_to_json("test.json");
+
+            window->SetClearColor({data["r"], data["g"], data["b"], data["a"]});
+            window->SetTitle(data["title"].get<std::string>().c_str());
         });
 
         player->Update();
-
-        window->SetClearColor({data["r"], data["g"], data["b"], data["a"]});
-        window->SetTitle(data["title"].get<std::string>().c_str());
 
         input.UpdatePreviousInput();
         input.UpdateCurrentInput();
 
         window->Clear();
 
-        auto dst{SDL_FRect{0, 0, 600, 400}};
-        window->Draw(player, nullptr, &dst);
+        auto dst{SDL_FRect{0, 0, 100, 100}};
+        player->getSprite()->Draw(window, dst);
 
         window->Render();
 

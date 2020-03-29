@@ -1,6 +1,7 @@
 #ifndef TNT_OBJECT_HPP
 #define TNT_OBJECT_HPP
 
+#include <vector>
 #include "math/Vector.hpp"
 
 // TODO:
@@ -13,23 +14,19 @@
 // Serializable as a Component ??
 namespace tnt
 {
+class Component;
+
 class Object
 {
 public:
     virtual ~Object() noexcept;
 
     void setParent(std::shared_ptr<Object> obj) noexcept;
-    std::shared_ptr<Object> getParent() const noexcept;
-
-    void setPosition(Vector const &pos) noexcept;
-    Vector getPosition() const noexcept;
-
-    void Transform(Vector const &pos) noexcept;
+    Object *getParent() const noexcept;
 
     virtual void Update() = 0;
 
 protected:
-    Vector position;
     std::weak_ptr<Object> parent;
 };
 } // namespace tnt

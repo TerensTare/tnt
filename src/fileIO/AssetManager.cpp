@@ -8,10 +8,18 @@
 #include <SDL2/SDL_image.h>
 
 #include "fileIO/AssetManager.hpp"
-#include "fileIO/VirtualFileSystem.hpp"
+#include "core/Window.hpp"
 
 // TODO:
 // use tnt::logger instead here.
+
+tnt::AssetManager::AssetManager() {}
+
+tnt::AssetManager &tnt::AssetManager::This()
+{
+    static AssetManager inst;
+    return inst;
+}
 
 tnt::AssetManager::~AssetManager()
 {
@@ -46,40 +54,19 @@ tnt::AssetManager::~AssetManager()
     std::map<std::string, Mix_Chunk *>{}.swap(sfx);
 }
 
-SDL_Texture *tnt::AssetManager::LoadImage(SDL_Renderer *ren, std::string filename)
+SDL_Texture *tnt::AssetManager::LoadText(tnt::Window const *win, TTF_Font *font, std::string_view text, SDL_Color color)
 {
-    SDL_Surface *temp{IMG_Load(filename.c_str())};
-    if (temp == nullptr)
-    {
-        std::cout << "Couldn't load " << filename << "!\n\tError: " << IMG_GetError() << std::flush;
-        return nullptr;
-    }
-
-    SDL_Texture *ret{SDL_CreateTextureFromSurface(ren, temp)};
-    if (ret == nullptr)
-    {
-        std::cout << "Couldn't render " << filename << "!\n\tError: " << SDL_GetError() << std::flush;
-        return nullptr;
-    }
-
-    SDL_FreeSurface(temp);
-
-    return ret;
-}
-
-SDL_Texture *tnt::AssetManager::LoadText(SDL_Renderer *ren, TTF_Font *font, std::string text, SDL_Color color)
-{
-    SDL_Surface *surf{TTF_RenderText_Solid(font, text.c_str(), color)};
+    SDL_Surface *surf{TTF_RenderText_Solid(font, text.data(), color)};
     if (surf == nullptr)
     {
         std::cout << "Couldn't load text \"" << text << "\".\n\tError: " << TTF_GetError() << std::flush;
         return nullptr;
     }
 
-    SDL_Texture *tex{SDL_CreateTextureFromSurface(ren, surf)};
+    SDL_Texture *tex{SDL_CreateTextureFromSurface(win->getRenderer(), surf)};
     if (tex == nullptr)
     {
-        std::cout << "Couldn't render \"" << text << "\".\n\tError: " << SDL_GetError() << std::flush;
+        std::cout << "Couldn't turn \"" << text << "\" into a texture.\n\tError: " << SDL_GetError() << std::flush;
         return nullptr;
     }
 
@@ -88,57 +75,53 @@ SDL_Texture *tnt::AssetManager::LoadText(SDL_Renderer *ren, TTF_Font *font, std:
     return tex;
 }
 
-void tnt::AssetManager::AddImage(SDL_Renderer *ren, std::string_view image)
+void tnt::AssetManager::AddImage(Window const *win, std::string_view image)
 {
     if (auto it{images.find(image.data())}; it != images.end() && it->second != nullptr)
         return;
-    images[image.data()] = LoadImage(ren, image);
+    images[image.data()] = IMG_LoadTexture(win->getRenderer(), image.data());
 }
 
-void tnt::AssetManager::AddFont(const std::string &font, int size)
+void tnt::AssetManager::AddFont(std::string_view font, int size)
 {
-    if (auto it{fonts.find(font)}; it != fonts.end() && it->second != nullptr)
+    if (auto it{fonts.find(font.data())}; it != fonts.end() && it->second != nullptr)
         return;
-    fonts[font] = TTF_OpenFont(font.c_str(), size);
+    fonts[font.data()] = TTF_OpenFont(font.data(), size);
 }
 
-void tnt::AssetManager::AddText(SDL_Renderer *ren, std::string const &filename, std::string const &text, int size, SDL_Color const &color)
+void tnt::AssetManager::AddText(Window const *win, std::string_view filename, std::string_view text, int size, SDL_Color const &color)
 {
-    if (auto it{this->text.find(text)}; it != this->text.end() && it->second != nullptr)
+    if (auto it{this->text.find(text.data())}; it != this->text.end() && it->second != nullptr)
         return;
 
-    if (auto it{fonts.find(filename)}; it == fonts.end() || it->second == nullptr)
-        AddFont(filename, size).wait();
-    auto font{Font(filename)};
-    this->text[text] = LoadText(ren, font.get(), text, color);
+    if (auto it{fonts.find(filename.data())}; it == fonts.end() || it->second == nullptr)
+        AddFont(filename, size);
+    auto font{Font(filename.data(), size)};
+    this->text[text.data()] = LoadText(win, font, text.data(), color);
 }
 
-void tnt::AssetManager::AddMusic(const std::string &name)
+void tnt::AssetManager::AddMusic(std::string_view name)
 {
-    if (auto it{music.find(name)}; it != music.end() && it->second != nullptr)
+    if (auto it{music.find(name.data())}; it != music.end() && it->second != nullptr)
         return;
-    music[name] = Mix_LoadMUS(name.c_str());
+    music[name.data()] = Mix_LoadMUS(name.data());
 }
 
-void tnt::AssetManager::AddSfx(const std::string &chunk)
+void tnt::AssetManager::AddSfx(std::string_view chunk)
 {
-    if (auto it{sfx.find(chunk)}; it != sfx.end() && it->second != nullptr)
+    if (auto it{sfx.find(chunk.data())}; it != sfx.end() && it->second != nullptr)
         return;
-    sfx[chunk] = Mix_LoadWAV(chunk.c_str());
+    sfx[chunk.data()] = Mix_LoadWAV(chunk.data());
 }
 
-std::future<SDL_Texture *> tnt::AssetManager::Image(const std::string &image)
+SDL_Texture *tnt::AssetManager::Image(Window const *win, std::string_view image)
 {
-    return std::async(std::launch::deferred, [this, image] {
-        AddImage(image).wait();
-        return images[image];
-    });
+    AddImage(win, image);
+    return images[image.data()];
 }
 
-std::future<TTF_Font *> tnt::AssetManager::Font(std::string const &font, int size)
+TTF_Font *tnt::AssetManager::Font(std::string_view font, int size)
 {
-    return std::async(std::launch::deferred, [this, font, size] {
-        AddFont(font, size).wait();
-        return fonts[font];
-    });
+    AddFont(font.data(), size);
+    return fonts[font.data()];
 }

@@ -1,10 +1,18 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-#include "RigidBody.hpp"
+#include "ecs/RigidBody.hpp"
 
-void tnt::RigidBody::Update()
+tnt::RigidBody::RigidBody(float &mass, SDL_FRect const &collision_box)
 {
-    velocity += acceleration;
-    pos += velocity;
+    addComponent<PhysicsComponent>();
+    getComponent<PhysicsComponent>()->setMass(mass);
 }
+
+tnt::PhysicsComponent *tnt::RigidBody::getPhysics() const noexcept { return getComponent<PhysicsComponent>(); }
+
+// void tnt::RigidBody::Update()
+// {
+// velocity += acceleration;
+// pos += velocity;
+// }

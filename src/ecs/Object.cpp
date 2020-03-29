@@ -9,9 +9,4 @@ tnt::Object::~Object() noexcept
 }
 
 void tnt::Object::setParent(std::shared_ptr<Object> obj) noexcept { parent = obj; }
-std::shared_ptr<tnt::Object> tnt::Object::getParent() const noexcept { return parent.lock(); }
-
-void tnt::Object::setPosition(Vector const &pos) noexcept { position = pos; }
-tnt::Vector tnt::Object::getPosition() const noexcept { return position; }
-
-void tnt::Object::Transform(Vector const &pos) noexcept { position += pos; }
+tnt::Object *tnt::Object::getParent() const noexcept { return parent.lock().get(); }

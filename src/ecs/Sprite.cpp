@@ -6,20 +6,23 @@
 tnt::Sprite::Sprite(Window const *win, std::string_view filename, float angle)
     : sprite{new SpriteComponent{win, filename}},
       rotate{new RotateComponent{angle}},
-      scale{new ScaleComponent{1.f, 1.f}}
-{
-}
+      scale{new ScaleComponent{VECTOR_ONE}} {}
+
+tnt::Sprite::Sprite(Window const *win, std::string_view filename, SDL_Rect const &area, float angle)
+    : sprite{new SpriteComponent{win, filename, area}},
+      rotate{new RotateComponent{angle}},
+      scale{new ScaleComponent{VECTOR_ONE}} {}
 
 tnt::Sprite::~Sprite() noexcept
 {
+    delete sprite;
+    sprite = nullptr;
+
     delete rotate;
     rotate = nullptr;
 
     delete scale;
     scale = nullptr;
-
-    delete sprite;
-    sprite = nullptr;
 }
 
 tnt::RotateComponent *tnt::Sprite::getRotate() const noexcept { return rotate; }

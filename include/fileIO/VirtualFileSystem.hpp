@@ -4,7 +4,7 @@
 #include <map>
 #include <string_view>
 
-#include "Config.hpp"
+#include "core/Config.hpp"
 
 // TODO:
 // check if alias exists in get() function and return "\"\"" if it doesn't.

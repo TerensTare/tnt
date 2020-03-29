@@ -3,7 +3,7 @@
 
 #include "ecs/Component.hpp"
 #include "core/Window.hpp"
-#include "exp/AssetManagerv2.hpp"
+#include "fileIO/AssetManager.hpp"
 
 ////////////
 // rotate //
@@ -65,16 +65,18 @@ void tnt::PhysicsComponent::applyForce(tnt::Vector const &force) noexcept(noexce
 // sprite //
 ////////////
 
-tnt::SpriteComponent::SpriteComponent(Window const *win, std::string_view file)
+tnt::SpriteComponent::SpriteComponent(
+    Window const *win, std::string_view file)
     : RotateComponent{0.f}, ScaleComponent{VECTOR_ONE},
-      clipped{false}, clipRect{0, 0, 0, 0}
-{
-    texture = exp::AssetManager::This().getTexture(win, file.data());
-}
+      clipped{false}, clipRect{0, 0, 0, 0},
+      texture{AssetManager::This().Image(win, file)} {}
 
-tnt::SpriteComponent::SpriteComponent(std::string_view file, SDL_Rect const &location)
+tnt::SpriteComponent::SpriteComponent(
+    Window const *win, std::string_view file,
+    SDL_Rect const &location)
     : RotateComponent{0.f}, ScaleComponent{VECTOR_ONE},
-      clipped{true}, clipRect{location} {}
+      clipped{true}, clipRect{location},
+      texture{AssetManager::This().Image(win, file)} {}
 
 tnt::SpriteComponent::~SpriteComponent() noexcept
 {
@@ -82,9 +84,14 @@ tnt::SpriteComponent::~SpriteComponent() noexcept
     texture = nullptr;
 }
 
-void tnt::SpriteComponent::Draw(tnt::Window *target) noexcept
+void tnt::SpriteComponent::Draw(tnt::Window *target, SDL_FRect const& dest) noexcept
 {
-    target->Draw(this, &clipRect, &renderRect);
+    target->Draw(this, &clipRect, &dest);
 }
 
-std::shared_ptr<SDL_Texture> tnt::SpriteComponent::getTexture() const noexcept { return texture; }
+SDL_Texture *tnt::SpriteComponent::getTexture() const noexcept { return texture; }
+
+void tnt::SpriteComponent::setTexture(Window const *win, std::string_view filename) noexcept
+{
+    texture = AssetManager::This().Image(win, filename);
+}
