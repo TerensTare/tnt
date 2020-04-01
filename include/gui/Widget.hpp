@@ -8,40 +8,43 @@
 #include <string_view>
 #include <SDL2/SDL_render.h>
 
-#include "core/Window.hpp"
 #include "ecs/Object.hpp"
+#include "ecs/Component.hpp"
 #include "utils/Observer.hpp"
 
 namespace tnt
 {
+class Window;
+
 class Widget
     : public Observer,
-      public Object
+      virtual public Object
 {
 public:
     virtual ~Widget() noexcept {}
 
     bool Active() const noexcept;
 
-    // virtual void Update() override;
+    // virtual void Update(Observable *obj) override;
+    virtual void Draw() = 0;
 
 protected:
     bool active;
     bool draggable;
-    SpriteComponent *sprite;
+    Rectangle area;
 };
 
-class Draggable : public Widget
+class Draggable : virtual public Widget
 {
 };
 
-class Text : public Widget
+class Text : virtual public Widget
 {
 public:
     Text(std::string_view, int x, int y, int w = 14, int h = 14);
     ~Text() noexcept;
 
-    virtual void Update() override;
+    virtual void Update(long long elapsed) override;
     virtual void Draw(Window const *target);
 
 protected:

@@ -43,65 +43,68 @@ SDL_Renderer *tnt::Window::getRenderer() const noexcept
     return renderer;
 }
 
-SDL_Texture *tnt::Window::LoadTexture(std::string_view filename) noexcept
-{
-    SDL_Texture *ret{IMG_LoadTexture(renderer, filename.data())};
-    if (!ret)
-    {
-        tnt::logger::debug("Couldn't load texture {}!! Error: {}\n", filename, SDL_GetError());
-        return nullptr;
-    }
-    return ret;
-}
-
-int tnt::Window::GetDisplayIndex() const noexcept
+int tnt::Window::getDisplayIndex() const noexcept
 {
     return SDL_GetWindowDisplayIndex(window);
 }
 
-int tnt::Window::SetDisplayMode(const SDL_DisplayMode *mode) noexcept
+int tnt::Window::setDisplayMode(const SDL_DisplayMode *mode) noexcept
 {
     return SDL_SetWindowDisplayMode(window, mode);
 }
 
-std::pair<SDL_DisplayMode, int> tnt::Window::GetDisplayMode() const noexcept
+std::pair<SDL_DisplayMode, int> tnt::Window::getDisplayMode() const noexcept
 {
     SDL_DisplayMode mode;
     int result{SDL_GetWindowDisplayMode(window, &mode)};
     return std::make_pair(mode, result);
 }
 
-Uint32 tnt::Window::GetPixelFormat() const noexcept
+int tnt::Window::getWidth() noexcept
+{
+    int w;
+    SDL_GetWindowSize(window, &w, nullptr);
+    return w;
+}
+
+int tnt::Window::getHeight() noexcept
+{
+    int h;
+    SDL_GetWindowSize(window, nullptr, &h);
+    return h;
+}
+
+Uint32 tnt::Window::getPixelFormat() const noexcept
 {
     return SDL_GetWindowPixelFormat(window);
 }
 
-Uint32 tnt::Window::GetID() const noexcept
+Uint32 tnt::Window::getID() const noexcept
 {
     return SDL_GetWindowID(window);
 }
 
-Uint32 tnt::Window::GetFlags() const noexcept
+Uint32 tnt::Window::getFlags() const noexcept
 {
     return SDL_GetWindowFlags(window);
 }
 
-void tnt::Window::SetTitle(const char *title) noexcept
+void tnt::Window::setTitle(const char *title) noexcept
 {
     SDL_SetWindowTitle(window, title);
 }
 
-char const *tnt::Window::GetTitle() const noexcept
+char const *tnt::Window::getTitle() const noexcept
 {
     return SDL_GetWindowTitle(window);
 }
 
-void tnt::Window::SetIcon(SDL_Surface *icon) noexcept
+void tnt::Window::setIcon(SDL_Surface *icon) noexcept
 {
     SDL_SetWindowIcon(window, icon);
 }
 
-int *tnt::Window::GetBordersSize() const noexcept
+int *tnt::Window::getBordersSize() const noexcept
 {
     int arr[5];
     arr[4] = SDL_GetWindowBordersSize(window, &arr[0], &arr[1], &arr[2], &arr[3]);
@@ -116,12 +119,12 @@ void tnt::Window::Draw(tnt::SpriteComponent const *obj, SDL_Rect const *srcrect,
     SDL_RenderCopyExF(renderer, obj->getTexture(), srcrect, cam, angle, NULL, flip);
 }
 
-void tnt::Window::Draw(const tnt::Sprite *obj, const SDL_Rect *srcrect, const SDL_FRect *cam, double angle, SDL_RendererFlip flip)
+void tnt::Window::Draw(tnt::Sprite const *obj, SDL_Rect const *srcrect, SDL_FRect const *cam, double angle, SDL_RendererFlip flip)
 {
     SDL_RenderCopyExF(renderer, obj->getSprite()->getTexture(), srcrect, cam, angle, NULL, flip);
 }
 
-void tnt::Window::SetClearColor(SDL_Color const &color) noexcept
+void tnt::Window::setClearColor(SDL_Color const &color) noexcept
 {
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 }

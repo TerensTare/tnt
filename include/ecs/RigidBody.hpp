@@ -1,6 +1,7 @@
 #ifndef TNT_RIGID_BODY_HPP
 #define TNT_RIGID_BODY_HPP
 
+#include "math/Rectangle.hpp"
 #include "ecs/Object.hpp"
 #include "ecs/Component.hpp"
 
@@ -18,9 +19,13 @@ namespace tnt
 class RigidBody : virtual public Object
 {
 public:
-    RigidBody(float &mass, SDL_FRect const &collision_box);
+    RigidBody(float mass, Rectangle const &collision_box);
+    ~RigidBody() noexcept;
 
     PhysicsComponent *getPhysics() const noexcept; // (maybe) not const
+
+protected:
+    PhysicsComponent *physics;
 };
 
 class Joint

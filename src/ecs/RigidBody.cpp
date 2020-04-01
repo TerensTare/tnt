@@ -3,13 +3,16 @@
 
 #include "ecs/RigidBody.hpp"
 
-tnt::RigidBody::RigidBody(float &mass, SDL_FRect const &collision_box)
+tnt::RigidBody::RigidBody(float mass, Rectangle const &collision_box)
+    : physics{new PhysicsComponent{mass, collision_box}} {}
+
+tnt::RigidBody::~RigidBody() noexcept
 {
-    addComponent<PhysicsComponent>();
-    getComponent<PhysicsComponent>()->setMass(mass);
+    delete physics;
+    physics = nullptr;
 }
 
-tnt::PhysicsComponent *tnt::RigidBody::getPhysics() const noexcept { return getComponent<PhysicsComponent>(); }
+tnt::PhysicsComponent *tnt::RigidBody::getPhysics() const noexcept { return physics; }
 
 // void tnt::RigidBody::Update()
 // {

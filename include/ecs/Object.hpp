@@ -24,9 +24,15 @@ public:
     void setParent(std::shared_ptr<Object> obj) noexcept;
     Object *getParent() const noexcept;
 
-    virtual void Update() = 0;
+    void setPosition(Vector const &pos) noexcept;
+    Vector getPosition() const noexcept;
+
+    void Transform(Vector const &pos) noexcept;
+
+    virtual void Update(long long deltaT) noexcept = 0; // (maybe) noexcept will cause errors ??
 
 protected:
+    Vector position;
     std::weak_ptr<Object> parent;
 };
 } // namespace tnt

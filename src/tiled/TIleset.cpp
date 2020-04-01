@@ -11,6 +11,7 @@ tnt::tmx::Tileset::Tileset(
     : properties{props}, tiles{tiles_},
       name{data["name"]}, source{data["source"]},
       firstGID{std::atoi(data["firstgid"].c_str())},
+      lastGID{tiles.back().getID()},
       imageW{std::atoi(data["width"].c_str())},
       imageH{std::atoi(data["height"].c_str())},
       tileW{std::atoi(data["tilewidth"].c_str())},

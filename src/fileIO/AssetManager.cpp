@@ -15,12 +15,6 @@
 
 tnt::AssetManager::AssetManager() {}
 
-tnt::AssetManager &tnt::AssetManager::This()
-{
-    static AssetManager inst;
-    return inst;
-}
-
 tnt::AssetManager::~AssetManager()
 {
     for (auto it : images)
@@ -52,6 +46,21 @@ tnt::AssetManager::~AssetManager()
             Mix_FreeChunk(it.second);
     sfx.clear();
     std::map<std::string, Mix_Chunk *>{}.swap(sfx);
+
+    for (auto it : maps)
+        if (it.second != nullptr)
+        {
+            delete it.second;
+            it.second = nullptr;
+        }
+    maps.clear();
+    std::map<std::string, tmx::TileMap *>{}.swap(maps);
+}
+
+tnt::AssetManager &tnt::AssetManager::This()
+{
+    static AssetManager inst;
+    return inst;
 }
 
 SDL_Texture *tnt::AssetManager::LoadText(tnt::Window const *win, TTF_Font *font, std::string_view text, SDL_Color color)
@@ -112,6 +121,13 @@ void tnt::AssetManager::AddSfx(std::string_view chunk)
     if (auto it{sfx.find(chunk.data())}; it != sfx.end() && it->second != nullptr)
         return;
     sfx[chunk.data()] = Mix_LoadWAV(chunk.data());
+}
+
+void tnt::AssetManager::AddMap(std::string_view name)
+{
+    if (auto it{maps.find(name.data())}; it != maps.end() && it->second != nullptr)
+        return;
+    maps[name.data()]; // unfinished
 }
 
 SDL_Texture *tnt::AssetManager::Image(Window const *win, std::string_view image)

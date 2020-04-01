@@ -29,30 +29,32 @@ public:
     operator SDL_Window *() noexcept;
 
     SDL_Renderer *getRenderer() const noexcept;
-    SDL_Texture *LoadTexture(std::string_view filename) noexcept;
 
-    int GetDisplayIndex() const noexcept;
+    int getDisplayIndex() const noexcept;
 
-    int SetDisplayMode(const SDL_DisplayMode *mode) noexcept;
-    std::pair<SDL_DisplayMode, int> GetDisplayMode() const noexcept;
+    int setDisplayMode(const SDL_DisplayMode *mode) noexcept;
+    std::pair<SDL_DisplayMode, int> getDisplayMode() const noexcept;
 
-    Uint32 GetPixelFormat() const noexcept;
-    Uint32 GetID() const noexcept;
-    Uint32 GetFlags() const noexcept;
+    int getWidth() noexcept;
+    int getHeight() noexcept;
 
-    void SetTitle(char const *title) noexcept;
-    char const *GetTitle() const noexcept;
+    Uint32 getPixelFormat() const noexcept;
+    Uint32 getID() const noexcept;
+    Uint32 getFlags() const noexcept;
 
-    void SetIcon(SDL_Surface *icon) noexcept;
+    void setTitle(char const *title) noexcept;
+    char const *getTitle() const noexcept;
 
-    int *GetBordersSize() const noexcept;
+    void setIcon(SDL_Surface *icon) noexcept;
+
+    int *getBordersSize() const noexcept;
 
     void Render() noexcept;
     void Draw(tnt::SpriteComponent const *obj, SDL_Rect const *srcrect, SDL_FRect const *cam, const double angle = .0, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void Draw(tnt::Sprite const *obj, SDL_Rect const *srcrect, SDL_FRect const *cam, const double angle = .0, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void Clear() noexcept;
 
-    void SetClearColor(SDL_Color const &color) noexcept;
+    void setClearColor(SDL_Color const &color) noexcept;
 
 private:
     SDL_Renderer *renderer;

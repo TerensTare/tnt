@@ -3,16 +3,6 @@
 
 #include "Widget.hpp"
 
-void tnt::Widget::setParent(Widget *w)
-{
-    parent = w;
-}
-
-tnt::Widget *tnt::Widget::getParent() const noexcept
-{
-    return parent;
-}
-
 bool tnt::Widget::Active() const noexcept
 {
     return active;

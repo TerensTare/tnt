@@ -1,6 +1,7 @@
 #ifndef TNT_SPRITE_HPP
 #define TNT_SPRITE_HPP
 
+#include "math/Rectangle.hpp"
 #include "ecs/Object.hpp"
 #include "ecs/Component.hpp"
 
@@ -15,7 +16,7 @@ class Sprite : virtual public Object
 {
 public:
     Sprite(Window const *win, std::string_view filename, float angle = 0.f);
-    Sprite(Window const *win, std::string_view filename, SDL_Rect const &area, float angle = 0.f);
+    Sprite(Window const *win, std::string_view filename, Rectangle const &area, float angle = 0.f);
 
     virtual ~Sprite() noexcept;
 

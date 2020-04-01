@@ -5,12 +5,18 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
+#include "exp/imgui/gui_config.hpp"
+#include "exp/imgui/ImGui.hpp"
+
+#include "ecs/Sprite.hpp"
+#include "core/Context.hpp"
 #include "core/Window.hpp"
-#include "fileIO/Snipper.hpp"
 #include "core/InputManager.hpp"
 #include "fileIO/AssetManager.hpp"
+#include "fileIO/Snipper.hpp"
 #include "utils/Timer.hpp"
-#include "ecs/Sprite.hpp"
+#include "math/Rectangle.hpp"
+#include "math/Easings.hpp"
 
 using nlohmann::json;
 
@@ -31,9 +37,9 @@ public:
     explicit Player(tnt::Window const *win)
         : tnt::Sprite{
               win, ".\\bin\\x64\\release\\player.png",
-              SDL_Rect{0, 0, 100, 100}} {}
+              tnt::Rectangle{0.f, 0.f, 0.f, 0.f}} {}
 
-    virtual void Update() override
+    virtual void Update(long long elapsed) noexcept override
     {
         std::cout << "updating player\n";
     }
@@ -42,6 +48,8 @@ public:
 int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 {
     bool quit{false};
+    long long dt{0};
+
     json data{read_to_json("test.json")};
     SDL_Event e;
 
@@ -49,7 +57,9 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
         "The TnT Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
-    auto assets{tnt::AssetManager::This()};
+    tnt::ImGui::context_t *context{tnt::ImGui::make_context(window)};
+
+    tnt::Rectangle dst{0, 0, 100, 100};
 
     tnt::Sprite *player{new Player{window}};
 
@@ -59,42 +69,67 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
     tnt::InputManager &input{tnt::InputManager::This()};
     tnt::Timer timer;
 
-    window->SetClearColor({data["r"], data["g"], data["b"], data["a"]});
+    window->setClearColor({data["r"], data["g"], data["b"], data["a"]});
 
     while (!quit)
     {
+        tnt_imgui_begin(context);
+
         while (SDL_PollEvent(&e))
             if (e.type == SDL_QUIT)
                 quit = true;
 
-        if (input.KeyPressed(SDL_SCANCODE_T))
-            std::cout << "Pressed T\n";
+        // if (input.KeyPressed(SDL_SCANCODE_D))
+        //     dst.x += 80.f;
+        // else if (input.KeyPressed(SDL_SCANCODE_W))
+        //     dst.y -= 80.f;
+        // else if (input.KeyPressed(SDL_SCANCODE_A))
+        //     dst.x -= 80.f;
+        // else if (input.KeyPressed(SDL_SCANCODE_S))
+        //     dst.y += 80.f;
 
         snipper.onModify("test.json", [&]() -> void {
             std::cout << "edited test.json\n";
             data = read_to_json("test.json");
 
-            window->SetClearColor({data["r"], data["g"], data["b"], data["a"]});
-            window->SetTitle(data["title"].get<std::string>().c_str());
+            window->setClearColor({data["r"], data["g"], data["b"], data["a"]});
+            window->setTitle(data["title"].get<std::string>().c_str());
         });
 
-        player->Update();
+        player->Update(0);
+
+        if (dt != 0)
+        {
+            dst.w = tnt::sine::EaseInOut(static_cast<float>(dt) / 1000.f, dst.w, 300 - dst.w, .1);
+            dst.h = tnt::sine::EaseInOut(static_cast<float>(dt) / 1000.f, dst.h, 300 - dst.h, .1);
+        }
+
+        if (tnt::ImGui::button(context, IMGEN_WIDGET_ID(1), 300, 400))
+            std::cout << "pressed button\n";
 
         input.UpdatePreviousInput();
         input.UpdateCurrentInput();
 
-        window->Clear();
+        tnt_imgui_finish(context);
 
-        auto dst{SDL_FRect{0, 0, 100, 100}};
+        // window->Clear();
+        tnt_imgui_draw(window);
         player->getSprite()->Draw(window, dst);
 
-        window->Render();
+        // window->Render();
 
-        auto fps{1000 / timer.deltaTime().count()};
+        dt = timer.deltaTime().count();
         timer.reset();
-        std::cout << fps << " fps\n";
+        std::cout << (1000 / (dt + 1)) << " fps\n";
+
         SDL_Delay(16);
     }
+
+    delete player;
+
+    tnt::ImGui::destroy_context(context);
+
     delete window;
+
     return 0;
 }

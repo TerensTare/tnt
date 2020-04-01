@@ -1,16 +1,33 @@
 #ifndef TNT_CONTEXT_HPP
 #define TNT_CONTEXT_HPP
 
-#include "core/Window.hpp"
+#include <variant>
+#include <sol/sol.hpp>
+#include "tiled/MapLoader.hpp"
 
 namespace tnt
 {
+class Window;
+class VirtualFS;
+class AssetManager;
+
+// TODO: add threadsafe logger.
+
+// TODO(maybe):
+// add Timer* timer ??
+// remove dependecy of "tiled/MapLoader.hpp" ??
+
 struct Context
 {
-    Window *win;
+    ~Context() noexcept;
+    VirtualFS *fs;
+    std::weak_ptr<Window> window;
+    std::variant<tmx::JsonMapLoader *, tmx::XmlMapLoader *> mapLoader;
+    sol::state lua;
+    AssetManager *assets;
 };
 
-Context &defaultCtx;
+// Context &defaultCtx;
 } // namespace tnt
 
 #endif //!TNT_CONTEXT_HPP

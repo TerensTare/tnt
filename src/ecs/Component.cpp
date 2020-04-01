@@ -36,7 +36,7 @@ void tnt::ScaleComponent::Scale(Vector const &s) noexcept { scale = Vector{scale
 // physics //
 /////////////
 
-tnt::PhysicsComponent::PhysicsComponent(float &mass, SDL_FRect const &collision_box)
+tnt::PhysicsComponent::PhysicsComponent(float &mass, Rectangle const &collision_box)
     : invMass{1 / mass}, velocity{VECTOR_ZERO},
       acceleration{VECTOR_ZERO}, collisionBox{collision_box} {}
 
@@ -54,7 +54,7 @@ float tnt::PhysicsComponent::getMass() const noexcept(noexcept(invMass > 0.f)) {
 tnt::Vector tnt::PhysicsComponent::getVelocity() const noexcept { return velocity; }
 tnt::Vector tnt::PhysicsComponent::getAcceleration() const noexcept { return acceleration; }
 
-SDL_FRect tnt::PhysicsComponent::getCollisionBox() const noexcept { return collisionBox; }
+tnt::Rectangle tnt::PhysicsComponent::getCollisionBox() const noexcept { return collisionBox; }
 
 void tnt::PhysicsComponent::applyForce(tnt::Vector const &force) noexcept(noexcept(invMass > 0.f))
 {
@@ -69,11 +69,13 @@ tnt::SpriteComponent::SpriteComponent(
     Window const *win, std::string_view file)
     : RotateComponent{0.f}, ScaleComponent{VECTOR_ONE},
       clipped{false}, clipRect{0, 0, 0, 0},
-      texture{AssetManager::This().Image(win, file)} {}
+      texture{AssetManager::This().Image(win, file)}
+{
+}
 
 tnt::SpriteComponent::SpriteComponent(
     Window const *win, std::string_view file,
-    SDL_Rect const &location)
+    Rectangle const &location)
     : RotateComponent{0.f}, ScaleComponent{VECTOR_ONE},
       clipped{true}, clipRect{location},
       texture{AssetManager::This().Image(win, file)} {}
@@ -84,9 +86,12 @@ tnt::SpriteComponent::~SpriteComponent() noexcept
     texture = nullptr;
 }
 
-void tnt::SpriteComponent::Draw(tnt::Window *target, SDL_FRect const& dest) noexcept
+void tnt::SpriteComponent::Draw(Window *win, Rectangle &dest) noexcept
 {
-    target->Draw(this, &clipRect, &dest);
+    win->Draw(
+        this, &static_cast<SDL_Rect>(clipRect),
+        &static_cast<SDL_FRect>(dest),
+        static_cast<double>(angle));
 }
 
 SDL_Texture *tnt::SpriteComponent::getTexture() const noexcept { return texture; }
