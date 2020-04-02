@@ -5,8 +5,8 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
-#include "exp/imgui/gui_config.hpp"
-#include "exp/imgui/ImGui.hpp"
+#include "imgui/gui_config.hpp"
+#include "imgui/ImGui.hpp"
 
 #include "ecs/Sprite.hpp"
 #include "core/Context.hpp"
@@ -19,6 +19,7 @@
 #include "math/Easings.hpp"
 
 using nlohmann::json;
+using tnt::ImGui::button;
 
 // TODO: "dissolve" this code into classes, like Game/Scene/Space, etc.
 
@@ -37,7 +38,7 @@ public:
     explicit Player(tnt::Window const *win)
         : tnt::Sprite{
               win, ".\\bin\\x64\\release\\player.png",
-              tnt::Rectangle{0.f, 0.f, 0.f, 0.f}} {}
+              tnt::Rectangle{0.f, 0.f, 100.f, 100.f}} {}
 
     virtual void Update(long long elapsed) noexcept override
     {
@@ -57,7 +58,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
         "The TnT Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
-    tnt::ImGui::context_t *context{tnt::ImGui::make_context(window)};
+    tnt::ImGui::context_t *context{tnt::ImGui::make_context(1280, 720)};
 
     tnt::Rectangle dst{0, 0, 100, 100};
 
@@ -73,11 +74,10 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
     while (!quit)
     {
-        tnt_imgui_begin(context);
-
         while (SDL_PollEvent(&e))
             if (e.type == SDL_QUIT)
                 quit = true;
+        tnt::ImGui::update_context(context);
 
         // if (input.KeyPressed(SDL_SCANCODE_D))
         //     dst.x += 80.f;
@@ -96,7 +96,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
             window->setTitle(data["title"].get<std::string>().c_str());
         });
 
-        player->Update(0);
+        // player->Update(0);
 
         if (dt != 0)
         {
@@ -104,23 +104,25 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
             dst.h = tnt::sine::EaseInOut(static_cast<float>(dt) / 1000.f, dst.h, 300 - dst.h, .1);
         }
 
-        if (tnt::ImGui::button(context, IMGEN_WIDGET_ID(1), 300, 400))
-            std::cout << "pressed button\n";
-
         input.UpdatePreviousInput();
         input.UpdateCurrentInput();
 
+        window->Clear();
+
+        tnt_imgui_begin(context);
+
+        if (button(context, window, IMGEN_WIDGET_ID(1), 300, 400))
+            std::cout << "pressed button\n";
+
         tnt_imgui_finish(context);
-
-        // window->Clear();
-        tnt_imgui_draw(window);
-        player->getSprite()->Draw(window, dst);
-
-        // window->Render();
+        // player->getSprite()->Draw(window, dst);
+        window->Render();
 
         dt = timer.deltaTime().count();
         timer.reset();
-        std::cout << (1000 / (dt + 1)) << " fps\n";
+
+        if (!quit)
+            std::cout << (1000 / dt) + 1 << " fps\n";
 
         SDL_Delay(16);
     }
