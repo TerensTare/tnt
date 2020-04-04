@@ -1,24 +1,26 @@
+#include <iostream>
 #include "core/AudioPlayer.hpp"
+#include "fileIO/AssetManager.hpp"
 
-tnt::AudioPlayer::AudioPlayer(int frequency, Uint16 format, int channels, int chunksize)
+tnt::AudioPlayer::AudioPlayer(int frequency, unsigned short format, int channels, int chunksize)
 {
     if (Mix_OpenAudio(frequency, format, channels, chunksize) < 0)
         std::cout << "Couldn't initialize SDL_Mixer!!\nError: " << Mix_GetError() << std::endl;
 }
 
-void tnt::AudioPlayer::PlayMusic(std::string filename, int loops)
+void tnt::AudioPlayer::PlayMusic(std::string_view filename, int loops)
 {
-    if (AssetManager::This()->music[filename] == nullptr)
+    if (AssetManager::This().Music(filename) == nullptr)
     {
-        AssetManager::This()->music[filename] = Mix_LoadMUS(filename.c_str());
-        if (AssetManager::This()->music[filename] == nullptr)
+        AssetManager::This().AddMusic(filename);
+        if (AssetManager::This().Music(filename) == nullptr)
         {
-            std::cout << "Couldn't load " << filename.c_str() << "\n.Error: " << Mix_GetError() << std::endl;
+            std::cout << "Couldn't load " << filename << "\n.Error: " << Mix_GetError() << std::endl;
             return;
         }
     }
 
-    Mix_PlayMusic(AssetManager::This()->music[filename], loops);
+    Mix_PlayMusic(AssetManager::This().Music(filename), loops);
 }
 
 void tnt::AudioPlayer::PauseMusic()
@@ -33,17 +35,17 @@ void tnt::AudioPlayer::ResumeMusic()
         Mix_ResumeMusic();
 }
 
-void tnt::AudioPlayer::PlaySFX(std::string filename, int channel, int loops)
+void tnt::AudioPlayer::PlaySFX(std::string_view filename, int channel, int loops)
 {
-    if (AssetManager::This()->sfx[filename] == nullptr)
+    if (AssetManager::This().Sfx(filename) == nullptr)
     {
-        AssetManager::This()->sfx[filename] = Mix_LoadWAV(filename.c_str());
-        if (AssetManager::This()->sfx[filename] != nullptr)
+        AssetManager::This().AddSfx(filename);
+        if (AssetManager::This().Sfx(filename) != nullptr)
         {
             std::cout << "Couldn't load " << filename.c_str() << "\nError: " << Mix_GetError() << std::endl;
             return;
         }
     }
 
-    Mix_PlayChannel(channel, AssetManager::This()->sfx[filename], loops);
+    Mix_PlayChannel(channel, AssetManager::This().Sfx(filename), loops);
 }

@@ -1,14 +1,14 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-#include "core/Context.hpp"
+#include "core/Window.hpp"
 #include "ecs/Particle.hpp"
 
 tnt::Particle::Particle(
-    Context const *ctx, std::string_view filename,
+    Window const *win, std::string_view filename,
     Vector const &speed, float &radius_,
     Rectangle const &area, long long time)
-    : Sprite{ctx, filename}, RigidBody{1.f, area},
+    : Sprite{win, filename}, RigidBody{1.f, area},
       lifetime{time}, rect{area}, radius{radius_}, alive{true} {}
 
 tnt::Particle::~Particle() noexcept

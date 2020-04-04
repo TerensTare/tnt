@@ -1,9 +1,9 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-#include "Object.hpp"
+#include "ecs/Object.hpp"
 #include "LuaSandbox.hpp"
-#include "VirtualFileSystem.hpp"
+#include "fileIO/VirtualFS.hpp"
 
 sol::state tnt::LuaSandbox::lua = nullptr;
 
@@ -50,15 +50,15 @@ void tnt::LuaSandbox::loadVector()
         });
 }
 
-void tnt::LuaSandbox::loadObject()
-{
-    lua.new_usertype<Object>(
-        "object", sol::constructors<Object(Vector, float, Vector)>{},
-        "pos", sol::property(&Object::getPosition, &Object::setPosition),
-        "angle", sol::property(&Object::getAngle, &Object::setAngle),
-        "scale", sol::property(&Object::getScale, &Object::setScale),
-        "parent", sol::property(&Object::getParent, &Object::setParent));
-}
+// void tnt::LuaSandbox::loadObject()
+// {
+//     lua.new_usertype<Object>(
+//         "object", sol::constructors<Object(Vector, float, Vector)>{},
+//         "pos", sol::property(&Object::getPosition, &Object::setPosition),
+//         "angle", sol::property(&Object::getAngle, &Object::setAngle),
+//         "scale", sol::property(&Object::getScale, &Object::setScale),
+//         "parent", sol::property(&Object::getParent, &Object::setParent));
+// }
 
 void tnt::LuaSandbox::loadEasings()
 {
@@ -98,9 +98,3 @@ void tnt::LuaSandbox::loadEasings()
 
 void tnt::LuaSandbox::loadTimer() {}
 void tnt::LuaSandbox::loadCamera() {}
-
-tnt::LuaManager &tnt::LuaManager::This()
-{
-    static LuaManager inst;
-    return inst;
-}

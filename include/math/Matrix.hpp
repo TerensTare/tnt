@@ -1,10 +1,8 @@
-#ifndef MATRIX_HPP
-#define MATRIX_HPP
+#ifndef TNT_MATRIX_HPP
+#define TNT_MATRIX_HPP
 
 #include <tuple>
 #include <vector>
-
-#include "Config.hpp"
 
 // TODO: add iterators for Matrix.
 // TODO: add specializations for Matrix<T, 1,x> | Matrix<T, x, 1> | Matrix<T, 1, 1> so that the class wouldn't use two arrays.
@@ -50,7 +48,7 @@ private:
 	std::vector<std::vector<double>> data;
 };
 
-namespace experimental
+namespace exp
 {
 template <typename T = void, std::size_t W = 1, std::size_t H = 1>
 class Matrix
@@ -83,15 +81,15 @@ private:
 template <std::size_t W, std::size_t H>
 class Matrix<void, W, H>
 {
-	TNT_NON_COPYABLE(Matrix)
-	TNT_NON_MOVABLE(Matrix)
+	Matrix(Matrix const &) = delete;
+	Matrix &operator=(Matrix const &) = delete;
 
-	Matrix()
-	{
-		tnt_debug std::cout << "Creating a Matrix<void>";
-	}
+	Matrix(Matrix &&) = delete;
+	Matrix &operator=(Matrix &&) = delete;
+
+	Matrix() {}
 };
-} // namespace experimental
+} // namespace exp
 } // namespace tnt
 
-#endif //!MATRIX_HPP
+#endif //!TNT_MATRIX_HPP

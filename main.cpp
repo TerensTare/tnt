@@ -1,35 +1,29 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-#include <fstream>
 #include <iostream>
-#include <nlohmann/json.hpp>
 
 #include "imgui/gui_config.hpp"
 #include "imgui/ImGui.hpp"
 
 #include "ecs/Sprite.hpp"
-#include "core/Context.hpp"
 #include "core/Window.hpp"
 #include "core/InputManager.hpp"
 #include "fileIO/AssetManager.hpp"
-#include "fileIO/Snipper.hpp"
 #include "utils/Timer.hpp"
 #include "math/Rectangle.hpp"
-#include "math/Easings.hpp"
 
-using nlohmann::json;
-using tnt::ImGui::button;
+using tnt::ImGui::button,
+    tnt::ImGui::slider_int,
+    tnt::ImGui::hslider_int;
 
 // TODO: "dissolve" this code into classes, like Game/Scene/Space, etc.
 
-auto read_to_json = [](std::string_view filename) {
-    json j;
-    {
-        std::ifstream file{filename.data()};
-        file >> j;
-    }
-    return j;
+auto random_name = []() -> std::string_view {
+    static std::string_view names[]{
+        "window", "test", "imgui", "the tnt engine", "hello world"};
+    int idx{std::rand() % 4};
+    return names[idx];
 };
 
 class Player : public tnt::Sprite
@@ -48,74 +42,55 @@ public:
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 {
+    std::srand(static_cast<unsigned>(time(0)));
     bool quit{false};
     long long dt{0};
 
-    json data{read_to_json("test.json")};
+    SDL_Color bg{0, 0, 0, 255};
     SDL_Event e;
 
     tnt::Window *window{new tnt::Window{
         "The TnT Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
-    tnt::ImGui::context_t *context{tnt::ImGui::make_context(1280, 720)};
+    tnt::ImGui::make_context(1280, 720);
 
-    tnt::Rectangle dst{0, 0, 100, 100};
+    SDL_Rect dst{0, 0, 100, 100};
+    auto &input{tnt::InputManager::This()};
 
     tnt::Sprite *player{new Player{window}};
 
-    tnt::file::Snipper snipper;
-    snipper.watchFile("test.json");
-
-    tnt::InputManager &input{tnt::InputManager::This()};
     tnt::Timer timer;
 
-    window->setClearColor({data["r"], data["g"], data["b"], data["a"]});
+    window->setClearColor({0, 0, 0, 255});
 
     while (!quit)
     {
         while (SDL_PollEvent(&e))
             if (e.type == SDL_QUIT)
                 quit = true;
-        tnt::ImGui::update_context(context);
-
-        // if (input.KeyPressed(SDL_SCANCODE_D))
-        //     dst.x += 80.f;
-        // else if (input.KeyPressed(SDL_SCANCODE_W))
-        //     dst.y -= 80.f;
-        // else if (input.KeyPressed(SDL_SCANCODE_A))
-        //     dst.x -= 80.f;
-        // else if (input.KeyPressed(SDL_SCANCODE_S))
-        //     dst.y += 80.f;
-
-        snipper.onModify("test.json", [&]() -> void {
-            std::cout << "edited test.json\n";
-            data = read_to_json("test.json");
-
-            window->setClearColor({data["r"], data["g"], data["b"], data["a"]});
-            window->setTitle(data["title"].get<std::string>().c_str());
-        });
-
-        // player->Update(0);
-
-        if (dt != 0)
-        {
-            dst.w = tnt::sine::EaseInOut(static_cast<float>(dt) / 1000.f, dst.w, 300 - dst.w, .1);
-            dst.h = tnt::sine::EaseInOut(static_cast<float>(dt) / 1000.f, dst.h, 300 - dst.h, .1);
-        }
+        tnt::ImGui::update_context();
 
         input.UpdatePreviousInput();
         input.UpdateCurrentInput();
 
         window->Clear();
 
-        tnt_imgui_begin(context);
+        tnt_imgui_begin();
 
-        if (button(context, window, IMGEN_WIDGET_ID(1), 300, 400))
-            std::cout << "pressed button\n";
+        if (button(window, IMGEN_WIDGET_ID(1), 300, 400))
+            window->setTitle(random_name().data());
 
-        tnt_imgui_finish(context);
-        // player->getSprite()->Draw(window, dst);
+        hslider_int(window, IMGEN_WIDGET_ID(2), 500, 100,
+                    0, 400, dst.w);
+        hslider_int(window, IMGEN_WIDGET_ID(3), 500, 140,
+                    0, 400, dst.h);
+
+        tnt::Rectangle area{dst.x, dst.y, dst.w, dst.h};
+
+        tnt_imgui_finish();
+
+        player->getSprite()->Draw(window, area);
         window->Render();
 
         dt = timer.deltaTime().count();
@@ -129,7 +104,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
     delete player;
 
-    tnt::ImGui::destroy_context(context);
+    tnt::ImGui::destroy_context();
 
     delete window;
 

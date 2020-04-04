@@ -19,7 +19,7 @@ class Particle
 {
 public:
     Particle(
-        Context const *ctx, std::string_view filename,
+        Window const *win, std::string_view filename,
         Vector const &speed, float &radius_,
         Rectangle const &area,
         long long time = 0);

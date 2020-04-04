@@ -3,7 +3,7 @@
 
 #include <future>
 #include <iostream>
-#include "Matrix.hpp"
+#include "math/Matrix.hpp"
 
 tnt::Matrix::Matrix(unsigned row, unsigned column, double init)
 	: rows{row}, columns{column}
@@ -12,8 +12,7 @@ tnt::Matrix::Matrix(unsigned row, unsigned column, double init)
 	std::async(std::launch::deferred, [this, column, init] {
 		for (unsigned i{0}; i < data.size(); ++i)
 			data[i].resize(column, init);
-	})
-		.get();
+	}).get();
 }
 
 tnt::Matrix::~Matrix()
@@ -21,8 +20,7 @@ tnt::Matrix::~Matrix()
 	std::async(std::launch::deferred, [this] {
 		data.clear();
 		std::vector<std::vector<double>>{}.swap(data);
-	})
-		.get();
+	}).get();
 }
 
 tnt::Matrix tnt::Matrix::operator+(Matrix &rhs)

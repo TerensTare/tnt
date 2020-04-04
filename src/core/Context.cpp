@@ -7,8 +7,7 @@ tnt::Context::~Context() noexcept
     delete fs;
     fs = nullptr;
 
-    delete window;
-    window = nullptr;
+    window.reset();
 
     delete assets;
     assets = nullptr;

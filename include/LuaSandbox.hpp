@@ -1,14 +1,14 @@
-#ifndef LUA_SANDBOX_HPP
-#define LUA_SANDBOX_HPP
+#ifndef TNT_LUA_SANDBOX_HPP
+#define TNT_LUA_SANDBOX_HPP
 
 #include <sol/sol.hpp>
-#include "Config.hpp"
+#include "core/Config.hpp"
 
 // TODO: add bindings for logger, widgets, Expected<T> etc.
 namespace tnt
 {
 class [[deprecated(
-          "LuaSandbox is not recommended (as it is part of the engine,NOT the SDK). Use LuaManager instead.")]] LuaSandbox
+    "LuaSandbox is not recommended (as it is part of the engine,NOT the SDK). Use LuaManager instead.")]] LuaSandbox
 {
 public:
     static LuaSandbox &This();
@@ -33,4 +33,4 @@ private:
 };
 } // namespace tnt
 
-#endif //!LUA_SANDBOX_HPP
+#endif //!TNT_LUA_SANDBOX_HPP

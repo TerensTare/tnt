@@ -21,6 +21,9 @@ src/exp/*
 *.vcxproj
 *.sln
 
+# SourceTrail stuff
+*.srctrl*
+
 WIP
 NOTES.md
 Roadmap.todo

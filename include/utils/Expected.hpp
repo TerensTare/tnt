@@ -1,6 +1,7 @@
 #ifndef EXPECTED_HPP
 #define EXPECTED_HPP
 
+#include <new>
 #include <atomic>
 #include <exception>
 #include <stdexcept>
@@ -97,7 +98,8 @@ public:
     }
 
     template <class F>
-    static Expected fromCode(F func) try
+    static Expected fromCode(F func)
+    try
     {
         return Expected{func()};
     }

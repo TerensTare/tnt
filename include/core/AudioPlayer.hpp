@@ -1,7 +1,7 @@
 #ifndef AUDIO_PLAYER_HPP
 #define AUDIO_PLAYER_HPP
 
-#include "fileIO/AssetManager.hpp"
+#include <string_view>
 
 // Consider making this a singleton.
 namespace tnt
@@ -9,13 +9,13 @@ namespace tnt
 class AudioPlayer
 {
 public:
-    AudioPlayer(int frequency, Uint16 format, int channels, int chunksize);
+    AudioPlayer(int frequency, unsigned short format, int channels, int chunksize);
 
-    void PlayMusic(std::string filename, int loops);
+    void PlayMusic(std::string_view filename, int loops);
     void PauseMusic();
     void ResumeMusic();
 
-    void PlaySFX(std::string filename, int channel, int loops);
+    void PlaySFX(std::string_view filename, int channel, int loops);
 };
 } // namespace tnt
 

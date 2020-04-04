@@ -56,8 +56,6 @@ private:
     std::map<std::string, Mix_Music *> music;
     std::map<std::string, Mix_Chunk *> sfx;
     std::map<std::string, tmx::TileMap *> maps;
-
-    // friend class AudioPlayer;
 };
 } // namespace tnt
 

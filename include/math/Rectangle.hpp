@@ -22,6 +22,10 @@ struct Rectangle
     constexpr Rectangle(float x_, float y_, float w_, float h_) noexcept
         : x{x_}, y{y_}, w{w_}, h{h_} {}
 
+    constexpr Rectangle(int x_, int y_, int w_, int h_) noexcept
+        : x{static_cast<float>(x_)}, y{static_cast<float>(y_)},
+          w{static_cast<float>(w_)}, h{static_cast<float>(h_)} {}
+
     constexpr Rectangle(Vector const &pos, float w_, float h_) noexcept
         : x{pos.x}, y{pos.y}, w{w_}, h{h_} {}
 
