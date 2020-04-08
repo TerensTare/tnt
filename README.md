@@ -22,24 +22,15 @@ know C++. Meanwhile the engine should be powerful enough for a C++ developer.
 
 ## Build status
 
-![Github Actions](https://github.com/TerensTare/tnt/workflows/CI/badge.svg)
+![Github Actions](https://github.com/TerensTare/tnt/workflows/build/badge.svg)
 
 ## Code quality
 
-<<<<<<< HEAD
-|Code checker | Badge
-|:------------|:-----:
-|CodeFactor   | [![CodeFactor](https://www.codefactor.io/repository/github/terenstare/tnt/badge)](https://www.codefactor.io/repository/github/terenstare/tnt)
-| Coveralls   |[![Coverage Status](https://coveralls.io/repos/github/TerensTare/tnt/badge.svg?branch=master)](https://coveralls.io/github/TerensTare/tnt?branch=master)
-=======
-| Code checker |                                           Badge                                           |
-| :----------- | :---------------------------------------------------------------------------------------: |
-| CodeFactor   | ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/TerensTare/tnt/master) |
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3749bb4e09c74f6785177d318bb8ba15)](https://app.codacy.com/manual/terens.t17/tnt?utm_source=github.com&utm_medium=referral&utm_content=TerensTare/tnt&utm_campaign=Badge_Grade_Dashboard)
-| Coveralls
-|[![Coverage Status](https://coveralls.io/repos/github/TerensTare/tnt/badge.svg?branch=master)](https://coveralls.io/github/TerensTare/tnt?branch=master)
->>>>>>> 34587b25e8081320cb52f1cf3a09421e9246eb07
+|Code checker|Badge|
+|:-----------|:---:|
+| CodeFactor | ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/TerensTare/tnt/master) |
+| Codacy | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3749bb4e09c74f6785177d318bb8ba15)](https://app.codacy.com/manual/terens.t17/tnt?utm_source=github.com&utm_medium=referral&utm_content=TerensTare/tnt&utm_campaign=Badge_Grade_Dashboard)
+| Coveralls |[![Coverage Status](https://coveralls.io/repos/github/TerensTare/tnt/badge.svg?branch=master)](https://coveralls.io/github/TerensTare/tnt?branch=master)
 More code quality reviews coming soon.
 
 ## Documentation
