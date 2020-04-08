@@ -1,5 +1,5 @@
-#ifndef TIMER_HPP
-#define TIMER_HPP
+#ifndef TNT_TIMER_HPP
+#define TNT_TIMER_HPP
 
 #include <chrono>
 #include <atomic>
@@ -25,14 +25,15 @@ public:
     bool paused() const noexcept;
 
     template <typename Duration = std::chrono::milliseconds>
-    Duration &deltaTime() noexcept(noexcept(std::chrono::duration_cast<Duration>(std::chrono::steady_clock::now() - beginning)))
+    Duration &deltaTime() noexcept(noexcept(std::chrono::duration_cast<Duration>(std::chrono::steady_clock::now() - beginning - deltaPaused)))
     {
         if (isPaused)
             start();
-        // std::atomic_thread_fence(std::memory_order_relaxed);
-        auto ret{std::chrono::duration_cast<Duration>(std::chrono::steady_clock::now() - beginning)};
-        // std::atomic_thread_fence(std::memory_order_relaxed);
-        ret = ret - pausedTime;
+        std::atomic_thread_fence(std::memory_order_relaxed);
+        auto ret{std::chrono::duration_cast<Duration>(
+            std::chrono::steady_clock::now() -
+            beginning - deltaPaused)};
+        std::atomic_thread_fence(std::memory_order_relaxed);
         return ret;
     }
 
@@ -40,9 +41,9 @@ private:
     bool isPaused;
     std::chrono::steady_clock::time_point beginning;
     std::chrono::steady_clock::time_point pausedTime;
-    std::chrono::milliseconds deltaPaused;
+    std::chrono::nanoseconds deltaPaused;
 };
 
 } // namespace tnt
 
-#endif //!TIMER_HPP
+#endif //!TNT_TIMER_HPP

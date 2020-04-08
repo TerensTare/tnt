@@ -148,7 +148,7 @@ class ClearPreviousActions : public BlockingAction
 public:
     ClearPreviousActions() {}
 
-    virtual void update(float delta) override
+    void update(float delta) override
     {
         if (Done())
             return;
@@ -179,7 +179,7 @@ class ClearAllActions : public BlockingAction
 public:
     ClearAllActions() {}
 
-    virtual void update(float delta) override
+    void update(float delta) override
     {
         if (Done())
             return;
@@ -253,10 +253,10 @@ private:
 class DelayAction : public BlockingAction
 {
 public:
-    DelayAction(float duration)
+    explicit DelayAction(float duration)
         : elapsed{.0f}, total{duration} {}
 
-    virtual void update(float delta) noexcept override
+    void update(float delta) noexcept override
     {
         if (Done())
             return;

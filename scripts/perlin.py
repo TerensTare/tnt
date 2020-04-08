@@ -11,7 +11,7 @@ import numpy as np
 '''
 
 
-def func(t): return 6*t**5-15*t**4+10*t**3
+func = lambda t:return 6*t**5-15*t**4+10*t**3
 
 
 def generate_perlin_noise_2d(shape, res):
@@ -56,4 +56,3 @@ def write_to_file(file, result):
 
 if __name__ == "__main__":
     ret = generate_fractal_noise_2d(100, 10)
-    pass

@@ -21,7 +21,7 @@ bool tnt::detail::gfx::Init() noexcept
 #define flags (IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF | IMG_INIT_WEBP)
 
         if (auto res{IMG_Init(flags)};
-            res & flags != flags)
+            (res & flags) != flags)
         {
             tnt::logger::error("Couldn't initialize SDL_Image!! Error: {}\n", IMG_GetError());
             return false;

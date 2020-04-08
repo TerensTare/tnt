@@ -20,8 +20,8 @@ class Snipper;
 class File
 {
 public:
-    File(std::filesystem::path const &path);
-    File(std::string_view name);
+    explicit File(std::filesystem::path const &path);
+    explicit File(std::string_view name);
 
     File(File const &) = delete;
     File(File &&) = delete;

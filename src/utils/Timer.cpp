@@ -13,7 +13,7 @@ void tnt::Timer::start() noexcept
     if (isPaused)
     {
         deltaPaused = deltaPaused +
-                      std::chrono::duration_cast<std::chrono::milliseconds>(
+                      std::chrono::duration_cast<std::chrono::nanoseconds>(
                           std::chrono::steady_clock::now() - pausedTime);
         isPaused = false;
     }

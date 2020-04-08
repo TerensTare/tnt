@@ -131,7 +131,7 @@ std::tuple<tnt::Matrix, double, int> tnt::Matrix::power_iterator(unsigned rowNum
 
 	int errCode{0};
 	double diff{1.0};
-	unsigned j{0}, location{};
+	unsigned j{0}, location{0};
 	std::vector<double> eigen{};
 	double eigenVal{0.0};
 

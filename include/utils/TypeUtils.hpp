@@ -1,5 +1,5 @@
-#ifndef TYPE_UTILS_HPP
-#define TYPE_UTILS_HPP
+#ifndef TNT_TYPE_UTILS_HPP
+#define TNT_TYPE_UTILS_HPP
 
 // TODO:
 // separate multithreading utilities into a different file.
@@ -52,19 +52,6 @@ Synchronized(T &)->Synchronized<T>;
 
 namespace tnt
 {
-// based on
-// https://www.fluentcpp.com/2017/05/19/crtp-helper/
-template <typename T, template <typename> class type>
-struct curiously_recurring_template
-{
-    T &underlying() { return static_cast<T &>(*this); }
-    T const &underlying() const { return static_cast<T const &>(*this); }
-
-private:
-    curiously_recurring_template() {}
-    friend type<T>;
-};
-
 // template <typename To, auto Data, typename std::enable_if<std::is_convertible_v<decltype(Data), To>, int> = 0>
 // struct convert
 // {
@@ -206,60 +193,6 @@ public:
         exists = (sizeof(Test(MakeT())) == sizeof(Small))
     };
 };
-
-// type safe enum pattern from
-// https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Safe_Enum
-template <typename def, typename inner = typename def::type>
-class safe_enum : public def
-{
-    typedef inner type;
-    inner val;
-
-    static safe_enum array[def::end_ - def::begin_];
-    static bool init;
-
-    static void initialize()
-    {
-        if (!init)
-        {
-            unsigned int size{def::end_ - def::begin_};
-            for (unsigned int i{0}, j{def::begin_}; i < size; ++i, ++j)
-                array[i] = static_cast<typename def::type>(j);
-            init = true;
-        }
-    }
-
-public:
-    safe_enum() {}
-    safe_enum(type v) : val{v} {}
-
-    type underlying() const { return val; }
-
-    static safe_enum *begin()
-    {
-        initialize();
-        return array;
-    }
-
-    static safe_enum *end()
-    {
-        initialize();
-        return array + (def::end_ - def::begin_);
-    }
-
-    friend bool operator==(const safe_enum &lhs, const safe_enum &rhs) const { return lhs.val == rhs.val; }
-    friend bool operator!=(const safe_enum &lhs, const safe_enum &rhs) const { return lhs.val != rhs.val; }
-    friend bool operator<(const safe_enum &lhs, const safe_enum &rhs) const { return lhs.val < rhs.val; }
-    friend bool operator<=(const safe_enum &lhs, const safe_enum &rhs) const { return lhs.val <= rhs.val; }
-    friend bool operator>(const safe_enum &lhs, const safe_enum &rhs) const { return lhs.val > rhs.val; }
-    friend bool operator>=(const safe_enum &lhs, const safe_enum &rhs) const { return lhs.val >= rhs.val; }
-};
-
-template <typename def, typename inner>
-safe_enum<def, inner> safe_enum<def, inner>::array[def::end_ - def::begin_];
-
-template <typename def, typename inner>
-bool safe_enum<def, inner>::init = false;
 } // namespace tnt
 
-#endif //!TYPE_UTILS_HPP
+#endif //!TNT_TYPE_UTILS_HPP

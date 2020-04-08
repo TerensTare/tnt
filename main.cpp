@@ -34,7 +34,7 @@ public:
               win, ".\\bin\\x64\\release\\player.png",
               tnt::Rectangle{0.f, 0.f, 208.f, 384.f}} {}
 
-    virtual void Update(long long elapsed) noexcept override
+    void Update(long long elapsed) noexcept override
     {
         std::cout << "updating player\n";
     }
@@ -44,10 +44,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 {
     std::srand(static_cast<unsigned>(time(0)));
     bool quit{false};
-    long long dt{0};
 
     SDL_Color bg{0, 0, 0, 255};
-    SDL_Event e;
 
     tnt::Window *window{new tnt::Window{
         "The TnT Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -62,6 +60,9 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
     while (!quit)
     {
+        long long dt{0};
+        SDL_Event e;
+
         while (SDL_PollEvent(&e))
             if (e.type == SDL_QUIT)
                 quit = true;
@@ -69,8 +70,6 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
         tnt::input::updatePrevious();
         tnt::input::updateCurrent();
-
-        timer.stop();
 
         window->Clear();
 
@@ -87,8 +86,6 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
         tnt::Rectangle area{dst.x, dst.y, dst.w, dst.h};
 
         tnt_imgui_finish();
-
-        timer.start();
 
         player->getSprite()->Draw(window, area);
         window->Render();

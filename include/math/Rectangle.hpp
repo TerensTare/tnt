@@ -38,6 +38,7 @@ struct Rectangle
         y = other.y;
         w = other.w;
         h = other.h;
+        return *this;
     }
 
     Rectangle &operator=(Rectangle &&other) noexcept = default;

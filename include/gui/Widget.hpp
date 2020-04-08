@@ -1,5 +1,5 @@
-#ifndef WIDGET_HPP
-#define WIDGET_HPP
+#ifndef TNT_GUI_WIDGET_HPP
+#define TNT_GUI_WIDGET_HPP
 
 // TODO: add operator| support.
 // That should set widget on the right as the child of the widget on the left.
@@ -55,4 +55,4 @@ protected:
 };
 } // namespace tnt
 
-#endif //!WIDGET_HPP
+#endif //!TNT_GUI_WIDGET_HPP

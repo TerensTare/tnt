@@ -61,7 +61,7 @@ public:
 class Delay : public Action
 {
 public:
-    Delay(float time);
+    explicit Delay(float time);
     void Update(float delta_t) override;
 
 private:
@@ -85,7 +85,7 @@ protected:
 class HierarchicalAction : public Action
 {
 public:
-    virtual void Update(float delta_t) override;
+    void Update(float delta_t) override;
 };
 
 class ActionList : public Action
@@ -116,7 +116,7 @@ public:
     bool empty() const noexcept;
     bool EmptyLane(int laneID) const noexcept;
 
-    virtual void Update(float delta_t) override;
+    void Update(float delta_t) override;
 
 protected:
     std::vector<Action *> actions;
