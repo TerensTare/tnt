@@ -23,7 +23,7 @@ The project aims to make game development easy enough for anybody that doesn't k
 
 |Code checker | Badge
 |:------------|:-----:
-|CodeFactor   | ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/TerensTare/tnt/master)
+|CodeFactor   | [![CodeFactor](https://www.codefactor.io/repository/github/terenstare/tnt/badge)](https://www.codefactor.io/repository/github/terenstare/tnt)
 | Coveralls   |[![Coverage Status](https://coveralls.io/repos/github/TerensTare/tnt/badge.svg?branch=master)](https://coveralls.io/github/TerensTare/tnt?branch=master)
 More code quality reviews coming soon.
 

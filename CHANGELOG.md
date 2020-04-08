@@ -10,6 +10,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 - [`void Timer::start()`](./include/utils/Timer.hpp#L21) and [`void Timer::stop()`](./include/utils/Timer.hpp#L23) implementation.
 - [`Timer::deltaTime()`](./include/utils/Timer.hpp#L27) now calls [`Timer::start()`](./include/utils/Timer.hpp#L21) if the Timer instance is stopped.
+- [build.yml](./.github/workflows/build.yml).
+- Fixed a problem on [ttf2png.py](./scripts/ttf2png.py).
+- Fixed CodeFactor review badge on [README.md](./README.md#L26)
 
 ### Removed
 - include/YamlTypes.hpp

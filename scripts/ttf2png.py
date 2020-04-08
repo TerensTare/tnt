@@ -25,6 +25,6 @@ w, h = img.size
 for y in range(h):
     for x in range(w):
         if data[x, y] == (255, 255, 255, 255):
-            data[x, y] == (255, 255, 255, 0)
+            data[x, y] = (255, 255, 255, 0)
 
 img.save(argv[1][:-3]+"png")
