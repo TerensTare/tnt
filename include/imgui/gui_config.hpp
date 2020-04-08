@@ -11,9 +11,15 @@ namespace tnt::ImGui
 int get_window_w() noexcept;
 int get_window_h() noexcept;
 
-void set_bg_color(unsigned char r, unsigned char g,
-                  unsigned char b, unsigned char a) noexcept;
+// void set_bg_color(unsigned char r, unsigned char g,
+//                   unsigned char b, unsigned char a) noexcept;
 unsigned char *get_bg_color() noexcept;
+
+void set_font(char const *name) noexcept;
+char const *get_font() noexcept;
+
+void set_font_size(int size) noexcept;
+int get_font_size() noexcept;
 
 ////////////
 // button //

@@ -32,7 +32,7 @@ public:
     explicit Player(tnt::Window const *win)
         : tnt::Sprite{
               win, ".\\bin\\x64\\release\\player.png",
-              tnt::Rectangle{0.f, 0.f, 100.f, 100.f}} {}
+              tnt::Rectangle{0.f, 0.f, 208.f, 384.f}} {}
 
     virtual void Update(long long elapsed) noexcept override
     {
@@ -51,18 +51,14 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
     tnt::Window *window{new tnt::Window{
         "The TnT Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
+        800, 600, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
-    tnt::ImGui::make_context(1280, 720);
+    window->setClearColor({10, 210, 255, 255});
+    tnt::ImGui::make_context(window);
 
     SDL_Rect dst{0, 0, 100, 100};
-    auto &input{tnt::InputManager::This()};
-
     tnt::Sprite *player{new Player{window}};
-
     tnt::Timer timer;
-
-    window->setClearColor({0, 0, 0, 255});
 
     while (!quit)
     {
@@ -71,24 +67,28 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
                 quit = true;
         tnt::ImGui::update_context();
 
-        input.UpdatePreviousInput();
-        input.UpdateCurrentInput();
+        tnt::input::updatePrevious();
+        tnt::input::updateCurrent();
+
+        timer.stop();
 
         window->Clear();
 
         tnt_imgui_begin();
 
-        if (button(window, IMGEN_WIDGET_ID(1), 300, 400))
+        if (button(window, IMGUI_ID, "Hello", 300, 400))
             window->setTitle(random_name().data());
 
-        hslider_int(window, IMGEN_WIDGET_ID(2), 500, 100,
+        hslider_int(window, IMGUI_ID, 500, 100,
                     0, 400, dst.w);
-        hslider_int(window, IMGEN_WIDGET_ID(3), 500, 140,
+        hslider_int(window, IMGUI_ID, 500, 140,
                     0, 400, dst.h);
 
         tnt::Rectangle area{dst.x, dst.y, dst.w, dst.h};
 
         tnt_imgui_finish();
+
+        timer.start();
 
         player->getSprite()->Draw(window, area);
         window->Render();
@@ -97,14 +97,15 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
         timer.reset();
 
         if (!quit)
-            std::cout << (1000 / dt) + 1 << " fps\n";
+            std::cout << (1000 / dt) << " fps\n";
 
-        SDL_Delay(16);
+        SDL_Delay(1);
     }
 
     delete player;
 
     tnt::ImGui::destroy_context();
+    tnt::input::close();
 
     delete window;
 

@@ -128,3 +128,10 @@ void tnt::Window::setClearColor(SDL_Color const &color) noexcept
 {
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 }
+
+SDL_Color tnt::Window::getClearColor() const noexcept
+{
+    SDL_Color col;
+    SDL_GetRenderDrawColor(renderer, &col.r, &col.g, &col.b, &col.a);
+    return col;
+}

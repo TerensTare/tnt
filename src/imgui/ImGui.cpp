@@ -1,7 +1,7 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-#include <SDL2/SDL_events.h>
+#include <SDL2/SDL_image.h>
 
 #include "imgui/ImGui.hpp"
 #include "imgui/gui_config.hpp"
@@ -16,8 +16,15 @@ struct global_config
 {
     int w;
     int h;
+    int font_size;
     SDL_Color bg;
-} * global_cfg{new global_config{.w = 0, .h = 0, .bg = SDL_Color{10, 210, 255, 255}}};
+    std::string default_font;
+    SDL_Texture *font_tex;
+} * global_cfg{new global_config{
+        .w = 0,
+        .h = 0,
+        .font_size = 14,
+        .default_font = ".\\bin\\x64\\release\\zeldadxt.png"}};
 
 struct button_config
 {
@@ -75,7 +82,6 @@ struct context_t
     int mouse_x, mouse_y;
     bool mouse_down;
     int active, hot;
-    SDL_Event event;
 } * context{new context_t{}};
 
 ////////////
@@ -92,6 +98,13 @@ unsigned char *get_bg_color() noexcept
         global_cfg->bg.g, global_cfg->bg.b, global_cfg->bg.a};
     return arr;
 }
+
+// TODO: load the other font texture here
+void set_font(char const *name) noexcept { global_cfg->default_font = name; }
+char const *get_font() noexcept { return global_cfg->default_font.c_str(); }
+
+void set_font_size(int size) noexcept { global_cfg->font_size = size; }
+int get_font_size() noexcept { return global_cfg->font_size; }
 
 ////////////
 // button //
@@ -267,34 +280,62 @@ auto draw_rect = [](Window *win, SDL_Rect const &rect, SDL_Color const &color) -
     win->setClearColor(global_cfg->bg);
 };
 
+auto draw_char = [](Window *win, char letter, int x, int y, int size = global_cfg->font_size) -> void {
+    SDL_Rect from;
+    int delta{static_cast<int>(letter) - 33};
+
+    from.x = (delta % 10);
+    from.y = ((delta - from.x) / 10);
+
+    from.x = from.x * global_cfg->font_size;
+    from.y = from.y * global_cfg->font_size;
+
+    from.w = global_cfg->font_size;
+    from.h = global_cfg->font_size;
+    SDL_Rect where{x, y, size, size};
+    SDL_RenderCopy(win->getRenderer(), global_cfg->font_tex, &from, &where);
+};
+
+auto draw_text = [](Window *win, std::string_view text, int x, int y, int size = global_cfg->font_size) -> void {
+    for (auto it{text.begin()}; it != text.end(); ++it)
+    {
+        draw_char(win, *it, x, y, size);
+        x = x + size;
+    }
+};
+
 ///////////////////
 // context stuff //
 ///////////////////
 
-void make_context(int w, int h) noexcept
+void make_context(Window *win) noexcept
 {
     if (global_cfg->w == 0) // (maybe) make these 0 on destroy_context
-        global_cfg->w = w;
+        global_cfg->w = win->getWidth();
     if (global_cfg->h == 0)
-        global_cfg->h = h;
+        global_cfg->h = win->getHeight();
 
-    auto pos{InputManager::This().MousePosition()};
+    global_cfg->font_tex = IMG_LoadTexture(win->getRenderer(), global_cfg->default_font.c_str());
+    SDL_SetTextureBlendMode(global_cfg->font_tex, SDL_BLENDMODE_BLEND);
+
+    global_cfg->bg = win->getClearColor();
+
+    auto pos{input::mousePosition()};
 
     context->mouse_x = pos.first;
     context->mouse_y = pos.second;
-    context->mouse_down = InputManager::This().MouseButtonDown(0);
+    context->mouse_down = input::mouseButtonDown(0);
     context->active = 0;
     context->hot = 0;
 }
 
 void update_context() noexcept
 {
-    auto pos{InputManager::This().MousePosition()};
+    auto pos{input::mousePosition()};
 
     context->mouse_x = pos.first;
     context->mouse_y = pos.second;
-    context->mouse_down = InputManager::This().MouseButtonDown(0);
-    SDL_PollEvent(&context->event);
+    context->mouse_down = input::mouseButtonDown(0);
 }
 
 void destroy_context() noexcept
@@ -307,6 +348,9 @@ void destroy_context() noexcept
 
     delete hslider_cfg;
     hslider_cfg = nullptr;
+
+    SDL_DestroyTexture(global_cfg->font_tex);
+    global_cfg->font_tex = nullptr;
 
     delete global_cfg;
     global_cfg = nullptr;
@@ -325,7 +369,7 @@ void destroy_context() noexcept
 // widgets //
 /////////////
 
-int button(Window *win, int id, int x, int y) noexcept
+int button(Window *win, int id, std::string_view text, int x, int y) noexcept
 {
     if (on_rect(x, y, button_cfg->w, button_cfg->h))
     {
@@ -349,6 +393,9 @@ int button(Window *win, int id, int x, int y) noexcept
         widgetColor = button_cfg->idle_color;
 
     draw_rect(win, dst, widgetColor);
+
+    int font_size{(button_cfg->w - 10) / static_cast<int>(text.size())};
+    draw_text(win, text, x + 5, y + (button_cfg->h / 2), font_size);
 
     if (context->hot == id && context->active == id)
         return 1;
@@ -446,6 +493,7 @@ int slider_float(
     return 0;
 }
 
+// TODO: WIP
 int slider_byte(
     Window *win, int id, int x, int y,
     unsigned char min, unsigned char max, unsigned char &value) noexcept

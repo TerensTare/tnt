@@ -1,7 +1,11 @@
 #ifndef TNT_IMGUI_LIB_HPP
 #define TNT_IMGUI_LIB_HPP
 
-#define IMGEN_WIDGET_ID(N) (((__LINE__ << 8) | ((N)&0xFFFF)) ^ ((long long)&__FILE__))
+#define IMGEN_WIDGET_ID(N) (((__LINE__ << 8) | ((N)&0xFF)) ^ ((long long)&__FILE__))
+
+#define IMGUI_ID IMGEN_WIDGET_ID(1)
+
+#include <string_view>
 
 // TODO: seems that slider_* doesn't support setting a minimum. Fix that.
 // TODO: more widgets:
@@ -10,11 +14,11 @@
 // window with Begin() and End()
 // vertical and horizontal slider
 // etc...
+// TODO: use real font files rather than *.png files
+// and find a way to display text correctly..
 // TODO: better widget id generator.
 // TODO: load from config file.
 // TODO: keyboard navigation.
-// TODO: find a way to return the widgets color from the get_* functions.
-// TODO: store the context on the header file so that there is no need to pass it on every function.
 
 // TODO(maybe):
 // move slider's modified value before min/max ??
@@ -31,7 +35,7 @@ namespace ImGui
 // context //
 /////////////
 
-void make_context(int w, int h) noexcept;
+void make_context(Window *win) noexcept;
 void update_context() noexcept;
 void destroy_context() noexcept;
 
@@ -39,7 +43,7 @@ void destroy_context() noexcept;
 // widgets //
 /////////////
 
-int button(Window *win, int id, int x, int y) noexcept;
+int button(Window *win, int id, std::string_view text, int x, int y) noexcept;
 
 int slider_int(Window *win, int id, int x, int y,
                int min, int max, int &value) noexcept;

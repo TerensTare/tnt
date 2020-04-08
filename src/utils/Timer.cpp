@@ -5,25 +5,33 @@
 #include "utils/Timer.hpp"
 
 tnt::Timer::Timer()
-    : beginning{std::chrono::steady_clock::now()},
-      isPaused{false} {}
+    : isPaused{false}, deltaPaused{0},
+      beginning{std::chrono::steady_clock::now()} {}
 
 void tnt::Timer::start() noexcept
 {
     if (isPaused)
+    {
+        deltaPaused = deltaPaused +
+                      std::chrono::duration_cast<std::chrono::milliseconds>(
+                          std::chrono::steady_clock::now() - pausedTime);
         isPaused = false;
+    }
 }
 void tnt::Timer::stop() noexcept
 {
     if (!isPaused)
+    {
+        pausedTime = std::chrono::steady_clock::now();
         isPaused = true;
+    }
 }
 
 void tnt::Timer::reset() noexcept
 {
     // std::atomic_thread_fence(std::memory_order_relaxed);
     beginning = std::chrono::steady_clock::now();
-    std::atomic_thread_fence(std::memory_order_relaxed);
+    // std::atomic_thread_fence(std::memory_order_relaxed);
 }
 
 bool tnt::Timer::paused() const noexcept { return isPaused; }

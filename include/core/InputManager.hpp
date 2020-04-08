@@ -7,41 +7,30 @@
 // TODO: lastKeyPressed.
 // TODO: Joystick and GameController support.
 
-namespace tnt
+// TODO(maybe):
+// rename this header ??
+// SDL_Scancode const& ??
+
+namespace tnt::input
 {
-class InputManager
-{
-public:
-    static InputManager &This();
-    ~InputManager() noexcept;
 
-    bool KeyDown(SDL_Scancode key) const noexcept;
-    bool KeyPressed(SDL_Scancode key) const noexcept;
-    bool KeyReleased(SDL_Scancode key) const noexcept;
+void close() noexcept;
 
-    bool MouseButtonDown(Uint32 button) const noexcept;
-    bool MouseButtonPressed(Uint32 button) const noexcept;
-    bool MouseButtonReleased(Uint32 button) const noexcept;
+bool keyDown(SDL_Scancode key) noexcept;
+bool keyPressed(SDL_Scancode key) noexcept;
+bool keyReleased(SDL_Scancode key) noexcept;
 
-    void UpdateCurrentInput();
-    void UpdatePreviousInput();
+bool mouseButtonDown(Uint32 button) noexcept;
+bool mouseButtonPressed(Uint32 button) noexcept;
+bool mouseButtonReleased(Uint32 button) noexcept;
 
-    unsigned LastMouseButton() noexcept;
+void updateCurrent();
+void updatePrevious();
 
-    std::pair<int, int> MousePosition() const noexcept;
+unsigned lastMouseButton() noexcept;
 
-private:
-    InputManager();
+std::pair<int, int> mousePosition() noexcept;
 
-    int keyLength;
-    int mX, mY;
-
-    Uint32 currentMouse;
-    Uint32 prevMouse;
-    Uint32 lastMouse;
-    const Uint8 *currentkb;
-    std::vector<Uint8> prevkb;
-};
-} // namespace tnt
+} // namespace tnt::input
 
 #endif //!TNT_INPUT_MANAGER_HPP

@@ -7,7 +7,7 @@
 
 // TODO:
 // Rotate/Scale/Transform: use global coordinates & translate to local coordinates.
-// Find a way to handle rendering.
+// Removable
 
 // TODO(maybe):
 // Widget, Animation, AI ??
@@ -18,6 +18,7 @@
 // or get the texture from AssetManager ??
 // also SpriteComponent::Draw(Rectangle const &location) ??
 // remove all getters/setters and use Components like C-style structures or POD. ??
+// Serializable<T>/concept ??
 
 namespace tnt
 {
@@ -64,7 +65,7 @@ protected:
     Vector scale;
 };
 
-class PhysicsComponent
+class PhysicsComponent : public Component
 {
 public:
     PhysicsComponent(float &mass, Rectangle const &collision_box);

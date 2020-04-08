@@ -15,6 +15,9 @@
 // which (maybe) are stored in a Scene.
 // TODO: handle window resizing.
 // TODO: batch rendering.
+
+// TODO(maybe):
+// std::optional return for functions that may have errors.
 namespace tnt
 {
 class SpriteComponent;
@@ -55,6 +58,7 @@ public:
     void Clear() noexcept;
 
     void setClearColor(SDL_Color const &color) noexcept;
+    SDL_Color getClearColor() const noexcept;
 
 private:
     SDL_Renderer *renderer;

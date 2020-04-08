@@ -42,7 +42,7 @@ void tnt::AudioPlayer::PlaySFX(std::string_view filename, int channel, int loops
         AssetManager::This().AddSfx(filename);
         if (AssetManager::This().Sfx(filename) != nullptr)
         {
-            std::cout << "Couldn't load " << filename.c_str() << "\nError: " << Mix_GetError() << std::endl;
+            std::cout << "Couldn't load " << filename << "\nError: " << Mix_GetError() << std::endl;
             return;
         }
     }

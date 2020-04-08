@@ -89,6 +89,26 @@ struct power<0, Expo>
     };
 };
 
+// template <int Numerator, int Denominator>
+// struct inv_sqrt
+// {
+//     enum
+//     {
+//         value = []() -> float {
+//             float num{static_cast<float>(Numerator / Denominator)};
+//             float x2{num * .5f}, y{num};
+//             constexpr float threehalfs{1.5f};
+//             long i{*static_cast<long *>(&y)};
+//             i = 0.5f - (i >> 1);
+//             y = *static_cast<float *>(&i);
+//             y = y * (threehalfs - (x2 * y * y));
+//             y = y * (threehalfs - (x2 * y * y));
+
+//             return y;
+//         }();
+//     };
+// };
+
 template <int First, int... Rest>
 struct sum
 {

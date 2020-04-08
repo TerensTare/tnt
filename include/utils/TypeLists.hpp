@@ -7,6 +7,9 @@
 // TODO: use sth similar to TypeLists to create a decision making AI.
 // NOTE: tl::at can be used carefully as it doesn't check for out of bounds value.
 
+// TODO(maybe):
+// use this to hold Components ??
+
 namespace tnt
 {
 struct NullType
@@ -90,13 +93,7 @@ inline constexpr bool is_positive_v = typename is_positive<T, a, b>::value;
 ////////////
 
 template <typename T>
-struct length
-{
-    enum
-    {
-        value = 1
-    };
-};
+struct length;
 
 template <>
 struct length<NullType>
@@ -107,12 +104,12 @@ struct length<NullType>
     };
 };
 
-template <template <typename, typename> typename List>
-struct length
+template <typename Head, typename Tail>
+struct length<TypeList<Head, Tail>>
 {
     enum
     {
-        value = 1 + typename length<typename List::Tail>::value;
+        value = 1 + length<Tail>::value;
     };
 };
 
@@ -120,25 +117,161 @@ struct length
 // at //
 ////////
 
-template <
-    typename List, int Index,
-    typename detail::enable_if<
-        detail::is_positive<
-            int, length<List>::value,
-            Index>::value,
-        int>::type = 0>
-struct at
+template <typename List, unsigned Index>
+struct at;
+
+template <typename Head, typename Tail>
+struct at<TypeList<Head, Tail>, 0>
 {
-    typedef typename at<typename List::Tail, Index - 1>::value value;
+    typedef Head type;
 };
 
-template <typename List,
-          typename detail::enable_if<true, int>::type>
-struct at<List, 0, (typename detail::enable_if<true, int>::type)0>
+template <typename Head, typename Tail, unsigned Index>
+struct at<TypeList<Head, Tail>, Index>
 {
-    typedef typename List::Head value;
+    typedef typename at<Tail, i - 1>::type type;
 };
 
+template <typename List, typename T>
+struct index;
+
+template <typename T>
+struct index<NullType, T>
+{
+    enum
+    {
+        value = -1
+    };
+};
+
+template <typename T, typename Tail>
+struct index<TypeList<T, Tail>, T>
+{
+    enum
+    {
+        value = 0
+    };
+};
+
+template <typename Head, typename Tail, typename T>
+struct index<TypeList<Head, Tail>, T>
+{
+    enum
+    {
+        value = ((index<Tail, T>::value == -1)
+                     ? (-1)
+                     : (1 + index<Tail, T>::value))
+    };
+};
+
+template <typename List, typename T>
+struct append;
+
+template <>
+struct append<NullType, NullType>
+{
+    typedef NullType type;
+};
+
+template <typename T>
+struct append<NullType, T>
+{
+    typedef TypeList<T, NullType> type;
+};
+
+template <typename Head, typename Tail>
+struct append<NullType, TypeList<Head, Tail>>
+{
+    typedef TypeList<Head, Tail> type;
+};
+
+template <typename Head, typename Tail, typename T>
+struct append<TypeList<Head, Tail>, T>
+{
+    typedef TypeList<Head, typename append<Tail, T>::type> type;
+};
+
+template <typename List, typename T>
+struct erase;
+
+template <typename T>
+struct erase<NullType, T>
+{
+    typedef NullType type;
+};
+
+template <typename T, typename Tail>
+struct erase<TypeList<T, Tail>, T>
+{
+    typedef Tail type;
+};
+
+template <typename Head, typename Tail, typename T>
+struct erase<TypeList<Head, Tail>, T>
+{
+    typedef TypeList<Head, typename erase<Tail, T>::type> type;
+};
+
+template <typename List, typename T>
+struct erase_all;
+
+template <typename T>
+struct erase_all<NullType, T>
+{
+    typedef NullType type;
+};
+
+template <typename T, typename Tail>
+struct erase_all<TypeList<T, Tail>, T>
+{
+    typedef typename erase_all<Tail, T>::type type;
+};
+
+template <typename Head, typename Tail, typename T>
+struct erase_all<TypeList<Head, Tail>, T>
+{
+    typedef TypeList<Head, typename erase_all<Tail, T>::type> type;
+};
+
+template <typename List>
+struct unique_list;
+
+template <>
+struct unique_list<NullType>
+{
+    typedef NullType type;
+};
+
+template <typename Head, typename Tail>
+struct unique_list<TypeList<Head, Tail>>
+{
+    typedef TypeList<
+        Head, typedef typename erase<
+                  typedef typename unique_list<Tail>::type,
+                  Head>::type>
+        type;
+};
+
+template <typename List, typename T, typename U>
+struct replace;
+
+template <typename T, typename U>
+struct replace<NullType, T, U>
+{
+    typedef NullType type;
+};
+
+template <typename T, typename Tail, typename U>
+struct replace<TypeList<T, Tail>, T, U>
+{
+    typedef TypeList<U, Tail> type;
+};
+
+template <typename Head, typename Tail, typename T, typename U>
+struct replace<TypeList<Head, Tail>, T, U>
+{
+    typedef TypeList<Head, typename replace<Tail, T, U>::type> type;
+};
 ///////////
 // using //
 ///////////
@@ -147,7 +280,25 @@ template <typename T>
 using length_v = typename length<T>::value;
 
 template <typename List, int Index>
-using at_v = typename at<List, Index>::value;
+using at_t = typename at<List, Index>::type;
+
+template <typename List, typename T>
+using index_v = index<List, T>::value;
+
+template <typename List, typename T>
+using append_t = typename append<List, T>::type;
+
+template <typename List, typename T>
+using erase_t = typename erase<List, T>::type;
+
+template <typename List, typename T>
+using erase_all_t = typename erase_all<List, T>::type;
+
+template <typename List>
+using unique_list_t = typename unique_list<List>::type;
+
+template <typename List, typename T, typename U>
+using replace_t = typename replace<List, T, U>::type;
 } // namespace tl
 } // namespace tnt
 
