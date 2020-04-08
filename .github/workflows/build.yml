@@ -13,7 +13,7 @@
 # 4. Use PVS-Studio for statical analysis on every commit.
 
 name: build
-on: [push]
+on: ["push", "pull_request"]
 
 jobs:
     get-dependencies:
