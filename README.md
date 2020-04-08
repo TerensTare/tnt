@@ -24,6 +24,7 @@ The project aims to make game development easy enough for anybody that doesn't k
 |Code checker | Badge
 |:------------|:-----:
 |CodeFactor   | ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/TerensTare/tnt/master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3749bb4e09c74f6785177d318bb8ba15)](https://app.codacy.com/manual/terens.t17/tnt?utm_source=github.com&utm_medium=referral&utm_content=TerensTare/tnt&utm_campaign=Badge_Grade_Dashboard)
 | Coveralls   |[![Coverage Status](https://coveralls.io/repos/github/TerensTare/tnt/badge.svg?branch=master)](https://coveralls.io/github/TerensTare/tnt?branch=master)
 More code quality reviews coming soon.
 
