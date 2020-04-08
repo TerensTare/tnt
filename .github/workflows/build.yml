@@ -12,8 +12,8 @@
 # 3. actions/cache knows there is some cache saved, but still runs downlod process. FIX THAT!!!
 # 4. Use PVS-Studio for statical analysis on every commit.
 
-name: CI
-on: [push]
+name: build
+on: ["push", "pull_request"]
 
 jobs:
     get-dependencies:
@@ -60,6 +60,23 @@ jobs:
                 vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
                 vcpkg integrate install
 
+
+    coveralls:
+        name: Coveralls-actions
+        runs-on: ${{ matrix.os }}
+        steps:
+            - uses: actions/checkout@v1
+            - name: coveralls-build
+              uses: coverallsapp/github-action@master
+              with:
+                  github-token: ${{ secrets.COVERALLS_TOKEN }}
+                  parallel: true
+              
+            - name: Coveralls Finished
+              uses: coverallsapp/github-action@master
+              with:
+                github-token: ${{ secrets.COVERALLS_TOKEN }}
+                parallel-finished: true
 
     tnt:
             runs-on: ${{matrix.os}}
