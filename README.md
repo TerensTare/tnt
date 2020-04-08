@@ -22,7 +22,7 @@ know C++. Meanwhile the engine should be powerful enough for a C++ developer.
 
 ## Build status
 
-![Github Actions](https://github.com/TerensTare/tnt/workflows/build/badge.svg)
+![Github Actions](https://github.com/TerensTare/tnt/workflows/buildgit/badge.svg)
 
 ## Code quality
 

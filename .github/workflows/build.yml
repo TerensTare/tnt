@@ -71,7 +71,7 @@ jobs:
               with:
                   github-token: ${{ secrets.COVERALLS_TOKEN }}
                   parallel: true
-              
+
             - name: Coveralls Finished
               uses: coverallsapp/github-action@master
               with:
