@@ -54,7 +54,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
     window->setClearColor({10, 210, 255, 255});
     tnt::ImGui::make_context(window);
 
-    SDL_Rect dst{0, 0, 100, 100};
+    SDL_Rect dst{0, 0, 150, 150};
     tnt::Sprite *player{new Player{window}};
     tnt::Timer timer;
 
@@ -79,9 +79,9 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
             window->setTitle(random_name().data());
 
         hslider_int(window, IMGUI_ID, 500, 100,
-                    0, 400, dst.w);
+                    100, 400, &dst.w);
         hslider_int(window, IMGUI_ID, 500, 140,
-                    0, 400, dst.h);
+                    100, 400, &dst.h);
 
         tnt::Rectangle area{dst.x, dst.y, dst.w, dst.h};
 

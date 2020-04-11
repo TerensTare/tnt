@@ -1,9 +1,11 @@
 #ifndef TNT_SPRITE_HPP
 #define TNT_SPRITE_HPP
 
-#include "math/Rectangle.hpp"
+#include <map>
 #include "ecs/Object.hpp"
 #include "ecs/Component.hpp"
+
+// TODO: addAnimation ??
 
 // TODO(maybe):
 // move this to the gui folder.
@@ -11,6 +13,7 @@
 namespace tnt
 {
 class Window;
+class Timer;
 
 class Sprite : virtual public Object
 {
@@ -24,10 +27,14 @@ public:
     ScaleComponent *getScale() const noexcept;
     SpriteComponent *getSprite() const noexcept;
 
+    void playAnimation(std::string_view animation) noexcept;
+
 protected:
     RotateComponent *rotate;
     ScaleComponent *scale;
     SpriteComponent *sprite;
+    Timer *timer;
+    std::map<std::string, AnimationComponent *> animations;
 };
 } // namespace tnt
 

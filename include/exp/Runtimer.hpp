@@ -1,13 +1,12 @@
 #ifndef RUNTIMER_HPP
 #define RUNTIMER_HPP
 
+#include <string>
 #include <filesystem>
 #include <unordered_map>
 
 // library to handle Hot Code Reloading.
 // author: Terens Tare.
-
-// TODO(v): make it cross-platform by using SDL2.
 
 // TODO: experimental.
 // TODO(test): automatically update RuntimeObject on trigger.
@@ -29,21 +28,18 @@
 // && RuntimeObject::unload moved to RuntimeManager ??
 // Store RuntimeObject-s as a map with their build command as a key ??
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-
 namespace tnt::rpp
 {
 
 class RuntimeManager
 {
 public:
+    RuntimeManager();
     ~RuntimeManager() noexcept;
 
-    void LoadObject(char const *name);
+    void LoadObject(char const *name, char const *srcFile);
 
-    FARPROC LoadFunction(char const *handle, char const *name);
-
+    void *LoadFunction(char const *handle, char const *name);
     void Update();
     void UpdateObject(char const *name);
 
@@ -52,13 +48,14 @@ public:
 private:
     struct RuntimeObject
     {
-        char const *bldcmd;
         bool valid;
-        HINSTANCE dll;
+        std::string bldcmd;
         std::filesystem::file_time_type lastTime;
+        void *dll;
     };
 
-    std::unordered_map<char const *, RuntimeObject *> objects;
+    std::unordered_map<std::string, std::string> objectSrc;
+    std::unordered_map<std::string, RuntimeObject *> objects;
 };
 } // namespace tnt::rpp
 

@@ -46,19 +46,19 @@ void destroy_context() noexcept;
 int button(Window *win, int id, std::string_view text, int x, int y) noexcept;
 
 int slider_int(Window *win, int id, int x, int y,
-               int min, int max, int &value) noexcept;
+               int min_, int max_, int *value) noexcept;
 int slider_float(Window *win, int id, int x, int y,
-                 float min, float max, float &value) noexcept;
+                 float min_, float max_, float *value) noexcept;
 int slider_byte(Window *win, int id, int x, int y,
-                unsigned char min, unsigned char max, unsigned char &value) noexcept;
+                unsigned char min_, unsigned char max_, unsigned char *value) noexcept;
 
 // TODO: implement these
 int hslider_int(Window *win, int id, int x, int y,
-                int min, int max, int &value) noexcept;
+                int min_, int max_, int *value) noexcept;
 int hslider_float(Window *win, int id, int x, int y,
-                  float min, float max, float &value) noexcept;
+                  float min_, float max_, float *value) noexcept;
 int hslider_byte(Window *win, int id, int x, int y,
-                 unsigned char min, unsigned char max, unsigned char &value) noexcept;
+                 unsigned char min_, unsigned char max_, unsigned char *value) noexcept;
 
 } // namespace ImGui
 } // namespace tnt

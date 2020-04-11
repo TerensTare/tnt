@@ -6,10 +6,13 @@
 #include "math/Rectangle.hpp"
 
 // TODO:
+// AnimationComponent creates a new SDL_Texture on it's constructor. Fix that!!
+// (maybe) use a weak_ptr on SpriteComponent ??
 // Rotate/Scale/Transform: use global coordinates & translate to local coordinates.
 // Removable
 
 // TODO(maybe):
+// rename AnimationComponent to just Animation ??
 // Widget, Animation, AI ??
 // PhysicsComponent::{add/remove}Mass ?? also modify collision_box on runtime ??
 // Rename every component to a shorter name, ex. *Comp ??
@@ -23,6 +26,7 @@
 namespace tnt
 {
 class Window;
+class Timer;
 
 struct infinite_mass : std::exception
 {
@@ -41,10 +45,10 @@ class RotateComponent : public Component
 public:
     explicit RotateComponent(float radian);
 
-    void setAngle(float &radian) noexcept;
+    void setAngle(float const &radian) noexcept;
     float getAngle() const noexcept;
 
-    void Rotate(float &radian) noexcept;
+    void Rotate(float const &radian) noexcept;
 
 protected:
     float angle;
@@ -68,10 +72,10 @@ protected:
 class PhysicsComponent : public Component
 {
 public:
-    PhysicsComponent(float &mass, Rectangle const &collision_box);
-    PhysicsComponent(float &mass, float x, float y, float &w, float &h);
+    PhysicsComponent(float const &mass, Rectangle const &collision_box);
+    PhysicsComponent(float const &mass, float x, float y, float &w, float &h);
 
-    void setMass(float &mass);
+    void setMass(float const &mass);
     float getMass() const noexcept(noexcept(invMass > 0.f));
 
     Vector getVelocity() const noexcept;
@@ -107,7 +111,10 @@ public:
     SDL_Texture *getTexture() const noexcept;
     void setTexture(Window const *win, std::string_view filename) noexcept;
 
-private:
+    int getWidth() const noexcept;
+    int getHeight() const noexcept;
+
+protected:
     bool clipped;
     Rectangle clipRect;
     int w, h;
@@ -117,8 +124,30 @@ private:
 class AnimationComponent
     : public SpriteComponent
 {
-protected:
-    // TODO: WIP
+public:
+    AnimationComponent(
+        Window const *win, std::string_view filename,
+        int framesNum, float speed, bool horizontal,
+        Rectangle const &clip);
+    ~AnimationComponent() noexcept;
+
+    void setLoop(bool loop_) noexcept;
+    bool isLoop() const noexcept;
+
+    bool running() const noexcept;
+
+    // TODO: find a better workaround for this
+    void update(Timer *timer) noexcept;
+
+private:
+    bool done;
+    bool loop;
+    bool vertical;
+    float animSpeed;
+    float timePerFrame;
+    float startX, startY;
+    int frameCount;
+    long long animTime;
 };
 } // namespace tnt
 

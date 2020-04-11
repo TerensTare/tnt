@@ -3,6 +3,7 @@
 
 #include "ecs/Component.hpp"
 #include "core/Window.hpp"
+#include "utils/Timer.hpp"
 #include "fileIO/AssetManager.hpp"
 
 ////////////
@@ -12,10 +13,10 @@
 tnt::RotateComponent::RotateComponent(float radian)
     : angle{radian} {}
 
-void tnt::RotateComponent::setAngle(float &radian) noexcept { angle = radian; }
+void tnt::RotateComponent::setAngle(float const &radian) noexcept { angle = radian; }
 float tnt::RotateComponent::getAngle() const noexcept { return angle; }
 
-void tnt::RotateComponent::Rotate(float &radian) noexcept { angle += radian; }
+void tnt::RotateComponent::Rotate(float const &radian) noexcept { angle += radian; }
 
 ///////////
 // scale //
@@ -36,15 +37,15 @@ void tnt::ScaleComponent::Scale(Vector const &s) noexcept { scale = Vector{scale
 // physics //
 /////////////
 
-tnt::PhysicsComponent::PhysicsComponent(float &mass, Rectangle const &collision_box)
+tnt::PhysicsComponent::PhysicsComponent(float const &mass, Rectangle const &collision_box)
     : invMass{1 / mass}, velocity{VECTOR_ZERO},
       acceleration{VECTOR_ZERO}, collisionBox{collision_box} {}
 
-tnt::PhysicsComponent::PhysicsComponent(float &mass, float x, float y, float &w, float &h)
+tnt::PhysicsComponent::PhysicsComponent(float const &mass, float x, float y, float &w, float &h)
     : invMass{1 / mass}, velocity{VECTOR_ZERO},
       acceleration{VECTOR_ZERO}, collisionBox{x, y, w, h} {}
 
-void tnt::PhysicsComponent::setMass(float &mass)
+void tnt::PhysicsComponent::setMass(float const &mass)
 {
     invMass = (1 / mass);
 }
@@ -71,6 +72,7 @@ tnt::SpriteComponent::SpriteComponent(
       clipped{false}, clipRect{0, 0, 0, 0},
       texture{AssetManager::This().Image(win, file)}
 {
+    SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
 }
 
 tnt::SpriteComponent::SpriteComponent(
@@ -78,7 +80,10 @@ tnt::SpriteComponent::SpriteComponent(
     Rectangle const &location)
     : RotateComponent{0.f}, ScaleComponent{VECTOR_ONE},
       clipped{true}, clipRect{location},
-      texture{AssetManager::This().Image(win, file)} {}
+      texture{AssetManager::This().Image(win, file)}
+{
+    SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
+}
 
 tnt::SpriteComponent::~SpriteComponent() noexcept
 {
@@ -99,4 +104,49 @@ SDL_Texture *tnt::SpriteComponent::getTexture() const noexcept { return texture;
 void tnt::SpriteComponent::setTexture(Window const *win, std::string_view filename) noexcept
 {
     texture = AssetManager::This().Image(win, filename);
+}
+
+int tnt::SpriteComponent::getWidth() const noexcept { return w; }
+int tnt::SpriteComponent::getHeight() const noexcept { return h; }
+///////////////
+// animation //
+///////////////
+
+tnt::AnimationComponent::AnimationComponent(
+    tnt::Window const *win, std::string_view filename,
+    int framesNum, float speed, bool horizontal,
+    Rectangle const &clip)
+    : RotateComponent{0.f}, ScaleComponent{VECTOR_ONE},
+      SpriteComponent{win, filename, clip},
+      startX{clip.x}, startY{clip.y}, frameCount{framesNum},
+      animSpeed{speed}, animTime{0},
+      timePerFrame{animSpeed / static_cast<float>(frameCount)},
+      vertical{!horizontal}, done{false}, loop{true} {}
+
+void tnt::AnimationComponent::setLoop(bool loop_) noexcept { loop = loop_; }
+bool tnt::AnimationComponent::isLoop() const noexcept { return loop; }
+
+bool tnt::AnimationComponent::running() const noexcept { return !done; }
+
+void tnt::AnimationComponent::update(tnt::Timer *timer) noexcept
+{
+    if (!done)
+    {
+        animTime += timer->deltaTime().count();
+        if (animTime >= animSpeed)
+        {
+            if (loop)
+                animTime -= animSpeed;
+            else
+            {
+                done = true;
+                animTime = animSpeed - timePerFrame;
+            }
+        }
+
+        if (!vertical)
+            clipRect.x = startX + static_cast<int>(animTime / timePerFrame) * w;
+        else
+            clipRect.y = startY + static_cast<int>(animTime / timePerFrame) * h;
+    }
 }

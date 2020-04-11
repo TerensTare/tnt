@@ -1,4 +1,3 @@
-#define DLL_EXPORT
 #include "testlib.h"
 
 #ifdef __cplusplus
@@ -6,7 +5,7 @@ extern "C"
 {
 #endif
 
-    DLL_CODE int answer()
+    DLL_CODE int __cdecl answer()
     {
         return 43;
     }

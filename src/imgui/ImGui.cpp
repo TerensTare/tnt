@@ -177,7 +177,7 @@ unsigned char *get_slider_color() noexcept
 
 void set_slider_thumb_idle_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a) noexcept
 {
-    slider_cfg->thumb_active_color = SDL_Color{r, g, b, a};
+    slider_cfg->thumb_idle_color = SDL_Color{r, g, b, a};
 }
 unsigned char *get_slider_thumb_idle_color() noexcept
 {
@@ -237,7 +237,7 @@ unsigned char *get_hslider_color() noexcept
 
 void set_hslider_thumb_idle_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a) noexcept
 {
-    hslider_cfg->thumb_active_color = SDL_Color{r, g, b, a};
+    hslider_cfg->thumb_idle_color = SDL_Color{r, g, b, a};
 }
 unsigned char *get_hslider_thumb_idle_color() noexcept
 {
@@ -403,9 +403,9 @@ int button(Window *win, int id, std::string_view text, int x, int y) noexcept
 }
 
 int slider_int(Window *win, int id, int x, int y,
-               int min, int max, int &value) noexcept
+               int min_, int max_, int *value) noexcept
 {
-    int ypos{((slider_cfg->h - slider_cfg->thumb_h) * value) / max};
+    int ypos{((slider_cfg->h - slider_cfg->thumb_h) * (*value - min_)) / (max_ - min_)};
     int offset{slider_cfg->w - slider_cfg->thumb_w};
 
     if (on_rect(x, y, slider_cfg->w, slider_cfg->h))
@@ -437,10 +437,10 @@ int slider_int(Window *win, int id, int x, int y,
             mousePos = 0;
         if (mousePos > (slider_cfg->h - 1))
             mousePos = (slider_cfg->h - 1);
-        if (int v{(mousePos * max) / (slider_cfg->h - 1)};
-            v != value)
+        if (int v{(mousePos * max_) / (slider_cfg->h - 1)};
+            v != *value)
         {
-            value = v;
+            *value = v;
             return 1;
         }
     }
@@ -449,9 +449,9 @@ int slider_int(Window *win, int id, int x, int y,
 
 int slider_float(
     Window *win, int id, int x, int y,
-    float min, float max, float &value) noexcept
+    float min_, float max_, float *value) noexcept
 {
-    int ypos{static_cast<int>(((slider_cfg->h - slider_cfg->thumb_h) * value) / max)};
+    int ypos{static_cast<int>(((slider_cfg->h - slider_cfg->thumb_h) * (*value - min_)) / (max_ - min_))};
     int offset{slider_cfg->w - slider_cfg->thumb_w};
 
     if (on_rect(x, y, slider_cfg->w, slider_cfg->h))
@@ -483,10 +483,10 @@ int slider_float(
             mousePos = 0;
         if (mousePos > (slider_cfg->h - 1))
             mousePos = (slider_cfg->h - 1);
-        if (float v{static_cast<float>((mousePos * max) / (slider_cfg->h - 1))};
-            v != value)
+        if (float v{static_cast<float>((mousePos * max_) / (slider_cfg->h - 1))};
+            v != *value)
         {
-            value = v;
+            *value = v;
             return 1;
         }
     }
@@ -496,9 +496,9 @@ int slider_float(
 // TODO: WIP
 int slider_byte(
     Window *win, int id, int x, int y,
-    unsigned char min, unsigned char max, unsigned char &value) noexcept
+    unsigned char min_, unsigned char max_, unsigned char *value) noexcept
 {
-    int ypos{static_cast<int>(((slider_cfg->h - slider_cfg->thumb_h) * value) / max)};
+    int ypos{static_cast<int>(((slider_cfg->h - slider_cfg->thumb_h) * (*value - min_)) / (max_ - min_))};
     int offset{slider_cfg->w - slider_cfg->thumb_w};
 
     if (on_rect(x, y, slider_cfg->w, slider_cfg->h))
@@ -530,10 +530,10 @@ int slider_byte(
             mousePos = 0;
         if (mousePos > (slider_cfg->h - 1))
             mousePos = (slider_cfg->h - 1);
-        unsigned char v{static_cast<unsigned char>((mousePos * max) / (slider_cfg->h - 1))};
-        if (v != value)
+        unsigned char v{static_cast<unsigned char>((mousePos * max_) / (slider_cfg->h - 1))};
+        if (v != *value)
         {
-            value = v;
+            *value = v;
             return 1;
         }
     }
@@ -541,9 +541,9 @@ int slider_byte(
 }
 
 int hslider_int(Window *win, int id, int x, int y,
-                int min, int max, int &value) noexcept
+                int min_, int max_, int *value) noexcept
 {
-    int xpos{((hslider_cfg->w - hslider_cfg->thumb_w) * value) / max};
+    int xpos{((hslider_cfg->w - hslider_cfg->thumb_w) * (*value - min_) / (max_ - min_))};
     int offset{hslider_cfg->h - hslider_cfg->thumb_h};
 
     if (on_rect(x, y, hslider_cfg->w, hslider_cfg->h))
@@ -576,22 +576,21 @@ int hslider_int(Window *win, int id, int x, int y,
         if (mousePos > (hslider_cfg->w - 1))
             mousePos = (hslider_cfg->w - 1);
 
-        if (int v{(mousePos * max) / (hslider_cfg->w - 1)};
-            v != value)
+        if (int v{min_ + (mousePos * (max_ - min_)) / (hslider_cfg->w - 1)};
+            v != *value)
         {
-            value = v;
+            *value = v;
             return 1;
         }
     }
     return 0;
 }
 
-// TODO: WIP
 int hslider_float(
     Window *win, int id, int x, int y,
-    float min, float max, float &value) noexcept
+    float min_, float max_, float *value) noexcept
 {
-    int xpos{static_cast<int>(((hslider_cfg->w - hslider_cfg->thumb_w) * value) / max)};
+    int xpos{static_cast<int>(((hslider_cfg->w - hslider_cfg->thumb_w) * (*value - min_)) / (max_ - min_))};
     int offset{hslider_cfg->h - hslider_cfg->thumb_h};
 
     if (on_rect(x, y, hslider_cfg->w, hslider_cfg->h))
@@ -624,10 +623,10 @@ int hslider_float(
         if (mousePos > (hslider_cfg->w - 1))
             mousePos = (hslider_cfg->w - 1);
 
-        if (float v{static_cast<float>((mousePos * max) / (hslider_cfg->w - 1))};
-            v != value)
+        if (float v{static_cast<float>((mousePos * max_) / (hslider_cfg->w - 1))};
+            v != *value)
         {
-            value = v;
+            *value = v;
             return 1;
         }
     }
@@ -637,9 +636,9 @@ int hslider_float(
 // TODO: WIP
 int hslider_byte(
     Window *win, int id, int x, int y,
-    unsigned char min, unsigned char max, unsigned char &value) noexcept
+    unsigned char min_, unsigned char max_, unsigned char *value) noexcept
 {
-    int ypos{static_cast<int>(((slider_cfg->h - slider_cfg->thumb_h) * value) / max)};
+    int ypos{static_cast<int>(((slider_cfg->h - slider_cfg->thumb_h) * (*value - min_)) / (max_ - min_))};
     int offset{slider_cfg->w - slider_cfg->thumb_w};
 
     if (on_rect(x, y, slider_cfg->w, slider_cfg->h))
@@ -671,10 +670,10 @@ int hslider_byte(
             mousePos = 0;
         if (mousePos > (slider_cfg->h - 1))
             mousePos = (slider_cfg->h - 1);
-        unsigned char v{static_cast<unsigned char>((mousePos * max) / (slider_cfg->h - 1))};
-        if (v != value)
+        unsigned char v{static_cast<unsigned char>((mousePos * max_) / (slider_cfg->h - 1))};
+        if (v != *value)
         {
-            value = v;
+            *value = v;
             return 1;
         }
     }

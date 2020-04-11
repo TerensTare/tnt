@@ -1,0 +1,1 @@
+cl /EHsc /O2 /LD /std:c++17 /I..\include testlib.c /DDLL_EXPORT /Fetest.dll

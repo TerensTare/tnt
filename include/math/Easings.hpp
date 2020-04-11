@@ -217,7 +217,7 @@ inline float EaseIn(float time, float begin, float change, float duration)
 
 inline float EaseOut(float time, float begin, float change, float duration)
 {
-	if (time == duration)
+	if (fabs(time - duration) < 1e-11)
 		return begin + change;
 	else
 		return change * (-powf(2, -10 * time / duration) + 1) + begin;
@@ -227,7 +227,7 @@ inline float EaseInOut(float time, float begin, float change, float duration)
 {
 	if (time == 0)
 		return begin;
-	if (time == duration)
+	if (fabs(time - duration) < 1e-11)
 		return change;
 	if ((time /= duration / 2) < 1)
 		return change / 2 * powf(2, 10 * (time - 1)) + begin;

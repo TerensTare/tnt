@@ -38,7 +38,7 @@ SDL_Texture *tnt::pcg::staticNoise(SDL_Renderer *ren, int w, int h)
             pixels[pos] = color;
         }
 
-    delete pixels;
+    delete[] pixels;
     SDL_UnlockTexture(ret);
     return ret;
 }

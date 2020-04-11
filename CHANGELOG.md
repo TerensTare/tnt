@@ -4,8 +4,29 @@ All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
-## 2020-04-08
+## 2020-04-11
+# Changed
+- class RuntimeManager now uses SDL2, even thought it is not completely ready for "release" yet.
+- Some float comparisons on Easings.hpp, Rectangle.hpp and Vector.hpp.
+- `operator delete` to `operator delete[]` for pixels at [Noise.cpp](src/pcg/Noise.cpp)
 
+
+## 2020-04-09
+## Added
+- Added folder rpp on tests.
+- Some data and functions on AnimationComponent.
+- Minimum value support for slider and hslider widgets.
+
+### Changed
+- Moved the Github Actions status icon on to of the README.md file.
+- ImGui widgets that modify values now take a pointer to the value rather than a reference.
+- min and max at slider and hslider widgets to min_ and max_ so that the names don't collide with any stl algorithms.
+
+### Removed
+- The build status header on README.md
+
+
+## 2020-04-08
 ### Changed
 - [`void Timer::start()`](./include/utils/Timer.hpp#L21) and [`void Timer::stop()`](./include/utils/Timer.hpp#L23) implementation.
 - [`Timer::deltaTime()`](./include/utils/Timer.hpp#L27) now calls [`Timer::start()`](./include/utils/Timer.hpp#L21) if the Timer instance is stopped.
@@ -21,6 +42,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - test.json
 - `safe_enum` and `curiously_recurring_template` from include/utils/TypeUtils.hpp.
 - redundant `virtual` on functions that are marked as `override`.
+
 
 ## 2020-04-07
 ### Added

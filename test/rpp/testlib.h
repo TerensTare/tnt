@@ -3,6 +3,7 @@
 
 #ifdef DLL_EXPORT
 #define DLL_CODE __declspec(dllexport)
+
 #else
 #define DLL_CODE __declspec(dllimport)
 #endif
@@ -12,7 +13,7 @@ extern "C"
 {
 #endif
 
-    DLL_CODE int answer();
+    DLL_CODE int __cdecl answer();
 
 #ifdef __cplusplus
 }

@@ -44,7 +44,7 @@ public:
     Text(std::string_view, int x, int y, int w = 14, int h = 14);
     ~Text() noexcept;
 
-    virtual void Update(long long elapsed) override;
+    void Update(long long elapsed) override;
     virtual void Draw(Window const *target);
 
 protected:

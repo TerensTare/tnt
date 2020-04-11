@@ -62,19 +62,19 @@ tnt::AssetManager &tnt::AssetManager::This()
     return inst;
 }
 
-SDL_Texture *tnt::AssetManager::LoadText(tnt::Window const *win, TTF_Font *font, std::string_view text, SDL_Color color)
+SDL_Texture *tnt::AssetManager::LoadText(tnt::Window const *win, TTF_Font *font, std::string_view text_, SDL_Color color)
 {
-    SDL_Surface *surf{TTF_RenderText_Solid(font, text.data(), color)};
+    SDL_Surface *surf{TTF_RenderText_Solid(font, text_.data(), color)};
     if (surf == nullptr)
     {
-        std::cout << "Couldn't load text \"" << text << "\".\n\tError: " << TTF_GetError() << std::flush;
+        std::cout << "Couldn't load text \"" << text_ << "\".\n\tError: " << TTF_GetError() << std::flush;
         return nullptr;
     }
 
     SDL_Texture *tex{SDL_CreateTextureFromSurface(win->getRenderer(), surf)};
     if (tex == nullptr)
     {
-        std::cout << "Couldn't turn \"" << text << "\" into a texture.\n\tError: " << SDL_GetError() << std::flush;
+        std::cout << "Couldn't turn \"" << text_ << "\" into a texture.\n\tError: " << SDL_GetError() << std::flush;
         return nullptr;
     }
 

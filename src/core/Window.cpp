@@ -20,6 +20,7 @@ tnt::Window::Window(
     window = SDL_CreateWindow(title.data(), xpos, ypos, width, height, flags);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    // SDL_RenderSetLogicalSize(renderer, width, height); // with this, the objects will be resized on window size change.
 }
 
 tnt::Window::~Window() noexcept
@@ -106,7 +107,7 @@ void tnt::Window::setIcon(SDL_Surface *icon) noexcept
 
 int *tnt::Window::getBordersSize() const noexcept
 {
-    int arr[5];
+    static int arr[5];
     arr[4] = SDL_GetWindowBordersSize(window, &arr[0], &arr[1], &arr[2], &arr[3]);
     return arr;
 }

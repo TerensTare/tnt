@@ -1,1 +1,0 @@
-cl /EHsc /O2 /std:c++17 /I..\include testlib.c /Fetest.dll /link /DLL

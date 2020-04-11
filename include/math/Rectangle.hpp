@@ -150,8 +150,8 @@ inline Rectangle operator/(Rectangle const &lhs, Vector const &scale) noexcept
 
 inline bool operator==(Rectangle const &lhs, Rectangle const &rhs) noexcept
 {
-    return ((lhs.x == rhs.x) && (lhs.y == rhs.y) &&
-            (lhs.w == rhs.w) && (lhs.h == rhs.h));
+    return ((fabs(lhs.x - rhs.x) < 1e-11) && (fabs(lhs.y - rhs.y) < 1e-11) &&
+            (fabs(lhs.w - rhs.w) < 1e-11) && (fabs(lhs.h - rhs.h) < 1e-11));
 }
 
 inline std::ostream &tnt::operator<<(std::ostream &os, tnt::Rectangle const &rhs)
