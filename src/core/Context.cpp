@@ -1,6 +1,6 @@
 #include "core/Context.hpp"
-#include "fileIO/VirtualFS.hpp"
 #include "core/Window.hpp"
+#include "fileIO/VirtualFS.hpp"
 
 tnt::Context::~Context() noexcept
 {

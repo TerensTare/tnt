@@ -5,11 +5,17 @@
 
 namespace fs = std::filesystem;
 
-tnt::File::File(fs::path const &path)
-    : location{path}, lastTime{fs::last_write_time(path)} {}
+tnt::File::File(fs::path const& path)
+    : location { path }
+    , lastTime { fs::last_write_time(path) }
+{
+}
 
 tnt::File::File(std::string_view name)
-    : location{name}, lastTime{fs::last_write_time(location)} {}
+    : location { name }
+    , lastTime { fs::last_write_time(location) }
+{
+}
 
 tnt::File::operator std::filesystem::path() noexcept
 {
@@ -17,13 +23,13 @@ tnt::File::operator std::filesystem::path() noexcept
 }
 
 template <class Writer, class... Args>
-void tnt::File::Write(Writer const &w, Args &&... args) noexcept
+void tnt::File::Write(Writer const& w, Args&&... args) noexcept
 {
     w.write(std::forward<Args...>(args...));
 }
 
 template <class Reader, class T>
-T &tnt::File::Read(const Reader &r, const char *data) const noexcept
+T& tnt::File::Read(const Reader& r, const char* data) const noexcept
 {
     return r.read(data);
 }

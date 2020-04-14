@@ -2,35 +2,33 @@
 #define TNT_LUA_SANDBOX_HPP
 
 #include <sol/sol.hpp>
+
 #include "core/Config.hpp"
 
 // TODO: add bindings for logger, widgets, Expected<T> etc.
 namespace tnt
 {
-class [[deprecated(
-    "LuaSandbox is not recommended (as it is part of the engine,NOT the SDK). Use LuaManager instead.")]] LuaSandbox
-{
-public:
-    static LuaSandbox &This();
-
-    sol::state *operator->()
+    class [[deprecated(
+        "LuaSandbox is not recommended (as it is part of the engine,NOT the SDK). Use LuaManager instead.")]] LuaSandbox
     {
-        return &lua;
-    }
+      public:
+        static LuaSandbox &This();
 
-private:
-    LuaSandbox();
+        sol::state *operator->() { return &lua; }
 
-    void loadVector();
-    void loadMatrix();
-    // void loadVFS();
-    void loadCamera();
-    void loadTimer();
-    void loadObject();
-    void loadEasings();
+      private:
+        LuaSandbox();
 
-    static sol::state lua;
-};
+        void loadVector();
+        void loadMatrix();
+        // void loadVFS();
+        void loadCamera();
+        void loadTimer();
+        void loadObject();
+        void loadEasings();
+
+        static sol::state lua;
+    };
 } // namespace tnt
 
-#endif //!TNT_LUA_SANDBOX_HPP
+#endif //! TNT_LUA_SANDBOX_HPP

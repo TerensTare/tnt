@@ -1,5 +1,6 @@
-#include <thread>
 #include <iostream>
+#include <thread>
+
 #include "utils/Timer.hpp"
 
 int main()

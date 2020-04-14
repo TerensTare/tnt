@@ -5,15 +5,17 @@
 #include "fileIO/VirtualFS.hpp"
 
 tnt::VirtualFS::VirtualFS()
-    : aliases{{".", basePath},
-              {"scripts", "." PATH_SEPARATOR "scripts"},
-              {"data", "." PATH_SEPARATOR "data"},
-              {"images", "." PATH_SEPARATOR "images"}} {}
+    : aliases { { ".", basePath },
+        { "scripts", "." PATH_SEPARATOR "scripts" },
+        { "data", "." PATH_SEPARATOR "data" },
+        { "images", "." PATH_SEPARATOR "images" } }
+{
+}
 
 tnt::VirtualFS::~VirtualFS() noexcept
 {
     aliases.clear();
-    std::map<std::string_view, std::string_view, std::less<>>{}.swap(aliases);
+    std::map<std::string_view, std::string_view, std::less<>> {}.swap(aliases);
 }
 
 // tnt::VirtualFS &tnt::VirtualFS::This()
@@ -29,7 +31,7 @@ std::string_view tnt::VirtualFS::CurrentDirectory()
 
 void tnt::VirtualFS::mount(std::string_view alias, std::string_view path)
 {
-    aliases.insert({alias, path});
+    aliases.insert({ alias, path });
 }
 
 void tnt::VirtualFS::unmount(std::string_view alias)
@@ -42,7 +44,7 @@ std::string_view tnt::VirtualFS::get(std::string_view alias) const
     return aliases.at(alias);
 }
 
-std::string_view &tnt::VirtualFS::operator[](std::string_view const &alias)
+std::string_view& tnt::VirtualFS::operator[](std::string_view const& alias)
 {
     return aliases[alias];
 }
@@ -59,7 +61,7 @@ std::string_view tnt::VirtualFS::operator>>(std::string_view alias)
 
 std::string_view tnt::VirtualFS::asDir(std::string_view path)
 {
-    std::string ret{path};
+    std::string ret { path };
     ret.append(PATH_SEPARATOR);
     return ret.c_str();
 }

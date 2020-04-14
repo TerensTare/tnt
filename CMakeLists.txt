@@ -7,8 +7,26 @@ cmake_minimum_required(VERSION 3.10)
 set(PROJECT_NAME "TnT")
 project(${PROJECT_NAME} VERSION 0.1.0 LANGUAGES CXX)
 
+# Handle build type.
+set(default_build_type "Release")
+if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+    message(STATUS "Building the TnT Engine in \"${default_build_type}\" mode.")
+    set(CMAKE_BUILD_TYPE "${default_build_type}" 
+        cache string "Choose the type of build." FORCE)
+    set_property(cache CMAKE_BUILD_TYPE PROPERTY STRINGS
+        "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+endif()
+
+# Remove the /RTC* flags in case of compiling with MSVC.
+foreach(flag_var
+        CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
+        CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
+    STRING (REGEX REPLACE "/RTC[^ ]*" "" ${flag_var} "${${flag_var}}")
+endforeach(flag_var)
+# set_property(TARGET TnT APPEND_STRING PROPERTY COMPILE_FLAGS " /RTC1")
+
 set(CMAKE_TOOLCHAIN_FILE 
-    ${VCPKG_EXE_PATH}/scripts/buildsystems/vcpkg.cmake
+    ${VCPKG_EXE_PATH}/../scripts/buildsystems/vcpkg.cmake
     CACHE PATH "TOOLCHAIN")
 
 file(TO_CMAKE_PATH "${PROJECT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
@@ -19,9 +37,10 @@ message(FATAL_ERROR
 endif()
 
 # TODO: an if should be here for cross-platform compiling.
-set(COMMON_COMPILE_OPTIONS "/EHsc /O2")
+set(COMMON_COMPILE_OPTIONS /EHsc /O2)
 set(TNT_COMPILE_OPTIONS ${COMMON_COMPILE_OPTIONS})
 
+include(FindLua)
 include(cmake/StandardProjectSettings.cmake)
 
 # add_library(project_options INTERFACE)
@@ -38,17 +57,19 @@ include(cmake/StaticAnalyzers.cmake)
 
 # Find vcpkg.exe and use it's path.
 find_file(VCPKG_EXE_PATH vcpkg.exe)
-include_directories("${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/include")
+include_directories("${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/include")
+
+message("Vcpkg found at ${VCPKG_EXE_PATH}.")
 
 list(APPEND CMAKE_PREFIX_PATH
-    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2
-    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-gfx
-    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-image
-    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-mixer
-    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-net
-    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/sol2
-    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/fmt
-    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/share/nlohmann_json
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-gfx
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-image
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-mixer
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-net
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sol2
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/fmt
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/nlohmann_json
 )
 
 # Load required packages.
@@ -65,30 +86,31 @@ configure_file(
     "${PROJECT_SOURCE_DIR}/include/version.h.in"
     "${PROJECT_BINARY_DIR}/include/version.h")
 
-# Handle build type.
-set(default_build_type "Release")
-if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-    message(STATUS "Building the TnT Engine in \"${default_build_type}\" mode.")
-    set(CMAKE_BUILD_TYPE "${default_build_type}" cache string "Choose the type of build." FORCE)
-    set_property(cache CMAKE_BUILD_TYPE PROPERTY STRINGS
-        "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
-endif()
-
-message("Building TnT in ${CMAKE_BUILD_TYPE} mode.")
-
 include_directories(include)
 add_subdirectory(src)
 
-if(NOT TNT_UNIT_BUILD)
-    list(APPEND SOURCE_FILES main.cpp)
+set(SOURCE_FILES
+    src/core/Graphics.cpp src/fileIO/VirtualFS.cpp
+    src/core/Window.cpp src/utils/Timer.cpp
+    src/math/Rectangle.cpp
+    src/fileIO/AssetManager.cpp src/core/InputManager.cpp
+    src/ecs/Object.cpp src/ecs/Component.cpp
+    src/ecs/Sprite.cpp src/ImGui/ImGui.cpp)
+
+if (TNT_DO_EXPERIMENTS)
+    list(APPEND SOURCE_FILES exp/Runtimer.cpp)
 endif()
 
-message("Compiling ${SOURCE_FILES}.")
+add_executable(TnT main.cpp ${SOURCE_FILES})
 
-add_executable(TnT ${SOURCE_FILES})
+set_target_properties(TnT PROPERTIES LINKER_LANGUAGE CXX)
 
 target_include_directories(TnT PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
+target_include_directories(TnT PRIVATE ${LUA_INCLUDE_DIR})
 
+find_package(Lua REQUIRED)
+
+target_link_libraries(TnT PRIVATE ${LUA_LIBRARIES})
 target_link_libraries(TnT PRIVATE SDL2::SDL2 SDL2::SDL2main)
 target_link_libraries(TnT PRIVATE SDL2::SDL2_gfx)
 target_link_libraries(TnT PRIVATE SDL2::SDL2_image)
@@ -99,7 +121,7 @@ target_link_libraries(TnT PRIVATE fmt::fmt fmt::fmt-header-only)
 target_link_libraries(TnT PRIVATE nlohmann_json nlohmann_json::nlohmann_json)
 
 target_link_directories(TnT PRIVATE 
-    ${VCPKG_EXE_PATH}/installed/${VCPKG_DEFAULT_TRIPLET}/lib)
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/lib)
 target_compile_options(TnT PRIVATE ${TNT_COMPILE_OPTIONS})
 
 

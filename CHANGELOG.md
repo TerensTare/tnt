@@ -3,16 +3,36 @@ All changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 20202-04-14
+### Added
+- `assets` folder containing all engine assets used in main.cpp.
+- [.clang-format](./.clang-format).
+- [format-proj.ps1](./scripts/format-proj.ps1) to format all .cpp files of the project.
+- The *Building the engine from source* section on README.md
+
+### Removed
+- Coveralls stuff on build.yml.
+- Temporarily removed Tiled-related stuff on AssetManager.
+
+
+## 2020-04-12
+### Added
+- `#include "tiled/TileMap.hpp` to make `tmx::TileMap` a complete type.
+- Full project support for CMake.
+
+### Changed
+- Some stuff on CMakeLists.txt.
+- AddText on class AssetManager is temporary unavailable.
 
 ## 2020-04-11
-# Changed
+### Changed
 - class RuntimeManager now uses SDL2, even thought it is not completely ready for "release" yet.
 - Some float comparisons on Easings.hpp, Rectangle.hpp and Vector.hpp.
 - `operator delete` to `operator delete[]` for pixels at [Noise.cpp](src/pcg/Noise.cpp)
 
 
 ## 2020-04-09
-## Added
+### Added
 - Added folder rpp on tests.
 - Some data and functions on AnimationComponent.
 - Minimum value support for slider and hslider widgets.

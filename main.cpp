@@ -1,38 +1,39 @@
-// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
-// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+// This is an independent project of an individual developer. Dear PVS-Studio,
+// please check it. PVS-Studio Static Code Analyzer for C, C++, C#, and Java:
+// http://www.viva64.com
 
 #include <iostream>
+#include <random>
 
-#include "imgui/gui_config.hpp"
-#include "imgui/ImGui.hpp"
-
-#include "ecs/Sprite.hpp"
-#include "core/Window.hpp"
 #include "core/InputManager.hpp"
+#include "core/Window.hpp"
+#include "ecs/Sprite.hpp"
 #include "fileIO/AssetManager.hpp"
-#include "utils/Timer.hpp"
+#include "imgui/ImGui.hpp"
+#include "imgui/gui_config.hpp"
 #include "math/Rectangle.hpp"
+#include "utils/Timer.hpp"
 
-using tnt::ImGui::button,
-    tnt::ImGui::slider_int,
-    tnt::ImGui::hslider_int;
+using tnt::ImGui::button, tnt::ImGui::slider_int, tnt::ImGui::hslider_int;
 
 // TODO: "dissolve" this code into classes, like Game/Scene/Space, etc.
 
 auto random_name = []() -> std::string_view {
-    static std::string_view names[]{
-        "window", "test", "imgui", "the tnt engine", "hello world"};
+    static std::string_view names[]{"window", "test", "imgui", "the tnt engine",
+                                    "hello world"};
     int idx{std::rand() % 4};
     return names[idx];
 };
 
 class Player : public tnt::Sprite
 {
-public:
+  public:
     explicit Player(tnt::Window const *win)
         : tnt::Sprite{
-              win, ".\\bin\\x64\\release\\player.png",
-              tnt::Rectangle{0.f, 0.f, 208.f, 384.f}} {}
+              win,
+              std::move(std::string{SDL_GetBasePath()}.append("player.png")),
+              tnt::Rectangle{0.f, 0.f, 208.f, 384.f}}
+    {}
 
     void Update(long long elapsed) noexcept override
     {
@@ -42,14 +43,15 @@ public:
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 {
-    std::srand(static_cast<unsigned>(time(0)));
+    std::random_device rd;
+    std::srand(rd());
     bool quit{false};
 
     SDL_Color bg{0, 0, 0, 255};
 
     tnt::Window *window{new tnt::Window{
-        "The TnT Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        800, 600, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
+        "The TnT Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800,
+        600, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
     window->setClearColor({10, 210, 255, 255});
     tnt::ImGui::make_context(window);
@@ -78,10 +80,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
         if (button(window, IMGUI_ID, "Hello", 300, 400))
             window->setTitle(random_name().data());
 
-        hslider_int(window, IMGUI_ID, 500, 100,
-                    100, 400, &dst.w);
-        hslider_int(window, IMGUI_ID, 500, 140,
-                    100, 400, &dst.h);
+        hslider_int(window, IMGUI_ID, 500, 100, 100, 400, &dst.w);
+        hslider_int(window, IMGUI_ID, 500, 140, 100, 400, &dst.h);
 
         tnt::Rectangle area{dst.x, dst.y, dst.w, dst.h};
 

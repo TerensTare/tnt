@@ -1,15 +1,14 @@
 #include "core/InputManager.hpp"
 
-namespace tnt::input
-{
+namespace tnt::input {
 int keyLength;
 int mX, mY;
-bool inited{false};
+bool inited { false };
 
 Uint32 currentMouse;
 Uint32 prevMouse;
 Uint32 lastMouse;
-const Uint8 *currentkb;
+const Uint8* currentkb;
 std::vector<Uint8> prevkb;
 
 void init()
@@ -23,7 +22,7 @@ void init()
 
 void tnt::input::close() noexcept
 {
-    for (auto it{prevkb.begin()}; it != prevkb.end(); ++it)
+    for (auto it { prevkb.begin() }; it != prevkb.end(); ++it)
         it = prevkb.erase(it);
     prevkb.clear();
     inited = false;
@@ -58,7 +57,7 @@ bool tnt::input::keyReleased(SDL_Scancode key) noexcept
 
 bool tnt::input::mouseButtonDown(Uint32 button) noexcept
 {
-    Uint32 mask{0};
+    Uint32 mask { 0 };
     GET_MOUSE_MASK(button, mask);
 
     return ((currentMouse & mask) != 0);
@@ -66,14 +65,14 @@ bool tnt::input::mouseButtonDown(Uint32 button) noexcept
 
 bool tnt::input::mouseButtonPressed(Uint32 button) noexcept
 {
-    Uint32 mask{0};
+    Uint32 mask { 0 };
     GET_MOUSE_MASK(button, mask);
     return (((prevMouse & mask) == 0) && ((currentMouse & mask) != 0));
 }
 
 bool tnt::input::mouseButtonReleased(Uint32 button) noexcept
 {
-    Uint32 mask{0};
+    Uint32 mask { 0 };
     GET_MOUSE_MASK(button, mask);
     return (((prevMouse & mask) != 0) && ((currentMouse & mask) == 0));
 }
@@ -82,12 +81,12 @@ bool tnt::input::mouseButtonReleased(Uint32 button) noexcept
 
 unsigned tnt::input::lastMouseButton() noexcept
 {
-    Uint32 mask{0};
+    Uint32 mask { 0 };
 
-    for (int i{0}; i < 5; ++i)
+    for (int i { 0 }; i < 5; ++i)
         if (currentMouse & (1 << i))
             lastMouse = i;
-    for (int i{0}; i < 5; ++i)
+    for (int i { 0 }; i < 5; ++i)
         if (prevMouse & (1 << i))
             lastMouse = i;
 

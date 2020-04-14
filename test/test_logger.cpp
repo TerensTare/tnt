@@ -1,5 +1,5 @@
-#include "utils/Logger.hpp"
 #include "utils/Benchmark.hpp"
+#include "utils/Logger.hpp"
 
 int main()
 {

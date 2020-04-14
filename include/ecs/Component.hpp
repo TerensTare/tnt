@@ -129,7 +129,6 @@ public:
         Window const *win, std::string_view filename,
         int framesNum, float speed, bool horizontal,
         Rectangle const &clip);
-    ~AnimationComponent() noexcept;
 
     void setLoop(bool loop_) noexcept;
     bool isLoop() const noexcept;

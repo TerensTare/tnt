@@ -10,27 +10,23 @@
 
 bool tnt::detail::gfx::Init() noexcept
 {
-    if (!detail::gfx::init)
-    {
-        if (auto res{SDL_Init(SDL_INIT_EVERYTHING)}; res < 0)
-        {
+    if (!detail::gfx::init) {
+        if (auto res { SDL_Init(SDL_INIT_EVERYTHING) }; res < 0) {
             tnt::logger::error("Couldn't initalize SDL2!! Error: {}\n", SDL_GetError());
             return false;
         }
 
 #define flags (IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF | IMG_INIT_WEBP)
 
-        if (auto res{IMG_Init(flags)};
-            (res & flags) != flags)
-        {
+        if (auto res { IMG_Init(flags) };
+            (res & flags) != flags) {
             tnt::logger::error("Couldn't initialize SDL_Image!! Error: {}\n", IMG_GetError());
             return false;
         }
 
 #undef flags
 
-        if (auto res{TTF_Init()}; res == -1)
-        {
+        if (auto res { TTF_Init() }; res == -1) {
             tnt::logger::error("Couldn't initalize SDL_ttf!! Error: {}\n", TTF_GetError());
             return false;
         }

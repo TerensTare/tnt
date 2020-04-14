@@ -23,7 +23,7 @@ int main([[maybe_unused]] int argc,[[maybe_unused]] char* argv[])
 	
 	std::cout << "test error " << SDL_GetError() << '\n';
 	
-	answer = *static_cast<answer_t*>rpp->LoadFunction("test", "answer");
+	answer = *static_cast<answer_t*>(rpp->LoadFunction("test", "answer"));
 	
 	bool running{true};
 	

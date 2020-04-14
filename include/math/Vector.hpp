@@ -138,7 +138,7 @@ inline Vector nlerp(Vector left, Vector right, float pct)
 
 inline bool operator<=(const Vector &lhs, const Vector &rhs) noexcept { return ((lhs.x <= rhs.x) && (lhs.y <= rhs.y)); }
 inline bool operator>=(const Vector &lhs, const Vector &rhs) noexcept { return ((lhs.x >= rhs.x) && (lhs.y >= rhs.y)); }
-inline bool operator==(const Vector &lhs, const Vector &rhs) noexcept {return ((fabs(lhs.x - rhs.x) < 1e-11) && (fabs(lhs.y - rhs.y) < 1e-11); }
+inline bool operator==(const Vector &lhs, const Vector &rhs) noexcept {return ((fabs(lhs.x - rhs.x) < 1e-11) && (fabs(lhs.y - rhs.y) < 1e-11)); }
 
 #if __cplusplus <= 201703L || defined(TNT_ALLOW_DEPRECATIONS) // operator!= is deprecated in C++20
 inline bool operator!=(const Vector &lhs, const Vector &rhs) noexcept
