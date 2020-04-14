@@ -67,7 +67,7 @@ jobs:
 
 
     tnt:
-        runs-on: ${{matrix.os}}
+        runs-on: ${{ matrix.os }}
         needs: [get-dependencies]
         name: Build TnT
         steps:
