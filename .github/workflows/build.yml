@@ -66,10 +66,10 @@ jobs:
                 vcpkg integrate install
 
 
-    tnt:
+    build-tnt:
+        name: Build TnT
         runs-on: ${{ matrix.os }}
         needs: [get-dependencies]
-        name: Build TnT
         steps:
           - uses: actions/checkout@v2
           - name: Build TnT.exe
