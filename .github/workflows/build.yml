@@ -67,10 +67,10 @@ jobs:
 
 
     tnt:
-            runs-on: ${{matrix.os}}
-            needs: [get-dependencies]
-            name: Build TnT
-            steps:
-            - uses: actions/checkout@v2
-            - name: Build TnT.exe
-              run: ${{ matrix.run }}
+        runs-on: ${{matrix.os}}
+        needs: [get-dependencies]
+        name: Build TnT
+        steps:
+          - uses: actions/checkout@v2
+          - name: Build TnT.exe
+            run: ${{ matrix.run }}
