@@ -6,7 +6,7 @@
 
 namespace tnt
 {
-void bubblesort();
+    void bubblesort();
 } // namespace tnt
 
-#endif //!TNT_UTILS_SORT_HPP
+#endif //! TNT_UTILS_SORT_HPP

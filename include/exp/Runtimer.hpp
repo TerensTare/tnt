@@ -1,9 +1,10 @@
 #ifndef RUNTIMER_HPP
 #define RUNTIMER_HPP
 
-#include <string>
-#include <filesystem>
 #include <unordered_map>
+
+#include <filesystem>
+#include <string>
 
 // library to handle Hot Code Reloading.
 // author: Terens Tare.
@@ -30,33 +31,32 @@
 
 namespace tnt::rpp
 {
-
-class RuntimeManager
-{
-public:
-    RuntimeManager();
-    ~RuntimeManager() noexcept;
-
-    void LoadObject(char const *name, char const *srcFile);
-
-    void *LoadFunction(char const *handle, char const *name);
-    void Update();
-    void UpdateObject(char const *name);
-
-    void UnloadObject(char const *name);
-
-private:
-    struct RuntimeObject
+    class RuntimeManager
     {
-        bool valid;
-        std::string bldcmd;
-        std::filesystem::file_time_type lastTime;
-        void *dll;
-    };
+      public:
+        RuntimeManager();
+        ~RuntimeManager() noexcept;
 
-    std::unordered_map<std::string, std::string> objectSrc;
-    std::unordered_map<std::string, RuntimeObject *> objects;
-};
+        void LoadObject(char const *name, char const *srcFile);
+
+        void *LoadFunction(char const *handle, char const *name);
+        void Update();
+        void UpdateObject(char const *name);
+
+        void UnloadObject(char const *name);
+
+      private:
+        struct RuntimeObject
+        {
+            bool valid;
+            std::string bldcmd;
+            std::filesystem::file_time_type lastTime;
+            void *dll;
+        };
+
+        std::unordered_map<std::string, std::string> objectSrc;
+        std::unordered_map<std::string, RuntimeObject *> objects;
+    };
 } // namespace tnt::rpp
 
-#endif //!RUNTIMER_HPP
+#endif //! RUNTIMER_HPP

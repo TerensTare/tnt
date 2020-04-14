@@ -3,9 +3,9 @@
 
 namespace tnt::detail::gfx
 {
-bool Init() noexcept;
-void Quit() noexcept;
-inline static bool init;
+    bool Init() noexcept;
+    void Quit() noexcept;
+    inline static bool init;
 } // namespace tnt::detail::gfx
 
-#endif //!TNT_GRAPHICS_HPP
+#endif //! TNT_GRAPHICS_HPP

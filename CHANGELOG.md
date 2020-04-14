@@ -3,12 +3,18 @@ All changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## 20202-04-14
+## 2020-04-14
 ### Added
 - `assets` folder containing all engine assets used in main.cpp.
 - [.clang-format](./.clang-format).
 - [format-proj.ps1](./scripts/format-proj.ps1) to format all .cpp files of the project.
-- The *Building the engine from source* section on README.md
+- The *Building the engine from source* section on README.md.
+- Started working on a progress_bar widget for the ImGui library.
+- TNT_ prefix on the include guard of some files that didn't already have it.
+
+### Changed
+- The path of the default font on [ImGui.cpp](./src/ImGui/ImGui.cpp#L27).
+- The indentation of data inside namespaces.
 
 ### Removed
 - Coveralls stuff on build.yml.

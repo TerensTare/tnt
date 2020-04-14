@@ -2,8 +2,8 @@
 #define TNT_SCENE_HPP
 
 #include "Camera.hpp"
-#include "fileIO/AssetManager.hpp"
 #include "core/Space.hpp"
+#include "fileIO/AssetManager.hpp"
 
 // TODO: implement cutscenes (scenes where player input is ignored).
 // TODO: store a Quadtree on each Scene (or Space).
@@ -14,21 +14,22 @@
 
 namespace tnt
 {
-class Scene
-{
-public:
-    Scene();
-    ~Scene() noexcept;
+    class Scene
+    {
+      public:
+        Scene();
+        ~Scene() noexcept;
 
-    virtual void LoadAssets() = 0;
-    void Draw();
-    void Update();
+        virtual void LoadAssets() = 0;
+        void Draw();
+        void Update();
 
-private:
-    Camera *camera;
-    std::weak_ptr<Scene> scenes; // TODO(maybe): THIS should be moved into game
-    AssetManager &assets;
-};
+      private:
+        Camera *camera;
+        std::weak_ptr<Scene>
+            scenes; // TODO(maybe): THIS should be moved into game
+        AssetManager &assets;
+    };
 } // namespace tnt
 
-#endif //!TNT_SCENE_HPP
+#endif //! TNT_SCENE_HPP

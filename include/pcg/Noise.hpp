@@ -12,7 +12,7 @@ typedef struct SDL_Texture SDL_Texture;
 
 namespace tnt::pcg
 {
-SDL_Texture *staticNoise(SDL_Renderer *ren, int w, int h);
+    SDL_Texture *staticNoise(SDL_Renderer *ren, int w, int h);
 } // namespace tnt::pcg
 
-#endif //!TNT_PCG_NOISE_HPP
+#endif //! TNT_PCG_NOISE_HPP

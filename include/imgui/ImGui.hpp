@@ -1,7 +1,8 @@
 #ifndef TNT_IMGUI_LIB_HPP
 #define TNT_IMGUI_LIB_HPP
 
-#define IMGEN_WIDGET_ID(N) (((__LINE__ << 8) | ((N)&0xFF)) ^ ((long long)&__FILE__))
+#define IMGEN_WIDGET_ID(N)                                                     \
+    (((__LINE__ << 8) | ((N)&0xFF)) ^ ((long long)&__FILE__))
 
 #define IMGUI_ID IMGEN_WIDGET_ID(1)
 
@@ -27,43 +28,45 @@
 
 namespace tnt
 {
-class Window;
+    class Window;
 
-namespace ImGui
-{
-/////////////
-// context //
-/////////////
+    namespace ImGui
+    {
+        /////////////
+        // context //
+        /////////////
 
-void make_context(Window *win) noexcept;
-void update_context() noexcept;
-void destroy_context() noexcept;
+        void make_context(Window *win) noexcept;
+        void update_context() noexcept;
+        void destroy_context() noexcept;
 
-/////////////
-// widgets //
-/////////////
+        /////////////
+        // widgets //
+        /////////////
 
-int button(Window *win, int id, std::string_view text, int x, int y) noexcept;
+        int button(Window *win, int id, std::string_view text, int x,
+                   int y) noexcept;
 
-int slider_int(Window *win, int id, int x, int y,
-               int min_, int max_, int *value) noexcept;
-int slider_float(Window *win, int id, int x, int y,
-                 float min_, float max_, float *value) noexcept;
-int slider_byte(Window *win, int id, int x, int y,
-                unsigned char min_, unsigned char max_, unsigned char *value) noexcept;
+        int slider_int(Window *win, int id, int x, int y, int min_, int max_,
+                       int *value) noexcept;
+        int slider_float(Window *win, int id, int x, int y, float min_,
+                         float max_, float *value) noexcept;
+        int slider_byte(Window *win, int id, int x, int y, unsigned char min_,
+                        unsigned char max_, unsigned char *value) noexcept;
 
-// TODO: implement these
-int hslider_int(Window *win, int id, int x, int y,
-                int min_, int max_, int *value) noexcept;
-int hslider_float(Window *win, int id, int x, int y,
-                  float min_, float max_, float *value) noexcept;
-int hslider_byte(Window *win, int id, int x, int y,
-                 unsigned char min_, unsigned char max_, unsigned char *value) noexcept;
+        int hslider_int(Window *win, int id, int x, int y, int min_, int max_,
+                        int *value) noexcept;
+        int hslider_float(Window *win, int id, int x, int y, float min_,
+                          float max_, float *value) noexcept;
+        int hslider_byte(Window *win, int id, int x, int y, unsigned char min_,
+                         unsigned char max_, unsigned char *value) noexcept;
 
-} // namespace ImGui
+        int progress_bar(Window *win, int id, int x, int y, int min_, int max_,
+                         int *value) noexcept;
+    } // namespace ImGui
 } // namespace tnt
 
 void tnt_imgui_begin() noexcept;
 void tnt_imgui_finish() noexcept;
 
-#endif //!TNT_IMGUI_LIB_HPP
+#endif //! TNT_IMGUI_LIB_HPP

@@ -6,53 +6,49 @@
 // TODO: Make widget a concept.
 
 #include <string_view>
-#include <SDL2/SDL_render.h>
 
-#include "ecs/Object.hpp"
 #include "ecs/Component.hpp"
+#include "ecs/Object.hpp"
 #include "utils/Observer.hpp"
 
 namespace tnt
 {
-class Window;
+    class Window;
 
-class Widget
-    : public Observer,
-      virtual public Object
-{
-public:
-    virtual ~Widget() noexcept {}
+    class Widget : public Observer, virtual public Object
+    {
+      public:
+        virtual ~Widget() noexcept {}
 
-    bool Active() const noexcept;
+        bool Active() const noexcept;
 
-    // virtual void Update(Observable *obj) override;
-    virtual void Draw() = 0;
+        // virtual void Update(Observable *obj) override;
+        virtual void Draw() = 0;
 
-protected:
-    bool active;
-    bool draggable;
-    Rectangle area;
-};
+      protected:
+        bool active;
+        bool draggable;
+        Rectangle area;
+    };
 
-class Draggable : virtual public Widget
-{
-};
+    class Draggable : virtual public Widget
+    {};
 
-class Text : virtual public Widget
-{
-public:
-    Text(std::string_view, int x, int y, int w = 14, int h = 14);
-    ~Text() noexcept;
+    class Text : virtual public Widget
+    {
+      public:
+        Text(std::string_view, int x, int y, int w = 14, int h = 14);
+        ~Text() noexcept;
 
-    void Update(long long elapsed) override;
-    virtual void Draw(Window const *target);
+        void Update(long long elapsed) override;
+        virtual void Draw(Window const *target);
 
-protected:
-    int tX;
-    int tY;
-    int tW;
-    int tH;
-};
+      protected:
+        int tX;
+        int tY;
+        int tW;
+        int tH;
+    };
 } // namespace tnt
 
-#endif //!TNT_GUI_WIDGET_HPP
+#endif //! TNT_GUI_WIDGET_HPP

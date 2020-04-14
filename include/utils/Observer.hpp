@@ -1,63 +1,61 @@
-#ifndef OBSERVER_HPP
-#define OBSERVER_HPP
+#ifndef TNT_OBSERVER_HPP
+#define TNT_OBSERVER_HPP
 
+#include <algorithm>
 #include <memory>
 #include <vector>
-#include <algorithm>
+
 #include "Concepts.hpp"
 
 // TODO: Physics : public Observable.
 namespace tnt
 {
-class Observer
-{
-public:
-    virtual ~Observer() noexcept {}
-    virtual void Update(Observable *obj) = 0;
-};
-
-class Observable
-{
-public:
-    virtual ~Observable()
+    class Observer
     {
-        for (auto it : observers)
-            Detach(it.lock());
-    }
+      public:
+        virtual ~Observer() noexcept {}
+        virtual void Update(Observable *obj) = 0;
+    };
 
-    void Attach(std::shared_ptr<Observer> o)
+    class Observable
     {
-        bool exists{false};
-        for (auto it{observers.begin()}; it != observers.end(); ++it)
-            if (it->lock() == o)
-            {
-                exists = true;
-                break;
-            }
-        if (!exists)
-            observers.emplace_back(o);
-    }
+      public:
+        virtual ~Observable()
+        {
+            for (auto it : observers) Detach(it.lock());
+        }
 
-    void Detach(std::shared_ptr<Observer> o)
-    {
-        observers.erase(
-            std::remove_if(
-                observers.begin(), observers.end(),
-                [&](std::weak_ptr<Observer> const &ptr) {
-                    return (ptr.expired() || (ptr.lock() == o));
-                }),
-            observers.end());
-    }
+        void Attach(std::shared_ptr<Observer> o)
+        {
+            bool exists{false};
+            for (auto it{observers.begin()}; it != observers.end(); ++it)
+                if (it->lock() == o)
+                {
+                    exists = true;
+                    break;
+                }
+            if (!exists)
+                observers.emplace_back(o);
+        }
 
-    void Notify() noexcept
-    {
-        for (auto o : observers)
-            o.lock()->Update(this);
-    }
+        void Detach(std::shared_ptr<Observer> o)
+        {
+            observers.erase(
+                std::remove_if(observers.begin(), observers.end(),
+                               [&](std::weak_ptr<Observer> const &ptr) {
+                                   return (ptr.expired() || (ptr.lock() == o));
+                               }),
+                observers.end());
+        }
 
-private:
-    std::vector<std::weak_ptr<Observer>> observers;
-};
+        void Notify() noexcept
+        {
+            for (auto o : observers) o.lock()->Update(this);
+        }
+
+      private:
+        std::vector<std::weak_ptr<Observer>> observers;
+    };
 } // namespace tnt
 
-#endif //!OBSERVER_HPP
+#endif //! TNT_OBSERVER_HPP
