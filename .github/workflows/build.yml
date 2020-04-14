@@ -5,12 +5,14 @@
 # (DONE) using env: set vcpkg triplet to x64.
 # (DONE) build vcpkg on macosx after downloading.
 # (DONE) add more os-es and more build configurations.
+# (DONE) actions/cache knows there is some cache saved, but still runs downlod process.
+
 
 # TODO:
-# 1. (NEEDS TESTING) cache installed packages and run vcpkg update once a week.
-# 2. The runner on Windows doesn't know the location of vcvars64.bat. Add that to the PATH using env:.
-# 3. actions/cache knows there is some cache saved, but still runs downlod process. FIX THAT!!!
-# 4. Use PVS-Studio for statical analysis on every commit.
+# 1. The runner on Windows doesn't know the location of vcvars64.bat. Add that to the PATH using env:.
+# 2. Use PVS-Studio for statical analysis on every commit.
+# 3. Move containings of assets folder to the binary folder.
+# 4. Add support for x86 builds.
 
 name: build
 on: ["push", "pull_request"]
@@ -28,9 +30,12 @@ jobs:
                 triplet: x64-windows
                 vcpkg-path: "C:\\vcpkg\\installed\\x64-windows"
                 run: |
-                     vcvars64
                      mkdir build && cd build
                      cmake ..
+                     vcvars64.bat
+                     msbuild TnT.sln /p:Platform=x64
+                     msbuild TnT.sln /p:Configuration=Release /p:Platform=x64
+                     robocopy ..\assets .\Release
               - os: ubuntu-latest
                 triplet: x64-linux
                 vcpkg-path: "/usr/local/share/vcpkg/installed/x64-linux"
@@ -60,23 +65,6 @@ jobs:
                 vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
                 vcpkg integrate install
 
-
-    coveralls:
-        name: Coveralls-actions
-        runs-on: ${{ matrix.os }}
-        steps:
-            - uses: actions/checkout@v1
-            - name: coveralls-build
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.COVERALLS_TOKEN }}
-                  parallel: true
-
-            - name: Coveralls Finished
-              uses: coverallsapp/github-action@master
-              with:
-                github-token: ${{ secrets.COVERALLS_TOKEN }}
-                parallel-finished: true
 
     tnt:
             runs-on: ${{matrix.os}}
