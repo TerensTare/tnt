@@ -30,6 +30,7 @@ jobs:
                 triplet: x64-windows
                 vcpkg-path: "C:\\vcpkg\\installed\\x64-windows"
                 run: |
+                     dir
                      mkdir build && cd build
                      cmake ..
                      vcvars64.bat
@@ -40,12 +41,14 @@ jobs:
                 triplet: x64-linux
                 vcpkg-path: "/usr/local/share/vcpkg/installed/x64-linux"
                 run: |
+                    ls
                     mkdir build && cd build
                     cmake ..
               - os: macos-latest
                 vcpkg-path: "/usr/local/share/vcpkg/installed/x64-osx"
                 triplet: x64-osx
                 run: |
+                    ls
                     mkdir build && cd build
                     cmake ..
 
