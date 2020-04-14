@@ -64,13 +64,5 @@ jobs:
             run: |
                 vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
                 vcpkg integrate install
-
-
-    build-tnt:
-        name: Build TnT
-        runs-on: ${{ matrix.os }}
-        needs: [get-dependencies]
-        steps:
-          - uses: actions/checkout@v2
-          - name: Build TnT.exe
+          - name: Build TnT
             run: ${{ matrix.run }}
