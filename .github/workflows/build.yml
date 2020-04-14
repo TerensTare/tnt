@@ -32,7 +32,6 @@ jobs:
                 run: |
                      dir
                      mkdir build && cd build
-                     cmake ..
                      vcvars64.bat
                      msbuild TnT.sln /p:Platform=x64
                      msbuild TnT.sln /p:Configuration=Release /p:Platform=x64
@@ -43,14 +42,12 @@ jobs:
                 run: |
                     ls
                     mkdir build && cd build
-                    cmake ..
               - os: macos-latest
                 vcpkg-path: "/usr/local/share/vcpkg/installed/x64-osx"
                 triplet: x64-osx
                 run: |
                     ls
                     mkdir build && cd build
-                    cmake ..
 
 
         steps:
