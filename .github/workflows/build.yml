@@ -30,8 +30,8 @@ jobs:
                 triplet: x64-windows
                 vcpkg-path: "C:\\vcpkg\\installed\\x64-windows"
                 run: |
-                     dir
                      mkdir build && cd build
+                     cmake ..
                      vcvars64.bat
                      msbuild TnT.sln /p:Platform=x64
                      msbuild TnT.sln /p:Configuration=Release /p:Platform=x64
@@ -40,14 +40,14 @@ jobs:
                 triplet: x64-linux
                 vcpkg-path: "/usr/local/share/vcpkg/installed/x64-linux"
                 run: |
-                    ls
                     mkdir build && cd build
+                    cmake ..
               - os: macos-latest
                 vcpkg-path: "/usr/local/share/vcpkg/installed/x64-osx"
                 triplet: x64-osx
                 run: |
-                    ls
                     mkdir build && cd build
+                    cmake ..
 
 
         steps:
@@ -64,5 +64,3 @@ jobs:
             run: |
                 vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
                 vcpkg integrate install
-          - name: Build TnT
-            run: ${{ matrix.run }}
