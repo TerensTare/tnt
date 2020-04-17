@@ -61,13 +61,25 @@ jobs:
     condition: succeeded()
     strategy:
       matrix: 
-        linux:
-            Image: 'ubuntu-latest'
+        # linux:
+        #     Image: 'ubuntu-latest'
         windows:
             Image: 'windows-latest'
+            lua_inc: "C:\\vcpkg\\installed\\x64-windows\\include"
+            lua_lib: "C:\\vcpkg\\installed\\x64-windows\\lib"
+            sdl_dir: "C:\\vcpkg\\installed\\x64-windows\\share\\sdl2"
         mac:
             Image: 'macos-latest'
+            lua_inc: "/usr/local/share/vcpkg/installed/x64-osx/include"
+            lua_lib: "/usr/local/share/vcpkg/installed/x64-osx/lib"
+            sdl_dir: "/usr/local/share/vcpkg/installed/x64-osx/share/sdl2"
       maxParallel: 4
+
+    variables:
+      LUA_INCLUDE_DIR: $(lua_inc)
+      LUA_LIBRARIES: $(lua_lib)
+      SDL2_DIR: $(sdl_dir)
+
 
     pool:
       vmImage: $(Image)
