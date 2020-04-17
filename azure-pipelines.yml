@@ -14,17 +14,14 @@ jobs:
         linux:
           Image: 'ubuntu-latest'
           vpath: "/usr/local/share/vcpkg/installed/x64-linux"
-          toolpath: "/usr/local/share/vcpkg/downloads/tools"
           triplet: x64-linux
         windows:
           Image: 'windows-latest'
           vpath: "C:\\vcpkg\\installed\\x64-windows"
-          toolpath: "C:\\vcpkg\\downloads\\tools"
           triplet: x64-windows
         mac:
           Image: 'macos-latest'
           vpath: "/usr/local/share/vcpkg/installed/x64-osx"
-          toolpath: "/usr/local/share/vcpkg/downloads/tools"
           triplet: x64-osx
     variables:
       VCPKG_DEFAULT_TRIPLET: $(triplet)
@@ -33,27 +30,19 @@ jobs:
       vmImage: $(Image)
     
     steps:
-    # - task: Cache@2
-    #   inputs:
-    #     key: '$(Image)_dependencies'
-    #     path: '$(vpath)'
-    #     cacheHitVar: 'GOT_CACHE'
-    # - task: Cache@2
-    #   inputs:
-    #     key: '$(Image)_vcpkg_tools'
-    #     path: '$(toolpath)'
-    #     cacheHitVar: 'GOT_TOOLS_CACHE'
     - script: |
           vcpkg install sdl2 sdl2-image sdl2-image[libjpeg-turbo, tiff, libwebp] sdl2-mixer sdl2-mixer[dynamic-load, libflac, mpg123, libmodplug, libvorbis, opusfile] sdl2-ttf nlohmann-json sol2 fmt
           vcpkg integrate install
-      # condition: or(ne(variables.GOT_CACHE, 'true'), ne(variables.GOT_TOOLS_CACHE, 'true'))
       displayName: 'Get dependencies'
   
   - job: "Run_CMake"
     strategy:
       matrix: 
-        # linux:
-        #     Image: 'ubuntu-latest'
+        linux:
+            Image: 'ubuntu-latest'
+            lua_inc: "/usr/local/share/vcpkg/installed/x64-linux/include"
+            lua_lib: "/usr/local/share/vcpkg/installed/x64-linux/lib"
+            sdl_dir: "/usr/local/share/vcpkg/installed/x64-linux/share/sdl2"
         windows:
             Image: 'windows-latest'
             lua_inc: "C:\\vcpkg\\installed\\x64-windows\\include"
@@ -67,9 +56,9 @@ jobs:
       maxParallel: 4
 
     variables:
-      LUA_INCLUDE_DIR: $(lua_inc)
-      LUA_LIBRARIES: $(lua_lib)
-      SDL2_DIR: $(sdl_dir)
+      LUA_INCLUDE_DIR: ${{ lua_inc }}
+      LUA_LIBRARIES: ${{ lua_lib }}
+      SDL2_DIR: ${{ sdl_dir }}
 
 
     pool:
