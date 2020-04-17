@@ -7,12 +7,6 @@
 trigger:
 - master
 
-# schedules:
-#   - cron: "0 0 * * 1"
-#     branches:
-#       include: [master]
-#     always: true
-
 jobs:
   - job: "GetDeps"
     strategy:
@@ -50,7 +44,7 @@ jobs:
         path: '$(toolpath)'
         cacheHitVar: 'GOT_TOOLS_CACHE'
     - script: |
-          vcpkg install sdl2 sdl2-image sdl2-image[libjpeg-turbo] sdl2-image[tiff] sdl2-image[libwebp] sdl2-mixer sdl2-mixer[dynamic-load] sdl2-mixer[libflac] sdl2-mixer[mpg123] sdl2-mixer[libmodplug] sdl2-mixer[libvorbis] sdl2-mixer[opusfile] sdl2-ttf nlohmann-json sol2 fmt
+          vcpkg install sdl2 sdl2-image sdl2-image[libjpeg-turbo, tiff, libwebp] sdl2-mixer sdl2-mixer[dynamic-load, libflac, mpg123, libmodplug, libvorbis, opusfile] sdl2-ttf nlohmann-json sol2 fmt
           vcpkg integrate install
       condition: or(ne(variables.GOT_CACHE, 'true'), ne(variables.GOT_TOOLS_CACHE, 'true'))
       displayName: 'Get dependencies'
@@ -93,14 +87,12 @@ jobs:
     - task: VSBuild@1
       inputs:
         solution: 'build\TnT.sln'
-        vsVersion: '16.0'
         platform: 'x64'
         configuration: 'Debug'
         clean: true
         maximumCpuCount: true
         msbuildArchitecture: 'x64'
         createLogFile: true
-        logFileVerbosity: 'detailed'
     - task: CopyFiles@2
       inputs:
         SourceFolder: 'assets'
@@ -109,14 +101,13 @@ jobs:
     - task: VSBuild@1
       inputs:
         solution: 'build\TnT.sln'
-        vsVersion: '16.0'
+        vsVersion: 'latest'
         platform: 'x64'
         configuration: 'Release'
         clean: true
         maximumCpuCount: true
         msbuildArchitecture: 'x64'
         createLogFile: true
-        logFileVerbosity: 'detailed'
     - task: CopyFiles@2
       inputs:
         SourceFolder: 'assets'
