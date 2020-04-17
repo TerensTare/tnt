@@ -11,11 +11,11 @@ jobs:
   - job: "GetDeps"
     strategy:
       matrix:
-        # linux:
-        #   Image: 'ubuntu-latest'
-        #   vpath: "/usr/local/share/vcpkg/installed/x64-linux"
-        #   toolpath: "/usr/local/share/vcpkg/downloads/tools"
-        #   triplet: x64-linux
+        linux:
+          Image: 'ubuntu-latest'
+          vpath: "/usr/local/share/vcpkg/installed/x64-linux"
+          toolpath: "/usr/local/share/vcpkg/downloads/tools"
+          triplet: x64-linux
         windows:
           Image: 'windows-latest'
           vpath: "C:\\vcpkg\\installed\\x64-windows"
