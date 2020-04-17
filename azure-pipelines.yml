@@ -49,13 +49,6 @@ jobs:
       condition: or(ne(variables.GOT_CACHE, 'true'), ne(variables.GOT_TOOLS_CACHE, 'true'))
       displayName: 'Get dependencies'
   
-  - job: "Prepare"
-    dependsOn: GetDeps
-    steps:
-      - script: |
-          mkdir build
-          cd build
-  
   - job: "Run_CMake"
     dependsOn: Prepare
     condition: succeeded()
@@ -87,7 +80,7 @@ jobs:
     steps:
       - task: CMake@1
         inputs:
-          cmakeArgs: '..'
+          cmakeArgs: '.. -DLUA_INCLUDE_DIR=$(lua_inc) -DLUA_LIBRARIES=$(lua_lib) -DSDL2_DIR=$(sdl_dir)'
 
   - job: "MSBuild_Windows"
     dependsOn: Run_CMake
