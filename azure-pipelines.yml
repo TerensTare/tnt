@@ -43,11 +43,11 @@ jobs:
       vmImage: $(Image)
     
     steps:
-  - task: Cache@2
-    inputs:
-      key: 'CACHED_DEPS'
-      path: '$(vpath)'
-      cacheHitVar: 'GOT_CACHE'
+    - task: Cache@2
+      inputs:
+        key: 'CACHED_DEPS'
+        path: '$(vpath)'
+        cacheHitVar: 'GOT_CACHE'
 
     - task: CmdLine@2
       inputs:
@@ -55,6 +55,7 @@ jobs:
           vcpkg install sdl2 sdl2-image sdl2-image[libjpeg-turbo] sdl2-image[tiff] sdl2-image[libwebp] sdl2-mixer sdl2-mixer[dynamic-load] sdl2-mixer[libflac] sdl2-mixer[mpg123] sdl2-mixer[libmodplug] sdl2-mixer[libvorbis] sdl2-mixer[opusfile] sdl2-ttf nlohmann-json sol2 fmt
           vcpkg integrate install
       condition: ne(env.GOT_CACHE, 'true')
+    
     - task: CMake@1
       inputs:
         cmakeArgs: '..'
