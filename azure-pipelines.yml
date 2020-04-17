@@ -33,20 +33,20 @@ jobs:
       vmImage: $(Image)
     
     steps:
-    - task: Cache@2
-      inputs:
-        key: '$(Image)_dependencies'
-        path: '$(vpath)'
-        cacheHitVar: 'GOT_CACHE'
-    - task: Cache@2
-      inputs:
-        key: '$(Image)_vcpkg_tools'
-        path: '$(toolpath)'
-        cacheHitVar: 'GOT_TOOLS_CACHE'
+    # - task: Cache@2
+    #   inputs:
+    #     key: '$(Image)_dependencies'
+    #     path: '$(vpath)'
+    #     cacheHitVar: 'GOT_CACHE'
+    # - task: Cache@2
+    #   inputs:
+    #     key: '$(Image)_vcpkg_tools'
+    #     path: '$(toolpath)'
+    #     cacheHitVar: 'GOT_TOOLS_CACHE'
     - script: |
           vcpkg install sdl2 sdl2-image sdl2-image[libjpeg-turbo, tiff, libwebp] sdl2-mixer sdl2-mixer[dynamic-load, libflac, mpg123, libmodplug, libvorbis, opusfile] sdl2-ttf nlohmann-json sol2 fmt
           vcpkg integrate install
-      condition: or(ne(variables.GOT_CACHE, 'true'), ne(variables.GOT_TOOLS_CACHE, 'true'))
+      # condition: or(ne(variables.GOT_CACHE, 'true'), ne(variables.GOT_TOOLS_CACHE, 'true'))
       displayName: 'Get dependencies'
   
   - job: "Run_CMake"
@@ -78,7 +78,7 @@ jobs:
     steps:
       - task: CMake@1
         inputs:
-          cmakeArgs: '.. -DLUA_INCLUDE_DIR=$(lua_inc) -DLUA_LIBRARIES=$(lua_lib) -DSDL2_DIR=$(sdl_dir)'
+          cmakeArgs: '..'
 
   - job: "MSBuild_Windows"
     dependsOn: Run_CMake
