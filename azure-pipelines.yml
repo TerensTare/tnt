@@ -54,7 +54,7 @@ jobs:
     displayName: 'Get dependencies'
 
   - job: "MSBuild_Windows"
-    dependsOn: Run_CMake
+    dependsOn: Build
     condition: succeeded()
     pool:
       vmImage: 'windows-latest'
