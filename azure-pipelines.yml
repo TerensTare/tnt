@@ -50,8 +50,6 @@ jobs:
       displayName: 'Get dependencies'
   
   - job: "Run_CMake"
-    dependsOn: Prepare
-    condition: succeeded()
     strategy:
       matrix: 
         # linux:
