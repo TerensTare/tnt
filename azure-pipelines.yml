@@ -51,7 +51,6 @@ jobs:
   
   - job: "Prepare"
     dependsOn: GetDeps
-    condition: succeeded()
     steps:
       - script: |
           mkdir build
