@@ -1,6 +1,6 @@
-// This is an independent project of an individual developer. Dear PVS-Studio,
-// please check it. PVS-Studio Static Code Analyzer for C, C++, C#, and Java:
-// http://www.viva64.com
+// This is an independent project of an individual developer. Dear
+// PVS-Studio, please check it. PVS-Studio Static Code Analyzer for C,
+// C++, C#, and Java: http://www.viva64.com
 
 #include <iostream>
 #include <random>
@@ -10,35 +10,28 @@
 #include "ecs/Sprite.hpp"
 #include "fileIO/AssetManager.hpp"
 #include "imgui/ImGui.hpp"
-#include "imgui/gui_config.hpp"
+// #define TNT_IMGUI_RUNTIME_CONFIG
+// #include "imgui/gui_config.hpp"
 #include "math/Rectangle.hpp"
+#include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
 
-using tnt::ImGui::button, tnt::ImGui::slider_int, tnt::ImGui::hslider_int;
+using tnt::ImGui::hslider_int, tnt::ImGui::button;
 
-// TODO: "dissolve" this code into classes, like Game/Scene/Space, etc.
-
-auto random_name = []() -> std::string_view {
-    static std::string_view names[]{"window", "test", "imgui", "the tnt engine",
-                                    "hello world"};
-    int idx{std::rand() % 4};
-    return names[idx];
-};
+// TODO: "dissolve" this code into classes, like Game/Scene/Space,
+// etc.
 
 class Player : public tnt::Sprite
 {
   public:
     explicit Player(tnt::Window const *win)
-        : tnt::Sprite{
-              win,
-              std::move(std::string{SDL_GetBasePath()}.append("player.png")),
-              tnt::Rectangle{0.f, 0.f, 208.f, 384.f}}
-    {}
-
-    void Update(long long elapsed) noexcept override
+        : tnt::Sprite{win, std::move(std::string{SDL_GetBasePath()}.append("player.png")),
+                      tnt::Rectangle{0.f, 0.f, 16.f, 16.f}}
     {
-        std::cout << "updating player\n";
+        addAnimation(win, "test", 10, 0.1f, true, {0.f, 0.f, 16.f, 16.f});
     }
+
+    void Update(long long elapsed) noexcept override { playAnimation("test"); }
 };
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
@@ -47,18 +40,19 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
     std::srand(rd());
     bool quit{false};
 
-    SDL_Color bg{0, 0, 0, 255};
-
-    tnt::Window *window{new tnt::Window{
-        "The TnT Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800,
-        600, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
+    tnt::Window *window{new tnt::Window{"The TnT Engine", SDL_WINDOWPOS_CENTERED,
+                                        SDL_WINDOWPOS_CENTERED, 800, 600,
+                                        SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
     window->setClearColor({10, 210, 255, 255});
-    tnt::ImGui::make_context(window);
+    tnt_imgui_init(window);
 
-    SDL_Rect dst{0, 0, 150, 150};
+    SDL_FRect dst{0.f, 0.f, 160.f, 160.f};
+    SDL_Rect clip{0, 0, 16, 16};
     tnt::Sprite *player{new Player{window}};
     tnt::Timer timer;
+
+    int x{0}, y{0};
 
     while (!quit)
     {
@@ -75,19 +69,24 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
         window->Clear();
 
-        tnt_imgui_begin();
+        tnt::ImGui::Begin(window, "Test Window", 500, 200);
 
-        if (button(window, IMGUI_ID, "Hello", 300, 400))
-            window->setTitle(random_name().data());
+        // {
+        //     static std::string text[4]{"File", "Edit", "Layer", "Help"};
 
-        hslider_int(window, IMGUI_ID, 500, 100, 100, 400, &dst.w);
-        hslider_int(window, IMGUI_ID, 500, 140, 100, 400, &dst.h);
+        //     tnt::ImGui::menu(window, IMGUI_ID, 500, 220, &text[0], &text[3]);
+        // }
+        hslider_int(window, IMGUI_ID, 500, 100, 0, 9, &x);
+        hslider_int(window, IMGUI_ID, 500, 140, 0, 3, &y);
+        tnt::ImGui::End();
 
-        tnt::Rectangle area{dst.x, dst.y, dst.w, dst.h};
+        clip.x = x * 16;
+        clip.y = y * 16;
 
-        tnt_imgui_finish();
+        if (dt != 0)
+            player->Update(dt);
 
-        player->getSprite()->Draw(window, area);
+        window->Draw(player->getSprite(), &clip, &dst);
         window->Render();
 
         dt = timer.deltaTime().count();
@@ -101,7 +100,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
     delete player;
 
-    tnt::ImGui::destroy_context();
+    tnt_imgui_close();
     tnt::input::close();
 
     delete window;

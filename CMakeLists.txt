@@ -87,7 +87,6 @@ configure_file(
     "${PROJECT_BINARY_DIR}/include/version.h")
 
 include_directories(include)
-add_subdirectory(src)
 
 set(SOURCE_FILES
     src/core/Graphics.cpp src/fileIO/VirtualFS.cpp

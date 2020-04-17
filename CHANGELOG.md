@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## 2020-04-15
 ### Added
 - azure-pipelines.yml.
+- Added option on ImGui to load colored text.
+- tnt_imgui_init() and tnt_imgui_close(). Now you just need to call them instead of make_context/destroy_context.
+- .ttf files support for ImGui.
+- Some stuff related to windows.
+- macro TNT_IMGUI_RUNTIME_CONFIG to enable contents of gui_config.h.
+
+### Changed
+- ImGui text color to white by default.
+- tnt_imgui_begin() and tnt_imgui_finish() to tnt::ImGui::Begin() and tnt::ImGui::End().
+- return type of ImGui widgets from int to bool for using less memory.
+- some stuff on gui_config.h.
+- The way ImGui handles text.
+
+### Removed
+- slider_byte and hslider_byte on ImGui.
+- CMakeLists.txt on folder src.
 
 ## 2020-04-14
 ### Added

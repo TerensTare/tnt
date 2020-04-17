@@ -1,6 +1,10 @@
 #ifndef TNT_IMGUI_CONFIG_HPP
 #define TNT_IMGUI_CONFIG_HPP
 
+#ifdef TNT_IMGUI_RUNTIME_CONFIG
+
+typedef struct _TTF_Font TTF_Font;
+
 namespace tnt::ImGui
 {
     ////////////
@@ -13,9 +17,10 @@ namespace tnt::ImGui
     // void set_bg_color(unsigned char r, unsigned char g,
     //                   unsigned char b, unsigned char a) noexcept;
     unsigned char *get_bg_color() noexcept;
+    unsigned char *get_font_color() noexcept;
 
     void set_font(char const *name) noexcept;
-    char const *get_font() noexcept;
+    TTF_Font *get_font() noexcept;
 
     void set_font_size(int size) noexcept;
     int get_font_size() noexcept;
@@ -97,6 +102,27 @@ namespace tnt::ImGui
                                         unsigned char a) noexcept;
     unsigned char *get_hslider_thumb_active_color() noexcept;
 
+    //////////////////
+    // progress bar //
+    //////////////////
+
+    int get_progressbar_w() noexcept;
+    void set_progressbar_w(int w) noexcept;
+
+    int get_progressbar_h() noexcept;
+    void set_progressbar_h(int h) noexcept;
+
+    unsigned char *get_progressbar_idle_color() noexcept;
+    void set_progressbar_idle_color(unsigned char r, unsigned char g,
+                                    unsigned char b, unsigned char a) noexcept;
+
+    unsigned char *get_progressbar_filled_color() noexcept;
+    void set_progressbar_filled_color(unsigned char r, unsigned char g,
+                                      unsigned char b,
+                                      unsigned char a) noexcept;
+
 } // namespace tnt::ImGui
+
+#endif //! TNT_IMGUI_RUNTIME_CONFIG
 
 #endif //! TNT_IMGUI_CONFIG_HPP

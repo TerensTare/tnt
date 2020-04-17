@@ -2,6 +2,7 @@
 #define TNT_ASSET_MANAGER_HPP
 
 #include <SDL2/SDL_mixer.h>
+#include <string_view>
 
 #include <map>
 
