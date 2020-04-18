@@ -90,5 +90,4 @@ WIP
 
 ## Contributing
 
-If you spot a bug, or want to see a feature on a future release of the engine,
-please open a new [issue](https://github.com/TerensTare/tnt/issues).
+Please see [CONTRIBUTING.md](./CONTRIBUTING.md) to learn how you can contribute to this project.

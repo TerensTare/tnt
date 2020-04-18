@@ -64,20 +64,18 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
                 quit = true;
         tnt::ImGui::update_context();
 
-        tnt::input::updatePrevious();
-        tnt::input::updateCurrent();
-
         window->Clear();
 
         tnt::ImGui::Begin(window, "Test Window", 500, 200);
 
-        // {
-        //     static std::string text[4]{"File", "Edit", "Layer", "Help"};
+        {
+            static std::string text[4]{"File", "Edit", "Layer", "Help"};
 
-        //     tnt::ImGui::menu(window, IMGUI_ID, 500, 220, &text[0], &text[3]);
-        // }
+            tnt::ImGui::menu(window, IMGUI_ID, 500, 220, &text[0], &text[3]);
+        }
         hslider_int(window, IMGUI_ID, 500, 100, 0, 9, &x);
         hslider_int(window, IMGUI_ID, 500, 140, 0, 3, &y);
+
         tnt::ImGui::End();
 
         clip.x = x * 16;

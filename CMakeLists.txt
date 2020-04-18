@@ -13,7 +13,7 @@ if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     message(STATUS "Building the TnT Engine in \"${default_build_type}\" mode.")
     set(CMAKE_BUILD_TYPE "${default_build_type}" 
         cache string "Choose the type of build." FORCE)
-    set_property(cache CMAKE_BUILD_TYPE PROPERTY STRINGS
+    set_property(CMAKE_BUILD_TYPE PROPERTY cache STRINGS
         "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
@@ -23,7 +23,6 @@ foreach(flag_var
         CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
     STRING (REGEX REPLACE "/RTC[^ ]*" "" ${flag_var} "${${flag_var}}")
 endforeach(flag_var)
-# set_property(TARGET TnT APPEND_STRING PROPERTY COMPILE_FLAGS " /RTC1")
 
 set(CMAKE_TOOLCHAIN_FILE 
     ${VCPKG_EXE_PATH}/../scripts/buildsystems/vcpkg.cmake
@@ -62,14 +61,14 @@ include_directories("${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/inc
 message("Vcpkg found at ${VCPKG_EXE_PATH}.")
 
 list(APPEND CMAKE_PREFIX_PATH
-    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2
-    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-gfx
-    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-image
-    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-mixer
-    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-net
-    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sol2
-    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/fmt
-    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/nlohmann_json
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2/
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-gfx/
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-image/
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-mixer/
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-net/
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sol2/
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/fmt/
+    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/nlohmann_json/
 )
 
 # Load required packages.

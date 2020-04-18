@@ -3,6 +3,20 @@ All changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-04-18
+### Added
+- [CONTRIBUTING.md](./CONTRIBUTING.md).
+- Some logging messages on `tnt::ImGui::Begin()` and `tnt::ImGui::End()`.
+- A call to `tnt::input::updatePrevious()` and `tnt::input::updateCurrent()` on `tnt::ImGui::update_context()`.
+
+### Changed
+- Contributing section of [README.md](./README.md#L91) to point to [CONTRIBUTING.md](./CONTRIBUTING.md).
+- Some lines on CMakeLists.txt which don't affect building.
+
+### Removed
+- Some redundant lines on `tnt::ImGui::End()`.
+- scipts/format-proj.ps1 and scripts/ttf2png.py.
+
 ## 2020-04-15
 ### Added
 - azure-pipelines.yml.

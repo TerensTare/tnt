@@ -418,6 +418,9 @@ namespace tnt::ImGui
 
     void update_context() noexcept
     {
+        tnt::input::updatePrevious();
+        tnt::input::updateCurrent();
+
         auto pos{input::mousePosition()};
 
         context->mouse_x    = pos.first;
@@ -448,7 +451,12 @@ namespace tnt::ImGui
     bool Begin(Window *win, std::string_view name, int x, int y, WindowFlags flags) noexcept
     {
         if (context->on_window)
+        {
+            tnt::logger::debug(
+                "Line : {}\tCalling tnt::ImGui::Begin() inside a tnt::ImGui::Begin()/tnt::ImGui::End() pair!!",
+                __LINE__);
             return false;
+        }
 
         context->windows.emplace(name.data(), load_text(win, name.data()));
         context->last_window = name;
@@ -469,6 +477,14 @@ namespace tnt::ImGui
 
     void End() noexcept
     {
+        if (!context->on_window)
+        {
+            tnt::logger::debug(
+                "Line : {}\tCalling tnt::ImGui::End() without calling tnt::ImGui::Begin() before!!",
+                __LINE__);
+            return;
+        }
+
         if (!context->mouse_down)
             context->active = 0;
         else
@@ -477,9 +493,7 @@ namespace tnt::ImGui
                 context->active = -1;
         }
 
-        SDL_DestroyTexture(context->windows[context->last_window]);
-        context->windows[context->last_window] = nullptr;
-        context->on_window                     = false;
+        context->on_window = false;
     }
 
     bool button(Window *win, long long id, std::string_view text, int x, int y) noexcept
