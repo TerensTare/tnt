@@ -58,7 +58,7 @@ jobs:
     
     - task: CMake@1
       inputs:
-        cmakeArgs: '..'
+        cmakeArgs: '.. -G Ninja'
     displayName: 'Get dependencies for '
 
   - job: "MSBuild_Windows"
