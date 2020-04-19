@@ -1,8 +1,6 @@
 # TODO: 
-# 1. add cache support.
-# 2. add different builds for x86/x64.
-# 3. check for updates weekly.
-# 4. copy files from assets to Debug/Release
+# 1. add different builds for x86/x64.
+# 2. check for updates weekly.
 
 trigger:
 - master
@@ -17,7 +15,6 @@ jobs:
           lua_inc: "/usr/local/share/vcpkg/installed/x64-linux/include"
           lua_lib: "/usr/local/share/vcpkg/installed/x64-linux/lib"
           sdl_dir: "/usr/local/share/vcpkg/installed/x64-linux/share/sdl2"
-          ninja_get: "apt-get install ninja-build"
           triplet: x64-linux
         windows:
           Image: 'windows-latest'
@@ -25,7 +22,6 @@ jobs:
           lua_inc: "C:\\vcpkg\\installed\\x64-windows\\include"
           lua_lib: "C:\\vcpkg\\installed\\x64-windows\\lib"
           sdl_dir: "C:\\vcpkg\\installed\\x64-windows\\share\\sdl2"
-          ninja_get: "choco install ninja"
           triplet: x64-windows
         mac:
           Image: 'macos-latest'
@@ -33,7 +29,6 @@ jobs:
           lua_inc: "/usr/local/share/vcpkg/installed/x64-osx/include"
           lua_lib: "/usr/local/share/vcpkg/installed/x64-osx/lib"
           sdl_dir: "/usr/local/share/vcpkg/installed/x64-osx/share/sdl2"
-          ninja_get: "brew install ninja"
           triplet: x64-osx
       maxParallel: 4
     variables:
@@ -58,14 +53,10 @@ jobs:
           vcpkg install sdl2 sdl2-image sdl2-image[libjpeg-turbo] sdl2-image[tiff] sdl2-image[libwebp] sdl2-mixer sdl2-mixer[dynamic-load] sdl2-mixer[libflac] sdl2-mixer[mpg123] sdl2-mixer[libmodplug] sdl2-mixer[libvorbis] sdl2-mixer[opusfile] sdl2-ttf nlohmann-json sol2 fmt
           vcpkg integrate install
       condition: ne(variables.GOT_CACHE, 'true')
-
-    - task: CmdLine@2
-      inputs:
-        script: $(ninja_get)
     
     - task: CMake@1
       inputs:
-        cmakeArgs: '.. -G Ninja'
+        cmakeArgs: '..'
     displayName: 'Build for '
 
   - job: "MSBuild_Windows"
@@ -83,11 +74,6 @@ jobs:
         maximumCpuCount: true
         msbuildArchitecture: 'x64'
         createLogFile: true
-    - task: CopyFiles@2
-      inputs:
-        SourceFolder: 'assets'
-        Contents: '**'
-        TargetFolder: 'build/Debug'
     - task: VSBuild@1
       inputs:
         solution: 'build\TnT.sln'
@@ -98,8 +84,3 @@ jobs:
         maximumCpuCount: true
         msbuildArchitecture: 'x64'
         createLogFile: true
-    - task: CopyFiles@2
-      inputs:
-        SourceFolder: 'assets'
-        Contents: '**'
-        TargetFolder: 'build/Release'
