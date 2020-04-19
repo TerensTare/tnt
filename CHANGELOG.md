@@ -3,6 +3,17 @@ All changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-04-19
+### Added
+- Some functions on Objectv2.hpp/.cpp.
+- Command `CMakeLists.txt` to copy all assets to the binary directory.
+
+### Changed
+- vcpkg.exe to just vcpkg on `CMakeLists.txt` for cross-platform building.
+
+### Removed
+- `assets/zeldadxt.png` because it is unnecessary.
+
 ## 2020-04-18
 ### Added
 - [CONTRIBUTING.md](./CONTRIBUTING.md).

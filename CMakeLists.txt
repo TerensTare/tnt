@@ -35,6 +35,8 @@ message(FATAL_ERROR
     Please consider making a \"build\" subdirectory and run cmake .. from the \"build\" directory.")
 endif()
 
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE})
+
 # TODO: an if should be here for cross-platform compiling.
 set(COMMON_COMPILE_OPTIONS /EHsc /O2)
 set(TNT_COMPILE_OPTIONS ${COMMON_COMPILE_OPTIONS})
@@ -55,10 +57,10 @@ enable_sanitizers(project_options)
 include(cmake/StaticAnalyzers.cmake)
 
 # Find vcpkg.exe and use it's path.
-find_file(VCPKG_EXE_PATH vcpkg.exe)
-include_directories("${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/include")
-
+find_file(VCPKG_EXE_PATH vcpkg)
 message("Vcpkg found at ${VCPKG_EXE_PATH}.")
+
+include_directories("${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/include")
 
 list(APPEND CMAKE_PREFIX_PATH
     ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2/
@@ -121,7 +123,6 @@ target_link_libraries(TnT PRIVATE nlohmann_json nlohmann_json::nlohmann_json)
 target_link_directories(TnT PRIVATE 
     ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/lib)
 target_compile_options(TnT PRIVATE ${TNT_COMPILE_OPTIONS})
-
 
 # set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 # set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
