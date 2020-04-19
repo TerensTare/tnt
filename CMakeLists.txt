@@ -57,7 +57,11 @@ enable_sanitizers(project_options)
 include(cmake/StaticAnalyzers.cmake)
 
 # Find vcpkg.exe and use it's path.
-find_file(VCPKG_EXE_PATH vcpkg)
+if(WIN32)
+    find_file(VCPKG_EXE_PATH vcpkg.exe)
+else()
+    find_file(VCPKG_EXE_PATH vcpkg)
+endif(WIN32)
 message("Vcpkg found at ${VCPKG_EXE_PATH}.")
 
 include_directories("${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/include")
