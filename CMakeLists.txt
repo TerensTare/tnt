@@ -75,7 +75,7 @@ list(APPEND CMAKE_PREFIX_PATH
 
 # Load required packages.
 
-find_package(lua REQUIRED)
+find_package(Lua REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
 # find_package(sdl2-gfx CONFIG REQUIRED)
 find_package(sdl2-image CONFIG REQUIRED)
