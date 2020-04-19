@@ -64,7 +64,7 @@ include_directories("${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/inc
 
 list(APPEND CMAKE_PREFIX_PATH
     ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2/
-    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-gfx/
+    # ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-gfx/
     ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-image/
     ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-mixer/
     ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-net/
@@ -74,8 +74,10 @@ list(APPEND CMAKE_PREFIX_PATH
 )
 
 # Load required packages.
+
+find_package(lua REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
-find_package(sdl2-gfx CONFIG REQUIRED)
+# find_package(sdl2-gfx CONFIG REQUIRED)
 find_package(sdl2-image CONFIG REQUIRED)
 find_package(sdl2-mixer CONFIG REQUIRED)
 find_package(sdl2-net CONFIG REQUIRED)
@@ -108,11 +110,9 @@ set_target_properties(TnT PROPERTIES LINKER_LANGUAGE CXX)
 target_include_directories(TnT PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
 target_include_directories(TnT PRIVATE ${LUA_INCLUDE_DIR})
 
-find_package(Lua REQUIRED)
-
 target_link_libraries(TnT PRIVATE ${LUA_LIBRARIES})
 target_link_libraries(TnT PRIVATE SDL2::SDL2 SDL2::SDL2main)
-target_link_libraries(TnT PRIVATE SDL2::SDL2_gfx)
+# target_link_libraries(TnT PRIVATE SDL2::SDL2_gfx)
 target_link_libraries(TnT PRIVATE SDL2::SDL2_image)
 target_link_libraries(TnT PRIVATE SDL2::SDL2_mixer)
 target_link_libraries(TnT PRIVATE SDL2::SDL2_net)
