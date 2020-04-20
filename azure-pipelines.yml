@@ -51,7 +51,7 @@ jobs:
       inputs:
         # vcpkg install sdl2 sdl2-image sdl2-image[libjpeg-turbo] sdl2-image[tiff] sdl2-image[libwebp] sdl2-mixer sdl2-mixer[dynamic-load] sdl2-mixer[libflac] sdl2-mixer[mpg123] sdl2-mixer[libmodplug] sdl2-mixer[libvorbis] sdl2-mixer[opusfile] sdl2-ttf nlohmann-json sol2 fmt
         script: |
-          vcpkg install sdl2 sdl2-image sdl2-mixer sdl2-ttf fmt
+          vcpkg install sdl2 sdl2-image sdl2-mixer sdl2-mixer[mpg123] sdl2-ttf fmt
           vcpkg integrate install
       condition: ne(variables.GOT_CACHE, 'true')
     
