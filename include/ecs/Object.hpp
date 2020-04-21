@@ -1,43 +1,42 @@
-#ifndef TNT_OBJECT_HPP
-#define TNT_OBJECT_HPP
+#ifndef TNT_ECS_OBJECT_HPP
+#define TNT_ECS_OBJECT_HPP
 
-#include <vector>
+#include <map>
+#include <typeindex>
 
 #include "math/Vector.hpp"
+#include "utils/Concepts.hpp"
+#include "utils/Logger.hpp"
+
+// FIXME
+// An Object can have two Component* of same type !!
 
 // TODO:
-// Serializable interface class.
-// Add Serialization to Object and it's childrens.
-// handle global and local coordinates.
+// use concepts here for Component.
 
-// TODO(maybe):
-// StaticObject ??
-// Serializable as a Component ??
 namespace tnt
 {
-    class Component;
+class Component;
 
-    class Object
-    {
-      public:
-        virtual ~Object() noexcept;
+class Object
+{
+public:
+  virtual ~Object() noexcept;
 
-        void setParent(std::shared_ptr<Object> obj) noexcept;
-        Object *getParent() const noexcept;
+  Vector getPosition() const noexcept;
+  void setPosition(Vector const &pos) noexcept;
+  void Transform(Vector const &pos) noexcept;
 
-        void setPosition(Vector const &pos) noexcept;
-        Vector getPosition() const noexcept;
+  Object *getParent() const noexcept;
+  void setParent(Object *parent_) noexcept;
 
-        void Transform(Vector const &pos) noexcept;
+  virtual void Update([[maybe_unused]] long long time_) noexcept = 0;
 
-        virtual void Update(
-            long long
-                deltaT) noexcept = 0; // (maybe) noexcept will cause errors ??
-
-      protected:
-        Vector position;
-        std::weak_ptr<Object> parent;
-    };
+protected:
+  Vector position;
+  // std::map<std::string, component auto *> components;
+  Object *parent;
+};
 } // namespace tnt
 
-#endif //! TNT_OBJECT_HPP
+#endif //!TNT_ECS_OBJECT_HPP

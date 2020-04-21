@@ -26,129 +26,134 @@
 
 namespace tnt
 {
-    class Window;
-    class Timer;
+class Window;
+class Timer;
 
-    struct infinite_mass : std::exception
-    {
-        const char *what() const noexcept
-        {
-            return "Object has infinite mass!!";
-        }
-    };
+struct infinite_mass : std::exception
+{
+  const char *what() const noexcept { return "Object has infinite mass!!"; }
+};
 
-    class Component
-    {};
+class Component
+{
+  // public:
+  //   Component(char const *name_) : name{name_} {}
+  //   char const *getName() const noexcept;
 
-    class RotateComponent : public Component
-    {
-      public:
-        explicit RotateComponent(float radian);
+  // protected:
+  //   char const *name; // a string that identifies each class.
+};
 
-        void setAngle(float const &radian) noexcept;
-        float getAngle() const noexcept;
+class RotateComponent : public Component
+{
+public:
+  explicit RotateComponent(float radian);
 
-        void Rotate(float const &radian) noexcept;
+  void setAngle(float const &radian) noexcept;
+  float getAngle() const noexcept;
 
-      protected:
-        float angle;
-    };
+  void Rotate(float const &radian) noexcept;
 
-    class ScaleComponent : public Component
-    {
-      public:
-        explicit ScaleComponent(Vector const &ratio);
-        ScaleComponent(float x, float y);
+protected:
+  float angle;
+};
 
-        void setScale(Vector const &ratio) noexcept;
-        Vector getScale() const noexcept;
+class ScaleComponent : public Component
+{
+public:
+  explicit ScaleComponent(Vector const &ratio);
+  ScaleComponent(float x, float y);
 
-        void Scale(Vector const &ratio) noexcept;
+  void setScale(Vector const &ratio) noexcept;
+  Vector getScale() const noexcept;
 
-      protected:
-        Vector scale;
-    };
+  void Scale(Vector const &ratio) noexcept;
 
-    class PhysicsComponent : public Component
-    {
-      public:
-        PhysicsComponent(float const &mass, Rectangle const &collision_box);
-        PhysicsComponent(float const &mass, float x, float y, float &w,
-                         float &h);
+protected:
+  Vector scale;
+};
 
-        void setMass(float const &mass);
-        float getMass() const noexcept(noexcept(invMass > 0.f));
+class PhysicsComponent : virtual public Component
+{
+public:
+  PhysicsComponent(float const &mass, Rectangle const &collision_box);
+  PhysicsComponent(float const &mass, float x, float y, float &w, float &h);
 
-        Vector getVelocity() const noexcept;
-        Vector getAcceleration() const noexcept;
+  void setMass(float const &mass);
+  float getMass() const noexcept(noexcept(invMass > 0.f));
 
-        Rectangle getCollisionBox() const noexcept;
+  Vector getVelocity() const noexcept;
+  Vector getAcceleration() const noexcept;
 
-        void applyForce(Vector const &force) noexcept(noexcept(invMass > 0.f));
+  Rectangle getCollisionBox() const noexcept;
 
-      private:
-        float invMass;
-        Vector velocity;
-        Vector maxVelocity; // necessary ??
-        Vector acceleration;
-        Rectangle collisionBox;
-    };
+  void applyForce(Vector const &force) noexcept(noexcept(invMass > 0.f));
 
-    // TODO: incomplete ctor/class (load texture and set renderRect)
-    // TODO(maybe): handle font textures ??
-    // TODO(maybe): get/set renderTarget
-    class SpriteComponent : virtual public RotateComponent,
-                            virtual public ScaleComponent
-    {
-      public:
-        SpriteComponent(Window const *win, std::string_view file);
-        SpriteComponent(Window const *win, std::string_view file,
-                        Rectangle const &location);
+private:
+  float invMass;
+  Vector velocity;
+  Vector maxVelocity; // necessary ??
+  Vector acceleration;
+  Rectangle collisionBox;
+};
 
-        virtual ~SpriteComponent() noexcept;
+// TODO: incomplete ctor/class (load texture and set renderRect)
+// TODO(maybe): handle font textures ??
+// TODO(maybe): get/set renderTarget
+class SpriteComponent
+    : virtual public RotateComponent,
+      virtual public ScaleComponent
+{
+public:
+  SpriteComponent(Window const *win, std::string_view file);
+  SpriteComponent(Window const *win, std::string_view file, Rectangle const &location);
 
-        void Draw(Window *win,
-                  Rectangle &dest) noexcept; // TODO: do you need this ??
+  virtual ~SpriteComponent() noexcept;
 
-        SDL_Texture *getTexture() const noexcept;
-        void setTexture(Window const *win, std::string_view filename) noexcept;
+  void Draw(Window *win,
+            Rectangle &dest) noexcept; // TODO: do you need this ??
 
-        int getWidth() const noexcept;
-        int getHeight() const noexcept;
+  SDL_Texture *getTexture() const noexcept;
+  void setTexture(Window const *win, std::string_view filename) noexcept;
 
-      protected:
-        bool clipped;
-        Rectangle clipRect;
-        int w, h;
-        SDL_Texture *texture; // maybe this or the AssetManager's maps values
-                              // should be weak_ptr's.
-    };
+  int getWidth() const noexcept;
+  int getHeight() const noexcept;
 
-    class AnimationComponent : public SpriteComponent
-    {
-      public:
-        AnimationComponent(Window const *win, std::string_view filename,
-                           int framesNum, float speed, bool horizontal,
-                           Rectangle const &clip);
+protected:
+  bool clipped;
+  Rectangle clipRect;
+  int w, h;
+  SDL_Texture *texture; // maybe this or the AssetManager's maps values
+                        // should be weak_ptr's.
+};
 
-        void setLoop(bool loop_) noexcept;
-        bool isLoop() const noexcept;
+class AnimationComponent
+    : virtual public RotateComponent,
+      virtual public ScaleComponent
+{
+public:
+  AnimationComponent(std::string_view filename, int framesNum, float speed,
+                     bool horizontal, Rectangle const &clip);
 
-        bool running() const noexcept;
+  void setLoop(bool loop_) noexcept;
+  bool isLoop() const noexcept;
 
-        // TODO: find a better workaround for this
-        void update(Timer *timer) noexcept;
+  bool running() const noexcept;
 
-      private:
-        bool done;
-        bool loop;
-        bool vertical;
-        float animSpeed;
-        float timePerFrame;
-        float startX, startY;
-        int frameCount;
-        long long animTime;
-    };
+  // TODO: find a better workaround for this
+  void update(Timer *timer) noexcept;
+
+private:
+  bool done;
+  bool loop;
+  bool vertical;
+  float animSpeed;
+  float timePerFrame;
+  float startX, startY;
+  int frameCount;
+  long long animTime;
+  Rectangle clipRect;
+};
 } // namespace tnt
 
 #endif //! TNT_COMPONENT_HPP

@@ -1,50 +1,61 @@
-#ifndef CONCEPTS_HPP
-#define CONCEPTS_HPP
+#ifndef TNT_CONCEPTS_HPP
+#define TNT_CONCEPTS_HPP
+
+#include <memory>
+#include <type_traits>
 
 namespace tnt
 {
-    template <typename T> concept reversable = requires(T t)
+class Component;
+
+template <typename T>
+concept reversable = requires(T t)
+{
+    t.rbegin();
+    t.rend();
+};
+
+template <typename T>
+concept observable = requires(T t)
+{
+    t.Attach();
+    t.Detach();
+    t.Notify();
+};
+
+template <typename T>
+concept singleton = requires
+{
     {
-        t.rbegin();
-        t.rend();
-    };
+        T::This()
+    }
+    ->T &;
+};
 
-    template <typename T> concept observable = requires(T t)
+template <typename T>
+concept renderable = requires(T t)
+{
+    t.tex->std::shared_ptr<SDL_Texture>;
+};
+
+typedef struct SDL_FRect SDL_FRect;
+typedef struct SDL_Rect SDL_Rect;
+
+template <typename T>
+concept camera_type = requires(T t)
+{
     {
-        t.Attach();
-        t.Detach();
-        t.Notify();
-    };
-
-    template <typename T> concept singleton = requires
+        t.FBounds()
+    }
+    ->SDL_FRect;
     {
-        {
-            T::This()
-        }
-        ->T &;
-    };
+        t.Bounds()
+    }
+    ->SDL_Rect;
+};
 
-    template <typename T> concept renderable = requires(T t)
-    {
-        t.tex->std::shared_ptr<SDL_Texture>;
-    };
-
-    typedef struct SDL_FRect SDL_FRect;
-    typedef struct SDL_Rect SDL_Rect;
-
-    template <typename T> concept camera_type = requires(T t)
-    {
-        {
-            t.FBounds()
-        }
-        ->SDL_FRect;
-        {
-            t.Bounds()
-        }
-        ->SDL_Rect;
-    };
-
-    template <typename T> concept component = requires(T t){};
+template <typename T>
+concept component = std::is_base_of_v<Component, T>;
 } // namespace tnt
 
-#endif //! CONCEPTS_HPP
+#endif //!TNT_CONCEPTS_HPP

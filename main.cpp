@@ -1,6 +1,5 @@
-// This is an independent project of an individual developer. Dear
-// PVS-Studio, please check it. PVS-Studio Static Code Analyzer for C,
-// C++, C#, and Java: http://www.viva64.com
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 #include <iostream>
 #include <random>
@@ -16,22 +15,22 @@
 #include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
 
-using tnt::ImGui::hslider_int, tnt::ImGui::button, tnt::ImGui::menu;
+using tnt::ImGui::hslider_int, tnt::ImGui::button,
+    tnt::ImGui::menu, tnt::ImGui::checkbox;
 
 // TODO: "dissolve" this code into classes, like Game/Scene/Space,
 // etc.
 
 class Player : public tnt::Sprite
 {
-  public:
+public:
     explicit Player(tnt::Window const *win)
-        : tnt::Sprite{win, std::move(std::string{SDL_GetBasePath()}.append("player.png")),
+        : tnt::Sprite{win, std::move(std::string{SDL_GetBasePath()}.append("assets\\player.png")),
                       tnt::Rectangle{0.f, 0.f, 16.f, 16.f}}
     {
-        addAnimation(win, "test", 10, 0.1f, true, {0.f, 0.f, 16.f, 16.f});
     }
 
-    void Update(long long elapsed) noexcept override { playAnimation("test"); }
+    void Update([[maybe_unused]] long long elapsed) noexcept override { return; }
 };
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
@@ -73,6 +72,11 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
             menu(window, IMGUI_ID, 500, 220, &text[0], &text[3]);
         }
+        {
+            static bool test{true};
+            checkbox(window, IMGUI_ID, 50, 500, &test);
+        }
+
         hslider_int(window, IMGUI_ID, 500, 100, 0, 9, &x);
         hslider_int(window, IMGUI_ID, 500, 140, 0, 3, &y);
 

@@ -14,38 +14,27 @@
 
 namespace tnt
 {
-    class Timer
-    {
-      public:
-        Timer();
+class Timer
+{
+public:
+    Timer();
 
-        void start() noexcept;
-        void reset() noexcept;
-        void stop() noexcept;
+    void start() noexcept;
+    void reset() noexcept;
+    void stop() noexcept;
 
-        bool paused() const noexcept;
+    bool paused() const noexcept;
 
-        template <typename Duration = std::chrono::milliseconds>
-        Duration &deltaTime() noexcept(
-            noexcept(std::chrono::duration_cast<Duration>(
-                std::chrono::steady_clock::now() - beginning - deltaPaused)))
-        {
-            if (isPaused)
-                start();
-            std::atomic_thread_fence(std::memory_order_relaxed);
-            auto ret{std::chrono::duration_cast<Duration>(
-                std::chrono::steady_clock::now() - beginning - deltaPaused)};
-            std::atomic_thread_fence(std::memory_order_relaxed);
-            return ret;
-        }
+    std::chrono::milliseconds deltaTime() noexcept(noexcept(std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::steady_clock::now() - beginning - deltaPaused)));
 
-      private:
-        bool isPaused;
-        std::chrono::steady_clock::time_point beginning;
-        std::chrono::steady_clock::time_point pausedTime;
-        std::chrono::nanoseconds deltaPaused;
-    };
-
+private:
+    bool isPaused;
+    std::chrono::steady_clock::time_point beginning;
+    std::chrono::steady_clock::time_point pausedTime;
+    std::chrono::milliseconds deltaT;
+    std::chrono::milliseconds deltaPaused;
+};
 } // namespace tnt
 
 #endif //! TNT_TIMER_HPP

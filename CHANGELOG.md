@@ -1,7 +1,32 @@
 # Changelog
-All changes to this project will be documented in this file.
 
+All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+
+## 2020-04-21
+### Added
+- Widget `checkbox` for ImGui.
+
+### Changed
+- `tnt::Timer::deltaTime` to return `std::chrono::milliseconds` by default.
+
+### Removed
+- Animation-related stuff on `class Sprite`.
+
+## 2020-04-20
+### Added
+- `concept component`.
+- assets\ prefix for places where assets are required.
+- Linking with SDL2_ttf on `CMakeLists.txt`.
+- Check on `CMakeLists.txt` for linking SDL2 on the correct way on different platforms.
+
+### Changed
+- Moved `.clang-format` and `.editorconfig` to new folder `utilities`.
+- `ret` on [Timer.hpp](./include/utils/Timer.hpp) from `auto` to `static auto` to display correct fps.
+
+### Removed
+- Animation related functions on `class Sprite`.
+- `Objectv2.hpp`, because the problem it was trying to solve could be solved without templates.
 
 ## 2020-04-19
 ### Added
