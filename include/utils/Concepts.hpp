@@ -4,6 +4,9 @@
 #include <memory>
 #include <type_traits>
 
+typedef struct SDL_FRect SDL_FRect;
+typedef struct SDL_Rect SDL_Rect;
+
 namespace tnt
 {
 class Component;
@@ -37,9 +40,6 @@ concept renderable = requires(T t)
 {
     t.tex->std::shared_ptr<SDL_Texture>;
 };
-
-typedef struct SDL_FRect SDL_FRect;
-typedef struct SDL_Rect SDL_Rect;
 
 template <typename T>
 concept camera_type = requires(T t)

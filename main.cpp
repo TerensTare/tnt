@@ -26,9 +26,7 @@ class Player : public tnt::Sprite
 public:
     explicit Player(tnt::Window const *win)
         : tnt::Sprite{win, std::move(std::string{SDL_GetBasePath()}.append("assets\\player.png")),
-                      tnt::Rectangle{0.f, 0.f, 16.f, 16.f}}
-    {
-    }
+                      tnt::Rectangle{0.f, 0.f, 16.f, 16.f}} {}
 
     void Update([[maybe_unused]] long long elapsed) noexcept override { return; }
 };
@@ -69,10 +67,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
         {
             static std::string text[4]{"File", "Edit", "Layer", "Help"};
-
             menu(window, IMGUI_ID, 500, 220, &text[0], &text[3]);
-        }
-        {
+
             static bool test{true};
             checkbox(window, IMGUI_ID, 50, 500, &test);
         }
@@ -96,8 +92,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
         if (!quit)
             std::cout << (1000 / dt) << " fps\n";
-
-        SDL_Delay(1);
+        SDL_Delay(16);
     }
 
     delete player;

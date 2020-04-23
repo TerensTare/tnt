@@ -10,6 +10,7 @@ module
 include/exp/*
 src/exp/*
 
+# MSVC stuff
 *.obj
 *.lib
 *.dll
@@ -24,6 +25,7 @@ src/exp/*
 # SourceTrail stuff
 *.srctrl*
 
+# My stuff :)
 WIP
 NOTES.md
 Roadmap.todo

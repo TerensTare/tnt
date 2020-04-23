@@ -1,1 +1,1 @@
-cl /EHsc /O2 /W4 /std:c++17 /MT /I..\..\include /I%vcpkg_dir%\x64-windows\include rpptest.cpp ..\..\src\exp\Runtimer.cpp /link /libpath:%vcpkg_dir%\x64-windows\lib manual-link\SDL2main.lib SDL2.lib kernel32.lib /subsystem:console
+cl /EHsc /O2 /W4 /std:c++17 /MT /I..\..\include rpptest.cpp ..\..\src\exp\Runtimer.cpp /link kernel32.lib /subsystem:console

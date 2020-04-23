@@ -25,6 +25,10 @@ message(FATAL_ERROR
     Please consider making a \"build\" subdirectory and run cmake .. from the \"build\" directory.")
 endif()
 
+if(EXISTS ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/assets)
+    file(REMOVE_RECURSE ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/assets)
+endif()
+
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE})
 
 # TODO: an if should be here for cross-platform compiling.
@@ -89,6 +93,7 @@ include_directories(include)
 set(SOURCE_FILES
     src/core/Graphics.cpp src/fileIO/VirtualFS.cpp
     src/core/Window.cpp src/utils/Timer.cpp
+    # src/core/Camera.cpp src/core/Space.cpp src/core/Scene.cpp
     src/math/Rectangle.cpp
     src/fileIO/AssetManager.cpp src/core/InputManager.cpp
     src/ecs/Object.cpp src/ecs/Component.cpp

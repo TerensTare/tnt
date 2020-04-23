@@ -104,7 +104,8 @@ struct window_config
 struct checkbox_config
 {
     int length; // w, h
-} * checkbox_cfg{new checkbox_config{.length = 10}};
+    SDL_Texture *tex;
+} * checkbox_cfg{new checkbox_config{.length = 20}};
 
 struct menu_config
 {
@@ -123,7 +124,7 @@ struct context_t
     std::map<std::string, SDL_Texture *> windows;
 } * context{new context_t{}};
 
-#ifdef TNT_IMGUI_RUNTIME_CONFIG
+#define TNT_IMGUI_RUNTIME_CONFIG
 
 ////////////
 // global //
@@ -351,8 +352,6 @@ void set_progressbar_filled_color(unsigned char r, unsigned char g, unsigned cha
 int get_checkbox_length() noexcept { return checkbox_cfg->length; }
 void set_checkbox_length(int len) noexcept { checkbox_cfg->length = len; }
 
-#endif //!TNT_IMGUI_RUNTIME_CONFIG
-
 /////////////////
 // local utils //
 /////////////////
@@ -385,6 +384,10 @@ auto load_text = [](Window *win, char const *text,
     }
 
     return ret;
+};
+
+auto load_image = [](Window *win, char const *path) -> SDL_Texture * {
+    return IMG_LoadTexture(win->getRenderer(), path);
 };
 
 auto draw_rect = [](Window *win, SDL_Rect const &rect, SDL_Color const &color) -> void {
@@ -742,24 +745,23 @@ void progress_bar(Window *win, long long id, int x, int y, int min_, int max_,
 
 bool checkbox(Window *win, long long id, int x, int y, bool *value) noexcept
 {
+    SDL_Rect box{x, y, checkbox_cfg->length, checkbox_cfg->length};
+
     if (on_rect(x, y, checkbox_cfg->length, checkbox_cfg->length))
     {
         context->hot = id;
-        if (context->active == 0 && context->mouse_down) // left pressed
+        if (context->active == 0 && context->mouse_down)
             context->active = id;
     }
 
-    draw_rect(win, {x, y, checkbox_cfg->length, checkbox_cfg->length}, {255, 255, 255});
+    draw_rect(win, box, {0, 0, 0});
 
     if (context->hot == id && context->active == id)
         *value = !(*value);
 
     if (*value)
     {
-        draw_line(win, x, y, x + (checkbox_cfg->length / 2),
-                  y + (checkbox_cfg->length / 2), {30, 144, 255});
-        draw_line(win, x + (checkbox_cfg->length / 2), y + (checkbox_cfg->length / 2),
-                  x + checkbox_cfg->length, y, {30, 144, 255});
+        SDL_RenderCopy(win->getRenderer(), checkbox_cfg->tex, nullptr, &box);
         return true;
     }
 
@@ -782,6 +784,8 @@ void tnt_imgui_init(tnt::Window *win) noexcept
                                                      tnt::ImGui::global_cfg->font_size);
     tnt::ImGui::global_cfg->bg = win->getClearColor();
 
+    tnt::ImGui::checkbox_cfg->tex = tnt::ImGui::load_image(win, "assets\\tick.png");
+
     tnt::ImGui::make_context();
 }
 
@@ -789,6 +793,9 @@ void tnt_imgui_close() noexcept
 {
     SDL_DestroyTexture(tnt::ImGui::button_cfg->text);
     tnt::ImGui::button_cfg->text = nullptr;
+
+    SDL_DestroyTexture(tnt::ImGui::checkbox_cfg->tex);
+    tnt::ImGui::checkbox_cfg->tex = nullptr;
 
     delete tnt::ImGui::button_cfg;
     tnt::ImGui::button_cfg = nullptr;

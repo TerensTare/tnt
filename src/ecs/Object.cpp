@@ -5,8 +5,10 @@
 
 tnt::Object::~Object() noexcept
 {
-    delete parent;
-    parent = nullptr;
+    if (active)
+        active = false;
+    // delete parent;
+    // parent = nullptr;
 }
 
 tnt::Vector tnt::Object::getPosition() const noexcept { return position; }
@@ -15,5 +17,7 @@ void tnt::Object::setPosition(Vector const &pos) noexcept { position = pos; }
 void tnt::Object::Transform(Vector const &pos) noexcept { position = position + pos; }
 
 tnt::Object *tnt::Object::getParent() const noexcept { return parent; }
-
 void tnt::Object::setParent(Object *parent_) noexcept { parent = parent_; }
+
+bool tnt::Object::isActive() const noexcept { return active; }
+void tnt::Object::setActive(bool active_) noexcept { active = active_; }

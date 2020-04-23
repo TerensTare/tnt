@@ -30,9 +30,13 @@ public:
   Object *getParent() const noexcept;
   void setParent(Object *parent_) noexcept;
 
+  bool isActive() const noexcept;
+  void setActive(bool active_) noexcept;
+
   virtual void Update([[maybe_unused]] long long time_) noexcept = 0;
 
 protected:
+  bool active; // should be rendered
   Vector position;
   // std::map<std::string, component auto *> components;
   Object *parent;

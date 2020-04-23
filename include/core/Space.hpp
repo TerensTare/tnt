@@ -1,14 +1,14 @@
 #ifndef TNT_SPACE_HPP
 #define TNT_SPACE_HPP
 
+#include <map>
 #include <string>
-
-#include "ecs/Object.hpp"
 
 // a utility to group several objects, similar to a layer.
 
 // TODO: getObject should have conditional noexcept (if key exists in
 // container).
+// TODO: implement Draw().
 
 // TODO(maybe):
 // Add a Quadtree.
@@ -16,19 +16,27 @@
 
 namespace tnt
 {
-    class Space
-    {
-      public:
-        std::string getId() const noexcept;
-        void setId(std::string_view name) noexcept;
+class Object;
+class Camera;
 
-        void addObject(Object &&obj) noexcept(noexcept(objects.push_back));
-        Object &getObject() const noexcept(true);
+class Space
+{
+public:
+    ~Space() noexcept;
 
-      private:
-        std::string id;
-        std::vector<Object *> objects;
-    };
+    void addObject(std::pair<std::string_view, Object *> const &obj);
+    void addObject(std::string_view id, Object *obj) noexcept;
+
+    Object *getObject(std::string_view id) const;
+    void removeObject(std::string_view id) noexcept;
+
+    // TODO: unimplemented
+    void Draw(Camera const *cam);
+    void Update(long long time_);
+
+protected:
+    std::map<std::string, Object *> objects;
+};
 } // namespace tnt
 
 #endif //! TNT_SPACE_HPP

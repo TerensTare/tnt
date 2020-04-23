@@ -3,12 +3,35 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-04-23
+### Added
+- Check on `CMakeLists.txt` to delete `assets` directory on the `build/type` folder if already exists.
+- New assets [tick.png](./assets/tick.png) to be used on `checkbox` widget for ImGui.
+
+## 2020-04-22
+### Added
+- Some files to be compiled on `CMakeLists.txt`.
+- `bool active` + getter/setter on `class tnt::Object`.
+- Some utiltity functions on [Space.hpp](./include/core/Space.hpp).
+- `randomFloat()` on [pcg/Random.hpp](./include/pcg/Random.hpp).
+- Implementation of `Camera::Shake()`.
+
+### Changed
+- Updated [.gitignore](./.gitignore).
+- Moved Camera.hpp/cpp to folder `core`.
+- Moved AudioPlayer.hpp/cpp to folder `fileIO`.
+- `Camera::Bounds()` to return a `tnt::Rectangle`.
+- Renamed `Camera::Screenshake()` to just `Camera::Shake()`.
+
+### Removed
+- `Camera::FBounds()`.
+
 ## 2020-04-21
 ### Added
 - Widget `checkbox` for ImGui.
 
 ### Changed
-- `tnt::Timer::deltaTime` to return `std::chrono::milliseconds` by default.
+- The way `Runtimer.hpp` works.
 
 ### Removed
 - Animation-related stuff on `class Sprite`.
@@ -34,7 +57,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Command `CMakeLists.txt` to copy all assets to the binary directory.
 
 ### Changed
-- vcpkg.exe to just vcpkg on `CMakeLists.txt` for cross-platform building.
+- `vcpkg.exe` to just vcpkg on `CMakeLists.txt` for cross-platform building.
 
 ### Removed
 - `assets/zeldadxt.png` because it is unnecessary.

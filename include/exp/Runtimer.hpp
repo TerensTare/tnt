@@ -1,15 +1,17 @@
-#ifndef RUNTIMER_HPP
-#define RUNTIMER_HPP
+#ifndef TNT_RUNTIMER_HPP
+#define TNT_RUNTIMER_HPP
 
+#include <string_view>
 #include <unordered_map>
-
 #include <filesystem>
-#include <string>
+#include <vector>
 
 // library to handle Hot Code Reloading.
-// author: Terens Tare.
+// thx Nicolas Guillemot
+// https://github.com/nlguillemot/live_reload_test
 
 // TODO: experimental.
+// TODO: handle Linux and MacOSX cases.
 // TODO(test): automatically update RuntimeObject on trigger.
 // TODO: keep a file that stores loaded DLL names.
 // TODO(test): handle dll-s without header files, that's how it should be done.
@@ -31,32 +33,36 @@
 
 namespace tnt::rpp
 {
-    class RuntimeManager
-    {
-      public:
-        RuntimeManager();
-        ~RuntimeManager() noexcept;
+struct RuntimeObject
+{
+    bool valid;
+    std::string binPath;
+    std::filesystem::file_time_type lastTime;
+    void *dll;
+    std::vector<std::string> procsToLoad;
+    std::unordered_map<std::string, void *> processes;
+};
 
-        void LoadObject(char const *name, char const *srcFile);
+void Update(RuntimeObject *obj) noexcept;
 
-        void *LoadFunction(char const *handle, char const *name);
-        void Update();
-        void UpdateObject(char const *name);
+// class RuntimeManager
+// {
+// public:
+//   RuntimeManager();
+//   ~RuntimeManager() noexcept;
 
-        void UnloadObject(char const *name);
+//   void LoadObject(char const *name, char const *srcFile);
 
-      private:
-        struct RuntimeObject
-        {
-            bool valid;
-            std::string bldcmd;
-            std::filesystem::file_time_type lastTime;
-            void *dll;
-        };
+//   void *LoadFunction(char const *handle, char const *name);
+//   void Update();
+//   void UpdateObject(char const *name);
 
-        std::unordered_map<std::string, std::string> objectSrc;
-        std::unordered_map<std::string, RuntimeObject *> objects;
-    };
+//   void UnloadObject(char const *name);
+
+// private:
+//   std::unordered_map<std::string, std::string> objectSrc;
+//   std::unordered_map<std::string, RuntimeObject *> objects;
+// };
 } // namespace tnt::rpp
 
-#endif //! RUNTIMER_HPP
+#endif //!TNT_RUNTIMER_HPP
