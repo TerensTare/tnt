@@ -28,7 +28,7 @@ struct global_config
         .h = 0,
         .font_size = 14,
         .text_color = SDL_Color{255, 255, 255, 255},
-        .default_font = std::string{SDL_GetBasePath()}.append("assets\\zeldadxt.ttf")}};
+        .default_font = std::string{SDL_GetBasePath()}.append("assets/Inconsolata.ttf")}};
 
 struct button_config
 {
@@ -40,7 +40,7 @@ struct button_config
     SDL_Texture *text;
 } * button_cfg{new button_config{.w = 60,
                                  .h = 40,
-                                 .idle_color = SDL_Color{30, 144, 255, 255},
+                                 .idle_color = SDL_Color{130, 130, 130, 255},
                                  .active_color = SDL_Color{30, 144, 255, 255}}};
 
 struct slider_config
@@ -57,7 +57,7 @@ struct slider_config
                                    .h = 100,
                                    .thumb_w = 18,
                                    .thumb_h = 18,
-                                   .color = SDL_Color{100, 100, 100, 255},
+                                   .color = SDL_Color{130, 130, 130, 255},
                                    .thumb_idle_color = SDL_Color{30, 144, 255, 255},
                                    .thumb_active_color = SDL_Color{30, 144, 255, 255}}};
 
@@ -75,7 +75,7 @@ struct hslider_config
                                      .h = 20,
                                      .thumb_w = 18,
                                      .thumb_h = 18,
-                                     .color = SDL_Color{100, 100, 100, 255},
+                                     .color = SDL_Color{130, 130, 130, 255},
                                      .thumb_idle_color = SDL_Color{30, 144, 255, 255},
                                      .thumb_active_color = SDL_Color{30, 144, 255, 255}}};
 
@@ -88,7 +88,7 @@ struct progress_bar_config
     SDL_Color filled_color;
 } * progress_bar_cfg{new progress_bar_config{.w = 100,
                                              .h = 20,
-                                             .idle_color = SDL_Color{100, 100, 100, 255},
+                                             .idle_color = SDL_Color{130, 130, 130, 255},
                                              .filled_color = SDL_Color{30, 144, 255, 255}}};
 
 struct window_config
@@ -111,16 +111,19 @@ struct menu_config
 {
     int spacing;
     int w, h;
-} * menu_cfg{new menu_config{.spacing = 50, .w = window_cfg->w, .h = 20}};
+} * menu_cfg{new menu_config{.spacing = 20, .w = window_cfg->w, .h = 20}};
 
 struct context_t
 {
-    // this is true if calling Begin() inside other Begin/End pair.
-    bool on_window;
+    bool on_window; // this is true if calling Begin() inside other Begin/End pair.
+    bool menu_called;
     bool mouse_down;
     int mouse_x, mouse_y;
-    long long active, hot;
+    int list_indent_level, list_index, list_number;
+    int window_x, window_y, next_y; // next_y is used to arrange widgets on the window.
+    std::size_t active, hot;
     std::string last_window;
+    std::map<std::string, SDL_Texture *> lists_text;
     std::map<std::string, SDL_Texture *> windows;
 } * context{new context_t{}};
 
@@ -151,14 +154,14 @@ unsigned char *get_font_color() noexcept
 void set_font(char const *name) noexcept
 {
     global_cfg->default_font = name;
-    TTF_CloseFont(global_cfg->font_data);
+    if (global_cfg->font_data != nullptr)
+        TTF_CloseFont(global_cfg->font_data);
     global_cfg->font_data = TTF_OpenFont(name, global_cfg->font_size);
 }
 
 TTF_Font *get_font() noexcept { return global_cfg->font_data; }
 
 void set_font_size(int size) noexcept { global_cfg->font_size = size; }
-
 int get_font_size() noexcept { return global_cfg->font_size; }
 
 ////////////
@@ -419,6 +422,15 @@ auto has_flag = [](WindowFlags owner, WindowFlags test) -> bool {
     return ((owner & test) == test);
 };
 
+auto check_button = [](std::size_t id, int x, int y, int w, int h) {
+    if (on_rect(x, y, w, h))
+    {
+        context->hot = id;
+        if (context->active == 0 && context->mouse_down) // left pressed
+            context->active = id;
+    }
+};
+
 ///////////////////
 // context stuff //
 ///////////////////
@@ -427,12 +439,15 @@ void make_context() noexcept
 {
     auto pos{input::mousePosition()};
 
-    context->mouse_x = pos.first;
-    context->mouse_y = pos.second;
     context->on_window = false;
+    context->menu_called = false;
     context->mouse_down = input::mouseButtonDown(0);
+    context->mouse_y = pos.second;
+    context->mouse_x = pos.first;
     context->active = 0;
     context->hot = 0;
+    context->window_x = 0;
+    context->window_y = 0;
     context->last_window.clear();
 }
 
@@ -443,18 +458,28 @@ void update_context() noexcept
 
     auto pos{input::mousePosition()};
 
+    context->mouse_down = input::mouseButtonDown(0);
     context->mouse_x = pos.first;
     context->mouse_y = pos.second;
-    context->mouse_down = input::mouseButtonDown(0);
 }
 
 void destroy_context() noexcept
 {
+    context->mouse_down = false;
+    context->menu_called = false;
     context->mouse_x = 0;
     context->mouse_y = 0;
-    context->mouse_down = false;
     context->active = 0;
     context->hot = 0;
+    context->window_x = 0;
+    context->window_y = 0;
+    context->list_indent_level = 0;
+    context->list_index = 0;
+    context->list_number = 0;
+
+    for (auto const &it : tnt::ImGui::context->lists_text)
+        if (it.second != nullptr)
+            SDL_DestroyTexture(it.second);
 
     for (auto const &it : context->windows)
         if (it.second != nullptr)
@@ -478,16 +503,21 @@ bool Begin(Window *win, std::string_view name, int x, int y, WindowFlags flags) 
         return false;
     }
 
+    context->on_window = true;
+    context->window_x = x;
+    context->window_y = y;
+    context->next_y = y + 25;
     context->windows.emplace(name.data(), load_text(win, name.data()));
     context->last_window = name;
-    context->on_window = true;
     context->hot = 0;
+    context->list_indent_level = 0;
+    context->list_index = 0;
 
     // if (has_flag(flags, WindowFlags::Default))
     // {
-    draw_rect(win, {x, y, window_cfg->w, window_cfg->h}, window_cfg->bg);  // body
-    draw_rect(win, {x, y, window_cfg->w, 20}, window_cfg->titlebar_color); // title bar
-    draw_text(win, name.data(), x + 20, y + 5);                            // title
+    draw_rect(win, {x, y, window_cfg->w, window_cfg->h}, {50, 50, 50, 50}); // body
+    draw_rect(win, {x, y, window_cfg->w, 20}, window_cfg->titlebar_color);  // title bar
+    draw_text(win, name.data(), x + 16, y + 3);                             // title
     // }
     // else
     // {}
@@ -505,6 +535,13 @@ void End() noexcept
         return;
     }
 
+    context->on_window = false;
+    if (context->menu_called)
+        context->menu_called = false;
+    context->window_x = 0;
+    context->window_y = 0;
+    context->next_y = 0;
+
     if (!context->mouse_down)
         context->active = 0;
     else
@@ -512,21 +549,32 @@ void End() noexcept
         if (context->active == 0)
             context->active = -1;
     }
-
-    context->on_window = false;
 }
 
-bool button(Window *win, long long id, std::string_view text, int x, int y) noexcept
+void BeginList(Window *win, bool indexed) noexcept
 {
-    if (on_rect(x, y, button_cfg->w, button_cfg->h))
-    {
-        context->hot = id;
-        if (context->active == 0 && context->mouse_down) // left pressed
-            context->active = id;
-    }
+    ++context->list_indent_level;
+}
 
-    SDL_Rect dst{x, y, button_cfg->w, button_cfg->h};
+void EndList() noexcept
+{
+    if (context->list_indent_level <= 0)
+        tnt::logger::debug("Line: {}\tCalling tnt::ImGui::EndList() without calling tnt::ImGui::BeginList() first!!");
+    else
+        --context->list_indent_level;
+}
 
+bool button(Window *win, std::string_view text) noexcept
+{
+    std::string key{context->last_window};
+    key.append(text);
+    std::size_t id{std::hash<std::string>{}(key)};
+    button_cfg->w = static_cast<int>(text.size()) * 7 + 10;
+    button_cfg->h = 10 + global_cfg->font_size;
+
+    check_button(id, context->window_x + 10, context->next_y, button_cfg->w, button_cfg->h);
+
+    SDL_Rect dst{context->window_x + 10, context->next_y, button_cfg->w, button_cfg->h};
     SDL_Color widgetColor;
 
     if (context->hot == id)
@@ -541,16 +589,16 @@ bool button(Window *win, long long id, std::string_view text, int x, int y) noex
 
     draw_rect(win, dst, widgetColor);
 
-    int font_size{(button_cfg->w - 10) / static_cast<int>(text.size())};
-    draw_text(win, text.data(), x + 6, y + ((button_cfg->h - global_cfg->font_size) / 2),
-              global_cfg->text_color, font_size);
+    draw_text(win, text.data(), context->window_x + 15, context->next_y + 5, global_cfg->text_color, global_cfg->font_size);
+
+    context->next_y = context->next_y + 30;
 
     if (context->hot == id && context->active == id)
         return true;
     return false;
 }
 
-bool slider_int(Window *win, long long id, int x, int y, int min_, int max_,
+bool slider_int(Window *win, std::size_t id, int x, int y, int min_, int max_,
                 int *value) noexcept
 {
     int ypos{((slider_cfg->h - slider_cfg->thumb_h) * (*value - min_)) / (max_ - min_)};
@@ -593,7 +641,7 @@ bool slider_int(Window *win, long long id, int x, int y, int min_, int max_,
     return false;
 }
 
-bool slider_float(Window *win, long long id, int x, int y, float min_, float max_,
+bool slider_float(Window *win, std::size_t id, int x, int y, float min_, float max_,
                   float *value) noexcept
 {
     int ypos{static_cast<int>(((slider_cfg->h - slider_cfg->thumb_h) * (*value - min_)) /
@@ -637,7 +685,7 @@ bool slider_float(Window *win, long long id, int x, int y, float min_, float max
     return false;
 }
 
-bool hslider_int(Window *win, long long id, int x, int y, int min_, int max_,
+bool hslider_int(Window *win, std::size_t id, int x, int y, int min_, int max_,
                  int *value) noexcept
 {
     int xpos{((hslider_cfg->w - hslider_cfg->thumb_w) * (*value - min_) / (max_ - min_))};
@@ -681,7 +729,7 @@ bool hslider_int(Window *win, long long id, int x, int y, int min_, int max_,
     return false;
 }
 
-bool hslider_float(Window *win, long long id, int x, int y, float min_, float max_,
+bool hslider_float(Window *win, std::size_t id, int x, int y, float min_, float max_,
                    float *value) noexcept
 {
     int xpos{static_cast<int>(((hslider_cfg->w - hslider_cfg->thumb_w) * (*value - min_)) /
@@ -726,35 +774,49 @@ bool hslider_float(Window *win, long long id, int x, int y, float min_, float ma
     return false;
 }
 
-int menu(Window *win, long long id, int x, int y, std::string *first,
-         std::string *last) noexcept
+int menu(Window *win, std::string_view *options, int size) noexcept
 {
-    for (int i{0}; i < (last - first) + 1; ++i)
-        draw_text(win, (first + i)->c_str(), x + 5 + (menu_cfg->spacing * i), y);
-    return 1;
+    if (context->menu_called)
+    {
+        tnt::logger::debug("Line: {}\tCalling tnt::ImGui::menu() for the second time inside the same window!!", __LINE__);
+        return -1;
+    }
+
+    int ret{-1};
+    for (int i{0}, lastX{context->window_x};
+         i < size; ++i, lastX += menu_cfg->spacing + ((static_cast<int>(options[i - 1].size()) - 1) * 8))
+    {
+        std::size_t id{std::hash<std::string_view>{}(options[i])};
+        check_button(id, lastX, context->window_y + 20, static_cast<int>(options[i].size()) * 7 + 10, 10 + global_cfg->font_size);
+        draw_text(win, options[i].data(), lastX + 10, context->window_y + 20);
+
+        if (context->hot == id && context->active == id)
+            ret = i;
+    }
+
+    context->next_y = context->next_y + global_cfg->font_size + 10;
+    context->menu_called = true;
+    return ret;
 }
 
-void progress_bar(Window *win, long long id, int x, int y, int min_, int max_,
-                  int *value) noexcept
+bool checkbox(Window *win, std::string_view text, bool *value) noexcept
 {
-    int xpos{(progress_bar_cfg->w * (*value - min_) / (max_ - min_))};
-    draw_rect(win, {x, y, progress_bar_cfg->w, progress_bar_cfg->h},
-              progress_bar_cfg->idle_color);
-    draw_rect(win, {x, y, xpos, progress_bar_cfg->h}, progress_bar_cfg->filled_color);
-}
+    std::string key{context->last_window};
+    key.append(text);
+    std::size_t id{std::hash<std::string>{}(key)};
 
-bool checkbox(Window *win, long long id, int x, int y, bool *value) noexcept
-{
-    SDL_Rect box{x, y, checkbox_cfg->length, checkbox_cfg->length};
+    SDL_Rect box{context->window_x + 10, context->next_y, checkbox_cfg->length, checkbox_cfg->length};
 
-    if (on_rect(x, y, checkbox_cfg->length, checkbox_cfg->length))
+    if (on_rect(context->window_x + 10, context->next_y, checkbox_cfg->length, checkbox_cfg->length))
     {
         context->hot = id;
         if (context->active == 0 && context->mouse_down)
             context->active = id;
     }
 
-    draw_rect(win, box, {0, 0, 0});
+    draw_rect(win, box, {130, 130, 130, 255});
+    draw_text(win, text.data(), box.x + box.w + 10, context->next_y);
+    context->next_y = context->next_y + box.h + 10;
 
     if (context->hot == id && context->active == id)
         *value = !(*value);
@@ -766,6 +828,38 @@ bool checkbox(Window *win, long long id, int x, int y, bool *value) noexcept
     }
 
     return false;
+}
+
+void progress_bar(Window *win, std::string_view text, int min_, int max_,
+                  int *value) noexcept
+{
+    int xpos{(progress_bar_cfg->w * (*value - min_) / (max_ - min_))};
+    draw_rect(win, {context->window_x + 10, context->next_y, progress_bar_cfg->w, progress_bar_cfg->h},
+              progress_bar_cfg->idle_color);
+    draw_text(win, text.data(),
+              context->window_x + progress_bar_cfg->w + 20, context->next_y);
+    draw_rect(win, {context->window_x + 12, context->next_y + 2, xpos, progress_bar_cfg->h - 4}, progress_bar_cfg->filled_color);
+    context->next_y = context->next_y + progress_bar_cfg->h + 10;
+}
+
+void newline(Window *win) noexcept
+{
+    context->next_y = context->next_y + global_cfg->font_size;
+}
+
+void text(Window *win, std::string_view text) noexcept
+{
+    draw_text(win, text.data(), context->window_x + 10, context->next_y);
+    context->next_y = context->next_y + global_cfg->font_size;
+}
+
+void list_item(Window *win, std::string_view text) noexcept
+{
+    int xpos{context->window_x + (context->list_indent_level * 10)};
+    if (context->lists_text.find(text.data()) != context->lists_text.end())
+        context->lists_text[text.data()] = load_text(win, text.data());
+    draw_text(win, text.data(), xpos, context->next_y);
+    context->next_y = context->next_y + global_cfg->font_size;
 }
 } // namespace tnt::ImGui
 
@@ -784,7 +878,7 @@ void tnt_imgui_init(tnt::Window *win) noexcept
                                                      tnt::ImGui::global_cfg->font_size);
     tnt::ImGui::global_cfg->bg = win->getClearColor();
 
-    tnt::ImGui::checkbox_cfg->tex = tnt::ImGui::load_image(win, "assets\\tick.png");
+    tnt::ImGui::checkbox_cfg->tex = tnt::ImGui::load_image(win, "assets/tick.png");
 
     tnt::ImGui::make_context();
 }

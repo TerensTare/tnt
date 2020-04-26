@@ -2,6 +2,7 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 #include <iostream>
+#include <filesystem>
 #include <random>
 
 #include "core/InputManager.hpp"
@@ -15,8 +16,12 @@
 #include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
 
+namespace fs = std::filesystem;
+
 using tnt::ImGui::hslider_int, tnt::ImGui::button,
-    tnt::ImGui::menu, tnt::ImGui::checkbox;
+    tnt::ImGui::progress_bar, tnt::ImGui::menu,
+    tnt::ImGui::checkbox, tnt::ImGui::list_item,
+    tnt::ImGui::text;
 
 // TODO: "dissolve" this code into classes, like Game/Scene/Space,
 // etc.
@@ -25,7 +30,7 @@ class Player : public tnt::Sprite
 {
 public:
     explicit Player(tnt::Window const *win)
-        : tnt::Sprite{win, std::move(std::string{SDL_GetBasePath()}.append("assets\\player.png")),
+        : tnt::Sprite{win, std::move(std::string{SDL_GetBasePath()}.append("assets/player.png")),
                       tnt::Rectangle{0.f, 0.f, 16.f, 16.f}} {}
 
     void Update([[maybe_unused]] long long elapsed) noexcept override { return; }
@@ -63,21 +68,33 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
         window->Clear();
 
-        tnt::ImGui::Begin(window, "Test Window", 500, 200);
-
+        if (tnt::ImGui::Begin(window, "Filesystem", 500, 100))
         {
-            static std::string text[4]{"File", "Edit", "Layer", "Help"};
-            menu(window, IMGUI_ID, 500, 220, &text[0], &text[3]);
+            {
+                static std::string_view test[4]{"File", "Edit", "Options", "Info"};
+                if (auto res{menu(window, test, 4)}; res != -1)
+                    std::cout << "Pressed " << test[res] << "\n";
 
-            static bool test{true};
-            checkbox(window, IMGUI_ID, 50, 500, &test);
+                text(window, "Hello World!");
+            }
+
+            tnt::ImGui::newline(window);
+
+            tnt::ImGui::BeginList(window, true);
+
+            for (auto const &it : fs::recursive_directory_iterator{"."})
+            {
+                if (auto file{it.path().string()}; file.ends_with(".dll"))
+                    list_item(window, file);
+            }
+
+            tnt::ImGui::EndList();
+
+            hslider_int(window, IMGUI_ID, 100, 400, 0, 9, &x);
+            hslider_int(window, IMGUI_ID, 100, 440, 0, 3, &y);
+
+            tnt::ImGui::End();
         }
-
-        hslider_int(window, IMGUI_ID, 500, 100, 0, 9, &x);
-        hslider_int(window, IMGUI_ID, 500, 140, 0, 3, &y);
-
-        tnt::ImGui::End();
-
         clip.x = x * 16;
         clip.y = y * 16;
 
@@ -92,7 +109,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
         if (!quit)
             std::cout << (1000 / dt) << " fps\n";
-        SDL_Delay(16);
+        SDL_Delay(1);
     }
 
     delete player;

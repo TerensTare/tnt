@@ -1,83 +1,97 @@
 player.png taken from https://opengameart.org/content/tiny-16-more-character-animations
 
-zeldadxt.png stuff
+Inconsolata.ttf stuff
 
-_______________________________
-Zelda DX  Created by Brian Kent
-¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+Copyright 2006 The Inconsolata Project Authors
 
-Thanks for Downloading Zelda DX.
-
-  The characters in this font are based on the text used in 'The Legend
-of Zelda: Link's Awakening [DX]' for the Gameboy Color.
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
 
 
--Zelda DX TT    [.ttf]
--Zelda DX [7pt] [.fon]
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
 
-  'zeldadx.fon' is a Windows Bitmap Font (.fon).  This font is best
-used at 7pt.  To use it at larger point sizes (for images), try using
-a graphics program like Photoshop, Paint Shop Pro, or the Paint
-program that comes with Windows.  Type out your text at the recommended
-point size [7pt], then resize the image.   Set the color mode to 256
-or 2 colors so the edges don't get blured when resizing, then after you
-have the text to the size that you want, then change back to a higher
-color mode and edit the image.
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
 
-  For programs that don't show Bitmap Fonts in the Font Selector, you
-may be able to get the font to work by typing in:
-zelda dx -brk-
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
 
-  When using the TTF version, try using it with anti-aliasing off.
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
 
-If you have any questions or comments, you can e-mail me at
-kentpw@norwich.net
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
 
-You can visit my Homepage <ÆNIGMA GAMES & FONTS> at
-http://aenigma.cellosoft.com/
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
 
-________________
-INSTALLING FONTS
-¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-  There's a couple of ways to install Fonts. The 'easy' way to
-install fonts is to just Unzip/place the font file(s) into your
-Windows\Fonts directory (I always use this method). If you're unable
-to do it the 'easy' way, then try to do it this way (for Windows
-95/98/NT):
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
 
-1] Unzip the Font(s) to a folder (or somewhere, just remember where
-you unzipped it) on your Computer.
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
 
-2] Next, click on the START button, then select SETTINGS then
-CONTROL PANEL.
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
 
-3] When the Control Panel Window pops up, Double Click on FONTS.
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
 
-4] When the FONTS window pops up, select File then Install New Font...
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
 
-5] A Add Fonts window will pop up, just go to the folder that you
-unzipped the Font(s) to, select the Font(s) and then click on OK.
-Now the Font(s) are installed.
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
 
-  Now you can use the Font(s) in programs the utilize Fonts.  Make
-sure that you install the font(s) first, then open up your apps
-(so the app will recognize the font).    Sometimes you'll have to
-wait until you computer 'auto-refreshes' for programs to recognize
-fonts (Windows is sometimes slow to do that).  You can refresh your
-computer quicker by going into Windows Explorer -or- My Computer and
-press ALT + V, then R (or in the menubar select VIEW then REFRESH).
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
 
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
 
-__________
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
 DISCLAIMER
-¯¯¯¯¯¯¯¯¯¯
--The font(s) in this zip file were created by me (Brian Kent).  All
-of my Fonts are Freeware, you can use them any way you want to
-(Personal use, Commercial use, or whatever).
-
--If you have a Font related site and would like to offer my fonts on
-your site, go right ahead. All I ask is that you keep this text file
-intact with the Font.
-
--You may not Sell or Distribute my Fonts for profit or alter them in
-any way without asking me first.  [e-mail -  kentpw@norwich.net]
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.

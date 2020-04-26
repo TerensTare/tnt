@@ -3,10 +3,42 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-04-26
+### Added
+- Widget `text` and `newline` for ImGui.
+
+## 2020-04-25
+### Changed
+- `tnt::ImGui::menu()` now needs a `std::string_view*` rather than `std::string*` to conserve space.
+- Now ImGui widgets require `std::size_t` for their id rather than `long long`, so that the id is not negative and it is compatible with `std::hash`.
+- The title on ImGui's windows is now more centered.
+- `tnt::ImGui::checkbox()` now doesn't need to have an `id`, `x` and `y`, because it is drawn on the window. Just a `window` where to draw it, the `text` to draw to it and a `bool *value`. The same with `tnt::ImGui::button()` and `tnt::ImGui::menu()`.
+- `tnt::ImGui::progress_bar()` now has an offset between it's body and it's filled part and doesn't need `x` and `y` as parameter, but needs a `text` to draw on its side.
+- `tnt::ImGui::button()`'s width is now dependent on the size of the text you want to display on it.
+- Fixed a bug with `tnt::ImGui::button()` showing the wrong color.
+- Made the text size of `tnt::ImGui::button()` to be equal to the global font size.
+- The font ImGui used from `zeldadx` to `Inconsolata`.
+- The slider color of `hslider` and `slider` ImGui widgets.
+
+
+## 2020-04-24
+### Added
+- Functions `tnt::ImGui::BeginList()/EndList()` and `tnt::ImGui::list_item()` for indexed and unindexed lists.
+- Some spacing before the first item of `tnt::ImGui::menu()`.
+- Check on `tnt::ImGui::menu()` so that you don't add two menu widgets on the same window.
+
+### Removed
+- `long long id` from widget `tnt::ImGui::progress_bar`.
+
 ## 2020-04-23
 ### Added
+- Started working on lists and indexed lists for ImGui.
 - Check on `CMakeLists.txt` to delete `assets` directory on the `build/type` folder if already exists.
 - New assets [tick.png](./assets/tick.png) to be used on `checkbox` widget for ImGui.
+
+### Changed
+- The way `tnt::ImGui::menu` worked to get equal spacing between different options.
+- ImGui's `menu` widget spacing from 50 to 20.
 
 ## 2020-04-22
 ### Added
