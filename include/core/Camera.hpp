@@ -7,6 +7,7 @@
 // https://github.com/Penaz91/2DGD_F0TH
 
 // TODO: screenshake
+// TODO: MoveTo and CenterTo with lerp so that it looks nice.
 // TODO(partial): different Camera types.
 // TODO: Lua support.
 // TODO: clamp Camera coordinates inside Scene's coordinates.
@@ -19,11 +20,7 @@
 // and other Camera-s should derive from that ??
 namespace tnt
 {
-// Camera uses global coordinates.
-// The Camera class is deprecated in favour to the new StaticCamera,
-// HorizontalCamera, FullTrackingCamera class-es, and will be removed as
-// soon as the new Camera-s will be written and fully tested. In fact, it
-// may serve as a base class for the other Camera class-es.
+// NOTE: Camera uses global coordinates.
 struct Camera
 {
     Camera(float x, float y, float w, float h);
@@ -38,40 +35,40 @@ struct Camera
     Rectangle Bounds() const noexcept;
 
 protected:
-    Rectangle bounds;
-    float tmpX, tmpY; // used during shaking
     bool shaking;
+    float tmpX, tmpY; // used during shaking
+    Rectangle bounds;
 };
 
 struct HorizontalCamera : Camera
 {
     HorizontalCamera(float x, float y, float w, float h);
 
-    void Move(float x, float);
-    void Move(Vector const &v);
+    void Move(float x, float) noexcept;
+    void Move(Vector const &v) noexcept;
 
-    void MoveTo(float x, float);
-    void MoveTo(Vector const &v);
+    void MoveTo(float x, float) noexcept;
+    void MoveTo(Vector const &v) noexcept;
 
-    void CenterTo(float x, float);
-    void CenterTo(Vector const &v);
+    void CenterTo(float x, float) noexcept;
+    void CenterTo(Vector const &v) noexcept;
 };
 
-struct FullTrackingCamera : Camera // (maybe) derive from HorizontalCamera
+struct FullTrackingCamera : Camera
 {
     FullTrackingCamera(float x, float y, float w, float h);
 
-    void Move(float x, float y);
-    void Move(Vector const &v);
+    void Move(float x, float y) noexcept;
+    void Move(Vector const &v) noexcept;
 
-    void MoveX(float x);
-    void MoveY(float y);
+    void MoveX(float x) noexcept;
+    void MoveY(float y) noexcept;
 
-    void MoveTo(float x, float y);
-    void MoveTo(Vector const &v);
+    void MoveTo(float x, float y) noexcept;
+    void MoveTo(Vector const &v) noexcept;
 
-    void CenterTo(float x, float y);
-    void CenterTo(Vector const &v);
+    void CenterTo(float x, float y) noexcept;
+    void CenterTo(Vector const &v) noexcept;
 };
 } // namespace tnt
 

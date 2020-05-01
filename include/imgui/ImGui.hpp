@@ -8,19 +8,26 @@
 #include <string_view>
 
 // TODO: more widgets:
-// image,  radio, text field, selection box
-// TODO: faster widget id generator.
+// image, radio, text field, selection box, context menu, icon(button with image)
+// TODO: separate menu() into BeginMenu()/EndMenu() and MenuItem() (whatever name)
 // TODO: load from config file.
 // TODO: themes
-// TODO: add support for moving and collapsing windows.
-// TODO: make sure no widget (except text) is drawed between BeginList() and EndList() calls.
-// TODO: add support for more context (multiple windows).
+// TODO: cheaper and faster text handling.
+// TODO: add support for collapsing and multiple windows.
+// TODO: make sure no widget (except list_item) is drawed between BeginList() and EndList() calls.
+// TODO: add support for handling more than one context (multiple game windows).
+// TODO: add more operators support for WindowFlags(==, !=).
+// TODO: sameline()
+// TODO: add support for drawing text on the left of the widget and switching from the left to the right of the widget.
+// TODO: add support for calling window inside a window (ex. creating window on button click)
 
 // TODO(maybe):
+// remove window_config ??
 // move slider's modified value before min/max ??
 // slider_double, slider_uint8 ??
 // draw ImGui widgets straight from tnt::Window ??
 // keyboard navigation ??
+// move update_context() stuff to Begin() ??
 
 namespace tnt
 {
@@ -45,7 +52,7 @@ enum class WindowFlags : int
 // operator overloading //
 //////////////////////////
 
-inline WindowFlags operator|(WindowFlags lhs, WindowFlags rhs) noexcept
+inline WindowFlags operator|(WindowFlags const &lhs, WindowFlags const &rhs) noexcept
 {
     using type = std::underlying_type_t<WindowFlags>;
     return static_cast<WindowFlags>(static_cast<type>(lhs) | static_cast<type>(rhs));
@@ -57,7 +64,7 @@ inline WindowFlags &operator|=(WindowFlags &lhs, WindowFlags rhs) noexcept
     return lhs;
 }
 
-inline WindowFlags operator&(WindowFlags lhs, WindowFlags rhs) noexcept
+inline WindowFlags operator&(WindowFlags const &lhs, WindowFlags const &rhs) noexcept
 {
     using type = std::underlying_type_t<WindowFlags>;
     return static_cast<WindowFlags>(static_cast<type>(lhs) & static_cast<type>(rhs));
@@ -69,7 +76,7 @@ inline WindowFlags &operator&=(WindowFlags &lhs, WindowFlags rhs) noexcept
     return lhs;
 }
 
-inline WindowFlags operator^(WindowFlags lhs, WindowFlags rhs) noexcept
+inline WindowFlags operator^(WindowFlags const &lhs, WindowFlags const &rhs) noexcept
 {
     using type = std::underlying_type_t<WindowFlags>;
     return static_cast<WindowFlags>(static_cast<type>(lhs) ^ static_cast<type>(rhs));
@@ -103,7 +110,7 @@ bool Begin(Window *win, std::string_view name, int x, int y,
            WindowFlags flags = WindowFlags::Default) noexcept;
 void End() noexcept;
 
-void BeginList(Window *win, bool indexed) noexcept;
+void BeginList(bool indexed) noexcept;
 void EndList() noexcept;
 
 bool button(Window *win, std::string_view text) noexcept;
@@ -127,12 +134,10 @@ int menu(Window *win, std::string_view *options, int size) noexcept;
 void progress_bar(Window *win, std::string_view text, int min_, int max_,
                   int *value) noexcept;
 
-void newline(Window *win) noexcept;
-
+void newline() noexcept;
 void text(Window *win, std::string_view text) noexcept;
 
 void list_item(Window *win, std::string_view text) noexcept;
-
 } // namespace ImGui
 } // namespace tnt
 

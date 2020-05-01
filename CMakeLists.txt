@@ -91,10 +91,9 @@ configure_file(
 include_directories(include)
 
 set(SOURCE_FILES
-    src/core/Graphics.cpp src/fileIO/VirtualFS.cpp
-    src/core/Window.cpp src/utils/Timer.cpp
+    src/core/Graphics.cpp src/core/Window.cpp src/utils/Timer.cpp
     # src/core/Camera.cpp src/core/Space.cpp src/core/Scene.cpp
-    src/math/Rectangle.cpp
+    src/math/Rectangle.cpp # src/fileIO/VirtualFS.cpp
     src/fileIO/AssetManager.cpp src/core/InputManager.cpp
     src/ecs/Object.cpp src/ecs/Component.cpp
     src/ecs/Sprite.cpp src/ImGui/ImGui.cpp)

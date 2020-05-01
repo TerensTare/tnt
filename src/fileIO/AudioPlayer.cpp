@@ -1,4 +1,4 @@
-#include "core/AudioPlayer.hpp"
+#include "fileIO/AudioPlayer.hpp"
 #include "fileIO/AssetManager.hpp"
 #include <iostream>
 
@@ -10,9 +10,11 @@ tnt::AudioPlayer::AudioPlayer(int frequency, unsigned short format, int channels
 
 void tnt::AudioPlayer::PlayMusic(std::string_view filename, int loops)
 {
-    if (AssetManager::This().Music(filename) == nullptr) {
+    if (AssetManager::This().Music(filename) == nullptr)
+    {
         AssetManager::This().AddMusic(filename);
-        if (AssetManager::This().Music(filename) == nullptr) {
+        if (AssetManager::This().Music(filename) == nullptr)
+        {
             std::cout << "Couldn't load " << filename << "\n.Error: " << Mix_GetError() << std::endl;
             return;
         }
@@ -35,9 +37,11 @@ void tnt::AudioPlayer::ResumeMusic()
 
 void tnt::AudioPlayer::PlaySFX(std::string_view filename, int channel, int loops)
 {
-    if (AssetManager::This().Sfx(filename) == nullptr) {
+    if (AssetManager::This().Sfx(filename) == nullptr)
+    {
         AssetManager::This().AddSfx(filename);
-        if (AssetManager::This().Sfx(filename) != nullptr) {
+        if (AssetManager::This().Sfx(filename) != nullptr)
+        {
             std::cout << "Couldn't load " << filename << "\nError: " << Mix_GetError() << std::endl;
             return;
         }

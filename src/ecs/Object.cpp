@@ -7,8 +7,11 @@ tnt::Object::~Object() noexcept
 {
     if (active)
         active = false;
-    // delete parent;
-    // parent = nullptr;
+    if (parent != nullptr)
+    {
+        delete parent;
+        parent = nullptr;
+    }
 }
 
 tnt::Vector tnt::Object::getPosition() const noexcept { return position; }

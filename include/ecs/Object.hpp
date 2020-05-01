@@ -21,25 +21,39 @@ class Component;
 class Object
 {
 public:
-  virtual ~Object() noexcept;
+    virtual ~Object() noexcept;
 
-  Vector getPosition() const noexcept;
-  void setPosition(Vector const &pos) noexcept;
-  void Transform(Vector const &pos) noexcept;
+    Vector getPosition() const noexcept;
+    void setPosition(Vector const &pos) noexcept;
+    void Transform(Vector const &pos) noexcept;
 
-  Object *getParent() const noexcept;
-  void setParent(Object *parent_) noexcept;
+    Object *getParent() const noexcept;
+    void setParent(Object *parent_) noexcept;
 
-  bool isActive() const noexcept;
-  void setActive(bool active_) noexcept;
+    bool isActive() const noexcept;
+    void setActive(bool active_) noexcept;
 
-  virtual void Update([[maybe_unused]] long long time_) noexcept = 0;
+    virtual void Update([[maybe_unused]] long long time_) noexcept = 0;
+
+    // template <typename T>
+    // T *addComponent() noexcept
+    // {
+    //     if (auto key{std::type_index{typeid(T)}}, auto it{components.find(key)};
+    //         it != components.end())
+    //         components[key] = it.second;
+    // }
+
+    // template <typename T, typename... Args>
+    // T *addComponent(Args &&... args) noexcept {}
+
+    // template <typename T>
+    // void removeComponent() noexcept {}
 
 protected:
-  bool active; // should be rendered
-  Vector position;
-  // std::map<std::string, component auto *> components;
-  Object *parent;
+    bool active; // should be rendered (maybe) move this to Sprite ??
+    Vector position;
+    // std::pmr::map<std::type_index, Component *> components;
+    Object *parent{nullptr};
 };
 } // namespace tnt
 

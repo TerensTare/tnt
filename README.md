@@ -28,6 +28,8 @@ know C++. Meanwhile the engine should be powerful enough for a C++ developer.
 |:----------:|:---:|
 | CodeFactor | [![CodeFactor](https://www.codefactor.io/repository/github/terenstare/tnt/badge)](https://www.codefactor.io/repository/github/terenstare/tnt) |
 | Codacy     | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3749bb4e09c74f6785177d318bb8ba15)](https://app.codacy.com/manual/terens.t17/tnt?utm_source=github.com&utm_medium=referral&utm_content=TerensTare/tnt&utm_campaign=Badge_Grade_Dashboard)
+| Code Inspector| ![](https://www.code-inspector.com/project/7251/score/svg)
+||![](https://www.code-inspector.com/project/7251/status/svg)
 
 ## Documentation
 

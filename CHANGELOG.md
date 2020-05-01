@@ -3,8 +3,28 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-04-29
+### Added
+- Conditional check before `delete`-ing an `Object`'s `parent`.
+- Ability to move and resize ImGui windows. Widgets won't be drawn if they won't fit on the window.
+
+### Changed
+- Fixed `#include` on `AudioPlayer.cpp`.
+
+## 2020-04-27
+### Added
+- Code Inspector badge on [README.md](./README.md).
+- `class Rectangle`, `class AssetManager` loader functions on [LuaManager.hpp](./include/exp/LuaManager.hpp).
+- `final` keyword for `class AssetManager`.
+- `noexcept` on some `struct Vector` functions.
+
+### Changed
+- Method of comparing `struct Vector`-s. That shouldn't affect your code, though.
+
+
 ## 2020-04-26
 ### Added
+- `noexcept` on some `struct Camera` functions.
 - Widget `text` and `newline` for ImGui.
 
 ## 2020-04-25

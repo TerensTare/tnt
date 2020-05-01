@@ -27,7 +27,7 @@ namespace tnt
     // TODO(maybe): use std::unordered_map instead ??
     // TODO(maybe): use weak_ptr's for values to make the As
 
-    class AssetManager
+    class AssetManager final
     {
       public:
         ~AssetManager() noexcept;

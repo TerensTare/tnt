@@ -42,9 +42,10 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
     std::srand(rd());
     bool quit{false};
 
-    tnt::Window *window{new tnt::Window{"The TnT Engine", SDL_WINDOWPOS_CENTERED,
-                                        SDL_WINDOWPOS_CENTERED, 800, 600,
-                                        SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
+    tnt::Window *window{new tnt::Window{
+        "The TnT Engine", SDL_WINDOWPOS_CENTERED,
+        SDL_WINDOWPOS_CENTERED,
+        800, 600, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
     window->setClearColor({10, 210, 255, 255});
     tnt_imgui_init(window);
@@ -68,33 +69,29 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
         window->Clear();
 
-        if (tnt::ImGui::Begin(window, "Filesystem", 500, 100))
+        if (tnt::ImGui::Begin(window, "Files", 500, 300))
         {
             {
                 static std::string_view test[4]{"File", "Edit", "Options", "Info"};
                 if (auto res{menu(window, test, 4)}; res != -1)
                     std::cout << "Pressed " << test[res] << "\n";
-
-                text(window, "Hello World!");
             }
 
-            tnt::ImGui::newline(window);
-
-            tnt::ImGui::BeginList(window, true);
-
-            for (auto const &it : fs::recursive_directory_iterator{"."})
-            {
-                if (auto file{it.path().string()}; file.ends_with(".dll"))
-                    list_item(window, file);
-            }
-
-            tnt::ImGui::EndList();
+            tnt::ImGui::newline();
+            button(window, "Test");
 
             hslider_int(window, IMGUI_ID, 100, 400, 0, 9, &x);
             hslider_int(window, IMGUI_ID, 100, 440, 0, 3, &y);
 
             tnt::ImGui::End();
         }
+
+        if (tnt::ImGui::Begin(window, "Hello", 100, 400))
+        {
+            text(window, "Hello World!");
+            tnt::ImGui::End();
+        }
+
         clip.x = x * 16;
         clip.y = y * 16;
 
@@ -116,8 +113,6 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
     tnt_imgui_close();
     tnt::input::close();
-
-    delete window;
 
     return 0;
 }
