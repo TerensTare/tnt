@@ -86,12 +86,6 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
             tnt::ImGui::End();
         }
 
-        if (tnt::ImGui::Begin(window, "Hello", 100, 400))
-        {
-            text(window, "Hello World!");
-            tnt::ImGui::End();
-        }
-
         clip.x = x * 16;
         clip.y = y * 16;
 
