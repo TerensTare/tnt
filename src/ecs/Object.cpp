@@ -12,6 +12,7 @@ tnt::Object::~Object() noexcept
         delete parent;
         parent = nullptr;
     }
+    clear();
 }
 
 tnt::Vector tnt::Object::getPosition() const noexcept { return position; }

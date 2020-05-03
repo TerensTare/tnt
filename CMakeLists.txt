@@ -68,8 +68,9 @@ if(NOT DEFINED CMAKE_PREFIX_PATH)
     set(CMAKE_PREFIX_PATH "")
 endif()
 
-list(APPEND CMAKE_PREFIX_PATH
-    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}#/share/sdl2/
+list(APPEND CMAKE_PREFIX_PATH ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET})
+
+    #${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2/
     # ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-gfx/
     # ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-image/
     # ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-mixer/
@@ -77,7 +78,7 @@ list(APPEND CMAKE_PREFIX_PATH
     # ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sol2/
     # ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/fmt/
     # ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/nlohmann_json/
-)
+
 
 # Load required packages.
 

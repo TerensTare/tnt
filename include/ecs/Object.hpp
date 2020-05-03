@@ -4,15 +4,8 @@
 #include <map>
 #include <typeindex>
 
-#include "math/Vector.hpp"
-#include "utils/Concepts.hpp"
+#include "ecs/Component.hpp"
 #include "utils/Logger.hpp"
-
-// FIXME
-// An Object can have two Component* of same type !!
-
-// TODO:
-// use concepts here for Component.
 
 namespace tnt
 {
@@ -35,24 +28,81 @@ public:
 
     virtual void Update([[maybe_unused]] long long time_) noexcept = 0;
 
-    // template <typename T>
-    // T *addComponent() noexcept
-    // {
-    //     if (auto key{std::type_index{typeid(T)}}, auto it{components.find(key)};
-    //         it != components.end())
-    //         components[key] = it.second;
-    // }
+    template <typename T>
+    T *add() noexcept
+    {
+        if constexpr (!std::is_base_of_v<Component, T>)
+        {
+            tnt::logger::debug("Line: {}\tCalling tnt::Object::add<T> with T being a type that is not derived from tnt::Component", __LINE__);
+            return nullptr;
+        }
 
-    // template <typename T, typename... Args>
-    // T *addComponent(Args &&... args) noexcept {}
+        std::type_index key{typeid(T)};
+        if (components.find(key) == components.end())
+        {
+            T *value{new T{}};
+            components[key] = std::move(static_cast<Component *>(value));
+        }
 
-    // template <typename T>
-    // void removeComponent() noexcept {}
+        return static_cast<T *>(components[key]);
+    }
+
+    template <typename T, typename... Args>
+    T *add(Args &&... args) noexcept
+    {
+        if constexpr (!std::is_base_of_v<Component, T>)
+        {
+            tnt::logger::debug("Line: {}\tCalling tnt::Object::add<T> with T being a type that is not derived from tnt::Component", __LINE__);
+            return nullptr;
+        }
+
+        std::type_index key{typeid(T)};
+        if (components.find(key) == components.end())
+        {
+            T *value{new T{std::forward<Args>(args)...}};
+            components[key] = std::move(static_cast<Component *>(value));
+        }
+
+        return static_cast<T *>(components[key]);
+    }
+
+    template <typename T>
+    [[nodiscard]] T *get() noexcept
+    {
+        auto key{std::type_index{typeid(T)}};
+        if (components.find(key) != components.end())
+            return static_cast<T *>(components[key]);
+        tnt::logger::debug("Line: {}\tObject doesn't have Component {}\n Please call tnt::Object::add<T> before calling tnt::Object::get<T>!!", __LINE__, typeid(T).name());
+        return nullptr;
+    }
+
+    template <typename T>
+    void remove() noexcept
+    {
+        auto key{std::type_index{typeid(T)}};
+        if (auto it{components.find(key)}; it != components.end())
+        {
+            delete it.second;
+            components.erase(it);
+        }
+        else
+            tnt::logger::debug(
+                "Line: {}\tObject doesn't have Component {}!!\nPlease call tnt::Object::add<T> before calling tnt::Object::remove<T>!!",
+                __LINE__, typeid(T).name());
+    }
+
+    void clear() noexcept
+    {
+        for (auto const &it : components)
+            if (it.second != nullptr)
+                delete it.second;
+        components.clear();
+    }
 
 protected:
     bool active; // should be rendered (maybe) move this to Sprite ??
     Vector position;
-    // std::pmr::map<std::type_index, Component *> components;
+    std::map<std::type_index, Component *> components;
     Object *parent{nullptr};
 };
 } // namespace tnt

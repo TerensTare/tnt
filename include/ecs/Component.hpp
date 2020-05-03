@@ -1,9 +1,7 @@
 #ifndef TNT_COMPONENT_HPP
 #define TNT_COMPONENT_HPP
 
-#include <SDL2/SDL.h>
 #include <string_view>
-
 #include "math/Rectangle.hpp"
 
 // TODO:
@@ -17,12 +15,14 @@
 // Widget, Animation, AI ??
 // PhysicsComponent::{add/remove}Mass ?? also modify collision_box on runtime ??
 // Rename every component to a shorter name, ex. *Comp ??
-// Write a Polygon class so that PhysicsComponent can use it as collision_shape
-// ?? SpriteComponent should handle a weak_ptr<Window> not a friend class Window
+// Write a Polygon class so that PhysicsComponent can use it as collision_shape ??
+// SpriteComponent should handle a weak_ptr<Window> not a friend class Window
 // or get the texture from AssetManager ??
 // also SpriteComponent::Draw(Rectangle const &location) ??
-// remove all getters/setters and use Components like C-style structures or POD.
-// ?? Serializable<T>/concept ??
+// remove all getters/setters and use Components like C-style structures or POD./ ??
+// Serializable<T>/concept ??
+
+typedef struct SDL_Texture SDL_Texture;
 
 namespace tnt
 {
@@ -36,15 +36,9 @@ struct infinite_mass : std::exception
 
 class Component
 {
-  // public:
-  //   Component(char const *name_) : name{name_} {}
-  //   char const *getName() const noexcept;
-
-  // protected:
-  //   char const *name; // a string that identifies each class.
 };
 
-class RotateComponent : public Component
+class RotateComponent final : public Component
 {
 public:
   explicit RotateComponent(float radian);
@@ -58,7 +52,7 @@ protected:
   float angle;
 };
 
-class ScaleComponent : public Component
+class ScaleComponent final : public Component
 {
 public:
   explicit ScaleComponent(Vector const &ratio);
@@ -73,7 +67,7 @@ protected:
   Vector scale;
 };
 
-class PhysicsComponent : virtual public Component
+class PhysicsComponent final : public Component
 {
 public:
   PhysicsComponent(float const &mass, Rectangle const &collision_box);
@@ -100,9 +94,7 @@ private:
 // TODO: incomplete ctor/class (load texture and set renderRect)
 // TODO(maybe): handle font textures ??
 // TODO(maybe): get/set renderTarget
-class SpriteComponent
-    : virtual public RotateComponent,
-      virtual public ScaleComponent
+class SpriteComponent final : public Component
 {
 public:
   SpriteComponent(Window const *win, std::string_view file);
@@ -110,8 +102,7 @@ public:
 
   virtual ~SpriteComponent() noexcept;
 
-  void Draw(Window *win,
-            Rectangle &dest) noexcept; // TODO: do you need this ??
+  void Draw(Window *win, Rectangle &dest, float angle = 0.f) noexcept; // TODO: do you need this ??
 
   SDL_Texture *getTexture() const noexcept;
   void setTexture(Window const *win, std::string_view filename) noexcept;
@@ -127,9 +118,7 @@ protected:
                         // should be weak_ptr's.
 };
 
-class AnimationComponent
-    : virtual public RotateComponent,
-      virtual public ScaleComponent
+class AnimationComponent final : public Component
 {
 public:
   AnimationComponent(std::string_view filename, int framesNum, float speed,

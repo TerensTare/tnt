@@ -36,68 +36,66 @@ struct Vector
     Vector(const Vector &) = default;
     Vector(Vector &&) = default;
 
-    float MagnitudeSqr() const noexcept { return x * x + y * y; }
-    float Magnitude() const noexcept { return sqrtf(x * x + y * y); }
+    inline float MagnitudeSqr() const noexcept { return x * x + y * y; }
+    inline float Magnitude() const noexcept { return sqrtf(x * x + y * y); }
 
-    void Normalize() noexcept(noexcept(Magnitude() > FLT_EPSILON))
+    inline void Normalize() noexcept(noexcept(Magnitude() > FLT_EPSILON))
     {
         float mag{Magnitude()};
         x /= mag;
         y /= mag;
     }
 
-    Vector Normalized() const noexcept(noexcept(Magnitude() > FLT_EPSILON))
+    inline Vector Normalized() const noexcept(noexcept(Magnitude() > FLT_EPSILON))
     {
         float mag{Magnitude()};
         return Vector{x / mag, y / mag};
     }
 
     // operators
-    Vector operator-() const noexcept { return Vector{-x, -y}; }
+    inline Vector operator-() const noexcept { return Vector{-x, -y}; }
 
-    Vector &operator+=(const Vector &rhs) noexcept
+    inline Vector &operator+=(const Vector &rhs) noexcept
     {
         x += rhs.x;
         y += rhs.y;
         return *this;
     }
 
-    Vector &operator-=(const Vector &rhs) noexcept
+    inline Vector &operator-=(const Vector &rhs) noexcept
     {
         x -= rhs.x;
         y -= rhs.y;
         return *this;
     }
 
-    Vector &operator*=(const Vector &rhs) noexcept
+    inline Vector &operator*=(const Vector &rhs) noexcept
     {
         x *= rhs.x;
         y *= rhs.y;
         return *this;
     }
 
-    Vector &operator/=(const Vector &rhs) noexcept
+    inline Vector &operator/=(const Vector &rhs) noexcept
     {
         x /= rhs.x;
         y /= rhs.y;
         return *this;
     }
 
-    Vector &operator=(const Vector &rhs) noexcept
+    inline Vector &operator=(const Vector &rhs) noexcept
     {
         x = rhs.x;
         y = rhs.y;
         return *this;
     }
 
-    Vector &operator=(Vector &&rhs) noexcept = default;
-
-    bool operator<(const Vector &rhs) const noexcept
+    inline bool operator<(const Vector &rhs) const noexcept
     {
         return std::tie(x, y) < std::tie(rhs.x, rhs.y);
     }
 
-    bool operator>(const Vector &rhs) const noexcept
+    inline bool operator>(const Vector &rhs) const noexcept
     {
         return ((x > rhs.x) && (y > rhs.y));
     }

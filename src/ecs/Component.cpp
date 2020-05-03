@@ -1,6 +1,5 @@
-// This is an independent project of an individual developer. Dear PVS-Studio,
-// please check it. PVS-Studio Static Code Analyzer for C, C++, C#, and Java:
-// http://www.viva64.com
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 #include "ecs/Component.hpp"
 
@@ -66,7 +65,7 @@ void tnt::PhysicsComponent::applyForce(tnt::Vector const &force) noexcept(noexce
 ////////////
 
 tnt::SpriteComponent::SpriteComponent(Window const *win, std::string_view file)
-    : RotateComponent{0.f}, ScaleComponent{VECTOR_ONE}, clipped{false}, clipRect{0, 0, 0, 0},
+    : clipped{false}, clipRect{0, 0, 0, 0},
       texture{AssetManager::This().Image(win, file)}
 {
     SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
@@ -74,7 +73,7 @@ tnt::SpriteComponent::SpriteComponent(Window const *win, std::string_view file)
 
 tnt::SpriteComponent::SpriteComponent(Window const *win, std::string_view file,
                                       Rectangle const &location)
-    : RotateComponent{0.f}, ScaleComponent{VECTOR_ONE}, clipped{true}, clipRect{location},
+    : clipped{true}, clipRect{location},
       texture{AssetManager::This().Image(win, file)}
 {
     SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
@@ -86,7 +85,7 @@ tnt::SpriteComponent::~SpriteComponent() noexcept
     texture = nullptr;
 }
 
-void tnt::SpriteComponent::Draw(Window *win, Rectangle &dest) noexcept
+void tnt::SpriteComponent::Draw(Window *win, Rectangle &dest, float angle) noexcept
 {
     win->Draw(this, &static_cast<SDL_Rect>(clipRect), &static_cast<SDL_FRect>(dest),
               static_cast<double>(angle));
@@ -109,8 +108,7 @@ int tnt::SpriteComponent::getHeight() const noexcept { return h; }
 tnt::AnimationComponent::AnimationComponent(
     std::string_view filename, int framesNum, float speed, bool horizontal,
     Rectangle const &clip)
-    : RotateComponent{0.f}, ScaleComponent{VECTOR_ONE},
-      startX{clip.x}, startY{clip.y}, frameCount{framesNum}, animSpeed{speed}, animTime{0},
+    : startX{clip.x}, startY{clip.y}, frameCount{framesNum}, animSpeed{speed}, animTime{0},
       timePerFrame{animSpeed / static_cast<float>(frameCount)},
       clipRect{clip}, vertical{!horizontal}, done{false}, loop{true} {}
 
@@ -127,11 +125,11 @@ void tnt::AnimationComponent::update(tnt::Timer *timer) noexcept
         if (animTime >= animSpeed)
         {
             if (loop)
-                animTime -= animSpeed;
+                animTime -= static_cast<long long>(animSpeed);
             else
             {
                 done = true;
-                animTime = animSpeed - timePerFrame;
+                animTime = static_cast<long long>(animSpeed - timePerFrame);
             }
         }
 

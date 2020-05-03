@@ -16,8 +16,6 @@
 #include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
 
-namespace fs = std::filesystem;
-
 using tnt::ImGui::hslider_int, tnt::ImGui::button,
     tnt::ImGui::progress_bar, tnt::ImGui::menu,
     tnt::ImGui::checkbox, tnt::ImGui::list_item,
@@ -85,7 +83,6 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
             tnt::ImGui::End();
         }
-
         clip.x = x * 16;
         clip.y = y * 16;
 

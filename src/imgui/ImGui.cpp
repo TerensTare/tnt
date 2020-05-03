@@ -527,8 +527,6 @@ bool Begin(Window *win, std::string_view name, int x_, int y_, WindowFlags flags
 
     window_data *current{context->last_window};
 
-    std::pair pos{input::mousePosition()};
-
     context->on_window = true;
 
     context->hot = 0;
@@ -543,6 +541,8 @@ bool Begin(Window *win, std::string_view name, int x_, int y_, WindowFlags flags
 
     std::size_t resize_right_down_id{im_hash("ResizeRightDown")};
     std::size_t resize_left_down_id{im_hash("ResizeLeftDown")};
+
+    std::pair pos{input::mousePosition()};
 
     // moving
     check_button(id, current->x, current->y, current->w, 20);
@@ -628,7 +628,8 @@ void EndList() noexcept
 bool button(Window *win, std::string_view text) noexcept
 {
     if (context->last_window->next_y + button_cfg->h >
-        context->last_window->y + context->last_window->h)
+            context->last_window->y + context->last_window->h ||
+        context->last_window->w < button_cfg->w + 10)
         return false;
     std::string key{context->last_window->title};
     key.append(text);
@@ -903,7 +904,9 @@ bool checkbox(Window *win, std::string_view text, bool *value) noexcept
 void progress_bar(Window *win, std::string_view text, int min_, int max_,
                   int *value) noexcept
 {
-    if (context->last_window->next_y + progress_bar_cfg->h > context->last_window->y + context->last_window->h)
+    if (context->last_window->w < progress_bar_cfg->w ||
+        context->last_window->next_y + progress_bar_cfg->h >
+            context->last_window->y + context->last_window->h)
         return;
     int xpos{(progress_bar_cfg->w * (*value - min_) / (max_ - min_))};
     draw_rect(win, {context->last_window->x + 10, context->last_window->next_y, progress_bar_cfg->w, progress_bar_cfg->h},
@@ -923,7 +926,9 @@ void newline() noexcept
 
 void text(Window *win, std::string_view text) noexcept
 {
-    if (context->last_window->next_y + global_cfg->font_size + 5 > context->last_window->y + context->last_window->h)
+    if (context->last_window->w < global_cfg->font_size * text.size() ||
+        context->last_window->next_y + global_cfg->font_size + 5 >
+            context->last_window->y + context->last_window->h)
         return;
     draw_text(win, text.data(), context->last_window->x + 10, context->last_window->next_y);
     context->last_window->next_y = context->last_window->next_y + global_cfg->font_size + 5;
@@ -931,7 +936,10 @@ void text(Window *win, std::string_view text) noexcept
 
 void list_item(Window *win, std::string_view text) noexcept
 {
-    if (context->last_window->next_y + global_cfg->font_size > context->last_window->y + context->last_window->h)
+    if ((context->list_indent_level * 10) + (text.size() * global_cfg->font_size) <
+            context->last_window->w ||
+        context->last_window->next_y + global_cfg->font_size >
+            context->last_window->y + context->last_window->h)
         return;
     int xpos{context->last_window->x + (context->list_indent_level * 10)};
     if (context->lists_text.find(text.data()) != context->lists_text.end())

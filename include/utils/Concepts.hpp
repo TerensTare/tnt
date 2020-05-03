@@ -42,7 +42,7 @@ concept renderable = requires(T t)
 };
 
 template <typename T>
-concept camera_type = requires(T t)
+concept camera = requires(T t)
 {
     {
         t.FBounds()

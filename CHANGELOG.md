@@ -3,9 +3,19 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-05-03
+### Added
+- `inline` on some `struct Vector` functions.
+- `AppVeyor` build and it's status badge on `README.md`.
+- `stack_allocator<T>` can now be used in production code.
+- Prefix `TNT_` on `Allocator.hpp`'s include guard.
+- Example/test showing the usage of `stack_allocator<T>` with `struct tnt::Vector`.
+
+## Removed
+- `tnt::Vector& operator=(tnt::Vector&&)`.
+
 ## 2020-05-02
 ### Added
-- Added `AppVeyor` build and it's status badge on `README.md`.
 - Some project-related stuff on CMakeLists.txt. The project should compile as always because the build process isn't affected by these changes.
 - `inline`, `const` and `noexcept` on some `class Expected<T>` functions.
 - Better check on `tnt::ImGui::button()`/`tnt::ImGui::text()`/`tnt::ImGui::list_item()` to not draw if outside window.
@@ -16,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `TnT.ixx`, which will be used as the main file of the module TnT.
 
 ### Changed
+- Fixed a typo related to `SDL2_DIR` on `azure-pipelines.yml`.
 - Every `class` derived from `class Component` is (and should be) `final`, derived ONLY from `clas Component` and NOT `virtual`-ly inherited.
 - Moved the `class Timer` test to folder `test/timer/`.
 
