@@ -5,7 +5,11 @@
 
 cmake_minimum_required(VERSION 3.10)
 set(PROJECT_NAME "TnT")
-project(${PROJECT_NAME} VERSION 0.1.0 LANGUAGES CXX)
+project(${PROJECT_NAME}
+    VERSION 0.1.0
+    DESCRIPTION "A 2d game engine written using C++20 features"
+    HOMEPAGE_URL "https://terenstare.github.io/tnt/"
+    LANGUAGES CXX)
 
 # Remove the /RTC* flags in case of compiling with MSVC.
 foreach(flag_var
@@ -73,14 +77,14 @@ list(APPEND CMAKE_PREFIX_PATH
 
 # Load required packages.
 
-find_package(Lua REQUIRED)
+# find_package(Lua REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
 # find_package(sdl2-gfx CONFIG REQUIRED)
 find_package(sdl2-image CONFIG REQUIRED)
 find_package(sdl2-mixer CONFIG REQUIRED)
 find_package(sdl2-ttf CONFIG REQUIRED)
 find_package(sdl2-net CONFIG REQUIRED)
-find_package(sol2 CONFIG REQUIRED)
+# find_package(sol2 CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 
@@ -107,9 +111,9 @@ add_executable(TnT main.cpp ${SOURCE_FILES})
 set_target_properties(TnT PROPERTIES LINKER_LANGUAGE CXX)
 
 target_include_directories(TnT PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
-target_include_directories(TnT PRIVATE ${LUA_INCLUDE_DIR})
+# target_include_directories(TnT PRIVATE ${LUA_INCLUDE_DIR})
 
-target_link_libraries(TnT PRIVATE ${LUA_LIBRARIES})
+# target_link_libraries(TnT PRIVATE ${LUA_LIBRARIES})
 
 if(WIN32)
     target_link_libraries(TnT PRIVATE SDL2::SDL2 SDL2::SDL2main)
@@ -122,7 +126,7 @@ target_link_libraries(TnT PRIVATE SDL2::SDL2_image)
 target_link_libraries(TnT PRIVATE SDL2::SDL2_mixer)
 target_link_libraries(TnT PRIVATE SDL2::SDL2_net)
 target_link_libraries(TnT PRIVATE SDL2::SDL2_ttf)
-target_link_libraries(TnT PRIVATE sol2::sol2)
+# target_link_libraries(TnT PRIVATE sol2::sol2)
 target_link_libraries(TnT PRIVATE fmt::fmt fmt::fmt-header-only)
 target_link_libraries(TnT PRIVATE nlohmann_json nlohmann_json::nlohmann_json)
 
