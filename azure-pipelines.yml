@@ -14,7 +14,7 @@ jobs:
           vpath: "/usr/local/share/vcpkg/installed/x64-linux"
           lua_inc: "/usr/local/share/vcpkg/installed/x64-linux/include"
           lua_lib: "/usr/local/share/vcpkg/installed/x64-linux/lib"
-          sdl_dir: "/usr/local/share/vcpkg/installed/x64-linux/share/sdl2"
+          sdl_dir: "/usr/local/share/vcpkg/installed/x64-linux/share/SDL2"
           get_yasm: "sudo apt-get install yasm"
           triplet: x64-linux
         windows:
@@ -22,7 +22,7 @@ jobs:
           vpath: "C:\\vcpkg\\installed\\x64-windows"
           lua_inc: "C:\\vcpkg\\installed\\x64-windows\\include"
           lua_lib: "C:\\vcpkg\\installed\\x64-windows\\lib"
-          sdl_dir: "C:\\vcpkg\\installed\\x64-windows\\share\\sdl2"
+          sdl_dir: "C:\\vcpkg\\installed\\x64-windows\\share\\SDL2"
           get_yasm: "echo" # on Windows, yasm is automatically installed if missing
           triplet: x64-windows
         mac:
@@ -30,7 +30,7 @@ jobs:
           vpath: "/usr/local/share/vcpkg/installed/x64-osx"
           lua_inc: "/usr/local/share/vcpkg/installed/x64-osx/include"
           lua_lib: "/usr/local/share/vcpkg/installed/x64-osx/lib"
-          sdl_dir: "/usr/local/share/vcpkg/installed/x64-osx/share/sdl2"
+          sdl_dir: "/usr/local/share/vcpkg/installed/x64-osx/share/SDL2"
           get_yasm: "brew install yasm"
           triplet: x64-osx
       maxParallel: 4
