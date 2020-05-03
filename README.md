@@ -1,6 +1,7 @@
 # The TnT Engine
 
 ![build](https://github.com/TerensTare/tnt/workflows/build/badge.svg?branch=master)
+[![Build status](https://ci.appveyor.com/api/projects/status/a0rfndievu7neo1a?svg=true)](https://ci.appveyor.com/project/TerensTare/tnt)
 
 TnT is a 2d Game Engine written in C++. At the time of speaking the engine uses
 features from the C++17 standard (as there is no C++ compiler that fully

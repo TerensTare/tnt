@@ -3,12 +3,33 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-05-02
+### Added
+- Added `AppVeyor` build and it's status badge on `README.md`.
+- Some project-related stuff on CMakeLists.txt. The project should compile as always because the build process isn't affected by these changes.
+- `inline`, `const` and `noexcept` on some `class Expected<T>` functions.
+- Better check on `tnt::ImGui::button()`/`tnt::ImGui::text()`/`tnt::ImGui::list_item()` to not draw if outside window.
+- Template functions for `class Object` to attach or remove `Component`s.
+- New test `dynamic_ecs` for `class Object`'s new functions.
+- `TNT_` prefix for `Logger.hpp` include guard.
+- Stuff to turn `Logger.hpp` into a C++20 module partition.
+- `TnT.ixx`, which will be used as the main file of the module TnT.
+
+### Changed
+- Every `class` derived from `class Component` is (and should be) `final`, derived ONLY from `clas Component` and NOT `virtual`-ly inherited.
+- Moved the `class Timer` test to folder `test/timer/`.
+
+### Removed
+- `#include <SDL2/SDL.h>` on [Component.hpp](./include/ecs/Component.hpp).
+
 ## 2020-04-29
 ### Added
 - Conditional check before `delete`-ing an `Object`'s `parent`.
 - Ability to move and resize ImGui windows. Widgets won't be drawn if they won't fit on the window.
 
 ### Changed
+- Renamed `concept camera_type` to `concept camera`.
+- Renamed `StackAllocator` to `stack_allocator`. It is still not functional.
 - Fixed `#include` on `AudioPlayer.cpp`.
 
 ## 2020-04-27
