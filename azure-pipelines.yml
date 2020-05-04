@@ -12,33 +12,21 @@ jobs:
         linux:
           Image: 'ubuntu-latest'
           vpath: "/usr/local/share/vcpkg/installed/x64-linux"
-          lua_inc: "/usr/local/share/vcpkg/installed/x64-linux/include"
-          lua_lib: "/usr/local/share/vcpkg/installed/x64-linux/lib"
-          sdl_dir: "/usr/local/share/vcpkg/installed/x64-linux/share/SDL2"
           get_yasm: "sudo apt-get install yasm"
           triplet: x64-linux
         windows:
           Image: 'windows-latest'
           vpath: "C:\\vcpkg\\installed\\x64-windows"
-          lua_inc: "C:\\vcpkg\\installed\\x64-windows\\include"
-          lua_lib: "C:\\vcpkg\\installed\\x64-windows\\lib"
-          sdl_dir: "C:\\vcpkg\\installed\\x64-windows\\share\\SDL2"
           get_yasm: "echo" # on Windows, yasm is automatically installed if missing
           triplet: x64-windows
         mac:
           Image: 'macos-latest'
           vpath: "/usr/local/share/vcpkg/installed/x64-osx"
-          lua_inc: "/usr/local/share/vcpkg/installed/x64-osx/include"
-          lua_lib: "/usr/local/share/vcpkg/installed/x64-osx/lib"
-          sdl_dir: "/usr/local/share/vcpkg/installed/x64-osx/share/SDL2"
           get_yasm: "brew install yasm"
           triplet: x64-osx
       maxParallel: 4
     variables:
       VCPKG_DEFAULT_TRIPLET: $(triplet)
-      LUA_INCLUDE_DIR: $(lua_inc)
-      LUA_LIBRARIES: $(lua_lib)
-      SDL2_DIR: $(sdl_dir)
     
     pool:
       vmImage: $(Image)
@@ -52,16 +40,15 @@ jobs:
 
     - task: CmdLine@2
       inputs:
-          # vcpkg install sdl2 sdl2-image sdl2-mixer sdl2-mixer[mpg123] sdl2-ttf fmt
         script: |
           $(get_yasm)
-          vcpkg install sdl2 sdl2-image sdl2-image[libjpeg-turbo] sdl2-image[tiff] sdl2-image[libwebp] sdl2-mixer sdl2-mixer[dynamic-load] sdl2-mixer[libflac] sdl2-mixer[mpg123] sdl2-mixer[libmodplug] sdl2-mixer[libvorbis] sdl2-mixer[opusfile] sdl2-ttf nlohmann-json sol2 fmt
+          vcpkg install sdl2 sdl2-image sdl2-net sdl2-image[libjpeg-turbo] sdl2-image[tiff] sdl2-image[libwebp] sdl2-mixer sdl2-mixer[dynamic-load] sdl2-mixer[libflac] sdl2-mixer[mpg123] sdl2-mixer[libmodplug] sdl2-mixer[libvorbis] sdl2-mixer[opusfile] sdl2-ttf nlohmann-json sol2 fmt
           vcpkg integrate install
       condition: ne(variables.GOT_CACHE, 'true')
     
     - task: CMake@1
       inputs:
-        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release'
+        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=$(VCPKG_ROOT)/scripts/buildsystem/vcpkg.cmake'
     displayName: 'Build for '
 
   - job: "MSBuild_Windows"
