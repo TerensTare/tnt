@@ -48,7 +48,7 @@ jobs:
     
     - task: CMake@1
       inputs:
-        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=$(vpath)/scripts/buildsystem/vcpkg.cmake'
+        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=$(vpath)/../../scripts/buildsystem/vcpkg.cmake'
     displayName: 'Build for '
 
   - job: "MSBuild_Windows"
