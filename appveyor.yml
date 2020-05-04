@@ -28,4 +28,11 @@ before_build:
 build:
   project: $(APPVEYOR_BUILD_FOLDER)\build\TnT.sln
 
+after_build:
+  - 7z a TnT-windows-x64.zip %APPVEYOR_BUILD_FOLDER%\build\Release\**.*
+
 cache: c:\tools\vcpkg\installed\
+
+artifacts:
+  - path: TnT-windows-x64.zip
+  - name: x64_build_for_Windows
