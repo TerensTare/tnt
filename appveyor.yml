@@ -35,4 +35,4 @@ cache: c:\tools\vcpkg\installed\
 
 artifacts:
   - path: TnT-windows-x64.zip
-  - name: x64_build_for_Windows
+    name: x64_build_for_Windows
