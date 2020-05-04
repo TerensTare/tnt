@@ -29,26 +29,15 @@ jobs:
               - os: windows-latest
                 triplet: x64-windows
                 vcpkg-path: "C:\\vcpkg\\installed\\x64-windows"
-                run: |
-                     mkdir build && cd build
-                     cmake ..
-                     vcvars64.bat
-                     msbuild TnT.sln /p:Platform=x64
-                     msbuild TnT.sln /p:Configuration=Release /p:Platform=x64
-                     robocopy ..\assets .\Release
+                vctchain: "C:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake" 
               - os: ubuntu-latest
                 triplet: x64-linux
                 vcpkg-path: "/usr/local/share/vcpkg/installed/x64-linux"
-                run: |
-                    mkdir build && cd build
-                    cmake ..
+                vctchain: "/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake"
               - os: macos-latest
                 vcpkg-path: "/usr/local/share/vcpkg/installed/x64-osx"
+                vctchain: "/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake"
                 triplet: x64-osx
-                run: |
-                    mkdir build && cd build
-                    cmake ..
-
 
         steps:
           - name: Cache packages
@@ -62,5 +51,10 @@ jobs:
               VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
             if: steps.pack-cache.outputs.cache-hit != 'true'
             run: |
-                vcpkg install fmt sol2 nlohmann-json sdl2 sdl2-image sdl2-mixer sdl2-ttf sdl2-net
+                vcpkg install sdl2 sdl2-net sdl2-image sdl2-image[libjpeg-turbo] sdl2-image[tiff] sdl2-image[libwebp] sdl2-mixer sdl2-mixer[dynamic-load] sdl2-mixer[libflac] sdl2-mixer[mpg123] sdl2-mixer[libmodplug] sdl2-mixer[libvorbis] sdl2-mixer[opusfile] sdl2-ttf nlohmann-json sol2 fmt
                 vcpkg integrate install
+ 
+          - name: Run CMake on ${{ matrix.os }}
+            uses: ashutoshvarma/action-cmake-build@v1
+            with:
+                build-options: .. -DCMAKE_TOOLCHAIN_FILE=${{ matrix.vctchain }}
