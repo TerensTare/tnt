@@ -12,16 +12,19 @@ jobs:
         linux:
           Image: 'ubuntu-latest'
           vpath: "/usr/local/share/vcpkg/installed/x64-linux"
+          vtchain: "/usr/local/share/vcpkg/scripts/buildsystem/vcpkg.cmake"
           get_yasm: "sudo apt-get install yasm"
           triplet: x64-linux
         windows:
           Image: 'windows-latest'
           vpath: "C:\\vcpkg\\installed\\x64-windows"
+          vtchain: "C:\\vcpkg\\scripts\\buildsystem\\vcpkg.cmake"
           get_yasm: "echo" # on Windows, yasm is automatically installed if missing
           triplet: x64-windows
         mac:
           Image: 'macos-latest'
           vpath: "/usr/local/share/vcpkg/installed/x64-osx"
+          vtchain: "/usr/local/share/vcpkg/scripts/buildsystem/vcpkg.cmake"
           get_yasm: "brew install yasm"
           triplet: x64-osx
       maxParallel: 4
@@ -48,7 +51,7 @@ jobs:
     
     - task: CMake@1
       inputs:
-        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=$(vpath)/../../scripts/buildsystem/vcpkg.cmake'
+        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=$(vtchain)'
     displayName: 'Build for '
 
   - job: "MSBuild_Windows"
