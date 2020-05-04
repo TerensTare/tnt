@@ -30,27 +30,14 @@ jobs:
                 triplet: x64-windows
                 vcpkg-path: "C:\\vcpkg\\installed\\x64-windows"
                 vctchain: "C:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake" 
-                run: |
-                     mkdir build && cd build
-                     cmake ..
-                     vcvars64.bat
-                     msbuild TnT.sln /p:Platform=x64
-                     msbuild TnT.sln /p:Configuration=Release /p:Platform=x64
-                     robocopy ..\assets .\Release
               - os: ubuntu-latest
                 triplet: x64-linux
                 vcpkg-path: "/usr/local/share/vcpkg/installed/x64-linux"
                 vctchain: "/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake"
-                run: |
-                    mkdir build && cd build
-                    cmake ..
               - os: macos-latest
                 vcpkg-path: "/usr/local/share/vcpkg/installed/x64-osx"
                 vctchain: "/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake"
                 triplet: x64-osx
-                run: |
-                    mkdir build && cd build
-                    cmake ..
 
         steps:
           - name: Cache packages
@@ -71,18 +58,3 @@ jobs:
             uses: ashutoshvarma/action-cmake-build@v1
             with:
                 build-options: .. -DCMAKE_TOOLCHAIN_FILE=${{ matrix.vctchain }}
-                  
-                  
-                  
-    build-msvc:
-        name: Build TnT.sln
-        runs-on: windows-latest
-        steps:
-          - name: Build in Debug Mode
-            uses: ashutoshvarma/action-cmake-build@v1
-            with:
-                build-options: --build ${{ runner.workspace }}/build --config Debug --target TnT
-          - name: Build in Release Mode
-            uses: ashutoshvarma/action-cmake-build@v1
-            with:
-                build-options: --build ${{ runner.workspace }}/build --config Release --target TnT 
