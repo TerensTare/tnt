@@ -32,14 +32,8 @@
 
 #define leave(name) goto name##_skip;
 
-#if defined(UNICODE) || defined(_UNICODE)
-#define TNT_UNICODE
-#endif // !UNICODE
-
 #if defined(_WIN32) || defined(_WIN64)
 
-#define TNT_WINDOWS
-#define WIN32_LEAN_AND_MEAN
 #define PATH_SEPARATOR "\\"
 
 #ifdef _MSC_VER
@@ -50,8 +44,6 @@
 #endif //!TNT_BUILD_DLL
 #endif //!_MSC_VER
 
-#define TNT_NOVTABLE __declspec(novtable)
-
 #define windows
 #define linux if (0)
 #define mac if (0)
@@ -60,13 +52,11 @@
 
 #elif defined(__linux__)
 
-// TODO(maybe): this shpuld be sth different.
+// TODO(maybe): this should be sth different.
 #define TNT_API
 
 #if defined(__ANDROID__) || defined(__ANDROID_API__)
 #define PATH_SEPARATOR "/"
-
-#define TNT_NOVTABLE
 
 #define windows if (0)
 #define linux if (0)
@@ -91,8 +81,6 @@
 
 #if TARGET_IPHONE_SIMULATOR == 1
 #define PATH_SEPARATOR "/"
-
-#define TNT_NOVTABLE
 
 #define windows if (0)
 #define linux if (0)

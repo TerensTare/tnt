@@ -13,10 +13,10 @@
 
 tnt::RotateComponent::RotateComponent(float radian) : angle{radian} {}
 
-void tnt::RotateComponent::setAngle(float const &radian) noexcept { angle = radian; }
+void tnt::RotateComponent::setAngle(float radian) noexcept { angle = radian; }
 float tnt::RotateComponent::getAngle() const noexcept { return angle; }
 
-void tnt::RotateComponent::Rotate(float const &radian) noexcept { angle += radian; }
+void tnt::RotateComponent::Rotate(float radian) noexcept { angle = angle + radian; }
 
 ///////////
 // scale //
@@ -65,19 +65,17 @@ void tnt::PhysicsComponent::applyForce(tnt::Vector const &force) noexcept(noexce
 ////////////
 
 tnt::SpriteComponent::SpriteComponent(Window const *win, std::string_view file)
-    : clipped{false}, clipRect{0, 0, 0, 0},
-      texture{AssetManager::This().Image(win, file)}
+    : clipped{false}, texture{AssetManager::This().Image(win, file)},
+      clipRect{0, 0, 0, 0}
 {
     SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
 }
 
-tnt::SpriteComponent::SpriteComponent(Window const *win, std::string_view file,
-                                      Rectangle const &location)
+tnt::SpriteComponent::SpriteComponent(
+    Window const *win, std::string_view file,
+    Rectangle const &location)
     : clipped{true}, clipRect{location},
-      texture{AssetManager::This().Image(win, file)}
-{
-    SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
-}
+      texture{AssetManager::This().Image(win, file)} {}
 
 tnt::SpriteComponent::~SpriteComponent() noexcept
 {
@@ -95,11 +93,36 @@ SDL_Texture *tnt::SpriteComponent::getTexture() const noexcept { return texture;
 
 void tnt::SpriteComponent::setTexture(Window const *win, std::string_view filename) noexcept
 {
+    if (clipped)
+        clipped = false;
+    SDL_DestroyTexture(texture);
     texture = AssetManager::This().Image(win, filename);
+    SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
 }
 
-int tnt::SpriteComponent::getWidth() const noexcept { return w; }
-int tnt::SpriteComponent::getHeight() const noexcept { return h; }
+void tnt::SpriteComponent::setTexture(
+    Window const *win, std::string_view filename,
+    tnt::Rectangle const &location) noexcept
+{
+    if (!clipped)
+        clipped = true;
+    SDL_DestroyTexture(texture);
+    texture = AssetManager::This().Image(win, filename);
+    clipRect = location;
+}
+
+int tnt::SpriteComponent::getWidth() const noexcept
+{
+    if (clipped)
+        return clipRect.w;
+    return w;
+}
+int tnt::SpriteComponent::getHeight() const noexcept
+{
+    if (clipped)
+        return clipRect.h;
+    return w;
+}
 
 ///////////////
 // animation //

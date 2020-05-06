@@ -5,7 +5,7 @@
 #include <filesystem>
 #include <random>
 
-#include "core/InputManager.hpp"
+#include "core/Input.hpp"
 #include "core/Window.hpp"
 #include "ecs/Sprite.hpp"
 #include "fileIO/AssetManager.hpp"
@@ -17,9 +17,8 @@
 #include "utils/Timer.hpp"
 
 using tnt::ImGui::hslider_int, tnt::ImGui::button,
-    tnt::ImGui::progress_bar, tnt::ImGui::menu,
-    tnt::ImGui::checkbox, tnt::ImGui::list_item,
-    tnt::ImGui::text;
+    tnt::ImGui::menu, tnt::ImGui::checkbox,
+    tnt::ImGui::list_item, tnt::ImGui::text;
 
 // TODO: "dissolve" this code into classes, like Game/Scene/Space,
 // etc.
@@ -67,22 +66,25 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
         window->Clear();
 
-        if (tnt::ImGui::Begin(window, "Files", 500, 300))
+        tnt::ImGui::Begin(window, "Files", 500, 300);
+
         {
-            {
-                static std::string_view test[4]{"File", "Edit", "Options", "Info"};
-                if (auto res{menu(window, test, 4)}; res != -1)
-                    std::cout << "Pressed " << test[res] << "\n";
-            }
-
-            tnt::ImGui::newline();
-            button(window, "Test");
-
-            hslider_int(window, IMGUI_ID, 100, 400, 0, 9, &x);
-            hslider_int(window, IMGUI_ID, 100, 440, 0, 3, &y);
-
-            tnt::ImGui::End();
+            static std::string_view test[4]{"File", "Edit", "Options", "Info"};
+            if (auto res{menu(window, test, 4)}; res != -1)
+                std::cout << "Pressed " << test[res] << "\n";
         }
+
+        tnt::ImGui::newline();
+        button(window, "Test");
+
+        hslider_int(window, IMGUI_ID, 100, 400, 0, 9, &x);
+        hslider_int(window, IMGUI_ID, 100, 440, 0, 3, &y);
+
+        tnt::ImGui::End();
+
+        tnt::ImGui::Begin(window, "Test", 400, 300);
+        tnt::ImGui::End();
+
         clip.x = x * 16;
         clip.y = y * 16;
 
@@ -95,8 +97,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
         dt = timer.deltaTime().count();
         timer.reset();
 
-        if (!quit)
-            std::cout << (1000 / dt) << " fps\n";
+        // if (!quit)
+        //     std::cout << (1000 / dt) << " fps\n";
         SDL_Delay(1);
     }
 

@@ -6,7 +6,7 @@
 
 #include <map>
 
-#include "core/InputManager.hpp"
+#include "core/Input.hpp"
 #include "core/Window.hpp"
 #include "imgui/ImGui.hpp"
 #include "imgui/gui_config.hpp"
@@ -127,7 +127,7 @@ struct context_t
     int list_indent_level, list_index, list_number;
     std::size_t active, hot;
     // std::string hash_prefix; // added to each widget's label when hashing
-    window_data *last_window;
+    std::string last_window;
     std::map<std::string, SDL_Texture *> lists_text;
     std::map<std::string, window_data *> windows;
 } * context{new context_t{}};
@@ -442,6 +442,12 @@ auto im_hash = [](std::string_view str) {
     return ((*(std::size_t *)str.data()) >> 4);
 };
 
+auto get_window = [](std::string_view name) -> window_data * {
+    if (context->windows.find(name.data()) == context->windows.end())
+        return nullptr;
+    return context->windows[name.data()];
+};
+
 ///////////////////
 // context stuff //
 ///////////////////
@@ -485,12 +491,6 @@ void destroy_context() noexcept
         if (it.second != nullptr)
             delete it.second;
 
-    if (context->last_window != nullptr)
-    {
-        delete context->last_window;
-        context->last_window = nullptr;
-    }
-
     delete context;
     context = nullptr;
 }
@@ -509,23 +509,24 @@ bool Begin(Window *win, std::string_view name, int x_, int y_, WindowFlags flags
         return false;
     }
 
-    if (context->windows.find(name.data()) == context->windows.end())
+    window_data *tmp{get_window(name.data())};
+
+    if (tmp == nullptr)
     {
-        if (context->last_window == nullptr)
-            context->last_window = new window_data{};
+        tnt::logger::debug("Adding window {}", name.data());
+        tmp->menu_called = false;
+        tmp->x = x_;
+        tmp->y = y_;
+        tmp->w = 400;
+        tmp->h = 300;
+        tmp->win_flags = flags;
+        tmp->title = name.data();
 
-        context->last_window->menu_called = false;
-        context->last_window->x = x_;
-        context->last_window->y = y_;
-        context->last_window->w = 400;
-        context->last_window->h = 300;
-        context->last_window->win_flags = flags;
-        context->last_window->title = name;
+        if (tmp->title == context->last_window)
+            tnt::logger::debug("Calling Begin() twice for the same window!!");
 
-        context->windows.emplace(name.data(), context->last_window);
+        context->windows[name.data()] = tmp;
     }
-
-    window_data *current{context->last_window};
 
     context->on_window = true;
 
@@ -535,56 +536,73 @@ bool Begin(Window *win, std::string_view name, int x_, int y_, WindowFlags flags
 
     std::size_t id{im_hash(name)};
 
-    std::size_t resize_left_id{im_hash("ResizeLeft")};
-    std::size_t resize_right_id{im_hash("ResizeRight")};
-    std::size_t resize_down_id{im_hash("ResizeDown")};
+    // TODO: make sure these *_id don't match the id of any other widget
+    std::size_t resize_left_id{1 + id};
+    std::size_t resize_right_id{2 + id};
+    std::size_t resize_down_id{3 + id};
 
-    std::size_t resize_right_down_id{im_hash("ResizeRightDown")};
-    std::size_t resize_left_down_id{im_hash("ResizeLeftDown")};
+    std::size_t resize_right_down_id{4 + id};
+    std::size_t resize_left_down_id{5 + id};
+    std::size_t frame_id{10 + id};
+
+    // check for moving
+    check_button(id, tmp->x, tmp->y, tmp->w, 20);
+
+    // check for resizing
+    check_button(resize_right_id, tmp->x + tmp->w - 10,
+                 tmp->y + 20, 10, tmp->h - 10);
+    check_button(resize_down_id, tmp->x + 10,
+                 tmp->y + tmp->h - 10, tmp->w - 20, 10);
+    check_button(resize_right_down_id, tmp->x + tmp->w - 10,
+                 tmp->y + tmp->h - 10, 10, 10);
+
+    // check if mouse pressed this window
+    // TODO: this may cause incorrect hot/active detecting
+    // (maybe) use a vector of hot/active widgets that is updated each frame ??
+    check_button(frame_id, tmp->x, tmp->y, tmp->w, tmp->h);
 
     std::pair pos{input::mousePosition()};
 
-    // moving
-    check_button(id, current->x, current->y, current->w, 20);
+    bool current{false};
+
+    if (context->active == frame_id)
+        current = true;
+
     if (context->active == id)
     {
-        current->x = current->x + pos.first - context->mouse_x;
-        current->y = current->y + pos.second - context->mouse_y;
+        tmp->x = tmp->x + pos.first - context->mouse_x;
+        tmp->y = tmp->y + pos.second - context->mouse_y;
     }
 
-    // resizing
-    check_button(resize_right_id, current->x + current->w - 10,
-                 current->y + 20, 10, current->h - 10);
-    check_button(resize_down_id, current->x + 10,
-                 current->y + current->h - 10, current->w - 20, 10);
-    check_button(resize_right_down_id, current->x + current->w - 10,
-                 current->y + current->h - 10, 10, 10);
-
     if (context->active == resize_right_id)
-        if (int dx{pos.first - context->mouse_x}; current->w >= 40 || dx >= 0) // bigger than double of the height of the title bar
-            current->w = current->w + dx;
+        if (int dx{pos.first - context->mouse_x}; tmp->w >= 40 || dx >= 0) // bigger than double of the height of the title bar
+            tmp->w = tmp->w + dx;
+
     if (context->active == resize_down_id)
-        if (int dy{pos.second - context->mouse_y}; current->h >= 40 || dy >= 0)
-            current->h = current->h + dy;
+        if (int dy{pos.second - context->mouse_y}; tmp->h >= 40 || dy >= 0)
+            tmp->h = tmp->h + dy;
 
     if (context->active == resize_right_down_id)
     {
-        if (int dx{pos.first - context->mouse_x}; current->w >= 40 || dx >= 0)
-            current->w = current->w + dx;
-        if (int dy{pos.second - context->mouse_y}; current->h >= 40 || dy >= 0)
-            current->h = current->h + dy;
+        if (int dx{pos.first - context->mouse_x}; tmp->w >= 40 || dx >= 0)
+            tmp->w = tmp->w + dx;
+        if (int dy{pos.second - context->mouse_y}; tmp->h >= 40 || dy >= 0)
+            tmp->h = tmp->h + dy;
     }
 
     // updating
+    if (current)
+        context->last_window = tmp->title;
+
     context->mouse_x = pos.first;
     context->mouse_y = pos.second;
 
-    current->next_y = current->y + 25;
+    tmp->next_y = tmp->y + 25;
 
     // drawing
-    draw_rect(win, {current->x, current->y, current->w, current->h}, {50, 50, 50, 50});   // body
-    draw_rect(win, {current->x, current->y, current->w, 20}, window_cfg->titlebar_color); // title bar
-    draw_text(win, name.data(), current->x + 16, current->y + 3);                         // title
+    draw_rect(win, {tmp->x, tmp->y, tmp->w, tmp->h}, {50, 50, 50, 50});       // body
+    draw_rect(win, {tmp->x, tmp->y, tmp->w, 20}, window_cfg->titlebar_color); // title bar
+    draw_text(win, name.data(), tmp->x + 16, tmp->y + 3);                     // title
 
     return true;
 }
@@ -600,8 +618,8 @@ void End() noexcept
     }
 
     context->on_window = false;
-    context->last_window->next_y = 0;
-    context->last_window->menu_called = false;
+    context->windows[context->last_window]->next_y = 0;
+    context->windows[context->last_window]->menu_called = false;
 
     if (!context->mouse_down)
         context->active = 0;
@@ -627,19 +645,19 @@ void EndList() noexcept
 
 bool button(Window *win, std::string_view text) noexcept
 {
-    if (context->last_window->next_y + button_cfg->h >
-            context->last_window->y + context->last_window->h ||
-        context->last_window->w < button_cfg->w + 10)
+    if (context->windows[context->last_window]->next_y + button_cfg->h >
+            context->windows[context->last_window]->y + context->windows[context->last_window]->h ||
+        context->windows[context->last_window]->w < button_cfg->w + 10)
         return false;
-    std::string key{context->last_window->title};
+    std::string key{context->windows[context->last_window]->title};
     key.append(text);
     std::size_t id{im_hash(key)};
     button_cfg->w = static_cast<int>(text.size()) * 7 + 10;
     button_cfg->h = 10 + global_cfg->font_size;
 
-    check_button(id, context->last_window->x + 10, context->last_window->next_y, button_cfg->w, button_cfg->h);
+    check_button(id, context->windows[context->last_window]->x + 10, context->windows[context->last_window]->next_y, button_cfg->w, button_cfg->h);
 
-    SDL_Rect dst{context->last_window->x + 10, context->last_window->next_y, button_cfg->w, button_cfg->h};
+    SDL_Rect dst{context->windows[context->last_window]->x + 10, context->windows[context->last_window]->next_y, button_cfg->w, button_cfg->h};
     SDL_Color widgetColor;
 
     if (context->hot == id)
@@ -654,9 +672,9 @@ bool button(Window *win, std::string_view text) noexcept
 
     draw_rect(win, dst, widgetColor);
 
-    draw_text(win, text.data(), context->last_window->x + 15, context->last_window->next_y + 5, global_cfg->text_color, global_cfg->font_size);
+    draw_text(win, text.data(), context->windows[context->last_window]->x + 15, context->windows[context->last_window]->next_y + 5, global_cfg->text_color, global_cfg->font_size);
 
-    context->last_window->next_y = context->last_window->next_y + 30;
+    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + 30;
 
     if (context->hot == id && context->active == id)
         return true;
@@ -841,44 +859,44 @@ bool hslider_float(Window *win, std::size_t id, int x, int y, float min_, float 
 
 int menu(Window *win, std::string_view *options, int size) noexcept
 {
-    if (context->last_window->next_y + global_cfg->font_size + 6 > context->last_window->y + context->last_window->h)
+    if (context->windows[context->last_window]->next_y + global_cfg->font_size + 6 > context->windows[context->last_window]->y + context->windows[context->last_window]->h)
         return -1;
 
-    if (context->last_window->menu_called)
+    if (context->windows[context->last_window]->menu_called)
     {
         tnt::logger::debug("Line: {}\tCalling tnt::ImGui::menu() for the second time inside the same window!!", __LINE__);
         return -1;
     }
 
     int ret{-1};
-    for (int i{0}, lastX{context->last_window->x};
+    for (int i{0}, lastX{context->windows[context->last_window]->x};
          i < size; ++i, lastX += menu_cfg->spacing + ((static_cast<int>(options[i - 1].size()) - 1) * 8))
     {
         std::size_t id{im_hash(options[i])};
-        check_button(id, lastX, context->last_window->y + 20, static_cast<int>(options[i].size()) * 7 + 10, 10 + global_cfg->font_size);
-        draw_text(win, options[i].data(), lastX + 10, context->last_window->y + 20);
+        check_button(id, lastX, context->windows[context->last_window]->y + 20, static_cast<int>(options[i].size()) * 7 + 10, 10 + global_cfg->font_size);
+        draw_text(win, options[i].data(), lastX + 10, context->windows[context->last_window]->y + 20);
 
         if (context->hot == id && context->active == id)
             ret = i;
     }
 
-    context->last_window->next_y = context->last_window->next_y + global_cfg->font_size + 10;
-    context->last_window->menu_called = true;
+    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + global_cfg->font_size + 10;
+    context->windows[context->last_window]->menu_called = true;
     return ret;
 }
 
 bool checkbox(Window *win, std::string_view text, bool *value) noexcept
 {
-    if (context->last_window->next_y + checkbox_cfg->length + 10 > context->last_window->y + context->last_window->h)
+    if (context->windows[context->last_window]->next_y + checkbox_cfg->length + 10 > context->windows[context->last_window]->y + context->windows[context->last_window]->h)
         return false;
 
-    std::string key{context->last_window->title};
+    std::string key{context->windows[context->last_window]->title};
     key.append(text);
     std::size_t id{std::hash<std::string>{}(key)};
 
-    SDL_Rect box{context->last_window->x + 10, context->last_window->y, checkbox_cfg->length, checkbox_cfg->length};
+    SDL_Rect box{context->windows[context->last_window]->x + 10, context->windows[context->last_window]->y, checkbox_cfg->length, checkbox_cfg->length};
 
-    if (on_rect(context->last_window->x + 10, context->last_window->y, checkbox_cfg->length, checkbox_cfg->length))
+    if (on_rect(context->windows[context->last_window]->x + 10, context->windows[context->last_window]->y, checkbox_cfg->length, checkbox_cfg->length))
     {
         context->hot = id;
         if (context->active == 0 && context->mouse_down)
@@ -886,8 +904,8 @@ bool checkbox(Window *win, std::string_view text, bool *value) noexcept
     }
 
     draw_rect(win, box, {130, 130, 130, 255});
-    draw_text(win, text.data(), box.x + box.w + 10, context->last_window->next_y);
-    context->last_window->next_y = context->last_window->next_y + box.h + 10;
+    draw_text(win, text.data(), box.x + box.w + 10, context->windows[context->last_window]->next_y);
+    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + box.h + 10;
 
     if (context->hot == id && context->active == id)
         *value = !(*value);
@@ -904,48 +922,48 @@ bool checkbox(Window *win, std::string_view text, bool *value) noexcept
 void progress_bar(Window *win, std::string_view text, int min_, int max_,
                   int *value) noexcept
 {
-    if (context->last_window->w < progress_bar_cfg->w ||
-        context->last_window->next_y + progress_bar_cfg->h >
-            context->last_window->y + context->last_window->h)
+    if (context->windows[context->last_window]->w < progress_bar_cfg->w ||
+        context->windows[context->last_window]->next_y + progress_bar_cfg->h >
+            context->windows[context->last_window]->y + context->windows[context->last_window]->h)
         return;
     int xpos{(progress_bar_cfg->w * (*value - min_) / (max_ - min_))};
-    draw_rect(win, {context->last_window->x + 10, context->last_window->next_y, progress_bar_cfg->w, progress_bar_cfg->h},
+    draw_rect(win, {context->windows[context->last_window]->x + 10, context->windows[context->last_window]->next_y, progress_bar_cfg->w, progress_bar_cfg->h},
               progress_bar_cfg->idle_color);
     draw_text(win, text.data(),
-              context->last_window->x + progress_bar_cfg->w + 20, context->last_window->next_y);
-    draw_rect(win, {context->last_window->x + 12, context->last_window->next_y + 2, xpos, progress_bar_cfg->h - 4}, progress_bar_cfg->filled_color);
-    context->last_window->next_y = context->last_window->next_y + progress_bar_cfg->h + 10;
+              context->windows[context->last_window]->x + progress_bar_cfg->w + 20, context->windows[context->last_window]->next_y);
+    draw_rect(win, {context->windows[context->last_window]->x + 12, context->windows[context->last_window]->next_y + 2, xpos, progress_bar_cfg->h - 4}, progress_bar_cfg->filled_color);
+    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + progress_bar_cfg->h + 10;
 }
 
 void newline() noexcept
 {
-    if (context->last_window->next_y + global_cfg->font_size > context->last_window->y + context->last_window->h)
+    if (context->windows[context->last_window]->next_y + global_cfg->font_size > context->windows[context->last_window]->y + context->windows[context->last_window]->h)
         return;
-    context->last_window->next_y = context->last_window->next_y + global_cfg->font_size;
+    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + global_cfg->font_size;
 }
 
 void text(Window *win, std::string_view text) noexcept
 {
-    if (context->last_window->w < global_cfg->font_size * text.size() ||
-        context->last_window->next_y + global_cfg->font_size + 5 >
-            context->last_window->y + context->last_window->h)
+    if (context->windows[context->last_window]->w < global_cfg->font_size * text.size() ||
+        context->windows[context->last_window]->next_y + global_cfg->font_size + 5 >
+            context->windows[context->last_window]->y + context->windows[context->last_window]->h)
         return;
-    draw_text(win, text.data(), context->last_window->x + 10, context->last_window->next_y);
-    context->last_window->next_y = context->last_window->next_y + global_cfg->font_size + 5;
+    draw_text(win, text.data(), context->windows[context->last_window]->x + 10, context->windows[context->last_window]->next_y);
+    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + global_cfg->font_size + 5;
 }
 
 void list_item(Window *win, std::string_view text) noexcept
 {
     if ((context->list_indent_level * 10) + (text.size() * global_cfg->font_size) <
-            context->last_window->w ||
-        context->last_window->next_y + global_cfg->font_size >
-            context->last_window->y + context->last_window->h)
+            context->windows[context->last_window]->w ||
+        context->windows[context->last_window]->next_y + global_cfg->font_size >
+            context->windows[context->last_window]->y + context->windows[context->last_window]->h)
         return;
-    int xpos{context->last_window->x + (context->list_indent_level * 10)};
+    int xpos{context->windows[context->last_window]->x + (context->list_indent_level * 10)};
     if (context->lists_text.find(text.data()) != context->lists_text.end())
         context->lists_text[text.data()] = load_text(win, text.data());
-    draw_text(win, text.data(), xpos, context->last_window->next_y);
-    context->last_window->next_y = context->last_window->next_y + global_cfg->font_size;
+    draw_text(win, text.data(), xpos, context->windows[context->last_window]->next_y);
+    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + global_cfg->font_size;
 }
 } // namespace tnt::ImGui
 

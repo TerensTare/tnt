@@ -3,7 +3,8 @@
 # testing
 # flags for x64/x86, debug/release.
 
-cmake_minimum_required(VERSION 3.10)
+# The project uses C++20, which is minimally supported by CMake 3.12.4
+cmake_minimum_required(VERSION 3.12.4 FATAL_ERROR)
 set(PROJECT_NAME "TnT")
 project(${PROJECT_NAME}
     VERSION 0.1.0
@@ -36,7 +37,9 @@ endif()
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE})
 
 # TODO: an if should be here for cross-platform compiling.
-set(COMMON_COMPILE_OPTIONS /EHsc /O2)
+if(MSVC)
+    set(COMMON_COMPILE_OPTIONS /EHsc /O2 /analyze)
+endif()
 set(TNT_COMPILE_OPTIONS ${COMMON_COMPILE_OPTIONS})
 
 include(FindLua)
@@ -70,7 +73,7 @@ endif()
 
 list(APPEND CMAKE_PREFIX_PATH ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET})
 
-    #${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2/
+    # ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2/
     # ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-gfx/
     # ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-image/
     # ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/share/sdl2-mixer/
@@ -103,7 +106,7 @@ set(SOURCE_FILES
     src/core/Graphics.cpp src/core/Window.cpp src/utils/Timer.cpp
     # src/core/Camera.cpp src/core/Space.cpp src/core/Scene.cpp
     src/math/Rectangle.cpp # src/fileIO/VirtualFS.cpp
-    src/fileIO/AssetManager.cpp src/core/InputManager.cpp
+    src/fileIO/AssetManager.cpp src/core/Input.cpp
     src/ecs/Object.cpp src/ecs/Component.cpp
     src/ecs/Sprite.cpp src/ImGui/ImGui.cpp)
 

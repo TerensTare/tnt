@@ -1,4 +1,4 @@
-#include "core/InputManager.hpp"
+#include "core/Input.hpp"
 
 namespace tnt::input
 {

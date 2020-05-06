@@ -12,7 +12,11 @@ typedef struct SDL_Texture SDL_Texture;
 
 namespace tnt::pcg
 {
-    SDL_Texture *staticNoise(SDL_Renderer *ren, int w, int h);
+/// @brief Get a texture with some random noise on it.
+/// @param ren The renderer where the texture should be drawed.
+/// @param w The width of the texture.
+/// @param h The height of the texture.
+SDL_Texture *staticNoise(SDL_Renderer *ren, int w, int h);
 } // namespace tnt::pcg
 
 #endif //! TNT_PCG_NOISE_HPP

@@ -3,6 +3,33 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-05-06
+### Added
+- `tnt::Window::operator SDL_Window*` is now `explicit`.
+
+## 2020-05-05
+### Added
+- Documentation for some header files.
+- New overload for `tnt::SpriteComponent::setTexture` which should be used for clipped textures.
+- Check on `tnt::Snipper::onModify` for `typename Func`.
+- Function `tnt::Snipper::unwatchFile()`.
+
+### Changed
+- `tnt::SpriteComponent::getWidth()`/`tnt::SpriteComponent::getHeight()` now returns the correct width if the texture is clipped.
+- `tnt::SpriteComponent`'s destructor is no longer `virtual`.
+
+
+## 2020-05-04
+### Added
+- Build status for Azure Pipelines builds.
+- `INSTALL.md` to learn how to obtain the binaries of the engine.
+
+### Changed
+- Renamed `InputManager.hpp` and `InputManager.cpp` to `Input.hpp` and `Input.cpp`.
+- Moved `Random.hpp` to the correct folder.
+- CMake's minimum version now is `3.12.4` because C++20 support is required to build the project.
+
+
 ## 2020-05-03
 ### Added
 - `inline` on some `struct Vector` functions.
