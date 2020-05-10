@@ -3,9 +3,38 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-05-10
+### Added
+- Horizontal ImGui sliders now will display the current value on their center.
+
+### Changed
+- All ImGui slider widgets (vertical and horizontal) don't require an ID, x or y position, instead they require just a text to display on them.
+- `hslider_int` and `hslider_float` now require an extra `text` as the second parameter.
+
+## 2020-05-08
+### Added
+- New implementation of `Action`s, together with the documentation. Also a test on folder `test/actions` is included, showing the basic usage of `Action`s.
+- Section `Documentation` on `README.md`.
+- `FindSphinx.cmake` on `cmake` folder in case of starting to use `Sphinx` for documentation.
+
+### Removed
+- Experimental implementations of `Action`s. Please use the new implementation instead.
+- `Easingsv2.hpp` from experimental folder. Use the original implementation on folder `math` instead.
+
+## 2020-05-07
+### Added
+- New CMake `option` `TNT_BUILD_DOCS` to build the documentation using Doxygen. Note that the switch is `ON` by default.
+
+### Removed
+- `docs` folder. The website is now hosted on the `gh-pages` branch of the repository.
+
+
 ## 2020-05-06
 ### Added
 - `tnt::Window::operator SDL_Window*` is now `explicit`.
+
+### Removed
+- `Debug` build for AppVeyor.
 
 ## 2020-05-05
 ### Added

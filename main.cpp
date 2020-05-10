@@ -18,7 +18,8 @@
 
 using tnt::ImGui::hslider_int, tnt::ImGui::button,
     tnt::ImGui::menu, tnt::ImGui::checkbox,
-    tnt::ImGui::list_item, tnt::ImGui::text;
+    tnt::ImGui::list_item, tnt::ImGui::text,
+    tnt::ImGui::slider_int, tnt::ImGui::slider_float;
 
 // TODO: "dissolve" this code into classes, like Game/Scene/Space,
 // etc.
@@ -68,22 +69,13 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
         tnt::ImGui::Begin(window, "Files", 500, 300);
 
-        {
-            static std::string_view test[4]{"File", "Edit", "Options", "Info"};
-            if (auto res{menu(window, test, 4)}; res != -1)
-                std::cout << "Pressed " << test[res] << "\n";
-        }
-
-        tnt::ImGui::newline();
-        button(window, "Test");
-
-        hslider_int(window, IMGUI_ID, 100, 400, 0, 9, &x);
-        hslider_int(window, IMGUI_ID, 100, 440, 0, 3, &y);
+        hslider_int(window, "xFrame", 0, 9, &x);
+        hslider_int(window, "yFrame", 0, 3, &y);
 
         tnt::ImGui::End();
 
-        tnt::ImGui::Begin(window, "Test", 400, 300);
-        tnt::ImGui::End();
+        // tnt::ImGui::Begin(window, "Test", 100, 300);
+        // tnt::ImGui::End();
 
         clip.x = x * 16;
         clip.y = y * 16;

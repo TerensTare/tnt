@@ -42,6 +42,10 @@ msbuild.exe TnT.sln /p:Platform=x64
 msbuild.exe TnT.sln /p:Platform=x64 /p:Configuration=Release
 ```
 
+#### Building the documentation
+
+The documentation is built by default when building with CMake. To build the documentation, you need to have doxygen installed, which can be obtained [here](http://www.doxygen.nl/manual/install.html). To avoid building the documentation, please run `cmake -DBUILD_DOCS=OFF ..` instead of just `cmake ..`.
+
 ### Option 2: getting the pre-built binaries.
 
 WIP

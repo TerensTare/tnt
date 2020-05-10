@@ -38,26 +38,19 @@ public:
 
     ~stack_allocator() noexcept
     {
-        while (--stack_ptr >= 0)
-            if (data[stack_ptr] != nullptr)
-                data[stack_ptr]->~T();
         delete[] data;
     }
 
     [[nodiscard]] constexpr T *allocate() noexcept
     {
-        data[stack_ptr] = new (data + stack_ptr) T{};
         ++stack_ptr;
         return data[stack_ptr - 1];
     }
 
     constexpr void deallocate() noexcept
     {
-        if (--stack_ptr >= 0)
-        {
-            data[stack_ptr]->~T();
-            data[stack_ptr] = nullptr;
-        }
+        if (stack_ptr >= 1)
+            --stack_ptr;
     }
 
 private:

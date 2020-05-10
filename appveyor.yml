@@ -6,11 +6,9 @@ platform:
 
 configuration:
   - Release
-  - Debug
 
 environment:
   VCPKG_DEFAULT_TRIPLET: x64-windows
-  SDL2_DIR: C:\Tools\vcpkg\installed\$(VCPKG_DEFAULT_TRIPLET)\share\SDL2
 
 install:
   - cd C:\Tools\vcpkg

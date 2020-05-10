@@ -1,6 +1,8 @@
 #ifndef TNT_IMGUI_LIB_HPP
 #define TNT_IMGUI_LIB_HPP
 
+#include <string_view>
+
 /// @brief Macro that generates an id for an ImGui widget.
 /// @sa IMGUI_ID
 /// @note Use IMGUI_ID instead.
@@ -11,8 +13,6 @@
 /// @note This will be removed in future.
 #define IMGUI_ID IMGEN_WIDGET_ID(1)
 
-#include <string_view>
-
 // TODO: more widgets:
 // image, radio, text field, selection box, context menu, icon(button with image)
 // TODO: separate menu() into BeginMenu()/EndMenu() and menu_item() (whatever name)
@@ -22,10 +22,11 @@
 // TODO: add support for collapsing and multiple windows.
 // TODO: make sure no widget (except list_item) is drawed between BeginList() and EndList() calls.
 // TODO: add support for handling more than one context (multiple game windows).
-// TODO: add more operators support for WindowFlags(==, !=).
 // TODO: sameline()
 // TODO: add support for drawing text on the left of the widget and switching from the left to the right of the widget.
 // TODO: add support for calling window inside a window (ex. creating window on button click)
+// TODO: remove some of the config functions and members.
+// TODO: resize the hslider's width in case the window is resized.
 
 // TODO(maybe):
 // remove window_config ??
@@ -195,53 +196,43 @@ bool button(Window *win, std::string_view text) noexcept;
 /// @brief Draw a vertical slider that modifies an @em int value on the current ImGui window.
 /// The widget returns @em true if the value has been modified, @em false otherwise.
 /// @param win The game window where the slider should be drawed.
-/// @param id The unique id of the widget.
-/// @param x The x position of the widget.
-/// @param y The y position of the widget.
 /// @param min_ The minimun value the widget can set.
 /// @param max_ The maximum value the widget can set.
 /// @param value The value that the widget can modify.
 /// @return bool
-bool slider_int(Window *win, std::size_t id, int x, int y, int min_, int max_,
+bool slider_int(Window *win, int min_, int max_,
                 int *value) noexcept;
 
 /// @brief Draw a vertical slider that modifies an @em float value on the current ImGui window.
 /// The widget returns @em true if the value has been modified, @em false otherwise.
 /// @param win The game window where the slider should be drawed.
-/// @param id The unique id of the widget.
-/// @param x The x position of the widget.
-/// @param y The y position of the widget.
 /// @param min_ The minimun value the widget can set.
 /// @param max_ The maximum value the widget can set.
 /// @param value The value that the widget can modify.
 /// @return bool
-bool slider_float(Window *win, std::size_t id, int x, int y, float min_, float max_,
+bool slider_float(Window *win, float min_, float max_,
                   float *value) noexcept;
 
 /// @brief Draw a horizontal slider that modifies an @em int value on the current ImGui window.
 /// The widget returns @em true if the value has been modified, @em false otherwise.
 /// @param win The game window where the slider should be drawed.
-/// @param id The unique id of the widget.
-/// @param x The x position of the widget.
-/// @param y The y position of the widget.
+/// @param text The text that should be drawn next to the slider.
 /// @param min_ The minimun value the widget can set.
 /// @param max_ The maximum value the widget can set.
 /// @param value The value that the widget can modify.
 /// @return bool
-bool hslider_int(Window *win, std::size_t id, int x, int y, int min_, int max_,
+bool hslider_int(Window *win, std::string_view text, int min_, int max_,
                  int *value) noexcept;
 
 /// @brief Draw a horizontal slider that modifies an @em float value on the current ImGui window.
 /// The widget returns @em true if the value has been modified, @em false otherwise.
 /// @param win The game window where the slider should be drawed.
-/// @param id The unique id of the widget.
-/// @param x The x position of the widget.
-/// @param y The y position of the widget.
+/// @param text The text that should be drawn next to the slider.
 /// @param min_ The minimun value the widget can set.
 /// @param max_ The maximum value the widget can set.
 /// @param value The value that the widget can modify.
 /// @return bool
-bool hslider_float(Window *win, std::size_t id, int x, int y, float min_, float max_,
+bool hslider_float(Window *win, std::string_view text, float min_, float max_,
                    float *value) noexcept;
 
 /// @brief Draw a checkbox with @em text on the side of it.

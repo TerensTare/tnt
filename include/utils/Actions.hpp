@@ -1,126 +1,146 @@
-#ifndef ACTIONS_HPP
-#define ACTIONS_HPP
+#ifndef TNT_ACTIONS_HPP
+#define TNT_ACTIONS_HPP
 
-#include <vector>
+#include <deque>
 
-// TODO:
-// Maybe separate ResumableAction from Action.
-// Make unblocking and blocking Actions using C++20 coroutines.
+// TODO: Make resumable Actions using C++20 coroutines.
+// TODO: Separate ResumableAction from Action.
+// TODO: Separate actions in lanes.
 
 // IDEA:
 // Trigger a new action when an action is finished(that's why End() is for).
 
 namespace tnt
 {
-    class ActionList;
+namespace detail
+{
+/// @brief The base representation of an action.
+class base_action
+{
+public:
+    /// @brief Create a basic action that runs for a certain duration.
+    /// @param duration_ Determine for how long the action should run.
+    /// @param blocks Determine if the action is blocking or not.
+    base_action(long long duration_, bool blocks)
+        : finished{false}, blocking{blocks}, elapsed{0}, duration{duration_} {}
 
-    class Action
+    /// @brief The destructor of base_action.
+    virtual ~base_action() noexcept = default;
+
+    /// @brief Update the stats of the action.
+    /// @param elapsed_ The elapsed time since the last Update call.
+    virtual void Update(long long elapsed_) = 0;
+
+    /// @brief Check if the action is a blocking action.
+    inline bool isBlocking() const noexcept { return blocking; }
+
+    /// @brief Check if the action should continue running.
+    inline bool isFinished() const noexcept { return finished; }
+
+protected:
+    inline void Tick(long long elapsed_) noexcept
     {
-      public:
-        Action(bool blocking);
-        virtual ~Action() {}
+        if (!finished)
+        {
+            elapsed = elapsed + elapsed_;
+            if (elapsed > duration)
+                finished = true;
+        }
+    }
 
-        virtual void Update(float delta_t) = 0;
-        virtual void Start();
-        virtual void End();
+    bool finished;
+    bool blocking;
+    unsigned lane;
+    long long elapsed;
+    long long duration;
+};
+} // namespace detail
 
-        void Finish();
+/// @brief A basic non-blocking action.
+class Action : public detail::base_action
+{
+public:
+    /// @brief Create a non-blocking action that lasts @em duration_ milliseconds.
+    /// @param duration_ The duration of the action.
+    Action(long long duration_) : detail::base_action{duration_, false} {}
+};
 
-        void Block();
-        void Unblock();
+/// @brief An action that blocks other actions from running before it is finished.
+class BlockingAction : public detail::base_action
+{
+public:
+    /// @brief Create a non-blocking action that lasts @em duration_ milliseconds.
+    /// @param duration_ The duration of the action.
+    BlockingAction(long long duration_) : detail::base_action{duration_, true} {}
+};
 
-        void Pause();
-        void Resume();
-        void Cancel();
+/// @brief An action that updates only once and then finishes.
+class SingleRunAction : public Action
+{
+public:
+    /// @brief Create an action that runs only once.
+    SingleRunAction() : Action{1} {}
+};
 
-        bool Blocks() const noexcept { return blocks; }
-        bool Blocked() const noexcept { return blocked; }
-        bool Complete() const noexcept;
-        bool Started() const noexcept;
-        bool Paused() const noexcept;
-        bool Finished() const noexcept { return finished; }
-
-        int Lanes() const noexcept { return lanes; }
-        int BlockedBy() const noexcept { return blockedmask; }
-        int Blocking() const noexcept { return blockmask; }
-
-      protected:
-        bool finished;
-        bool blocks, blocked;
-        int lanes;
-        int blockmask, blockedmask; // TODO: init these.
-        ActionList owner;
-    };
-
-    class Sync : public Action
+/// @brief A class holding several actions and updating them in order every frame.
+class ActionList final
+{
+public:
+    /// @brief Add a non-blocking action to the "list".
+    /// @param action The action to add.
+    inline void add(Action *action)
     {
-      public:
-        void Update(float delta_t) override;
-    };
+        actions.push_back(static_cast<detail::base_action *>(action));
+    }
 
-    class Delay : public Action
+    /// @brief Add a blocking action to the "list".
+    /// @param action The action to add.
+    inline void add(BlockingAction *action)
     {
-      public:
-        explicit Delay(float time);
-        void Update(float delta_t) override;
+        actions.push_back(static_cast<detail::base_action *>(action));
+    }
 
-      private:
-        float elapsed;
-        float duration;
-    };
+    /// @brief Check if the actionlist is empty.
+    /// @return bool
+    inline bool empty() const noexcept { return actions.empty(); }
 
-    class ResumableAction : public Action
+    /// @brief Update all actions to the first blocking action found.
+    /// @param time_ The elapsed time since the last Update() call.
+    void Update(long long time_)
     {
-      public:
-        virtual void Suspend() = 0;
-        virtual void Resume()  = 0;
+        if (!actions.empty())
+            for (auto it{actions.begin()}; it != actions.end(); ++it)
+            {
+                if ((*it)->isFinished())
+                    it = actions.erase(it);
+                else
+                    (*it)->Update(time_);
 
-        bool Paused() const noexcept { return suspended; }
-        bool Unpaused() const noexcept { return !suspended; }
+                if (!(*it)->isFinished())
+                    if ((*it)->isBlocking())
+                        return;
+            }
+    }
 
-      protected:
-        bool suspended;
-    };
+private:
+    std::deque<detail::base_action *> actions;
+};
 
-    class HierarchicalAction : public Action
+/// @brief An action that delays the execution of the other actions for a specified time.
+class Delay : public BlockingAction
+{
+public:
+    /// @brief Create a delay action.
+    /// @param duration_ The delay time in ms.
+    explicit Delay(long long duration_) : BlockingAction{duration_} {}
+
+    /// @brief Update the elapsed time of the Delay action.
+    /// @param elapsed_ The elapsed time since the last Update() call.
+    inline void Update(long long elapsed_) override
     {
-      public:
-        void Update(float delta_t) override;
-    };
-
-    class ActionList : public Action
-    {
-      public:
-        ~ActionList() noexcept;
-
-        decltype(auto) begin() const noexcept { return actions.begin(); }
-        decltype(auto) end() const noexcept { return actions.end(); }
-        decltype(auto) rbegin() const noexcept { return actions.rbegin(); }
-        decltype(auto) rend() const noexcept { return actions.rend(); }
-
-        decltype(auto) cbegin() const noexcept { return actions.cbegin(); }
-        decltype(auto) cend() const noexcept { return actions.cend(); }
-        decltype(auto) crbegin() const noexcept { return actions.crbegin(); }
-        decltype(auto) crend() const noexcept { return actions.crend(); }
-
-        Action *Remove(Action *action);
-
-        void PushBack(Action *action);
-        void PushFront(Action *action);
-        void InsertBefore(Action *action);
-        void InsertAfter(Action *action);
-
-        void ClearLane(int laneID);
-        void clear() noexcept;
-
-        bool empty() const noexcept;
-        bool EmptyLane(int laneID) const noexcept;
-
-        void Update(float delta_t) override;
-
-      protected:
-        std::vector<Action *> actions;
-    };
+        Tick(elapsed_);
+    }
+};
 } // namespace tnt
 
-#endif //! ACTIONS_HPP
+#endif //!TNT_ACTIONS_HPP

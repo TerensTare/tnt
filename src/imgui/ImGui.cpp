@@ -166,18 +166,9 @@ void set_font(char const *name) noexcept
 
 TTF_Font *get_font() noexcept { return global_cfg->font_data; }
 
-void set_font_size(int size) noexcept { global_cfg->font_size = size; }
-int get_font_size() noexcept { return global_cfg->font_size; }
-
 ////////////
 // button //
 ////////////
-
-void set_button_w(int w) noexcept { button_cfg->w = w; }
-int get_button_w() noexcept { return button_cfg->w; }
-
-void set_button_h(int h) noexcept { button_cfg->h = h; }
-int get_button_h() noexcept { return button_cfg->h; }
 
 void set_button_idle_color(unsigned char r, unsigned char g, unsigned char b,
                            unsigned char a) noexcept
@@ -209,18 +200,6 @@ unsigned char *get_button_active_color() noexcept
 // slider //
 ////////////
 
-void set_slider_w(int w) noexcept { slider_cfg->w = w; }
-int get_slider_w() noexcept { return slider_cfg->w; }
-
-void set_slider_h(int h) noexcept { slider_cfg->h = h; }
-int get_slider_h() noexcept { return slider_cfg->h; }
-
-void set_slider_thumb_w(int w) noexcept { slider_cfg->thumb_w = w; }
-int get_slider_thumb_w() noexcept { return slider_cfg->thumb_w; }
-
-void set_slider_thumb_h(int h) noexcept { slider_cfg->thumb_h = h; }
-int get_slider_thumb_h() noexcept { return slider_cfg->thumb_h; }
-
 void set_slider_color(unsigned char r, unsigned char g, unsigned char b,
                       unsigned char a) noexcept
 {
@@ -239,6 +218,7 @@ void set_slider_thumb_idle_color(unsigned char r, unsigned char g, unsigned char
 {
     slider_cfg->thumb_idle_color = SDL_Color{r, g, b, a};
 }
+
 unsigned char *get_slider_thumb_idle_color() noexcept
 {
     static unsigned char arr[4]{slider_cfg->thumb_idle_color.r, slider_cfg->thumb_idle_color.g,
@@ -264,18 +244,6 @@ unsigned char *get_slider_thumb_active_color() noexcept
 // horizontal slider //
 ///////////////////////
 
-void set_hslider_w(int w) noexcept { hslider_cfg->w = w; }
-int get_hslider_w() noexcept { return hslider_cfg->w; }
-
-void set_hslider_h(int h) noexcept { hslider_cfg->h = h; }
-int get_hslider_h() noexcept { return hslider_cfg->h; }
-
-void set_hslider_thumb_w(int w) noexcept { hslider_cfg->thumb_w = w; }
-int get_hslider_thumb_w() noexcept { return hslider_cfg->thumb_w; }
-
-void set_hslider_thumb_h(int h) noexcept { hslider_cfg->thumb_h = h; }
-int get_hslider_thumb_h() noexcept { return hslider_cfg->thumb_h; }
-
 void set_hslider_color(unsigned char r, unsigned char g, unsigned char b,
                        unsigned char a) noexcept
 {
@@ -294,6 +262,7 @@ void set_hslider_thumb_idle_color(unsigned char r, unsigned char g, unsigned cha
 {
     hslider_cfg->thumb_idle_color = SDL_Color{r, g, b, a};
 }
+
 unsigned char *get_hslider_thumb_idle_color() noexcept
 {
     static unsigned char arr[4]{
@@ -319,12 +288,6 @@ unsigned char *get_hslider_thumb_active_color() noexcept
 //////////////////
 // progress bar //
 //////////////////
-
-int get_progressbar_w() noexcept { return progress_bar_cfg->w; }
-void set_progressbar_w(int w) noexcept { progress_bar_cfg->w = w; }
-
-int get_progressbar_h() noexcept { return progress_bar_cfg->h; }
-void set_progressbar_h(int h) noexcept { progress_bar_cfg->h = h; }
 
 unsigned char *get_progressbar_idle_color() noexcept
 {
@@ -352,13 +315,6 @@ void set_progressbar_filled_color(unsigned char r, unsigned char g, unsigned cha
 {
     progress_bar_cfg->filled_color = SDL_Color{r, g, b, a};
 }
-
-//////////////
-// checkbox //
-//////////////
-
-int get_checkbox_length() noexcept { return checkbox_cfg->length; }
-void set_checkbox_length(int len) noexcept { checkbox_cfg->length = len; }
 
 /////////////////
 // local utils //
@@ -427,7 +383,7 @@ auto has_flag = [](WindowFlags owner, WindowFlags test) -> bool {
     return ((owner & test) == test);
 };
 
-auto check_button = [](std::size_t id, int x, int y, int w, int h) {
+auto check_button = [](std::size_t id, int x, int y, int w, int h) -> void {
     if (on_rect(x, y, w, h))
     {
         context->hot = id;
@@ -436,17 +392,24 @@ auto check_button = [](std::size_t id, int x, int y, int w, int h) {
     }
 };
 
-// thx Robert Gould
-// https://stackoverflow.com/questions/628790/have-a-good-hash-function-for-a-c-hash-table
-auto im_hash = [](std::string_view str) {
-    return ((*(std::size_t *)str.data()) >> 4);
+// thx Wren
+// https://stackoverflow.com/a/11819477/9807802
+auto im_hash = [](std::string_view text) {
+    std::size_t h{0};
+    char const *str{text.data()};
+    while (*str)
+        h = h << 1 ^ *str++;
+    return h;
 };
 
 auto get_window = [](std::string_view name) -> window_data * {
-    if (context->windows.find(name.data()) == context->windows.end())
-        return nullptr;
-    return context->windows[name.data()];
+    if (context->windows.find(name.data()) != context->windows.end())
+        return context->windows[name.data()];
+    window_data *tmp{new window_data{.title = name.data()}};
+    return tmp;
 };
+
+auto get_last_win = [] { return get_window(context->last_window); };
 
 ///////////////////
 // context stuff //
@@ -504,16 +467,17 @@ bool Begin(Window *win, std::string_view name, int x_, int y_, WindowFlags flags
     if (context->on_window)
     {
         tnt::logger::debug(
-            "Line : {}\tCalling tnt::ImGui::Begin() inside a tnt::ImGui::Begin()/tnt::ImGui::End() pair!!",
-            __LINE__);
+            "Calling tnt::ImGui::Begin() inside a tnt::ImGui::Begin()"
+            "tnt::ImGui::End() pair!!");
         return false;
     }
 
     window_data *tmp{get_window(name.data())};
 
-    if (tmp == nullptr)
+    if (context->windows.find(name.data()) == context->windows.end())
     {
         tnt::logger::debug("Adding window {}", name.data());
+
         tmp->menu_called = false;
         tmp->x = x_;
         tmp->y = y_;
@@ -523,7 +487,7 @@ bool Begin(Window *win, std::string_view name, int x_, int y_, WindowFlags flags
         tmp->title = name.data();
 
         if (tmp->title == context->last_window)
-            tnt::logger::debug("Calling Begin() twice for the same window!!");
+            tnt::logger::debug("Calling Begin() twice for the same window title!!");
 
         context->windows[name.data()] = tmp;
     }
@@ -543,10 +507,11 @@ bool Begin(Window *win, std::string_view name, int x_, int y_, WindowFlags flags
 
     std::size_t resize_right_down_id{4 + id};
     std::size_t resize_left_down_id{5 + id};
-    std::size_t frame_id{10 + id};
 
     // check for moving
     check_button(id, tmp->x, tmp->y, tmp->w, 20);
+
+    context->last_window = name;
 
     // check for resizing
     check_button(resize_right_id, tmp->x + tmp->w - 10,
@@ -556,17 +521,7 @@ bool Begin(Window *win, std::string_view name, int x_, int y_, WindowFlags flags
     check_button(resize_right_down_id, tmp->x + tmp->w - 10,
                  tmp->y + tmp->h - 10, 10, 10);
 
-    // check if mouse pressed this window
-    // TODO: this may cause incorrect hot/active detecting
-    // (maybe) use a vector of hot/active widgets that is updated each frame ??
-    check_button(frame_id, tmp->x, tmp->y, tmp->w, tmp->h);
-
     std::pair pos{input::mousePosition()};
-
-    bool current{false};
-
-    if (context->active == frame_id)
-        current = true;
 
     if (context->active == id)
     {
@@ -574,8 +529,10 @@ bool Begin(Window *win, std::string_view name, int x_, int y_, WindowFlags flags
         tmp->y = tmp->y + pos.second - context->mouse_y;
     }
 
+    std::size_t minW{name.size() * 7 + 32};
+
     if (context->active == resize_right_id)
-        if (int dx{pos.first - context->mouse_x}; tmp->w >= 40 || dx >= 0) // bigger than double of the height of the title bar
+        if (int dx{pos.first - context->mouse_x}; tmp->w >= minW || dx >= 0) // bigger than double of the height of the title bar
             tmp->w = tmp->w + dx;
 
     if (context->active == resize_down_id)
@@ -584,15 +541,11 @@ bool Begin(Window *win, std::string_view name, int x_, int y_, WindowFlags flags
 
     if (context->active == resize_right_down_id)
     {
-        if (int dx{pos.first - context->mouse_x}; tmp->w >= 40 || dx >= 0)
+        if (int dx{pos.first - context->mouse_x}; tmp->w >= minW || dx >= 0)
             tmp->w = tmp->w + dx;
         if (int dy{pos.second - context->mouse_y}; tmp->h >= 40 || dy >= 0)
             tmp->h = tmp->h + dy;
     }
-
-    // updating
-    if (current)
-        context->last_window = tmp->title;
 
     context->mouse_x = pos.first;
     context->mouse_y = pos.second;
@@ -618,8 +571,9 @@ void End() noexcept
     }
 
     context->on_window = false;
-    context->windows[context->last_window]->next_y = 0;
-    context->windows[context->last_window]->menu_called = false;
+    window_data *last{get_window(context->last_window)};
+    last->next_y = 0;
+    last->menu_called = false;
 
     if (!context->mouse_down)
         context->active = 0;
@@ -645,19 +599,19 @@ void EndList() noexcept
 
 bool button(Window *win, std::string_view text) noexcept
 {
-    if (context->windows[context->last_window]->next_y + button_cfg->h >
-            context->windows[context->last_window]->y + context->windows[context->last_window]->h ||
-        context->windows[context->last_window]->w < button_cfg->w + 10)
+    window_data *tmp{get_last_win()};
+    if (tmp->next_y + button_cfg->h > tmp->y + tmp->h ||
+        tmp->w < button_cfg->w + 10)
         return false;
-    std::string key{context->windows[context->last_window]->title};
+    std::string key{tmp->title};
     key.append(text);
     std::size_t id{im_hash(key)};
     button_cfg->w = static_cast<int>(text.size()) * 7 + 10;
     button_cfg->h = 10 + global_cfg->font_size;
 
-    check_button(id, context->windows[context->last_window]->x + 10, context->windows[context->last_window]->next_y, button_cfg->w, button_cfg->h);
+    check_button(id, tmp->x + 10, tmp->next_y, button_cfg->w, button_cfg->h);
 
-    SDL_Rect dst{context->windows[context->last_window]->x + 10, context->windows[context->last_window]->next_y, button_cfg->w, button_cfg->h};
+    SDL_Rect dst{tmp->x + 10, tmp->next_y, button_cfg->w, button_cfg->h};
     SDL_Color widgetColor;
 
     if (context->hot == id)
@@ -671,32 +625,36 @@ bool button(Window *win, std::string_view text) noexcept
         widgetColor = button_cfg->idle_color;
 
     draw_rect(win, dst, widgetColor);
+    draw_text(win, text.data(), tmp->x + 15, tmp->next_y + 5, global_cfg->text_color, global_cfg->font_size);
 
-    draw_text(win, text.data(), context->windows[context->last_window]->x + 15, context->windows[context->last_window]->next_y + 5, global_cfg->text_color, global_cfg->font_size);
-
-    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + 30;
+    tmp->next_y = tmp->next_y + 30;
 
     if (context->hot == id && context->active == id)
         return true;
     return false;
 }
 
-bool slider_int(Window *win, std::size_t id, int x, int y, int min_, int max_,
+bool slider_int(Window *win, int min_, int max_,
                 int *value) noexcept
 {
-    int ypos{((slider_cfg->h - slider_cfg->thumb_h) * (*value - min_)) / (max_ - min_)};
-    int offset{slider_cfg->w - slider_cfg->thumb_w};
+    window_data *tmp{get_last_win()};
+    if (tmp->next_y + slider_cfg->h > tmp->y + tmp->h || tmp->w < slider_cfg->w)
+        return false;
 
-    if (on_rect(x, y, slider_cfg->w, slider_cfg->h))
-    {
-        context->hot = id;
-        if (context->active == 0 && context->mouse_down)
-            context->active = id;
-    }
+    std::string key{tmp->title};
+    key.append(std::to_string(*value));
+    const std::size_t id{im_hash(key)};
 
-    draw_rect(win, {x, y, slider_cfg->w, slider_cfg->h + offset}, slider_cfg->color);
+    const int ypos{((slider_cfg->h - slider_cfg->thumb_h) * (*value - min_)) / (max_ - min_)};
+    const int offset{slider_cfg->w - slider_cfg->thumb_w};
 
-    SDL_Rect thumb{x + (offset / 2), y + (offset / 2) + ypos, slider_cfg->thumb_w,
+    const int x{tmp->x + 10};
+
+    check_button(id, x, tmp->next_y, slider_cfg->w, slider_cfg->h);
+
+    draw_rect(win, {x, tmp->next_y, slider_cfg->w, slider_cfg->h + offset}, slider_cfg->color);
+
+    SDL_Rect thumb{x + (offset / 2), tmp->next_y + (offset / 2) + ypos, slider_cfg->thumb_w,
                    slider_cfg->thumb_h};
 
     SDL_Color widgetColor;
@@ -707,40 +665,54 @@ bool slider_int(Window *win, std::size_t id, int x, int y, int min_, int max_,
         widgetColor = slider_cfg->thumb_idle_color;
 
     draw_rect(win, thumb, widgetColor);
+    bool ret{false};
 
     if (context->active == id)
     {
-        int mousePos{context->mouse_y - (y + (offset / 2))};
+        int mousePos{context->mouse_y - (tmp->next_y + (offset / 2))};
         if (mousePos < 0)
             mousePos = 0;
         if (mousePos > (slider_cfg->h - 1))
             mousePos = (slider_cfg->h - 1);
-        if (int v{(mousePos * max_) / (slider_cfg->h - 1)}; v != *value)
+        if (int v{min_ + (mousePos * (max_ - min_)) / (slider_cfg->h - 1)}; v != *value)
         {
             *value = v;
-            return true;
+            ret = true;
         }
     }
-    return false;
+
+    tmp->next_y = tmp->next_y + slider_cfg->h + 5;
+
+    return ret;
 }
 
-bool slider_float(Window *win, std::size_t id, int x, int y, float min_, float max_,
+bool slider_float(Window *win, float min_, float max_,
                   float *value) noexcept
 {
+    window_data *tmp{get_last_win()};
+    if (tmp->next_y + slider_cfg->h > tmp->y + tmp->h || tmp->w < slider_cfg->w)
+        return false;
+
+    std::string key{tmp->title};
+    key.append(std::to_string(*value));
+    std::size_t id{im_hash(key)};
+
     int ypos{static_cast<int>(((slider_cfg->h - slider_cfg->thumb_h) * (*value - min_)) /
                               (max_ - min_))};
     int offset{slider_cfg->w - slider_cfg->thumb_w};
 
-    if (on_rect(x, y, slider_cfg->w, slider_cfg->h))
+    int x{tmp->x + 10};
+
+    if (on_rect(x, tmp->next_y, slider_cfg->w, slider_cfg->h))
     {
         context->hot = id;
         if (context->active == 0 && context->mouse_down)
             context->active = id;
     }
 
-    draw_rect(win, {x, y, slider_cfg->w, slider_cfg->h + offset}, slider_cfg->color);
+    draw_rect(win, {x, tmp->next_y, slider_cfg->w, slider_cfg->h + offset}, slider_cfg->color);
 
-    SDL_Rect thumb{x + (offset / 2), y + (offset / 2) + ypos, slider_cfg->thumb_w,
+    SDL_Rect thumb{x + (offset / 2), tmp->next_y + (offset / 2) + ypos, slider_cfg->thumb_w,
                    slider_cfg->thumb_h};
 
     SDL_Color widgetColor;
@@ -752,38 +724,54 @@ bool slider_float(Window *win, std::size_t id, int x, int y, float min_, float m
 
     draw_rect(win, thumb, widgetColor);
 
+    bool ret{false};
+
     if (context->active == id)
     {
-        int mousePos{context->mouse_y - (y + (offset / 2))};
+        int mousePos{context->mouse_y - (tmp->next_y + (offset / 2))};
         if (mousePos < 0)
             mousePos = 0;
         if (mousePos > (slider_cfg->h - 1))
             mousePos = (slider_cfg->h - 1);
-        if (float v{static_cast<float>((mousePos * max_) / (slider_cfg->h - 1))}; v != *value)
+        if (float v{static_cast<float>(min_ + (mousePos * (max_ - min_)) / (slider_cfg->h - 1))}; v != *value)
         {
             *value = v;
-            return true;
+            ret = true;
         }
     }
-    return false;
+
+    tmp->next_y = tmp->next_y + slider_cfg->h + 5;
+
+    return ret;
 }
 
-bool hslider_int(Window *win, std::size_t id, int x, int y, int min_, int max_,
+bool hslider_int(Window *win, std::string_view text, int min_, int max_,
                  int *value) noexcept
 {
-    int xpos{((hslider_cfg->w - hslider_cfg->thumb_w) * (*value - min_) / (max_ - min_))};
-    int offset{hslider_cfg->h - hslider_cfg->thumb_h};
+    window_data *tmp{get_last_win()};
 
-    if (on_rect(x, y, hslider_cfg->w, hslider_cfg->h))
-    {
-        context->hot = id;
-        if (context->active == 0 && context->mouse_down)
-            context->active = id;
-    }
+    if (tmp->next_y + hslider_cfg->h > tmp->y + tmp->h || tmp->w < hslider_cfg->w)
+        return false;
 
-    draw_rect(win, {x, y, hslider_cfg->w + offset, hslider_cfg->h}, hslider_cfg->color);
+    const int xpos{(hslider_cfg->w - hslider_cfg->thumb_w) * (*value - min_) / (max_ - min_)};
+    const int offset{hslider_cfg->h - hslider_cfg->thumb_h};
 
-    SDL_Rect thumb{x + (offset / 2) + xpos, y + (offset / 2), hslider_cfg->thumb_w,
+    std::string key{tmp->title};
+    key.append(text);
+    const std::size_t id{im_hash(key)};
+
+    const int x{tmp->x + 10};
+
+    // 40 = 10 for left padding, 20 for distance between text and slider, 10 for right padding.
+    hslider_cfg->w = static_cast<int>(7ull * text.size() + 40ull);
+
+    check_button(id, x, tmp->next_y, hslider_cfg->w, hslider_cfg->h);
+    draw_rect(win, {x, tmp->next_y, hslider_cfg->w + offset, hslider_cfg->h}, hslider_cfg->color);
+
+    draw_text(win, std::to_string(*value).c_str(), x + hslider_cfg->w / 2 - 4, tmp->next_y);
+    draw_text(win, text.data(), x + hslider_cfg->w + 20, tmp->next_y);
+
+    SDL_Rect thumb{x + (offset / 2) + xpos, tmp->next_y + (offset / 2), hslider_cfg->thumb_w,
                    hslider_cfg->thumb_h};
 
     SDL_Color widgetColor;
@@ -794,6 +782,8 @@ bool hslider_int(Window *win, std::size_t id, int x, int y, int min_, int max_,
         widgetColor = hslider_cfg->thumb_idle_color;
 
     draw_rect(win, thumb, widgetColor);
+
+    bool ret{false};
 
     if (context->active == id)
     {
@@ -806,29 +796,42 @@ bool hslider_int(Window *win, std::size_t id, int x, int y, int min_, int max_,
         if (int v{min_ + (mousePos * (max_ - min_)) / (hslider_cfg->w - 1)}; v != *value)
         {
             *value = v;
-            return true;
+            ret = true;
         }
     }
-    return false;
+
+    tmp->next_y = tmp->next_y + hslider_cfg->h + 5;
+
+    return ret;
 }
 
-bool hslider_float(Window *win, std::size_t id, int x, int y, float min_, float max_,
+bool hslider_float(Window *win, std::string_view text, float min_, float max_,
                    float *value) noexcept
 {
-    int xpos{static_cast<int>(((hslider_cfg->w - hslider_cfg->thumb_w) * (*value - min_)) /
-                              (max_ - min_))};
-    int offset{hslider_cfg->h - hslider_cfg->thumb_h};
+    window_data *tmp{get_last_win()};
 
-    if (on_rect(x, y, hslider_cfg->w, hslider_cfg->h))
-    {
-        context->hot = id;
-        if (context->active == 0 && context->mouse_down)
-            context->active = id;
-    }
+    if (tmp->next_y + hslider_cfg->h > tmp->y + tmp->h || tmp->w < hslider_cfg->w)
+        return false;
 
-    draw_rect(win, {x, y, hslider_cfg->w + offset, hslider_cfg->h}, hslider_cfg->color);
+    const int xpos{static_cast<int>(((hslider_cfg->w - hslider_cfg->thumb_w) * (*value - min_)) /
+                                    (max_ - min_))};
+    const int offset{hslider_cfg->h - hslider_cfg->thumb_h};
 
-    SDL_Rect thumb{x + (offset / 2) + xpos, y + (offset / 2), hslider_cfg->thumb_w,
+    std::string key{tmp->title};
+    key.append(text);
+    const std::size_t id{im_hash(key)};
+
+    const int x{tmp->x + 10};
+
+    hslider_cfg->w = static_cast<int>(7ull * text.size() + 40ull);
+
+    check_button(id, x, tmp->next_y, hslider_cfg->w, hslider_cfg->h);
+    draw_rect(win, {x, tmp->next_y, hslider_cfg->w + offset, hslider_cfg->h}, hslider_cfg->color);
+
+    draw_text(win, std::to_string(*value).c_str(), x + hslider_cfg->w / 2 - 4, tmp->next_y);
+    draw_text(win, text.data(), x + hslider_cfg->w + 20, tmp->next_y);
+
+    SDL_Rect thumb{x + (offset / 2) + xpos, tmp->next_y + (offset / 2), hslider_cfg->thumb_w,
                    hslider_cfg->thumb_h};
 
     SDL_Color widgetColor;
@@ -839,6 +842,8 @@ bool hslider_float(Window *win, std::size_t id, int x, int y, float min_, float 
         widgetColor = hslider_cfg->thumb_idle_color;
 
     draw_rect(win, thumb, widgetColor);
+
+    bool ret{false};
 
     if (context->active == id)
     {
@@ -851,52 +856,56 @@ bool hslider_float(Window *win, std::size_t id, int x, int y, float min_, float 
         if (float v{static_cast<float>((mousePos * max_) / (hslider_cfg->w - 1))}; v != *value)
         {
             *value = v;
-            return true;
+            ret = true;
         }
     }
-    return false;
+    tmp->next_y = tmp->next_y + hslider_cfg->h + 5;
+
+    return ret;
 }
 
 int menu(Window *win, std::string_view *options, int size) noexcept
 {
-    if (context->windows[context->last_window]->next_y + global_cfg->font_size + 6 > context->windows[context->last_window]->y + context->windows[context->last_window]->h)
+    window_data *tmp{get_last_win()};
+    if (tmp->next_y + global_cfg->font_size + 6 > tmp->y + tmp->h)
         return -1;
 
-    if (context->windows[context->last_window]->menu_called)
+    if (tmp->menu_called)
     {
         tnt::logger::debug("Line: {}\tCalling tnt::ImGui::menu() for the second time inside the same window!!", __LINE__);
         return -1;
     }
 
     int ret{-1};
-    for (int i{0}, lastX{context->windows[context->last_window]->x};
+    for (int i{0}, lastX{tmp->x};
          i < size; ++i, lastX += menu_cfg->spacing + ((static_cast<int>(options[i - 1].size()) - 1) * 8))
     {
         std::size_t id{im_hash(options[i])};
-        check_button(id, lastX, context->windows[context->last_window]->y + 20, static_cast<int>(options[i].size()) * 7 + 10, 10 + global_cfg->font_size);
-        draw_text(win, options[i].data(), lastX + 10, context->windows[context->last_window]->y + 20);
+        check_button(id, lastX, tmp->y + 20, static_cast<int>(options[i].size()) * 7 + 10, 10 + global_cfg->font_size);
+        draw_text(win, options[i].data(), lastX + 10, tmp->y + 20);
 
         if (context->hot == id && context->active == id)
             ret = i;
     }
 
-    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + global_cfg->font_size + 10;
-    context->windows[context->last_window]->menu_called = true;
+    tmp->next_y = tmp->next_y + global_cfg->font_size + 10;
+    tmp->menu_called = true;
     return ret;
 }
 
 bool checkbox(Window *win, std::string_view text, bool *value) noexcept
 {
-    if (context->windows[context->last_window]->next_y + checkbox_cfg->length + 10 > context->windows[context->last_window]->y + context->windows[context->last_window]->h)
+    window_data *tmp{get_last_win()};
+    if (tmp->next_y + checkbox_cfg->length + 10 > tmp->y + tmp->h)
         return false;
 
-    std::string key{context->windows[context->last_window]->title};
+    std::string key{tmp->title};
     key.append(text);
     std::size_t id{std::hash<std::string>{}(key)};
 
-    SDL_Rect box{context->windows[context->last_window]->x + 10, context->windows[context->last_window]->y, checkbox_cfg->length, checkbox_cfg->length};
+    SDL_Rect box{tmp->x + 10, tmp->y, checkbox_cfg->length, checkbox_cfg->length};
 
-    if (on_rect(context->windows[context->last_window]->x + 10, context->windows[context->last_window]->y, checkbox_cfg->length, checkbox_cfg->length))
+    if (on_rect(tmp->x + 10, tmp->y, checkbox_cfg->length, checkbox_cfg->length))
     {
         context->hot = id;
         if (context->active == 0 && context->mouse_down)
@@ -904,8 +913,8 @@ bool checkbox(Window *win, std::string_view text, bool *value) noexcept
     }
 
     draw_rect(win, box, {130, 130, 130, 255});
-    draw_text(win, text.data(), box.x + box.w + 10, context->windows[context->last_window]->next_y);
-    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + box.h + 10;
+    draw_text(win, text.data(), box.x + box.w + 10, tmp->next_y);
+    tmp->next_y = tmp->next_y + box.h + 10;
 
     if (context->hot == id && context->active == id)
         *value = !(*value);
@@ -922,48 +931,52 @@ bool checkbox(Window *win, std::string_view text, bool *value) noexcept
 void progress_bar(Window *win, std::string_view text, int min_, int max_,
                   int *value) noexcept
 {
-    if (context->windows[context->last_window]->w < progress_bar_cfg->w ||
-        context->windows[context->last_window]->next_y + progress_bar_cfg->h >
-            context->windows[context->last_window]->y + context->windows[context->last_window]->h)
+    window_data *tmp{get_last_win()};
+    if (tmp->w < progress_bar_cfg->w ||
+        tmp->next_y + progress_bar_cfg->h >
+            tmp->y + tmp->h)
         return;
     int xpos{(progress_bar_cfg->w * (*value - min_) / (max_ - min_))};
-    draw_rect(win, {context->windows[context->last_window]->x + 10, context->windows[context->last_window]->next_y, progress_bar_cfg->w, progress_bar_cfg->h},
+    draw_rect(win, {tmp->x + 10, tmp->next_y, progress_bar_cfg->w, progress_bar_cfg->h},
               progress_bar_cfg->idle_color);
     draw_text(win, text.data(),
-              context->windows[context->last_window]->x + progress_bar_cfg->w + 20, context->windows[context->last_window]->next_y);
-    draw_rect(win, {context->windows[context->last_window]->x + 12, context->windows[context->last_window]->next_y + 2, xpos, progress_bar_cfg->h - 4}, progress_bar_cfg->filled_color);
-    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + progress_bar_cfg->h + 10;
+              tmp->x + progress_bar_cfg->w + 20, tmp->next_y);
+    draw_rect(win, {tmp->x + 12, tmp->next_y + 2, xpos, progress_bar_cfg->h - 4}, progress_bar_cfg->filled_color);
+    tmp->next_y = tmp->next_y + progress_bar_cfg->h + 10;
 }
 
 void newline() noexcept
 {
-    if (context->windows[context->last_window]->next_y + global_cfg->font_size > context->windows[context->last_window]->y + context->windows[context->last_window]->h)
+    window_data *tmp{get_last_win()};
+    if (tmp->next_y + global_cfg->font_size > tmp->y + tmp->h)
         return;
-    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + global_cfg->font_size;
+    tmp->next_y = tmp->next_y + global_cfg->font_size;
 }
 
 void text(Window *win, std::string_view text) noexcept
 {
-    if (context->windows[context->last_window]->w < global_cfg->font_size * text.size() ||
-        context->windows[context->last_window]->next_y + global_cfg->font_size + 5 >
-            context->windows[context->last_window]->y + context->windows[context->last_window]->h)
+    window_data *tmp{get_last_win()};
+    if (tmp->w < 10 + 7 * text.size() ||
+        tmp->next_y + global_cfg->font_size + 5 >
+            tmp->y + tmp->h)
         return;
-    draw_text(win, text.data(), context->windows[context->last_window]->x + 10, context->windows[context->last_window]->next_y);
-    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + global_cfg->font_size + 5;
+    draw_text(win, text.data(), tmp->x + 10, tmp->next_y);
+    tmp->next_y = tmp->next_y + global_cfg->font_size + 5;
 }
 
 void list_item(Window *win, std::string_view text) noexcept
 {
+    window_data *tmp{get_last_win()};
     if ((context->list_indent_level * 10) + (text.size() * global_cfg->font_size) <
-            context->windows[context->last_window]->w ||
-        context->windows[context->last_window]->next_y + global_cfg->font_size >
-            context->windows[context->last_window]->y + context->windows[context->last_window]->h)
+            tmp->w ||
+        tmp->next_y + global_cfg->font_size >
+            tmp->y + tmp->h)
         return;
-    int xpos{context->windows[context->last_window]->x + (context->list_indent_level * 10)};
+    int xpos{tmp->x + (context->list_indent_level * 10)};
     if (context->lists_text.find(text.data()) != context->lists_text.end())
         context->lists_text[text.data()] = load_text(win, text.data());
-    draw_text(win, text.data(), xpos, context->windows[context->last_window]->next_y);
-    context->windows[context->last_window]->next_y = context->windows[context->last_window]->next_y + global_cfg->font_size;
+    draw_text(win, text.data(), xpos, tmp->next_y);
+    tmp->next_y = tmp->next_y + global_cfg->font_size;
 }
 } // namespace tnt::ImGui
 
