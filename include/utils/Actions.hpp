@@ -6,6 +6,7 @@
 // TODO: Make resumable Actions using C++20 coroutines.
 // TODO: Separate ResumableAction from Action.
 // TODO: Separate actions in lanes.
+// TODO: blocks/blocked_by
 
 // IDEA:
 // Trigger a new action when an action is finished(that's why End() is for).
@@ -62,7 +63,7 @@ class Action : public detail::base_action
 public:
     /// @brief Create a non-blocking action that lasts @em duration_ milliseconds.
     /// @param duration_ The duration of the action.
-    Action(long long duration_) : detail::base_action{duration_, false} {}
+    explicit Action(long long duration_) : detail::base_action{duration_, false} {}
 };
 
 /// @brief An action that blocks other actions from running before it is finished.
@@ -71,7 +72,7 @@ class BlockingAction : public detail::base_action
 public:
     /// @brief Create a non-blocking action that lasts @em duration_ milliseconds.
     /// @param duration_ The duration of the action.
-    BlockingAction(long long duration_) : detail::base_action{duration_, true} {}
+    explicit BlockingAction(long long duration_) : detail::base_action{duration_, true} {}
 };
 
 /// @brief An action that updates only once and then finishes.

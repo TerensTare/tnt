@@ -67,6 +67,17 @@ inline const auto matches(const R &range, Ts... ts) noexcept
     return (std::count(std::begin(range), std::end(range), ts) + ...);
 }
 
+// thx tristan brindle
+// https://tristanbrindle.com/posts/beware-copies-initializer-list
+template <typename T, typename... Args>
+std::vector<T> make_vector(Args &&... args)
+{
+    std::vector<T> vec;
+    vec.reserve(sizeof...(Args));
+    (vec.emplace_back(std::forward<Args>(args)), ...);
+    return vec;
+}
+
 // ! Works only with std::set types.
 template <typename T, typename... Ts>
 inline bool set_insert_all(T &set, Ts... ts)

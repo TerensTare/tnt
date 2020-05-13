@@ -35,7 +35,12 @@ public:
   /// @param height The height of the window.
   /// @param flags The flags the window should have.
   Window(std::string_view title, int xpos, int ypos, int width,
-         int height, Uint32 flags);
+         int height, Uint32 flags) noexcept;
+
+  /// @overload This constructor does the same as the other constructor,
+  /// except that it draws the window on the center of the screen and
+  /// the window is only resizable.
+  Window(std::string_view title, int width, int height) noexcept;
 
   /// @brief Destroys the window and clears the memory occupied by it.
   ~Window() noexcept;
@@ -137,6 +142,10 @@ public:
   /// @brief Update the screen with rendering performed.
   void Render() noexcept;
 
+  /// @brief Handle some window-related events.
+  /// @param events The events handler.
+  void handleEvents(SDL_Event const &events) noexcept;
+
   /// @brief Set the color used for drawing operations (Rect, Line and Clear).
   /// @param color The color used to draw on the Window's renderer.
   void setClearColor(SDL_Color const &color) noexcept;
@@ -145,7 +154,12 @@ public:
   /// @return SDL_Color
   SDL_Color getClearColor() const noexcept;
 
+  /// @brief Check if the window is open so that events can be handled.
+  /// @return bool
+  bool isOpened() const noexcept;
+
 private:
+  bool running;
   SDL_Renderer *renderer;
   SDL_Window *window;
 };

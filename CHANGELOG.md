@@ -3,6 +3,25 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-05-13
+### Changed
+- Updated `concept camera` to detect camera types correctly.
+
+## 2020-05-11
+### Added
+- New `tnt::Window` constructor, which omits position and flags for a simpler construction.
+- `tnt::Window::isOpened` and `tnt::Window::handleEvents`. Note that these functions should be used together, because using `tnt::Window::isOpened` as a condition for the game loop without calling `tnt::Window::handleEvents` after polling events may cause an infinite loop.
+- New ImGui widget `colored_text` which draws a text with a specified color.
+- `const` on some ImGui widget members.
+- `explicit` specifier on `tnt::Action` and `tnt::BlockingAction` `tnt::stack_allocator` constructors.
+
+### Changed
+- `tnt::Object` methods now handle data related to global and local coordinates.
+
+### Removed
+- Widget `menu` on ImGui. Please use `tnt::ImGui::BeginMenuBar`, `tnt::ImGui::EndMenuBar`, `tnt::ImGui::menu_button` and `tnt::ImGui::menu_item` instead.
+- `tnt::RotateComponent` and `tnt::ScaleComponent` to be part of `tnt::Object`.
+
 ## 2020-05-10
 ### Added
 - Horizontal ImGui sliders now will display the current value on their center.

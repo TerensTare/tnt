@@ -16,13 +16,9 @@
 #include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
 
-using tnt::ImGui::hslider_int, tnt::ImGui::button,
-    tnt::ImGui::menu, tnt::ImGui::checkbox,
-    tnt::ImGui::list_item, tnt::ImGui::text,
-    tnt::ImGui::slider_int, tnt::ImGui::slider_float;
+using tnt::ImGui::hslider_int, tnt::ImGui::menu_button, tnt::ImGui::menu_item;
 
-// TODO: "dissolve" this code into classes, like Game/Scene/Space,
-// etc.
+// TODO: "dissolve" this code into classes, like Game/Scene/Space, etc.
 
 class Player : public tnt::Sprite
 {
@@ -36,10 +32,6 @@ public:
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 {
-    std::random_device rd;
-    std::srand(rd());
-    bool quit{false};
-
     tnt::Window *window{new tnt::Window{
         "The TnT Engine", SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
@@ -55,35 +47,35 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
     int x{0}, y{0};
 
-    while (!quit)
+    while (window->isOpened())
     {
         long long dt{0};
         SDL_Event e;
 
         while (SDL_PollEvent(&e))
-            if (e.type == SDL_QUIT)
-                quit = true;
+            window->handleEvents(e);
         tnt::ImGui::update_context();
-
-        window->Clear();
-
-        tnt::ImGui::Begin(window, "Files", 500, 300);
-
-        hslider_int(window, "xFrame", 0, 9, &x);
-        hslider_int(window, "yFrame", 0, 3, &y);
-
-        tnt::ImGui::End();
-
-        // tnt::ImGui::Begin(window, "Test", 100, 300);
-        // tnt::ImGui::End();
-
-        clip.x = x * 16;
-        clip.y = y * 16;
 
         if (dt != 0)
             player->Update(dt);
 
+        window->Clear();
+
         window->Draw(player->getSprite(), &clip, &dst);
+
+        tnt::ImGui::Begin(window, "Properties", 500, 300);
+
+        hslider_int(window, "x", 0, 9, &x);
+        hslider_int(window, "y", 0, 3, &y);
+
+        tnt::ImGui::End();
+
+        tnt::ImGui::Begin(window, "test", 200, 200);
+        tnt::ImGui::End();
+
+        clip.x = x * 16;
+        clip.y = y * 16;
+
         window->Render();
 
         dt = timer.deltaTime().count();

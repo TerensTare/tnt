@@ -36,21 +36,11 @@ public:
     /// @brief The destructor of the @em Sprite.
     virtual ~Sprite() noexcept;
 
-    /// @brief Get the @em RotationComponent of the @em Sprite.
-    /// @return RotationComponent*
-    RotateComponent *getRotate() const noexcept;
-
-    /// @brief Get the @em ScaleComponent of the @em Sprite.
-    /// @return ScaleComponent*
-    ScaleComponent *getScale() const noexcept;
-
     /// @brief Get the @em SpriteComponent of the @em Sprite.
     /// @return SpriteComponent*
     SpriteComponent *getSprite() const noexcept;
 
 protected: // (maybe) make these private ??
-    RotateComponent *rotate;
-    ScaleComponent *scale;
     SpriteComponent *sprite;
 };
 } // namespace tnt

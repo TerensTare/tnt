@@ -12,19 +12,27 @@
 tnt::Window::Window(
     std::string_view title,
     int xpos, int ypos, int width, int height,
-    Uint32 flags)
+    Uint32 flags) noexcept
+    : running{detail::gfx::Init()}
 {
-    detail::gfx::Init();
-    // SDL_SetHint(SDL_HINT_RENDER_BATCHING, "0");
-
     window = SDL_CreateWindow(title.data(), xpos, ypos, width, height, flags);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    // SDL_RenderSetLogicalSize(renderer, width, height); // with this, the objects will be resized on window size change.
+}
+// SDL_RenderSetLogicalSize(renderer, width, height); // with this, the objects will be resized on window size change.
+
+tnt::Window::Window(std::string_view title, int width, int height) noexcept
+    : running{detail::gfx::Init()}
+{
+    window = SDL_CreateWindow(title.data(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_RESIZABLE);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 }
 
 tnt::Window::~Window() noexcept
 {
+    running = false;
+
     SDL_DestroyRenderer(renderer);
     renderer = nullptr;
 
@@ -56,7 +64,7 @@ int tnt::Window::setDisplayMode(const SDL_DisplayMode *mode) noexcept
 
 SDL_DisplayMode *tnt::Window::getDisplayMode() const noexcept
 {
-    SDL_DisplayMode mode;
+    static SDL_DisplayMode mode;
     int result{SDL_GetWindowDisplayMode(window, &mode)};
     if (result != -1)
         return &mode;
@@ -138,3 +146,11 @@ SDL_Color tnt::Window::getClearColor() const noexcept
     SDL_GetRenderDrawColor(renderer, &col.r, &col.g, &col.b, &col.a);
     return col;
 }
+
+void tnt::Window::handleEvents(const SDL_Event &events) noexcept
+{
+    if (events.type == SDL_QUIT)
+        running = false;
+}
+
+bool tnt::Window::isOpened() const noexcept { return running; }

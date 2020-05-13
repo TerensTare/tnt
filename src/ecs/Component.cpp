@@ -7,34 +7,6 @@
 #include "fileIO/AssetManager.hpp"
 #include "utils/Timer.hpp"
 
-////////////
-// rotate //
-////////////
-
-tnt::RotateComponent::RotateComponent(float radian) : angle{radian} {}
-
-void tnt::RotateComponent::setAngle(float radian) noexcept { angle = radian; }
-float tnt::RotateComponent::getAngle() const noexcept { return angle; }
-
-void tnt::RotateComponent::Rotate(float radian) noexcept { angle = angle + radian; }
-
-///////////
-// scale //
-///////////
-
-tnt::ScaleComponent::ScaleComponent(tnt::Vector const &ratio)
-    : scale{ratio} {}
-
-tnt::ScaleComponent::ScaleComponent(float x, float y) : scale{x, y} {}
-
-void tnt::ScaleComponent::setScale(Vector const &s) noexcept { scale = s; }
-tnt::Vector tnt::ScaleComponent::getScale() const noexcept { return scale; }
-
-void tnt::ScaleComponent::Scale(Vector const &s) noexcept
-{
-    scale = Vector{scale.x * s.x, scale.y * s.y};
-}
-
 /////////////
 // physics //
 /////////////

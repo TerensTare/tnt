@@ -21,6 +21,7 @@ void loadWidgets(sol::state &lua);      // TODO
 void loadImGui(sol::state &lua);        // TODO
 void loadUtils(sol::state &lua);        // last_write_time, etc
 // void loadRigidBody(sol::state& lua);
+// void loadSprite(sol::state& lua);
 
 } // namespace tnt::lua
 

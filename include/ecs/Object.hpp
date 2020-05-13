@@ -9,26 +9,58 @@
 
 namespace tnt
 {
-class Component;
-
 /// @brief A class representing a basic game object.
 class Object
 {
 public:
+    /// @brief The types of Object coordinates.
+    enum Coordinates
+    {
+        LOCAL = 0, ///< Local coordinates (related to itself)
+        GLOBAL = 1 ///< Global coordinates (related to the parent)
+    };
+
     /// @brief The destructor of the @em Object.
     virtual ~Object() noexcept;
 
     /// @brief Get the position of the @em Object.
     /// @return tnt::Vector
-    Vector getPosition() const noexcept;
+    Vector getPosition(Coordinates const &coords = Coordinates::GLOBAL) const noexcept;
 
     /// @brief Set the position of the @em Object.
     /// @param pos The target position.
     void setPosition(Vector const &pos) noexcept;
 
     /// @brief Add @em pos to the current position.
-    /// @param pos The  target position to be added.
+    /// @param pos The target position to be added.
     void Transform(Vector const &pos) noexcept;
+
+    /// @brief Set the angle of this @em Object equal to the @em radian parameter.
+    /// @param radian The angle in radian to be set as the value for this @em Object.
+    /// @note The angle passed as a parameter is considered to be in radians.
+    void setAngle(float radian) noexcept;
+
+    /// @brief Get the angle that this @em Object holds.
+    /// @return float
+    /// @note The returned angle is in radian.
+    float getAngle(Coordinates const &coords = Coordinates::GLOBAL) const noexcept;
+
+    /// @brief Add @em radian to the current angle of the @em Object.
+    /// @param radian The angle to be added.
+    /// @note The angle passed as a parameter is considered to be in radians.
+    void Rotate(float radian) noexcept;
+
+    /// @brief Set the scale of this @em Object to be equal to @em ratio.
+    /// @param ratio The scale to be set as a value to this @em Object.
+    void setScale(Vector const &ratio) noexcept;
+
+    /// @brief Get the scale of this @em Object.
+    /// @return tnt::Vector
+    Vector getScale(Coordinates const &coords = Coordinates::GLOBAL) const noexcept;
+
+    /// @brief Add @em ratio to the current scale of this @em Object.
+    /// @param ratio The scale to be added.
+    void Scale(Vector const &ratio) noexcept;
 
     /// @brief Get the @em parent of the @em Object.
     /// @return tnt::Object*
@@ -148,7 +180,9 @@ public:
 
 protected:
     bool active; // should be rendered (maybe) move this to Sprite ??
+    float angle;
     Vector position;
+    Vector scale;
     std::map<std::type_index, Component *> components;
     Object *parent{nullptr};
 };

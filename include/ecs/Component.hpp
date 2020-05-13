@@ -30,75 +30,18 @@ namespace tnt
 class Window;
 class Timer;
 
-// /// @brief An exception to be thrown when a @em tnt::PhysicsComponent has @em invMass equal to 0.
-// /// @note Even thought this exception exists, it is never thrown.
+/// @brief An exception to be thrown when a @em tnt::PhysicsComponent has @em invMass equal to 0.
+/// @note Even thought this exception exists, it is never thrown.
 struct infinite_mass : std::exception
 {
-  // /// @brief The description of the exception.
-  // /// @return const char*
+  /// @brief The description of the exception.
+  /// @return const char*
   const char *what() const noexcept { return "Object has infinite mass!!"; }
 };
 
 /// @brief The base class for all the Component types.
 class Component
 {
-};
-
-/// @brief A Component that handles rotation.
-class RotateComponent final : public Component
-{
-public:
-  /// @brief Create a rotation @em Component from the given @em radian parameter.
-  /// @param radian The angle in radian to be set as the value for this @em Component.
-  /// @note The angle passed as a parameter is considered to be in radians.
-  explicit RotateComponent(float radian);
-
-  /// @brief Set the angle of this @em Component equal to the @em radian parameter.
-  /// @param radian The angle in radian to be set as the value for this @em Component.
-  /// @note The angle passed as a parameter is considered to be in radians.
-  void setAngle(float radian) noexcept;
-
-  /// @brief Get the angle that this @em Component holds.
-  /// @return float
-  /// @note The returned angle is in radian.
-  float getAngle() const noexcept;
-
-  /// @brief Add @em radian to the current angle of the @em Component.
-  /// @param radian The angle to be added.
-  /// @note The angle passed as a parameter is considered to be in radians.
-  void Rotate(float radian) noexcept;
-
-protected:
-  float angle;
-};
-
-/// @brief A Component that handles scaling.
-class ScaleComponent final : public Component
-{
-public:
-  /// @brief Create a scale @em Component from the given @em ratio parameter.
-  /// @param ratio The scale to be set as a value to this @em Component.
-  explicit ScaleComponent(Vector const &ratio);
-
-  /// @brief Create a scale @em Component from the given @em x and @em y parameters.
-  /// @param x The horizontal scale to be set as a value to this @em Component.
-  /// @param y The vertical scale to be set as a value to this @em Component.
-  ScaleComponent(float x, float y);
-
-  /// @brief Set the scale of this @em Component to be equal to @em ratio.
-  /// @param ratio The scale to be set as a value to this @em Component.
-  void setScale(Vector const &ratio) noexcept;
-
-  /// @brief Get the value of the scale of this @em Component.
-  /// @return tnt::Vector
-  Vector getScale() const noexcept;
-
-  /// @brief Add @em ratio to the current scale of this @em Component.
-  /// @param ratio The scale to be added.
-  void Scale(Vector const &ratio) noexcept;
-
-protected:
-  Vector scale;
 };
 
 class PhysicsComponent final : public Component

@@ -6,10 +6,4 @@ module;
 export module tnt;
 
 export import tnt : logger;
-#else
-inline static constexpr bool v = []() {
-    constexpr bool value{false};
-    static_assert(value, "File TnT.ixx contents are available only with C++20");
-    return false;
-}();
 #endif

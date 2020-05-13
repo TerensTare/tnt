@@ -20,7 +20,7 @@ public:
 
     using value_type = T;
 
-    constexpr stack_allocator(std::size_t S) noexcept
+    explicit constexpr stack_allocator(std::size_t S) noexcept
         : stack_ptr{0}
     {
         char *buffer{new char[S * sizeof(T)]};
@@ -41,13 +41,13 @@ public:
         delete[] data;
     }
 
-    [[nodiscard]] constexpr T *allocate() noexcept
+    [[nodiscard]] inline constexpr T *allocate() noexcept
     {
         ++stack_ptr;
         return data[stack_ptr - 1];
     }
 
-    constexpr void deallocate() noexcept
+    inline constexpr void deallocate() noexcept
     {
         if (stack_ptr >= 1)
             --stack_ptr;

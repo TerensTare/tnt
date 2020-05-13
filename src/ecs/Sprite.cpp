@@ -8,27 +8,16 @@
 #include "utils/Timer.hpp"
 
 tnt::Sprite::Sprite(Window const *win, std::string_view filename, float angle)
-    : sprite{add<SpriteComponent>(win, filename)}, rotate{add<RotateComponent>(angle)},
-      scale{add<ScaleComponent>(VECTOR_ONE)} {}
+    : sprite{add<SpriteComponent>(win, filename)} {}
 
 tnt::Sprite::Sprite(Window const *win, std::string_view filename,
                     Rectangle const &area, float angle)
-    : sprite{add<SpriteComponent>(win, filename, area)},
-      rotate{add<RotateComponent>(angle)},
-      scale{add<ScaleComponent>(VECTOR_ONE)} {}
+    : sprite{add<SpriteComponent>(win, filename, area)} {}
 
 tnt::Sprite::~Sprite() noexcept
 {
   delete sprite;
   sprite = nullptr;
-
-  delete rotate;
-  rotate = nullptr;
-
-  delete scale;
-  scale = nullptr;
 }
 
-tnt::RotateComponent *tnt::Sprite::getRotate() const noexcept { return rotate; }
-tnt::ScaleComponent *tnt::Sprite::getScale() const noexcept { return scale; }
 tnt::SpriteComponent *tnt::Sprite::getSprite() const noexcept { return sprite; }
