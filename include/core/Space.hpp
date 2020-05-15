@@ -3,6 +3,7 @@
 
 #include <map>
 #include <string>
+#include "core/Camera.hpp"
 
 // a utility to group several objects, similar to a layer.
 
@@ -16,27 +17,26 @@
 
 namespace tnt
 {
-class Object;
-class Camera;
+    class Object;
 
-class Space
-{
-public:
-    ~Space() noexcept;
+    class Space
+    {
+    public:
+        ~Space() noexcept;
 
-    void addObject(std::pair<std::string_view, Object *> const &obj);
-    void addObject(std::string_view id, Object *obj) noexcept;
+        void addObject(std::pair<std::string_view, Object *> const &obj);
+        void addObject(std::string_view id, Object *obj);
 
-    Object *getObject(std::string_view id) const;
-    void removeObject(std::string_view id) noexcept;
+        Object *getObject(std::string_view id) const;
+        void removeObject(std::string_view id) noexcept;
 
-    // TODO: unimplemented
-    void Draw(Camera const *cam);
-    void Update(long long time_);
+        // TODO: unimplemented
+        void Draw(camera auto const *cam);
+        void Update(long long time_);
 
-protected:
-    std::map<std::string, Object *> objects;
-};
+    protected:
+        std::map<std::string, Object *> objects;
+    };
 } // namespace tnt
 
 #endif //! TNT_SPACE_HPP

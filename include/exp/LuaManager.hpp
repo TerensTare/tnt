@@ -10,18 +10,20 @@
 
 namespace tnt::lua
 {
-void loadVector(sol::state &lua);       // done
-void loadRectangle(sol::state &lua);    // done
-void loadTimer(sol::state &lua);        // needs tests
-void loadAssetManager(sol::state &lua); // needs tests
-void loadMatrix(sol::state &lua);       // TODO
-void loadInput(sol::state &lua);        // TODO
-void loadVFS(sol::state &lua);          // TODO
-void loadWidgets(sol::state &lua);      // TODO
-void loadImGui(sol::state &lua);        // TODO
-void loadUtils(sol::state &lua);        // last_write_time, etc
-// void loadRigidBody(sol::state& lua);
-// void loadSprite(sol::state& lua);
+    void loadVector(sol::state &lua);       // done
+    void loadRectangle(sol::state &lua);    // done
+    void loadTimer(sol::state &lua);        // needs tests
+    void loadAssetManager(sol::state &lua); // needs tests
+    void loadMatrix(sol::state &lua);       // TODO
+    void loadInput(sol::state &lua);        // TODO
+    void loadVFS(sol::state &lua);          // TODO
+    void loadWidgets(sol::state &lua);      // TODO
+    void loadImGui(sol::state &lua);        // TODO
+    void loadUtils(sol::state &lua);        // last_write_time, etc
+    void loadObject(sol::state &lua);       // TODO
+    void loadCameras(sol::state &lua);      // TODO
+    // void loadRigidBody(sol::state& lua);
+    // void loadSprite(sol::state& lua);
 
 } // namespace tnt::lua
 

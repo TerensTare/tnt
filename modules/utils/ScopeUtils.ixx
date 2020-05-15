@@ -1,9 +1,14 @@
-#ifndef TNT_SCOPE_UTILS_HPP
-#define TNT_SCOPE_UTILS_HPP
-
+module;
 #include <exception>
+export module TnT.Utils : Scope;
 
-namespace tnt
+namespace detail
+{
+  template <typename T>
+  concept callable = std::is_function_v<T>;
+}
+
+export namespace tnt
 {
   // call the destructor of the object when it goes out of scope.
   // template <typename Constructor, typename Destructor>
@@ -100,12 +105,6 @@ namespace tnt
     Function f;
   };
 
-  namespace detail
-  {
-    template <typename T>
-    concept callable = std::is_function_v<T>;
-  }
-
   /// @brief Run a function when exiting the current scope.
   /// @param f A callable object.
   auto on_exit(detail::callable auto &&f)
@@ -113,5 +112,3 @@ namespace tnt
     return finally<std::decay_t<decltype(f)>>{std::forward<decltype(f)>(f)};
   }
 } // namespace tnt
-
-#endif //! TNT_SCOPE_UTILS_HPP

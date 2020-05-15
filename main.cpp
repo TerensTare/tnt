@@ -63,15 +63,20 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 
         window->Draw(player->getSprite(), &clip, &dst);
 
-        tnt::ImGui::Begin(window, "Properties", 500, 300);
+        if (tnt::ImGui::Begin(window, "Properties", 500, 300))
+        {
+            hslider_int(window, "x", 0, 9, &x);
+            hslider_int(window, "y", 0, 3, &y);
 
-        hslider_int(window, "x", 0, 9, &x);
-        hslider_int(window, "y", 0, 3, &y);
+            tnt::ImGui::End();
+        }
 
-        tnt::ImGui::End();
-
-        tnt::ImGui::Begin(window, "test", 200, 200);
-        tnt::ImGui::End();
+        if (tnt::ImGui::Begin(window, "test", 200, 200))
+        {
+            static int a{4};
+            hslider_int(window, "nothing", 0, 10, &a);
+            tnt::ImGui::End();
+        }
 
         clip.x = x * 16;
         clip.y = y * 16;

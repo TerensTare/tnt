@@ -5,24 +5,23 @@
 #include <memory>
 #include <vector>
 
-#include "Concepts.hpp"
-
 // TODO: Physics : public Observable.
 namespace tnt
 {
     class Observer
     {
-      public:
+    public:
         virtual ~Observer() noexcept {}
         virtual void Update(Observable *obj) = 0;
     };
 
     class Observable
     {
-      public:
+    public:
         virtual ~Observable()
         {
-            for (auto it : observers) Detach(it.lock());
+            for (auto it : observers)
+                Detach(it.lock());
         }
 
         void Attach(std::shared_ptr<Observer> o)
@@ -50,10 +49,11 @@ namespace tnt
 
         void Notify() noexcept
         {
-            for (auto o : observers) o.lock()->Update(this);
+            for (auto o : observers)
+                o.lock()->Update(this);
         }
 
-      private:
+    private:
         std::vector<std::weak_ptr<Observer>> observers;
     };
 } // namespace tnt

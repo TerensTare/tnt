@@ -3,9 +3,26 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-05-15
+### Added
+- TnT is now live on Discord. Come [visit](https://discord.gg/s5Y9VCR), ask questions and suggest anything anytime.
+
+## 2020-05-14
+### Added
+- Modularized version of `utils` headers on folder `modules`.
+- Some documentation on some header files.
+- `concept drawable` at the end of `Object.hpp`.
+
+### Changed
+- Moved `concept component` to `Component.hpp`.
+- Renamed `tnt::SizeOfArray` lambda to `tnt::array_size` and used a custom `concept` to make it work only with arrays.
+
+### Removed
+- File `Concepts.hpp`.
+
 ## 2020-05-13
 ### Changed
-- Updated `concept camera` to detect camera types correctly.
+- Updated `concept camera` to detect camera types correctly. Moved it to `Camera.hpp`.
 
 ## 2020-05-11
 ### Added

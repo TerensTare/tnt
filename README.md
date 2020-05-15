@@ -48,3 +48,8 @@ WIP
 ## Contributing
 
 Please see [CONTRIBUTING.md](./CONTRIBUTING.md) to learn how you can contribute to this project.
+
+
+## Q&A
+
+For any question you may have, please visit TnT's Discord [server](https://discord.gg/s5Y9VCR).

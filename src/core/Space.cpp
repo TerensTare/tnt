@@ -12,7 +12,7 @@ tnt::Space::~Space() noexcept
 
 void tnt::Space::addObject(std::pair<std::string_view, tnt::Object *> const &obj) { objects.insert(obj); }
 
-void tnt::Space::addObject(std::string_view id, tnt::Object *obj) noexcept
+void tnt::Space::addObject(std::string_view id, tnt::Object *obj)
 {
     objects.insert(std::make_pair(id, obj));
 }
@@ -25,7 +25,7 @@ void tnt::Space::removeObject(std::string_view id) noexcept
         it = objects.erase(it);
 }
 
-void tnt::Space::Draw(tnt::Camera const *cam)
+void tnt::Space::Draw(tnt::camera auto const *cam)
 {
     for (auto const &it : objects)
         if (it.second->isActive())

@@ -51,7 +51,7 @@ jobs:
     
     - task: CMake@1
       inputs:
-        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=$(vtchain)'
+        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=$(vtchain) -DBUILD_DOCS=OFF'
     displayName: 'Build for '
 
   - job: "MSBuild_Windows"

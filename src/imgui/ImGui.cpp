@@ -780,9 +780,7 @@ namespace tnt::ImGui
         const int xpos{(hslider_cfg->w - hslider_cfg->thumb_w) * (*value - min_) / (max_ - min_)};
         const int offset{hslider_cfg->h - hslider_cfg->thumb_h};
 
-        std::string key{tmp->title};
-        key.append(text);
-        const std::size_t id{im_hash(key)};
+        const std::size_t id{im_hash(tmp->title+text.data())};
 
         const int x{tmp->x + 10};
 

@@ -8,12 +8,12 @@
 
 #include "fileIO/AssetManager.hpp"
 
-tnt::Scene::Scene(std::shared_ptr<Window> window_) : window{window_} {}
+tnt::Scene::Scene(std::shared_ptr<Window> const &window_) : window{window_} {}
 
 tnt::Scene::~Scene() noexcept
 {
-    delete camera;
-    camera = nullptr;
+    delete camera_;
+    camera_ = nullptr;
 
     std::vector<Space *>{}.swap(spaces);
 }
@@ -38,7 +38,7 @@ void tnt::Scene::LoadFont(std::string_view name, int size) noexcept
 void tnt::Scene::Draw()
 {
     for (auto const &it : spaces)
-        it->Draw(camera);
+        it->Draw(camera_);
 }
 
 void tnt::Scene::Update(long long time_)

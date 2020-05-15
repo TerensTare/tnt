@@ -1,10 +1,10 @@
-#ifndef TNT_CONTAINERS_HPP
-#define TNT_CONTAINERS_HPP
-
+module;
 #include <mutex>
 #include <queue>
 
-namespace tnt
+export module TnT.Utils : Containers;
+
+export namespace tnt
 {
     template <class T>
     class circular_buffer
@@ -121,5 +121,3 @@ namespace tnt
     };
 
 } // namespace tnt
-
-#endif //!TNT_CONTAINERS_HPP
