@@ -6,7 +6,6 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
-#include <iostream>
 // #include "tiled/TileMap.hpp"
 #include "core/Window.hpp"
 
@@ -15,37 +14,37 @@
 
 tnt::AssetManager::AssetManager() {}
 
-tnt::AssetManager::~AssetManager()
+tnt::AssetManager::~AssetManager() noexcept
 {
-    for (auto const& it : images)
-        if (it.second != nullptr)
-            SDL_DestroyTexture(it.second);
+    if (!images.empty())
+        for (auto const &it : images)
+            if (it.second != nullptr)
+                SDL_DestroyTexture(it.second);
     images.clear();
-    std::map<std::string, SDL_Texture*>{}.swap(images);
 
-    for (auto const& it : text)
-        if (it.second != nullptr)
-            SDL_DestroyTexture(it.second);
+    if (!text.empty())
+        for (auto const &it : text)
+            if (it.second != nullptr)
+                SDL_DestroyTexture(it.second);
     text.clear();
-    std::map<std::string, SDL_Texture*>{}.swap(text);
 
-    for (auto const& it : fonts)
-        if (it.second != nullptr)
-            TTF_CloseFont(it.second);
+    if (!fonts.empty())
+        for (auto const &it : fonts)
+            if (it.second != nullptr)
+                TTF_CloseFont(it.second);
     fonts.clear();
-    std::map<std::string, TTF_Font*>{}.swap(fonts);
 
-    for (auto const& it : music)
-        if (it.second != nullptr)
-            Mix_FreeMusic(it.second);
+    if (!music.empty())
+        for (auto const &it : music)
+            if (it.second != nullptr)
+                Mix_FreeMusic(it.second);
     music.clear();
-    std::map<std::string, Mix_Music*>{}.swap(music);
 
-    for (auto const& it : sfx)
-        if (it.second != nullptr)
-            Mix_FreeChunk(it.second);
+    if (!sfx.empty())
+        for (auto const &it : sfx)
+            if (it.second != nullptr)
+                Mix_FreeChunk(it.second);
     sfx.clear();
-    std::map<std::string, Mix_Chunk*>{}.swap(sfx);
 
     // for (auto const&it : maps)
     //     if (it.second != nullptr)
@@ -54,7 +53,7 @@ tnt::AssetManager::~AssetManager()
     // std::map<std::string, tmx::TileMap *>{}.swap(maps);
 }
 
-tnt::AssetManager& tnt::AssetManager::This()
+tnt::AssetManager &tnt::AssetManager::This()
 {
     static AssetManager inst;
     return inst;
@@ -82,16 +81,19 @@ tnt::AssetManager& tnt::AssetManager::This()
 //     return tex;
 // }
 
-void tnt::AssetManager::AddImage(Window const* win, std::string_view image)
+template <typename T>
+using assets_it = typename std::map<std::string, T>::const_iterator;
+
+void tnt::AssetManager::AddImage(Window const *win, std::string_view image)
 {
-    if (auto it{images.find(image.data())}; it != images.end() && it->second != nullptr)
+    if (assets_it<SDL_Texture *> it{images.find(image.data())}; it != images.cend() && it->second != nullptr)
         return;
     images[image.data()] = IMG_LoadTexture(win->getRenderer(), image.data());
 }
 
 void tnt::AssetManager::AddFont(std::string_view font, int size)
 {
-    if (auto it{fonts.find(font.data())}; it != fonts.end() && it->second != nullptr)
+    if (assets_it<TTF_Font *> it{fonts.find(font.data())}; it != fonts.cend() && it->second != nullptr)
         return;
     fonts[font.data()] = TTF_OpenFont(font.data(), size);
 }
@@ -112,14 +114,16 @@ void tnt::AssetManager::AddFont(std::string_view font, int size)
 
 void tnt::AssetManager::AddMusic(std::string_view name)
 {
-    if (auto it{music.find(name.data())}; it != music.end() && it->second != nullptr)
+    if (assets_it<Mix_Music *> it{music.find(name.data())};
+        it != music.cend() && it->second != nullptr)
         return;
     music[name.data()] = Mix_LoadMUS(name.data());
 }
 
 void tnt::AssetManager::AddSfx(std::string_view chunk)
 {
-    if (auto it{sfx.find(chunk.data())}; it != sfx.end() && it->second != nullptr)
+    if (assets_it<Mix_Chunk *> it{sfx.find(chunk.data())};
+        it != sfx.cend() && it->second != nullptr)
         return;
     sfx[chunk.data()] = Mix_LoadWAV(chunk.data());
 }
@@ -132,13 +136,13 @@ void tnt::AssetManager::AddSfx(std::string_view chunk)
 //     maps[name.data()]; // unfinished
 // }
 
-SDL_Texture* tnt::AssetManager::Image(Window const* win, std::string_view image)
+SDL_Texture *tnt::AssetManager::Image(Window const *win, std::string_view image)
 {
     AddImage(win, image);
     return images[image.data()];
 }
 
-TTF_Font* tnt::AssetManager::Font(std::string_view font, int size)
+TTF_Font *tnt::AssetManager::Font(std::string_view font, int size)
 {
     AddFont(font.data(), size);
     return fonts[font.data()];

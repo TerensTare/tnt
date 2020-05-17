@@ -95,7 +95,7 @@ namespace tnt
     /// @brief Draws this @em Component on @em win at the area covered by @em dest.
     /// @sa void tnt::Window::Draw().
     /// @note This function is just a shorthand to @em tnt::Window::Draw().
-    void Draw(Window *win, Rectangle &dest, float angle = 0.f) noexcept; // TODO: do you need this ??
+    void Draw(Window const *win, Rectangle const &dest, float angle = 0.f) noexcept; // TODO: do you need this ??
 
     /// @brief Gets the texture that this @em Component holds.
     /// @return SDL_Texture*

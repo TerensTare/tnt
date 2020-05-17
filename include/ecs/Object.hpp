@@ -24,6 +24,7 @@ namespace tnt
         virtual ~Object() noexcept;
 
         /// @brief Get the position of the @em Object.
+        /// @param coords The type of coordinates, global by default.
         /// @return tnt::Vector
         Vector getPosition(Coordinates const &coords = Coordinates::GLOBAL) const noexcept;
 
@@ -41,6 +42,7 @@ namespace tnt
         void setAngle(float radian) noexcept;
 
         /// @brief Get the angle that this @em Object holds.
+        /// @param coords The type of coordinates, global by default.
         /// @return float
         /// @note The returned angle is in radian.
         float getAngle(Coordinates const &coords = Coordinates::GLOBAL) const noexcept;
@@ -55,6 +57,7 @@ namespace tnt
         void setScale(Vector const &ratio) noexcept;
 
         /// @brief Get the scale of this @em Object.
+        /// @param coords The type of coordinates, global by default.
         /// @return tnt::Vector
         Vector getScale(Coordinates const &coords = Coordinates::GLOBAL) const noexcept;
 
@@ -95,12 +98,6 @@ namespace tnt
         template <component T>
         T *add() noexcept
         {
-            if constexpr (!std::is_base_of_v<Component, T>)
-            {
-                tnt::logger::debug("Line: {}\tCalling tnt::Object::add<T> with T being a type that is not derived from tnt::Component", __LINE__);
-                return nullptr;
-            }
-
             std::type_index key{typeid(T)};
             if (components.find(key) == components.end())
             {
@@ -117,12 +114,6 @@ namespace tnt
         template <component T, typename... Args>
         T *add(Args &&... args) noexcept
         {
-            if constexpr (!std::is_base_of_v<Component, T>)
-            {
-                tnt::logger::debug("Line: {}\tCalling tnt::Object::add<T> with T being a type that is not derived from tnt::Component", __LINE__);
-                return nullptr;
-            }
-
             std::type_index key{typeid(T)};
             if (components.find(key) == components.end())
             {
@@ -143,7 +134,7 @@ namespace tnt
         [[nodiscard]] T *get() noexcept
         {
             auto key{std::type_index{typeid(T)}};
-            if (components.find(key) != components.end())
+            if (components.find(key) != components.cend())
                 return static_cast<T *>(components[key]);
             tnt::logger::debug("Line: {}\tObject doesn't have Component {}\n Please call tnt::Object::add<T> before calling tnt::Object::get<T>!!", __LINE__, typeid(T).name());
             return nullptr;
@@ -161,11 +152,13 @@ namespace tnt
             if (auto it{components.find(key)}; it != components.end())
             {
                 delete it.second;
-                components.erase(it);
+                it = components.erase(it);
             }
             else
                 tnt::logger::debug(
-                    "Object doesn't have Component {}!!\nPlease call tnt::Object::add<T> before calling tnt::Object::remove<T>!!",
+                    "Object doesn't have Component {}!!"
+                    "\nPlease call tnt::Object::add<T> before calling"
+                    " tnt::Object::remove<T>!!",
                     typeid(T).name());
         }
 
@@ -189,8 +182,13 @@ namespace tnt
 
     /// @brief An @em Object that can be drawed.
     template <typename T>
-    concept drawable =
-        requires(T const *t) { t->get<SpriteComponent>() != nullptr; }
+    concept drawable = requires(T const *t)
+    {
+        {
+            t->getSprite()
+        }
+        ->std::same_as<SpriteComponent *>;
+    }
     &&std::is_base_of_v<Object, T>;
 } // namespace tnt
 

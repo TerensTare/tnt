@@ -1,24 +1,26 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
 #include "core/Input.hpp"
 
 namespace tnt::input
 {
-int keyLength;
-int mX, mY;
-bool inited{false};
+    int keyLength{0};
+    int mX{0}, mY{0};
+    bool inited{false};
 
-Uint32 currentMouse;
-Uint32 prevMouse;
-Uint32 lastMouse;
-const Uint8 *currentkb;
-std::vector<Uint8> prevkb;
+    Uint32 currentMouse{0};
+    Uint32 prevMouse{0};
+    Uint32 lastMouse{0};
+    const Uint8 *currentkb{nullptr};
+    std::vector<Uint8> prevkb;
 
-void init()
-{
-    currentkb = SDL_GetKeyboardState(&keyLength);
-    prevkb.assign(currentkb, currentkb + keyLength);
-    if (!inited)
+    void init()
+    {
+        currentkb = SDL_GetKeyboardState(&keyLength);
+        prevkb.assign(currentkb, currentkb + keyLength);
         inited = true;
-}
+    }
 } // namespace tnt::input
 
 void tnt::input::close() noexcept
@@ -44,40 +46,23 @@ bool tnt::input::keyReleased(SDL_Scancode key) noexcept
     return ((prevkb[key] != 0) && (currentkb[key] == 0));
 }
 
-#define GET_MOUSE_MASK(button, mask)    \
-    if ((button) == 0) /*left*/         \
-        (mask) = (SDL_BUTTON_LMASK);    \
-    else if ((button) == 1) /*middle*/  \
-        (mask) = (SDL_BUTTON_MMASK);    \
-    else if ((button) == 2) /*right*/   \
-        (mask) = (SDL_BUTTON_RMASK);    \
-    else if ((button) == 3) /*back*/    \
-        (mask) = (SDL_BUTTON_X1MASK);   \
-    else if ((button) == 4) /*forward*/ \
-        (mask) = (SDL_BUTTON_X2MASK);
-
 bool tnt::input::mouseButtonDown(Uint32 button) noexcept
 {
-    Uint32 mask{0};
-    GET_MOUSE_MASK(button, mask);
+    Uint32 mask{1u << button};
     return ((currentMouse & mask) != 0);
 }
 
 bool tnt::input::mouseButtonPressed(Uint32 button) noexcept
 {
-    Uint32 mask{0};
-    GET_MOUSE_MASK(button, mask);
+    Uint32 mask{1u << button};
     return (((prevMouse & mask) == 0) && ((currentMouse & mask) != 0));
 }
 
 bool tnt::input::mouseButtonReleased(Uint32 button) noexcept
 {
-    Uint32 mask{0};
-    GET_MOUSE_MASK(button, mask);
+    Uint32 mask{1u << button};
     return (((prevMouse & mask) != 0) && ((currentMouse & mask) == 0));
 }
-
-#undef GET_MOUSE_MASK
 
 unsigned tnt::input::lastMouseButton() noexcept
 {

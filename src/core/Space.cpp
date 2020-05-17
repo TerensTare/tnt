@@ -25,11 +25,20 @@ void tnt::Space::removeObject(std::string_view id) noexcept
         it = objects.erase(it);
 }
 
-void tnt::Space::Draw(tnt::camera auto const *cam)
+template <typename T>
+concept drawable_pair = requires(T const &t)
 {
-    for (auto const &it : objects)
+    {
+        t.second
+    }
+    ->tnt::drawable;
+};
+
+void tnt::Space::Draw(tnt::Window const *win, tnt::camera auto const &cam)
+{
+    for (drawable_pair auto const &it : objects)
         if (it.second->isActive())
-            ;
+            it.second->get<SpriteComponent>()->Draw(win, cam->getBounds());
 }
 
 void tnt::Space::Update(long long time_)

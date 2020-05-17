@@ -3,9 +3,34 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-05-17
+### Changed
+- Tried to optimize `tnt::input::mouse...` functions.
+- `concept tnt::drawable` now correctly detects drawable objects.
+- `tnt::Window::Draw` is now redesigned. Also removed the overload which drawed a `tnt::SpriteComponent`.
+
+## 2020-05-16
+### Added
+- Lua bindings for some engine types.
+
+### Changed
+- `tnt::AssetManager` functions now use `const_iterator`s.
+- ImGui functions now don't copy window instances passed to them.
+
+### Removed
+- `tnt::window_ref` and `tnt::window_ptr` on [core/Window.hpp](./include/core/Window.hpp).
+- Unnecessary checks on `tnt::AssetManager` destructor.
+
 ## 2020-05-15
 ### Added
 - TnT is now live on Discord. Come [visit](https://discord.gg/s5Y9VCR), ask questions and suggest anything anytime.
+- `operator const SDL_Rect() const` and `operator const SDL_FRect() const` for `tnt::Rectangle`.
+
+### Changed
+- Made some optimizations on `tnt::SpriteComponent::Draw` by minimizing copies.
+
+### Removed
+- Redundant line on `CMakeLists.txt`.
 
 ## 2020-05-14
 ### Added
@@ -353,5 +378,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - [`SDL_Color Window::getClearColor()`](./include/core/Window.hpp#L61)
 
 ### Changed
-- class InputManager to namespace tnt::input on [InputManager.hpp](./include/core/InputManager.hpp#L14).
+- class InputManager to `namespace tnt::input` on [InputManager.hpp](./include/core/InputManager.hpp#L14).
 - The example provided on [main.cpp](./main.cpp).

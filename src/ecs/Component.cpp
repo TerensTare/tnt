@@ -51,17 +51,22 @@ tnt::SpriteComponent::SpriteComponent(
 
 tnt::SpriteComponent::~SpriteComponent() noexcept
 {
-    SDL_DestroyTexture(&*texture);
+    SDL_DestroyTexture(texture);
     texture = nullptr;
 }
 
-void tnt::SpriteComponent::Draw(Window *win, Rectangle &dest, float angle) noexcept
+void tnt::SpriteComponent::Draw(Window const *win, Rectangle const &dest, float angle) noexcept
 {
-    win->Draw(this, &static_cast<SDL_Rect>(clipRect), &static_cast<SDL_FRect>(dest),
-              static_cast<double>(angle));
+    SDL_RenderCopyEx(
+        win->getRenderer(), texture,
+        &static_cast<SDL_Rect>(clipRect), &static_cast<SDL_Rect>(dest),
+        angle, nullptr, SDL_FLIP_NONE);
 }
 
-SDL_Texture *tnt::SpriteComponent::getTexture() const noexcept { return texture; }
+SDL_Texture *tnt::SpriteComponent::getTexture() const noexcept
+{
+    return texture;
+}
 
 void tnt::SpriteComponent::setTexture(Window const *win, std::string_view filename) noexcept
 {

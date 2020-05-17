@@ -327,7 +327,7 @@ namespace tnt::ImGui
                 (context->mouse_y < y + h));
     };
 
-    auto load_text = [](Window *win, char const *text,
+    auto load_text = [](Window const *win, char const *text,
                         SDL_Color color = global_cfg->text_color) -> SDL_Texture * {
         SDL_Surface *temp{TTF_RenderText_Blended(global_cfg->font_data, text, color)};
         if (temp == nullptr)
@@ -352,24 +352,24 @@ namespace tnt::ImGui
         return ret;
     };
 
-    auto load_image = [](Window *win, char const *path) -> SDL_Texture * {
+    auto load_image = [](Window const *win, char const *path) -> SDL_Texture * {
         return IMG_LoadTexture(win->getRenderer(), path);
     };
 
-    auto draw_rect = [](Window *win, SDL_Rect const &rect, SDL_Color const &color) -> void {
+    auto draw_rect = [](Window const *win, SDL_Rect const &rect, SDL_Color const &color) -> void {
         SDL_RenderDrawRect(win->getRenderer(), &rect);
-        win->setClearColor(color);
+        SDL_SetRenderDrawColor(win->getRenderer(), color.r, color.g, color.b, color.a);
         SDL_RenderFillRect(win->getRenderer(), &rect);
-        win->setClearColor(global_cfg->bg);
+        SDL_SetRenderDrawColor(win->getRenderer(), global_cfg->bg.r, global_cfg->bg.g, global_cfg->bg.b, global_cfg->bg.a);
     };
 
-    auto draw_line = [](Window *win, int x1, int y1, int x2, int y2, SDL_Color const &color) -> void {
-        win->setClearColor(color);
+    auto draw_line = [](Window const *win, int x1, int y1, int x2, int y2, SDL_Color const &color) -> void {
+        SDL_SetRenderDrawColor(win->getRenderer(), color.r, color.g, color.b, color.a);
         SDL_RenderDrawLine(win->getRenderer(), x1, y1, x2, y2);
-        win->setClearColor(global_cfg->bg);
+        SDL_SetRenderDrawColor(win->getRenderer(), global_cfg->bg.r, global_cfg->bg.g, global_cfg->bg.b, global_cfg->bg.a);
     };
 
-    auto draw_text = [](Window *win, char const *text, int x, int y,
+    auto draw_text = [](Window const *win, char const *text, int x, int y,
                         SDL_Color color = global_cfg->text_color,
                         int size = global_cfg->font_size) -> void {
         SDL_Texture *cache{load_text(win, text, color)};
@@ -381,7 +381,7 @@ namespace tnt::ImGui
         cache = nullptr;
     };
 
-    auto has_flag = [](WindowFlags owner, WindowFlags test) -> bool {
+    auto has_flag = [](WindowFlags const &owner, WindowFlags const &test) -> bool {
         return ((owner & test) == test);
     };
 
@@ -431,9 +431,8 @@ namespace tnt::ImGui
 
     void update_context() noexcept
     {
-        tnt::input::updatePrevious();
         tnt::input::updateCurrent();
-
+        tnt::input::updatePrevious();
         context->mouse_down = input::mouseButtonDown(0);
     }
 
@@ -461,7 +460,7 @@ namespace tnt::ImGui
     // widgets //
     /////////////
 
-    bool Begin(Window *win, std::string_view name, int x_, int y_, WindowFlags flags) noexcept
+    bool Begin(Window const *win, std::string_view name, int x_, int y_, WindowFlags flags) noexcept
     {
         if (context->on_window)
         {
@@ -617,7 +616,7 @@ namespace tnt::ImGui
         tmp->next_y = tmp->next_y + global_cfg->font_size + 10;
     }
 
-    bool button(Window *win, std::string_view text) noexcept
+    bool button(Window const *win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
         if (tmp->next_y + button_cfg->h > tmp->y + tmp->h ||
@@ -656,7 +655,7 @@ namespace tnt::ImGui
         return false;
     }
 
-    bool slider_int(Window *win, int min_, int max_,
+    bool slider_int(Window const *win, int min_, int max_,
                     int *value) noexcept
     {
         window_data *tmp{get_last_win()};
@@ -708,7 +707,7 @@ namespace tnt::ImGui
         return ret;
     }
 
-    bool slider_float(Window *win, float min_, float max_,
+    bool slider_float(Window const *win, float min_, float max_,
                       float *value) noexcept
     {
         window_data *tmp{get_last_win()};
@@ -767,7 +766,7 @@ namespace tnt::ImGui
         return ret;
     }
 
-    bool hslider_int(Window *win, std::string_view text, int min_, int max_,
+    bool hslider_int(Window const *win, std::string_view text, int min_, int max_,
                      int *value) noexcept
     {
         window_data *tmp{get_last_win()};
@@ -780,7 +779,7 @@ namespace tnt::ImGui
         const int xpos{(hslider_cfg->w - hslider_cfg->thumb_w) * (*value - min_) / (max_ - min_)};
         const int offset{hslider_cfg->h - hslider_cfg->thumb_h};
 
-        const std::size_t id{im_hash(tmp->title+text.data())};
+        const std::size_t id{im_hash(tmp->title + text.data())};
 
         const int x{tmp->x + 10};
 
@@ -827,7 +826,7 @@ namespace tnt::ImGui
         return ret;
     }
 
-    bool hslider_float(Window *win, std::string_view text, float min_, float max_,
+    bool hslider_float(Window const *win, std::string_view text, float min_, float max_,
                        float *value) noexcept
     {
         window_data *tmp{get_last_win()};
@@ -888,7 +887,7 @@ namespace tnt::ImGui
         return ret;
     }
 
-    bool menu_button(Window *win, std::string_view text) noexcept
+    bool menu_button(Window const *win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
 
@@ -913,7 +912,7 @@ namespace tnt::ImGui
         return false;
     }
 
-    bool menu_item(Window *win, std::string_view text) noexcept
+    bool menu_item(Window const *win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
 
@@ -940,7 +939,7 @@ namespace tnt::ImGui
         return false;
     }
 
-    bool checkbox(Window *win, std::string_view text, bool *value) noexcept
+    bool checkbox(Window const *win, std::string_view text, bool *value) noexcept
     {
         window_data *tmp{get_last_win()};
         if (tmp->next_y + checkbox_cfg->length + 10 > tmp->y + tmp->h)
@@ -975,7 +974,7 @@ namespace tnt::ImGui
         return false;
     }
 
-    void progress_bar(Window *win, std::string_view text, int min_, int max_,
+    void progress_bar(Window const *win, std::string_view text, int min_, int max_,
                       int *value) noexcept
     {
         window_data *tmp{get_last_win()};
@@ -1000,7 +999,7 @@ namespace tnt::ImGui
         tmp->next_y = tmp->next_y + global_cfg->font_size;
     }
 
-    void text(Window *win, std::string_view text) noexcept
+    void text(Window const *win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
         if (tmp->w < 10 + 7 * text.size() ||
@@ -1010,7 +1009,7 @@ namespace tnt::ImGui
         tmp->next_y = tmp->next_y + global_cfg->font_size + 5;
     }
 
-    void colored_text(Window *win, std::string_view text,
+    void colored_text(Window const *win, std::string_view text,
                       unsigned char r, unsigned char g,
                       unsigned char b, unsigned char a) noexcept
     {
@@ -1023,7 +1022,7 @@ namespace tnt::ImGui
         tmp->next_y = tmp->next_y + global_cfg->font_size + 5;
     }
 
-    void list_item(Window *win, std::string_view text) noexcept
+    void list_item(Window const *win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
         if (tmp->list_indent_level * 10 + text.size() * global_cfg->font_size < tmp->w ||
@@ -1041,12 +1040,14 @@ namespace tnt::ImGui
 // tnt_imgui_* //
 /////////////////
 
-void tnt_imgui_init(tnt::Window *win) noexcept
+void tnt_imgui_init(tnt::Window const *win) noexcept
 {
+    int w{0}, h{0};
+    SDL_GetWindowSize((SDL_Window *)win, &w, &h);
     if (tnt::ImGui::global_cfg->w == 0)
-        tnt::ImGui::global_cfg->w = win->getWidth();
+        tnt::ImGui::global_cfg->w = w;
     if (tnt::ImGui::global_cfg->h == 0)
-        tnt::ImGui::global_cfg->h = win->getHeight();
+        tnt::ImGui::global_cfg->h = h;
 
     tnt::ImGui::global_cfg->font_data = TTF_OpenFont(tnt::ImGui::global_cfg->default_font.data(),
                                                      tnt::ImGui::global_cfg->font_size);

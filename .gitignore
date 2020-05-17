@@ -7,9 +7,6 @@ project
 tools
 module
 
-include/exp/*
-src/exp/*
-
 # MSVC stuff
 *.obj
 *.lib

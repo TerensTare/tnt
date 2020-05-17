@@ -67,7 +67,6 @@ else()
 endif(WIN32)
 message("Vcpkg found at ${VCPKG_EXE_PATH}.")
 
-include_directories("${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/include")
 
 if(NOT DEFINED CMAKE_PREFIX_PATH)
     set(CMAKE_PREFIX_PATH "")
@@ -79,11 +78,11 @@ list(APPEND CMAKE_PREFIX_PATH ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRI
 
 # find_package(Lua REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
-# find_package(sdl2-gfx CONFIG REQUIRED)
 find_package(sdl2-image CONFIG REQUIRED)
 find_package(sdl2-mixer CONFIG REQUIRED)
 find_package(sdl2-ttf CONFIG REQUIRED)
 find_package(sdl2-net CONFIG REQUIRED)
+# find_package(sdl2-gfx CONFIG REQUIRED)
 # find_package(sol2 CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
@@ -94,10 +93,9 @@ configure_file(
 
 include_directories(include)
 
-set(SOURCE_FILES
-    src/core/Graphics.cpp src/core/Window.cpp src/utils/Timer.cpp
-    # src/core/Camera.cpp src/core/Space.cpp src/core/Scene.cpp
-    src/math/Rectangle.cpp # src/fileIO/VirtualFS.cpp
+set(SOURCE_FILES src/core/Graphics.cpp src/core/Window.cpp
+    # src/core/Space.cpp src/core/Scene.cpp
+    src/math/Rectangle.cpp src/utils/Timer.cpp src/core/Camera.cpp
     src/fileIO/AssetManager.cpp src/core/Input.cpp
     src/ecs/Object.cpp src/ecs/Component.cpp
     src/ecs/Sprite.cpp src/ImGui/ImGui.cpp)
@@ -151,7 +149,7 @@ target_link_libraries(TnT PRIVATE SDL2::SDL2_ttf)
 target_link_libraries(TnT PRIVATE fmt::fmt fmt::fmt-header-only)
 target_link_libraries(TnT PRIVATE nlohmann_json nlohmann_json::nlohmann_json)
 
-target_link_directories(TnT PRIVATE 
+target_link_directories(TnT PRIVATE
     ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/lib)
 target_compile_options(TnT PRIVATE ${TNT_COMPILE_OPTIONS})
 

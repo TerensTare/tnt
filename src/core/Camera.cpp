@@ -8,10 +8,10 @@
 // Camera //
 ////////////
 
-tnt::Camera::Camera(float x, float y, float w, float h)
-    : bounds{x, y, w, h}, shaking{false}, tmpX{0.f}, tmpY{0.f} {}
+tnt::Camera::Camera(float x_, float y_, float w_, float h_) noexcept
+    : x{x_}, y{y_}, w{w_}, h{h_}, shaking{false}, tmpX{0.f}, tmpY{0.f} {}
 
-tnt::Rectangle tnt::Camera::Bounds() const noexcept { return bounds; }
+tnt::Rectangle tnt::Camera::Bounds() const noexcept { return {x, y, w, h}; }
 
 void tnt::Camera::Shake(long long time, float intensity) noexcept
 {
@@ -19,95 +19,95 @@ void tnt::Camera::Shake(long long time, float intensity) noexcept
     {
         if (!shaking)
         {
-            tmpX = bounds.x;
-            tmpY = bounds.y;
+            tmpX = x;
+            tmpY = y;
         }
         else
             shaking = true;
         intensity = intensity * 0.9f;
         float angle{randomFloat(0.f, 2 * PI)}; // random angle betwen [0, 360] degree
-        float xOffset{bounds.h * std::cosf(angle)};
-        float yOffset{bounds.w * std::sinf(angle)};
-        bounds.x = bounds.x + xOffset;
-        bounds.y = bounds.y + yOffset;
+        float xOffset{h * std::cosf(angle)};
+        float yOffset{w * std::sinf(angle)};
+        x = x + xOffset;
+        y = y + yOffset;
         return;
     }
     shaking = false;
-    bounds.x = tmpX;
-    bounds.y = tmpY;
+    x = tmpX;
+    y = tmpY;
 }
 
 ///////////////////////
 // Horizontal Camera //
 ///////////////////////
 
-tnt::HorizontalCamera::HorizontalCamera(float x, float y, float w, float h)
-    : Camera{x, y, w, h} {}
+tnt::HorizontalCamera::HorizontalCamera(float x_, float y_, float w_, float h_) noexcept
+    : Camera{x_, y_, w_, h_} {}
 
-void tnt::HorizontalCamera::Move(float x, float) noexcept { bounds.x = bounds.x + x; }
+void tnt::HorizontalCamera::Move(float x_, float) noexcept { x = x + x_; }
 
 void tnt::HorizontalCamera::Move(tnt::Vector const &v) noexcept
 {
-    bounds.x = bounds.x + v.x;
+    x = x + v.x;
 }
 
-void tnt::HorizontalCamera::MoveTo(float x, float) noexcept { bounds.x = x; }
+void tnt::HorizontalCamera::MoveTo(float x_, float) noexcept { x = x_; }
 
-void tnt::HorizontalCamera::MoveTo(tnt::Vector const &v) noexcept { bounds.x = v.x; }
+void tnt::HorizontalCamera::MoveTo(tnt::Vector const &v) noexcept { x = v.x; }
 
-void tnt::HorizontalCamera::CenterTo(float x, float) noexcept
+void tnt::HorizontalCamera::CenterTo(float x_, float) noexcept
 {
-    bounds.x = (x - (bounds.w / 2));
+    x = (x_ - (w / 2));
 }
 
 void tnt::HorizontalCamera::CenterTo(tnt::Vector const &v) noexcept
 {
-    bounds.x = (v.x - (bounds.w / 2));
+    x = (v.x - (w / 2));
 }
 
 ///////////////////////////
 // Full Tracking Camera ///
 ///////////////////////////
 
-tnt::FullTrackingCamera::FullTrackingCamera(float x, float y, float w, float h)
-    : Camera{x, y, w, h} {}
+tnt::FullTrackingCamera::FullTrackingCamera(float x_, float y_, float w_, float h_) noexcept
+    : Camera{x_, y_, w_, h_} {}
 
-void tnt::FullTrackingCamera::Move(float x, float y) noexcept
+void tnt::FullTrackingCamera::Move(float x_, float y_) noexcept
 {
-    bounds.x = bounds.x + x;
-    bounds.y = bounds.y + y;
+    x = x + x_;
+    y = y + y_;
 }
 
 void tnt::FullTrackingCamera::Move(Vector const &v) noexcept
 {
-    bounds.x = bounds.x + v.x;
-    bounds.y = bounds.y + v.y;
+    x = x + v.x;
+    y = y + v.y;
 }
 
-void tnt::FullTrackingCamera::MoveX(float x) noexcept { bounds.x = bounds.x + x; }
+void tnt::FullTrackingCamera::MoveX(float x_) noexcept { x = x + x_; }
 
-void tnt::FullTrackingCamera::MoveY(float y) noexcept { bounds.y = bounds.y + y; }
+void tnt::FullTrackingCamera::MoveY(float y_) noexcept { y = y + y_; }
 
-void tnt::FullTrackingCamera::MoveTo(float x, float y) noexcept
+void tnt::FullTrackingCamera::MoveTo(float x_, float y_) noexcept
 {
-    bounds.x = x;
-    bounds.y = y;
+    x = x_;
+    y = y_;
 }
 
 void tnt::FullTrackingCamera::MoveTo(Vector const &v) noexcept
 {
-    bounds.x = v.x;
-    bounds.y = v.y;
+    x = v.x;
+    y = v.y;
 }
 
-void tnt::FullTrackingCamera::CenterTo(float x, float y) noexcept
+void tnt::FullTrackingCamera::CenterTo(float x_, float y_) noexcept
 {
-    bounds.x = x - (bounds.w / 2);
-    bounds.y = y - (bounds.h / 2);
+    x = x_ - (w / 2);
+    y = y_ - (h / 2);
 }
 
 void tnt::FullTrackingCamera::CenterTo(Vector const &v) noexcept
 {
-    bounds.x = v.x - (bounds.w / 2);
-    bounds.y = v.y - (bounds.h / 2);
+    x = v.x - (w / 2);
+    y = v.y - (h / 2);
 }

@@ -7,12 +7,12 @@
 
 #include "core/Input.hpp"
 #include "core/Window.hpp"
+#include "core/Camera.hpp"
 #include "ecs/Sprite.hpp"
 #include "fileIO/AssetManager.hpp"
 #include "imgui/ImGui.hpp"
 // #define TNT_IMGUI_RUNTIME_CONFIG
 // #include "imgui/gui_config.hpp"
-#include "math/Rectangle.hpp"
 #include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
 
@@ -27,10 +27,10 @@ public:
         : tnt::Sprite{win, std::move(std::string{SDL_GetBasePath()}.append("assets/player.png")),
                       tnt::Rectangle{0.f, 0.f, 16.f, 16.f}} {}
 
-    void Update([[maybe_unused]] long long elapsed) noexcept override { return; }
+    inline void Update(long long) noexcept override { return; }
 };
 
-int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
+int main(int, char **)
 {
     tnt::Window *window{new tnt::Window{
         "The TnT Engine", SDL_WINDOWPOS_CENTERED,
@@ -40,28 +40,52 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
     window->setClearColor({10, 210, 255, 255});
     tnt_imgui_init(window);
 
-    SDL_FRect dst{0.f, 0.f, 160.f, 160.f};
+    tnt::FullTrackingCamera camera{0.f, 0.f, 160.f, 160.f};
     SDL_Rect clip{0, 0, 16, 16};
     tnt::Sprite *player{new Player{window}};
     tnt::Timer timer;
 
     int x{0}, y{0};
+    long long dt{0};
 
     while (window->isOpened())
     {
-        long long dt{0};
+        dt = timer.deltaTime().count();
+        timer.reset();
+
         SDL_Event e;
 
         while (SDL_PollEvent(&e))
+        {
             window->handleEvents(e);
-        tnt::ImGui::update_context();
+            tnt::ImGui::update_context();
+
+            if (tnt::input::keyDown(SDL_SCANCODE_D))
+                camera.x = camera.x + dt * 20.f;
+            if (tnt::input::keyDown(SDL_SCANCODE_A))
+                camera.x = camera.x - dt * 20.f;
+            if (tnt::input::keyDown(SDL_SCANCODE_W))
+                camera.y = camera.y - 20.f * dt;
+            if (tnt::input::keyDown(SDL_SCANCODE_S))
+                camera.y = camera.y + 20.f * dt;
+            if (tnt::input::keyDown(SDL_SCANCODE_Z))
+            {
+                camera.w = camera.w * 1.1f * dt; // zoom with 1.1
+                camera.h = camera.h * 1.1f * dt;
+            }
+            if (tnt::input::keyDown(SDL_SCANCODE_X))
+            {
+                camera.w = camera.w * .091f * dt; // zoom with 0.9
+                camera.h = camera.h * .091f * dt;
+            }
+        }
 
         if (dt != 0)
             player->Update(dt);
 
         window->Clear();
 
-        window->Draw(player->getSprite(), &clip, &dst);
+        window->Draw(player, clip, camera);
 
         if (tnt::ImGui::Begin(window, "Properties", 500, 300))
         {
@@ -71,23 +95,13 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
             tnt::ImGui::End();
         }
 
-        if (tnt::ImGui::Begin(window, "test", 200, 200))
-        {
-            static int a{4};
-            hslider_int(window, "nothing", 0, 10, &a);
-            tnt::ImGui::End();
-        }
-
         clip.x = x * 16;
         clip.y = y * 16;
 
         window->Render();
 
-        dt = timer.deltaTime().count();
-        timer.reset();
-
         // if (!quit)
-        //     std::cout << (1000 / dt) << " fps\n";
+        //     std::cout << dt << " fps\n";
         SDL_Delay(1);
     }
 

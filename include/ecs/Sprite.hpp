@@ -25,13 +25,13 @@ public:
     /// @param win The @em Window where the @em Sprite should be drawn.
     /// @param filename The file from where the @em Sprite data should be loaded.
     /// @param angle The angle the @em Sprite should be drawn on @em win.
-    Sprite(Window const *win, std::string_view filename, float angle = 0.f);
+    Sprite(Window const *win, std::string_view filename, float angle = 0.f) noexcept;
 
     /// @overload This constructor has the same behaviour as the other
     /// constructor, except that it needs an extra @em tnt::Rectangle as a parameter
     /// used to get only a part of the image to the @em Sprite.
     Sprite(Window const *win, std::string_view filename, Rectangle const &area,
-           float angle = 0.f);
+           float angle = 0.f) noexcept;
 
     /// @brief The destructor of the @em Sprite.
     virtual ~Sprite() noexcept;

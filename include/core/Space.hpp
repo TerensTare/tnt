@@ -31,7 +31,7 @@ namespace tnt
         void removeObject(std::string_view id) noexcept;
 
         // TODO: unimplemented
-        void Draw(camera auto const *cam);
+        void Draw(Window const *win, camera auto const &cam);
         void Update(long long time_);
 
     protected:

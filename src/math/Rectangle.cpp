@@ -15,3 +15,15 @@ tnt::Rectangle::operator SDL_FRect() noexcept
 {
     return SDL_FRect{x, y, w, h};
 }
+
+tnt::Rectangle::operator const SDL_Rect() const noexcept
+{
+    return SDL_Rect{
+        static_cast<int>(x), static_cast<int>(y),
+        static_cast<int>(w), static_cast<int>(h)};
+}
+
+tnt::Rectangle::operator const SDL_FRect() const noexcept
+{
+    return SDL_FRect{x, y, w, h};
+}
