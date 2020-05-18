@@ -125,14 +125,14 @@ int *tnt::Window::getBordersSize() const noexcept
 void tnt::Window::Clear() noexcept { SDL_RenderClear(renderer); }
 void tnt::Window::Render() noexcept { SDL_RenderPresent(renderer); }
 
-// void tnt::Window::Draw(tnt::drawable auto const *obj, SDL_Rect const &srcrect, tnt::camera auto const &cam, SDL_RendererFlip)
-// {
-//     SDL_RenderCopyExF(renderer, obj->getSprite()->getTexture(), &srcrect, &static_cast<SDL_FRect>(cam.Bounds()), obj->getAngle(), nullptr, flip);
-// }
-
 void tnt::Window::setClearColor(SDL_Color const &color) noexcept
 {
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+}
+
+void tnt::Window::setClearColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a) noexcept
+{
+    SDL_SetRenderDrawColor(renderer, r, g, b, a);
 }
 
 SDL_Color tnt::Window::getClearColor() const noexcept

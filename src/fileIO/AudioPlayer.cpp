@@ -1,8 +1,9 @@
 #include "fileIO/AudioPlayer.hpp"
 #include "fileIO/AssetManager.hpp"
+
 #include <iostream>
 
-tnt::AudioPlayer::AudioPlayer(int frequency, unsigned short format, int channels, int chunksize)
+tnt::AudioPlayer::AudioPlayer(int frequency, unsigned short format, int channels, int chunksize) noexcept
 {
     if (Mix_OpenAudio(frequency, format, channels, chunksize) < 0)
         std::cout << "Couldn't initialize SDL_Mixer!!\nError: " << Mix_GetError() << std::endl;

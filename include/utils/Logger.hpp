@@ -1,15 +1,6 @@
 #ifndef TNT_LOGGER_HPP
 #define TNT_LOGGER_HPP
 
-// NOTE: the #if* preprocessors will be removed later.
-
-#if __cplusplus >= 201704L
-module tnt.utils : logger; // just for preparations
-#define EXPORT export
-#else
-#define EXPORT
-#endif
-
 #include <fmt/core.h>
 
 // TODO: unfinished
@@ -20,10 +11,10 @@ module tnt.utils : logger; // just for preparations
 // TODO: make sure that tnt::logger::debug writes sth only if DEBUG || _DEBUG is defined.
 // TODO: correctly quit the application when tnt::logger::error is called and you are in debug mode.
 // TODO: user defined literals for any logging type.
-// && ex. "Initialized subsystem x"_info.
+// && ex. "Initialized subsystem {}, {}..."_info.log(params,...).
 
-// TODO(maybe): make this an extension.
-// TODO(maybe): add macro TNT_TERMINATE_ON_ERROR.
+// TODO(maybe): make this an extension ??
+// TODO(maybe): add macro TNT_TERMINATE_ON_ERROR ??
 
 // Priorities are in ascending order:
 namespace tnt::logger

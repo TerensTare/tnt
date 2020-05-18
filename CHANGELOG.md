@@ -4,7 +4,13 @@ All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## 2020-05-17
+### Added
+- `tnt::input::lastKeyPressed`.
+- More Lua bindings. Now `tnt::Window` can be used with Lua. However, a small number of it's member functions is available.
+
 ### Changed
+- `LuaManager.hpp` is now on folder `utils`. Please use it instead of `LuaSandbox.hpp`.
+- `lua` and `sol2` are now required to build the project.
 - Tried to optimize `tnt::input::mouse...` functions.
 - `concept tnt::drawable` now correctly detects drawable objects.
 - `tnt::Window::Draw` is now redesigned. Also removed the overload which drawed a `tnt::SpriteComponent`.

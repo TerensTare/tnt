@@ -148,8 +148,9 @@ namespace tnt
         template <component T>
         void remove() noexcept
         {
-            auto key{std::type_index{typeid(T)}};
-            if (auto it{components.find(key)}; it != components.end())
+
+            if (auto key{std::type_index{typeid(T)}}, auto it{components.find(key)};
+                it != components.end())
             {
                 delete it.second;
                 it = components.erase(it);

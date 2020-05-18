@@ -46,6 +46,11 @@ bool tnt::input::keyReleased(SDL_Scancode key) noexcept
     return ((prevkb[key] != 0) && (currentkb[key] == 0));
 }
 
+SDL_Scancode tnt::input::lastKeyPressed(const SDL_Event &e) noexcept
+{
+    return e.key.keysym.scancode;
+}
+
 bool tnt::input::mouseButtonDown(Uint32 button) noexcept
 {
     Uint32 mask{1u << button};

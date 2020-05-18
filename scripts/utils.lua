@@ -44,9 +44,9 @@ end
 -- http://lua-users.org/wiki/LuaHacks
 function utils.cout(str)
     if str ~= nil then
-        io.write(tostring(str), " ")
+        io.write(tostring(str), '')
     else
-        io.write("\n")
+        io.write('\n')
     end
     return utils.cout
 end

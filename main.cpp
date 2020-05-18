@@ -1,10 +1,6 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-#include <iostream>
-#include <filesystem>
-#include <random>
-
 #include "core/Input.hpp"
 #include "core/Window.hpp"
 #include "core/Camera.hpp"

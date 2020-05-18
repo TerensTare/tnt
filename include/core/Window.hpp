@@ -144,6 +144,9 @@ namespace tnt
         /// @param color The color used to draw on the Window's renderer.
         void setClearColor(SDL_Color const &color) noexcept;
 
+        /// @overload Set the clear color using separate values for RGBA.
+        void setClearColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a) noexcept;
+
         /// @brief Get the color used for drawing operations.
         /// @return SDL_Color
         SDL_Color getClearColor() const noexcept;

@@ -127,11 +127,25 @@ namespace tnt
                          lhs.h + rhs.h};
     }
 
+    inline Rectangle operator+(Rectangle const &lhs,
+                               Vector const &rhs) noexcept
+    {
+        return Rectangle{lhs.x + rhs.x, lhs.y + rhs.y,
+                         lhs.w, lhs.h};
+    }
+
     inline Rectangle operator-(Rectangle const &lhs,
                                Rectangle const &rhs) noexcept
     {
         return Rectangle{lhs.x - rhs.x, lhs.y - rhs.y, lhs.w - rhs.w,
                          lhs.h - rhs.h};
+    }
+
+    inline Rectangle operator-(Rectangle const &lhs,
+                               Vector const &rhs) noexcept
+    {
+        return Rectangle{lhs.x - rhs.x, lhs.y - rhs.y,
+                         lhs.w, lhs.h};
     }
 
     inline Rectangle operator*(Rectangle const &lhs, float const &num) noexcept

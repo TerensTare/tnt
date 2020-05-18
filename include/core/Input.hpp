@@ -13,50 +13,55 @@
 
 namespace tnt::input
 {
-/// @brief Makes input handling unavailable when called.
-void close() noexcept;
+    /// @brief Makes input handling unavailable when called.
+    void close() noexcept;
 
-/// @brief Checks if a keyboard key is being held down.
-/// @param key The key to check.
-/// @return true if @param key is held down.
-bool keyDown(SDL_Scancode key) noexcept;
+    /// @brief Checks if a keyboard key is being held down.
+    /// @param key The key to check.
+    /// @return true if @param key is held down.
+    bool keyDown(SDL_Scancode key) noexcept;
 
-/// @brief Checks if a keyboard key is pressed.
-/// @param key The key to check.
-/// @return true if @param key is pressed.
-bool keyPressed(SDL_Scancode key) noexcept;
+    /// @brief Checks if a keyboard key is pressed.
+    /// @param key The key to check.
+    /// @return true if @param key is pressed.
+    bool keyPressed(SDL_Scancode key) noexcept;
 
-/// @brief Checks if a keyboard key is released.
-/// @param key The key to check.
-/// @return true if @param key is released.
-bool keyReleased(SDL_Scancode key) noexcept;
+    /// @brief Checks if a keyboard key is released.
+    /// @param key The key to check.
+    /// @return true if @param key is released.
+    bool keyReleased(SDL_Scancode key) noexcept;
 
-/// @brief Checks if a mouse button is being held down.
-/// @param button The button to check.
-/// @return true if @param button is being held down.
-bool mouseButtonDown(Uint32 button) noexcept;
+    /// @brief Get the last key pressed by checking the event handler.
+    /// @param e The event handler to check.
+    /// @return SDL_Scancode
+    SDL_Scancode lastKeyPressed(SDL_Event const &e) noexcept;
 
-/// @brief Checks if a mouse button is pressed.
-/// @param button The button to check.
-/// @return true if @param button is pressed.
-bool mouseButtonPressed(Uint32 button) noexcept;
+    /// @brief Checks if a mouse button is being held down.
+    /// @param button The button to check.
+    /// @return true if @param button is being held down.
+    bool mouseButtonDown(Uint32 button) noexcept;
 
-/// @brief Checks if a mouse button is released.
-/// @param button The button to check.
-/// @return true if @param button is released.
-bool mouseButtonReleased(Uint32 button) noexcept;
+    /// @brief Checks if a mouse button is pressed.
+    /// @param button The button to check.
+    /// @return true if @param button is pressed.
+    bool mouseButtonPressed(Uint32 button) noexcept;
 
-/// Updates the current input handles.
-void updateCurrent();
+    /// @brief Checks if a mouse button is released.
+    /// @param button The button to check.
+    /// @return true if @param button is released.
+    bool mouseButtonReleased(Uint32 button) noexcept;
 
-/// @brief Updates the last input handles.
-void updatePrevious();
+    /// Updates the current input handles.
+    void updateCurrent();
 
-/// @return The last mouse button pressed.
-unsigned lastMouseButton() noexcept;
+    /// @brief Updates the last input handles.
+    void updatePrevious();
 
-/// @return The position of the mouse as a std::pair<int, int>.
-std::pair<int, int> mousePosition() noexcept;
+    /// @return The last mouse button pressed.
+    unsigned lastMouseButton() noexcept;
+
+    /// @return The position of the mouse as a std::pair<int, int>.
+    std::pair<int, int> mousePosition() noexcept;
 
 } // namespace tnt::input
 
