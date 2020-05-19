@@ -60,7 +60,7 @@ export namespace tnt
     class Action : public detail::base_action
     {
     public:
-        /// @brief Create a non-blocking action that lasts @em duration_ milliseconds.
+        /// @brief Create a non-blocking action that lasts @c duration_ milliseconds.
         /// @param duration_ The duration of the action.
         explicit Action(long long duration_) : detail::base_action{duration_, false} {}
     };
@@ -69,7 +69,7 @@ export namespace tnt
     class BlockingAction : public detail::base_action
     {
     public:
-        /// @brief Create a non-blocking action that lasts @em duration_ milliseconds.
+        /// @brief Create a non-blocking action that lasts @c duration_ milliseconds.
         /// @param duration_ The duration of the action.
         explicit BlockingAction(long long duration_) : detail::base_action{duration_, true} {}
     };

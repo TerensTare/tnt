@@ -33,7 +33,7 @@ int main(int, char **)
         SDL_WINDOWPOS_CENTERED,
         800, 600, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
-    window->setClearColor({10, 210, 255, 255});
+    window->setClearColor(10, 210, 255, 255);
     tnt_imgui_init(window);
 
     tnt::FullTrackingCamera camera{0.f, 0.f, 160.f, 160.f};
@@ -64,16 +64,6 @@ int main(int, char **)
                 camera.y = camera.y - 20.f * dt;
             if (tnt::input::keyDown(SDL_SCANCODE_S))
                 camera.y = camera.y + 20.f * dt;
-            if (tnt::input::keyDown(SDL_SCANCODE_Z))
-            {
-                camera.w = camera.w * 1.1f * dt; // zoom with 1.1
-                camera.h = camera.h * 1.1f * dt;
-            }
-            if (tnt::input::keyDown(SDL_SCANCODE_X))
-            {
-                camera.w = camera.w * .091f * dt; // zoom with 0.9
-                camera.h = camera.h * .091f * dt;
-            }
         }
 
         if (dt != 0)

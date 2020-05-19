@@ -12,7 +12,7 @@ namespace tnt
   class AudioPlayer
   {
   public:
-    /// @brief Creates a new @em AudioPlayer for a certain audio format.
+    /// @brief Creates a new @c AudioPlayer for a certain audio format.
     /// @param frequency The frequency the audio should be played.
     /// @param format The format of the audio.
     /// @param channels The number of the channels.
@@ -20,7 +20,7 @@ namespace tnt
     AudioPlayer(int frequency, unsigned short format, int channels,
                 int chunksize) noexcept;
 
-    /// @brief Plays the music of @em filename @em loops many times.
+    /// @brief Plays the music of @c filename @c loops many times.
     /// If loops is -1, it plays the music ~65000 times.
     /// @param filename The name of the file to play.
     /// @param loops The number of times the music should be played.
@@ -32,7 +32,7 @@ namespace tnt
     /// @brief Resumes the player if it was paused.
     void ResumeMusic();
 
-    /// @brief Play a .sfx file on the given @em channel @em loops many times.
+    /// @brief Play a .sfx file on the given @c channel @c loops many times.
     /// If loops is -1, it plays the music ~65000 times.
     /// @param filename The name of the sfx file.
     /// @param channel The id of the channel where the music should be played.

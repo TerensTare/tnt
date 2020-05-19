@@ -2,6 +2,7 @@
 #define TNT_LUA_MANAGER_HPP
 
 #include <sol/sol.hpp>
+#include "core/Context.hpp"
 
 // TODO: register AND test all engine types and functions.
 // TODO: Add support for .tmx maps and text on Lua's AssetManager when available.
@@ -12,26 +13,26 @@
 
 namespace tnt::lua
 {
-    void loadVector(sol::state &lua_);    // done
-    void loadRectangle(sol::state &lua_); // done
-    void loadTimer(sol::state &lua_);     // needs tests
-    void loadObject(sol::state &lua_);    // needs tests
-    void loadInput(sol::state &lua_);     // needs tests
-    void loadWindow(sol::state &lua_);    // needs test TODO(maybe): add more mebers functions
-    void loadCameras(sol::state &lua_);   // TODO
-    void loadImGui(sol::state &lua_);     // TODO
-    void loadVFS(sol::state &lua_);       // TODO
-    void loadWidgets(sol::state &lua_);   // TODO
-    void loadUtils(sol::state &lua_);     // last_write_time, etc
-    // void loadAssetManager(sol::state &lua_); // needs tests
-    // void loadAudioPlayer(sol::state &lua_); // needs tests
-    // void loadComponents(sol::state &lua_);  // needs tests TODO: add more components
-    // void loadSprite(sol::state &lua_);      // TODO
-    // void loadMatrix(sol::state &lua_);       // TODO
+    void loadVector(sol::state_view lua_ = context.luaState());    // done
+    void loadRectangle(sol::state_view lua_ = context.luaState()); // done
+    void loadTimer(sol::state_view lua_ = context.luaState());     // needs tests
+    void loadObject(sol::state_view lua_ = context.luaState());    // needs tests
+    void loadInput(sol::state_view lua_ = context.luaState());     // needs tests
+    void loadWindow(sol::state_view lua_ = context.luaState());    // needs test TODO(maybe): add more mebers functions
+    void loadCameras(sol::state_view lua_ = context.luaState());   // TODO
+    void loadImGui(sol::state_view lua_ = context.luaState());     // TODO
+    void loadVFS(sol::state_view lua_ = context.luaState());       // TODO
+    void loadWidgets(sol::state_view lua_ = context.luaState());   // TODO
+    void loadUtils(sol::state_view lua_ = context.luaState());     // last_write_time, etc
+    // void loadAssetManager(sol::state const&lua_); // needs tests
+    // void loadAudioPlayer(sol::state const&lua_); // needs tests
+    // void loadComponents(sol::state const&lua_);  // needs tests TODO: add more components
+    // void loadSprite(sol::state const&lua_);      // TODO
+    // void loadMatrix(sol::state const&lua_);       // TODO
     // void loadRigidBody(sol::state& lua_);
 
     /// @brief Load all binding functions that are NOT marked as TODO.
-    void loadAll(sol::state &lua_);
+    void loadAll(sol::state_view lua_ = context.luaState());
 } // namespace tnt::lua
 
 #endif //!TNT_LUA_MANAGER_HPP

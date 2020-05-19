@@ -119,11 +119,11 @@ namespace tnt
         void Clear() noexcept;
 
         /// @brief Copy a portion of the source Object to the window.
-        /// @param obj The source @em drawable @em Object.
+        /// @param obj The source @c drawable @c Object.
         /// @param srcrect The source rectangle.
         /// @param cam The destination camera.
         /// @param flip An SDL_RendererFlip value stating which flipping actions should be performed on the obj's texture.
-        /// @note The Object should be @em drawable, meaning it should have a @em SpriteComponent.
+        /// @note The Object should be @c drawable, meaning it should have a @c SpriteComponent.
         template <drawable D, camera C>
         inline void Draw(D const *obj, SDL_Rect const &srcrect,
                          C const &cam, SDL_RendererFlip flip = SDL_FLIP_NONE) noexcept

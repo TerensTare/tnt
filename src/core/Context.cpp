@@ -1,14 +1,9 @@
+#include <sol/sol.hpp>
 #include "core/Context.hpp"
-#include "core/Window.hpp"
-#include "fileIO/VirtualFS.hpp"
 
-tnt::Context::~Context() noexcept
+tnt::Context::Context() noexcept : lua_{} {}
+
+lua_State *tnt::Context::luaState() const noexcept
 {
-    delete fs;
-    fs = nullptr;
-
-    window.reset();
-
-    delete assets;
-    assets = nullptr;
+    return lua_->operator lua_State *();
 }

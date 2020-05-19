@@ -3,6 +3,22 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-05-19
+### Added
+- `tnt::Script`, a `tnt::Component` which can be used with Lua scripts.
+- Attributes `[[likely]]` and `[[unlikely]]` `on tnt::Object`'s `template` functions.
+- Utility function `tnt::Object::has<T>` to check if the object has the specified `tnt::Component` without errors.
+
+### Changed
+- `tnt::file::Snipper::onModify` now uses `concept`s.
+
+## 2020-05-18
+### Changed
+- `LuaManager` functions now take `sol::state_view` as an argument rather than a `sol::state&`. Also a default parameter is passed to them.
+
+### Removed
+- `LuaSandbox.hpp/.cpp` because it was unused and `LuaManager` is a better alternative to it.
+
 ## 2020-05-17
 ### Added
 - `tnt::input::lastKeyPressed`.

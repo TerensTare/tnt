@@ -5,11 +5,6 @@
 #include "ecs/Object.hpp"
 #include "core/Camera.hpp"
 
-tnt::Space::~Space() noexcept
-{
-    std::map<std::string, Object *>{}.swap(objects);
-}
-
 void tnt::Space::addObject(std::pair<std::string_view, tnt::Object *> const &obj) { objects.insert(obj); }
 
 void tnt::Space::addObject(std::string_view id, tnt::Object *obj)
@@ -34,11 +29,15 @@ concept drawable_pair = requires(T const &t)
     ->tnt::drawable;
 };
 
-void tnt::Space::Draw(tnt::Window const *win, tnt::camera auto const &cam)
+template <tnt::camera C>
+void tnt::Space::Draw(const tnt::Window *win, const C &cam) noexcept
 {
     for (drawable_pair auto const &it : objects)
         if (it.second->isActive())
-            it.second->get<SpriteComponent>()->Draw(win, cam->getBounds());
+            if (Rectangle bounds{cam.Bounds()};
+                bounds.Contains(it.second->getPosition()) ||
+                bounds.Contains(it.second->getPosition() + {}))
+                it.second->getSprite()->Draw(win, cam->getBounds());
 }
 
 void tnt::Space::Update(long long time_)

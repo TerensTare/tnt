@@ -22,8 +22,6 @@ namespace tnt
     class Space
     {
     public:
-        ~Space() noexcept;
-
         void addObject(std::pair<std::string_view, Object *> const &obj);
         void addObject(std::string_view id, Object *obj);
 
@@ -31,7 +29,9 @@ namespace tnt
         void removeObject(std::string_view id) noexcept;
 
         // TODO: unimplemented
-        void Draw(Window const *win, camera auto const &cam);
+        template <camera C>
+        void Draw(Window const *win, C const &cam) noexcept;
+
         void Update(long long time_);
 
     protected:

@@ -65,7 +65,7 @@ export namespace tnt
   public:
     /// @brief Create a new scope_fail.
     /// @param f_ The function to be wrapped by the scope_fail.
-    /// @note f_() should not throw, else @em std::terminate is called.
+    /// @note f_() should not throw, else @c std::terminate is called.
     explicit scope_fail(const F &f_) : f{f_} {}
     scope_fail(const scope_fail &) = delete;
     scope_fail &operator=(const scope_fail &) = delete;

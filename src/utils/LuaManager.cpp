@@ -10,7 +10,7 @@
 // #include "fileIO/AudioPlayer.hpp"
 #include "utils/Timer.hpp"
 
-void tnt::lua::loadVector(sol::state &lua_)
+void tnt::lua::loadVector(sol::state_view lua_)
 {
     lua_.new_usertype<Vector>(
         "vector", sol::constructors<Vector(float, float), Vector(Vector const &)>(),
@@ -43,7 +43,7 @@ void tnt::lua::loadVector(sol::state &lua_)
     lua_["VECTOR_DOWN"] = VECTOR_DOWN;
 }
 
-void tnt::lua::loadRectangle(sol::state &lua_)
+void tnt::lua::loadRectangle(sol::state_view lua_)
 {
     lua_.new_usertype<Rectangle>(
         "rect", sol::constructors<Rectangle(float, float, float, float), Rectangle(int, int, int, int), Rectangle(Vector const &, float, float), Rectangle(Rectangle)>{},
@@ -77,7 +77,7 @@ void tnt::lua::loadRectangle(sol::state &lua_)
         });
 }
 
-void tnt::lua::loadTimer(sol::state &lua_)
+void tnt::lua::loadTimer(sol::state_view lua_)
 {
     lua_.new_usertype<Timer>(
         "timer", sol::default_constructor,
@@ -85,7 +85,7 @@ void tnt::lua::loadTimer(sol::state &lua_)
         "paused", &Timer::paused, "delta", &Timer::deltaTime);
 }
 
-// void tnt::lua::loadAssetManager(sol::state &lua_)
+// void tnt::lua::loadAssetManager(sol::state_view lua_)
 // {
 //     lua_.new_usertype<AssetManager>(
 //         "assets", "new", sol::no_constructor, "this", &AssetManager::This,
@@ -95,7 +95,7 @@ void tnt::lua::loadTimer(sol::state &lua_)
 //         "music", &AssetManager::Music, "sfx", &AssetManager::Sfx);
 // }
 
-// void tnt::lua::loadAudioPlayer(sol::state &lua_)
+// void tnt::lua::loadAudioPlayer(sol::state_view lua_)
 // {
 //     lua_.new_usertype<AudioPlayer>(
 //         "audio", sol::constructors<AudioPlayer(int, unsigned short, int, int) noexcept>{},
@@ -114,7 +114,7 @@ private:
     void Update(long long) noexcept override { return; }
 };
 
-void tnt::lua::loadObject(sol::state &lua_)
+void tnt::lua::loadObject(sol::state_view lua_)
 {
     lua_.new_enum("coords",
                   "local", LuaObject::LOCAL,
@@ -139,7 +139,7 @@ void tnt::lua::loadObject(sol::state &lua_)
         "active", sol::property(&LuaObject::isActive, &LuaObject::setActive));
 }
 
-// void tnt::lua::loadComponents(sol::state &lua_)
+// void tnt::lua::loadComponents(sol::state_view lua_)
 // {
 //     lua_.new_usertype<SpriteComponent>(
 //         "sprite_comp", sol::constructors<SpriteComponent(Window const *, std::string_view), SpriteComponent(Window const *, std::string_view, Rectangle const &)>{},
@@ -158,7 +158,7 @@ void tnt::lua::loadObject(sol::state &lua_)
 //     void Update(long long) noexcept override { return; }
 // };
 
-// void tnt::lua::loadSprite(sol::state &lua_)
+// void tnt::lua::loadSprite(sol::state_view lua_)
 // {
 //     lua_.new_usertype<LuaSprite>(
 //         "sprite", sol::constructors<Sprite(Window const *, std::string_view, float), Sprite(Window const *)>{}
@@ -166,7 +166,7 @@ void tnt::lua::loadObject(sol::state &lua_)
 //     );
 // }
 
-void tnt::lua::loadInput(sol::state &lua_)
+void tnt::lua::loadInput(sol::state_view lua_)
 {
     auto input{lua_["input"].get_or_create<sol::table>()};
     input["close_input"] = &input::close;
@@ -187,7 +187,7 @@ void tnt::lua::loadInput(sol::state &lua_)
     input["update_last"] = &input::updatePrevious;
 }
 
-void tnt::lua::loadWindow(sol::state &lua_)
+void tnt::lua::loadWindow(sol::state_view lua_)
 {
     lua_.new_usertype<Window>(
         "window", sol::constructors<Window(std::string_view, int, int, int, int, Uint32), Window(std::string_view, int, int)>{},
@@ -203,7 +203,7 @@ void tnt::lua::loadWindow(sol::state &lua_)
             &Window::Draw<Sprite, FullTrackingCamera>));
 }
 
-void tnt::lua::loadAll(sol::state &lua_)
+void tnt::lua::loadAll(sol::state_view lua_)
 {
     loadVector(lua_);
     loadRectangle(lua_);

@@ -18,17 +18,17 @@ namespace tnt::input
 
     /// @brief Checks if a keyboard key is being held down.
     /// @param key The key to check.
-    /// @return true if @param key is held down.
+    /// @return true if @c key is held down.
     bool keyDown(SDL_Scancode key) noexcept;
 
     /// @brief Checks if a keyboard key is pressed.
     /// @param key The key to check.
-    /// @return true if @param key is pressed.
+    /// @return true if @c key is pressed.
     bool keyPressed(SDL_Scancode key) noexcept;
 
     /// @brief Checks if a keyboard key is released.
     /// @param key The key to check.
-    /// @return true if @param key is released.
+    /// @return true if @c key is released.
     bool keyReleased(SDL_Scancode key) noexcept;
 
     /// @brief Get the last key pressed by checking the event handler.
@@ -38,20 +38,20 @@ namespace tnt::input
 
     /// @brief Checks if a mouse button is being held down.
     /// @param button The button to check.
-    /// @return true if @param button is being held down.
+    /// @return true if @c button is being held down.
     bool mouseButtonDown(Uint32 button) noexcept;
 
     /// @brief Checks if a mouse button is pressed.
     /// @param button The button to check.
-    /// @return true if @param button is pressed.
+    /// @return true if @c button is pressed.
     bool mouseButtonPressed(Uint32 button) noexcept;
 
     /// @brief Checks if a mouse button is released.
     /// @param button The button to check.
-    /// @return true if @param button is released.
+    /// @return true if @c button is released.
     bool mouseButtonReleased(Uint32 button) noexcept;
 
-    /// Updates the current input handles.
+    /// @brief Updates the current input handles.
     void updateCurrent();
 
     /// @brief Updates the last input handles.
@@ -60,7 +60,7 @@ namespace tnt::input
     /// @return The last mouse button pressed.
     unsigned lastMouseButton() noexcept;
 
-    /// @return The position of the mouse as a std::pair<int, int>.
+    /// @return The position of the mouse as a @c std::pair<int, int>.
     std::pair<int, int> mousePosition() noexcept;
 
 } // namespace tnt::input

@@ -1,11 +1,27 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+#include <sol/sol.hpp>
+
 #include "ecs/Component.hpp"
 
 #include "core/Window.hpp"
+#include "core/Context.hpp"
 #include "fileIO/AssetManager.hpp"
 #include "utils/Timer.hpp"
+
+////////////////
+/// scripting //
+////////////////
+
+tnt::Script::Script(std::string_view filename) noexcept : file{filename} {}
+
+void tnt::Script::Update(long long time_)
+{
+    sol::state_view state{context.luaState()};
+    state.do_file(file);
+    state["update"](time_);
+}
 
 /////////////
 // physics //

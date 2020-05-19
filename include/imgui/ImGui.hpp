@@ -48,7 +48,7 @@ namespace tnt
         /// game window) can have.
         /// @sa tnt::ImGui::Begin()
         /// @note This enum is not fully functional yet. This means that you should
-        /// leave the default (last) argument of @em tnt::ImGui::Begin() as is.
+        /// leave the default (last) argument of @c tnt::ImGui::Begin() as is.
         enum class WindowFlags : int
         {
             Default = 0,              ///< doesn't have any of the flags above
@@ -65,9 +65,9 @@ namespace tnt
         // operator overloading //
         //////////////////////////
 
-        /// @brief bit_or for @em WindowFlags.
-        /// @param lhs The left @em WindowFlag.
-        /// @param rhs The right @em WindowFlag.
+        /// @brief bit_or for @c WindowFlags.
+        /// @param lhs The left @c WindowFlag.
+        /// @param rhs The right @c WindowFlag.
         /// @return tnt::ImGui::WindowFlags
         inline WindowFlags operator|(WindowFlags const &lhs, WindowFlags const &rhs) noexcept
         {
@@ -75,9 +75,9 @@ namespace tnt
             return static_cast<WindowFlags>(static_cast<type>(lhs) | static_cast<type>(rhs));
         }
 
-        /// @brief bit_or equal for @em WindowFlags. Shorthand for lhs = (lhs | rhs).
-        /// @param lhs The left @em WindowFlag.
-        /// @param rhs The right @em WindowFlag.
+        /// @brief bit_or equal for @c WindowFlags. Shorthand for lhs = (lhs | rhs).
+        /// @param lhs The left @c WindowFlag.
+        /// @param rhs The right @c WindowFlag.
         /// @return tnt::ImGui::WindowFlags
         inline WindowFlags &operator|=(WindowFlags &lhs, WindowFlags rhs) noexcept
         {
@@ -85,9 +85,9 @@ namespace tnt
             return lhs;
         }
 
-        /// @brief bit_and for @em WindowFlags.
-        /// @param lhs The left @em WindowFlag.
-        /// @param rhs The right @em WindowFlag.
+        /// @brief bit_and for @c WindowFlags.
+        /// @param lhs The left @c WindowFlag.
+        /// @param rhs The right @c WindowFlag.
         /// @return tnt::ImGui::WindowFlags
         inline WindowFlags operator&(WindowFlags const &lhs, WindowFlags const &rhs) noexcept
         {
@@ -95,9 +95,9 @@ namespace tnt
             return static_cast<WindowFlags>(static_cast<type>(lhs) & static_cast<type>(rhs));
         }
 
-        /// @brief bit_and equal for @em WindowFlags. Shorthand for lhs = (lhs & rhs).
-        /// @param lhs The left @em WindowFlag.
-        /// @param rhs The right @em WindowFlag.
+        /// @brief bit_and equal for @c WindowFlags. Shorthand for lhs = (lhs & rhs).
+        /// @param lhs The left @c WindowFlag.
+        /// @param rhs The right @c WindowFlag.
         /// @return tnt::ImGui::WindowFlags
         inline WindowFlags &operator&=(WindowFlags &lhs, WindowFlags rhs) noexcept
         {
@@ -105,9 +105,9 @@ namespace tnt
             return lhs;
         }
 
-        /// @brief bit_xor for @em WindowFlags.
-        /// @param lhs The left @em WindowFlag.
-        /// @param rhs The right @em WindowFlag.
+        /// @brief bit_xor for @c WindowFlags.
+        /// @param lhs The left @c WindowFlag.
+        /// @param rhs The right @c WindowFlag.
         /// @return tnt::ImGui::WindowFlags
         inline WindowFlags operator^(WindowFlags const &lhs, WindowFlags const &rhs) noexcept
         {
@@ -115,9 +115,9 @@ namespace tnt
             return static_cast<WindowFlags>(static_cast<type>(lhs) ^ static_cast<type>(rhs));
         }
 
-        /// @brief bit_xor equal for @em WindowFlags. Shorthand for lhs = (lhs ^ rhs).
-        /// @param lhs The left @em WindowFlag.
-        /// @param rhs The right @em WindowFlag.
+        /// @brief bit_xor equal for @c WindowFlags. Shorthand for lhs = (lhs ^ rhs).
+        /// @param lhs The left @c WindowFlag.
+        /// @param rhs The right @c WindowFlag.
         /// @return tnt::ImGui::WindowFlags
         inline WindowFlags &operator^=(WindowFlags &lhs, WindowFlags rhs) noexcept
         {
@@ -125,9 +125,9 @@ namespace tnt
             return lhs;
         }
 
-        /// @brief bitwise complement for @em WindowFlags.
-        /// @param lhs The left @em WindowFlag.
-        /// @param rhs The right @em WindowFlag.
+        /// @brief bitwise complement for @c WindowFlags.
+        /// @param lhs The left @c WindowFlag.
+        /// @param rhs The right @c WindowFlag.
         /// @return tnt::ImGui::WindowFlags
         inline WindowFlags operator~(WindowFlags const &lhs) noexcept
         {
@@ -140,21 +140,21 @@ namespace tnt
         /////////////
 
         /// @brief Creates a new context and makes ImGui ready to be used.
-        /// @note This is automatically called by @em tnt_imgui_begin().
+        /// @note This is automatically called by @c tnt_imgui_begin().
         void make_context() noexcept;
 
         /// @brief Updates ImGui's context data.
         void update_context() noexcept;
 
         /// @brief Destroys the ImGui context and makes ImGui unusable.
-        /// @note This is automatically called by @em tnt_imgui_close().
+        /// @note This is automatically called by @c tnt_imgui_close().
         void destroy_context() noexcept;
 
         /////////////
         // widgets //
         /////////////
 
-        /// @brief Draw a new ImGui window on @em win at @em (x,y) and handle events related to it.
+        /// @brief Draw a new ImGui window on @c win at @c (x,y) and handle events related to it.
         /// Widgets that don't require position parameters are drawn on this window.
         /// @param win The window where the drawing should happen.
         /// @param name The desired title for the window.
@@ -163,24 +163,24 @@ namespace tnt
         /// @param flags The flags the window should have.
         /// @return bool
         /// @sa tnt::ImGui::WindowFlags
-        /// @note @em tnt::ImGui::End() should be called for each @em tnt::ImGui::Begin().
-        /// @note For the moment, you CANNOT call @em tnt::ImGui::Begin() inside another
-        /// @em tnt::ImGui::Begin() / @em tnt::ImGui::End() pair. That's the only case when
+        /// @note @c tnt::ImGui::End() should be called for each @c tnt::ImGui::Begin().
+        /// @note For the moment, you CANNOT call @c tnt::ImGui::Begin() inside another
+        /// @c tnt::ImGui::Begin() / @c tnt::ImGui::End() pair. That's the only case when
         /// this function returns false, but this is subject to change.
         bool Begin(Window const *win, std::string_view name, int x, int y,
                    WindowFlags flags = WindowFlags::Default) noexcept;
 
-        /// @brief Stop drawing widgets on the last window where @em tnt::ImGui::Begin()
+        /// @brief Stop drawing widgets on the last window where @c tnt::ImGui::Begin()
         /// is called. Also update some context-related data.
         /// @sa tnt::ImGui::Begin()
         void End() noexcept;
 
         /// @brief Prepare the current ImGui window for drawing a list on it.
-        /// Calling @em BeginList() inside another @em BeginList() / @em EndList() pair
+        /// Calling @c BeginList() inside another @c BeginList() / @c EndList() pair
         /// indents the second list. This is useful for making sublists.
         /// @sa tnt::ImGui::EndList()
         /// @sa tnt::ImGui::list_item()
-        /// @note @em tnt::ImGui::EndList() should be called for each @em tnt::ImGui::BeginList().
+        /// @note @c tnt::ImGui::EndList() should be called for each @c tnt::ImGui::BeginList().
         void BeginList(bool indexed) noexcept;
 
         /// @brief End the current list of items. If this is a sublist (list inside another list)
@@ -201,15 +201,15 @@ namespace tnt
         /// @sa tnt::ImGui::menu_item()
         void EndMenuBar() noexcept;
 
-        /// @brief Draw a button on the current ImGui window, with @em text on it.
+        /// @brief Draw a button on the current ImGui window, with @c text on it.
         /// Returns true if the button is pressed.
         /// @param win The game window where the button should be drawed.
         /// @param text The text that should be drawn on the button.
         /// @return bool
         bool button(Window const *win, std::string_view text) noexcept;
 
-        /// @brief Draw a vertical slider that modifies an @em int value on the current ImGui window.
-        /// The widget returns @em true if the value has been modified, @em false otherwise.
+        /// @brief Draw a vertical slider that modifies an @c int value on the current ImGui window.
+        /// The widget returns @c true if the value has been modified, @c false otherwise.
         /// @param win The game window where the slider should be drawed.
         /// @param min_ The minimun value the widget can set.
         /// @param max_ The maximum value the widget can set.
@@ -218,8 +218,8 @@ namespace tnt
         bool slider_int(Window const *win, int min_, int max_,
                         int *value) noexcept;
 
-        /// @brief Draw a vertical slider that modifies an @em float value on the current ImGui window.
-        /// The widget returns @em true if the value has been modified, @em false otherwise.
+        /// @brief Draw a vertical slider that modifies an @c float value on the current ImGui window.
+        /// The widget returns @c true if the value has been modified, @c false otherwise.
         /// @param win The game window where the slider should be drawed.
         /// @param min_ The minimun value the widget can set.
         /// @param max_ The maximum value the widget can set.
@@ -228,8 +228,8 @@ namespace tnt
         bool slider_float(Window const *win, float min_, float max_,
                           float *value) noexcept;
 
-        /// @brief Draw a horizontal slider that modifies an @em int value on the current ImGui window.
-        /// The widget returns @em true if the value has been modified, @em false otherwise.
+        /// @brief Draw a horizontal slider that modifies an @c int value on the current ImGui window.
+        /// The widget returns @c true if the value has been modified, @c false otherwise.
         /// @param win The game window where the slider should be drawed.
         /// @param text The text that should be drawn next to the slider.
         /// @param min_ The minimun value the widget can set.
@@ -239,8 +239,8 @@ namespace tnt
         bool hslider_int(Window const *win, std::string_view text, int min_, int max_,
                          int *value) noexcept;
 
-        /// @brief Draw a horizontal slider that modifies an @em float value on the current ImGui window.
-        /// The widget returns @em true if the value has been modified, @em false otherwise.
+        /// @brief Draw a horizontal slider that modifies an @c float value on the current ImGui window.
+        /// The widget returns @c true if the value has been modified, @c false otherwise.
         /// @param win The game window where the slider should be drawed.
         /// @param text The text that should be drawn next to the slider.
         /// @param min_ The minimun value the widget can set.
@@ -250,8 +250,8 @@ namespace tnt
         bool hslider_float(Window const *win, std::string_view text, float min_, float max_,
                            float *value) noexcept;
 
-        /// @brief Draw a checkbox with @em text on the side of it.
-        /// Returns @em true if modified, @em false otherwise.
+        /// @brief Draw a checkbox with @c text on the side of it.
+        /// Returns @c true if modified, @c false otherwise.
         /// @param win The game window where the checkbox should be drawed.
         /// @param text The text that should be displayed next to the checkbox.
         /// @param value The value representing the state of the checkbox.
@@ -266,7 +266,7 @@ namespace tnt
         /// @sa tnt::ImGui::menu_item()
         bool menu_button(Window const *win, std::string_view text) noexcept;
 
-        /// @brief Draw a menu bar with options from the @em options array.
+        /// @brief Draw a menu bar with options from the @c options array.
         /// Returns the index of the pressed menu button (if any), or -1 otherwise.
         /// @param win The game window where the menu should be drawed.
         /// @param text The text to be shown on the item's button.
@@ -290,12 +290,12 @@ namespace tnt
         /// @brief Add an empty line on the current window.
         void newline() noexcept;
 
-        /// @brief Draw @em text on the current window.
+        /// @brief Draw @c text on the current window.
         /// @param win The game window where the text should be drawed.
         /// @param text The text that should be drawed.
         void text(Window const *win, std::string_view text) noexcept;
 
-        /// @brief Draw @em text with the specified color.
+        /// @brief Draw @c text with the specified color.
         /// @param win The game window where the text should be drawed.
         /// @param text The text that should be drawed.
         /// @param r The red "component" of the text color.
@@ -315,7 +315,7 @@ namespace tnt
     } // namespace ImGui
 } // namespace tnt
 
-/// @brief Initialize all needed stuff to use ImGui on @em win.
+/// @brief Initialize all needed stuff to use ImGui on @c win.
 /// @param win The target game window.
 void tnt_imgui_init(tnt::Window const *win) noexcept;
 

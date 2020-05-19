@@ -1,1 +1,1 @@
-cl /EHsc /std:c++17 /O2 main.cpp src\ecs\Object.cpp /I..\..\include /Ifmt\include\dir /link /libpath:fmt\lib\dir fmt.lib /subsystem:console
+cl /EHsc /std:c++17 /O2 main.cpp src\ecs\Object.cpp src\ecs\Component.cpp /I..\..\include /Ifmt\include\dir /link /libpath:fmt\lib\dir fmt.lib lua.lib /subsystem:console

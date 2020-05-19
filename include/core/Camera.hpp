@@ -68,27 +68,27 @@ namespace tnt
         /// @param h_ The height of the camera.
         HorizontalCamera(float x_, float y_, float w_, float h_) noexcept;
 
-        /// @brief Moves the camera horizontally by @em x units.
+        /// @brief Moves the camera horizontally by @c x units.
         /// @param x_ The number of units the camera should move horizontally.
         void Move(float x_, float) noexcept;
 
-        /// @brief Moves the camera horizontally by using a @em tnt::Vector.
+        /// @brief Moves the camera horizontally by using a @c tnt::Vector.
         /// @param v The Vector used to move the camera.
         void Move(Vector const &v) noexcept;
 
-        /// @brief Moves the camera's @em x to @em x.
+        /// @brief Moves the camera's @c x to @c x.
         /// @param x_ The destination position.
         void MoveTo(float x_, float) noexcept;
 
-        /// @brief Moves the camera's @em x to @em v.x.
+        /// @brief Moves the camera's @c x to @c v.x.
         /// @param v The Vector containing the destination position.
         void MoveTo(Vector const &v) noexcept;
 
-        /// @brief Centers the camera to @em (x,defaultY).
+        /// @brief Centers the camera to @c (x,defaultY).
         /// @param x_ The desired center of the camera.
         void CenterTo(float x_, float) noexcept;
 
-        /// @brief Centers the camera to @em (v.x,defaultY).
+        /// @brief Centers the camera to @c (v.x,defaultY).
         /// @param v The Vector containing the desired center of the camera.
         void CenterTo(Vector const &v) noexcept;
     };
@@ -104,38 +104,38 @@ namespace tnt
         /// @param h_ The height of the camera.
         FullTrackingCamera(float x_, float y_, float w_, float h_) noexcept;
 
-        /// @brief Moves the camera by @em (x,y) units.
+        /// @brief Moves the camera by @c (x,y) units.
         /// @param x_ The number of units the camera should move horizontally.
         /// @param y_ The number of units the camera should move vertically.
         void Move(float x_, float y_) noexcept;
 
-        /// @brief Moves the camera by using a @em tnt::Vector.
+        /// @brief Moves the camera by using a @c tnt::Vector.
         /// @param v The Vector used to move the camera.
         void Move(Vector const &v) noexcept;
 
-        /// @brief Move only the @em x position of the camera.
+        /// @brief Move only the @c x position of the camera.
         /// @param x_ The number of units to move the camera.
         void MoveX(float x_) noexcept;
 
-        /// @brief Move only the @em y position of the camera.
+        /// @brief Move only the @c y position of the camera.
         /// @param y_ The number of units to move the camera.
         void MoveY(float y_) noexcept;
 
-        /// @brief Moves the camera to @em (x,y).
+        /// @brief Moves the camera to @c (x,y).
         /// @param x_ The horizontal destination.
         /// @param y_ The vertical destination.
         void MoveTo(float x_, float y_) noexcept;
 
-        /// @brief Moves the camera to @em v.
+        /// @brief Moves the camera to @c v.
         /// @param v The destination point.
         void MoveTo(Vector const &v) noexcept;
 
-        /// @brief Centers the camera to @em (x,y).
+        /// @brief Centers the camera to @c (x,y).
         /// @param x_ The horizontal center.
         /// @param y_ The vertical center.
         void CenterTo(float x_, float y_) noexcept;
 
-        /// @brief Centers the camera to @em v.
+        /// @brief Centers the camera to @c v.
         /// @param v The desired center of the camera.
         void CenterTo(Vector const &v) noexcept;
     };
