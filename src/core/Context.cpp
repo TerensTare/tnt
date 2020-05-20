@@ -1,7 +1,11 @@
-#include <sol/sol.hpp>
 #include "core/Context.hpp"
+#include "utils/LuaManager.hpp"
 
-tnt::Context::Context() noexcept : lua_{} {}
+tnt::Context::Context() noexcept : lua_{}
+{
+    lua_->open_libraries(sol::lib::base, sol::lib::package);
+    lua::loadAll(*lua_);
+}
 
 lua_State *tnt::Context::luaState() const noexcept
 {

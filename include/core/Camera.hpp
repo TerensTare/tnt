@@ -140,9 +140,10 @@ namespace tnt
         void CenterTo(Vector const &v) noexcept;
     };
 
-    /// @brief A concept representing a basic Camera type requirements.
+    /// @brief A concept representing basic Camera type requirements.
     template <typename T>
-    concept camera = std::is_base_of_v<Camera, T>;
+    concept camera = std::is_base_of_v<tnt::Camera, T> ||
+                     std::is_same_v<tnt::Camera, T>;
 } // namespace tnt
 
 #endif //! TNT_CAMERA_HPP

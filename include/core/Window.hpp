@@ -126,7 +126,7 @@ namespace tnt
         /// @note The Object should be @c drawable, meaning it should have a @c SpriteComponent.
         template <drawable D, camera C>
         inline void Draw(D const *obj, SDL_Rect const &srcrect,
-                         C const &cam, SDL_RendererFlip flip = SDL_FLIP_NONE) noexcept
+                         C const &cam, SDL_RendererFlip flip = SDL_FLIP_NONE) const noexcept
         {
             SDL_RenderCopyExF(renderer, obj->getSprite()->getTexture(),
                               &srcrect, &static_cast<SDL_FRect>(cam.Bounds()),

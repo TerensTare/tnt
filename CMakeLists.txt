@@ -92,11 +92,11 @@ configure_file(
     "${PROJECT_BINARY_DIR}/include/version.h")
 
 set(SOURCE_FILES src/core/Graphics.cpp src/core/Window.cpp
+    src/core/Input.cpp src/core/Camera.cpp src/core/Space.cpp
     # src/core/Space.cpp src/core/Scene.cpp
-    src/math/Rectangle.cpp src/core/Camera.cpp src/utils/Timer.cpp
-    src/fileIO/AssetManager.cpp src/core/Input.cpp
-    src/ecs/Object.cpp src/ecs/Component.cpp
-    src/ecs/Sprite.cpp src/ImGui/ImGui.cpp)
+    src/math/Rectangle.cpp src/fileIO/AssetManager.cpp
+    src/ecs/Object.cpp src/ecs/Sprite.cpp
+    src/ImGui/ImGui.cpp src/utils/Timer.cpp)
 
 if (TNT_DO_EXPERIMENTS)
     list(APPEND SOURCE_FILES exp/Runtimer.cpp)

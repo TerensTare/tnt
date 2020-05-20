@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Utility function `tnt::Object::has<T>` to check if the object has the specified `tnt::Component` without errors.
 
 ### Changed
+- Some stuff on the implementation of `tnt::Space`.
+- Header `Component.hpp` is deprecated and will be removed on another commit. `class tnt::Component` and `concept tnt::component` are now defined on `Object.hpp`. `tnt::Script` and `tnt::SpriteComponent` are now defined to `Scriptable.hpp/.cpp` and `Sprite.hpp/.cpp`.
 - `tnt::file::Snipper::onModify` now uses `concept`s.
 
 ## 2020-05-18

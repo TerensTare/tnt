@@ -4,11 +4,41 @@
 #include <map>
 #include <typeindex>
 
-#include "ecs/Component.hpp"
+#include "math/Vector.hpp"
 #include "utils/Logger.hpp"
+
+// TODO:
+// AnimationComponent creates a new SDL_Texture on it's constructor. Fix that!!
+// Rotate/Scale/Transform: use global coordinates & translate to local
+// coordinates. Removable
+
+// TODO(maybe):
+// use a weak_ptr on SpriteComponent ??
+// Derive new object from class Object and current Components. Something similar to a policy class ??
+// rename AnimationComponent to just Animation ??
+// Widget, Animation, AI ??
+// PhysicsComponent::{add/remove}Mass ?? also modify collision_box on runtime ??
+// Rename every component to a shorter name, ex. *Comp ??
+// Write a Polygon class so that PhysicsComponent can use it as collision_shape ??
+// SpriteComponent should handle a weak_ptr<Window> not a friend class Window
+// or get the texture from AssetManager ??
+// also SpriteComponent::Draw(Rectangle const &location) ??
+// remove all getters/setters and use Components like C-style structures or POD./ ??
+// Serializable<T>/concept ??
 
 namespace tnt
 {
+    class SpriteComponent;
+
+    /// @brief The base class for all the Component types.
+    class Component
+    {
+    };
+
+    /// @brief A concept sowing the basic props a @c Component should have.
+    template <typename T>
+    concept component = std::is_base_of_v<Component, T>;
+
     /// @brief A class representing a basic game object.
     class Object
     {
@@ -108,7 +138,7 @@ namespace tnt
         T *add() noexcept
         {
             std::type_index key{typeid(T)};
-            [[likely]] if (!has<T>)
+            [[likely]] if (!has<T>())
             {
                 T *value{new T{}};
                 components[key] = std::move(static_cast<Component *>(value));
@@ -124,7 +154,7 @@ namespace tnt
         T *add(Args &&... args) noexcept
         {
             std::type_index key{typeid(T)};
-            [[likely]] if (!has<T>)
+            [[likely]] if (!has<T>())
             {
                 T *value{new T{std::forward<Args>(args)...}};
                 components[key] = std::move(static_cast<Component *>(value));
@@ -143,7 +173,7 @@ namespace tnt
         [[nodiscard]] T *get() noexcept
         {
             auto key{std::type_index{typeid(T)}};
-            [[likely]] if (has<T>) return static_cast<T *>(components[key]);
+            [[likely]] if (has<T>()) return static_cast<T *>(components[key]);
             tnt::logger::debug("Line: {}\tObject doesn't have Component {}\n Please call tnt::Object::add<T> before calling tnt::Object::get<T>!!", __LINE__, typeid(T).name());
             return nullptr;
         }
@@ -157,7 +187,7 @@ namespace tnt
         void remove() noexcept
         {
 
-            [[likely]] if (has<T>)
+            [[likely]] if (has<T>())
             {
                 delete it.second;
                 it = components.erase(it);
@@ -186,7 +216,7 @@ namespace tnt
         Object *parent{nullptr};
     };
 
-    /// @brief An @c Object that can be drawed.
+        /// @brief An @c Object that can be drawed.
     template <typename T>
     concept drawable = requires(T const *t)
     {

@@ -10,19 +10,6 @@
 #include "fileIO/AssetManager.hpp"
 #include "utils/Timer.hpp"
 
-////////////////
-/// scripting //
-////////////////
-
-tnt::Script::Script(std::string_view filename) noexcept : file{filename} {}
-
-void tnt::Script::Update(long long time_)
-{
-    sol::state_view state{context.luaState()};
-    state.do_file(file);
-    state["update"](time_);
-}
-
 /////////////
 // physics //
 /////////////
@@ -46,75 +33,6 @@ tnt::Rectangle tnt::PhysicsComponent::getCollisionBox() const noexcept { return 
 void tnt::PhysicsComponent::applyForce(tnt::Vector const &force) noexcept(noexcept(invMass > 0.f))
 {
     acceleration += (force * invMass);
-}
-
-////////////
-// sprite //
-////////////
-
-tnt::SpriteComponent::SpriteComponent(Window const *win, std::string_view file)
-    : clipped{false}, texture{AssetManager::This().Image(win, file)},
-      clipRect{0, 0, 0, 0}
-{
-    SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
-}
-
-tnt::SpriteComponent::SpriteComponent(
-    Window const *win, std::string_view file,
-    Rectangle const &location)
-    : clipped{true}, clipRect{location},
-      texture{AssetManager::This().Image(win, file)} {}
-
-tnt::SpriteComponent::~SpriteComponent() noexcept
-{
-    SDL_DestroyTexture(texture);
-    texture = nullptr;
-}
-
-void tnt::SpriteComponent::Draw(Window const *win, Rectangle const &dest, float angle) noexcept
-{
-    SDL_RenderCopyEx(
-        win->getRenderer(), texture,
-        &static_cast<SDL_Rect>(clipRect), &static_cast<SDL_Rect>(dest),
-        angle, nullptr, SDL_FLIP_NONE);
-}
-
-SDL_Texture *tnt::SpriteComponent::getTexture() const noexcept
-{
-    return texture;
-}
-
-void tnt::SpriteComponent::setTexture(Window const *win, std::string_view filename) noexcept
-{
-    if (clipped)
-        clipped = false;
-    SDL_DestroyTexture(texture);
-    texture = AssetManager::This().Image(win, filename);
-    SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
-}
-
-void tnt::SpriteComponent::setTexture(
-    Window const *win, std::string_view filename,
-    tnt::Rectangle const &location) noexcept
-{
-    if (!clipped)
-        clipped = true;
-    SDL_DestroyTexture(texture);
-    texture = AssetManager::This().Image(win, filename);
-    clipRect = location;
-}
-
-int tnt::SpriteComponent::getWidth() const noexcept
-{
-    if (clipped)
-        return clipRect.w;
-    return w;
-}
-int tnt::SpriteComponent::getHeight() const noexcept
-{
-    if (clipped)
-        return clipRect.h;
-    return w;
 }
 
 ///////////////

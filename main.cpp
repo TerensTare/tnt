@@ -4,11 +4,16 @@
 #include "core/Input.hpp"
 #include "core/Window.hpp"
 #include "core/Camera.hpp"
+#include "core/Space.hpp"
+
 #include "ecs/Sprite.hpp"
+
 #include "fileIO/AssetManager.hpp"
+
 #include "imgui/ImGui.hpp"
 // #define TNT_IMGUI_RUNTIME_CONFIG
 // #include "imgui/gui_config.hpp"
+
 #include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
 
@@ -23,7 +28,7 @@ public:
         : tnt::Sprite{win, std::move(std::string{SDL_GetBasePath()}.append("assets/player.png")),
                       tnt::Rectangle{0.f, 0.f, 16.f, 16.f}} {}
 
-    inline void Update(long long) noexcept override { return; }
+    inline void Update(long long time_) noexcept override { return; }
 };
 
 int main(int, char **)
@@ -38,8 +43,11 @@ int main(int, char **)
 
     tnt::FullTrackingCamera camera{0.f, 0.f, 160.f, 160.f};
     SDL_Rect clip{0, 0, 16, 16};
-    tnt::Sprite *player{new Player{window}};
+    Player *player{new Player{window}};
     tnt::Timer timer;
+
+    tnt::Space space{};
+    space.addObject("player", player);
 
     int x{0}, y{0};
     long long dt{0};
@@ -55,23 +63,13 @@ int main(int, char **)
         {
             window->handleEvents(e);
             tnt::ImGui::update_context();
-
-            if (tnt::input::keyDown(SDL_SCANCODE_D))
-                camera.x = camera.x + dt * 20.f;
-            if (tnt::input::keyDown(SDL_SCANCODE_A))
-                camera.x = camera.x - dt * 20.f;
-            if (tnt::input::keyDown(SDL_SCANCODE_W))
-                camera.y = camera.y - 20.f * dt;
-            if (tnt::input::keyDown(SDL_SCANCODE_S))
-                camera.y = camera.y + 20.f * dt;
         }
 
         if (dt != 0)
-            player->Update(dt);
+            space.Update(dt);
 
         window->Clear();
-
-        window->Draw(player, clip, camera);
+        space.Draw(window, camera);
 
         if (tnt::ImGui::Begin(window, "Properties", 500, 300))
         {
@@ -91,10 +89,11 @@ int main(int, char **)
         SDL_Delay(1);
     }
 
-    delete player;
-
     tnt_imgui_close();
     tnt::input::close();
+
+    delete player;
+    delete window;
 
     return 0;
 }

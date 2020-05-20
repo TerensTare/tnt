@@ -15,7 +15,7 @@ typedef struct lua_State lua_State;
 
 namespace tnt
 {
-    struct Context
+    inline struct Context
     {
         Context() noexcept;
 
