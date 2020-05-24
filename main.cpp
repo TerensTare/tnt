@@ -43,8 +43,11 @@ int main(int, char **)
 
     tnt::FullTrackingCamera camera{0.f, 0.f, 160.f, 160.f};
     SDL_Rect clip{0, 0, 16, 16};
-    Player *player{new Player{window}};
     tnt::Timer timer;
+
+    Player *player{new Player{window}};
+    player->setPosition(tnt::Vector{100.f, 100.f});
+    player->setScale(tnt::Vector{10.f, 10.f});
 
     tnt::Space space{};
     space.addObject("player", player);

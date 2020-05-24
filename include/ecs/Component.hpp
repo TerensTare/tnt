@@ -31,33 +31,6 @@ namespace tnt
         Vector acceleration;
         Rectangle collisionBox;
     };
-
-    class AnimationComponent final : public Component
-    {
-    public:
-        AnimationComponent(std::string_view filename, int framesNum, float speed,
-                           bool horizontal, Rectangle const &clip);
-
-        void setLoop(bool loop_) noexcept;
-        bool isLoop() const noexcept;
-
-        bool running() const noexcept;
-
-        // TODO: find a better workaround for this
-        void update(Timer *timer) noexcept;
-
-    private:
-        bool done;
-        bool loop;
-        bool vertical;
-        float animSpeed;
-        float timePerFrame;
-        float startX, startY;
-        int frameCount;
-        long long animTime;
-        Rectangle clipRect;
-    };
-
 } // namespace tnt
 
 #endif //! TNT_COMPONENT_HPP

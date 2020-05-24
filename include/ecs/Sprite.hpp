@@ -64,12 +64,13 @@ namespace tnt
         /// @return int
         int getHeight() const noexcept;
 
-    protected:
+    private:
         bool clipped;
         Rectangle clipRect;
-        int w, h;
-        SDL_Texture *texture; // maybe this or the AssetManager's maps values
-                              // should be weak_ptr's.
+        SDL_Texture *texture; // (maybe) this or the AssetManager's maps' values
+        // should be weak_ptr's ??
+
+        friend class Animator;
     };
 
     /// @brief A drawable Object.
@@ -92,8 +93,12 @@ namespace tnt
         virtual ~Sprite() noexcept;
 
         /// @brief Get the @c SpriteComponent of the @c Sprite.
-        /// @return SpriteComponent*
+        /// @return tnt::SpriteComponent*
         SpriteComponent *getSprite() const noexcept;
+
+        /// @brief Draw the @c Sprite on @c win at @c dest.
+        /// @param win The window where the @c Sprite should be drawed.
+        void Draw(Window const *win) noexcept;
 
     protected: // (maybe) make these private ??
         SpriteComponent *sprite;

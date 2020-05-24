@@ -3,6 +3,20 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-05-23
+### Added
+- `tnt::Camera` constructor that accepts `tnt::Rectangle`.
+- `tnt::Sprite::Draw` which needs only a `tnt::Window const*`.
+- An experimental implementation of `tnt::Object`.
+- A partial implementation of animations for `drawable` `tnt::Object`. Not fully finished/tested yet.
+
+### Fixed
+- `tnt::drawable` not showing when using `tnt::Space`.
+
+### Changed
+- Tried to optimize `tnt::Space::Draw`.
+- Most `tnt::Object` members are initialized by using default member initalizers.
+
 ## 2020-05-19
 ### Added
 - `tnt::Script`, a `tnt::Component` which can be used with Lua scripts.
@@ -13,6 +27,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Some stuff on the implementation of `tnt::Space`.
 - Header `Component.hpp` is deprecated and will be removed on another commit. `class tnt::Component` and `concept tnt::component` are now defined on `Object.hpp`. `tnt::Script` and `tnt::SpriteComponent` are now defined to `Scriptable.hpp/.cpp` and `Sprite.hpp/.cpp`.
 - `tnt::file::Snipper::onModify` now uses `concept`s.
+- `utilities` folder is now renamed to `extra`.
+
+### Removed
+- `math/Matrix.hpp` and `math/Matrix.cpp`.
 
 ## 2020-05-18
 ### Changed

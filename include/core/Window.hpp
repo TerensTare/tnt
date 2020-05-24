@@ -128,9 +128,9 @@ namespace tnt
         inline void Draw(D const *obj, SDL_Rect const &srcrect,
                          C const &cam, SDL_RendererFlip flip = SDL_FLIP_NONE) const noexcept
         {
+            const SDL_FRect dest{static_cast<SDL_FRect>(cam.Bounds())};
             SDL_RenderCopyExF(renderer, obj->getSprite()->getTexture(),
-                              &srcrect, &static_cast<SDL_FRect>(cam.Bounds()),
-                              obj->getAngle(), nullptr, flip);
+                              &srcrect, &dest, obj->getAngle(), nullptr, flip);
         }
 
         /// @brief Update the screen with rendering performed.

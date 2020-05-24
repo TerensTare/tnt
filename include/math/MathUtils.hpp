@@ -8,7 +8,8 @@
 
 namespace tnt
 {
-    template <int I> struct factorial
+    template <int I>
+    struct factorial
     {
         enum
         {
@@ -16,7 +17,8 @@ namespace tnt
         }
     };
 
-    template <> struct factorial<1>
+    template <>
+    struct factorial<1>
     {
         enum
         {
@@ -24,7 +26,8 @@ namespace tnt
         };
     };
 
-    template <int I> struct fibonacci
+    template <int I>
+    struct fibonacci
     {
         enum
         {
@@ -32,7 +35,8 @@ namespace tnt
         };
     };
 
-    template <> struct fibonacci<2>
+    template <>
+    struct fibonacci<2>
     {
         enum
         {
@@ -40,7 +44,8 @@ namespace tnt
         };
     };
 
-    template <> struct fibonacci<1>
+    template <>
+    struct fibonacci<1>
     {
         enum
         {
@@ -48,7 +53,8 @@ namespace tnt
         };
     };
 
-    template <int Base, int Expo> struct power
+    template <int Base, int Expo>
+    struct power
     {
         enum
         {
@@ -56,7 +62,8 @@ namespace tnt
         };
     };
 
-    template <int Base> struct power<Base, 0>
+    template <int Base>
+    struct power<Base, 0>
     {
         enum
         {
@@ -64,7 +71,8 @@ namespace tnt
         };
     };
 
-    template <int Expo> struct power<1, Expo>
+    template <int Expo>
+    struct power<1, Expo>
     {
         enum
         {
@@ -72,7 +80,8 @@ namespace tnt
         };
     };
 
-    template <int Expo> struct power<0, Expo>
+    template <int Expo>
+    struct power<0, Expo>
     {
         enum
         {
@@ -100,7 +109,8 @@ namespace tnt
     //     };
     // };
 
-    template <int First, int... Rest> struct sum
+    template <int First, int... Rest>
+    struct sum
     {
         enum
         {
@@ -108,7 +118,8 @@ namespace tnt
         };
     };
 
-    template <int First, int Second> struct sum<First, Second>
+    template <int First, int Second>
+    struct sum<First, Second>
     {
         enum
         {
@@ -116,7 +127,8 @@ namespace tnt
         };
     };
 
-    template <int First, int... Rest> struct product
+    template <int First, int... Rest>
+    struct product
     {
         enum
         {
@@ -124,7 +136,8 @@ namespace tnt
         };
     };
 
-    template <int First, int Second> struct product<First, Second>
+    template <int First, int Second>
+    struct product<First, Second>
     {
         enum
         {
@@ -132,7 +145,8 @@ namespace tnt
         };
     };
 
-    template <int First, int Second> struct modulus
+    template <int First, int Second>
+    struct modulus
     {
         enum
         {
@@ -141,19 +155,21 @@ namespace tnt
     };
 
     // pretty smart, huh?
-    template <int Numerator, int Denominator> struct Floor
+    template <int Numerator, int Denominator>
+    struct Floor
     {
         static_assert(
-            (Denominator != 0),
+            Denominator != 0,
             "Error: Trying to find the floor of a fraction with 0 as Denominator!!");
         enum
         {
             remain = Numerator - ((int)(Numerator / Denominator) * Denominator),
-            value  = ((Numerator - remain) / Denominator)
+            value = ((Numerator - remain) / Denominator)
         };
     };
 
-    template <int Numerator> struct Floor<Numerator, 1>
+    template <int Numerator>
+    struct Floor<Numerator, 1>
     {
         enum
         {
@@ -161,7 +177,8 @@ namespace tnt
         };
     };
 
-    template <int Numerator, int Denominator> struct ceiling
+    template <int Numerator, int Denominator>
+    struct ceiling
     {
         static_assert(
             (Denominator != 0),
@@ -178,7 +195,8 @@ namespace tnt
     }
 
     // TODO: WIP
-    template <int Angle> struct sine
+    template <int Angle>
+    struct sine
     {
         enum
         {

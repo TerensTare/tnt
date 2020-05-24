@@ -9,7 +9,10 @@
 ////////////
 
 tnt::Camera::Camera(float x_, float y_, float w_, float h_) noexcept
-    : x{x_}, y{y_}, w{w_}, h{h_}, shaking{false}, tmpX{0.f}, tmpY{0.f} {}
+    : x{x_}, y{y_}, w{w_}, h{h_} {}
+
+tnt::Camera::Camera(tnt::Rectangle const &rect) noexcept
+    : x{rect.x}, y{rect.y}, w{rect.w}, h{rect.h} {}
 
 tnt::Rectangle tnt::Camera::Bounds() const noexcept { return {x, y, w, h}; }
 
@@ -44,6 +47,9 @@ void tnt::Camera::Shake(long long time, float intensity) noexcept
 tnt::HorizontalCamera::HorizontalCamera(float x_, float y_, float w_, float h_) noexcept
     : Camera{x_, y_, w_, h_} {}
 
+tnt::HorizontalCamera::HorizontalCamera(tnt::Rectangle const &rect) noexcept
+    : Camera{rect} {}
+
 void tnt::HorizontalCamera::Move(float x_, float) noexcept { x = x + x_; }
 
 void tnt::HorizontalCamera::Move(tnt::Vector const &v) noexcept
@@ -71,6 +77,9 @@ void tnt::HorizontalCamera::CenterTo(tnt::Vector const &v) noexcept
 
 tnt::FullTrackingCamera::FullTrackingCamera(float x_, float y_, float w_, float h_) noexcept
     : Camera{x_, y_, w_, h_} {}
+
+tnt::FullTrackingCamera::FullTrackingCamera(tnt::Rectangle const &rect) noexcept
+    : Camera{rect} {}
 
 void tnt::FullTrackingCamera::Move(float x_, float y_) noexcept
 {

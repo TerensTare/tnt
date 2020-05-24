@@ -35,6 +35,10 @@ namespace tnt
         /// @param h_ The height of the camera.
         Camera(float x_, float y_, float w_, float h_) noexcept;
 
+        /// @overload This constructor has the same exact behaviour as the other
+        /// constructor, except that it uses a @c tnt::Rectangle.
+        explicit Camera(tnt::Rectangle const &rect) noexcept;
+
         Camera(Camera const &) = delete;
         Camera(Camera &&) = delete;
         Camera &operator=(Camera const &) = delete;
@@ -50,8 +54,8 @@ namespace tnt
         Rectangle Bounds() const noexcept;
 
     protected:
-        bool shaking;
-        float tmpX, tmpY; // used during shaking
+        bool shaking{false};
+        float tmpX{0.f}, tmpY{0.f}; // used during shaking
 
     public:
         float x, y, w, h;
@@ -67,6 +71,10 @@ namespace tnt
         /// @param w_ The width of the camera.
         /// @param h_ The height of the camera.
         HorizontalCamera(float x_, float y_, float w_, float h_) noexcept;
+
+        /// @overload This constructor has the same exact behaviour as the other
+        /// constructor, except that it uses a @c tnt::Rectangle.
+        explicit HorizontalCamera(tnt::Rectangle const &rect) noexcept;
 
         /// @brief Moves the camera horizontally by @c x units.
         /// @param x_ The number of units the camera should move horizontally.
@@ -103,6 +111,10 @@ namespace tnt
         /// @param w_ The width of the camera.
         /// @param h_ The height of the camera.
         FullTrackingCamera(float x_, float y_, float w_, float h_) noexcept;
+
+        /// @overload This constructor has the same exact behaviour as the other
+        /// constructor, except that it uses a @c tnt::Rectangle.
+        explicit FullTrackingCamera(tnt::Rectangle const &rect) noexcept;
 
         /// @brief Moves the camera by @c (x,y) units.
         /// @param x_ The number of units the camera should move horizontally.

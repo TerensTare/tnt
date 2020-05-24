@@ -4,7 +4,7 @@
     TODO:
     1. trigger live.reload() in case a file has changed.
         ?? make a new file type with a timestamp.
-    2.(partial) live.reload_if(), live.reload_all(). Add check for LuaJIT modules there.
+    2.(partial) live.reload_all() and live.reload_all_if(). Add check for LuaJIT modules there.
 ]]
 
 local live = {}
@@ -28,7 +28,7 @@ end
 
 function live.reload_all()
     for k, _ in pairs(package.loaded) do
-        -- we don't wanna mess with the default lua modules
+        -- we don't wanna mess with the default lua modules.
         if k ~= "debug" and k ~= "package" and
             k ~= "coroutine" and k ~= "bit32" and
             k ~= "utf8" and k ~= "math" and

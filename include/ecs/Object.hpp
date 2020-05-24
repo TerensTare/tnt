@@ -208,15 +208,15 @@ namespace tnt
         }
 
     protected:
-        bool active; // should be rendered (maybe) move this to Sprite ??
-        float angle;
-        Vector position;
-        Vector scale;
+        bool active{true}; // should be rendered (maybe) move this to Sprite ??
+        float angle{.0f};
+        Vector position{.0f, .0f};
+        Vector scale{1.f, 1.f};
         std::map<std::type_index, Component *> components;
         Object *parent{nullptr};
     };
 
-        /// @brief An @c Object that can be drawed.
+    /// @brief An @c Object that can be drawed.
     template <typename T>
     concept drawable = requires(T const *t)
     {

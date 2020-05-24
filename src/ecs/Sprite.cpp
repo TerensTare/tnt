@@ -10,7 +10,7 @@ tnt::SpriteComponent::SpriteComponent(Window const *win, std::string_view file)
     : clipped{false}, texture{AssetManager::This().Image(win, file)},
       clipRect{0, 0, 0, 0}
 {
-    SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
+    SDL_QueryTexture(texture, nullptr, nullptr, (int *)(&clipRect.w), (int *)(&clipRect.h));
 }
 
 tnt::SpriteComponent::SpriteComponent(
@@ -44,7 +44,7 @@ void tnt::SpriteComponent::setTexture(Window const *win, std::string_view filena
         clipped = false;
     SDL_DestroyTexture(texture);
     texture = AssetManager::This().Image(win, filename);
-    SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
+    SDL_QueryTexture(texture, nullptr, nullptr, (int *)(&clipRect.w), (int *)(&clipRect.h));
 }
 
 void tnt::SpriteComponent::setTexture(
@@ -58,18 +58,9 @@ void tnt::SpriteComponent::setTexture(
     clipRect = location;
 }
 
-int tnt::SpriteComponent::getWidth() const noexcept
-{
-    if (clipped)
-        return clipRect.w;
-    return w;
-}
-int tnt::SpriteComponent::getHeight() const noexcept
-{
-    if (clipped)
-        return clipRect.h;
-    return w;
-}
+int tnt::SpriteComponent::getWidth() const noexcept { return (int)clipRect.w; }
+
+int tnt::SpriteComponent::getHeight() const noexcept { return (int)clipRect.h; }
 
 tnt::Sprite::Sprite(Window const *win, std::string_view filename, float angle) noexcept
     : sprite{add<SpriteComponent>(win, filename)} {}
@@ -85,3 +76,15 @@ tnt::Sprite::~Sprite() noexcept
 }
 
 tnt::SpriteComponent *tnt::Sprite::getSprite() const noexcept { return sprite; }
+
+void tnt::Sprite::Draw(tnt::Window const *win) noexcept
+{
+    Vector const pos{getPosition()};
+    Vector const scale{getScale()};
+    Rectangle const dest{
+        pos.x - sprite->getWidth() * scale.x * .5f,
+        pos.y - sprite->getHeight() * scale.y * .5f,
+        sprite->getWidth() * scale.x, sprite->getHeight() * scale.y};
+
+    sprite->Draw(win, dest, getAngle());
+}
