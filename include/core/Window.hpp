@@ -8,21 +8,18 @@
 #include "ecs/Object.hpp"
 #include "core/Camera.hpp"
 
-// TODO: add another simpler constructor which omits some parameters like x, y and (maybe) flags.
-// TODO: destroy EVERY Window member in it's destructor.
-// TODO: rename to RenderWindow ?? and use as reference/value ??
-// TODO: render a Scene when Draw is called.
+// TODO: overload to render a Scene when Draw is called.
 // TODO: support drawing fonts.
 // TODO: rendering in layers (bg1, bg2, bg3,..., player, enemies, etc)
 // which (maybe) are stored in a Scene.
-// TODO: handle window resizing and some other window-related events.
 
 // TODO(maybe):
 // a default window icon ??
-// make THIS a Widget ??
+// rename to RenderWindow ??
+// move detail::gfx namespace to Window.cpp ??
+
 namespace tnt
 {
-
     /// @brief A class representing an application window.
     class Window final
     {
@@ -123,7 +120,8 @@ namespace tnt
         /// @param srcrect The source rectangle.
         /// @param cam The destination camera.
         /// @param flip An SDL_RendererFlip value stating which flipping actions should be performed on the obj's texture.
-        /// @note The Object should be @c drawable, meaning it should have a @c SpriteComponent.
+        /// @note @c obj should be @c drawable, meaning it should have a @c SpriteComponent and have
+        /// a function named @c getSprite which returns @c obj's @c SpriteComponent*.
         template <drawable D, camera C>
         inline void Draw(D const *obj, SDL_Rect const &srcrect,
                          C const &cam, SDL_RendererFlip flip = SDL_FLIP_NONE) const noexcept
@@ -157,6 +155,7 @@ namespace tnt
 
     private:
         bool running;
+        int w, h;
         SDL_Renderer *renderer;
         SDL_Window *window;
     };

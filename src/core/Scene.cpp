@@ -8,7 +8,7 @@
 
 #include "fileIO/AssetManager.hpp"
 
-tnt::Scene::Scene(std::shared_ptr<Window> const &window_) : window{window_} {}
+tnt::Scene::Scene(std::shared_ptr<Window> const &window_) noexcept : window{window_} {}
 
 tnt::Scene::~Scene() noexcept
 {
@@ -38,7 +38,7 @@ void tnt::Scene::LoadFont(std::string_view name, int size) noexcept
 void tnt::Scene::Draw()
 {
     for (auto const &it : spaces)
-        it->Draw(camera_);
+        it->Draw(&*window.lock(), *camera_);
 }
 
 void tnt::Scene::Update(long long time_)

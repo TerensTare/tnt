@@ -22,7 +22,7 @@ namespace tnt::logger
     namespace
     {
         template <typename T>
-        void trace(std::string_view format, T data)
+        void trace(std::string_view format, T&& data)
         {
             fmt::print("{} TRACE: {}\n", __TIME__,
                        fmt::format(format, std::forward<T>(data)));
@@ -42,7 +42,7 @@ namespace tnt::logger
         }
 
         template <typename T>
-        void debug(std::string_view format, T data)
+        void debug(std::string_view format, T&& data)
         {
             fmt::print("{} DEBUG: {}\n", __TIME__,
                        fmt::format(format, std::forward<T>(data)));
@@ -62,7 +62,7 @@ namespace tnt::logger
         }
 
         template <typename T>
-        void info(std::string_view format, T data)
+        void info(std::string_view format, T&& data)
         {
             fmt::print("{} INFO: {}\n", __TIME__,
                        fmt::format(format, std::forward<T>(data)));
@@ -82,7 +82,7 @@ namespace tnt::logger
         }
 
         template <typename T>
-        void notice(std::string_view format, T data)
+        void notice(std::string_view format, T&& data)
         {
             fmt::print("{} NOTICE: {}\n", __TIME__,
                        fmt::format(format, std::forward<T>(data)));
@@ -102,7 +102,7 @@ namespace tnt::logger
         }
 
         template <typename T>
-        void warning(std::string_view format, T data)
+        void warning(std::string_view format, T&& data)
         {
             fmt::print("{} WARNING: {}\n", __TIME__,
                        fmt::format(format, std::forward<T>(data)));
@@ -122,7 +122,7 @@ namespace tnt::logger
         }
 
         template <typename T>
-        void error(std::string_view format, T data)
+        void error(std::string_view format, T&& data)
         {
             fmt::print("{} ERROR: {}\n", __TIME__,
                        fmt::format(format, std::forward<T>(data)));
@@ -145,7 +145,7 @@ namespace tnt::logger
         }
 
         template <typename T>
-        void critical(std::string_view format, T data)
+        void critical(std::string_view format, T&& data)
         {
             fmt::print("{} CRITICAL: {}\n", __TIME__,
                        fmt::format(format, std::forward<T>(data)));

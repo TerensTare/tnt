@@ -3,19 +3,35 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-05-25
+### Added
+-`tnt::ImGui::hslider_int2` and `tnt::ImGui::hslider_float2`.
+
+### Removed
+- ID-related macros for ImGui.
+- `core/Graphics.hpp`/`.cpp`.
+
+
 ## 2020-05-23
 ### Added
+- `tnt::AssetManager` now automatically converts relative path to absolute. That includes even `tnt::SpriteComponent`.
 - `tnt::Camera` constructor that accepts `tnt::Rectangle`.
 - `tnt::Sprite::Draw` which needs only a `tnt::Window const*`.
 - An experimental implementation of `tnt::Object`.
-- A partial implementation of animations for `drawable` `tnt::Object`. Not fully finished/tested yet.
+- A partial implementation of animations for `drawable` `tnt::Object`s. Not fully finished/tested yet.
+- Check for window resizing on `tnt::Window::handleEvents`.
 
 ### Fixed
+- `tnt::Object` rotating incorrectly.
 - `tnt::drawable` not showing when using `tnt::Space`.
+- `tnt::ImGui::hslider_*` not drawing correctly and/or out of bounds.
 
 ### Changed
+- `main.cpp` is now a basic work in progress editor for the engine.
+- `tnt::ImGui::hslider_*` now draw their value's text on top of the thumb, for a cleaner look.
 - Tried to optimize `tnt::Space::Draw`.
 - Most `tnt::Object` members are initialized by using default member initalizers.
+- `tnt::logger::*` functions that accept a formatting string and one argument, now accept `T&&` instead of `T`.
 
 ## 2020-05-19
 ### Added

@@ -1,23 +1,71 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+
 #include "core/Window.hpp"
-#include "core/Graphics.hpp"
-#include "ecs/Sprite.hpp"
 #include "utils/Logger.hpp"
 
-#include <SDL2/SDL_image.h>
-#include <utility>
+namespace tnt::detail::gfx
+{
+    inline static bool init{false};
+    inline static short window_count{0};
 
-tnt::Window::Window(
-    std::string_view title,
-    int xpos, int ypos, int width, int height,
-    Uint32 flags) noexcept
+    bool Init() noexcept
+    {
+        [[likely]] if (!detail::gfx::init)
+        {
+            if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+            {
+                tnt::logger::error("Couldn't initalize SDL2!! Error: {}\n", SDL_GetError());
+                return false;
+            }
+
+#define flags (IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF | IMG_INIT_WEBP)
+
+            if ((IMG_Init(flags) & flags) != flags)
+            {
+                tnt::logger::error("Couldn't initialize SDL_Image!! Error: {}\n", IMG_GetError());
+                return false;
+            }
+
+#undef flags
+
+            if (TTF_Init() == -1)
+            {
+                tnt::logger::error("Couldn't initalize SDL_ttf!! Error: {}\n", TTF_GetError());
+                return false;
+            }
+
+            tnt::logger::debug("Successfully initialized all graphics systems.");
+        }
+
+        return true;
+    }
+
+    void Quit() noexcept
+    {
+        if (--window_count == 0)
+        {
+            TTF_Quit();
+            IMG_Quit();
+            SDL_Quit();
+            init = false;
+        }
+    }
+
+} // namespace tnt::detail::gfx
+
+tnt::Window::Window(std::string_view title,
+                    int xpos, int ypos, int width, int height,
+                    Uint32 flags) noexcept
     : running{detail::gfx::Init()}
 {
     window = SDL_CreateWindow(title.data(), xpos, ypos, width, height, flags);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_GetWindowSize(window, &w, &h);
 }
 // SDL_RenderSetLogicalSize(renderer, width, height); // with this, the objects will be resized on window size change.
 
@@ -27,6 +75,7 @@ tnt::Window::Window(std::string_view title, int width, int height) noexcept
     window = SDL_CreateWindow(title.data(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_RESIZABLE);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_GetWindowSize(window, &w, &h);
 }
 
 tnt::Window::~Window() noexcept
@@ -71,19 +120,9 @@ SDL_DisplayMode *tnt::Window::getDisplayMode() const noexcept
     return nullptr;
 }
 
-int tnt::Window::getWidth() noexcept
-{
-    int w;
-    SDL_GetWindowSize(window, &w, nullptr);
-    return w;
-}
+int tnt::Window::getWidth() noexcept { return w; }
 
-int tnt::Window::getHeight() noexcept
-{
-    int h;
-    SDL_GetWindowSize(window, nullptr, &h);
-    return h;
-}
+int tnt::Window::getHeight() noexcept { return h; }
 
 Uint32 tnt::Window::getPixelFormat() const noexcept
 {
@@ -146,6 +185,12 @@ void tnt::Window::handleEvents(const SDL_Event &events) noexcept
 {
     if (events.type == SDL_QUIT)
         running = false;
+    if (events.type == SDL_WINDOWEVENT)
+        if (events.window.event == SDL_WINDOWEVENT_RESIZED)
+        {
+            w = events.window.data1;
+            h = events.window.data2;
+        }
 }
 
 bool tnt::Window::isOpened() const noexcept { return running; }

@@ -100,6 +100,14 @@ namespace tnt
         /// @param win The window where the @c Sprite should be drawed.
         void Draw(Window const *win) noexcept;
 
+        /// @brief Get the width of the @c Sprite.
+        /// @return int
+        int getWidth() const noexcept;
+
+        /// @brief Get the height of the @c Sprite.
+        /// @return int
+        int getHeight() const noexcept;
+
     protected: // (maybe) make these private ??
         SpriteComponent *sprite;
     };

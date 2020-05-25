@@ -114,14 +114,17 @@ namespace tnt
     {
         return Vector{lhs.x + rhs.x, lhs.y + rhs.y};
     }
+
     inline Vector operator-(const Vector &lhs, const Vector &rhs) noexcept
     {
         return Vector{lhs.x - rhs.x, lhs.y - rhs.y};
     }
+
     inline Vector operator*(const Vector &vec, const float &num) noexcept
     {
         return Vector{vec.x * num, vec.y * num};
     }
+
     inline Vector operator/(const Vector &vec, const float &num) noexcept
     {
         return Vector{vec.x / num, vec.y / num};

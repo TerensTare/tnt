@@ -17,7 +17,8 @@
 #include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
 
-using tnt::ImGui::hslider_int, tnt::ImGui::menu_button, tnt::ImGui::menu_item;
+using tnt::ImGui::hslider_float, tnt::ImGui::hslider_float2,
+    tnt::ImGui::hslider_vec;
 
 // TODO: "dissolve" this code into classes, like Game/Scene/Space, etc.
 
@@ -25,8 +26,8 @@ class Player : public tnt::Sprite
 {
 public:
     explicit Player(tnt::Window const *win)
-        : tnt::Sprite{win, std::move(std::string{SDL_GetBasePath()}.append("assets/player.png")),
-                      tnt::Rectangle{0.f, 0.f, 16.f, 16.f}} {}
+        : tnt::Sprite{win, "assets/player.png",
+                      tnt::Rectangle{3.f, 0.f, 10.f, 16.f}} {}
 
     inline void Update(long long time_) noexcept override { return; }
 };
@@ -41,18 +42,16 @@ int main(int, char **)
     window->setClearColor(10, 210, 255, 255);
     tnt_imgui_init(window);
 
-    tnt::FullTrackingCamera camera{0.f, 0.f, 160.f, 160.f};
-    SDL_Rect clip{0, 0, 16, 16};
+    tnt::Camera camera{0, 0, (float)window->getWidth(), (float)window->getHeight()};
     tnt::Timer timer;
 
     Player *player{new Player{window}};
-    player->setPosition(tnt::Vector{100.f, 100.f});
+    player->setPosition(tnt::Vector{100.f, 160.f});
     player->setScale(tnt::Vector{10.f, 10.f});
 
     tnt::Space space{};
     space.addObject("player", player);
 
-    int x{0}, y{0};
     long long dt{0};
 
     while (window->isOpened())
@@ -60,11 +59,21 @@ int main(int, char **)
         dt = timer.deltaTime().count();
         timer.reset();
 
+        auto [xScale, yScale]{player->getScale()};
+        tnt::Vector params{(float)player->getWidth(), (float)player->getHeight()};
+        tnt::Vector pos{player->getPosition()};
+
         SDL_Event e;
 
         while (SDL_PollEvent(&e))
         {
             window->handleEvents(e);
+            if (e.type == SDL_WINDOWEVENT &&
+                e.window.event == SDL_WINDOWEVENT_RESIZED)
+            {
+                camera.w = (float)window->getWidth();
+                camera.h = (float)window->getHeight();
+            }
             tnt::ImGui::update_context();
         }
 
@@ -74,21 +83,28 @@ int main(int, char **)
         window->Clear();
         space.Draw(window, camera);
 
-        if (tnt::ImGui::Begin(window, "Properties", 500, 300))
+        if (tnt::ImGui::Begin(window, "Properties", 300, 300))
         {
-            hslider_int(window, "x", 0, 9, &x);
-            hslider_int(window, "y", 0, 3, &y);
+            {
+                static float angle{360.f};
+                if (hslider_float(window, "rotation", 0.f, 720.f, &angle))
+                    player->setAngle(angle);
+            }
+
+            if (hslider_float2(window, "scale", .5f, 100.f, &xScale, &yScale))
+                player->setScale(tnt::Vector{xScale, yScale});
+
+            if (hslider_vec(window, "transform",
+                            params.x / 2, (float)window->getWidth() - (params.x / 2),
+                            params.y / 2, (float)window->getHeight() - (params.y / 2),
+                            &pos))
+                player->setPosition(pos);
 
             tnt::ImGui::End();
         }
 
-        clip.x = x * 16;
-        clip.y = y * 16;
-
         window->Render();
 
-        // if (!quit)
-        //     std::cout << dt << " fps\n";
         SDL_Delay(1);
     }
 

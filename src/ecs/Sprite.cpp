@@ -88,3 +88,6 @@ void tnt::Sprite::Draw(tnt::Window const *win) noexcept
 
     sprite->Draw(win, dest, getAngle());
 }
+
+int tnt::Sprite::getWidth() const noexcept { return sprite->getWidth() * (int)scale.x; }
+int tnt::Sprite::getHeight() const noexcept { return sprite->getHeight() * (int)scale.y; }

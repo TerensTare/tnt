@@ -47,37 +47,27 @@ namespace tnt::ImGui
     {
         int w;
         int h;
-        int thumb_w;
-        int thumb_h;
+        int thumb_size;
 
         SDL_Color color;
-        SDL_Color thumb_idle_color;
-        SDL_Color thumb_active_color;
+        SDL_Color thumb_color;
     } * slider_cfg{new slider_config{.w = 20,
                                      .h = 100,
-                                     .thumb_w = 18,
-                                     .thumb_h = 18,
+                                     .thumb_size = 18,
                                      .color = SDL_Color{130, 130, 130, 255},
-                                     .thumb_idle_color = SDL_Color{30, 144, 255, 255},
-                                     .thumb_active_color = SDL_Color{30, 144, 255, 255}}};
+                                     .thumb_color = SDL_Color{30, 144, 255, 255}}};
 
     struct hslider_config
     {
-        int w;
         int h;
-        int thumb_w;
-        int thumb_h;
+        int thumb_size;
 
         SDL_Color color;
-        SDL_Color thumb_idle_color;
-        SDL_Color thumb_active_color;
-    } * hslider_cfg{new hslider_config{.w = 100,
-                                       .h = 20,
-                                       .thumb_w = 18,
-                                       .thumb_h = 18,
+        SDL_Color thumb_color;
+    } * hslider_cfg{new hslider_config{.h = 20,
+                                       .thumb_size = 18,
                                        .color = SDL_Color{130, 130, 130, 255},
-                                       .thumb_idle_color = SDL_Color{30, 144, 255, 255},
-                                       .thumb_active_color = SDL_Color{30, 144, 255, 255}}};
+                                       .thumb_color = SDL_Color{30, 144, 255, 255}}};
 
     struct progress_bar_config
     {
@@ -215,30 +205,16 @@ namespace tnt::ImGui
         return arr;
     }
 
-    void set_slider_thumb_idle_color(unsigned char r, unsigned char g, unsigned char b,
-                                     unsigned char a) noexcept
+    void set_slider_thumb_color(unsigned char r, unsigned char g, unsigned char b,
+                                unsigned char a) noexcept
     {
-        slider_cfg->thumb_idle_color = SDL_Color{r, g, b, a};
+        slider_cfg->thumb_color = SDL_Color{r, g, b, a};
     }
 
-    unsigned char *get_slider_thumb_idle_color() noexcept
+    unsigned char *get_slider_thumb_color() noexcept
     {
-        static unsigned char arr[4]{slider_cfg->thumb_idle_color.r, slider_cfg->thumb_idle_color.g,
-                                    slider_cfg->thumb_idle_color.b, slider_cfg->thumb_idle_color.a};
-        return arr;
-    }
-
-    void set_slider_thumb_active_color(unsigned char r, unsigned char g, unsigned char b,
-                                       unsigned char a) noexcept
-    {
-        slider_cfg->thumb_active_color = SDL_Color{r, g, b, a};
-    }
-
-    unsigned char *get_slider_thumb_active_color() noexcept
-    {
-        static unsigned char arr[4]{
-            slider_cfg->thumb_active_color.r, slider_cfg->thumb_active_color.g,
-            slider_cfg->thumb_active_color.b, slider_cfg->thumb_active_color.a};
+        static unsigned char arr[4]{slider_cfg->thumb_color.r, slider_cfg->thumb_color.g,
+                                    slider_cfg->thumb_color.b, slider_cfg->thumb_color.a};
         return arr;
     }
 
@@ -259,31 +235,17 @@ namespace tnt::ImGui
         return arr;
     }
 
-    void set_hslider_thumb_idle_color(unsigned char r, unsigned char g, unsigned char b,
-                                      unsigned char a) noexcept
+    void set_hslider_thumb_color(unsigned char r, unsigned char g, unsigned char b,
+                                 unsigned char a) noexcept
     {
-        hslider_cfg->thumb_idle_color = SDL_Color{r, g, b, a};
+        hslider_cfg->thumb_color = SDL_Color{r, g, b, a};
     }
 
-    unsigned char *get_hslider_thumb_idle_color() noexcept
+    unsigned char *get_hslider_thumb_color() noexcept
     {
         static unsigned char arr[4]{
-            hslider_cfg->thumb_idle_color.r, hslider_cfg->thumb_idle_color.g,
-            hslider_cfg->thumb_idle_color.b, hslider_cfg->thumb_idle_color.a};
-        return arr;
-    }
-
-    void set_hslider_thumb_active_color(unsigned char r, unsigned char g, unsigned char b,
-                                        unsigned char a) noexcept
-    {
-        hslider_cfg->thumb_active_color = SDL_Color{r, g, b, a};
-    }
-
-    unsigned char *get_hslider_thumb_active_color() noexcept
-    {
-        static unsigned char arr[4]{
-            hslider_cfg->thumb_active_color.r, hslider_cfg->thumb_active_color.g,
-            hslider_cfg->thumb_active_color.b, hslider_cfg->thumb_active_color.a};
+            hslider_cfg->thumb_color.r, hslider_cfg->thumb_color.g,
+            hslider_cfg->thumb_color.b, hslider_cfg->thumb_color.a};
         return arr;
     }
 
@@ -412,6 +374,77 @@ namespace tnt::ImGui
     };
 
     auto get_last_win = [] { return get_window(context->last_window); };
+
+    auto hslider_basef = [](tnt::Window const *win, window_data const *tmp,
+                            std::size_t const &id, int const &x,
+                            int const &w, float const &min_,
+                            float const &max_, float *value) -> bool {
+        const int xpos{static_cast<int>(((w - hslider_cfg->thumb_size) * (*value - min_)) /
+                                        (max_ - min_))};
+        const int offset{hslider_cfg->h - hslider_cfg->thumb_size};
+        const SDL_Rect thumb{x + (offset / 2) + xpos, tmp->next_y + (offset / 2), hslider_cfg->thumb_size,
+                             hslider_cfg->thumb_size};
+
+        check_button(id, x, tmp->next_y, w, hslider_cfg->h);
+
+        draw_rect(win, {x, tmp->next_y, w + offset, hslider_cfg->h}, hslider_cfg->color);
+        draw_rect(win, thumb, hslider_cfg->thumb_color);
+
+        draw_text(win, std::to_string(*value).c_str(), x + w / 2 - 4, tmp->next_y);
+
+        if (context->active == id)
+        {
+            int mousePos{context->mouse_x - x - (offset / 2)};
+            if (mousePos < 0)
+                mousePos = 0;
+            if (mousePos > w - 1)
+                mousePos = w - 1;
+
+            if (float v{static_cast<float>(mousePos * (max_ - min_) / (w - 1)) + min_};
+                v != (*value))
+            {
+                *value = (float)((int)(v * 10.f)) * .1f;
+                return true;
+            }
+        }
+
+        return false;
+    };
+
+    auto hslider_basei = [](tnt::Window const *win, window_data const *tmp,
+                            std::size_t const &id, int const &x,
+                            int const &w, int const &min_,
+                            int const &max_, int *value) -> bool {
+        const int xpos{(w - hslider_cfg->thumb_size) * (*value - min_) /
+                       (max_ - min_)};
+        const int offset{hslider_cfg->h - hslider_cfg->thumb_size};
+        const SDL_Rect thumb{x + (offset / 2) + xpos, tmp->next_y + (offset / 2), hslider_cfg->thumb_size,
+                             hslider_cfg->thumb_size};
+
+        check_button(id, x, tmp->next_y, w, hslider_cfg->h);
+
+        draw_rect(win, {x, tmp->next_y, w + offset, hslider_cfg->h}, hslider_cfg->color);
+        draw_rect(win, thumb, hslider_cfg->thumb_color);
+
+        draw_text(win, std::to_string(*value).c_str(), x + w / 2 - 4, tmp->next_y);
+
+        if (context->active == id)
+        {
+            int mousePos{context->mouse_x - x - (offset / 2)};
+            if (mousePos < 0)
+                mousePos = 0;
+            if (mousePos > w - 1)
+                mousePos = w - 1;
+
+            if (int v{mousePos * (max_ - min_) / (w - 1) + min_}; v != (*value))
+            {
+                *value = v;
+                return true;
+            }
+        }
+
+        return false;
+    };
 
     ///////////////////
     // context stuff //
@@ -662,30 +695,20 @@ namespace tnt::ImGui
         if (tmp->next_y + slider_cfg->h > tmp->y + tmp->h || tmp->w < slider_cfg->w)
             return false;
 
-        std::string key{tmp->title};
-        key.append(std::to_string(*value));
-        const std::size_t id{im_hash(key)};
+        const std::size_t id{im_hash(tmp->title + std::to_string(*value))};
 
-        const int ypos{((slider_cfg->h - slider_cfg->thumb_h) * (*value - min_)) / (max_ - min_)};
-        const int offset{slider_cfg->w - slider_cfg->thumb_w};
+        const int ypos{((slider_cfg->h - slider_cfg->thumb_size) * (*value - min_)) / (max_ - min_)};
+        const int offset{slider_cfg->w - slider_cfg->thumb_size};
 
         const int x{tmp->x + 10};
+        const SDL_Rect thumb{x + (offset / 2), tmp->next_y + (offset / 2) + ypos, slider_cfg->thumb_size,
+                             slider_cfg->thumb_size};
 
         check_button(id, x, tmp->next_y, slider_cfg->w, slider_cfg->h);
 
         draw_rect(win, {x, tmp->next_y, slider_cfg->w, slider_cfg->h + offset}, slider_cfg->color);
+        draw_rect(win, thumb, slider_cfg->thumb_color);
 
-        SDL_Rect thumb{x + (offset / 2), tmp->next_y + (offset / 2) + ypos, slider_cfg->thumb_w,
-                       slider_cfg->thumb_h};
-
-        SDL_Color widgetColor;
-
-        if (context->active == id || context->hot == id)
-            widgetColor = slider_cfg->thumb_active_color;
-        else
-            widgetColor = slider_cfg->thumb_idle_color;
-
-        draw_rect(win, thumb, widgetColor);
         bool ret{false};
 
         if (context->active == id)
@@ -714,14 +737,10 @@ namespace tnt::ImGui
         if (tmp->next_y + slider_cfg->h > tmp->y + tmp->h || tmp->w < slider_cfg->w)
             return false;
 
-        std::string key{tmp->title};
-        key.append(std::to_string(*value));
-        const std::size_t id{im_hash(key)};
-
-        const int ypos{static_cast<int>(((slider_cfg->h - slider_cfg->thumb_h) * (*value - min_)) /
+        const std::size_t id{im_hash(tmp->title + std::to_string(*value))};
+        const int ypos{static_cast<int>(((slider_cfg->h - slider_cfg->thumb_size) * (*value - min_)) /
                                         (max_ - min_))};
-        int offset{slider_cfg->w - slider_cfg->thumb_w};
-
+        const int offset{slider_cfg->w - slider_cfg->thumb_size};
         const int x{tmp->x + 10};
 
         if (on_rect(x, tmp->next_y, slider_cfg->w, slider_cfg->h))
@@ -733,17 +752,10 @@ namespace tnt::ImGui
 
         draw_rect(win, {x, tmp->next_y, slider_cfg->w, slider_cfg->h + offset}, slider_cfg->color);
 
-        const SDL_Rect thumb{x + (offset / 2), tmp->next_y + (offset / 2) + ypos, slider_cfg->thumb_w,
-                             slider_cfg->thumb_h};
+        const SDL_Rect thumb{x + (offset / 2), tmp->next_y + (offset / 2) + ypos, slider_cfg->thumb_size,
+                             slider_cfg->thumb_size};
 
-        SDL_Color widgetColor;
-
-        if (context->active == id || context->hot == id)
-            widgetColor = slider_cfg->thumb_active_color;
-        else
-            widgetColor = slider_cfg->thumb_idle_color;
-
-        draw_rect(win, thumb, widgetColor);
+        draw_rect(win, thumb, slider_cfg->thumb_color);
 
         bool ret{false};
 
@@ -771,120 +783,139 @@ namespace tnt::ImGui
     {
         window_data *tmp{get_last_win()};
 
+        // 40 = 10 for left padding, 20 for distance between text and slider, 10 for right padding.
+        const int w{tmp->w - static_cast<int>(7 * text.size() + 40)};
+
         // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
         if (tmp->next_y + hslider_cfg->h > tmp->y + tmp->h ||
             tmp->w < static_cast<int>(80 + 7 * text.size()))
             return false;
 
-        const int xpos{(hslider_cfg->w - hslider_cfg->thumb_w) * (*value - min_) / (max_ - min_)};
-        const int offset{hslider_cfg->h - hslider_cfg->thumb_h};
-
-        const std::size_t id{im_hash(tmp->title + text.data())};
-
         const int x{tmp->x + 10};
+        const std::size_t id{im_hash(tmp->title + text.data())};
+        const bool ret{hslider_basei(win, tmp, id, x, w, min_, max_, value)};
 
-        // 40 = 10 for left padding, 20 for distance between text and slider, 10 for right padding.
-        hslider_cfg->w = tmp->w - static_cast<int>(7 * text.size() + 40);
-
-        check_button(id, x, tmp->next_y, hslider_cfg->w, hslider_cfg->h);
-        draw_rect(win, {x, tmp->next_y, hslider_cfg->w + offset, hslider_cfg->h}, hslider_cfg->color);
-
-        draw_text(win, std::to_string(*value).c_str(), x + hslider_cfg->w / 2 - 4, tmp->next_y);
-        draw_text(win, text.data(), x + hslider_cfg->w + 20, tmp->next_y);
-
-        const SDL_Rect thumb{x + (offset / 2) + xpos, tmp->next_y + (offset / 2), hslider_cfg->thumb_w,
-                             hslider_cfg->thumb_h};
-
-        SDL_Color widgetColor;
-
-        if (context->active == id || context->hot == id)
-            widgetColor = hslider_cfg->thumb_active_color;
-        else
-            widgetColor = hslider_cfg->thumb_idle_color;
-
-        draw_rect(win, thumb, widgetColor);
-
-        bool ret{false};
-
-        if (context->active == id)
-        {
-            int mousePos{context->mouse_x - (x + (offset / 2))};
-            if (mousePos < 0)
-                mousePos = 0;
-            if (mousePos > (hslider_cfg->w - 1))
-                mousePos = (hslider_cfg->w - 1);
-
-            if (int v{min_ + (mousePos * (max_ - min_)) / (hslider_cfg->w - 1)}; v != *value)
-            {
-                *value = v;
-                ret = true;
-            }
-        }
+        draw_text(win, text.data(), x + w + 20, tmp->next_y);
 
         tmp->next_y = tmp->next_y + hslider_cfg->h + 5;
 
         return ret;
-    }
+    } // namespace tnt::ImGui
 
     bool hslider_float(Window const *win, std::string_view text, float min_, float max_,
                        float *value) noexcept
     {
         window_data *tmp{get_last_win()};
 
+        // 40 = 10 for left padding, 20 for distance between text and slider, 10 for right padding.
+        const int w{tmp->w - static_cast<int>(7 * text.size() + 40)};
+
         // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
         if (tmp->next_y + hslider_cfg->h > tmp->y + tmp->h ||
             tmp->w < static_cast<int>(80 + 7 * text.size()))
             return false;
 
-        const int xpos{static_cast<int>(((hslider_cfg->w - hslider_cfg->thumb_w) * (*value - min_)) /
-                                        (max_ - min_))};
-        const int offset{hslider_cfg->h - hslider_cfg->thumb_h};
-
-        std::string key{tmp->title};
-        key.append(text);
-        const std::size_t id{im_hash(key)};
-
         const int x{tmp->x + 10};
+        const std::size_t id{im_hash(tmp->title + text.data())};
+        const bool ret{hslider_basef(win, tmp, id, x, w, min_, max_, value)};
 
-        hslider_cfg->w = tmp->w - static_cast<int>(7 * text.size() + 40);
+        draw_text(win, text.data(), x + w + 20, tmp->next_y);
 
-        check_button(id, x, tmp->next_y, hslider_cfg->w, hslider_cfg->h);
-        draw_rect(win, {x, tmp->next_y, hslider_cfg->w + offset, hslider_cfg->h}, hslider_cfg->color);
-
-        draw_text(win, std::to_string(*value).c_str(), x + hslider_cfg->w / 2 - 4, tmp->next_y);
-        draw_text(win, text.data(), x + hslider_cfg->w + 20, tmp->next_y);
-
-        const SDL_Rect thumb{x + (offset / 2) + xpos, tmp->next_y + (offset / 2), hslider_cfg->thumb_w,
-                             hslider_cfg->thumb_h};
-
-        SDL_Color widgetColor;
-
-        if (context->active == id || context->hot == id)
-            widgetColor = hslider_cfg->thumb_active_color;
-        else
-            widgetColor = hslider_cfg->thumb_idle_color;
-
-        draw_rect(win, thumb, widgetColor);
-
-        bool ret{false};
-
-        if (context->active == id)
-        {
-            int mousePos{context->mouse_x - (x + (offset / 2))};
-            if (mousePos < 0)
-                mousePos = 0;
-            if (mousePos > (hslider_cfg->w - 1))
-                mousePos = (hslider_cfg->w - 1);
-
-            if (float v{static_cast<float>((mousePos * max_) / (hslider_cfg->w - 1))}; v != *value)
-            {
-                *value = v;
-                ret = true;
-            }
-        }
         tmp->next_y = tmp->next_y + hslider_cfg->h + 5;
 
         return ret;
+    }
+
+    bool hslider_int2(Window const *win, std::string_view text,
+                      int min_, int max_, int *value1, int *value2) noexcept
+    {
+        window_data *tmp{get_last_win()};
+
+        // 50 = 10 for left padding, 20 for distance between text and slider,
+        // 10 for right padding, 10 for distance between sliders.
+        const int w{(tmp->w - static_cast<int>(7 * text.size())) / 2 - 25};
+
+        // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
+        if (tmp->next_y + hslider_cfg->h > tmp->y + tmp->h ||
+            tmp->w < static_cast<int>(80 + 7 * text.size()))
+            return false;
+
+        const int x{tmp->x + 10};
+        const std::size_t id1{im_hash(tmp->title + text.data() + "x")};
+        const std::size_t id2{im_hash(tmp->title + text.data() + "y")};
+
+        const bool ret1{hslider_basei(win, tmp, id1, x, w, min_, max_, value1)};
+        const bool ret2{hslider_basei(win, tmp, id2, x + w + 10, w, min_, max_, value2)};
+
+        draw_text(win, text.data(), x + 2 * w + 30, tmp->next_y);
+
+        tmp->next_y = tmp->next_y + hslider_cfg->h + 5;
+
+        return (ret1 || ret2);
+    }
+
+    bool hslider_float2(Window const *win, std::string_view text,
+                        float min_, float max_, float *value1, float *value2) noexcept
+    {
+        window_data *tmp{get_last_win()};
+
+        // 50 = 10 for left padding, 20 for distance between text and slider,
+        // 10 for right padding, 10 for distance between sliders.
+        const int w{(tmp->w - static_cast<int>(7 * text.size())) / 2 - 25};
+
+        // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
+        if (tmp->next_y + hslider_cfg->h > tmp->y + tmp->h ||
+            tmp->w < static_cast<int>(80 + 7 * text.size()))
+            return false;
+
+        const int x{tmp->x + 10};
+        const std::size_t id1{im_hash(tmp->title + text.data() + "x")};
+        const std::size_t id2{im_hash(tmp->title + text.data() + "y")};
+
+        const bool ret1{hslider_basef(win, tmp, id1, x, w, min_, max_, value1)};
+        const bool ret2{hslider_basef(win, tmp, id2, x + w + 10, w, min_, max_, value2)};
+
+        draw_text(win, text.data(), x + 2 * w + 30, tmp->next_y);
+
+        tmp->next_y = tmp->next_y + hslider_cfg->h + 5;
+
+        return (ret1 || ret2);
+    }
+
+    bool hslider_vec(Window const *win, std::string_view text,
+                     float min1, float max1, float min2, float max2,
+                     tnt::Vector *value) noexcept
+    {
+        window_data *tmp{get_last_win()};
+
+        // 50 = 10 for left padding, 20 for distance between text and slider,
+        // 10 for right padding, 10 for distance between sliders.
+        const int w{(tmp->w - static_cast<int>(7 * text.size())) / 2 - 25};
+
+        // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
+        if (tmp->next_y + hslider_cfg->h > tmp->y + tmp->h ||
+            tmp->w < static_cast<int>(80 + 7 * text.size()))
+            return false;
+
+        auto [x_, y_]{*value};
+
+        const int x{tmp->x + 10};
+        const std::size_t id1{im_hash(tmp->title + text.data() + "x")};
+        const std::size_t id2{im_hash(tmp->title + text.data() + "y")};
+
+        const bool ret1{hslider_basef(win, tmp, id1, x, w, min1, max1, &x_)};
+        const bool ret2{hslider_basef(win, tmp, id2, x + w + 10, w, min2, max2, &y_)};
+
+        if (x_ != value->x)
+            value->x = x_;
+        if (y_ != value->y)
+            value->y = y_;
+
+        draw_text(win, text.data(), x + 2 * w + 30, tmp->next_y);
+
+        tmp->next_y = tmp->next_y + hslider_cfg->h + 5;
+
+        return (ret1 || ret2);
     }
 
     bool menu_button(Window const *win, std::string_view text) noexcept

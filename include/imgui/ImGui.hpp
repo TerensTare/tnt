@@ -3,16 +3,6 @@
 
 #include <string_view>
 
-/// @brief Macro that generates an id for an ImGui widget.
-/// @sa IMGUI_ID
-/// @note Use IMGUI_ID instead.
-/// @note Both this and IMGUI_ID will be removed in the future.
-#define IMGEN_WIDGET_ID(N) (((__LINE__ << 8) | ((N)&0xFF)) ^ ((std::size_t)&__FILE__))
-
-/// @brief Short macro that generates an id for ImGui widgets.
-/// @note This will be removed in future.
-#define IMGUI_ID IMGEN_WIDGET_ID(1)
-
 // TODO: more widgets:
 // image, radio, text field, selection box, context menu, icon(button with image)
 // TODO: separate menu() into BeginMenu()/EndMenu() and menu_item() (whatever name)
@@ -40,6 +30,7 @@
 namespace tnt
 {
     class Window;
+    struct Vector;
 
     namespace ImGui
     {
@@ -249,6 +240,44 @@ namespace tnt
         /// @return bool
         bool hslider_float(Window const *win, std::string_view text, float min_, float max_,
                            float *value) noexcept;
+
+        /// @brief Draw two aligned horizontal sliders that modify 2 @c int values on the current ImGui window.
+        /// The widget returns @c true if any of the values have been modified, @c false otherwise.
+        /// @param win The game window where the slider should be drawed.
+        /// @param text The text that should be drawn next to the sliders.
+        /// @param min_ The minimun value the widget can set for the first @c int.
+        /// @param max_ The maximum value the widget can set for the first @c int.
+        /// @param value1 The first value that the widget can modify.
+        /// @param value2 The second value that the widget can modify.
+        /// @return bool
+        bool hslider_int2(Window const *win, std::string_view text,
+                          int min_, int max_, int *value1, int *value2) noexcept;
+
+        /// @brief Draw two aligned horizontal sliders that modify 2 @c float values on the current ImGui window.
+        /// The widget returns @c true if any of the values have been modified, @c false otherwise.
+        /// @param win The game window where the slider should be drawed.
+        /// @param text The text that should be drawn next to the sliders.
+        /// @param min_ The minimun value the widget can set for the first @c float.
+        /// @param max_ The maximum value the widget can set for the first @c float.
+        /// @param value1 The first value that the widget can modify.
+        /// @param value2 The second value that the widget can modify.
+        /// @return bool
+        bool hslider_float2(Window const *win, std::string_view text,
+                            float min_, float max_, float *value1, float *value2) noexcept;
+
+        /// @brief Draw two aligned horizontal sliders that modify a @c tnt::Vector's value on the current ImGui window.
+        /// The widget returns @c true if any of the values have been modified, @c false otherwise.
+        /// @param win The game window where the slider should be drawed.
+        /// @param text The text that should be drawn next to the sliders.
+        /// @param min1 The minimun value the widget can set for the first @c float of the @c tnt::Vector.
+        /// @param max1 The maximum value the widget can set for the first @c float of the @c tnt::Vector.
+        /// @param min2 The minimun value the widget can set for the second @c float of the @c tnt::Vector.
+        /// @param max2 The maximum value the widget can set for the second @c float of the @c tnt::Vector.
+        /// @param value The @c tnt::Vector that the widget can modify.
+        /// @return bool
+        bool hslider_vec(Window const *win, std::string_view text,
+                         float min1, float max1, float min2, float max2,
+                         tnt::Vector *value) noexcept;
 
         /// @brief Draw a checkbox with @c text on the side of it.
         /// Returns @c true if modified, @c false otherwise.

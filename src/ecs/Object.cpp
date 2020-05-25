@@ -34,7 +34,7 @@ void tnt::Object::Transform(Vector const &pos) noexcept { position = position + 
 void tnt::Object::setAngle(float radian) noexcept
 {
     angle = radian;
-    while (fabsf(angle - 360.f) > FLT_EPSILON)
+    while (angle - 360.f > FLT_EPSILON)
         angle = angle - 360.f;
 }
 
@@ -49,8 +49,10 @@ float tnt::Object::getAngle(tnt::Object::Coordinates const &coords) const noexce
 void tnt::Object::Rotate(float radian) noexcept
 {
     angle = angle + radian;
-    while (fabsf(angle - 360.f) > FLT_EPSILON)
+    while (angle - 360.f > FLT_EPSILON)
         angle = angle - 360.f;
+    while (angle + 360.f < -FLT_EPSILON)
+        angle = angle + 360.f;
 }
 
 void tnt::Object::setScale(Vector const &ratio) noexcept { scale = ratio; }
