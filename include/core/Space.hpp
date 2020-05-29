@@ -11,6 +11,8 @@
 
 // TODO: getObject should have conditional noexcept (if key exists in
 // container).
+// TODO: detect collision at Update().
+// TODO: make Object-s inactive if out of the camera.
 
 // TODO(maybe):
 // Add a Quadtree ??
@@ -34,6 +36,8 @@ namespace tnt
     class Space
     {
     public:
+        bool isActive() const noexcept;
+
         void addObject(std::pair<std::string_view, Object *> const &obj);
         void addObject(std::string_view id, Object *obj);
 
@@ -44,8 +48,7 @@ namespace tnt
         inline void Draw(Window const *win, C const &cam) noexcept
         {
             for (auto const &it : objects)
-                if (it.second->isActive() &&
-                    it.second->has<SpriteComponent>())
+                if (it.second->has<SpriteComponent>())
                 {
                     SpriteComponent *sprite{it.second->get<SpriteComponent>()};
 
@@ -55,6 +58,8 @@ namespace tnt
                     if (tnt::Vector const pos{it.second->getPosition()};
                         detail::should_draw(cam.Bounds(), pos, static_cast<float>(w), static_cast<float>(h)))
                     {
+                        it.second->setActive(true);
+
                         Vector const scale{it.second->getScale()};
                         Rectangle const dest{
                             pos.x - sprite->getWidth() * scale.x * .5f,
@@ -63,14 +68,17 @@ namespace tnt
 
                         sprite->Draw(win, dest, it.second->getAngle());
                     }
+                    else
+                        it.second->setActive(false);
                 }
         }
 
         void Update(long long time_) noexcept;
 
     protected:
+        bool active{true};
         std::map<std::string, Object *> objects;
-    };
+    }; // namespace tnt
 } // namespace tnt
 
 #endif //!TNT_SPACE_HPP

@@ -92,8 +92,7 @@ configure_file(
     "${PROJECT_BINARY_DIR}/include/version.h")
 
 set(SOURCE_FILES src/core/Window.cpp src/core/Input.cpp
-    src/core/Camera.cpp src/core/Space.cpp
-    # src/core/Scene.cpp
+    src/core/Camera.cpp src/core/Space.cpp src/core/Scene.cpp
     src/math/Rectangle.cpp src/fileIO/AssetManager.cpp
     src/ecs/Object.cpp src/ecs/Sprite.cpp
     src/ImGui/ImGui.cpp src/utils/Timer.cpp)

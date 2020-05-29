@@ -3,6 +3,30 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-05-29
+### Changed
+- Restructured ImGui's backend with reduced `new`/`delete` calls to gain some performance.
+
+## 2020-05-28
+### Removed
+- `ecs/Component.hpp` and `ecs/Component.cpp`. `tnt::PhysicsComponent` is now located on `ecs/RigidBody`.
+- `physics/Box` and `physics/Quadtree`.
+- Most of the functions of `imgui/gui_config.hpp`.
+
+## 2020-05-27
+### Changed
+- The window size of the example in `main.cpp` is now `1280x720`.
+
+
+## 2020-05-26
+### Added
+- `tnt::Scene`'s constructor now needs a `std::string_view` which contains the path of the background. If it is equal to "", no background is drawed.
+- `tnt::Space::isActive`. `tnt::Space`s are not active if none of their `tnt::Object` is active. If a `tnt::Space` is not active, it is not updated nor rendered.
+
+### Changed
+- `tnt::Window::getWidth` and `tnt::Window::getHeight` are now marked as `const`.
+
+
 ## 2020-05-25
 ### Added
 -`tnt::ImGui::hslider_int2` and `tnt::ImGui::hslider_float2`.
@@ -27,11 +51,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `tnt::ImGui::hslider_*` not drawing correctly and/or out of bounds.
 
 ### Changed
+- Some functions on the implementation of `tnt::Scene`.
 - `main.cpp` is now a basic work in progress editor for the engine.
 - `tnt::ImGui::hslider_*` now draw their value's text on top of the thumb, for a cleaner look.
 - Tried to optimize `tnt::Space::Draw`.
 - Most `tnt::Object` members are initialized by using default member initalizers.
 - `tnt::logger::*` functions that accept a formatting string and one argument, now accept `T&&` instead of `T`.
+
 
 ## 2020-05-19
 ### Added

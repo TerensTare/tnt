@@ -3,8 +3,8 @@
 
 #include "core/Input.hpp"
 #include "core/Window.hpp"
-#include "core/Camera.hpp"
 #include "core/Space.hpp"
+#include "core/Scene.hpp"
 
 #include "ecs/Sprite.hpp"
 
@@ -29,7 +29,11 @@ public:
         : tnt::Sprite{win, "assets/player.png",
                       tnt::Rectangle{3.f, 0.f, 10.f, 16.f}} {}
 
-    inline void Update(long long time_) noexcept override { return; }
+    inline void Update(long long time_) noexcept override
+    {
+        if (active)
+            active = true;
+    }
 };
 
 int main(int, char **)
@@ -37,10 +41,7 @@ int main(int, char **)
     tnt::Window *window{new tnt::Window{
         "The TnT Engine", SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        800, 600, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
-
-    window->setClearColor(10, 210, 255, 255);
-    tnt_imgui_init(window);
+        1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
     tnt::Camera camera{0, 0, (float)window->getWidth(), (float)window->getHeight()};
     tnt::Timer timer;
@@ -52,7 +53,14 @@ int main(int, char **)
     tnt::Space space{};
     space.addObject("player", player);
 
+    tnt::Scene editor{window, "assets/sky.png"};
+    editor.addSpace("gameSpace", &space);
+
     long long dt{0};
+    SDL_DisplayMode display;
+    SDL_GetDisplayMode(0, 0, &display);
+
+    tnt_imgui_init(window);
 
     while (window->isOpened())
     {
@@ -73,15 +81,16 @@ int main(int, char **)
             {
                 camera.w = (float)window->getWidth();
                 camera.h = (float)window->getHeight();
+                SDL_GetDisplayMode(0, 0, &display);
             }
             tnt::ImGui::update_context();
         }
 
         if (dt != 0)
-            space.Update(dt);
+            editor.Update(dt);
 
         window->Clear();
-        space.Draw(window, camera);
+        editor.Draw(window);
 
         if (tnt::ImGui::Begin(window, "Properties", 300, 300))
         {
@@ -95,8 +104,8 @@ int main(int, char **)
                 player->setScale(tnt::Vector{xScale, yScale});
 
             if (hslider_vec(window, "transform",
-                            params.x / 2, (float)window->getWidth() - (params.x / 2),
-                            params.y / 2, (float)window->getHeight() - (params.y / 2),
+                            params.x / 2, (float)display.w - (params.x / 2),
+                            params.y / 2, (float)display.h - (params.y / 2),
                             &pos))
                 player->setPosition(pos);
 

@@ -120,9 +120,9 @@ SDL_DisplayMode *tnt::Window::getDisplayMode() const noexcept
     return nullptr;
 }
 
-int tnt::Window::getWidth() noexcept { return w; }
+int tnt::Window::getWidth() const noexcept { return w; }
 
-int tnt::Window::getHeight() noexcept { return h; }
+int tnt::Window::getHeight() const noexcept { return h; }
 
 Uint32 tnt::Window::getPixelFormat() const noexcept
 {

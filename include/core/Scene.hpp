@@ -2,6 +2,7 @@
 #define TNT_SCENE_HPP
 
 #include <map>
+#include <span>
 #include "core/Camera.hpp"
 
 // TODO: implement cutscenes (scenes where player input is ignored).
@@ -11,6 +12,9 @@
 
 // TODO(maybe):
 // make LoadAssets() a coroutine ??
+// use std::span on LoadAssets ??
+
+typedef struct SDL_Texture SDL_Texture;
 
 namespace tnt
 {
@@ -21,22 +25,22 @@ namespace tnt
     class Scene
     {
     public:
-        explicit Scene(std::shared_ptr<Window> const &window_) noexcept;
-        ~Scene() noexcept;
+        explicit Scene(Window const *win, std::string_view background = "") noexcept;
 
         // NOTE: fonts are loaded using LoadFont().
-        void LoadAssets(std::vector<std::string> const &assets);
+        void LoadAssets(Window const *win, std::span<std::string_view> assets);
         void LoadFont(std::string_view name, int size);
 
         void addSpace(std::string_view name, Space *space);
+        Space *getSpace(std::string_view name) const noexcept;
 
-        void Draw();
+        void Draw(tnt::Window const *win);
         void Update(long long time_);
 
     private:
-        Camera *camera_; // TODO: replace this with a concept if possible
-        std::weak_ptr<Window> window;
-        std::vector<Space *> spaces;
+        SDL_Texture *bg;
+        Camera camera_; // TODO: replace this with a concept if possible
+        std::map<std::string, Space *> spaces;
     };
 } // namespace tnt
 

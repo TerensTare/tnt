@@ -5,7 +5,7 @@
 
 #include <SDL2/SDL.h>
 
-#include "ecs/Object.hpp"
+#include "ecs/Sprite.hpp"
 #include "core/Camera.hpp"
 
 // TODO: overload to render a Scene when Draw is called.
@@ -72,11 +72,11 @@ namespace tnt
 
         /// @brief Returns the width of the window.
         /// @return int
-        int getWidth() noexcept;
+        int getWidth() const noexcept;
 
         /// @brief Returns the height of the window.
         /// @return int
-        int getHeight() noexcept;
+        int getHeight() const noexcept;
 
         /// @brief Get the pixel format associated with the window.
         /// @return unsigned int

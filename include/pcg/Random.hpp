@@ -23,11 +23,11 @@ namespace tnt
     /// @param min_ The minimum value of the int.
     /// @param max_ The maximum value of the int.
     /// @return int
-    inline int randomValue(int min, int max) noexcept
+    inline int randomValue(int min_, int max_) noexcept
     {
         static std::random_device device;
         static std::mt19937 generator{device()};
-        static std::uniform_int_distribution dist{min, max};
+        static std::uniform_int_distribution dist{min_, max_};
         return dist(generator);
     }
 } // namespace tnt

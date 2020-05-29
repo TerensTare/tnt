@@ -5,7 +5,6 @@
 
 #include <vector>
 
-// TODO: lastKeyPressed.
 // TODO: Joystick and GameController support.
 
 // TODO(maybe):

@@ -7,6 +7,8 @@
 #include "ecs/Object.hpp"
 #include "core/Camera.hpp"
 
+bool tnt::Space::isActive() const noexcept { return active; }
+
 void tnt::Space::addObject(std::pair<std::string_view, tnt::Object *> const &obj) { objects.insert(obj); }
 
 void tnt::Space::addObject(std::string_view id, tnt::Object *obj)
@@ -26,5 +28,10 @@ void tnt::Space::Update(long long time_) noexcept
 {
     for (auto const &it : objects)
         if (it.second->isActive())
+        {
+            active = true;
             it.second->Update(time_);
+        }
+        else
+            active = false;
 }

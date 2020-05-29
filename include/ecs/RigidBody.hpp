@@ -1,7 +1,6 @@
 #ifndef TNT_RIGID_BODY_HPP
 #define TNT_RIGID_BODY_HPP
 
-#include "ecs/Component.hpp"
 #include "ecs/Object.hpp"
 #include "math/Rectangle.hpp"
 
@@ -15,24 +14,43 @@
 
 namespace tnt
 {
+    class PhysicsComponent final : public Component
+    {
+    public:
+        PhysicsComponent(float const &mass, Rectangle const &collision_box);
+        PhysicsComponent(float const &mass, float x, float y, float &w, float &h);
+
+        void setMass(float const &mass);
+        float getMass() const noexcept(noexcept(invMass > 0.f));
+
+        Vector getVelocity() const noexcept;
+        Vector getAcceleration() const noexcept;
+
+        Rectangle getCollisionBox() const noexcept;
+
+        void applyForce(Vector const &force) noexcept(noexcept(invMass > 0.f));
+
+    private:
+        float invMass;
+        Vector velocity;
+        Vector maxVelocity; // necessary ??
+        Vector acceleration;
+        Rectangle collisionBox;
+    };
+
     // TODO: collision_box is not used. Find a way to use it.
     class RigidBody : virtual public Object
     {
-      public:
-        RigidBody(float mass, Rectangle const &collision_box);
+    public:
+        RigidBody(float const &mass, Rectangle const &collision_box);
         ~RigidBody() noexcept;
 
-        PhysicsComponent *getPhysics() const noexcept; // (maybe) not const
+        PhysicsComponent *getPhysics() const noexcept;
 
-      protected:
+    protected:
         PhysicsComponent *physics;
     };
 
-    class Joint
-    {
-      protected: // should this be private ??
-        RigidBody *poles[2];
-    };
 } // namespace tnt
 
 #endif //! TNT_RIGID_BODY_HPP

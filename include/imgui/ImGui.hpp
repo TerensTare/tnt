@@ -5,10 +5,8 @@
 
 // TODO: more widgets:
 // image, radio, text field, selection box, context menu, icon(button with image)
-// TODO: separate menu() into BeginMenu()/EndMenu() and menu_item() (whatever name)
 // TODO: load from config file.
 // TODO: themes and same color for widgets like button, checkbox, etc
-// TODO: cheaper and faster text handling.
 // TODO: add support for collapsing and multiple windows.
 // TODO: make sure no widget (except list_item) is drawed between BeginList() and EndList() calls.
 // TODO: add support for handling more than one context (multiple game windows).
@@ -18,6 +16,7 @@
 // TODO: remove some of the config functions and members.
 // TODO: resize the hslider's width in case the window is resized.
 // TODO: make a draw function to draw all widgets the way you want.
+// TODO: draw menu even if there is no ImGui window.
 
 // TODO(maybe):
 // remove window_config ??
