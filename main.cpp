@@ -11,14 +11,12 @@
 #include "fileIO/AssetManager.hpp"
 
 #include "imgui/ImGui.hpp"
-// #define TNT_IMGUI_RUNTIME_CONFIG
-// #include "imgui/gui_config.hpp"
 
 #include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
 
 using tnt::ImGui::hslider_float, tnt::ImGui::hslider_float2,
-    tnt::ImGui::hslider_vec;
+    tnt::ImGui::hslider_vec, tnt::ImGui::WindowFlags;
 
 // TODO: "dissolve" this code into classes, like Game/Scene/Space, etc.
 
@@ -29,11 +27,7 @@ public:
         : tnt::Sprite{win, "assets/player.png",
                       tnt::Rectangle{3.f, 0.f, 10.f, 16.f}} {}
 
-    inline void Update(long long time_) noexcept override
-    {
-        if (active)
-            active = true;
-    }
+    inline void Update(long long time_) noexcept override { return; }
 };
 
 int main(int, char **)
@@ -43,14 +37,13 @@ int main(int, char **)
         SDL_WINDOWPOS_CENTERED,
         1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
-    tnt::Camera camera{0, 0, (float)window->getWidth(), (float)window->getHeight()};
     tnt::Timer timer;
 
     Player *player{new Player{window}};
     player->setPosition(tnt::Vector{100.f, 160.f});
     player->setScale(tnt::Vector{10.f, 10.f});
 
-    tnt::Space space{};
+    tnt::Space space;
     space.addObject("player", player);
 
     tnt::Scene editor{window, "assets/sky.png"};
@@ -78,11 +71,8 @@ int main(int, char **)
             window->handleEvents(e);
             if (e.type == SDL_WINDOWEVENT &&
                 e.window.event == SDL_WINDOWEVENT_RESIZED)
-            {
-                camera.w = (float)window->getWidth();
-                camera.h = (float)window->getHeight();
                 SDL_GetDisplayMode(0, 0, &display);
-            }
+
             tnt::ImGui::update_context();
         }
 
@@ -94,20 +84,27 @@ int main(int, char **)
 
         if (tnt::ImGui::Begin(window, "Properties", 300, 300))
         {
+            if (tnt::ImGui::BeginSection(window, "Transform"))
             {
-                static float angle{360.f};
-                if (hslider_float(window, "rotation", 0.f, 720.f, &angle))
-                    player->setAngle(angle);
+                {
+                    static float angle{360.f};
+                    if (hslider_float(window, "Rotation", 0.f, 720.f, &angle))
+                        player->setAngle(angle);
+                }
+
+                if (hslider_float2(window, "Scale", .5f, 100.f, &xScale, &yScale))
+                    player->setScale(tnt::Vector{xScale, yScale});
+
+                if (hslider_vec(window, "Position",
+                                params.x / 2, (float)display.w - (params.x / 2),
+                                params.y / 2, (float)display.h - (params.y / 2),
+                                &pos))
+                    player->setPosition(pos);
+
+                tnt::ImGui::EndSection();
             }
 
-            if (hslider_float2(window, "scale", .5f, 100.f, &xScale, &yScale))
-                player->setScale(tnt::Vector{xScale, yScale});
-
-            if (hslider_vec(window, "transform",
-                            params.x / 2, (float)display.w - (params.x / 2),
-                            params.y / 2, (float)display.h - (params.y / 2),
-                            &pos))
-                player->setPosition(pos);
+            tnt::ImGui::button(window, "Test");
 
             tnt::ImGui::End();
         }

@@ -25,6 +25,7 @@ namespace tnt::ImGui
         int pbar_w, pbar_h;
         int checkbox_size;
         int menu_spacing;
+        int section_h;
 
         SDL_Color bg;
         SDL_Color text_color;
@@ -39,35 +40,38 @@ namespace tnt::ImGui
         SDL_Texture *checkbox_tick;
         TTF_Font *font_data;
 
-    } * theme{new theme_t{.w{0},
-                          .h{0},
-                          .font_size{14},
+    } * theme{new theme_t{
+            .w{0},
+            .h{0},
+            .font_size{14},
 
-                          .button_w{60},
-                          .button_h{40},
+            .button_w{60},
+            .button_h{40},
 
-                          .slider_w{20},
-                          .slider_h{100},
-                          .slider_thumb_size{18},
-                          .hslider_h{20},
-                          .hslider_thumb_size{18},
+            .slider_w{20},
+            .slider_h{100},
+            .slider_thumb_size{18},
+            .hslider_h{20},
+            .hslider_thumb_size{18},
 
-                          .pbar_w{100},
-                          .pbar_h{20},
-                          .checkbox_size{20},
-                          .menu_spacing{20},
+            .pbar_w{100},
+            .pbar_h{20},
+            .checkbox_size{20},
+            .menu_spacing{20},
+            .section_h{20},
 
-                          .text_color{.r{255}, .g{255}, .b{255}, .a{255}},
-                          .idle_color{.r{30}, .g{144}, .b{255}, .a{255}},
-                          .static_color{.r{130}, .g{130}, .b{130}, .a{255}},
+            .text_color{.r{255}, .g{255}, .b{255}, .a{255}},
+            .idle_color{.r{30}, .g{144}, .b{255}, .a{255}},
+            .static_color{.r{130}, .g{130}, .b{130}, .a{255}},
 
-                          .default_font = std::string{SDL_GetBasePath()}.append("assets/Inconsolata.ttf")}};
+            .default_font = std::string{SDL_GetBasePath()}.append("assets/Inconsolata.ttf")}};
 
     struct window_data
     {
         bool menu_called;
+        bool collapsed;
         int x, y, w, h;
-        int next_y; // next_y is used to arrange widgets on the window.
+        int next_x, next_y; // next_x and next_y are used to arrange widgets on the window.
         int menu_index, menu_txt_size, last_menu_txt_size, menu_item_index;
         int context_menu_index;
         int list_indent_level, list_index, list_number;
@@ -80,9 +84,11 @@ namespace tnt::ImGui
         bool on_window; // this is true if calling Begin() inside other Begin/End pair.
         bool mouse_down;
         int mouse_x, mouse_y;
-        std::size_t active, hot;
+        std::size_t active, hot, last_section;
         // std::string hash_prefix; // added to each widget's label when hashing
         std::string last_window;
+
+        std::map<std::size_t, bool> sections; // cache to check if sections are collapsed or not
         std::map<std::string, SDL_Texture *> lists_text;
         std::map<std::string, window_data *> windows;
     } * context{new context_t{}};
@@ -331,6 +337,7 @@ namespace tnt::ImGui
             }
 
             tmp->menu_called = false;
+            tmp->collapsed = false;
             tmp->x = x_;
             tmp->y = y_;
             tmp->w = 400;
@@ -347,52 +354,70 @@ namespace tnt::ImGui
         context->hot = 0;
         tmp->list_indent_level = 0;
         tmp->list_index = 0;
-
-        const std::size_t id{im_hash(name)};
-
-        // TODO: make sure these *_id don't match the id of any other widget.
-        const std::size_t resize_left_id{1 + id};
-        const std::size_t resize_right_id{2 + id};
-        const std::size_t resize_down_id{3 + id};
-
-        const std::size_t resize_right_down_id{4 + id};
-        const std::size_t resize_left_down_id{5 + id};
-
-        // check for moving
-        check_button(id, tmp->x, tmp->y, tmp->w, 20);
-
-        // check for resizing
-        check_button(resize_right_id, tmp->x + tmp->w - 10,
-                     tmp->y + 20, 10, tmp->h - 10);
-        check_button(resize_down_id, tmp->x + 10,
-                     tmp->y + tmp->h - 10, tmp->w - 20, 10);
-        check_button(resize_right_down_id, tmp->x + tmp->w - 10,
-                     tmp->y + tmp->h - 10, 10, 10);
+        tmp->next_x = 10 + tmp->x;
 
         const std::pair pos{input::mousePosition()};
-        const std::size_t minW{name.size() * 7 + 32};
+        const std::size_t id{im_hash(name)};
 
-        if (context->active == id)
+        if (has_flag(tmp->win_flags, WindowFlags::Collapsible))
         {
-            tmp->x = tmp->x + pos.first - context->mouse_x;
-            tmp->y = tmp->y + pos.second - context->mouse_y;
+            const std::size_t collapse_id{10 + id};
+
+            check_button(collapse_id, tmp->x + 5, tmp->y + 3, 10, 10);
+
+            if (context->active == collapse_id)
+                tmp->collapsed = !tmp->collapsed;
         }
 
-        if (context->active == resize_right_down_id)
+        // check for moving
+        if (has_flag(tmp->win_flags, WindowFlags::Movable))
         {
-            if (int dx{pos.first - context->mouse_x}; tmp->w >= minW || dx >= 0)
-                tmp->w = tmp->w + dx;
-            if (int dy{pos.second - context->mouse_y}; tmp->h >= 40 || dy >= 0)
-                tmp->h = tmp->h + dy;
+            check_button(id, tmp->x, tmp->y, tmp->w, 20);
+
+            if (context->active == id)
+            {
+                tmp->x = tmp->x + pos.first - context->mouse_x;
+                tmp->y = tmp->y + pos.second - context->mouse_y;
+            }
         }
 
-        if (context->active == resize_right_id)
-            if (int dx{pos.first - context->mouse_x}; tmp->w >= minW || dx >= 0) // bigger than double of the height of the title bar
-                tmp->w = tmp->w + dx;
+        if (!tmp->collapsed)
+            if (has_flag(tmp->win_flags, WindowFlags::Resizable))
+            {
+                const std::size_t minW{name.size() * 7 + 32};
 
-        if (context->active == resize_down_id)
-            if (int dy{pos.second - context->mouse_y}; tmp->h >= 40 || dy >= 0)
-                tmp->h = tmp->h + dy;
+                // TODO: make sure these *_id don't match the id of any other widget.
+                const std::size_t resize_left_id{1 + id};
+                const std::size_t resize_right_id{2 + id};
+                const std::size_t resize_down_id{3 + id};
+
+                const std::size_t resize_right_down_id{4 + id};
+                const std::size_t resize_left_down_id{5 + id};
+
+                // check for resizing
+                check_button(resize_right_id, tmp->x + tmp->w - 10,
+                             tmp->y + 20, 10, tmp->h - 10);
+                check_button(resize_down_id, tmp->x + 10,
+                             tmp->y + tmp->h - 10, tmp->w - 20, 10);
+                check_button(resize_right_down_id, tmp->x + tmp->w - 10,
+                             tmp->y + tmp->h - 10, 10, 10);
+
+                if (context->active == resize_right_down_id)
+                {
+                    if (int dx{pos.first - context->mouse_x}; tmp->w >= minW || dx >= 0)
+                        tmp->w = tmp->w + dx;
+                    if (int dy{pos.second - context->mouse_y}; tmp->h >= 40 || dy >= 0)
+                        tmp->h = tmp->h + dy;
+                }
+
+                if (context->active == resize_right_id)
+                    if (int dx{pos.first - context->mouse_x}; tmp->w >= minW || dx >= 0) // bigger than double of the height of the title bar
+                        tmp->w = tmp->w + dx;
+
+                if (context->active == resize_down_id)
+                    if (int dy{pos.second - context->mouse_y}; tmp->h >= 40 || dy >= 0)
+                        tmp->h = tmp->h + dy;
+            }
 
         context->mouse_x = pos.first;
         context->mouse_y = pos.second;
@@ -400,9 +425,24 @@ namespace tnt::ImGui
         tmp->next_y = tmp->y + 25;
 
         // drawing
-        draw_rect(win, {tmp->x, tmp->y, tmp->w, tmp->h}, {50, 50, 50, 255}); // body
-        draw_rect(win, {tmp->x, tmp->y, tmp->w, 20}, theme->idle_color);     // title bar
-        draw_text(win, name.data(), tmp->x + 16, tmp->y + 3);                // title
+        if (has_flag(tmp->win_flags, WindowFlags::OpaqueBackground))
+        {
+            if (!tmp->collapsed)
+                draw_rect(win, {tmp->x, tmp->y, tmp->w, tmp->h}, {50, 50, 50, 255}); // body
+            if (has_flag(tmp->win_flags, WindowFlags::WithTitleBar))
+                draw_rect(win, {tmp->x, tmp->y, tmp->w, 20}, theme->idle_color); // title bar
+        }
+
+        if (has_flag(tmp->win_flags, WindowFlags::Collapsible))
+        {
+            draw_rect(win, {tmp->x + 5, tmp->y + 8, 10, 4}, {255, 255, 255});
+
+            if (tmp->collapsed)
+                draw_rect(win, {tmp->x + 8, tmp->y + 5, 4, 10}, {255, 255, 255});
+        }
+
+        if (has_flag(tmp->win_flags, WindowFlags::WithTitleBar))
+            draw_text(win, name.data(), tmp->x + 25, tmp->y + 3); // title
 
         return true;
     }
@@ -430,6 +470,46 @@ namespace tnt::ImGui
         }
     }
 
+    bool BeginSection(Window const *win, std::string_view text) noexcept
+    {
+        window_data *tmp{get_last_win()};
+        const int w{tmp->w - static_cast<int>(10)}; // 10 padding to left, 10 to right
+
+        // 40 = 5 + 5 left/right padding for +/-, 10 right padding for text, 10 +/- size.
+        if (tmp->collapsed || tmp->next_y + theme->section_h > tmp->y + tmp->h ||
+            tmp->w < static_cast<int>(text.size() * 7 + 40))
+            return false;
+
+        const std::size_t id{im_hash(tmp->title + text.data())};
+        context->last_section = id;
+
+        check_button(id, tmp->next_x + 5, tmp->next_y + 5, 10, 10);
+
+        if (context->active == id)
+            context->sections[id] = !context->sections[id];
+
+        draw_rect(win, {tmp->next_x - 5, tmp->next_y, w, theme->section_h}, theme->idle_color);
+        draw_rect(win, {tmp->next_x + 5, tmp->next_y + 8, 10, 4}, {255, 255, 255});
+
+        if (!context->sections[id])
+            draw_rect(win, {tmp->next_x + 8, tmp->next_y + 5, 4, 10}, {255, 255, 255});
+        else
+            tmp->next_x = tmp->next_x + 10;
+
+        draw_text(win, text.data(), tmp->next_x + 20, tmp->next_y + 1);
+        tmp->next_y = tmp->next_y + 30;
+
+        return context->sections[id];
+    }
+
+    void EndSection() noexcept
+    {
+        window_data *tmp{get_last_win()};
+
+        if (context->sections[context->last_section] && !tmp->collapsed)
+            tmp->next_x = tmp->next_x - 10;
+    }
+
     void BeginList(bool indexed) noexcept
     {
         window_data *tmp{get_last_win()};
@@ -447,7 +527,7 @@ namespace tnt::ImGui
 
     void BeginMenuBar() noexcept
     {
-        if (window_data * tmp{get_last_win()}; !tmp->menu_called)
+        if (window_data * tmp{get_last_win()}; !(tmp->menu_called || tmp->collapsed))
         {
             tmp->menu_index = 0;
             tmp->menu_txt_size = 0;
@@ -459,15 +539,17 @@ namespace tnt::ImGui
 
     void EndMenuBar() noexcept
     {
-        window_data *tmp{get_last_win()};
-        tmp->menu_called = true;
-        tmp->next_y = tmp->next_y + theme->font_size + 10;
+        if (window_data * tmp{get_last_win()}; tmp->collapsed)
+        {
+            tmp->menu_called = true;
+            tmp->next_y = tmp->next_y + theme->font_size + 10;
+        }
     }
 
     bool button(Window const *win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->next_y + theme->button_h > tmp->y + tmp->h ||
+        if (tmp->collapsed || tmp->next_y + theme->button_h > tmp->y + tmp->h ||
             tmp->w < theme->button_w + 10)
             return false;
 
@@ -478,9 +560,9 @@ namespace tnt::ImGui
         theme->button_w = static_cast<int>(text.size()) * 7 + 10;
         theme->button_h = 10 + theme->font_size;
 
-        check_button(id, tmp->x + 10, tmp->next_y, theme->button_w, theme->button_h);
+        check_button(id, tmp->next_x, tmp->next_y, theme->button_w, theme->button_h);
 
-        const SDL_Rect dst{tmp->x + 10, tmp->next_y, theme->button_w, theme->button_h};
+        const SDL_Rect dst{tmp->next_x, tmp->next_y, theme->button_w, theme->button_h};
         SDL_Color widgetColor;
 
         if (context->hot == id && context->active == id)
@@ -489,7 +571,7 @@ namespace tnt::ImGui
             widgetColor = theme->idle_color;
 
         draw_rect(win, dst, widgetColor);
-        draw_text(win, text.data(), tmp->x + 15, tmp->next_y + 5, theme->text_color, theme->font_size);
+        draw_text(win, text.data(), tmp->next_x + 5, tmp->next_y + 5, theme->text_color, theme->font_size);
 
         tmp->next_y = tmp->next_y + 30;
 
@@ -502,7 +584,8 @@ namespace tnt::ImGui
                     int *value) noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->next_y + theme->slider_h > tmp->y + tmp->h || tmp->w < theme->slider_w)
+        if (tmp->collapsed || tmp->next_y + theme->slider_h > tmp->y + tmp->h ||
+            tmp->w < theme->slider_w)
             return false;
 
         const std::size_t id{im_hash(tmp->title + std::to_string(*value))};
@@ -510,13 +593,12 @@ namespace tnt::ImGui
         const int ypos{((theme->slider_h - theme->slider_thumb_size) * (*value - min_)) / (max_ - min_)};
         const int offset{theme->slider_w - theme->slider_thumb_size};
 
-        const int x{tmp->x + 10};
-        const SDL_Rect thumb{x + (offset / 2), tmp->next_y + (offset / 2) + ypos, theme->slider_thumb_size,
+        const SDL_Rect thumb{tmp->next_x + (offset / 2), tmp->next_y + (offset / 2) + ypos, theme->slider_thumb_size,
                              theme->slider_thumb_size};
 
-        check_button(id, x, tmp->next_y, theme->slider_w, theme->slider_h);
+        check_button(id, tmp->next_x, tmp->next_y, theme->slider_w, theme->slider_h);
 
-        draw_rect(win, {x, tmp->next_y, theme->slider_w, theme->slider_h + offset}, theme->static_color);
+        draw_rect(win, {tmp->next_x, tmp->next_y, theme->slider_w, theme->slider_h + offset}, theme->static_color);
         draw_rect(win, thumb, theme->idle_color);
 
         bool ret{false};
@@ -544,25 +626,25 @@ namespace tnt::ImGui
                       float *value) noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->next_y + theme->slider_h > tmp->y + tmp->h || tmp->w < theme->slider_w)
+        if (tmp->collapsed || tmp->next_y + theme->slider_h > tmp->y + tmp->h ||
+            tmp->w < theme->slider_w)
             return false;
 
         const std::size_t id{im_hash(tmp->title + std::to_string(*value))};
         const int ypos{static_cast<int>(((theme->slider_h - theme->slider_thumb_size) * (*value - min_)) /
                                         (max_ - min_))};
         const int offset{theme->slider_w - theme->slider_thumb_size};
-        const int x{tmp->x + 10};
 
-        if (on_rect(x, tmp->next_y, theme->slider_w, theme->slider_h))
+        if (on_rect(tmp->next_x, tmp->next_y, theme->slider_w, theme->slider_h))
         {
             context->hot = id;
             if (context->active == 0 && context->mouse_down)
                 context->active = id;
         }
 
-        draw_rect(win, {x, tmp->next_y, theme->slider_w, theme->slider_h + offset}, theme->static_color);
+        draw_rect(win, {tmp->next_x, tmp->next_y, theme->slider_w, theme->slider_h + offset}, theme->static_color);
 
-        const SDL_Rect thumb{x + (offset / 2), tmp->next_y + (offset / 2) + ypos, theme->slider_thumb_size,
+        const SDL_Rect thumb{tmp->next_x + (offset / 2), tmp->next_y + (offset / 2) + ypos, theme->slider_thumb_size,
                              theme->slider_thumb_size};
 
         draw_rect(win, thumb, theme->idle_color);
@@ -597,15 +679,14 @@ namespace tnt::ImGui
         const int w{tmp->w - static_cast<int>(7 * text.size() + 40)};
 
         // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
-        if (tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
+        if (tmp->collapsed || tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
             tmp->w < static_cast<int>(80 + 7 * text.size()))
             return false;
 
-        const int x{tmp->x + 10};
         const std::size_t id{im_hash(tmp->title + text.data())};
-        const bool ret{hslider_basei(win, tmp, id, x, w, min_, max_, value)};
+        const bool ret{hslider_basei(win, tmp, id, tmp->next_x, w, min_, max_, value)};
 
-        draw_text(win, text.data(), x + w + 20, tmp->next_y);
+        draw_text(win, text.data(), tmp->next_x + w + 20, tmp->next_y);
 
         tmp->next_y = tmp->next_y + theme->hslider_h + 5;
 
@@ -621,15 +702,14 @@ namespace tnt::ImGui
         const int w{tmp->w - static_cast<int>(7 * text.size() + 40)};
 
         // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
-        if (tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
+        if (tmp->collapsed || tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
             tmp->w < static_cast<int>(80 + 7 * text.size()))
             return false;
 
-        const int x{tmp->x + 10};
         const std::size_t id{im_hash(tmp->title + text.data())};
-        const bool ret{hslider_basef(win, tmp, id, x, w, min_, max_, value)};
+        const bool ret{hslider_basef(win, tmp, id, tmp->next_x, w, min_, max_, value)};
 
-        draw_text(win, text.data(), x + w + 20, tmp->next_y);
+        draw_text(win, text.data(), tmp->next_x + w + 20, tmp->next_y);
 
         tmp->next_y = tmp->next_y + theme->hslider_h + 5;
 
@@ -646,18 +726,17 @@ namespace tnt::ImGui
         const int w{(tmp->w - static_cast<int>(7 * text.size())) / 2 - 25};
 
         // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
-        if (tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
+        if (tmp->collapsed || tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
             tmp->w < static_cast<int>(80 + 7 * text.size()))
             return false;
 
-        const int x{tmp->x + 10};
         const std::size_t id1{im_hash(tmp->title + text.data() + "x")};
         const std::size_t id2{im_hash(tmp->title + text.data() + "y")};
 
-        const bool ret1{hslider_basei(win, tmp, id1, x, w, min_, max_, value1)};
-        const bool ret2{hslider_basei(win, tmp, id2, x + w + 10, w, min_, max_, value2)};
+        const bool ret1{hslider_basei(win, tmp, id1, tmp->next_x, w, min_, max_, value1)};
+        const bool ret2{hslider_basei(win, tmp, id2, tmp->next_x + w + 10, w, min_, max_, value2)};
 
-        draw_text(win, text.data(), x + 2 * w + 30, tmp->next_y);
+        draw_text(win, text.data(), tmp->next_x + 2 * w + 30, tmp->next_y);
 
         tmp->next_y = tmp->next_y + theme->hslider_h + 5;
 
@@ -674,18 +753,17 @@ namespace tnt::ImGui
         const int w{(tmp->w - static_cast<int>(7 * text.size())) / 2 - 25};
 
         // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
-        if (tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
+        if (tmp->collapsed || tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
             tmp->w < static_cast<int>(80 + 7 * text.size()))
             return false;
 
-        const int x{tmp->x + 10};
         const std::size_t id1{im_hash(tmp->title + text.data() + "x")};
         const std::size_t id2{im_hash(tmp->title + text.data() + "y")};
 
-        const bool ret1{hslider_basef(win, tmp, id1, x, w, min_, max_, value1)};
-        const bool ret2{hslider_basef(win, tmp, id2, x + w + 10, w, min_, max_, value2)};
+        const bool ret1{hslider_basef(win, tmp, id1, tmp->next_x, w, min_, max_, value1)};
+        const bool ret2{hslider_basef(win, tmp, id2, tmp->next_x + w + 10, w, min_, max_, value2)};
 
-        draw_text(win, text.data(), x + 2 * w + 30, tmp->next_y);
+        draw_text(win, text.data(), tmp->next_x + 2 * w + 30, tmp->next_y);
 
         tmp->next_y = tmp->next_y + theme->hslider_h + 5;
 
@@ -703,25 +781,24 @@ namespace tnt::ImGui
         const int w{(tmp->w - static_cast<int>(7 * text.size())) / 2 - 25};
 
         // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
-        if (tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
+        if (tmp->collapsed || tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
             tmp->w < static_cast<int>(80 + 7 * text.size()))
             return false;
 
         auto [x_, y_]{*value};
 
-        const int x{tmp->x + 10};
         const std::size_t id1{im_hash(tmp->title + text.data() + "x")};
         const std::size_t id2{im_hash(tmp->title + text.data() + "y")};
 
-        const bool ret1{hslider_basef(win, tmp, id1, x, w, min1, max1, &x_)};
-        const bool ret2{hslider_basef(win, tmp, id2, x + w + 10, w, min2, max2, &y_)};
+        const bool ret1{hslider_basef(win, tmp, id1, tmp->next_x, w, min1, max1, &x_)};
+        const bool ret2{hslider_basef(win, tmp, id2, tmp->next_x + w + 10, w, min2, max2, &y_)};
 
         if (x_ != value->x)
             value->x = x_;
         if (y_ != value->y)
             value->y = y_;
 
-        draw_text(win, text.data(), x + 2 * w + 30, tmp->next_y);
+        draw_text(win, text.data(), tmp->next_x + 2 * w + 30, tmp->next_y);
 
         tmp->next_y = tmp->next_y + theme->hslider_h + 5;
 
@@ -734,7 +811,7 @@ namespace tnt::ImGui
 
         const int x{tmp->x + tmp->menu_index * theme->menu_spacing + 7 * tmp->menu_txt_size};
 
-        if (x + static_cast<int>(text.size() + 1) * 7 > tmp->x + tmp->w)
+        if (tmp->collapsed || x + static_cast<int>(text.size() + 1) * 7 > tmp->x + tmp->w)
             return false;
 
         const std::size_t id{im_hash(tmp->title + text.data())};
@@ -760,7 +837,7 @@ namespace tnt::ImGui
         const int x{tmp->x + (tmp->menu_index - 1) * theme->menu_spacing + 7 * tmp->last_menu_txt_size};
 
         // 100 = 30 -> padding from left and right + 70 -> size of 10 letters (with the current font)
-        if (x + 100 > tmp->x + tmp->w)
+        if (tmp->collapsed || x + 100 > tmp->x + tmp->w)
             return false;
 
         const std::size_t id{im_hash(tmp->title + text.data())};
@@ -783,31 +860,24 @@ namespace tnt::ImGui
     bool checkbox(Window const *win, std::string_view text, bool *value) noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->next_y + theme->checkbox_size + 10 > tmp->y + tmp->h)
+        if (tmp->collapsed || tmp->next_y + theme->checkbox_size + 10 > tmp->y + tmp->h)
             return false;
 
-        std::string key{tmp->title};
-        key.append(text);
-        std::size_t id{std::hash<std::string>{}(key)};
+        const std::size_t id{im_hash(tmp->title + text.data())};
 
-        SDL_Rect box{tmp->x + 10, tmp->y, theme->checkbox_size, theme->checkbox_size};
+        check_button(id, tmp->next_x, tmp->next_y, theme->checkbox_size, theme->checkbox_size);
 
-        if (on_rect(tmp->x + 10, tmp->y, theme->checkbox_size, theme->checkbox_size))
-        {
-            context->hot = id;
-            if (context->active == 0 && context->mouse_down)
-                context->active = id;
-        }
-
-        draw_rect(win, box, {130, 130, 130, 255});
-        draw_text(win, text.data(), box.x + box.w + 10, tmp->next_y);
-        tmp->next_y = tmp->next_y + box.h + 10;
+        draw_rect(win, {tmp->next_x, tmp->next_y, theme->checkbox_size, theme->checkbox_size},
+                  {130, 130, 130, 255});
+        draw_text(win, text.data(), tmp->next_x + theme->checkbox_size + 10, tmp->next_y);
+        tmp->next_y = tmp->next_y + theme->checkbox_size + 10;
 
         if (context->hot == id && context->active == id)
             *value = !(*value);
 
         if (*value)
         {
+            const SDL_Rect box{tmp->next_x, tmp->next_y, theme->checkbox_size, theme->checkbox_size};
             SDL_RenderCopy(win->getRenderer(), theme->checkbox_tick, nullptr, &box);
             return true;
         }
@@ -819,22 +889,23 @@ namespace tnt::ImGui
                       int *value) noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->w < theme->pbar_w ||
+        if (tmp->collapsed || tmp->w < theme->pbar_w ||
             tmp->next_y + theme->pbar_h > tmp->y + tmp->h)
             return;
-        int xpos{(theme->pbar_w * (*value - min_) / (max_ - min_))};
+        const int xpos{theme->pbar_w * (*value - min_) / (max_ - min_)};
+
         draw_rect(win, {tmp->x + 10, tmp->next_y, theme->pbar_w, theme->pbar_h},
                   theme->idle_color);
-        draw_text(win, text.data(),
-                  tmp->x + theme->pbar_w + 20, tmp->next_y);
+        draw_text(win, text.data(), tmp->x + theme->pbar_w + 20, tmp->next_y);
         draw_rect(win, {tmp->x + 12, tmp->next_y + 2, xpos, theme->pbar_h - 4}, theme->active_color);
+
         tmp->next_y = tmp->next_y + theme->pbar_h + 10;
     }
 
     void newline() noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->next_y + theme->font_size > tmp->y + tmp->h)
+        if (tmp->collapsed || tmp->next_y + theme->font_size > tmp->y + tmp->h)
             return;
         tmp->next_y = tmp->next_y + theme->font_size;
     }
@@ -842,10 +913,10 @@ namespace tnt::ImGui
     void text(Window const *win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->w < 10 + 7 * text.size() ||
+        if (tmp->collapsed || tmp->w < 10 + 7 * text.size() ||
             tmp->next_y + theme->font_size + 5 > tmp->y + tmp->h)
             return;
-        draw_text(win, text.data(), tmp->x + 10, tmp->next_y);
+        draw_text(win, text.data(), tmp->next_x, tmp->next_y);
         tmp->next_y = tmp->next_y + theme->font_size + 5;
     }
 
@@ -854,22 +925,22 @@ namespace tnt::ImGui
                       unsigned char b, unsigned char a) noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->w < 10 + 7 * text.size() ||
-            tmp->next_y + theme->font_size + 5 >
-                tmp->y + tmp->h)
+        if (tmp->collapsed || tmp->w < 10 + 7 * text.size() ||
+            tmp->next_y + theme->font_size + 5 > tmp->y + tmp->h)
             return;
-        draw_text(win, text.data(), tmp->x + 10, tmp->next_y, {r, g, b, a});
+        draw_text(win, text.data(), tmp->next_x, tmp->next_y, {r, g, b, a});
         tmp->next_y = tmp->next_y + theme->font_size + 5;
     }
 
     void list_item(Window const *win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->list_indent_level * 10 + text.size() * theme->font_size < tmp->w ||
+        if (tmp->collapsed ||
+            tmp->list_indent_level * 10 + text.size() * theme->font_size < tmp->w ||
             tmp->next_y + theme->font_size > tmp->y + tmp->h)
             return;
-        int xpos{tmp->x + tmp->list_indent_level * 10};
-        if (context->lists_text.find(text.data()) != context->lists_text.end())
+        const int xpos{tmp->x + tmp->list_indent_level * 10};
+        if (context->lists_text.find(text.data()) != context->lists_text.cend())
             context->lists_text[text.data()] = load_text(win, text.data());
         draw_text(win, text.data(), xpos, tmp->next_y);
         tmp->next_y = tmp->next_y + theme->font_size;

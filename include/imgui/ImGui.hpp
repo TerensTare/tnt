@@ -13,16 +13,12 @@
 // TODO: sameline()
 // TODO: add support for drawing text on the left of the widget and switching from the left to the right of the widget.
 // TODO: add support for calling window inside a window (ex. creating window on button click)
-// TODO: remove some of the config functions and members.
-// TODO: resize the hslider's width in case the window is resized.
 // TODO: make a draw function to draw all widgets the way you want.
-// TODO: draw menu even if there is no ImGui window.
+// TODO: draw menu even if there is no ImGui window. In that case, draw the menu on the "top" of the window.
 
 // TODO(maybe):
-// remove window_config ??
 // move slider's modified value before min/max ??
 // slider_double, slider_uint8 ??
-// draw ImGui widgets straight from tnt::Window ??
 // keyboard navigation ??
 // move update_context() stuff to Begin() ??
 
@@ -39,16 +35,17 @@ namespace tnt
         /// @sa tnt::ImGui::Begin()
         /// @note This enum is not fully functional yet. This means that you should
         /// leave the default (last) argument of @c tnt::ImGui::Begin() as is.
-        enum class WindowFlags : int
+        enum class WindowFlags : unsigned
         {
-            Default = 0,              ///< doesn't have any of the flags above
-            NonCollapsible = 1,       ///< without a collapse button
-            NonClosable = 2,          ///< without a close button
-            NonResizable = 3,         ///< without a resize button
-            NonMovable = 4,           ///< can't be moved
-            NoTitleBar = 5,           ///< doesn't have a title bar
-            WithoutMenu = 6,          ///< doesn't have a menu
-            TransparentBackground = 7 ///< draw only text and widgets, without background
+            Collapsible = (1 << 0),      ///< with a collapse button
+            Closable = (1 << 1),         ///< with a close button
+            Resizable = (1 << 2),        ///< with a resize button
+            Movable = (1 << 3),          ///< can be moved
+            WithTitleBar = (1 << 4),     ///< has a title bar
+            OpaqueBackground = (1 << 5), ///< draw text and widgets, and the background
+            WidgetThenText = (1 << 6),   ///< draw the widget on the left and it's text on the right
+
+            Default = Collapsible | Closable | Resizable | Movable | WithTitleBar | OpaqueBackground | WidgetThenText ///< has all the enum's values OR-ed
         };
 
         //////////////////////////
@@ -164,6 +161,16 @@ namespace tnt
         /// is called. Also update some context-related data.
         /// @sa tnt::ImGui::Begin()
         void End() noexcept;
+
+        /// @brief Draw a "section" on the current ImGui window, which contains widgets and can be collapsed.
+        /// @param win The game window where the drawing should happen.
+        /// @return bool
+        /// @sa tnt::ImGui::EndSection()
+        bool BeginSection(Window const *win, std::string_view text) noexcept;
+
+        /// @brief Stop drawing widgets on the current "section".
+        /// @sa tnt::ImGui::BeginSection()
+        void EndSection() noexcept;
 
         /// @brief Prepare the current ImGui window for drawing a list on it.
         /// Calling @c BeginList() inside another @c BeginList() / @c EndList() pair

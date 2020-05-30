@@ -3,15 +3,24 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-05-30
+### Added
+- `tnt::ImGui::BeginSection()` and `tnt::ImGui::EndSection()`.
+
+### Changed
+- `tnt::ImGui::Begin()` to use the passed `tnt::WindowFlags` parameter for window customization. Note that only some of the flags are available for the moment.
+
+
 ## 2020-05-29
 ### Changed
 - Restructured ImGui's backend with reduced `new`/`delete` calls to gain some performance.
 
 ## 2020-05-28
 ### Removed
-- `ecs/Component.hpp` and `ecs/Component.cpp`. `tnt::PhysicsComponent` is now located on `ecs/RigidBody`.
+- `ecs/Component`. `tnt::PhysicsComponent` is now located on `ecs/RigidBody`.
 - `physics/Box` and `physics/Quadtree`.
 - Most of the functions of `imgui/gui_config.hpp`.
+
 
 ## 2020-05-27
 ### Changed
