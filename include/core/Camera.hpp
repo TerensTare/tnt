@@ -27,7 +27,7 @@ namespace tnt
     /// @note This struct uses global coordinates.
     struct Camera
     {
-        /// @brief Constructs a new static (non-movable, only shake-able)
+        /// @brief Construct a new static (non-movable, only shake-able)
         /// camera from the arguments given.
         /// @param x_ The x position.
         /// @param y_ The y position.
@@ -44,7 +44,7 @@ namespace tnt
         Camera &operator=(Camera const &) = delete;
         Camera &operator=(Camera &&) = delete;
 
-        /// @brief Applies a shaking effect on the camera.
+        /// @brief Apply a shaking effect on the camera.
         /// @param time The time in ms for the effect to continue.
         /// @param intensity The intensity of the shaking effect.
         /// @note intensity should be between 0.0f and 1.0f.
@@ -53,12 +53,11 @@ namespace tnt
         /// @return tnt::Rectangle
         Rectangle Bounds() const noexcept;
 
+        float x, y, w, h;
+
     protected:
         bool shaking{false};
         float tmpX{0.f}, tmpY{0.f}; // used during shaking
-
-    public:
-        float x, y, w, h;
     };
 
     /// @brief A camera that can only move horizontally.

@@ -37,8 +37,6 @@ int main(int, char **)
         SDL_WINDOWPOS_CENTERED,
         1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
-    tnt::Timer timer;
-
     Player *player{new Player{window}};
     player->setPosition(tnt::Vector{100.f, 160.f});
     player->setScale(tnt::Vector{10.f, 10.f});
@@ -54,6 +52,8 @@ int main(int, char **)
     SDL_GetDisplayMode(0, 0, &display);
 
     tnt_imgui_init(window);
+
+    tnt::Timer timer;
 
     while (window->isOpened())
     {
@@ -103,8 +103,6 @@ int main(int, char **)
 
                 tnt::ImGui::EndSection();
             }
-
-            tnt::ImGui::button(window, "Test");
 
             tnt::ImGui::End();
         }

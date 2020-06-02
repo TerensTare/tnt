@@ -19,14 +19,13 @@ tnt::Scene::Scene(Window const *win, std::string_view background) noexcept
 
 void tnt::Scene::LoadAssets(tnt::Window const *win, std::span<std::string_view> assets)
 {
-    AssetManager asset_man{AssetManager::This()};
     for (auto const &it : assets)
         if (it.ends_with(".png"))
-            asset_man.AddImage(win, it);
+            AssetManager::This().AddImage(win, it);
         else if (it.ends_with(".mp3"))
-            asset_man.AddMusic(it);
+            AssetManager::This().AddMusic(it);
         else if (it.ends_with(".wav"))
-            asset_man.AddSfx(it);
+            AssetManager::This().AddSfx(it);
 }
 
 void tnt::Scene::LoadFont(std::string_view name, int size)

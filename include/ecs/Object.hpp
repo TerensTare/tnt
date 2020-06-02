@@ -186,7 +186,6 @@ namespace tnt
         template <component T>
         void remove() noexcept
         {
-
             [[likely]] if (has<T>())
             {
                 delete it.second;

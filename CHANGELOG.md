@@ -3,11 +3,23 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-06-02
+### Changed
+- Updated `CONTRIBUTING.md`.
+
+## 2020-06-01
+### Added
+- Worked on the new ECS implementation. You can find it on the `ecs2` folder, but it is not guaranteed to replace the current stable ECS.
+
 ## 2020-05-30
 ### Added
 - `tnt::ImGui::BeginSection()` and `tnt::ImGui::EndSection()`.
 
+### Fixed
+- Some small "problems" with the look of some ImGui widgets.
+
 ### Changed
+- Updated the documentation for bulding the engine.
 - `tnt::ImGui::Begin()` to use the passed `tnt::WindowFlags` parameter for window customization. Note that only some of the flags are available for the moment.
 
 

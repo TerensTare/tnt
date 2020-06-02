@@ -22,11 +22,11 @@ tnt::AssetManager::~AssetManager() noexcept
                 SDL_DestroyTexture(it.second);
     images.clear();
 
-    if (!text.empty())
-        for (auto const &it : text)
-            if (it.second != nullptr)
-                SDL_DestroyTexture(it.second);
-    text.clear();
+    // if (!text.empty())
+    //     for (auto const &it : text)
+    //         if (it.second != nullptr)
+    //             SDL_DestroyTexture(it.second);
+    // text.clear();
 
     if (!fonts.empty())
         for (auto const &it : fonts)
