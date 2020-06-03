@@ -94,7 +94,7 @@ configure_file(
 set(SOURCE_FILES src/core/Window.cpp src/core/Input.cpp
     src/core/Camera.cpp src/core/Space.cpp src/core/Scene.cpp
     src/math/Rectangle.cpp src/fileIO/AssetManager.cpp
-    src/ecs/Object.cpp
+    src/ecs/Object.cpp src/ecs/Sprite.cpp src/ecs/RigidBody.cpp
     src/ImGui/ImGui.cpp src/utils/Timer.cpp)
 
 if (TNT_DO_EXPERIMENTS)
