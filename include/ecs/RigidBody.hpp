@@ -17,8 +17,7 @@ namespace tnt
     class PhysicsComponent final : public Component
     {
     public:
-        PhysicsComponent(float const &mass, Rectangle const &collision_box);
-        PhysicsComponent(float const &mass, float x, float y, float &w, float &h);
+        PhysicsComponent(float const &mass, tnt::Vector const &maxVelo, tnt::Vector const &maxAccel) noexcept;
 
         void setMass(float const &mass);
         float getMass() const noexcept(noexcept(invMass > 0.f));
@@ -26,26 +25,27 @@ namespace tnt
         Vector getVelocity() const noexcept;
         Vector getAcceleration() const noexcept;
 
-        Rectangle getCollisionBox() const noexcept;
-
         void applyForce(Vector const &force) noexcept(noexcept(invMass > 0.f));
+
+        void doPhysics(long long time_) noexcept;
 
     private:
         float invMass;
         Vector velocity;
-        Vector maxVelocity; // necessary ??
+        Vector maxVelocity;
         Vector acceleration;
-        Rectangle collisionBox;
+        Vector maxAcceleration;
     };
 
-    // TODO: collision_box is not used. Find a way to use it.
     class RigidBody : virtual public Object
     {
     public:
-        RigidBody(float const &mass, Rectangle const &collision_box);
+        explicit RigidBody(float const &mass) noexcept;
         ~RigidBody() noexcept;
 
         PhysicsComponent *getPhysics() const noexcept;
+
+        void doPhysics(long long time_) noexcept;
 
     protected:
         PhysicsComponent *physics;

@@ -3,13 +3,11 @@
 
 #include "ecs/RigidBody.hpp"
 
-tnt::PhysicsComponent::PhysicsComponent(float const &mass, Rectangle const &collision_box)
-    : invMass{1 / mass}, velocity{VECTOR_ZERO}, acceleration{VECTOR_ZERO},
-      collisionBox{collision_box} {}
-
-tnt::PhysicsComponent::PhysicsComponent(float const &mass, float x, float y, float &w, float &h)
-    : invMass{1 / mass}, velocity{VECTOR_ZERO}, acceleration{VECTOR_ZERO},
-      collisionBox{x, y, w, h} {}
+tnt::PhysicsComponent::PhysicsComponent(
+    float const &mass, tnt::Vector const &maxVelo,
+    tnt::Vector const &maxAccel) noexcept
+    : invMass{1 / mass}, velocity{VECTOR_ZERO}, maxVelocity{maxVelo},
+      acceleration{VECTOR_DOWN * 10.f}, maxAcceleration{maxAccel} {}
 
 void tnt::PhysicsComponent::setMass(float const &mass) { invMass = (1 / mass); }
 float tnt::PhysicsComponent::getMass() const noexcept(noexcept(invMass > 0.f)) { return (1 / invMass); }
@@ -17,15 +15,21 @@ float tnt::PhysicsComponent::getMass() const noexcept(noexcept(invMass > 0.f)) {
 tnt::Vector tnt::PhysicsComponent::getVelocity() const noexcept { return velocity; }
 tnt::Vector tnt::PhysicsComponent::getAcceleration() const noexcept { return acceleration; }
 
-tnt::Rectangle tnt::PhysicsComponent::getCollisionBox() const noexcept { return collisionBox; }
-
 void tnt::PhysicsComponent::applyForce(tnt::Vector const &force) noexcept(noexcept(invMass > 0.f))
 {
     acceleration += (force * invMass);
+    acceleration = (acceleration < maxAcceleration) ? acceleration : maxAcceleration;
 }
 
-tnt::RigidBody::RigidBody(float const &mass, Rectangle const &collision_box)
-    : physics{add<PhysicsComponent>(mass, collision_box)} {}
+void tnt::PhysicsComponent::doPhysics(long long time_) noexcept
+{
+    velocity += (acceleration * time_);
+    velocity = (velocity < maxVelocity) ? velocity : maxVelocity;
+}
+
+tnt::RigidBody::RigidBody(float const &mass) noexcept
+    : physics{add<PhysicsComponent>(
+          mass, tnt::Vector{50.f, 50.f}, tnt::Vector{10.f, 10.f})} {}
 
 tnt::RigidBody::~RigidBody() noexcept
 {
@@ -38,8 +42,8 @@ tnt::RigidBody::~RigidBody() noexcept
 
 tnt::PhysicsComponent *tnt::RigidBody::getPhysics() const noexcept { return physics; }
 
-// void tnt::RigidBody::Update()
-// {
-// velocity += acceleration;
-// pos += velocity;
-// }
+void tnt::RigidBody::doPhysics(long long time_) noexcept
+{
+    physics->doPhysics(time_);
+    position += (physics->getVelocity() * time_);
+}

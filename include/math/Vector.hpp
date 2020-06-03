@@ -185,9 +185,9 @@ namespace tnt
 
     inline static constexpr Vector VECTOR_ZERO{0.f, 0.f};
     inline static constexpr Vector VECTOR_ONE{1.f, 1.f};
-    inline static constexpr Vector VECTOR_UP{0.f, 1.f};
+    inline static constexpr Vector VECTOR_UP{0.f, -1.f};
     inline static constexpr Vector VECTOR_RIGHT{1.f, 0.f};
-    inline static constexpr Vector VECTOR_DOWN{0.f, -1.f};
+    inline static constexpr Vector VECTOR_DOWN{0.f, 1.f};
     inline static constexpr Vector VECTOR_LEFT{-1.f, 0.f};
 } // namespace tnt
 

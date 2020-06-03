@@ -3,7 +3,14 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-06-03
+### Added
+- Support for minimalistic physics with `tnt::PhysicsComponent`. Now `tnt::Space`-s will update an object's physics if it `has<PhysicsComponent>()`.
+
 ## 2020-06-02
+### Added
+- `FormatedTypes.hpp` that contains specializations of `fmt::formatter` for engine types.
+
 ### Changed
 - Updated `CONTRIBUTING.md`.
 

@@ -4,8 +4,9 @@
 #include <SDL2/SDL.h>
 
 #include "core/Space.hpp"
-#include "ecs/Object.hpp"
 #include "core/Camera.hpp"
+
+#include "ecs/RigidBody.hpp"
 
 bool tnt::Space::isActive() const noexcept { return active; }
 
@@ -30,6 +31,12 @@ void tnt::Space::Update(long long time_) noexcept
         if (it.second->isActive())
         {
             active = true;
+            if (it.second->has<PhysicsComponent>())
+            {
+                PhysicsComponent *phys{it.second->get<PhysicsComponent>()};
+                phys->doPhysics(time_);
+                it.second->Transform(phys->getVelocity() * time_);
+            }
             it.second->Update(time_);
         }
         else

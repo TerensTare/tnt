@@ -7,6 +7,7 @@
 #include "core/Scene.hpp"
 
 #include "ecs/Sprite.hpp"
+#include "ecs/RigidBody.hpp"
 
 #include "fileIO/AssetManager.hpp"
 
@@ -20,7 +21,7 @@ using tnt::ImGui::hslider_float, tnt::ImGui::hslider_float2,
 
 // TODO: "dissolve" this code into classes, like Game/Scene/Space, etc.
 
-class Player : public tnt::Sprite
+class Player final : public tnt::Sprite
 {
 public:
     explicit Player(tnt::Window const *win)

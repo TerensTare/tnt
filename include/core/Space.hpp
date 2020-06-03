@@ -13,6 +13,7 @@
 // container).
 // TODO: detect collision at Update().
 // TODO: make Object-s inactive if out of the camera.
+// TODO: find way to reduce for loops.
 
 // TODO(maybe):
 // Add a Quadtree ??

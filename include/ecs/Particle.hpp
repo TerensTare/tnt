@@ -3,26 +3,24 @@
 
 #include "ecs/RigidBody.hpp"
 #include "ecs/Sprite.hpp"
-#include "math/Rectangle.hpp"
 
 // TODO: better name for ParticleRules and members.
 
-// TODO(maybe):
-// derive Particle from Object.
-
 namespace tnt
 {
-    class Particle : virtual public Sprite, virtual public RigidBody
+    class Particle
+        : virtual public Sprite,
+          virtual public RigidBody
     {
-      public:
+    public:
         Particle(Window const *win, std::string_view filename,
                  Vector const &speed, float &radius_, Rectangle const &area,
-                 long long time = 0);
+                 long long time = -1);
         ~Particle() noexcept;
 
         virtual void Update(long long elapsed) noexcept;
 
-      private:
+    private:
         bool alive;
         float radius;
         long long lifetime; // in ms

@@ -74,7 +74,7 @@ namespace tnt
     };
 
     /// @brief A drawable Object.
-    class Sprite : public Object
+    class Sprite : virtual public Object
     {
     public:
         /// @brief Create a new @c Sprite to be drawn at @c win.
