@@ -27,12 +27,11 @@ SDL_Texture *tnt::pcg::staticNoise(SDL_Renderer *ren, int w, int h)
     for (int i{0}; i < h; ++i)
         for (int j{0}; j < w; ++j)
         {
-            uint8_t r{static_cast<Uint8>(randomValue(0, 255))};
-            uint8_t g{static_cast<Uint8>(randomValue(0, 255))};
-            uint8_t b{static_cast<Uint8>(randomValue(0, 255))};
+            uint8_t r{static_cast<Uint8>(randomInt(0, 255))};
+            uint8_t g{static_cast<Uint8>(randomInt(0, 255))};
+            uint8_t b{static_cast<Uint8>(randomInt(0, 255))};
 
-            Uint32 color{SDL_MapRGB(&pixelFmt, r, g, b)};
-            tnt::logger::debug("pitch: {}, i: {}, j: {}, color: {}\n", pitch, i, j, color);
+            const Uint32 color{SDL_MapRGB(&pixelFmt, r, g, b)};
 
             Uint32 pos{i * (pitch / sizeof(unsigned)) + j};
             pixels[pos] = color;

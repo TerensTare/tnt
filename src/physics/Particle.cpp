@@ -41,6 +41,6 @@ void tnt::Particle::setAcceleration(const tnt::Vector &accel) noexcept { acceler
 tnt::Vector tnt::Particle::getAcceleration() const noexcept { return acceleration; }
 
 void tnt::Particle::addForce(const tnt::Vector &force) noexcept { forceAccumulator += force; }
-void tnt::Particle::clearAccumulator() noexcept { forceAccumulator = {.0f, .0f}; }
+void tnt::Particle::clearAccumulator() noexcept { forceAccumulator = tnt::Vector{.0f, .0f}; }
 
 bool tnt::Particle::hasFiniteMass() const noexcept { return (inverseMass > .0f); }

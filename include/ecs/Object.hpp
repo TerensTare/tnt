@@ -225,6 +225,10 @@ namespace tnt
         ->std::same_as<SpriteComponent *>;
     }
     &&std::is_base_of_v<Object, T>;
+
+    /// @brief A basic @Object type.
+    template <typename T>
+    concept object = std::is_base_of_v<Object, T>;
 } // namespace tnt
 
 #endif //!TNT_ECS_OBJECT_HPP

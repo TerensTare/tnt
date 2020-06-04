@@ -11,7 +11,8 @@ import numpy as np
 '''
 
 
-func = lambda t:return 6*t**5-15*t**4+10*t**3
+def func(t):
+    return 6*t**5-15*t**4+10*t**3
 
 
 def generate_perlin_noise_2d(shape, res):
@@ -43,8 +44,7 @@ def generate_fractal_noise_2d(shape, res, octaves=1, persistence=0.5):
     freq = 1
     ampl = 1
     for _ in range(octaves):
-        noise += ampl * \
-            generate_perlin_noise_2d(shape, (freq*res[0], freq*res[1]))
+        noise += ampl * generate_perlin_noise_2d(shape, (freq*res[0], freq*res[1]))
         freq *= 2
         ampl *= persistence
     return noise

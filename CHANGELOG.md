@@ -3,6 +3,19 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-06-04
+### Added
+- header `math/GenericMath.hpp`. There you will find `PI` (to be removed when C++20 adds support for some 'special' numbers like pi and e) and templated math-related lambdas like lerp, blerp and beziercurve.
+- `tnt::pcg::randomVector`.
+- Library's ImGui bindings for Lua. However, `sol2` gives anerror when using the vcpkg version for Windows. It is a known issue, and I hope it gets fixed soon.
+- `concept tnt::object`. Please use it as a function argument to reduce the number of `new`/`delete` calls.
+
+### Changed
+- `tnt::Space::addObject` now accepts a `const` reference of a class derived from `tnt::Object` instead of a `tnt::Object*`.
+
+### Removed
+- The overload of `tnt::Space::addObject` which took a `std::pair` as an argument.
+
 ## 2020-06-03
 ### Added
 - Support for minimalistic physics with `tnt::PhysicsComponent`. Now `tnt::Space`-s will update an object's physics if it `has<PhysicsComponent>()`.

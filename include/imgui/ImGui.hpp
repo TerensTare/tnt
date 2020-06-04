@@ -21,6 +21,7 @@
 // slider_double, slider_uint8 ??
 // keyboard navigation ??
 // move update_context() stuff to Begin() ??
+// use "text" instead of "list_item" for adding items to list.
 
 namespace tnt
 {
@@ -212,8 +213,7 @@ namespace tnt
         /// @param max_ The maximum value the widget can set.
         /// @param value The value that the widget can modify.
         /// @return bool
-        bool slider_int(Window const *win, int min_, int max_,
-                        int *value) noexcept;
+        bool slider_int(Window const *win, int min_, int max_, int *value) noexcept;
 
         /// @brief Draw a vertical slider that modifies an @c float value on the current ImGui window.
         /// The widget returns @c true if the value has been modified, @c false otherwise.

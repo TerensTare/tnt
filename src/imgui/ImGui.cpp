@@ -198,7 +198,7 @@ namespace tnt::ImGui
     };
 
     auto get_window = [](std::string_view name) -> window_data * {
-        if (context->windows.find(name.data()) != context->windows.end())
+        if (context->windows.find(name.data()) != context->windows.cend())
             return context->windows[name.data()];
         window_data *tmp{new window_data{.title = name.data()}};
         return tmp;

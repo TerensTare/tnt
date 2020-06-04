@@ -1,6 +1,7 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+#include <vector>
 #include "core/Input.hpp"
 
 namespace tnt::input
@@ -15,7 +16,8 @@ namespace tnt::input
     const Uint8 *currentkb{nullptr};
     std::vector<Uint8> prevkb;
 
-    void init()
+    void init() noexcept(noexcept(
+        prevkb.assign(currentkb, currentkb + keyLength)))
     {
         currentkb = SDL_GetKeyboardState(&keyLength);
         prevkb.assign(currentkb, currentkb + keyLength);

@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL_events.h>
 
-#include <vector>
+#include <utility>
 
 // TODO: Joystick and GameController support.
 

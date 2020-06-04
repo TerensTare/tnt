@@ -7,6 +7,7 @@
 // TODO: register AND test all engine types and functions.
 // TODO: Add support for .tmx maps and text on Lua's AssetManager when available.
 // TODO: remove the need of passing a state on each argument.
+// TODO: dissolve each one of these functions on the corresponding files.
 
 // TODO(maybe):
 // keep a sol::state on the engine's context ??
@@ -19,8 +20,8 @@ namespace tnt::lua
     void loadObject(sol::state_view lua_ = context.luaState());    // needs tests
     void loadInput(sol::state_view lua_ = context.luaState());     // needs tests
     void loadWindow(sol::state_view lua_ = context.luaState());    // needs test TODO(maybe): add more mebers functions
+    void loadImGui(sol::state_view lua_ = context.luaState());     // needs tests
     void loadCameras(sol::state_view lua_ = context.luaState());   // TODO
-    void loadImGui(sol::state_view lua_ = context.luaState());     // TODO
     void loadVFS(sol::state_view lua_ = context.luaState());       // TODO
     void loadWidgets(sol::state_view lua_ = context.luaState());   // TODO
     void loadUtils(sol::state_view lua_ = context.luaState());     // last_write_time, etc

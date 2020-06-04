@@ -5,9 +5,14 @@
 
 #include "core/Input.hpp"
 #include "core/Window.hpp"
+
 #include "ecs/Sprite.hpp"
+
 #include "fileIO/AssetManager.hpp"
 // #include "fileIO/AudioPlayer.hpp"
+
+#include "imgui/ImGui.hpp"
+
 #include "utils/Timer.hpp"
 
 void tnt::lua::loadVector(sol::state_view lua_)
@@ -187,6 +192,62 @@ void tnt::lua::loadInput(sol::state_view lua_)
     input["update_last"] = &input::updatePrevious;
 }
 
+void tnt::lua::loadImGui(sol::state_view lua_)
+{
+    auto imgui{lua_["imgui"].get_or_create<sol::table>()};
+
+    imgui.new_enum("win_flags",
+                   "colapsible", ImGui::WindowFlags::Collapsible,
+                   "closable", ImGui::WindowFlags::Closable,
+                   "resizable", ImGui::WindowFlags::Resizable,
+                   "movable", ImGui::WindowFlags::Movable,
+                   "with_titlebar", ImGui::WindowFlags::WithTitleBar,
+                   "opaque_bg", ImGui::WindowFlags::OpaqueBackground,
+                   "widget_first", ImGui::WindowFlags::WidgetThenText);
+
+    imgui["init"] = &tnt_imgui_init;
+    imgui["update"] = &ImGui::update_context;
+    imgui["close"] = &tnt_imgui_close;
+
+    imgui["Begin"] = sol::overload(
+        [](Window const *win, std::string_view name, int x, int y) -> bool {
+            return ImGui::Begin(win, name, x, y);
+        },
+        &ImGui::Begin);
+    imgui["End"] = &ImGui::End;
+
+    imgui["begin_section"] = &ImGui::BeginSection;
+    imgui["end_section"] = &ImGui::EndSection;
+
+    imgui["begin_list"] = &ImGui::BeginList;
+    imgui["list_item"] = &ImGui::list_item;
+    imgui["end_list"] = &ImGui::EndList;
+
+    imgui["begin_menubar"] = &ImGui::BeginMenuBar;
+    imgui["menu_button"] = &ImGui::menu_button;
+    imgui["menu_item"] = &ImGui::menu_item;
+    imgui["end_menubar"] = &ImGui::EndMenuBar;
+
+    imgui["button"] = &ImGui::button;
+
+    imgui["slider_int"] = &ImGui::slider_int;
+    imgui["slider_float"] = &ImGui::slider_float;
+
+    imgui["hslider_int"] = &ImGui::hslider_int;
+    imgui["hslider_float"] = &ImGui::hslider_float;
+    imgui["hslider_int2"] = &ImGui::hslider_int2;
+    imgui["hslider_float2"] = &ImGui::hslider_float2;
+    imgui["hslider_vec"] = &ImGui::hslider_vec;
+
+    imgui["checkbox"] = &ImGui::checkbox;
+
+    imgui["progress_bar"] = &ImGui::progress_bar;
+    imgui["newline"] = &ImGui::newline;
+
+    imgui["text"] = &ImGui::text;
+    imgui["colored_text"] = &ImGui::colored_text;
+}
+
 void tnt::lua::loadWindow(sol::state_view lua_)
 {
     lua_.new_usertype<Window>(
@@ -212,6 +273,7 @@ void tnt::lua::loadAll(sol::state_view lua_)
     loadObject(lua_);
     // loadSprite(lua_);
     loadInput(lua_);
+    loadImGui(lua_);
     loadWindow(lua_);
     // loadAssetManager(lua_);
     // loadComponents(lua_);

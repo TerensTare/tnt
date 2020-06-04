@@ -38,9 +38,9 @@ int main(int, char **)
         SDL_WINDOWPOS_CENTERED,
         1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
 
-    Player *player{new Player{window}};
-    player->setPosition(tnt::Vector{100.f, 160.f});
-    player->setScale(tnt::Vector{10.f, 10.f});
+    Player player{window};
+    player.setPosition(tnt::Vector{100.f, 160.f});
+    player.setScale(tnt::Vector{10.f, 10.f});
 
     tnt::Space space;
     space.addObject("player", player);
@@ -52,18 +52,18 @@ int main(int, char **)
     SDL_DisplayMode display;
     SDL_GetDisplayMode(0, 0, &display);
 
-    tnt_imgui_init(window);
-
     tnt::Timer timer;
+
+    tnt::Vector scale{player.getScale()};
+    tnt::Vector params{(float)player.getWidth(), (float)player.getHeight()};
+    tnt::Vector pos{player.getPosition()};
+
+    tnt_imgui_init(window);
 
     while (window->isOpened())
     {
         dt = timer.deltaTime().count();
         timer.reset();
-
-        auto [xScale, yScale]{player->getScale()};
-        tnt::Vector params{(float)player->getWidth(), (float)player->getHeight()};
-        tnt::Vector pos{player->getPosition()};
 
         SDL_Event e;
 
@@ -90,17 +90,18 @@ int main(int, char **)
                 {
                     static float angle{360.f};
                     if (hslider_float(window, "Rotation", 0.f, 720.f, &angle))
-                        player->setAngle(angle);
+                        player.setAngle(angle);
                 }
 
-                if (hslider_float2(window, "Scale", .5f, 100.f, &xScale, &yScale))
-                    player->setScale(tnt::Vector{xScale, yScale});
+                if (hslider_vec(window, "Scale",
+                                .5f, 100.f, .5f, 100.f, &scale))
+                    player.setScale(scale);
 
                 if (hslider_vec(window, "Position",
                                 params.x / 2, (float)display.w - (params.x / 2),
                                 params.y / 2, (float)display.h - (params.y / 2),
                                 &pos))
-                    player->setPosition(pos);
+                    player.setPosition(pos);
 
                 tnt::ImGui::EndSection();
             }
@@ -116,7 +117,6 @@ int main(int, char **)
     tnt_imgui_close();
     tnt::input::close();
 
-    delete player;
     delete window;
 
     return 0;
