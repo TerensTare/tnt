@@ -14,20 +14,21 @@
 // TODO(maybe): lock should be std::unique_lock<std::recursive_mutex>
 
 #if __cplusplus <= 201703L
-#    define synchronized(mtx)                                                  \
-        for (std::unique_lock lock{mtx}; lock; lock.unlock())
+#define synchronized(mtx) \
+    for (std::unique_lock lock{mtx}; lock; lock.unlock())
 
 namespace tnt
 {
     // code taken from
     // https://stackoverflow.com/questions/14931982/synchronize-entire-class-in-c11
-    template <typename T> struct Synchronized
+    template <typename T>
+    struct Synchronized
     {
         explicit Synchronized(T &value) : t{value} {}
 
         Synchronized(Synchronized const &) = delete;
         Synchronized &operator=(Synchronized const &) = delete;
-        Synchronized(Synchronized &&)                 = delete;
+        Synchronized(Synchronized &&) = delete;
         Synchronized &operator=(Synchronized &&) = delete;
 
         template <typename Func>
@@ -37,34 +38,25 @@ namespace tnt
             return f(t);
         }
 
-      private:
+    private:
         mutable T &t;
         mutable std::mutex mtx;
     };
 
-#    if __cplusplus == 201703L
-    template <typenme T> Synchronized(T &)->Synchronized<T>;
-#    endif
+#if __cplusplus == 201703L
+    template <typenme T>
+    Synchronized(T &)->Synchronized<T>;
+#endif
 #endif
 }
 
 namespace tnt
 {
-    // template <typename To, auto Data, typename
-    // std::enable_if<std::is_convertible_v<decltype(Data), To>, int> = 0>
-    // struct convert
-    // {
-    //     enum
-    //     {
-    //         value = static_cast<To>(Data)
-    //     };
-    // };
-
     // based on
     // https://stackoverflow.com/questions/14650885/how-to-create-timer-events-using-c-11
     class run_after
     {
-      public:
+    public:
         template <class Callable, class... Args>
         run_after(int after, bool is_async, Callable &&f, Args &&... args)
         {
@@ -89,14 +81,14 @@ namespace tnt
 
     struct non_copyable
     {
-        non_copyable()                     = default;
+        non_copyable() = default;
         non_copyable(non_copyable const &) = delete;
         non_copyable &operator=(non_copyable const &) = delete;
     };
 
     struct non_movable
     {
-        non_movable()                    = default;
+        non_movable() = default;
         non_movable(non_movable const &) = delete;
         non_movable &operator=(non_movable &&) = delete;
     };
@@ -115,7 +107,7 @@ namespace tnt
 
     class scoped_thread : public non_copyable
     {
-      public:
+    public:
         explicit scoped_thread(std::thread &th) : t{std::move(th)}
         {
             if (!t.joinable())
@@ -124,28 +116,31 @@ namespace tnt
 
         ~scoped_thread() { t.join(); }
 
-      private:
+    private:
         std::thread t;
     };
 
-    template <typename T> struct Visitor
+    template <typename T>
+    struct Visitor
     {
         virtual void Visit(T &) = 0;
     };
 
-    template <typename T, typename R = void> struct Visitor
+    template <typename T, typename R = void>
+    struct Visitor
     {
         typedef R ReturnType;
         virtual ReturnType Visit(T &) = 0;
     };
 
-    template <typename R = void> struct Visitable
+    template <typename R = void>
+    struct Visitable
     {
         typedef R ReturnType;
         virtual ~Visitable() {}
         virtual ReturnType Accept(Visitor &) = 0;
 
-      protected:
+    protected:
         template <typename T>
         static ReturnType AcceptImpl(T &visited, Visitor &guest)
         {
@@ -166,7 +161,8 @@ namespace tnt
     //  void Visit(Paragraph &); // visit a Paragraph
     // };
 
-    template <typename T, typename U> class is_convertible
+    template <typename T, typename U>
+    class is_convertible
     {
         typedef char Small;
         class Big
@@ -177,12 +173,28 @@ namespace tnt
         static Big Test(...);
         static T MakeT();
 
-      public:
+    public:
         enum
         {
-            exists = (sizeof(Test(MakeT())) == sizeof(Small))
+            value = (sizeof(Test(MakeT())) == sizeof(Small))
         };
     };
+
+    // thx Jonathan Boccara
+    // https://www.fluentcpp.com/2020/05/29/how-to-make-derived-classes-implement-more-than-assignment/
+    template <template <typename...> class Expression, typename Attempt, typename... Ts>
+    struct is_detected : std::false_type
+    {
+    };
+
+    template <template <typename...> class Expression, typename... Ts>
+    struct is_detected<Expression, std::void_t<Expression<Ts...>>, Ts...> : std::true_type
+    {
+    };
+
+    template <template <typename...> class Expression, typename... Ts>
+    inline constexpr bool is_detected_v = typename is_detected<Expression, void, Ts...>::value;
+
 } // namespace tnt
 
 #endif //! TNT_TYPE_UTILS_HPP

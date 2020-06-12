@@ -1,7 +1,7 @@
 #ifndef TNT_ECS2_OBJECT_HPP
 #define TNT_ECS2_OBJECT_HPP
 
-#include <type_traits>
+#include "Utils.hpp"
 #include "math/Vector.hpp"
 
 // problems to solve
@@ -72,7 +72,8 @@ namespace tnt::ecs2
 
         inline void Draw(tnt::Window const *win) noexcept
         {
-            this->underlying().Draw(win);
+            if constexpr (is_detected_v<decltype(typename T::Draw), T>::value)
+                this->underlying().Draw(win);
         }
     };
 } // namespace tnt::ecs2

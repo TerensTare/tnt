@@ -17,13 +17,20 @@ namespace tnt
     class PhysicsComponent final : public Component
     {
     public:
-        PhysicsComponent(float const &mass, tnt::Vector const &maxVelo, tnt::Vector const &maxAccel) noexcept;
+        PhysicsComponent(float const &mass, tnt::Vector const &maxVel, tnt::Vector const &maxAccel) noexcept;
 
         void setMass(float const &mass);
         float getMass() const noexcept(noexcept(invMass > 0.f));
 
         Vector getVelocity() const noexcept;
         Vector getAcceleration() const noexcept;
+
+        Vector getMaxVelocity() const noexcept;
+        Vector getMaxAcceleration() const noexcept;
+
+        Vector getDirection() const;
+        float getSpeed() const noexcept;
+        float getMaxSpeed() const noexcept;
 
         void applyForce(Vector const &force) noexcept(noexcept(invMass > 0.f));
 

@@ -4,9 +4,9 @@
 #include "ecs/RigidBody.hpp"
 
 tnt::PhysicsComponent::PhysicsComponent(
-    float const &mass, tnt::Vector const &maxVelo,
+    float const &mass, tnt::Vector const &maxVel_,
     tnt::Vector const &maxAccel) noexcept
-    : invMass{1 / mass}, velocity{VECTOR_ZERO}, maxVelocity{maxVelo},
+    : invMass{1 / mass}, velocity{VECTOR_ZERO}, maxVelocity{maxVel_},
       acceleration{VECTOR_DOWN * 10.f}, maxAcceleration{maxAccel} {}
 
 void tnt::PhysicsComponent::setMass(float const &mass) { invMass = (1 / mass); }
@@ -14,6 +14,17 @@ float tnt::PhysicsComponent::getMass() const noexcept(noexcept(invMass > 0.f)) {
 
 tnt::Vector tnt::PhysicsComponent::getVelocity() const noexcept { return velocity; }
 tnt::Vector tnt::PhysicsComponent::getAcceleration() const noexcept { return acceleration; }
+
+tnt::Vector tnt::PhysicsComponent::getMaxVelocity() const noexcept { return maxVelocity; }
+tnt::Vector tnt::PhysicsComponent::getMaxAcceleration() const noexcept { return maxAcceleration; }
+
+tnt::Vector tnt::PhysicsComponent::getDirection() const
+{
+    return velocity.Normalized();
+}
+
+float tnt::PhysicsComponent::getSpeed() const noexcept { return velocity.Magnitude(); }
+float tnt::PhysicsComponent::getMaxSpeed() const noexcept { return maxVelocity.Magnitude(); }
 
 void tnt::PhysicsComponent::applyForce(tnt::Vector const &force) noexcept(noexcept(invMass > 0.f))
 {

@@ -7,7 +7,7 @@
 // image, radio, text field, selection box, context menu, icon(button with image)
 // TODO: load from config file.
 // TODO: themes and same color for widgets like button, checkbox, etc
-// TODO: add support for collapsing and multiple windows.
+// TODO: add support for multiple windows.
 // TODO: make sure no widget (except list_item) is drawed between BeginList() and EndList() calls.
 // TODO: add support for handling more than one context (multiple game windows).
 // TODO: sameline()

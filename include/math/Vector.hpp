@@ -76,10 +76,24 @@ namespace tnt
             return *this;
         }
 
+        inline Vector &operator*=(float rhs) noexcept
+        {
+            x *= rhs;
+            y *= rhs;
+            return *this;
+        }
+
         inline Vector &operator/=(const Vector &rhs) noexcept
         {
             x /= rhs.x;
             y /= rhs.y;
+            return *this;
+        }
+
+        inline Vector &operator/=(float rhs) noexcept
+        {
+            x /= rhs;
+            y /= rhs;
             return *this;
         }
 
@@ -132,13 +146,19 @@ namespace tnt
 
     inline float Magnitude(float x, float y) noexcept { return sqrtf(x * x + y * y); }
 
-    inline float Dot(const Vector &lhs, const Vector &rhs) noexcept(noexcept(lhs.Magnitude() * rhs.Magnitude() > FLT_EPSILON))
+    inline float AngleOf(Vector const &lhs, Vector const &rhs) noexcept(
+        noexcept(lhs.Magnitude() * rhs.Magnitude() > FLT_EPSILON))
     {
         float angleCos =
             static_cast<float>((lhs.x * rhs.x + lhs.y * rhs.y) /
                                (lhs.Magnitude() * rhs.Magnitude()));
         float angle = RadianToDegree(acosf(angleCos));
         return angle;
+    }
+
+    inline float Dot(Vector const &lhs, Vector const &rhs) noexcept
+    {
+        return lhs.x + rhs.x + lhs.y * rhs.y;
     }
 
     inline float Cross(Vector const &lhs, Vector const &rhs) noexcept
@@ -161,7 +181,7 @@ namespace tnt
         return lerp<Vector>(left, right, pct).Normalized();
     }
 
-    inline bool operator<=(const Vector &lhs, const Vector &rhs) noexcept
+    inline bool operator<=(Vector const &lhs, Vector const &rhs) noexcept
     {
         return (((lhs.x - rhs.x) <= FLT_EPSILON) && ((lhs.y - rhs.y) <= FLT_EPSILON));
     }

@@ -39,16 +39,11 @@ endif()
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE})
 
-if(MSVC)
-    set(COMMON_COMPILE_OPTIONS /EHsc /O2)
-endif()
-set(TNT_COMPILE_OPTIONS ${COMMON_COMPILE_OPTIONS})
-
 include(FindLua)
 include(cmake/StandardProjectSettings.cmake)
 
 # add_library(project_options INTERFACE)
-# target_compile_features(project_options INTERFACE cxx_std_17)
+# target_compile_features(project_options INTERFACE cxx_std_20)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -91,11 +86,23 @@ configure_file(
     "${PROJECT_SOURCE_DIR}/include/version.h.in"
     "${PROJECT_BINARY_DIR}/include/version.h")
 
-set(SOURCE_FILES src/core/Window.cpp src/core/Input.cpp
-    src/core/Camera.cpp src/core/Space.cpp src/core/Scene.cpp
-    src/math/Rectangle.cpp src/fileIO/AssetManager.cpp
-    src/ecs/Object.cpp src/ecs/Sprite.cpp src/ecs/RigidBody.cpp
-    src/ImGui/ImGui.cpp src/utils/Timer.cpp)
+file(GLOB SOURCE_FILES
+    src/core/*.cpp src/ecs/*.cpp src/ai/steer/*.cpp src/fileIO/*.cpp
+    src/ImGui/*.cpp src/math/*.cpp src/utils/*.cpp)
+
+list(FILTER SOURCE_FILES EXCLUDE REGEX "Context.cpp$")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "AnimatedSprite.cpp$")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "LuaManager.cpp$")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "Particle.cpp$")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "Scriptable.cpp$")
+list(APPEND ${SOURCE_FILES} src/ImGui/ImGui.cpp main.cpp)
+
+
+# set(SOURCE_FILES src/core/Window.cpp src/core/Input.cpp
+#     src/core/Camera.cpp src/core/Space.cpp src/core/Scene.cpp
+#     src/math/Rectangle.cpp src/fileIO/AssetManager.cpp
+#     src/ecs/Object.cpp src/ecs/Sprite.cpp src/ecs/RigidBody.cpp
+#     src/ImGui/ImGui.cpp src/utils/Timer.cpp src/ai/steer/Steering.cpp)
 
 if (TNT_DO_EXPERIMENTS)
     list(APPEND SOURCE_FILES exp/Runtimer.cpp)

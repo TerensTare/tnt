@@ -8,7 +8,7 @@ tnt::Particle::Particle(
     Window const *win, std::string_view filename,
     Vector const &speed, float &radius_,
     Rectangle const &area, long long time)
-    : Sprite{win, filename}, RigidBody{1.f, area},
+    : Sprite{win, filename}, RigidBody{1.f},
       lifetime{time}, rect{area}, radius{radius_}, alive{true} {}
 
 tnt::Particle::~Particle() noexcept

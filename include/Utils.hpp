@@ -8,11 +8,12 @@
 #include <vector>
 
 // TODO:
-// reduce template usage by replacing with concepts
+// reduce template usage by replacing with concepts.
+// move custom type_traits to a new file.
 
 #define Assert(cond, text) assert(cond &&text)
 // STATIC_CHECK is used for compile time only.
-#define STATIC_CHECK(expn) typedef char __C_ASSERT__[(expn) ? 1 : -1]
+#define STATIC_CHECK(expn) typedef char __C_ASSERT__##expn[(expn) ? 1 : -1]
 
 namespace detail
 {
@@ -23,7 +24,8 @@ namespace detail
 namespace tnt
 {
     inline const auto array_size =
-        [](detail::array auto const &arr) -> decltype(std::extent<decltype(arr)>::value) {
+        [](detail::array auto const &arr)
+        -> decltype(std::extent<decltype(arr)>::value) {
         return std::extent<decltype(arr)>::value;
     };
 

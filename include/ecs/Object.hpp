@@ -9,22 +9,17 @@
 
 // TODO:
 // AnimationComponent creates a new SDL_Texture on it's constructor. Fix that!!
-// Rotate/Scale/Transform: use global coordinates & translate to local
-// coordinates. Removable
+// Remove the need to call new/delete for each tnt::Component added to tnt::Object.
 
 // TODO(maybe):
 // use a weak_ptr on SpriteComponent ??
-// Derive new object from class Object and current Components. Something similar to a policy class ??
 // rename AnimationComponent to just Animation ??
-// Widget, Animation, AI ??
-// PhysicsComponent::{add/remove}Mass ?? also modify collision_box on runtime ??
+// PhysicsComponent::{add/remove}Mass ??
 // Rename every component to a shorter name, ex. *Comp ??
 // Write a Polygon class so that PhysicsComponent can use it as collision_shape ??
-// SpriteComponent should handle a weak_ptr<Window> not a friend class Window
-// or get the texture from AssetManager ??
-// also SpriteComponent::Draw(Rectangle const &location) ??
 // remove all getters/setters and use Components like C-style structures or POD./ ??
 // Serializable<T>/concept ??
+// Systems: DrawSys, PhysicsSys(/CollisionSys), AnimationSys, AISys ??
 
 namespace tnt
 {
@@ -124,7 +119,8 @@ namespace tnt
         /// causing any errors.
         /// @tparam The type of the @c Component to check on the components map.
         template <component T>
-        bool has() const noexcept(noexcept((components.find(typeid(T)) != components.cend())))
+        bool has() const
+            noexcept(noexcept((components.find(typeid(T)) != components.cend())))
         {
             return (components.find(typeid(T)) != components.cend());
         }
@@ -170,11 +166,14 @@ namespace tnt
         /// @note The function is marked @c [[nodiscard]].
         /// @return T*
         template <component T>
-        [[nodiscard]] T *get() noexcept
+        [[nodiscard]] T *get() const noexcept
         {
-            auto key{std::type_index{typeid(T)}};
-            [[likely]] if (has<T>()) return static_cast<T *>(components[key]);
-            tnt::logger::debug("Line: {}\tObject doesn't have Component {}\n Please call tnt::Object::add<T> before calling tnt::Object::get<T>!!", __LINE__, typeid(T).name());
+            const std::type_index key{typeid(T)};
+            [[likely]] if (has<T>()) return static_cast<T *>(components.at(key));
+            tnt::logger::debug("Object doesn't have Component {}\n"
+                               "Please call tnt::Object::add<T> before "
+                               "calling tnt::Object::get<T>!!",
+                               key.name());
             return nullptr;
         }
 
@@ -199,7 +198,7 @@ namespace tnt
         }
 
         /// @brief Clears the @c components map of the @c Object.
-        void clear() noexcept
+        inline void clear() noexcept
         {
             for (auto const &it : components)
                 [[likely]] if (it.second != nullptr) delete it.second;
@@ -211,8 +210,8 @@ namespace tnt
         float angle{.0f};
         Vector position{.0f, .0f};
         Vector scale{1.f, 1.f};
-        std::map<std::type_index, Component *> components;
         Object *parent{nullptr};
+        std::map<std::type_index, Component *> components;
     };
 
     /// @brief An @c Object that can be drawed.
@@ -226,7 +225,7 @@ namespace tnt
     }
     &&std::is_base_of_v<Object, T>;
 
-    /// @brief A basic @Object type.
+    /// @brief A basic @c Object type.
     template <typename T>
     concept object = std::is_base_of_v<Object, T>;
 } // namespace tnt

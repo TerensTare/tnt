@@ -3,6 +3,34 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-06-12
+### Added
+- `ai/steer/Steering.hpp`/`ai/steer/Steering.cpp`. It contains some basic steering behaviours that can be applied to `tnt::Object`s that have a `tnt::PhysicsComponent`.
+
+
+## 2020-06-11
+### Added
+- `tnt::Vector::operator *=`/`tnt::Vector::operator /=` overload that accepts a `float` as right-hand-side.
+- `struct tnt::is_detected` on `TypeUtils.hpp`.
+- `tnt::PhysicsComponent::getMaxVelocity` and `tnt::PhysicsComponent::getMaxAcceleration`.
+- `tnt::PhysicsComponent::getDirection` which returns `velocity.Normalized()`.
+- `tnt::PhysicsComponent::getSpeed` which returns `velocity.Magnitude()` and `tnt::PhysicsComponent::getMaxSpeed` which returns `maxVelocity.Magnitude()`.
+- `tnt::AngleOf` which returns the angle formed by `tnt::Vector`s passed as a parameter.
+
+
+### Changed
+- `tnt::Dot` now returns `lhs.x*rhs.x+lhs.y+rhs.y`. Use `tnt::AngleOf` to get the angle formed by the parameter `tnt::Vector`s.
+
+
+### Removed
+- `fileIO/Reader.hpp` and `fileIO/Write.hpp`.
+
+
+## 2020-06-05
+### Added
+- Some utility math functions on `math/GenericMath.hpp`.
+
+
 ## 2020-06-04
 ### Added
 - header `math/GenericMath.hpp`. There you will find `PI` (to be removed when C++20 adds support for some 'special' numbers like pi and e) and templated math-related lambdas like lerp, blerp and beziercurve.
