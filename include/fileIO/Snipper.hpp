@@ -3,8 +3,7 @@
 
 #include <map>
 #include <mutex>
-
-#include "fileIO/File.hpp"
+#include <filesystem>
 
 // TODO:
 // make this class's operations asynchronous.
@@ -14,7 +13,7 @@
 
 // TODO(maybe):
 // a singleton. ??
-// final class ??
+// std::map<std::string, std::pair<std::string, fs::file_time_type>> instead of tnt::File ??
 
 namespace tnt::detail
 {
@@ -25,15 +24,14 @@ namespace tnt::detail
     concept safe_callable = std::is_nothrow_invocable<T, Args...>::value;
 } // namespace tnt::detail
 
-namespace tnt::file
+namespace tnt
 {
+    using file = std::pair<std::string, std::filesystem::file_time_type>;
+
     /// @brief A basic file watcher. Useful for asset hotloading and other stuff.
-    class Snipper
+    class Snipper final
     {
     public:
-        /// @brief The destructor of the file watcher.
-        ~Snipper() noexcept;
-
         /// @brief Watch @c name to check if it has been modified.
         /// @name The file that should be watched.
         void watchFile(std::string_view name);
@@ -59,12 +57,15 @@ namespace tnt::file
         /// doesn'r report anything.
         void unwatchFile(std::string_view filename) noexcept;
 
-    private:
+        /// @brief Check if @c file has been modified since the last check.
+        /// @param file The name of the file to check.
+        /// @return bool
         bool isModified(std::string_view file) noexcept;
 
-        std::map<std::string, File *> files;
-        static std::recursive_mutex mtx;
+    private:
+        std::map<std::string, file> files;
+        mutable std::recursive_mutex mtx;
     };
-} // namespace tnt::file
+} // namespace tnt
 
 #endif //! TNT_FILE_SNIPPER_HPP

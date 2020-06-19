@@ -32,13 +32,6 @@ message(FATAL_ERROR
     Please consider making a \"build\" subdirectory and run cmake .. from the \"build\" directory.")
 endif()
 
-# Copy assets folder to build directory
-if(EXISTS ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/assets)
-    file(REMOVE_RECURSE ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/assets)
-endif()
-
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE})
-
 include(FindLua)
 include(cmake/StandardProjectSettings.cmake)
 
@@ -70,7 +63,6 @@ endif()
 list(APPEND CMAKE_PREFIX_PATH ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET})
 
 # Load required packages.
-
 find_package(Lua REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
 find_package(sdl2-image CONFIG REQUIRED)
@@ -82,27 +74,16 @@ find_package(sol2 CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 
-configure_file(
-    "${PROJECT_SOURCE_DIR}/include/version.h.in"
-    "${PROJECT_BINARY_DIR}/include/version.h")
-
 file(GLOB SOURCE_FILES
     src/core/*.cpp src/ecs/*.cpp src/ai/steer/*.cpp src/fileIO/*.cpp
     src/ImGui/*.cpp src/math/*.cpp src/utils/*.cpp)
 
 list(FILTER SOURCE_FILES EXCLUDE REGEX "Context.cpp$")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "AnimatedSprite.cpp$")
-list(FILTER SOURCE_FILES EXCLUDE REGEX "LuaManager.cpp$")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "Particle.cpp$")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "Scriptable.cpp$")
+
 list(APPEND ${SOURCE_FILES} src/ImGui/ImGui.cpp main.cpp)
-
-
-# set(SOURCE_FILES src/core/Window.cpp src/core/Input.cpp
-#     src/core/Camera.cpp src/core/Space.cpp src/core/Scene.cpp
-#     src/math/Rectangle.cpp src/fileIO/AssetManager.cpp
-#     src/ecs/Object.cpp src/ecs/Sprite.cpp src/ecs/RigidBody.cpp
-#     src/ImGui/ImGui.cpp src/utils/Timer.cpp src/ai/steer/Steering.cpp)
 
 if (TNT_DO_EXPERIMENTS)
     list(APPEND SOURCE_FILES exp/Runtimer.cpp)
@@ -124,9 +105,9 @@ if(DOXYGEN_FOUND)
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/docs
         COMMENT "Generating documentation with Doxygen"
         VERBATIM)
-else(DOXYGEN_FOUND)
-    message("Doxygen must be installed to build the documentation")
-endif(DOXYGEN_FOUND)
+else()
+    message("Not generating documentation because Doxygen was not found")
+endif()
 
 
 add_executable(TnT main.cpp ${SOURCE_FILES})
@@ -157,8 +138,53 @@ target_link_directories(TnT PRIVATE
     ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/lib)
 target_compile_options(TnT PRIVATE ${TNT_COMPILE_OPTIONS})
 
-# set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-# set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-# include(CPack)
+# Copy assets folder to build directory
+if(EXISTS ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/assets)
+    file(REMOVE_RECURSE ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/assets)
+endif()
 
-# install(TARGETS ${PROJ_NAME} DESTINATION "${${PROJ_NAME}_PATH_INSTALL}/lib/${CMAKE_BUILD_TYPE}/")
+install(TARGETS TnT ARCHIVE COMPONENT assets RUNTIME DESTINATION assets)
+install(TARGETS TnT ARCHIVE COMPONENT binary RUNTIME DESTINATION .)
+
+set(CMAKE_INSTALL_BINDIR .)
+
+# CPack config stuff
+option(BUILD_INSTALLER "Build the installer" OFF)
+
+if(BUILD_INSTALLER)
+    include(InstallRequiredSystemLibraries)
+
+    set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "The TnT engine.")
+    set(CPACK_PACKAGE_VENDOR "Terens Tare")
+
+    set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+    set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+
+    set(CPACK_PACKAGE_VERSION_MAJOR "0")
+    set(CPACK_PACKAGE_VERSION_MINOR "1")
+    set(CPACK_PACKAGE_VERSION_PATCH "0")
+    set(CPACK_PACKAGE_INSTALL_DIRECTORY "TnT")
+    set(CPACK_PACKAGE_FILE_NAME "TnT")
+
+    set(CPACK_COMPONENTS_ALL binary assets)
+    set (CPACK_COMPONENT_APPLICATIONS_DISPLAY_NAME "TnT engine")
+    set (CPACK_COMPONENT_APPLICATIONS_DESCRIPTION
+        "A 2d game engine that uses Lua and C++20.")
+
+    if(WIN32 AND NOT UNIX)
+        set(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/assets\\\\TnT.png")
+        set(CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/assets\\\\TnT.ico")
+        set(CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/assets\\\\TnT.ico")
+        set(CPACK_NSIS_INSTALLED_ICON_NAME "${CMAKE_SOURCE_DIR}/assets\\\\TnT.ico")
+        set(CPACK_NSIS_DISPLAY_NAME "The TnT engine")
+        set(CPACK_NSIS_HELP_LINK "https:\\\\github.com/TerensTare/tnt")
+        set(CPACK_NSIS_MODIFY_PATH ON)
+    else()
+        set(CPACK_STRIP_FILES "build/Release/TnT")
+        set(CPACK_SOURCE_STRIP_FILES "")
+    endif()
+
+    set(CPACK_PACKAGE_EXECUTABLES "TnT" "assets/TnT.png")
+
+    include(CPack)
+endif()

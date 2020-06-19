@@ -7,7 +7,7 @@
 
 #include <ostream>
 
-#include "math/GenericMath.hpp"
+#include "math/MathUtils.hpp"
 
 // TODO: add noexcept at more places, if possible.
 // TODO: add a ScalableVector struct, which has x, y and z coordinates, and uses

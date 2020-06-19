@@ -3,9 +3,63 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2020-06-19
+### Added
+- Link to the official subreddit on `CONTRIBUTING.md`.
+
+### Removed
+- `fileIO/File.hpp`/`fileIO/File.cpp`.
+
+## 2020-06-18
+### Changed
+- `tnt::file::Snipper` is now `tnt::Snipper`, and is a `final` class.
+- `tnt::Snipper::isModified` is now `public`.
+
+### Removed
+- Some unnecessary lines on `.gitignore`.
+
+
+## 2020-06-16
+### Changed
+- `tnt::Window`s created with the second constructor now have `SDL_WINDOW_SHOWN` flag by default.
+
+
+## 2020-06-15
+### Added
+- `tnt::lua::loadSpriteComp`/tnt::lua::loadPhysComp`.
+
+
+## 2020-06-14
+### Added
+- `tnt::lua::loadSpace`/`tnt::lua::loadScene`.
+
+### Changed
+- `tnt::Space::addObject` now doesn't use concepts, but needs an `tnt::Object const*` as a second argument. This decision is made for performance reasons.
+
+
+## 2020-06-13
+### Added
+- `assets/TnT.png` and `assets/TnT.ico`.
+- Some stuff on `CMakeLists.txt` to build an installer for the engine.
+- `tnt::lua::load` to load all needed packages. It works similar to `sol::state_view::open_libraries`.
+- `tnt::lua::lib` to be used as argument of `tnt::lua::load`.
+
+### Changed
+- `Player::to_lua` on `main.cpp` is now `static`.
+- `tnt::lua::*` functions now return `sol::table`.
+- Rewrote/fixed some stuff on `README.md`.
+
+### Removed
+- `math/GenericMath.hpp`, but its contents are available on `math/MathUtils.hpp`.
+- `include/version.h.in`.
+
+
 ## 2020-06-12
 ### Added
 - `ai/steer/Steering.hpp`/`ai/steer/Steering.cpp`. It contains some basic steering behaviours that can be applied to `tnt::Object`s that have a `tnt::PhysicsComponent`.
+
+### Fixed
+- Steering functions not producing desired behaviour.
 
 
 ## 2020-06-11

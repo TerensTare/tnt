@@ -3,52 +3,68 @@
 
 #include "core/Input.hpp"
 #include "core/Window.hpp"
-#include "core/Space.hpp"
-#include "core/Scene.hpp"
 
 #include "ecs/Sprite.hpp"
 
-#include "fileIO/AssetManager.hpp"
-
 #include "imgui/ImGui.hpp"
 
-#include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
-
-using tnt::ImGui::hslider_float, tnt::ImGui::hslider_float2,
-    tnt::ImGui::hslider_vec, tnt::ImGui::WindowFlags;
+#include "utils/LuaManager.hpp"
 
 // TODO: "dissolve" this code into classes, like Game/Scene/Space, etc.
+
+// TODO:
+// define window params on script, or config.lua
+// add a sprite type for lua to access it on scripts
+// hot code reloading
 
 class Player final
     : public tnt::Sprite
 {
 public:
-    explicit Player(tnt::Window const *win)
+    explicit Player(tnt::Window const *win) noexcept
         : tnt::Sprite{win, "assets/player.png",
                       tnt::Rectangle{3.f, 0.f, 10.f, 16.f}} {}
 
-    inline void Update(long long time_) noexcept override
-    {
-        return;
-    }
+    inline void Update(long long time_) noexcept override { return; }
 };
 
-int main(int, char **)
+inline void loadPlayer(sol::state_view lua_)
+{
+    lua_.new_enum("coords",
+                  "local", Player::LOCAL,
+                  "global", Player::GLOBAL);
+
+    lua_.new_usertype<Player>(
+        "player", sol::constructors<Player(tnt::Window const *) noexcept>{},
+
+        "angle", sol::property([](Player const &obj) { return obj.getAngle(Player::LOCAL); }, &Player::setAngle),
+        "gAngle", [](Player const &obj) { return obj.getAngle(Player::GLOBAL); },
+        "rotate", &Player::Rotate,
+
+        "scale", sol::property([](Player const &obj) { return obj.getScale(Player::LOCAL); }, &Player::setScale),
+        "gScale", [](Player const &obj) { return obj.getScale(Player::GLOBAL); },
+        "rescale", &Player::Scale,
+
+        "pos", sol::property([](Player const &obj) { return obj.getPosition(Player::LOCAL); }, &Player::setPosition),
+        "gPos", [](Player const &obj) { return obj.getPosition(Player::GLOBAL); },
+        "transform", &Player::Transform,
+
+        "parent", sol::property(&Player::getParent, &Player::setParent),
+        "active", sol::property(&Player::isActive, &Player::setActive),
+
+        "w", sol::property(&Player::getWidth),
+        "h", sol::property(&Player::getHeight),
+
+        "update", &Player::Update,
+        "draw", &Player::Draw);
+}
+
+int main(int argc, char **argv)
 {
     tnt::Window *window{new tnt::Window{
         "The TnT Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
-
-    Player player{window};
-    player.setPosition(tnt::Vector{100.f, 160.f});
-    player.setScale(tnt::Vector{10.f, 10.f});
-
-    tnt::Space space;
-    space.addObject("player", player);
-
-    tnt::Scene editor{window, "assets/sky.png"};
-    editor.addSpace("gameSpace", &space);
 
     long long dt{0};
     SDL_DisplayMode display;
@@ -56,18 +72,34 @@ int main(int, char **)
 
     tnt::Timer timer;
 
-    tnt::Vector scale{player.getScale()};
-    tnt::Vector params{(float)player.getWidth(), (float)player.getHeight()};
-    tnt::Vector pos{player.getPosition()};
+    tnt::lua::lib libs_impl[]{
+        tnt::lua::lib::MATH, tnt::lua::lib::WINDOW,
+        tnt::lua::lib::IMGUI, tnt::lua::lib::SPRITE_COMP,
+        tnt::lua::lib::PHYS_COMP, tnt::lua::lib::SCENE};
+    std::span libs{libs_impl};
 
-    tnt_imgui_init(window);
+    sol::state lua_;
+    SDL_Event e;
+
+    lua_.open_libraries(sol::lib::base, sol::lib::package);
+    tnt::lua::load(lua_, libs);
+    loadPlayer(lua_);
+
+    lua_["screen_w"] = display.w;
+    lua_["screen_h"] = display.h;
+
+    lua_.script_file("./game.lua");
+
+    auto update{lua_["update"]};
+    auto draw{lua_["draw"]};
+    auto do_imgui{lua_["do_imgui"]};
+
+    lua_["init"](window);
 
     while (window->isOpened())
     {
         dt = timer.deltaTime().count();
         timer.reset();
-
-        SDL_Event e;
 
         while (SDL_PollEvent(&e))
         {
@@ -80,36 +112,12 @@ int main(int, char **)
         }
 
         if (dt != 0)
-            editor.Update(dt);
+            update(dt);
 
         window->Clear();
-        editor.Draw(window);
 
-        if (tnt::ImGui::Begin(window, "Properties", 300, 300))
-        {
-            if (tnt::ImGui::BeginSection(window, "Transform"))
-            {
-                {
-                    static float angle{360.f};
-                    if (hslider_float(window, "Rotation", 0.f, 720.f, &angle))
-                        player.setAngle(angle);
-                }
-
-                if (hslider_vec(window, "Scale",
-                                .5f, 100.f, .5f, 100.f, &scale))
-                    player.setScale(scale);
-
-                if (hslider_vec(window, "Position",
-                                params.x / 2, (float)display.w - (params.x / 2),
-                                params.y / 2, (float)display.h - (params.y / 2),
-                                &pos))
-                    player.setPosition(pos);
-
-                tnt::ImGui::EndSection();
-            }
-
-            tnt::ImGui::End();
-        }
+        draw(window);
+        do_imgui(window);
 
         window->Render();
 

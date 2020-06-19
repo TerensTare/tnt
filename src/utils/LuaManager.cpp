@@ -5,8 +5,11 @@
 
 #include "core/Input.hpp"
 #include "core/Window.hpp"
+#include "core/Space.hpp"
+#include "core/Scene.hpp"
 
 #include "ecs/Sprite.hpp"
+#include "ecs/RigidBody.hpp"
 
 #include "fileIO/AssetManager.hpp"
 // #include "fileIO/AudioPlayer.hpp"
@@ -43,9 +46,9 @@ void tnt::lua::loadVector(sol::state_view lua_)
     lua_["VECTOR_ZERO"] = VECTOR_ZERO;
     lua_["VECTOR_ONE"] = VECTOR_ONE;
     lua_["VECTOR_RIGHT"] = VECTOR_RIGHT;
-    lua_["VECTOR_LEFT"] = VECTOR_LEFT;
-    lua_["VECTOR_UP"] = VECTOR_UP;
-    lua_["VECTOR_DOWN"] = VECTOR_DOWN;
+    lua_["LEFT"] = VECTOR_LEFT;
+    lua_["UP"] = VECTOR_UP;
+    lua_["DOWN"] = VECTOR_DOWN;
 }
 
 void tnt::lua::loadRectangle(sol::state_view lua_)
@@ -160,7 +163,7 @@ void tnt::lua::loadObject(sol::state_view lua_)
 // class LuaSprite final : public tnt::Sprite
 // {
 // private:
-//     void Update(long long) noexcept override { return; }
+//     sol::table Update(long long) noexcept override { return; }
 // };
 
 // void tnt::lua::loadSprite(sol::state_view lua_)
@@ -174,7 +177,7 @@ void tnt::lua::loadObject(sol::state_view lua_)
 void tnt::lua::loadInput(sol::state_view lua_)
 {
     auto input{lua_["input"].get_or_create<sol::table>()};
-    input["close_input"] = &input::close;
+    input["close"] = &input::close;
 
     // keyboard stuff
     input["key_down"] = &input::keyDown;
@@ -264,17 +267,112 @@ void tnt::lua::loadWindow(sol::state_view lua_)
             &Window::Draw<Sprite, FullTrackingCamera>));
 }
 
+void tnt::lua::loadSpace(sol::state_view lua_)
+{
+    lua_.new_usertype<Space>(
+        "space", sol::constructors<Space()>{},
+        "active", sol::property(&Space::isActive),
+        "update", &Space::Update, "draw",
+        sol::overload(
+            &Space::Draw<Camera>,
+            &Space::Draw<HorizontalCamera>, &Space::Draw<FullTrackingCamera>),
+        "add", &Space::addObject,
+        "get", &Space::getObject,
+        "remove", &Space::removeObject);
+}
+
+void tnt::lua::loadScene(sol::state_view lua_)
+{
+    lua_.new_usertype<Scene>(
+        "scene", sol::constructors<Scene(Window const *, std::string_view) noexcept, Scene(Window const *) noexcept>{},
+        "add", &Scene::addSpace, "get", &Scene::getSpace,
+        "draw", &Scene::Draw, "update", &Scene::Update);
+}
+
+void tnt::lua::loadSpriteComp(sol::state_view lua_)
+{
+    lua_.new_usertype<SpriteComponent>(
+        "sprite_comp",
+        sol::constructors<SpriteComponent(Window const *, std::string_view), SpriteComponent(Window const *, std::string_view, tnt::Rectangle const &)>{},
+        "setTexture",
+        sol::overload(
+            sol::resolve<void(Window const *, std::string_view)>(
+                &SpriteComponent::setTexture),
+            sol::resolve<void(Window const *, std::string_view, tnt::Rectangle const &)>(
+                &SpriteComponent::setTexture)),
+        "draw", &SpriteComponent::Draw,
+        "w", &SpriteComponent::getWidth,
+        "h", &SpriteComponent::getHeight);
+}
+
+void tnt::lua::loadPhysComp(sol::state_view lua_)
+{
+    lua_.new_usertype<PhysicsComponent>(
+        "phys_comp", sol::constructors<PhysicsComponent(float const &, Vector const &, Vector const &)>{},
+        "mass", sol::property(&PhysicsComponent::getMass, &PhysicsComponent::setMass),
+        "vel", sol::property(&PhysicsComponent::getVelocity),
+        "accel", sol::property(&PhysicsComponent::getAcceleration),
+        "max_vel", &PhysicsComponent::getMaxVelocity,
+        "max_accel", &PhysicsComponent::getMaxAcceleration,
+        "dir", &PhysicsComponent::getDirection,
+        "speed", &PhysicsComponent::getSpeed,
+        "max_speed", &PhysicsComponent::getMaxSpeed,
+        "apply", &PhysicsComponent::applyForce,
+        "do_phys", &PhysicsComponent::doPhysics);
+}
+
 void tnt::lua::loadAll(sol::state_view lua_)
 {
     loadVector(lua_);
     loadRectangle(lua_);
     loadTimer(lua_);
-    // loadAudioPlayer(lua_);
     loadObject(lua_);
-    // loadSprite(lua_);
     loadInput(lua_);
     loadImGui(lua_);
     loadWindow(lua_);
+    loadSpace(lua_);
+    loadScene(lua_);
+    loadSpriteComp(lua_);
+    loadPhysComp(lua_);
     // loadAssetManager(lua_);
-    // loadComponents(lua_);
+    // loadAudioPlayer(lua_);
+    // loadSprite(lua_);
+}
+
+void tnt::lua::load(sol::state_view lua_, std::span<tnt::lua::lib> libs)
+{
+    for (auto l : libs)
+    {
+        if (l == lib::ALL)
+        {
+            loadAll(lua_);
+            return;
+        }
+        else if (l == lib::MATH)
+        {
+            loadVector(lua_);
+            loadRectangle(lua_);
+        }
+        else if (l == lib::TIMER)
+            loadTimer(lua_);
+        else if (l == lib::INPUT)
+            loadInput(lua_);
+        else if (l == lib::WINDOW)
+            loadWindow(lua_);
+        else if (l == lib::IMGUI)
+            loadImGui(lua_);
+        else if (l == lib::CAMERA)
+            loadCameras(lua_);
+        else if (l == lib::SCENE)
+        {
+            loadSpace(lua_);
+            loadScene(lua_);
+        }
+        else if (l == lib::SPRITE_COMP)
+            loadSpriteComp(lua_);
+        else if (l == lib::PHYS_COMP)
+            loadPhysComp(lua_);
+        else if (l == lib::UTILS)
+            loadUtils(lua_);
+    }
 }

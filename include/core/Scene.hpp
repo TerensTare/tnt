@@ -6,7 +6,7 @@
 #include "core/Camera.hpp"
 
 // TODO: implement cutscenes (scenes where player input is ignored).
-// TODO: store a Quadtree on each Scene (or Space).
+// TODO: store a Quadtree on each Scene (or treat each Space as a QuadTree).
 // TODO: add more functionality.
 // TODO: move loader functions on class Game.
 

@@ -39,11 +39,7 @@ namespace tnt
     public:
         bool isActive() const noexcept;
 
-        template <object O>
-        inline void addObject(std::string_view id, O const &obj)
-        {
-            objects.insert(std::make_pair(id, (Object *)(&obj)));
-        }
+        void addObject(std::string_view id, Object const *obj);
 
         Object *getObject(std::string_view id) const;
         void removeObject(std::string_view id) noexcept; // (maybe) remove this

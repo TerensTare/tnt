@@ -9,10 +9,10 @@
 
 namespace tnt::detail::gfx
 {
-    inline static bool init{false};
-    inline static short window_count{0};
+    inline bool init{false};
+    inline short window_count{0};
 
-    bool Init() noexcept
+    inline bool Init() noexcept
     {
         [[likely]] if (!detail::gfx::init)
         {
@@ -41,6 +41,7 @@ namespace tnt::detail::gfx
             tnt::logger::debug("Successfully initialized all graphics systems.");
         }
 
+        ++window_count;
         return true;
     }
 
@@ -72,7 +73,11 @@ tnt::Window::Window(std::string_view title,
 tnt::Window::Window(std::string_view title, int width, int height) noexcept
     : running{detail::gfx::Init()}
 {
-    window = SDL_CreateWindow(title.data(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow(
+        title.data(),
+        SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+        width, height,
+        SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_GetWindowSize(window, &w, &h);

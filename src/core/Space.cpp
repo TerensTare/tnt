@@ -10,6 +10,12 @@
 
 bool tnt::Space::isActive() const noexcept { return active; }
 
+void tnt::Space::addObject(std::string_view id, Object const *obj)
+{
+    objects.insert(std::make_pair<std::string, Object *>(
+        std::string{id.data()}, const_cast<Object *>(obj)));
+}
+
 tnt::Object *tnt::Space::getObject(std::string_view id) const { return objects.find(id.data())->second; }
 
 void tnt::Space::removeObject(std::string_view id) noexcept

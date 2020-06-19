@@ -12,7 +12,7 @@ tnt::Vector tnt::steer::Seek(Object const *obj, Vector const &target)
         Vector velocity{target - obj->getPosition()};
         velocity.Normalize();
         const PhysicsComponent *phys{obj->get<PhysicsComponent>()};
-        velocity *= phys->getVelocity().Magnitude();
+        velocity *= phys->getMaxSpeed();
         ret = (velocity - phys->getVelocity()) * phys->getMass();
     }
 
@@ -27,7 +27,7 @@ tnt::Vector tnt::steer::Flee(Object const *obj, Vector const &target)
         Vector velocity{obj->getPosition() - target};
         velocity.Normalize();
         const PhysicsComponent *phys{obj->get<PhysicsComponent>()};
-        velocity *= phys->getVelocity().Magnitude();
+        velocity *= phys->getMaxSpeed();
         ret = (velocity - phys->getVelocity()) * phys->getMass();
     }
 

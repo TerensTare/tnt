@@ -1,9 +1,9 @@
 # The TnT Engine
 
 TnT is a 2d Game Engine written in C++. At the time of speaking the engine uses
-features from the C++17 standard (as there is no C++ compiler that fully
-supports C++20 features), but one of the goals of the engine is to use C++20
-features wherever possible.
+features from the C++17 standard (because at the time of speaking there is no C++ compiler that fully supports C++20 features), but one of the goals of the engine is to use C++20 features such as modules, concepts, etc.
+
+## Build status
 
 |Windows|Linux|Mac OS-X|
 |:-----:|:---:|:------:|
@@ -35,15 +35,17 @@ know C++. Meanwhile the engine should be powerful enough for a C++ developer.
 
 ## Documentation
 
-The documentation of the engine is written on the header files of the `include` directory. It is built by default by CMake. Note that for building the documentation, you need to have Doxygen installed (you can get it [here](http://www.doxygen.nl/manual/install.html)). The documentation will be built on `build/docs` folder. If you don't want to build the docs, please run `cmake -DTNT_BUILD_DOCS=OFF ..` instead of `cmake ..`. To read the documentation, please open `build/docs/html/index.html` on your browser.
+The documentation of the engine is written on the header files of the `include` directory. It is built by default by CMake. Note that for building the documentation, you need to have Doxygen installed (you can get it [here](http://www.doxygen.nl/manual/install.html)). The documentation will be built on `build/docs` folder. If you don't want to build the documentation, please run `cmake -DTNT_BUILD_DOCS=OFF ..` instead of `cmake ..` . To read the documentation, open `build/docs/html/index.html` on your browser.
 
 ## Getting started
 
-For getting the binaries or building from source, please refer to [INSTALL.md](./INSTALL.md).
+For instructions on how to get the binaries of the engine or to build from source, please read [INSTALL.md](./INSTALL.md).
+
 
 ### Building the tests and samples
 
 WIP
+
 
 ## Contributing
 
@@ -52,4 +54,4 @@ Please see [CONTRIBUTING.md](./CONTRIBUTING.md) to learn how you can contribute 
 
 ## Q&A
 
-For any question you may have, please visit TnT's Discord [server](https://discord.gg/s5Y9VCR).
+For any question you may have, please visit TnT's Discord [server](https://discord.gg/s5Y9VCR) or Slack [workspace](https://join.slack.com/t/tnt2d/shared_invite/zt-f3q4v25s-2m5FyEKU29J8mYsz2zDWjQ).

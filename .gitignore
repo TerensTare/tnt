@@ -1,11 +1,6 @@
 .vscode
-bin
 build
 logs
-obj
-project
-tools
-module
 
 # MSVC stuff
 *.obj
@@ -21,11 +16,3 @@ module
 
 # SourceTrail stuff
 *.srctrl*
-
-# My stuff :)
-WIP
-NOTES.md
-Roadmap.todo
-benchmark.json
-build.json
-bld.bat

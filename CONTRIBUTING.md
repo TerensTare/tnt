@@ -1,14 +1,20 @@
 # Contributing to the TnT engine
 :octocat::+1: Thank you for contributing to TnT :+1::octocat:
 
-This file explains the ways you can contribute to the development of the TnT engine. By reading this file, you will help me on speeding up the development of TnT.
+This file explains the ways you can contribute to the development of the TnT engine. By reading this file, you will help on speeding up the development of TnT.
 
 ## Table of contents
+- Contacts
 - Asking questions
 - Suggesting features
 - Reporting errors
 - Submiting changes
 
+## Contact
+- Github [repo](https://github.com/TerensTare/tnt)
+- Discord [server](https://discord.gg/s5Y9VCR)
+- Slack [workspace](https://join.slack.com/t/tnt2d/shared_invite/zt-f3q4v25s-2m5FyEKU29J8mYsz2zDWjQ)
+- Reddit [subreddit](https://www.reddit.com/r/TnT2d/)
 
 ## Asking questions
 If you have a question related to a feature or a functionality of the engine, please visit TnT's Discord [server](https://discord.gg/s5Y9VCR) or Slack [workspace](https://join.slack.com/t/tnt2d/shared_invite/zt-f3q4v25s-2m5FyEKU29J8mYsz2zDWjQ).
