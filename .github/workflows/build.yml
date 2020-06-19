@@ -18,6 +18,15 @@ name: build
 on: ["push", "pull_request"]
 
 jobs:
+    check-code:
+      runs-on: ${{ matrix.os }}
+      steps:
+        - name: IntelliCode Team Completions
+          uses: microsoft/vs-intellicode@v1.0
+          with:
+              platform: Any CPU
+              config: Release
+    
     get-dependencies:
         name: ${{ matrix.os }}-dependencies
         runs-on: ${{ matrix.os }}
