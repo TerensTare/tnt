@@ -27,6 +27,7 @@ jobs:
           with:
               platform: Any CPU
               config: Release
+          id: intelli-check
               
       strategy:
           fail-fast: false
