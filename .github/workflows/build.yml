@@ -19,6 +19,7 @@ on: ["push", "pull_request"]
 
 jobs:
     check-code:
+      name: Check code quality
       runs-on: ${{ matrix.os }}
       steps:
         - name: IntelliCode Team Completions
