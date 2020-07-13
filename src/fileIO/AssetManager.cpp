@@ -133,7 +133,7 @@ void tnt::AssetManager::AddSfx(std::string_view chunk)
     if (assets_it<Mix_Chunk *> it{sfx.find(chunk_)};
         it != sfx.cend() && it->second != nullptr)
         return;
-    sfx[chunk_] = Mix_LoadWAV(chunk_.data());
+    sfx[chunk_] = Mix_LoadWAV(chunk_.c_str());
 }
 
 // void tnt::AssetManager::AddMap(std::string_view name)

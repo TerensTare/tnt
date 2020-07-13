@@ -83,7 +83,7 @@ list(FILTER SOURCE_FILES EXCLUDE REGEX "AnimatedSprite.cpp$")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "Particle.cpp$")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "Scriptable.cpp$")
 
-list(APPEND ${SOURCE_FILES} src/ImGui/ImGui.cpp main.cpp)
+list(APPEND ${SOURCE_FILES} src/ImGui/ImGui.cpp)
 
 if (TNT_DO_EXPERIMENTS)
     list(APPEND SOURCE_FILES exp/Runtimer.cpp)
@@ -109,11 +109,11 @@ else()
     message("Not generating documentation because Doxygen was not found")
 endif()
 
-
 add_executable(TnT main.cpp ${SOURCE_FILES})
 
 set_target_properties(TnT PROPERTIES LINKER_LANGUAGE CXX)
 
+target_include_directories(TnT PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
 target_include_directories(TnT PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
 target_link_libraries(TnT PRIVATE ${LUA_LIBRARIES})
 
@@ -123,7 +123,7 @@ if(WIN32)
     target_link_libraries(TnT PRIVATE SDL2::SDL2 SDL2::SDL2main)
 else()
     target_link_libraries(TnT PRIVATE SDL2::SDL2 SDL2::SDL2-static)
-endif(WIN32)
+endif()
 
 # target_link_libraries(TnT PRIVATE SDL2::SDL2_gfx)
 target_link_libraries(TnT PRIVATE SDL2::SDL2_image)
@@ -136,7 +136,6 @@ target_link_libraries(TnT PRIVATE nlohmann_json nlohmann_json::nlohmann_json)
 
 target_link_directories(TnT PRIVATE
     ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/lib)
-target_compile_options(TnT PRIVATE ${TNT_COMPILE_OPTIONS})
 
 # Copy assets folder to build directory
 if(EXISTS ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/assets)

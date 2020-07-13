@@ -15,6 +15,7 @@
 // TODO: add support for calling window inside a window (ex. creating window on button click)
 // TODO: make a draw function to draw all widgets the way you want.
 // TODO: draw menu even if there is no ImGui window. In that case, draw the menu on the "top" of the window.
+// TODO: reduce new/delete calls (maybe) eleminate them totally
 
 // TODO(maybe):
 // move slider's modified value before min/max ??

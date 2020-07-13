@@ -68,7 +68,6 @@ tnt::Window::Window(std::string_view title,
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_GetWindowSize(window, &w, &h);
 }
-// SDL_RenderSetLogicalSize(renderer, width, height); // with this, the objects will be resized on window size change.
 
 tnt::Window::Window(std::string_view title, int width, int height) noexcept
     : running{detail::gfx::Init()}

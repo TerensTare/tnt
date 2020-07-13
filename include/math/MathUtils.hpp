@@ -259,12 +259,6 @@ namespace tnt
     };
 
     template <typename T>
-    inline const auto min = [](T a, T b) -> bool { return ((a < b) ? a : b); };
-
-    template <typename T>
-    inline const auto max = [](T a, T b) -> bool { return ((a > b) ? a : b); };
-
-    template <typename T>
     inline const auto step = [](T a, T b) -> float {
         return static_cast<float>(a <= b);
     };

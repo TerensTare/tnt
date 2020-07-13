@@ -8,6 +8,8 @@
 #include "core/Space.hpp"
 #include "core/Scene.hpp"
 
+#include "doo_ecs/Objects.hpp"
+
 #include "ecs/Sprite.hpp"
 #include "ecs/RigidBody.hpp"
 
@@ -54,7 +56,7 @@ void tnt::lua::loadVector(sol::state_view lua_)
 void tnt::lua::loadRectangle(sol::state_view lua_)
 {
     lua_.new_usertype<Rectangle>(
-        "rect", sol::constructors<Rectangle(float, float, float, float), Rectangle(int, int, int, int), Rectangle(Vector const &, float, float), Rectangle(Rectangle)>{},
+        "rect", sol::constructors<Rectangle(), Rectangle(float, float, float, float), Rectangle(int, int, int, int), Rectangle(Vector const &, float, float), Rectangle(Rectangle)>{},
         "x", &Rectangle::x, "y", &Rectangle::y, "w", &Rectangle::w, "h", &Rectangle::h,
         "point_in", &Rectangle::Contains, "point_out", &Rectangle::Outside,
 
@@ -321,6 +323,56 @@ void tnt::lua::loadPhysComp(sol::state_view lua_)
         "do_phys", &PhysicsComponent::doPhysics);
 }
 
+void tnt::lua::loadDooEcs(sol::state_view lua_)
+{
+    using namespace doo;
+
+    lua_.new_usertype<object_data>(
+        "object_data", sol::constructors<object_data(float, tnt::Vector, tnt::Vector)>{},
+        "angle", &object_data::angle,
+        "scale", &object_data::scale,
+        "pos", &object_data::pos);
+
+    // sprites
+    lua_.new_usertype<sprite_comp>(
+        "sprite_comp",
+        sol::constructors<sprite_comp(tnt::Window const &, std::string_view), sprite_comp(tnt::Window const &, std::string_view, tnt::Rectangle const &)>{},
+        "crop", &sprite_comp::crop);
+
+    lua_.new_usertype<sprites_sys>(
+        "sprites_sys", sol::constructors<sprites_sys()>{},
+        "add_object",
+        sol::overload(
+            sol::resolve<void(tnt::Window const &, std::string_view)>(&sprites_sys::add_object),
+            sol::resolve<void(tnt::Window const &, std::string_view, tnt::Rectangle const &)>(&sprites_sys::add_object)),
+        "draw_queue", &sprites_sys::draw_queue);
+
+    // physics
+    lua_.new_usertype<phys_comp>(
+        "phys_comp", sol::constructors<phys_comp(float const &, tnt::Vector const &)>{},
+        "inv_mass", &phys_comp::inv_mass,
+        "vel", &phys_comp::vel, "accel", &phys_comp::accel);
+
+    lua_.new_usertype<physics_sys>(
+        "physics_sys", sol::constructors<physics_sys()>{},
+        "add_object", &physics_sys::add_object,
+        "add_force", &physics_sys::addForce,
+        "update", &physics_sys::Update,
+        "phys", &physics_sys::phys);
+
+    lua_.new_usertype<objects_sys>(
+        "objects_sys", sol::constructors<objects_sys()>{},
+        "add_object", &objects_sys::add_object,
+        "update", &objects_sys::Update,
+        "draw", &objects_sys::Draw,
+        "get_data", &objects_sys::get_data,
+        "active", &objects_sys::active);
+
+    lua_["sprites"] = sprites;
+    lua_["physics"] = physics;
+    lua_["objects"] = objects;
+}
+
 void tnt::lua::loadAll(sol::state_view lua_)
 {
     loadVector(lua_);
@@ -372,6 +424,8 @@ void tnt::lua::load(sol::state_view lua_, std::span<tnt::lua::lib> libs)
             loadSpriteComp(lua_);
         else if (l == lib::PHYS_COMP)
             loadPhysComp(lua_);
+        else if (l == lib::DOO_ECS)
+            loadDooEcs(lua_);
         else if (l == lib::UTILS)
             loadUtils(lua_);
     }

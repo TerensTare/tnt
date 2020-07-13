@@ -49,6 +49,8 @@ WIP
 
 ## Contributing
 
+[![Gitter](https://badges.gitter.im/tnt2d/community.svg)](https://gitter.im/tnt2d/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 Please see [CONTRIBUTING.md](./CONTRIBUTING.md) to learn how you can contribute to this project.
 
 

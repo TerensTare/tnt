@@ -34,11 +34,11 @@ namespace tnt::ImGui
         SDL_Color active_color; // for drawing active parts
         SDL_Color static_color; // for drawing non-movable parts
 
-        std::string default_font;
-
         SDL_Texture *button_text;
         SDL_Texture *checkbox_tick;
         TTF_Font *font_data;
+
+        std::string default_font;
 
     } * theme{new theme_t{
             .w{0},
@@ -736,7 +736,7 @@ namespace tnt::ImGui
         const bool ret1{hslider_basei(win, tmp, id1, tmp->next_x, w, min_, max_, value1)};
         const bool ret2{hslider_basei(win, tmp, id2, tmp->next_x + w + 10, w, min_, max_, value2)};
 
-        draw_text(win, text.data(), tmp->next_x + 2 * w + 30, tmp->next_y);
+        draw_text(win, text.data(), tmp->next_x + 2 * w + 0, tmp->next_y);
 
         tmp->next_y = tmp->next_y + theme->hslider_h + 5;
 
@@ -763,7 +763,7 @@ namespace tnt::ImGui
         const bool ret1{hslider_basef(win, tmp, id1, tmp->next_x, w, min_, max_, value1)};
         const bool ret2{hslider_basef(win, tmp, id2, tmp->next_x + w + 10, w, min_, max_, value2)};
 
-        draw_text(win, text.data(), tmp->next_x + 2 * w + 30, tmp->next_y);
+        draw_text(win, text.data(), tmp->next_x + 2 * w + 20, tmp->next_y);
 
         tmp->next_y = tmp->next_y + theme->hslider_h + 5;
 
@@ -798,7 +798,7 @@ namespace tnt::ImGui
         if (y_ != value->y)
             value->y = y_;
 
-        draw_text(win, text.data(), tmp->next_x + 2 * w + 30, tmp->next_y);
+        draw_text(win, text.data(), tmp->next_x + 2 * w + 20, tmp->next_y);
 
         tmp->next_y = tmp->next_y + theme->hslider_h + 5;
 

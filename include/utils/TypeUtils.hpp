@@ -8,47 +8,8 @@
 
 #include <exception>
 #include <memory>
-#include <mutex>
 #include <thread>
-
-// TODO(maybe): lock should be std::unique_lock<std::recursive_mutex>
-
-#if __cplusplus <= 201703L
-#define synchronized(mtx) \
-    for (std::unique_lock lock{mtx}; lock; lock.unlock())
-
-namespace tnt
-{
-    // code taken from
-    // https://stackoverflow.com/questions/14931982/synchronize-entire-class-in-c11
-    template <typename T>
-    struct Synchronized
-    {
-        explicit Synchronized(T &value) : t{value} {}
-
-        Synchronized(Synchronized const &) = delete;
-        Synchronized &operator=(Synchronized const &) = delete;
-        Synchronized(Synchronized &&) = delete;
-        Synchronized &operator=(Synchronized &&) = delete;
-
-        template <typename Func>
-        auto operator()(Func &&f) const -> decltype(f(t))
-        {
-            std::lock_guard guard{mtx};
-            return f(t);
-        }
-
-    private:
-        mutable T &t;
-        mutable std::mutex mtx;
-    };
-
-#if __cplusplus == 201703L
-    template <typenme T>
-    Synchronized(T &)->Synchronized<T>;
-#endif
-#endif
-}
+#include <system_error>
 
 namespace tnt
 {
@@ -79,6 +40,17 @@ namespace tnt
         }
     };
 
+    // TODO:
+    // concepts usage (std::invocable, etc)
+    template <typename... Ts>
+    struct overload : Ts...
+    {
+        using Ts::operator()...;
+    };
+
+    template <typename... Ts>
+    overload(Ts...)->overload<Ts...>;
+
     struct non_copyable
     {
         non_copyable() = default;
@@ -98,7 +70,7 @@ namespace tnt
     {
         ~singleton() noexcept(noexcept(Deleter())) { Deleter(); }
 
-        static T &This()
+        static T &This() noexcept(std::is_nothrow_constructible_v<T>)
         {
             static T inst;
             return inst;
@@ -111,7 +83,7 @@ namespace tnt
         explicit scoped_thread(std::thread &th) : t{std::move(th)}
         {
             if (!t.joinable())
-                throw std::logic_error("scoped_thread: No thread!!");
+                throw std::logic_error{"scoped_thread: No thread!!"};
         }
 
         ~scoped_thread() { t.join(); }
@@ -178,6 +150,15 @@ namespace tnt
         {
             value = (sizeof(Test(MakeT())) == sizeof(Small))
         };
+    };
+
+    // thx Jonathan Boccara
+    // https://www.fluentcpp.com/2017/05/19/crtp-helper/
+    template <typename T>
+    struct crtp
+    {
+        inline T &base() noexcept { return static_cast<T &>(*this); }
+        inline T const &base() const noexcept { return static_cast<T const &>(*this); }
     };
 
     // thx Jonathan Boccara

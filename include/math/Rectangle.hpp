@@ -19,6 +19,9 @@ namespace tnt
     // add constexpr on all functions ??
     struct Rectangle
     {
+        // Needed for JSON
+        constexpr Rectangle() noexcept : x{0.f}, y{0.f}, w{0.f}, h{0.f} {}
+
         constexpr Rectangle(float x_, float y_, float w_, float h_) noexcept
             : x{x_}, y{y_}, w{w_}, h{h_} {}
 

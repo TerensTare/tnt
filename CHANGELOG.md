@@ -3,9 +3,44 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a]
+### Added
+- An experimental reflection system. See `utils/Mirror.hpp`.
+- Header `utils/Assert.hpp`.
+- `tnt::overload` on `utils/TypeUtils.hpp`.
+- A new Data Oriented Entity Component System.
+- `tnt::asset_cache` to replace `tnt::AssetManager`. Note that `tnt::AssetManager` will be deprecated and then removed on a future release.
+- Load a game script from cmd.
+- Hot code reloading for `.lua` files.
+- Folder `format` and `json`, which contain code for serializing the engine types to `{fmt}` and `nlohmann::json`.
+
+### Changed
+- `tnt::Rectangle` is now DefaultConstructible`.
+- Moved `STATIC_CHECK` from `Utils.hpp` to `utils/Assert.hpp`. Moved container-related stuff from `Utils.hpp` to `utils/Containers.hpp` and `utils/Convert.hpp`.
+
+### Removed
+- `tnt::Synchronized` from `utils/TypeUtils.hpp`.
+- `Utils.hpp`, `FormatedTypes.hpp` and `JsonTypes.hpp`.
+
+### Changed
+- `tnt::AssetManager` is now `deprecated`.
+
+## 2020-06-20
+### Added
+- Link to Gitter room on `CONTRIBUTING.md`.
+- `assets/particle.png`.
+
+### Changed
+- Most of the content of `ecs/Particle`.
+
+
 ## 2020-06-19
 ### Added
 - Link to the official subreddit on `CONTRIBUTING.md`.
+
+### Changed
+- Lua functions on `main.cpp` should be now on table `tnt`. ex. `function tnt.draw`.
+- `tnt.do_imgui` is now optional.
 
 ### Removed
 - `fileIO/File.hpp`/`fileIO/File.cpp`.

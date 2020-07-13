@@ -7,6 +7,8 @@
 #include "core/Camera.hpp"
 #include "core/Window.hpp"
 
+#include "ecs/Sprite.hpp"
+
 // a utility to group several objects, similar to a layer.
 
 // TODO: getObject should have conditional noexcept (if key exists in

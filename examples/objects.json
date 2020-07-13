@@ -1,0 +1,25 @@
+[
+    {
+        "angle": 0,
+        "scale": {
+            "x": 10,
+            "y": 10
+        },
+        "pos": {
+            "x": 100,
+            "y": 100
+        },
+        "phys": {
+            "mass": 1
+        },
+        "sprite": {
+            "file": "assets/player.png",
+            "crop": {
+                "x": 3,
+                "y": 0,
+                "w": 10,
+                "h": 16
+            }
+        }
+    }
+]

@@ -1,27 +1,11 @@
-#ifndef TNT_JSON_TYPES_HPP
-#define TNT_JSON_TYPES_HPP
+#ifndef TNT_JSON_SERIALIZE_RECTANGLE_HPP
+#define TNT_JSON_SERIALIZE_RECTANGLE_HPP
 
 #include <nlohmann/json.hpp>
-
 #include "math/Rectangle.hpp"
 
 namespace nlohmann
 {
-    template <>
-    struct adl_serializer<tnt::Vector>
-    {
-        inline static void to_json(nlohmann::json &j, tnt::Vector const &v)
-        {
-            j = nlohmann::json{{"x", v.x}, {"y", v.y}};
-        }
-
-        inline static void from_json(nlohmann::json const &j, tnt::Vector &v)
-        {
-            j.at("x").get_to(v.x);
-            j.at("y").get_to(v.y);
-        }
-    };
-
     template <>
     struct adl_serializer<tnt::Rectangle>
     {
@@ -40,4 +24,4 @@ namespace nlohmann
     };
 } // namespace nlohmann
 
-#endif //!TNT_JSON_TYPES_HPP
+#endif //!TNT_JSON_SERIALIZE_RECTANGLE_HPP

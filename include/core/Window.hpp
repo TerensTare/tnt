@@ -5,7 +5,7 @@
 
 #include <SDL2/SDL.h>
 
-#include "ecs/Sprite.hpp"
+#include "ecs/Base.hpp"
 #include "core/Camera.hpp"
 
 // TODO: overload to render a Scene when Draw is called.
@@ -16,7 +16,6 @@
 // TODO(maybe):
 // a default window icon ??
 // rename to RenderWindow ??
-// move detail::gfx namespace to Window.cpp ??
 
 namespace tnt
 {

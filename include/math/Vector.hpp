@@ -20,7 +20,7 @@ namespace tnt
 {
     struct Vector
     {
-        explicit constexpr Vector(float _x = 0.f, float _y = 0.f) noexcept
+        inline constexpr Vector(float _x = 0.f, float _y = 0.f) noexcept
             : x{_x}, y{_y} {}
 
         // template <typename T1, typename T2 = T1,

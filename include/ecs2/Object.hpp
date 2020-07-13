@@ -1,7 +1,7 @@
 #ifndef TNT_ECS2_OBJECT_HPP
 #define TNT_ECS2_OBJECT_HPP
 
-#include "Utils.hpp"
+#include "utils/TypeUtils.hpp"
 #include "math/Vector.hpp"
 
 // problems to solve
@@ -23,18 +23,6 @@ namespace tnt
 
 namespace tnt::ecs2
 {
-    namespace detail
-    {
-        // thx Jonathan Boccara
-        // https://www.fluentcpp.com/2017/05/19/crtp-helper/
-        template <typename T>
-        struct crtp
-        {
-            inline T &underlying() noexcept { return static_cast<T &>(*this); }
-            inline T const &underlying() const noexcept { return static_cast<T const &>(*this); }
-        };
-    } // namespace detail
-
     class base_object
     {
     };
@@ -67,13 +55,13 @@ namespace tnt::ecs2
 
         inline void Update(long long time_) noexcept
         {
-            this->underlying().Update(time_);
+            this->base().Update(time_);
         }
 
         inline void Draw(tnt::Window const *win) noexcept
         {
             if constexpr (is_detected_v<decltype(typename T::Draw), T>::value)
-                this->underlying().Draw(win);
+                this->base().Draw(win);
         }
     };
 } // namespace tnt::ecs2

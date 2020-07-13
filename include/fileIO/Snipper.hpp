@@ -14,6 +14,7 @@
 // TODO(maybe):
 // a singleton. ??
 // std::map<std::string, std::pair<std::string, fs::file_time_type>> instead of tnt::File ??
+// move the tow concepts to TypeUtils.hpp ??
 
 namespace tnt::detail
 {

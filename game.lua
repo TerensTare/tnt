@@ -3,7 +3,7 @@ local pos = vector:new(100, 160)
 local params
 local p1
 
-function init(win)
+function tnt.init(win)
     p1 = player:new(win)
     p1.angle = 1
     p1.scale = scale
@@ -14,17 +14,16 @@ function init(win)
     imgui.init(win)
 end
 
-function update(dt)
+function tnt.update(dt)
     p1:update(dt)
     p1:rotate(dt/100)
 end
 
-function draw(win)
+function tnt.draw(win)
     p1:draw(win)
 end
 
-
-function do_imgui(win)
+function tnt.do_imgui(win)
     if imgui.Begin(win, "Properties", 300, 300) then
         if imgui.begin_section(win, "Transform") then
             if imgui.hslider_vec(win, "Scale", 0.5, 50, 0.5, 50, scale) then

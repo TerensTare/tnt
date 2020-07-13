@@ -8,21 +8,26 @@
 
 #include "imgui/ImGui.hpp"
 
+#include "fileIO/Snipper.hpp"
+
 #include "utils/Timer.hpp"
 #include "utils/LuaManager.hpp"
 
-// TODO: "dissolve" this code into classes, like Game/Scene/Space, etc.
+namespace fs = std::filesystem;
 
 // TODO:
 // define window params on script, or config.lua
 // add a sprite type for lua to access it on scripts
-// hot code reloading
+// add option --install, same as --pack but target gets exported to SDL_GetPrefPath()
+// add support for building project files
+// use the new data oriented ecs
+// export objects.json, if it exists
 
 class Player final
     : public tnt::Sprite
 {
 public:
-    explicit Player(tnt::Window const *win) noexcept
+    inline explicit Player(tnt::Window const *win) noexcept
         : tnt::Sprite{win, "assets/player.png",
                       tnt::Rectangle{3.f, 0.f, 10.f, 16.f}} {}
 
@@ -60,8 +65,30 @@ inline void loadPlayer(sol::state_view lua_)
         "draw", &Player::Draw);
 }
 
-int main(int argc, char **argv)
-{
+auto pack = [](std::string_view filename) -> void {
+    std::string_view name{filename.substr(0, filename.size() - 4)};
+    fs::create_directory(name); // create a directory with the name of the .lua file, but remove the extension
+    const fs::path dir{name};
+
+    tnt::logger::info("Packaging project {}.\n", name);
+
+    fs::copy_file(filename, dir / filename);
+    fs::copy("assets", dir / "assets");
+
+    for (fs::directory_iterator end,
+         it{fs::current_path()};
+         it != end; ++it)
+    {
+        const fs::path file{it->path()};
+        const fs::path ext{file.extension()};
+        if (ext == ".dll" || ext == ".so" || ext == ".dylib")
+            fs::copy_file(file, dir / file.filename());
+    }
+
+    tnt::logger::info("Succesfully packaged project {}.\n", name);
+};
+
+auto run = [](std::string_view filename) -> void {
     tnt::Window *window{new tnt::Window{
         "The TnT Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE}};
@@ -71,6 +98,7 @@ int main(int argc, char **argv)
     SDL_GetDisplayMode(0, 0, &display);
 
     tnt::Timer timer;
+    tnt::Snipper snipper;
 
     tnt::lua::lib libs_impl[]{
         tnt::lua::lib::MATH, tnt::lua::lib::WINDOW,
@@ -81,20 +109,23 @@ int main(int argc, char **argv)
     sol::state lua_;
     SDL_Event e;
 
-    lua_.open_libraries(sol::lib::base, sol::lib::package);
+    lua_.open_libraries(sol::lib::base);
     tnt::lua::load(lua_, libs);
     loadPlayer(lua_);
 
     lua_["screen_w"] = display.w;
     lua_["screen_h"] = display.h;
 
-    lua_.script_file("./game.lua");
+    auto tnt{lua_["tnt"].get_or_create<sol::table>()};
 
-    auto update{lua_["update"]};
-    auto draw{lua_["draw"]};
-    auto do_imgui{lua_["do_imgui"]};
+    lua_.script_file(filename.data());
 
-    lua_["init"](window);
+    sol::protected_function update{tnt["update"]};
+    sol::protected_function draw{tnt["draw"]};
+    sol::protected_function do_imgui{tnt["do_imgui"].get_or_create<sol::function>()}; // do_imgui is optional
+
+    tnt_imgui_init(window);
+    tnt["init"](window);
 
     while (window->isOpened())
     {
@@ -109,6 +140,16 @@ int main(int argc, char **argv)
                 SDL_GetDisplayMode(0, 0, &display);
 
             tnt::ImGui::update_context();
+        }
+
+        if (snipper.isModified(filename))
+        {
+            lua_.script_file(filename.data());
+            tnt = lua_["tnt"];
+
+            update = tnt["update"];
+            draw = tnt["draw"];
+            do_imgui = tnt["do_imgui"];
         }
 
         if (dt != 0)
@@ -128,6 +169,29 @@ int main(int argc, char **argv)
     tnt::input::close();
 
     delete window;
+};
+
+int main(int argc, char **argv)
+{
+    if (argc != 3)
+    {
+        fmt::print("Incorrect number of arguments passed!!\n"
+                   "\t--run <filename>.lua\t\tRun <filename>.lua\n"
+                   "\t--pack <filename>.lua\t\tPackage <filename>.lua into <filename> directory.");
+        return -1;
+    }
+
+    const std::string_view cmd{argv[1]};
+
+    if (cmd == "-r" || cmd == "--run")
+        run(argv[2]);
+    else if (cmd == "-p" || cmd == "--pack")
+        pack(argv[2]);
+    else
+        [[unlikely]] tnt::logger::info(
+            "Detected invalid flag: {}!!\n"
+            "Supported flags are -r/--run and -p/--pack",
+            argv[1]);
 
     return 0;
 }

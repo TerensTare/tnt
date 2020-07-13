@@ -1,26 +1,24 @@
 # Contributing to the TnT engine
-:octocat::+1: Thank you for contributing to TnT :+1::octocat:
+Thank you for contributing to TnT.
 
-This file explains the ways you can contribute to the development of the TnT engine. By reading this file, you will help on speeding up the development of TnT.
+This file contains sites where you can contribute to the development of the TnT engine. The sites are separated by the kind of content you can share on them. If you don't have an account on a specific site listed on this file, feel free to write on any other site listed.
 
 ## Table of contents
-- Contacts
 - Asking questions
 - Suggesting features
 - Reporting errors
-- Submiting changes
-
-## Contact
-- Github [repo](https://github.com/TerensTare/tnt)
-- Discord [server](https://discord.gg/s5Y9VCR)
-- Slack [workspace](https://join.slack.com/t/tnt2d/shared_invite/zt-f3q4v25s-2m5FyEKU29J8mYsz2zDWjQ)
-- Reddit [subreddit](https://www.reddit.com/r/TnT2d/)
 
 ## Asking questions
-If you have a question related to a feature or a functionality of the engine, please visit TnT's Discord [server](https://discord.gg/s5Y9VCR) or Slack [workspace](https://join.slack.com/t/tnt2d/shared_invite/zt-f3q4v25s-2m5FyEKU29J8mYsz2zDWjQ).
+- Discord [server](https://discord.gg/s5Y9VCR)
+- Reddit [subreddit](https://www.reddit.com/r/TnT2d/)
+- Gitter [room](https://gitter.im/tnt2d/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
 ## Suggesting features
-If you like to see a new feature on the TnT engine, please open an feature request [issue](https://github.com/TerensTare/tnt/issues). Otherwise you can post on the Discord [server](https://discord.gg/s5Y9VCR) or Slack [workspace](https://join.slack.com/t/tnt2d/shared_invite/zt-f3q4v25s-2m5FyEKU29J8mYsz2zDWjQ).
+- Github [issues](https://github.com/TerensTare/tnt/isues)
+- Slack [workspace](https://join.slack.com/t/tnt2d/shared_invite/zt-f3q4v25s-2m5FyEKU29J8mYsz2zDWjQ)
+- Gitter [room](https://gitter.im/tnt2d/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
 ## Reporting errors
-If you have found any bug on the TnT engine or you have spotted incorrect behaviour, please open an [issue](https://github.com/TerensTare/tnt/issues).
+- Github [issues](https://github.com/TerensTare/tnt/isues)
+- Slack [workspace](https://join.slack.com/t/tnt2d/shared_invite/zt-f3q4v25s-2m5FyEKU29J8mYsz2zDWjQ)
+- Gitter [room](https://gitter.im/tnt2d/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link)

@@ -8,6 +8,8 @@
 // TODO: Add support for .tmx maps and text on Lua's AssetManager when available.
 // TODO: remove the need of passing a state on each argument.
 // TODO: dissolve each one of these functions on the corresponding files.
+// TODO: use doo_ecs_type::from_json on lua.
+// TODO: register asset_cache 
 
 // TODO(maybe):
 // lib::CORE for window, input, timer ??
@@ -26,13 +28,11 @@ namespace tnt::lua
         SCENE,
         SPRITE_COMP,
         PHYS_COMP,
+        DOO_ECS,
         UTILS,
 
         ALL
     };
-
-    template <typename T>
-    concept lua_lib = std::is_same_v<T, tnt::lua::lib>;
 
     void loadVector(sol::state_view lua_);           // done
     void loadRectangle(sol::state_view lua_);        // done
@@ -52,6 +52,8 @@ namespace tnt::lua
     // void loadAudioPlayer(sol::state const&lua_); // needs tests
     // void loadSprite(sol::state const&lua_);      // TODO
     // void loadRigidBody(sol::state& lua_); // TODO
+
+    void loadDooEcs(sol::state_view lua_);
 
     /// @brief Load all binding functions that are NOT marked as TODO.
     void loadAll(sol::state_view lua_);

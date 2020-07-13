@@ -5,18 +5,22 @@
 #include "core/Window.hpp"
 
 tnt::Particle::Particle(
-    Window const *win, std::string_view filename,
-    Vector const &speed, float &radius_,
-    Rectangle const &area, long long time)
-    : Sprite{win, filename}, RigidBody{1.f},
-      lifetime{time}, rect{area}, radius{radius_}, alive{true} {}
+    Window const *win, uint8_t r, uint8_t g, uint8_t b, uint8_t a,
+    Vector const &speed, float const &radius_, long long time)
+    : Sprite{win, "assets/particle.png"}, RigidBody{1.f},
+      lifetime{time}, radius{radius_}, alive{true},
+      bounds{(float)win->getWidth(), (float)win->getHeight()}
+{
+    SDL_SetTextureColorMod(sprite->getTexture(), r, g, b);
+    SDL_SetTextureAlphaMod(sprite->getTexture(), a);
+    physics->applyForce(speed); // mass is 1.f, accel is 1.f
+}
 
 tnt::Particle::~Particle() noexcept
 {
     if (alive)
         alive = false;
     lifetime = 0;
-    rect = Rectangle{0, 0, 0, 0};
 }
 
 void tnt::Particle::Update(long long elapsed) noexcept
@@ -25,9 +29,16 @@ void tnt::Particle::Update(long long elapsed) noexcept
     {
         if (lifetime > 0)
             lifetime = lifetime - elapsed;
-        if (rect.Outside(position) || lifetime < 0)
+        if (lifetime == 0 || lifetime < -1 ||
+            position.x > bounds.x || position.y > bounds.y)
             alive = false;
         else
-            position = position + (physics->getVelocity() * (elapsed * 1.0 / 1000));
+            doPhysics(elapsed / 1000);
     }
+}
+
+void tnt::Particle::Draw(Window const *win) noexcept
+{
+    if (alive)
+        Draw(win);
 }

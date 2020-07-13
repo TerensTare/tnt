@@ -6,6 +6,7 @@
 
 #include "math/Vector.hpp"
 #include "utils/Logger.hpp"
+#include "ecs/Base.hpp"
 
 // TODO:
 // AnimationComponent creates a new SDL_Texture on it's constructor. Fix that!!
@@ -23,17 +24,6 @@
 
 namespace tnt
 {
-    class SpriteComponent;
-
-    /// @brief The base class for all the Component types.
-    class Component
-    {
-    };
-
-    /// @brief A concept sowing the basic props a @c Component should have.
-    template <typename T>
-    concept component = std::is_base_of_v<Component, T>;
-
     /// @brief A class representing a basic game object.
     class Object
     {
@@ -214,20 +204,6 @@ namespace tnt
         std::map<std::type_index, Component *> components;
     };
 
-    /// @brief An @c Object that can be drawed.
-    template <typename T>
-    concept drawable = requires(T const *t)
-    {
-        {
-            t->getSprite()
-        }
-        ->std::same_as<SpriteComponent *>;
-    }
-    &&std::is_base_of_v<Object, T>;
-
-    /// @brief A basic @c Object type.
-    template <typename T>
-    concept object = std::is_base_of_v<Object, T>;
 } // namespace tnt
 
 #endif //!TNT_ECS_OBJECT_HPP
