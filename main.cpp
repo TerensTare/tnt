@@ -31,7 +31,7 @@ public:
         : tnt::Sprite{win, "assets/player.png",
                       tnt::Rectangle{3.f, 0.f, 10.f, 16.f}} {}
 
-    inline void Update(long long time_) noexcept override { return; }
+    inline void Update(float time_) noexcept override { return; }
 };
 
 inline void loadPlayer(sol::state_view lua_)
@@ -166,7 +166,6 @@ auto run = [](std::string_view filename) -> void {
     }
 
     tnt_imgui_close();
-    tnt::input::close();
 
     delete window;
 };

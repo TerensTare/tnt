@@ -8,24 +8,11 @@
 
 // TODO: constinit ensure, constexpr ctors, etc
 // TODO: boolean concept for ensure_t
-// TODO(maybe): [[unlikely]] on each if ??
 
 namespace tnt
 {
-    /// @brief A struct used as a parameter to the noexcept version of @ref ensure_t::operator().
-    constexpr struct safe_call_t
-    {
-        explicit safe_call_t() = default;
-    } safe_call;
-
-    /// @brief A struct used as a parameter to the non-terminating version of @ref ensure_t::operator().
-    constexpr struct safe_report_t
-    {
-        explicit safe_report_t() = default;
-    } safe_report;
-
-    /// @brief Exception thrown if the condition of @ref ensure_t::operator() is false.
-    struct failed_ensure : std::exception
+    /// @brief Exception thrown if the condition of ensure_t::operator() is false.
+    struct failed_ensure final : std::exception
     {
         inline explicit failed_ensure(char const *why) noexcept : reason{why} {}
 
@@ -36,11 +23,11 @@ namespace tnt
     };
 
     /// @brief Utility struct used for checking preconditions and/or postconditions.
-    struct ensure_t
+    inline struct ensure_t final
     {
         explicit ensure_t() noexcept = default;
 
-        /// @brief Throw if @c cond evaluates to false.
+        /// @brief Throw a failed_ensure if cond evaluates to false.
         /// @param cond The condition to evaluate.
         inline void operator()(bool cond)
         {
@@ -48,7 +35,7 @@ namespace tnt
                 throw failed_ensure{""};
         }
 
-        /// @brief Throw a @ref failed_ensure if @c cond evaluates to false.
+        /// @brief Throw a failed_ensure if cond evaluates to false.
         /// @param cond The condition to evaluate.
         /// @param message The message that the thrown exception will hold.
         inline void operator()(bool cond, char const *message)
@@ -58,12 +45,12 @@ namespace tnt
         }
     } ensure;
 
-    /// @brief A version of @ref ensure_t that calls std::terminate on false predication.
-    struct safe_ensure_t
+    /// @brief A version of ensure_t that calls std::terminate on false predication.
+    inline struct safe_ensure_t final
     {
         explicit safe_ensure_t() noexcept = default;
 
-        /// @brief Terminate the process if @c cond evaluates to false.
+        /// @brief Terminate the process if cond evaluates to false.
         /// @param cond The condition to evaluate.
         inline void operator()(bool cond) noexcept
         {
@@ -71,7 +58,7 @@ namespace tnt
                 std::terminate();
         }
 
-        /// @brief Terminate the process if @c cond evaluates to false.
+        /// @brief Terminate the process if cond evaluates to false.
         /// @param cond The condition to evaluate.
         /// @param message The message to print on the console.
         inline void operator()(bool cond, char const *message) noexcept
@@ -81,12 +68,12 @@ namespace tnt
         }
     } safe_ensure;
 
-    /// @brief A version of @ref ensure_t that just prints a warning on false predicate.
-    struct check_t
+    /// @brief A version of ensure_t that just prints a warning on false predicate.
+    inline struct check_t final
     {
         explicit check_t() noexcept = default;
 
-        /// @brief Print @c message to the console as an info, if @c cond evaluates to false.
+        /// @brief Print message to the console as an info, if cond evaluates to false.
         /// @param cond The condition to evaluate.
         /// @param message The message to print on the console.
         inline void operator()(bool cond, char const *message) noexcept

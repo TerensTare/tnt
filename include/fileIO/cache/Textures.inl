@@ -25,12 +25,12 @@ namespace tnt
             return cache[path.data()];
         }
 
-    private:
         inline void load(SDL_Renderer *ren, std::string_view path)
         {
             cache.try_emplace(path.data(), IMG_LoadTexture(ren, detail::to_abs(path.data()).c_str()));
         }
 
+    private:
         std::byte memory[I * sizeof(SDL_Texture *)];
         std::pmr::monotonic_buffer_resource res{memory, sizeof(memory)};
         std::pmr::map<std::string, SDL_Texture *> cache{&res};

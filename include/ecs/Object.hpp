@@ -103,7 +103,7 @@ namespace tnt
         /// The function is meant to be run each frame, but you can get some speed
         /// by running it only if the @c Object is @c active.
         /// @param time_ The time elapsed since the last frame.
-        virtual void Update([[maybe_unused]] long long time_) noexcept = 0;
+        virtual void Update([[maybe_unused]] float time_) noexcept = 0;
 
         /// @brief Function to check if @c Object has a @c Component without
         /// causing any errors.

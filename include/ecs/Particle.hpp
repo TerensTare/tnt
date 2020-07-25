@@ -16,7 +16,7 @@ namespace tnt
     public:
         Particle(Window const *win, uint8_t r, uint8_t g, uint8_t b, uint8_t a,
                  Vector const &speed, float const &radius_,
-                 long long time = -1);
+                 float time = -1);
         ~Particle() noexcept;
 
         virtual void Update(long long elapsed) noexcept;

@@ -34,7 +34,7 @@ namespace tnt
 
         void applyForce(Vector const &force) noexcept(noexcept(invMass > 0.f));
 
-        void doPhysics(long long time_) noexcept;
+        void doPhysics(float time_) noexcept;
 
     private:
         float invMass;
@@ -52,7 +52,7 @@ namespace tnt
 
         PhysicsComponent *getPhysics() const noexcept;
 
-        void doPhysics(long long time_) noexcept;
+        void doPhysics(float time_) noexcept;
 
     protected:
         PhysicsComponent *physics;

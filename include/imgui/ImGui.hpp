@@ -116,7 +116,6 @@ namespace tnt
 
         /// @brief bitwise complement for @c WindowFlags.
         /// @param lhs The left @c WindowFlag.
-        /// @param rhs The right @c WindowFlag.
         /// @return tnt::ImGui::WindowFlags
         inline WindowFlags operator~(WindowFlags const &lhs) noexcept
         {

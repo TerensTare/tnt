@@ -7,46 +7,70 @@
 #include "math/Vector.hpp"
 #include "doo_ecs/Base.hpp"
 
+// (maybe) separate vectors for every data ??
+
 namespace tnt::doo
 {
+    /// @brief A struct that handles an object's physics data.
     struct phys_comp final
     {
+        /// @brief Create a new phys_comp.
+        /// @param mass The mass of the new object.
+        /// @param accel_ The initial acceleration of the object.
         inline constexpr phys_comp(float const &mass, tnt::Vector const &accel_) noexcept
             : inv_mass{1 / mass}, vel{0.f, 0.f}, accel{accel_} {}
 
-        float inv_mass;
-        Vector vel;
-        Vector accel;
+        float inv_mass; /// < The mass of the object, but to power of -1.
+        Vector vel;     /// < The velocity of the object.
+        Vector accel;   /// < The acceleration of the object.
     };
 
-    class physics_sys final
+    /// @brief A struct that handles the physics data of all the objects.
+    inline struct physics_sys final
     {
-    public:
+        /// @brief Add a new object to the physics system.
+        /// @param mass The mass of the object.
         inline void add_object(float const &mass)
         {
-            [[unlikely]] if (phys.size() == phys.capacity())
-                phys.reserve(5);
-            phys.emplace_back(1 / mass, tnt::Vector{0.f, 0.f});
+            [[unlikely]] if (inv_mass.size() == inv_mass.capacity())
+            {
+                inv_mass.reserve(5);
+                vel.reserve(5);
+                accel.reserve(5);
+            }
+
+            inv_mass.emplace_back(1 / mass);
+            vel.emplace_back(VECTOR_ZERO);
+            accel.emplace_back(VECTOR_ZERO);
         }
 
+        /// @brief Apply the given force to the object with the given id.
+        /// @param id The id of the object.
+        /// @param force The force to apply to the object.
         inline void addForce(object id, tnt::Vector const &force) noexcept
         {
-            phys[id].accel = phys[id].accel + (force * phys[id].inv_mass);
+            accel[id] = accel[id] + (force * inv_mass[id]);
         }
 
-        inline void Update(object id, long long time_) noexcept
+        /// @brief Update the physics data of the object with the given id.
+        /// @param id The id of the object to update.
+        /// @param time_ The time that passed since the last update call.
+        inline void Update(object id, float time_) noexcept
         {
-            phys[id].vel = phys[id].vel + (phys[id].accel * float(time_ / 1000));
+            vel[id] = vel[id] + (accel[id] * float(time_ / 1000));
         }
 
+        /// @brief Load objects physics data from a json chunk.
+        /// @param j The json chunk that contains the objects data.
         inline void from_json(nlohmann::json const &j)
         {
-            float const mass{j.at("phys").at("mass")};
-            add_object(mass);
+            add_object(j.at("phys").at("mass"));
         }
 
-        std::vector<phys_comp> phys;
-    } physics;
+        std::vector<float> inv_mass; /// < The inverse of the mass of each objects.
+        std::vector<Vector> vel;     /// < The velocities of the objects.
+        std::vector<Vector> accel;   /// < The accelerations of the objects.
+    } physics;                       /// < An instance of phys_sys.
 } // namespace tnt::doo
 
 #endif //!TNT_DOO_ECS_PHYSICS_HPP

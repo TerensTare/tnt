@@ -11,7 +11,7 @@ tnt::detail::animation_data::animation_data(
       speed{animSpeed}, timePerFrame{animSpeed / framesCount},
       dir{direction}, wrapMode{wrap} {}
 
-void tnt::detail::animation_data::Update(long long time_) noexcept
+void tnt::detail::animation_data::Update(float time_) noexcept
 {
     [[likely]] if (!finished)
     {
@@ -50,7 +50,7 @@ void tnt::detail::animation_data::reset() noexcept
 tnt::Rectangle tnt::detail::animation_data::Area() const noexcept { return clip; }
 
 tnt::Animator::Animator(Rectangle const &rect) noexcept
-    : current{"idle"}, w{rect.w}, h{rect.h}
+    : current{"idle"}
 {
     animations.try_emplace("idle", std::move(detail::animation_data{rect, 1, 1, Animator::HORIZONTAL, Animator::SINGLE_RUN}));
 }
@@ -83,6 +83,6 @@ tnt::AnimatedSprite::AnimatedSprite(
 
 tnt::Animator *tnt::AnimatedSprite::getAnimator() const noexcept { return animator; }
 
-void tnt::AnimatedSprite::Animate(long long time_) noexcept
+void tnt::AnimatedSprite::Animate(float time_) noexcept
 {
 }

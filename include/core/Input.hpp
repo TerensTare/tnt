@@ -7,14 +7,8 @@
 
 // TODO: Joystick and GameController support.
 
-// TODO(maybe):
-// SDL_Scancode const& ??
-
 namespace tnt::input
 {
-    /// @brief Makes input handling unavailable when called.
-    void close() noexcept;
-
     /// @brief Checks if a keyboard key is being held down.
     /// @param key The key to check.
     /// @return true if @c key is held down.

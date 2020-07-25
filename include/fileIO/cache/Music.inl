@@ -11,7 +11,7 @@ namespace tnt
     class asset_cache<Mix_Music, I>
     {
     public:
-        ~asset_cache() noexcept
+        inline ~asset_cache() noexcept
         {
             for (auto const &it : cache)
                 Mix_FreeMusic(it.second);
@@ -23,13 +23,13 @@ namespace tnt
             return cache[path.data()];
         }
 
-    private:
         inline void load(std::string_view path)
         {
             [[likely]] if (!cache.contains(path.data()))
                 cache[path.data()] = Mix_LoadMUS(detail::to_abs(path.data()).c_str());
         }
 
+    private:
         std::byte memory[I * sizeof(Mix_Music *)];
         std::pmr::monotonic_buffer_resource res{memory, sizeof(memory)};
         std::pmr::map<std::string, Mix_Music *> cache{&res};
@@ -46,7 +46,7 @@ namespace tnt
     class asset_cache<Mix_Chunk, I>
     {
     public:
-        ~asset_cache() noexcept
+        inline ~asset_cache() noexcept
         {
             for (auto const &it : cache)
                 Mix_FreeChunk(it.second);
@@ -58,12 +58,12 @@ namespace tnt
             return cache[path.data()];
         }
 
-    private:
         inline void load(std::string_view path)
         {
             cache.try_emplace(path.data(), Mix_LoadWAV(detail::to_abs(path.data()).c_str()));
         }
 
+    private:
         std::byte memory[I * sizeof(Mix_Chunk *)];
         std::pmr::monotonic_buffer_resource res{memory, sizeof(memory)};
         std::pmr::map<std::string, Mix_Chunk *> cache{&res};

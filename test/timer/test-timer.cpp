@@ -1,7 +1,7 @@
 #include <iostream>
 #include <thread>
 
-#include "utils/Timer.hpp"
+#include "exp/Timer2.hpp"
 
 int main()
 {
@@ -12,7 +12,7 @@ int main()
     {
         Timer timer;
         std::this_thread::sleep_for(it);
-        auto time{timer.deltaTime<std::chrono::milliseconds>()};
+        auto time{timer.deltaTime()};
         std::cout << "elapsed time: " << (time - it).count() << "\n";
     }
     return 0;

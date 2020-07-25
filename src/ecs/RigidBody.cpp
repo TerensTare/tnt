@@ -32,7 +32,7 @@ void tnt::PhysicsComponent::applyForce(tnt::Vector const &force) noexcept(noexce
     acceleration = (acceleration < maxAcceleration) ? acceleration : maxAcceleration;
 }
 
-void tnt::PhysicsComponent::doPhysics(long long time_) noexcept
+void tnt::PhysicsComponent::doPhysics(float time_) noexcept
 {
     velocity += (acceleration * time_);
     velocity = (velocity < maxVelocity) ? velocity : maxVelocity;
@@ -53,7 +53,7 @@ tnt::RigidBody::~RigidBody() noexcept
 
 tnt::PhysicsComponent *tnt::RigidBody::getPhysics() const noexcept { return physics; }
 
-void tnt::RigidBody::doPhysics(long long time_) noexcept
+void tnt::RigidBody::doPhysics(float time_) noexcept
 {
     physics->doPhysics(time_);
     position += (physics->getVelocity() * time_);

@@ -6,6 +6,11 @@
 # The project uses C++20, which is minimally supported by CMake 3.12.4
 cmake_minimum_required(VERSION 3.12.4 FATAL_ERROR)
 set(PROJECT_NAME "TnT")
+
+set(CMAKE_TOOLCHAIN_FILE
+    ${VCPKG_EXE_PATH}/../scripts/buildsystems/vcpkg.cmake
+    CACHE PATH "TOOLCHAIN")
+
 project(${PROJECT_NAME}
     VERSION 0.1.0
     DESCRIPTION "A 2d game engine written using C++20 features"
@@ -20,10 +25,6 @@ foreach(flag_var
         CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
     STRING (REGEX REPLACE "/RTC[^ ]*" "" ${flag_var} "${${flag_var}}")
 endforeach(flag_var)
-
-set(CMAKE_TOOLCHAIN_FILE
-    ${VCPKG_EXE_PATH}/../scripts/buildsystems/vcpkg.cmake
-    CACHE PATH "TOOLCHAIN")
 
 file(TO_CMAKE_PATH "${PROJECT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
 if (EXISTS "${LOC_PATH}")
@@ -82,6 +83,7 @@ list(FILTER SOURCE_FILES EXCLUDE REGEX "Context.cpp$")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "AnimatedSprite.cpp$")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "Particle.cpp$")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "Scriptable.cpp$")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "LuaManager.cpp$")
 
 list(APPEND ${SOURCE_FILES} src/ImGui/ImGui.cpp)
 

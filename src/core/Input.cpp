@@ -6,46 +6,38 @@
 
 namespace tnt::input
 {
-    int keyLength{0};
-    int mX{0}, mY{0};
-    bool inited{false};
-
-    Uint32 currentMouse{0};
-    Uint32 prevMouse{0};
-    Uint32 lastMouse{0};
-    const Uint8 *currentkb{nullptr};
-    std::vector<Uint8> prevkb;
-
-    void init() noexcept(noexcept(
-        prevkb.assign(currentkb, currentkb + keyLength)))
+    inline struct input_handle_t
     {
-        currentkb = SDL_GetKeyboardState(&keyLength);
-        prevkb.assign(currentkb, currentkb + keyLength);
-        inited = true;
-    }
-} // namespace tnt::input
+        inline input_handle_t() noexcept(noexcept(
+            prevkb.assign(currentkb, currentkb + keyLength)))
+        {
+            prevkb.assign(currentkb, currentkb + keyLength);
+        }
 
-void tnt::input::close() noexcept
-{
-    for (auto it{prevkb.begin()}; it != prevkb.end(); ++it)
-        it = prevkb.erase(it);
-    prevkb.clear();
-    inited = false;
-}
+        int keyLength{0};
+        int mX{0}, mY{0};
+
+        Uint32 currentMouse{0};
+        Uint32 prevMouse{0};
+        Uint32 lastMouse{0};
+        const Uint8 *currentkb{SDL_GetKeyboardState(&keyLength)};
+        std::vector<Uint8> prevkb;
+    } input_handle;
+} // namespace tnt::input
 
 bool tnt::input::keyDown(SDL_Scancode key) noexcept
 {
-    return (currentkb[key] != 0);
+    return (input_handle.currentkb[key] != 0);
 }
 
 bool tnt::input::keyPressed(SDL_Scancode key) noexcept
 {
-    return ((prevkb[key] == 0) && (currentkb[key] != 0));
+    return ((input_handle.prevkb[key] == 0) && (input_handle.currentkb[key] != 0));
 }
 
 bool tnt::input::keyReleased(SDL_Scancode key) noexcept
 {
-    return ((prevkb[key] != 0) && (currentkb[key] == 0));
+    return ((input_handle.prevkb[key] != 0) && (input_handle.currentkb[key] == 0));
 }
 
 SDL_Scancode tnt::input::lastKeyPressed(const SDL_Event &e) noexcept
@@ -55,50 +47,45 @@ SDL_Scancode tnt::input::lastKeyPressed(const SDL_Event &e) noexcept
 
 bool tnt::input::mouseButtonDown(Uint32 button) noexcept
 {
-    Uint32 mask{1u << button};
-    return ((currentMouse & mask) != 0);
+    return ((input_handle.currentMouse & (1u << button)) != 0);
 }
 
 bool tnt::input::mouseButtonPressed(Uint32 button) noexcept
 {
-    Uint32 mask{1u << button};
-    return (((prevMouse & mask) == 0) && ((currentMouse & mask) != 0));
+    return (((input_handle.prevMouse & (1u << button)) == 0) &&
+            ((input_handle.currentMouse & (1u << button)) != 0));
 }
 
 bool tnt::input::mouseButtonReleased(Uint32 button) noexcept
 {
-    Uint32 mask{1u << button};
-    return (((prevMouse & mask) != 0) && ((currentMouse & mask) == 0));
+    return (((input_handle.prevMouse & (1u << button)) != 0) &&
+            ((input_handle.currentMouse & (1u << button)) == 0));
 }
 
 unsigned tnt::input::lastMouseButton() noexcept
 {
-    for (int i{0}; i < 5; ++i)
-        if (currentMouse & (1 << i))
-            lastMouse = i;
-    for (int i{0}; i < 5; ++i)
-        if (prevMouse & (1 << i))
-            lastMouse = i;
+    for (Uint32 i{0}; i < 5; ++i)
+        if (input_handle.currentMouse & (1 << i))
+            input_handle.lastMouse = i;
+    for (Uint32 i{0}; i < 5; ++i)
+        if (input_handle.prevMouse & (1 << i))
+            input_handle.lastMouse = i;
 
-    return lastMouse;
+    return input_handle.lastMouse;
 }
 
 void tnt::input::updateCurrent()
 {
-    if (!inited)
-        tnt::input::init();
-    currentMouse = SDL_GetMouseState(&mX, &mY);
+    input_handle.currentMouse = SDL_GetMouseState(&input_handle.mX, &input_handle.mY);
 }
 
 void tnt::input::updatePrevious()
 {
-    if (!inited)
-        tnt::input::init();
-    prevkb.assign(currentkb, currentkb + keyLength);
-    prevMouse = currentMouse;
+    input_handle.prevkb.assign(input_handle.currentkb, input_handle.currentkb + input_handle.keyLength);
+    input_handle.prevMouse = input_handle.currentMouse;
 }
 
 std::pair<int, int> tnt::input::mousePosition() noexcept
 {
-    return std::make_pair(mX, mY);
+    return std::make_pair(input_handle.mX, input_handle.mY);
 }

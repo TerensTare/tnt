@@ -1,26 +1,20 @@
-local scale = vector:new(10, 10)
-local pos = vector:new(100, 160)
+local scale
+local pos
 local params
 local p1
 
 function tnt.init(win)
-    p1 = player:new(win)
-    p1.angle = 1
-    p1.scale = scale
-    p1.pos = pos
+    p1 = objects:get_data(0)
+    scale = p1.scale
+    pos = p1.pos
 
-    params = vector:new(p1.w, p1.h)
+    params = vector:new(sprites.sprite[0].crop.w, sprites.sprite[0].crop.h)
 
     imgui.init(win)
 end
 
 function tnt.update(dt)
-    p1:update(dt)
-    p1:rotate(dt/100)
-end
-
-function tnt.draw(win)
-    p1:draw(win)
+    objects.angle[0] = objects.angle[0] + (dt/100)
 end
 
 function tnt.do_imgui(win)

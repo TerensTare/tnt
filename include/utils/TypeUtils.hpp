@@ -43,13 +43,27 @@ namespace tnt
     // TODO:
     // concepts usage (std::invocable, etc)
     template <typename... Ts>
-    struct overload : Ts...
+    struct overload final : Ts...
     {
         using Ts::operator()...;
     };
 
     template <typename... Ts>
     overload(Ts...)->overload<Ts...>;
+
+    // TODO: use boolean concept.
+    // TODO: ensure ret can multiply an int
+    inline constexpr auto if_then = [](bool cond, auto const &ret) {
+        return (ret * cond);
+    };
+
+    inline constexpr auto if_else = [](bool cond, auto const &r1, auto const &r2) {
+        static_assert(std::is_same_v<decltype(r1), decltype(r2)> ||
+                          std::is_convertible_v<decltype(r1), decltype(r2)> ||
+                          std::is_convertible_v<decltype(r2), decltype(r1)>,
+                      "Parameters passed to if_else cannot be converted to each-other's type!!");
+        return (r1 * cond + r2 * (!cond));
+    };
 
     struct non_copyable
     {
@@ -77,6 +91,7 @@ namespace tnt
         }
     };
 
+    // TODO: remove this when std::jthread is available.
     class scoped_thread : public non_copyable
     {
     public:
@@ -90,66 +105,6 @@ namespace tnt
 
     private:
         std::thread t;
-    };
-
-    template <typename T>
-    struct Visitor
-    {
-        virtual void Visit(T &) = 0;
-    };
-
-    template <typename T, typename R = void>
-    struct Visitor
-    {
-        typedef R ReturnType;
-        virtual ReturnType Visit(T &) = 0;
-    };
-
-    template <typename R = void>
-    struct Visitable
-    {
-        typedef R ReturnType;
-        virtual ~Visitable() {}
-        virtual ReturnType Accept(Visitor &) = 0;
-
-    protected:
-        template <typename T>
-        static ReturnType AcceptImpl(T &visited, Visitor &guest)
-        {
-            if (Visitor<T> * p{dynamic_cast<Visitor<T> *>(&guest)})
-                return p->Visit(visited);
-            return ReturnType();
-        }
-    };
-
-    // simple sample
-    // class SomeVisitor :
-    //  public BaseVisitor // required
-    //  public Visitor<RasterBitmap>,
-    //  public Visitor<Paragraph>
-    // {
-    // public:
-    //  void Visit(RasterBitmap&); // visit a RasterBitmap
-    //  void Visit(Paragraph &); // visit a Paragraph
-    // };
-
-    template <typename T, typename U>
-    class is_convertible
-    {
-        typedef char Small;
-        class Big
-        {
-            char dummy[2];
-        };
-        static Small Test(U);
-        static Big Test(...);
-        static T MakeT();
-
-    public:
-        enum
-        {
-            value = (sizeof(Test(MakeT())) == sizeof(Small))
-        };
     };
 
     // thx Jonathan Boccara
@@ -174,7 +129,7 @@ namespace tnt
     };
 
     template <template <typename...> class Expression, typename... Ts>
-    inline constexpr bool is_detected_v = typename is_detected<Expression, void, Ts...>::value;
+    inline constexpr bool is_detected_v = is_detected<Expression, void, Ts...>::value;
 
 } // namespace tnt
 

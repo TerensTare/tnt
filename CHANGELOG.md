@@ -3,7 +3,27 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.1.0a]
+## [0.1.0a2]
+### Added
+- Missing documentation over some places.
+- `tnt::if_then` and `tnt::if_else` on `TypeUtils.hpp` to avoid conditional branching.
+- `tnt::TextureAtlas` asset type and specializations for `tnt::asset_cache` to support it. Use a texture atlas when you have all your textures arranged on a single image file to gain performance.
+- `tnt::Timer::deltaCount`, which is a shorthand to `tnt::Timer::deltaTime::count()`.
+- Animations support for the new data oriented ecs.
+
+### Changed
+- `tnt::Timer::deltaTime` now calls `reset`. Also it returns the duration with `float` base. That means the `Update` functions now need `float` instead of `long long`.
+- tnt::Timer is now header only.
+- `tnt::overload` is now `final`.
+- `tnt::asset_cache<T, I>::load` is now `public`.
+- `tnt::Rectangle` conversion operators now are not `explicit`.
+- Rewrote a part of the backend of `core/Input`. The user no longer needs to call `tnt::input::close`. It is now removed.
+
+### Removed
+- Visitor-related stuff and `tnt::is_convertible` on `utils/TypeUtils.hpp`.
+
+
+## [0.1.0a1] - 2020-07-13
 ### Added
 - An experimental reflection system. See `utils/Mirror.hpp`.
 - Header `utils/Assert.hpp`.

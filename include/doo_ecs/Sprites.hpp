@@ -10,8 +10,12 @@
 
 namespace tnt::doo
 {
+    /// @brief A struct that handles an object's sprite data.
     struct sprite_comp final
     {
+        /// @brief Create a new sprite component from an image file.
+        /// @param win The window where the sprite will be drawed.
+        /// @param file The name of the image file to load.
         inline sprite_comp(Window const &win, std::string_view filename) noexcept
             : crop{0, 0, 0, 0}
         {
@@ -21,6 +25,10 @@ namespace tnt::doo
             crop.h = h;
         }
 
+        /// @brief Create a new sprite component from an image file.
+        /// @param win The window where the sprite will be drawed.
+        /// @param file The name of the image file to load.
+        /// @param rect The area of the image you want to have on the sprite.
         inline sprite_comp(
             Window const &win, std::string_view filename,
             Rectangle const &rect) noexcept
@@ -30,47 +38,62 @@ namespace tnt::doo
             tex = cache->get(win.getRenderer(), filename);
         }
 
-        SDL_Texture *tex;
-        SDL_Rect crop;
+        SDL_Texture *tex; /// < The texture handle for the object.
+        SDL_Rect crop;    /// < The area of the image represented on the sprite.
 
     private:
         int w, h;
-        static medium_texture_cache *cache;
+        inline static medium_texture_cache *cache{default_texture_cache()};
     };
 
-    medium_texture_cache *sprite_comp::cache{default_texture_cache()};
-
-    class sprites_sys final
+    /// @brief A struct that handles the sprite data for all the objects.
+    inline struct sprites_sys final
     {
-    public:
+        /// @brief Add a new object to the sprites system.
+        /// @param win The window where the object will be drawed.
+        /// @param filename The name of the image file to load.
         inline void add_object(Window const &win, std::string_view filename)
         {
-            const object index{sprite.size()};
-            [[unlikely]] if (index == sprite.capacity())
+            object const index{tex.size()};
+            [[unlikely]] if (index == tex.capacity())
             {
-                sprite.reserve(5);
                 draw_queue.reserve(5);
+                tex.reserve(5);
+                clip.reserve(5);
             }
 
+            sprite_comp const &comp{win, filename};
+
             draw_queue.emplace_back(index);
-            sprite.emplace_back(win, filename);
+            tex.emplace_back(comp.tex);
+            clip.emplace_back(comp.crop);
         }
 
+        /// @brief Add a new object to the sprites system.
+        /// @param win The window where the object will be drawed.
+        /// @param filename The name of the image file to load.
+        /// @param rect The area of the image you want to have on the sprite.
         inline void add_object(Window const &win,
                                std::string_view filename,
                                Rectangle const &rect)
         {
-            const object index{sprite.size()};
-            [[unlikely]] if (index == sprite.capacity())
+            object const index{tex.size()};
+            [[unlikely]] if (index == tex.capacity())
             {
-                sprite.reserve(5);
                 draw_queue.reserve(5);
+                tex.reserve(5);
+                clip.reserve(5);
             }
 
+            sprite_comp const &comp{win, filename, rect};
+
             draw_queue.emplace_back(index);
-            sprite.emplace_back(win, filename, rect);
+            tex.emplace_back(comp.tex);
+            clip.emplace_back(comp.crop);
         }
 
+        /// @brief Load the sprite data of the objects from a given json chunk.
+        /// @param j The json chunk from where to load the sprite data of the objects.
         inline void from_json(Window const &win, nlohmann::json const &j)
         {
             std::string_view const file{j.at("sprite").at("file").get<std::string_view>()};
@@ -83,9 +106,10 @@ namespace tnt::doo
             }
         }
 
-        std::vector<object> draw_queue;
-        std::vector<sprite_comp> sprite;
-    } sprites;
+        std::vector<object> draw_queue; /// < All the id-s of the objects that should be drawed.
+        std::vector<SDL_Texture *> tex; /// < The texture data of the objects.
+        std::vector<SDL_Rect> clip;    /// < The cropped area from the image.
+    } sprites;                          /// < An instance of sprites_sys.
 } // namespace tnt::doo
 
 #endif //!TNT_DOO_ECS_SPRITES_HPP

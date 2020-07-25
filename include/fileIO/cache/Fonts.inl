@@ -11,7 +11,7 @@ namespace tnt
     class asset_cache<TTF_Font, I>
     {
     public:
-        ~asset_cache() noexcept
+        inline ~asset_cache() noexcept
         {
             for (auto const &it : cache)
                 TTF_CloseFont(it.second);
@@ -23,12 +23,12 @@ namespace tnt
             return cache[path.data()];
         }
 
-    private:
         inline void load(std::string_view path, int size)
         {
             cache.try_emplace(path.data(), TTF_OpenFont(detail::to_abs(path.data()).c_str(), size));
         }
 
+    private:
         std::byte memory[I * sizeof(TTF_Font *)];
         std::pmr::monotonic_buffer_resource res{memory, sizeof(memory)};
         std::pmr::map<std::string, TTF_Font *> cache{&res};

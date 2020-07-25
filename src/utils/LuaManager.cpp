@@ -121,7 +121,7 @@ void tnt::lua::loadTimer(sol::state_view lua_)
 class LuaObject : public tnt::Object
 {
 private:
-    void Update(long long) noexcept override { return; }
+    void Update(float) noexcept override { return; }
 };
 
 void tnt::lua::loadObject(sol::state_view lua_)
@@ -323,12 +323,13 @@ void tnt::lua::loadPhysComp(sol::state_view lua_)
         "do_phys", &PhysicsComponent::doPhysics);
 }
 
+// TODO: update this
 void tnt::lua::loadDooEcs(sol::state_view lua_)
 {
     using namespace doo;
 
     lua_.new_usertype<object_data>(
-        "object_data", sol::constructors<object_data(float, tnt::Vector, tnt::Vector)>{},
+        "object_data", sol::constructors<object_data() noexcept, object_data(float, tnt::Vector const &, tnt::Vector const &) noexcept>{},
         "angle", &object_data::angle,
         "scale", &object_data::scale,
         "pos", &object_data::pos);
@@ -358,7 +359,9 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "add_object", &physics_sys::add_object,
         "add_force", &physics_sys::addForce,
         "update", &physics_sys::Update,
-        "phys", &physics_sys::phys);
+        "inv_mass", &physics_sys::inv_mass,
+        "vel", &physics_sys::vel,
+        "accel", &physics_sys::accel);
 
     lua_.new_usertype<objects_sys>(
         "objects_sys", sol::constructors<objects_sys()>{},

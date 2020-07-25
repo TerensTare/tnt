@@ -15,7 +15,7 @@ namespace tnt
 
         /// @brief Run certain functions located on the script file.
         /// @param time_ The elapsed time since the last call.
-        void Update(long long time_) noexcept;
+        void Update(float time_) noexcept;
 
     private:
         std::string file;

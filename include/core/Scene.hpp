@@ -35,7 +35,7 @@ namespace tnt
         Space *getSpace(std::string_view name) const noexcept;
 
         void Draw(tnt::Window const *win);
-        void Update(long long time_);
+        void Update(float time_);
 
     private:
         SDL_Texture *bg;

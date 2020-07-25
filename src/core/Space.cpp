@@ -24,7 +24,7 @@ void tnt::Space::removeObject(std::string_view id) noexcept
         it = objects.erase(it);
 }
 
-void tnt::Space::Update(long long time_) noexcept
+void tnt::Space::Update(float time_) noexcept
 {
     for (auto const &it : objects)
         if (it.second->isActive())

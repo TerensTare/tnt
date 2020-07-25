@@ -51,7 +51,7 @@ void tnt::Scene::Draw(tnt::Window const *win)
         it.second->Draw(win, camera_);
 }
 
-void tnt::Scene::Update(long long time_)
+void tnt::Scene::Update(float time_)
 {
     for (auto const &it : spaces)
         it.second->Update(time_);

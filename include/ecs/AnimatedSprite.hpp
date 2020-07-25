@@ -68,7 +68,7 @@ namespace tnt
                            Animator::Direction const &direction,
                            Animator::WrapMode const &wrap) noexcept;
 
-            void Update(long long time_) noexcept;
+            void Update(float time_) noexcept;
 
             void finish() noexcept;
             bool running() const noexcept;
@@ -104,7 +104,7 @@ namespace tnt
 
         /// @brief Update the current animation.
         /// @param time_ The time elapsed since the last @c Update call.
-        void Animate(long long time_) noexcept;
+        void Animate(float time_) noexcept;
 
     private:
         Animator *animator;

@@ -1,40 +1,76 @@
 #ifndef TNT_TIMER_HPP
 #define TNT_TIMER_HPP
 
-#include <atomic>
 #include <chrono>
-
-// TODO: handle deltaTime when paused
-// TODO: reduce the number of
-// std::atomic_thread_fence(std::memory_order_relaxed); calls
 
 // TODO(maybe):
 // asynchronous timer ??
-// make Timer header-only ??
 
 namespace tnt
 {
-class Timer
-{
-public:
-    Timer();
+    class Timer
+    {
+        using fast_milli = std::chrono::duration<float, std::milli>;
 
-    void start() noexcept;
-    void reset() noexcept;
-    void stop() noexcept;
+    public:
+        inline void start() noexcept(noexcept(
+            std::chrono::duration_cast<fast_milli>(
+                std::chrono::steady_clock::now() - pausedTime)))
+        {
+            [[likely]] if (isPaused)
+            {
+                isPaused = false;
+                [[likely]] if (pausedTime != beginning)
+                    deltaPaused += std::chrono::duration_cast<fast_milli>(
+                        std::chrono::steady_clock::now() - pausedTime);
+                beginning = std::chrono::steady_clock::now();
+            }
+        }
 
-    bool paused() const noexcept;
+        inline void reset() noexcept
+        {
+            isPaused = false;
+            beginning = std::chrono::steady_clock::now();
+            pausedTime = std::chrono::steady_clock::now();
+            deltaPaused = fast_milli{0};
+        }
 
-    std::chrono::milliseconds deltaTime() noexcept(noexcept(std::chrono::duration_cast<std::chrono::milliseconds>(
-        std::chrono::steady_clock::now() - beginning - deltaPaused)));
+        inline void stop() noexcept
+        {
+            isPaused = true;
+            pausedTime = std::chrono::steady_clock::now();
+        }
 
-private:
-    bool isPaused;
-    std::chrono::steady_clock::time_point beginning;
-    std::chrono::steady_clock::time_point pausedTime;
-    std::chrono::milliseconds deltaT;
-    std::chrono::milliseconds deltaPaused;
-};
+        inline bool paused() const noexcept { return isPaused; }
+
+        inline fast_milli deltaTime() noexcept(noexcept(
+            std::chrono::duration_cast<fast_milli>(
+                std::chrono::steady_clock::now() - beginning - deltaPaused)))
+        {
+            start();
+            fast_milli const deltaT = std::chrono::duration_cast<fast_milli>(
+                std::chrono::steady_clock::now() - beginning - deltaPaused);
+            reset();
+            return deltaT;
+        }
+
+        inline float deltaCount() noexcept(noexcept(
+            std::chrono::duration_cast<fast_milli>(
+                std::chrono::steady_clock::now() - beginning - deltaPaused)))
+        {
+            start();
+            fast_milli const deltaT = std::chrono::duration_cast<fast_milli>(
+                std::chrono::steady_clock::now() - beginning - deltaPaused);
+            reset();
+            return deltaT.count();
+        }
+
+    private:
+        bool isPaused{false};
+        std::chrono::steady_clock::time_point beginning{std::chrono::steady_clock::now()};
+        std::chrono::steady_clock::time_point pausedTime{std::chrono::steady_clock::now()};
+        fast_milli deltaPaused{0};
+    };
 } // namespace tnt
 
 #endif //! TNT_TIMER_HPP

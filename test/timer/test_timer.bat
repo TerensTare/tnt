@@ -1,1 +1,1 @@
-cl /EHsc /std:c++17 /O2 /I..\..\include test-timer.cpp ..\..\src\utils\Timer.cpp
+cl /EHsc /std:c++17 /O2 /I..\..\include test-timer.cpp

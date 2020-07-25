@@ -98,11 +98,11 @@ namespace tnt
             h = h / scale.y;
         }
 
-        explicit operator SDL_Rect() noexcept;
-        explicit operator SDL_FRect() noexcept;
+        operator SDL_Rect() noexcept;
+        operator SDL_FRect() noexcept;
 
-        explicit operator const SDL_Rect() const noexcept;
-        explicit operator const SDL_FRect() const noexcept;
+        operator const SDL_Rect() const noexcept;
+        operator const SDL_FRect() const noexcept;
 
         friend std::ostream &operator<<(std::ostream &os, Rectangle const &rhs);
 

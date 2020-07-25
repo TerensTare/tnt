@@ -30,7 +30,7 @@ public:
     void setTest(Test *test_) noexcept { test = test_; }
     Test *getTest() const noexcept { return test; }
 
-    virtual void Update(long long time_) noexcept
+    virtual void Update(float time_) noexcept
     {
         int val{test->getValue()};
         test->setValue(++val);

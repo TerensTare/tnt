@@ -6,7 +6,7 @@
 
 tnt::Particle::Particle(
     Window const *win, uint8_t r, uint8_t g, uint8_t b, uint8_t a,
-    Vector const &speed, float const &radius_, long long time)
+    Vector const &speed, float const &radius_, float time)
     : Sprite{win, "assets/particle.png"}, RigidBody{1.f},
       lifetime{time}, radius{radius_}, alive{true},
       bounds{(float)win->getWidth(), (float)win->getHeight()}

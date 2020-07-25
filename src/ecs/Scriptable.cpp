@@ -8,7 +8,7 @@
 
 tnt::Script::Script(std::string_view filename) noexcept : file{filename} {}
 
-void tnt::Script::Update(long long time_) noexcept
+void tnt::Script::Update(float time_) noexcept
 {
     sol::state_view state{context.luaState()};
     state.do_file(file);

@@ -16,7 +16,7 @@ tnt::Camera::Camera(tnt::Rectangle const &rect) noexcept
 
 tnt::Rectangle tnt::Camera::Bounds() const noexcept { return {x, y, w, h}; }
 
-void tnt::Camera::Shake(long long time, float intensity) noexcept
+void tnt::Camera::Shake(float time, float intensity) noexcept
 {
     if (intensity > .1f)
     {

@@ -48,7 +48,7 @@ namespace tnt
         /// @param time The time in ms for the effect to continue.
         /// @param intensity The intensity of the shaking effect.
         /// @note intensity should be between 0.0f and 1.0f.
-        void Shake(long long time, float intensity) noexcept;
+        void Shake(float time, float intensity) noexcept;
 
         /// @return tnt::Rectangle
         Rectangle Bounds() const noexcept;

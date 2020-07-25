@@ -6,12 +6,12 @@
 // TODO: unfinished
 // TODO: make colored output, and maybe write to html/xml files for better output.
 // TODO: temporary use libfmt, but after MSVC will support C++20's <format>, use that instead.
-// TODO: support writing to files, maybe by using fmt::vprint.
+// TODO: support writing to files.
 // TODO: support writing logs to the developer console built in the engine.
 // TODO: make sure that tnt::logger::debug writes sth only if DEBUG || _DEBUG is defined.
 // TODO: correctly quit the application when tnt::logger::error is called and you are in debug mode.
 // TODO: user defined literals for any logging type.
-// && ex. "Initialized subsystem {}, {}..."_info.log(params,...).
+// && ex. "Initialized subsystem {}, {}..."_info.params(someParams,...).
 
 // TODO(maybe): make this an extension ??
 // TODO(maybe): add macro TNT_TERMINATE_ON_ERROR ??

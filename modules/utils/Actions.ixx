@@ -106,7 +106,7 @@ export namespace tnt
 
         /// @brief Update all actions to the first blocking action found.
         /// @param time_ The elapsed time since the last Update() call.
-        void Update(long long time_)
+        void Update(float time_)
         {
             if (!actions.empty())
                 for (auto it{actions.begin()}; it != actions.end(); ++it)

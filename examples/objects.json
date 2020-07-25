@@ -20,6 +20,13 @@
                 "w": 10,
                 "h": 16
             }
+        },
+        "anim": {
+            "frames": 7,
+            "space": 6,
+            "speed": 1400,
+            "dir": "horizontal",
+            "wrap": "loop"
         }
     }
 ]

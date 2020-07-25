@@ -53,7 +53,7 @@ namespace tnt::ecs2
         template <component Comp>
         inline constexpr bool has() noexcept { return std::is_base_of_v<Comp, Object>; }
 
-        inline void Update(long long time_) noexcept
+        inline void Update(float time_) noexcept
         {
             this->base().Update(time_);
         }

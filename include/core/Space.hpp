@@ -75,7 +75,7 @@ namespace tnt
                 }
         }
 
-        void Update(long long time_) noexcept;
+        void Update(float time_) noexcept;
 
     protected:
         bool active{true};
