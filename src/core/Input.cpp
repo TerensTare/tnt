@@ -6,7 +6,7 @@
 
 namespace tnt::input
 {
-    inline struct input_handle_t
+    inline struct input_handle_t final
     {
         inline input_handle_t() noexcept(noexcept(
             prevkb.assign(currentkb, currentkb + keyLength)))
@@ -77,12 +77,20 @@ unsigned tnt::input::lastMouseButton() noexcept
 void tnt::input::updateCurrent()
 {
     input_handle.currentMouse = SDL_GetMouseState(&input_handle.mX, &input_handle.mY);
+    input_handle.currentkb = SDL_GetKeyboardState(&input_handle.keyLength);
+    SDL_PumpEvents();
 }
 
 void tnt::input::updatePrevious()
 {
     input_handle.prevkb.assign(input_handle.currentkb, input_handle.currentkb + input_handle.keyLength);
     input_handle.prevMouse = input_handle.currentMouse;
+}
+
+void tnt::input::Update()
+{
+    updatePrevious();
+    updateCurrent();
 }
 
 std::pair<int, int> tnt::input::mousePosition() noexcept

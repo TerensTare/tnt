@@ -64,7 +64,7 @@ namespace tnt
         bool isModified(std::string_view file) noexcept;
 
     private:
-        std::map<std::string, file> files;
+        std::map<std::string, file, std::less<>> files;
         mutable std::recursive_mutex mtx;
     };
 } // namespace tnt

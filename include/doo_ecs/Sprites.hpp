@@ -96,19 +96,34 @@ namespace tnt::doo
         /// @param j The json chunk from where to load the sprite data of the objects.
         inline void from_json(Window const &win, nlohmann::json const &j)
         {
-            std::string_view const file{j.at("sprite").at("file").get<std::string_view>()};
-            if (j.at("sprite").at("crop").is_null())
+            std::string_view const file{j["sprite"]["file"].get<std::string_view>()};
+            if (j["sprite"]["crop"].is_null())
                 add_object(win, file);
             else
             {
-                Rectangle const rect{j.at("sprite").at("crop")};
+                Rectangle const rect{j["sprite"]["crop"]};
                 add_object(win, file, rect);
             }
         }
 
+        /// @brief Draw object with the given id on the given window.
+        /// @param id The id of the object to draw.
+        /// @param win The window where the object will be drawed.
+        inline void Draw(object id, Window const &win) noexcept
+        {
+            float const dx{sprites.clip[id].w * objects.scale[id].x * .5f};
+            float const dy{sprites.clip[id].h * objects.scale[id].y * .5f};
+            SDL_FRect const dst{objects.pos[id].x - dx, objects.pos[id].y - dy, 2 * dx, 2 * dy};
+
+            SDL_RenderCopyExF(
+                win.getRenderer(), sprites.tex[id],
+                &sprites.clip[id], &dst, objects.angle[id],
+                nullptr, SDL_FLIP_NONE);
+        }
+
         std::vector<object> draw_queue; /// < All the id-s of the objects that should be drawed.
         std::vector<SDL_Texture *> tex; /// < The texture data of the objects.
-        std::vector<SDL_Rect> clip;    /// < The cropped area from the image.
+        std::vector<SDL_Rect> clip;     /// < The cropped area from the image.
     } sprites;                          /// < An instance of sprites_sys.
 } // namespace tnt::doo
 

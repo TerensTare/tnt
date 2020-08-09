@@ -16,8 +16,8 @@ void tnt::Snipper::watchFile(std::string_view name)
 bool tnt::Snipper::isModified(std::string_view file) noexcept
 {
     std::lock_guard lock{mtx};
-    std::string key{file.data()};
-    if (files.find(key) == files.cend())
+    std::string const key{file.data()};
+    if (files.find(file) == files.cend())
     {
         files.try_emplace(key, key, fs::last_write_time(key));
         return false; // since we just added the file, there's no chance it has been modified

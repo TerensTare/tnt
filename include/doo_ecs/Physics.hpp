@@ -4,10 +4,9 @@
 #include <vector>
 #include <nlohmann/json.hpp>
 
-#include "math/Vector.hpp"
 #include "doo_ecs/Base.hpp"
-
-// (maybe) separate vectors for every data ??
+#include "math/Vector.hpp"
+#include "utils/Assert.hpp"
 
 namespace tnt::doo
 {
@@ -57,14 +56,16 @@ namespace tnt::doo
         /// @param time_ The time that passed since the last update call.
         inline void Update(object id, float time_) noexcept
         {
+            check(time_ > 0.f, "Calling tnt::doo::physics_sys::Update with parameter time_ begin 0. Objects will not be updated");
             vel[id] = vel[id] + (accel[id] * float(time_ / 1000));
+            objects.pos[id] += (physics.vel[id] * float(time_ / 1000));
         }
 
         /// @brief Load objects physics data from a json chunk.
         /// @param j The json chunk that contains the objects data.
         inline void from_json(nlohmann::json const &j)
         {
-            add_object(j.at("phys").at("mass"));
+            add_object(j["phys"]["mass"]);
         }
 
         std::vector<float> inv_mass; /// < The inverse of the mass of each objects.

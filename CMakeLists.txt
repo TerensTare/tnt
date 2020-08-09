@@ -1,15 +1,11 @@
 # TODO:
-# installer
+
 # testing
 # flags for x64/x86, debug/release.
 
 # The project uses C++20, which is minimally supported by CMake 3.12.4
 cmake_minimum_required(VERSION 3.12.4 FATAL_ERROR)
 set(PROJECT_NAME "TnT")
-
-set(CMAKE_TOOLCHAIN_FILE
-    ${VCPKG_EXE_PATH}/../scripts/buildsystems/vcpkg.cmake
-    CACHE PATH "TOOLCHAIN")
 
 project(${PROJECT_NAME}
     VERSION 0.1.0
@@ -30,7 +26,7 @@ file(TO_CMAKE_PATH "${PROJECT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
 if (EXISTS "${LOC_PATH}")
 message(FATAL_ERROR
     "CMake should not be used to build TnT in a directory that has a CMakeLists.txt file!!\n
-    Please consider making a \"build\" subdirectory and run cmake .. from the \"build\" directory.")
+    Please consider making a \"build\" subdirectory and run cmake .. from the \"build\" subdirectory.")
 endif()
 
 include(FindLua)
@@ -48,14 +44,17 @@ include(cmake/Sanitizers.cmake)
 enable_sanitizers(project_options)
 include(cmake/StaticAnalyzers.cmake)
 
-# Find vcpkg.exe and use it's path.
+# Find vcpkg.exe and use its path.
 if(WIN32)
     find_file(VCPKG_EXE_PATH vcpkg.exe)
 else()
     find_file(VCPKG_EXE_PATH vcpkg)
-endif(WIN32)
+endif()
 message("Vcpkg found at ${VCPKG_EXE_PATH}.")
 
+set(CMAKE_TOOLCHAIN_FILE
+    ${VCPKG_EXE_PATH}/../scripts/buildsystems/vcpkg.cmake
+    CACHE PATH "TOOLCHAIN")
 
 if(NOT DEFINED CMAKE_PREFIX_PATH)
     set(CMAKE_PREFIX_PATH "")

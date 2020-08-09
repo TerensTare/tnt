@@ -1,27 +1,28 @@
 #include "fileIO/AudioPlayer.hpp"
-#include "fileIO/AssetManager.hpp"
+#include "fileIO/AssetCache.hpp"
 
-#include <iostream>
+#include "utils/Logger.hpp"
+
+inline tnt::small_music_cache *music{tnt::default_music_cache()};
+inline tnt::small_sfx_cache *sfx{tnt::default_sfx_cache()};
 
 tnt::AudioPlayer::AudioPlayer(int frequency, unsigned short format, int channels, int chunksize) noexcept
 {
     if (Mix_OpenAudio(frequency, format, channels, chunksize) < 0)
-        std::cout << "Couldn't initialize SDL_Mixer!!\nError: " << Mix_GetError() << std::endl;
+        logger::error("Couldn't initialize SDL_Mixer!! Error: {}", Mix_GetError());
+}
+
+tnt::AudioPlayer::~AudioPlayer() noexcept
+{
+    Mix_CloseAudio();
 }
 
 void tnt::AudioPlayer::PlayMusic(std::string_view filename, int loops)
 {
-    if (AssetManager::This().Music(filename) == nullptr)
-    {
-        AssetManager::This().AddMusic(filename);
-        if (AssetManager::This().Music(filename) == nullptr)
-        {
-            std::cout << "Couldn't load " << filename << "\n.Error: " << Mix_GetError() << std::endl;
-            return;
-        }
-    }
-
-    Mix_PlayMusic(AssetManager::This().Music(filename), loops);
+    if (Mix_Music * mus{music->get(filename)}; mus != nullptr)
+        Mix_PlayMusic(mus, loops);
+    else
+        logger::info("Couldn't load {}\n!!Error: {}", Mix_GetError());
 }
 
 void tnt::AudioPlayer::PauseMusic()
@@ -38,15 +39,8 @@ void tnt::AudioPlayer::ResumeMusic()
 
 void tnt::AudioPlayer::PlaySFX(std::string_view filename, int channel, int loops)
 {
-    if (AssetManager::This().Sfx(filename) == nullptr)
-    {
-        AssetManager::This().AddSfx(filename);
-        if (AssetManager::This().Sfx(filename) != nullptr)
-        {
-            std::cout << "Couldn't load " << filename << "\nError: " << Mix_GetError() << std::endl;
-            return;
-        }
-    }
-
-    Mix_PlayChannel(channel, AssetManager::This().Sfx(filename), loops);
+    if (Mix_Chunk * chunk{sfx->get(filename)}; chunk != nullptr)
+        Mix_PlayChannel(channel, chunk, loops);
+    else
+        logger::info("Couldn't load {}\n!!Error: {}", Mix_GetError());
 }

@@ -1,6 +1,7 @@
 .vscode
 build
 logs
+TODO.md
 
 # MSVC stuff
 *.obj

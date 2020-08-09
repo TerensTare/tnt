@@ -101,11 +101,11 @@ namespace tnt
         // SDL_Texture *LoadText(Window const *win, TTF_Font *font,
         // std::string_view text, SDL_Color color);
 
-        std::map<std::string, SDL_Texture *> images;
+        std::map<std::string, SDL_Texture *, std::less<>> images;
         // std::map<std::string, SDL_Texture *> text;
-        std::map<std::string, TTF_Font *> fonts;
-        std::map<std::string, Mix_Music *> music;
-        std::map<std::string, Mix_Chunk *> sfx;
+        std::map<std::string, TTF_Font *, std::less<>> fonts;
+        std::map<std::string, Mix_Music *, std::less<>> music;
+        std::map<std::string, Mix_Chunk *, std::less<>> sfx;
         // std::map<std::string, tmx::TileMap *> maps;
     };
 } // namespace tnt

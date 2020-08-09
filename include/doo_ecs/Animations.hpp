@@ -126,7 +126,7 @@ namespace tnt::doo
         /// @param j The json chunk.
         inline void from_json(nlohmann::json const &j)
         {
-            Rectangle const rect{j.at("sprite").at("crop")};
+            Rectangle const rect{j["sprite"]["crop"]};
             nlohmann::json const &chunk{j["anim"]};
             int const frames{chunk["frames"]};
             float const speed{chunk["speed"]};

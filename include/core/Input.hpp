@@ -50,6 +50,9 @@ namespace tnt::input
     /// @brief Updates the last input handles.
     void updatePrevious();
 
+    /// @brief Updates all the input handles.
+    void Update();
+
     /// @return The last mouse button pressed.
     unsigned lastMouseButton() noexcept;
 

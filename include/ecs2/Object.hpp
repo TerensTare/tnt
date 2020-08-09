@@ -43,11 +43,11 @@ namespace tnt::ecs2
     template <typename T, component... Components>
     class Object
         : public base_object,
-          public detail::crtp<T>,
+          public crtp<T>,
           public Components...
     {
     public:
-        inline explicit Object(Components &&... comps) noexcept
+        explicit inline constexpr Object(Components &&... comps) noexcept
             : Components{std::forward<Components>(comps)}... {}
 
         template <component Comp>
@@ -60,7 +60,7 @@ namespace tnt::ecs2
 
         inline void Draw(tnt::Window const *win) noexcept
         {
-            if constexpr (is_detected_v<decltype(typename T::Draw), T>::value)
+            if inline constexpr (is_detected_v<decltype(typename T::Draw), T>::value)
                 this->base().Draw(win);
         }
     };

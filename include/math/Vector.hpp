@@ -1,20 +1,13 @@
 #ifndef TNT_VECTOR_HPP
 #define TNT_VECTOR_HPP
 
-//#if __cplusplus > 201703L
-//#include <compare>
-//#endif
-
+// #include <compare>
 #include <ostream>
 
 #include "math/MathUtils.hpp"
 
-// TODO: add noexcept at more places, if possible.
 // TODO: add a ScalableVector struct, which has x, y and z coordinates, and uses
 // z as a scale of itself.
-
-// TODO(maybe):
-// add constexpr on all functions ??
 
 namespace tnt
 {
@@ -36,89 +29,84 @@ namespace tnt
         Vector(const Vector &) = default;
         Vector(Vector &&) = default;
 
-        inline float MagnitudeSqr() const noexcept { return x * x + y * y; }
-        inline float Magnitude() const noexcept { return sqrtf(x * x + y * y); }
+        inline constexpr float MagnitudeSqr() const noexcept { return x * x + y * y; }
+        float Magnitude() const noexcept { return sqrtf(x * x + y * y); }
 
-        inline void Normalize() noexcept(noexcept(Magnitude() > FLT_EPSILON))
+        void Normalize() noexcept(noexcept(Magnitude() > FLT_EPSILON))
         {
-            float mag{Magnitude()};
+            float const mag{Magnitude()};
             x /= mag;
             y /= mag;
         }
 
-        inline Vector Normalized() const noexcept(noexcept(Magnitude() > FLT_EPSILON))
+        Vector Normalized() const noexcept(noexcept(Magnitude() > FLT_EPSILON))
         {
-            float mag{Magnitude()};
-            return Vector{x / mag, y / mag};
+            return Vector{x / Magnitude(), y / Magnitude()};
         }
 
         // operators
-        inline Vector operator-() const noexcept { return Vector{-x, -y}; }
+        inline constexpr Vector operator-() const noexcept { return Vector{-x, -y}; }
 
-        inline Vector &operator+=(const Vector &rhs) noexcept
+        inline constexpr Vector &operator+=(const Vector &rhs) noexcept
         {
             x += rhs.x;
             y += rhs.y;
             return *this;
         }
 
-        inline Vector &operator-=(const Vector &rhs) noexcept
+        inline constexpr Vector &operator-=(const Vector &rhs) noexcept
         {
             x -= rhs.x;
             y -= rhs.y;
             return *this;
         }
 
-        inline Vector &operator*=(const Vector &rhs) noexcept
+        inline constexpr Vector &operator*=(const Vector &rhs) noexcept
         {
             x *= rhs.x;
             y *= rhs.y;
             return *this;
         }
 
-        inline Vector &operator*=(float rhs) noexcept
+        inline constexpr Vector &operator*=(float rhs) noexcept
         {
             x *= rhs;
             y *= rhs;
             return *this;
         }
 
-        inline Vector &operator/=(const Vector &rhs) noexcept
+        inline constexpr Vector &operator/=(const Vector &rhs) noexcept
         {
             x /= rhs.x;
             y /= rhs.y;
             return *this;
         }
 
-        inline Vector &operator/=(float rhs) noexcept
+        inline constexpr Vector &operator/=(float rhs) noexcept
         {
             x /= rhs;
             y /= rhs;
             return *this;
         }
 
-        inline Vector &operator=(const Vector &rhs) noexcept
+        inline constexpr Vector &operator=(const Vector &rhs) noexcept
         {
             x = rhs.x;
             y = rhs.y;
             return *this;
         }
 
-        inline bool operator<(const Vector &rhs) const noexcept
+        inline constexpr bool operator<(const Vector &rhs) const noexcept
         {
             return std::tie(x, y) < std::tie(rhs.x, rhs.y);
         }
 
-        inline bool operator>(const Vector &rhs) const noexcept
+        inline constexpr bool operator>(const Vector &rhs) const noexcept
         {
             return ((x > rhs.x) && (y > rhs.y));
         }
 
-        // #if __cplusplus > 201703L // operator<=> isn't available before C++20
-        //     auto operator<=>(Vector const &) const = default;
-        // #endif
-
-        friend std::ostream &operator<<(std::ostream &os, Vector const &rhs);
+        // inline auto operator<=>(Vector const &rhs) const noexcept {}
 
         float x;
         float y;
@@ -203,15 +191,15 @@ namespace tnt
     }
 #endif
 
-    inline static constexpr Vector VECTOR_ZERO{0.f, 0.f};
-    inline static constexpr Vector VECTOR_ONE{1.f, 1.f};
-    inline static constexpr Vector VECTOR_UP{0.f, -1.f};
-    inline static constexpr Vector VECTOR_RIGHT{1.f, 0.f};
-    inline static constexpr Vector VECTOR_DOWN{0.f, 1.f};
-    inline static constexpr Vector VECTOR_LEFT{-1.f, 0.f};
+    inline static inline constexpr Vector VECTOR_ZERO{0.f, 0.f};
+    inline static inline constexpr Vector VECTOR_ONE{1.f, 1.f};
+    inline static inline constexpr Vector VECTOR_UP{0.f, -1.f};
+    inline static inline constexpr Vector VECTOR_RIGHT{1.f, 0.f};
+    inline static inline constexpr Vector VECTOR_DOWN{0.f, 1.f};
+    inline static inline constexpr Vector VECTOR_LEFT{-1.f, 0.f};
 } // namespace tnt
 
-inline std::ostream &tnt::operator<<(std::ostream &os, Vector const &rhs)
+inline std::ostream &operator<<(std::ostream &os, tnt::Vector const &rhs)
 {
     os << "{" << rhs.x << ", " << rhs.y << "}";
     return os;

@@ -131,13 +131,6 @@ namespace tnt
         /// @note This is automatically called by @c tnt_imgui_begin().
         void make_context() noexcept;
 
-        /// @brief Updates ImGui's context data.
-        void update_context() noexcept;
-
-        /// @brief Destroys the ImGui context and makes ImGui unusable.
-        /// @note This is automatically called by @c tnt_imgui_close().
-        void destroy_context() noexcept;
-
         /////////////
         // widgets //
         /////////////
@@ -155,7 +148,7 @@ namespace tnt
         /// @note For the moment, you CANNOT call @c tnt::ImGui::Begin() inside another
         /// @c tnt::ImGui::Begin() / @c tnt::ImGui::End() pair. That's the only case when
         /// this function returns false, but this is subject to change.
-        bool Begin(Window const *win, std::string_view name, int x, int y,
+        bool Begin(Window const &win, std::string_view name, int x, int y,
                    WindowFlags flags = WindowFlags::Default) noexcept;
 
         /// @brief Stop drawing widgets on the last window where @c tnt::ImGui::Begin()
@@ -167,7 +160,7 @@ namespace tnt
         /// @param win The game window where the drawing should happen.
         /// @return bool
         /// @sa tnt::ImGui::EndSection()
-        bool BeginSection(Window const *win, std::string_view text) noexcept;
+        bool BeginSection(Window const &win, std::string_view text) noexcept;
 
         /// @brief Stop drawing widgets on the current "section".
         /// @sa tnt::ImGui::BeginSection()
@@ -204,7 +197,7 @@ namespace tnt
         /// @param win The game window where the button should be drawed.
         /// @param text The text that should be drawn on the button.
         /// @return bool
-        bool button(Window const *win, std::string_view text) noexcept;
+        bool button(Window const &win, std::string_view text) noexcept;
 
         /// @brief Draw a vertical slider that modifies an @c int value on the current ImGui window.
         /// The widget returns @c true if the value has been modified, @c false otherwise.
@@ -213,7 +206,7 @@ namespace tnt
         /// @param max_ The maximum value the widget can set.
         /// @param value The value that the widget can modify.
         /// @return bool
-        bool slider_int(Window const *win, int min_, int max_, int *value) noexcept;
+        bool slider_int(Window const &win, int min_, int max_, int *value) noexcept;
 
         /// @brief Draw a vertical slider that modifies an @c float value on the current ImGui window.
         /// The widget returns @c true if the value has been modified, @c false otherwise.
@@ -222,7 +215,7 @@ namespace tnt
         /// @param max_ The maximum value the widget can set.
         /// @param value The value that the widget can modify.
         /// @return bool
-        bool slider_float(Window const *win, float min_, float max_,
+        bool slider_float(Window const &win, float min_, float max_,
                           float *value) noexcept;
 
         /// @brief Draw a horizontal slider that modifies an @c int value on the current ImGui window.
@@ -233,7 +226,7 @@ namespace tnt
         /// @param max_ The maximum value the widget can set.
         /// @param value The value that the widget can modify.
         /// @return bool
-        bool hslider_int(Window const *win, std::string_view text, int min_, int max_,
+        bool hslider_int(Window const &win, std::string_view text, int min_, int max_,
                          int *value) noexcept;
 
         /// @brief Draw a horizontal slider that modifies an @c float value on the current ImGui window.
@@ -244,7 +237,7 @@ namespace tnt
         /// @param max_ The maximum value the widget can set.
         /// @param value The value that the widget can modify.
         /// @return bool
-        bool hslider_float(Window const *win, std::string_view text, float min_, float max_,
+        bool hslider_float(Window const &win, std::string_view text, float min_, float max_,
                            float *value) noexcept;
 
         /// @brief Draw two aligned horizontal sliders that modify 2 @c int values on the current ImGui window.
@@ -256,7 +249,7 @@ namespace tnt
         /// @param value1 The first value that the widget can modify.
         /// @param value2 The second value that the widget can modify.
         /// @return bool
-        bool hslider_int2(Window const *win, std::string_view text,
+        bool hslider_int2(Window const &win, std::string_view text,
                           int min_, int max_, int *value1, int *value2) noexcept;
 
         /// @brief Draw two aligned horizontal sliders that modify 2 @c float values on the current ImGui window.
@@ -268,7 +261,7 @@ namespace tnt
         /// @param value1 The first value that the widget can modify.
         /// @param value2 The second value that the widget can modify.
         /// @return bool
-        bool hslider_float2(Window const *win, std::string_view text,
+        bool hslider_float2(Window const &win, std::string_view text,
                             float min_, float max_, float *value1, float *value2) noexcept;
 
         /// @brief Draw two aligned horizontal sliders that modify a @c tnt::Vector's value on the current ImGui window.
@@ -281,7 +274,7 @@ namespace tnt
         /// @param max2 The maximum value the widget can set for the second @c float of the @c tnt::Vector.
         /// @param value The @c tnt::Vector that the widget can modify.
         /// @return bool
-        bool hslider_vec(Window const *win, std::string_view text,
+        bool hslider_vec(Window const &win, std::string_view text,
                          float min1, float max1, float min2, float max2,
                          tnt::Vector *value) noexcept;
 
@@ -291,7 +284,7 @@ namespace tnt
         /// @param text The text that should be displayed next to the checkbox.
         /// @param value The value representing the state of the checkbox.
         /// @return bool
-        bool checkbox(Window const *win, std::string_view text, bool *value) noexcept;
+        bool checkbox(Window const &win, std::string_view text, bool *value) noexcept;
 
         /// @brief Draw a menu button on the current window.
         /// @param text The name of the menu button.
@@ -299,7 +292,7 @@ namespace tnt
         /// @sa tnt::ImGui::BeginMenuBar()
         /// @sa tnt::ImGui::EndMenuBar()
         /// @sa tnt::ImGui::menu_item()
-        bool menu_button(Window const *win, std::string_view text) noexcept;
+        bool menu_button(Window const &win, std::string_view text) noexcept;
 
         /// @brief Draw a menu bar with options from the @c options array.
         /// Returns the index of the pressed menu button (if any), or -1 otherwise.
@@ -309,7 +302,7 @@ namespace tnt
         /// @sa tnt::ImGui::BeginMenuBar()
         /// @sa tnt::ImGui::EndMenuBar()
         /// @sa tnt::ImGui::menu_button()
-        bool menu_item(Window const *win, std::string_view text) noexcept;
+        bool menu_item(Window const &win, std::string_view text) noexcept;
 
         // (maybe) return 1 if *value == max_
 
@@ -319,7 +312,7 @@ namespace tnt
         /// @param min_ The minimum value of the progress bar.
         /// @param max_ The maximum value of the progress bar.
         /// @param value The value that shows the current progress bar index.
-        void progress_bar(Window const *win, std::string_view text, int min_, int max_,
+        void progress_bar(Window const &win, std::string_view text, int min_, int max_,
                           int *value) noexcept;
 
         /// @brief Add an empty line on the current window.
@@ -328,7 +321,7 @@ namespace tnt
         /// @brief Draw @c text on the current window.
         /// @param win The game window where the text should be drawed.
         /// @param text The text that should be drawed.
-        void text(Window const *win, std::string_view text) noexcept;
+        void text(Window const &win, std::string_view text) noexcept;
 
         /// @brief Draw @c text with the specified color.
         /// @param win The game window where the text should be drawed.
@@ -337,7 +330,7 @@ namespace tnt
         /// @param g The green "component" of the text color.
         /// @param b The blue "component" of the text color.
         /// @param a The transparent "component" of the text color.
-        void colored_text(Window const *win, std::string_view text,
+        void colored_text(Window const &win, std::string_view text,
                           unsigned char r, unsigned char g,
                           unsigned char b, unsigned char a) noexcept;
 
@@ -346,13 +339,13 @@ namespace tnt
         /// @param text The text of the list item.
         /// @sa tnt::ImGui::BeginList()
         /// @sa tnt::ImGui::EndList()
-        void list_item(Window const *win, std::string_view text) noexcept;
+        void list_item(Window const &win, std::string_view text) noexcept;
     } // namespace ImGui
 } // namespace tnt
 
 /// @brief Initialize all needed stuff to use ImGui on @c win.
 /// @param win The target game window.
-void tnt_imgui_init(tnt::Window const *win) noexcept;
+void tnt_imgui_init(tnt::Window const &win) noexcept;
 
 /// @brief Cleans up all ImGui-related stuff.
 void tnt_imgui_close() noexcept;

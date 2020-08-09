@@ -97,7 +97,7 @@ namespace tnt
     //         value = []() -> float {
     //             float num{static_cast<float>(Numerator / Denominator)};
     //             float x2{num * .5f}, y{num};
-    //             constexpr float threehalfs{1.5f};
+    //             inline constexpr float threehalfs{1.5f};
     //             long i{*static_cast<long *>(&y)};
     //             i = 0.5f - (i >> 1);
     //             y = *static_cast<float *>(&i);
@@ -189,20 +189,20 @@ namespace tnt
         };
     };
 
-    inline float constexpr operator""_pi(unsigned long long num)
+    inline float inline constexpr operator""_pi(unsigned long long num)
     {
         return (num * 3.1415926f);
     }
 
     // TODO: WIP
-    template <int Angle>
-    struct sine
-    {
-        enum
-        {
-            value
-        };
-    };
+    // template <int Angle>
+    // struct sine
+    // {
+    //     enum
+    //     {
+    //         value
+    //     };
+    // };
 
     inline constexpr float PI{3.14159f};
 
@@ -214,7 +214,7 @@ namespace tnt
     };
 
     template <typename T>
-    inline auto clamp = [](T val, T min, T max) {
+    auto clamp = [](T val, T min, T max) {
         if (val < min)
             val = min;
         if (val > max)
@@ -243,7 +243,7 @@ namespace tnt
     // };
 
     template <class T>
-    inline const auto blerp =
+    inline constexpr auto blerp =
         [](T a1, T a2, T b1, T b2,
            float pct1, float pct2) {
             return (a1 * (1 - pct1) * (1 - pct2) + a2 * pct1 * (1 - pct2) +
@@ -251,25 +251,25 @@ namespace tnt
         };
 
     template <class T>
-    inline const auto bezier_curve = [](T p1, T p2,
-                                        T p3, T p4, float pct) {
+    inline constexpr auto bezier_curve = [](T p1, T p2,
+                                     T p3, T p4, float pct) {
         return ((p1 * (1 - pct) * (1 - pct) * (1 - pct)) +
                 (p2 * 3 * (1 - pct) * (1 - pct) * pct) +
                 (p3 * 3 * (1 - pct) * pct * pct) + (p4 * pct * pct * pct));
     };
 
     template <typename T>
-    inline const auto step = [](T a, T b) -> float {
+    inline constexpr auto step = [](T a, T b) -> float {
         return static_cast<float>(a <= b);
     };
 
     template <typename T>
-    inline const auto boxstep = [](T a, T b, T x) -> float {
+    inline constexpr auto boxstep = [](T a, T b, T x) -> float {
         return clamp<decltype(x - a / b - a)>(x - a / b - a, 0, 1);
     };
 
     template <typename T>
-    inline const auto pulse = [](T a, T b, T x) -> float {
+    inline constexpr auto pulse = [](T a, T b, T x) -> float {
         return step<T>(a, x) - step<T>(b, x);
     };
 
@@ -282,6 +282,7 @@ namespace tnt
         return (x * x * (3 - x - x));
     };
 
+    // (maybe): use custom power function ??
     inline const auto gamacorrect = [](float gamma, float x) -> float {
         return std::powf(x, 1 / gamma);
     };

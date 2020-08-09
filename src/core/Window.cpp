@@ -18,7 +18,7 @@ namespace tnt::detail::gfx
         {
             if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
             {
-                tnt::logger::error("Couldn't initalize SDL2!! Error: {}\n", SDL_GetError());
+                tnt::logger::error("Couldn't initalize SDL2!! Error: {}", SDL_GetError());
                 return false;
             }
 
@@ -26,7 +26,7 @@ namespace tnt::detail::gfx
 
             if ((IMG_Init(flags) & flags) != flags)
             {
-                tnt::logger::error("Couldn't initialize SDL_Image!! Error: {}\n", IMG_GetError());
+                tnt::logger::error("Couldn't initialize SDL_Image!! Error: {}", IMG_GetError());
                 return false;
             }
 
@@ -34,7 +34,7 @@ namespace tnt::detail::gfx
 
             if (TTF_Init() == -1)
             {
-                tnt::logger::error("Couldn't initalize SDL_ttf!! Error: {}\n", TTF_GetError());
+                tnt::logger::error("Couldn't initalize SDL_ttf!! Error: {}", TTF_GetError());
                 return false;
             }
 
@@ -198,3 +198,11 @@ void tnt::Window::handleEvents(const SDL_Event &events) noexcept
 }
 
 bool tnt::Window::isOpened() const noexcept { return running; }
+
+tnt::render_lock::render_lock(tnt::Window const &win) noexcept
+    : ren{win.getRenderer()}
+{
+    SDL_RenderClear(ren);
+}
+
+tnt::render_lock::~render_lock() noexcept { SDL_RenderPresent(ren); }

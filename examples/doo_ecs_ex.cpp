@@ -6,8 +6,8 @@
 #include "core/Window.hpp"
 #include "core/Input.hpp"
 
-#include "doo_ecs/Objects.hpp"
 #include "doo_ecs/Animations.hpp"
+#include "doo_ecs/Physics.hpp"
 
 #include "utils/Timer.hpp"
 
@@ -22,12 +22,8 @@ int main(int argc, char **argv)
 
     {
         nlohmann::json j;
-        {
-            std::ifstream i{"objects.json"};
-            i >> j;
-        }
-
-        for (nlohmann::json const &it : j)
+        for (std::ifstream{"objects.json"} >> j;
+             nlohmann::json const &it : j)
         {
             objects.from_json(it);
             physics.from_json(it);
@@ -53,15 +49,12 @@ int main(int argc, char **argv)
         {
             // update
             physics.Update(obj, dt);
-            if (tnt::doo::object const a{animations.running.size()};
-                a > obj && animations.running[obj] != -1)
-                animations.Update(obj, dt);
-            objects.Update(obj, dt);
+            animations.Update(obj, dt);
 
             // draw
-            if (tnt::doo::object const s{sprites.draw_queue.size()};
-                s > obj && sprites.draw_queue[obj] != -1)
-                objects.Draw(obj, window);
+            if (sprites.draw_queue.size() > obj &&
+                sprites.draw_queue[obj] != -1)
+                sprites.Draw(obj, window);
         }
         window.Render();
     }

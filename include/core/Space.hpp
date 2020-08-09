@@ -79,7 +79,7 @@ namespace tnt
 
     protected:
         bool active{true};
-        std::map<std::string, Object *> objects;
+        std::map<std::string, Object *, std::less<>> objects;
     }; // namespace tnt
 } // namespace tnt
 

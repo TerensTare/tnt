@@ -67,12 +67,13 @@ namespace tnt
         }
 
     private:
-        std::mutex mtx;
-        std::unique_ptr<T[]> buffer;
         size_t head{0};
         size_t tail{0};
         const size_t max;
         bool isFull{false};
+
+        std::mutex mtx;
+        std::unique_ptr<T[]> buffer;
     };
 
     // based on

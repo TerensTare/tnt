@@ -14,8 +14,9 @@
 
 namespace tnt::ImGui
 {
-    struct theme_t
+    inline class theme_t final
     {
+    public: // MSVC has a known bug with struct (not class) types without user-defined ctor.
         int w, h;
         int font_size;
 
@@ -39,48 +40,61 @@ namespace tnt::ImGui
         TTF_Font *font_data;
 
         std::string default_font;
+    } theme{
+        .w{0},
+        .h{0},
+        .font_size{14},
 
-    } * theme{new theme_t{
-            .w{0},
-            .h{0},
-            .font_size{14},
+        .button_w{60},
+        .button_h{40},
 
-            .button_w{60},
-            .button_h{40},
+        .slider_w{20},
+        .slider_h{100},
+        .slider_thumb_size{18},
+        .hslider_h{20},
+        .hslider_thumb_size{18},
 
-            .slider_w{20},
-            .slider_h{100},
-            .slider_thumb_size{18},
-            .hslider_h{20},
-            .hslider_thumb_size{18},
+        .pbar_w{100},
+        .pbar_h{20},
+        .checkbox_size{20},
+        .menu_spacing{20},
+        .section_h{20},
 
-            .pbar_w{100},
-            .pbar_h{20},
-            .checkbox_size{20},
-            .menu_spacing{20},
-            .section_h{20},
+        .text_color{.r{255}, .g{255}, .b{255}, .a{255}},
+        .idle_color{.r{30}, .g{144}, .b{255}, .a{255}},
+        .active_color{.r{0}, .g{0}, .b{0}, .a{255}},
+        .static_color{.r{130}, .g{130}, .b{130}, .a{255}},
 
-            .text_color{.r{255}, .g{255}, .b{255}, .a{255}},
-            .idle_color{.r{30}, .g{144}, .b{255}, .a{255}},
-            .static_color{.r{130}, .g{130}, .b{130}, .a{255}},
+        .default_font{std::string{SDL_GetBasePath()}.append("assets/Inconsolata.ttf")}};
 
-            .default_font = std::string{SDL_GetBasePath()}.append("assets/Inconsolata.ttf")}};
-
-    struct window_data
+    class window_data final
     {
+    public:
         bool menu_called;
         bool collapsed;
+        WindowFlags win_flags;
         int x, y, w, h;
         int next_x, next_y; // next_x and next_y are used to arrange widgets on the window.
         int menu_index, menu_txt_size, last_menu_txt_size, menu_item_index;
         int context_menu_index;
         int list_indent_level, list_index, list_number;
-        WindowFlags win_flags;
         std::string title;
     };
 
-    struct context_t
+    class context_t final
     {
+    public:
+        inline ~context_t() noexcept
+        {
+            for (auto const &it : context.lists_text)
+                if (it.second)
+                    SDL_DestroyTexture(it.second);
+
+            for (auto const &it : context.windows)
+                if (it.second)
+                    delete it.second;
+        }
+
         bool on_window; // this is true if calling Begin() inside other Begin/End pair.
         bool mouse_down;
         int mouse_x, mouse_y;
@@ -89,9 +103,9 @@ namespace tnt::ImGui
         std::string last_window;
 
         std::map<std::size_t, bool> sections; // cache to check if sections are collapsed or not
-        std::map<std::string, SDL_Texture *> lists_text;
-        std::map<std::string, window_data *> windows;
-    } * context{new context_t{}};
+        std::map<std::string, SDL_Texture *, std::less<>> lists_text;
+        std::map<std::string, window_data *, std::less<>> windows;
+    } context;
 
 #define TNT_IMGUI_RUNTIME_CONFIG
 
@@ -99,38 +113,41 @@ namespace tnt::ImGui
     // global //
     ////////////
 
-    int get_window_w() noexcept { return theme->w; }
-    int get_window_h() noexcept { return theme->h; }
+    int get_window_w() noexcept { return theme.w; }
+    int get_window_h() noexcept { return theme.h; }
 
     // TODO: load the other font texture here.
     void set_font(char const *name) noexcept
     {
-        theme->default_font = name;
-        if (theme->font_data != nullptr)
-            TTF_CloseFont(theme->font_data);
-        theme->font_data = TTF_OpenFont(name, theme->font_size);
+        theme.default_font = name;
+        if (theme.font_data != nullptr)
+        {
+            TTF_CloseFont(theme.font_data);
+            theme.font_data = nullptr;
+        }
+        theme.font_data = TTF_OpenFont(name, theme.font_size);
     }
 
     /////////////////
     // local utils //
     /////////////////
 
-    auto on_rect = [](int x, int y, int w, int h) -> bool {
-        return ((context->mouse_x >= x) && (context->mouse_x < x + w) &&
-                (context->mouse_y >= y) && (context->mouse_y < y + h));
+    inline auto on_rect = [](int x, int y, int w, int h) noexcept -> bool {
+        return ((context.mouse_x >= x) && (context.mouse_x < x + w) &&
+                (context.mouse_y >= y) && (context.mouse_y < y + h));
     };
 
-    auto load_text = [](Window const *win, char const *text,
-                        SDL_Color color = theme->text_color) -> SDL_Texture * {
-        SDL_Surface *temp{TTF_RenderText_Blended(theme->font_data, text, color)};
+    inline auto load_text = [](Window const &win, char const *text,
+                               SDL_Color color = theme.text_color) noexcept -> SDL_Texture * {
+        SDL_Surface *temp{TTF_RenderText_Blended(theme.font_data, text, color)};
         if (temp == nullptr)
         {
             tnt::logger::debug("Couldn't load surface for text {} with size {}!!", text,
-                               theme->font_size);
+                               theme.font_size);
             return nullptr;
         }
 
-        SDL_Texture *ret{SDL_CreateTextureFromSurface(win->getRenderer(), temp)};
+        SDL_Texture *ret{SDL_CreateTextureFromSurface(win.getRenderer(), temp)};
 
         SDL_FreeSurface(temp);
         temp = nullptr;
@@ -138,94 +155,98 @@ namespace tnt::ImGui
         if (ret == nullptr)
         {
             tnt::logger::debug("Couldn't load font texture for text {} with size {}!!", text,
-                               theme->font_size);
+                               theme.font_size);
             return nullptr;
         }
 
         return ret;
     };
 
-    auto load_image = [](Window const *win, char const *path) -> SDL_Texture * {
-        return IMG_LoadTexture(win->getRenderer(), path);
+    inline auto load_image = [](Window const &win, char const *path) noexcept -> SDL_Texture * {
+        return IMG_LoadTexture(win.getRenderer(), path);
     };
 
-    auto draw_rect = [](Window const *win, SDL_Rect const &rect, SDL_Color const &color) -> void {
-        SDL_RenderDrawRect(win->getRenderer(), &rect);
-        SDL_SetRenderDrawColor(win->getRenderer(), color.r, color.g, color.b, color.a);
-        SDL_RenderFillRect(win->getRenderer(), &rect);
-        SDL_SetRenderDrawColor(win->getRenderer(), theme->bg.r, theme->bg.g, theme->bg.b, theme->bg.a);
+    inline auto draw_rect = [](Window const &win, SDL_Rect const &rect, SDL_Color const &color) noexcept -> void {
+        SDL_RenderDrawRect(win.getRenderer(), &rect);
+        SDL_SetRenderDrawColor(win.getRenderer(), color.r, color.g, color.b, color.a);
+        SDL_RenderFillRect(win.getRenderer(), &rect);
+        SDL_SetRenderDrawColor(win.getRenderer(), theme.bg.r, theme.bg.g, theme.bg.b, theme.bg.a);
     };
 
-    auto draw_line = [](Window const *win, int x1, int y1, int x2, int y2, SDL_Color const &color) -> void {
-        SDL_SetRenderDrawColor(win->getRenderer(), color.r, color.g, color.b, color.a);
-        SDL_RenderDrawLine(win->getRenderer(), x1, y1, x2, y2);
-        SDL_SetRenderDrawColor(win->getRenderer(), theme->bg.r, theme->bg.g, theme->bg.b, theme->bg.a);
+    inline auto draw_line = [](Window const &win, int x1, int y1, int x2, int y2, SDL_Color const &color) noexcept -> void {
+        SDL_SetRenderDrawColor(win.getRenderer(), color.r, color.g, color.b, color.a);
+        SDL_RenderDrawLine(win.getRenderer(), x1, y1, x2, y2);
+        SDL_SetRenderDrawColor(win.getRenderer(), theme.bg.r, theme.bg.g, theme.bg.b, theme.bg.a);
     };
 
-    auto draw_text = [](Window const *win, char const *text, int x, int y,
-                        SDL_Color color = theme->text_color,
-                        int size = theme->font_size) -> void {
+    inline auto draw_text = [](Window const &win, char const *text, int x, int y,
+                               SDL_Color color = theme.text_color,
+                               int size = theme.font_size) noexcept -> void {
         SDL_Texture *cache{load_text(win, text, color)};
         int w{0}, h{0};
         SDL_QueryTexture(cache, nullptr, nullptr, &w, &h);
-        SDL_Rect where{x, y, w * size / theme->font_size, h * size / theme->font_size};
-        SDL_RenderCopy(win->getRenderer(), cache, nullptr, &where);
+        SDL_Rect where{x, y, w * size / theme.font_size, h * size / theme.font_size};
+        SDL_RenderCopy(win.getRenderer(), cache, nullptr, &where);
         SDL_DestroyTexture(cache);
         cache = nullptr;
     };
 
-    auto has_flag = [](WindowFlags const &owner, WindowFlags const &test) -> bool {
+    inline auto has_flag = [](WindowFlags const &owner, WindowFlags const &test) noexcept -> bool {
         return ((owner & test) == test);
     };
 
-    auto check_button = [](std::size_t id, int x, int y, int w, int h) -> void {
+    inline auto check_button = [](std::size_t id, int x, int y, int w, int h) noexcept -> void {
         if (on_rect(x, y, w, h))
         {
-            context->hot = id;
-            if (context->active == 0 && context->mouse_down) // left pressed
-                context->active = id;
+            context.hot = id;
+            if (context.active == 0 && context.mouse_down) // left mouse button pressed
+                context.active = id;
         }
+    };
+
+    inline auto update_context = []() noexcept -> void {
+        tnt::input::Update();
+        context.mouse_down = input::mouseButtonDown(0);
     };
 
     // thx Wren
     // https://stackoverflow.com/a/11819477/9807802
     auto im_hash = [](std::string_view text) {
         std::size_t h{0};
-        char const *str{text.data()};
-        while (*str)
-            h = h << 1 ^ *str++;
+        for (char const *str{text.data()}; *str; ++str)
+            h = h << 1 ^ *str;
         return h;
     };
 
     auto get_window = [](std::string_view name) -> window_data * {
-        if (context->windows.find(name.data()) != context->windows.cend())
-            return context->windows[name.data()];
-        window_data *tmp{new window_data{.title = name.data()}};
+        if (context.windows.find(name.data()) != context.windows.cend())
+            return context.windows[name.data()];
+        window_data *tmp{new window_data{.title{name.data()}}};
         return tmp;
     };
 
-    auto get_last_win = [] { return get_window(context->last_window); };
+    auto get_last_win = [] { return get_window(context.last_window); };
 
-    auto hslider_basef = [](tnt::Window const *win, window_data const *tmp,
+    auto hslider_basef = [](tnt::Window const &win, window_data const *tmp,
                             std::size_t const &id, int const &x,
                             int const &w, float const &min_,
                             float const &max_, float *value) -> bool {
-        const int xpos{static_cast<int>(((w - theme->hslider_thumb_size) * (*value - min_)) /
+        const int xpos{static_cast<int>(((w - theme.hslider_thumb_size) * (*value - min_)) /
                                         (max_ - min_))};
-        const int offset{theme->hslider_h - theme->hslider_thumb_size};
-        const SDL_Rect thumb{x + (offset / 2) + xpos, tmp->next_y + (offset / 2), theme->hslider_thumb_size,
-                             theme->hslider_thumb_size};
+        const int offset{theme.hslider_h - theme.hslider_thumb_size};
+        const SDL_Rect thumb{x + (offset / 2) + xpos, tmp->next_y + (offset / 2), theme.hslider_thumb_size,
+                             theme.hslider_thumb_size};
 
-        check_button(id, x, tmp->next_y, w, theme->hslider_h);
+        check_button(id, x, tmp->next_y, w, theme.hslider_h);
 
-        draw_rect(win, {x, tmp->next_y, w + offset, theme->hslider_h}, theme->static_color);
-        draw_rect(win, thumb, theme->idle_color);
+        draw_rect(win, {x, tmp->next_y, w + offset, theme.hslider_h}, theme.static_color);
+        draw_rect(win, thumb, theme.idle_color);
 
         draw_text(win, std::to_string(*value).c_str(), x + w / 2 - 4, tmp->next_y);
 
-        if (context->active == id)
+        if (context.active == id)
         {
-            int mousePos{context->mouse_x - x - (offset / 2)};
+            int mousePos{context.mouse_x - x - (offset / 2)};
             if (mousePos < 0)
                 mousePos = 0;
             if (mousePos > w - 1)
@@ -242,26 +263,26 @@ namespace tnt::ImGui
         return false;
     };
 
-    auto hslider_basei = [](tnt::Window const *win, window_data const *tmp,
+    auto hslider_basei = [](tnt::Window const &win, window_data const *tmp,
                             std::size_t const &id, int const &x,
                             int const &w, int const &min_,
                             int const &max_, int *value) -> bool {
-        const int xpos{(w - theme->hslider_thumb_size) * (*value - min_) /
+        const int xpos{(w - theme.hslider_thumb_size) * (*value - min_) /
                        (max_ - min_)};
-        const int offset{theme->hslider_h - theme->hslider_thumb_size};
-        const SDL_Rect thumb{x + (offset / 2) + xpos, tmp->next_y + (offset / 2), theme->hslider_thumb_size,
-                             theme->hslider_thumb_size};
+        const int offset{theme.hslider_h - theme.hslider_thumb_size};
+        const SDL_Rect thumb{x + (offset / 2) + xpos, tmp->next_y + (offset / 2), theme.hslider_thumb_size,
+                             theme.hslider_thumb_size};
 
-        check_button(id, x, tmp->next_y, w, theme->hslider_h);
+        check_button(id, x, tmp->next_y, w, theme.hslider_h);
 
-        draw_rect(win, {x, tmp->next_y, w + offset, theme->hslider_h}, theme->static_color);
-        draw_rect(win, thumb, theme->idle_color);
+        draw_rect(win, {x, tmp->next_y, w + offset, theme.hslider_h}, theme.static_color);
+        draw_rect(win, thumb, theme.idle_color);
 
         draw_text(win, std::to_string(*value).c_str(), x + w / 2 - 4, tmp->next_y);
 
-        if (context->active == id)
+        if (context.active == id)
         {
-            int mousePos{context->mouse_x - x - (offset / 2)};
+            int mousePos{context.mouse_x - x - (offset / 2)};
             if (mousePos < 0)
                 mousePos = 0;
             if (mousePos > w - 1)
@@ -283,54 +304,27 @@ namespace tnt::ImGui
 
     void make_context() noexcept
     {
-        auto pos{input::mousePosition()};
+        std::pair const pos{input::mousePosition()};
 
-        context->on_window = false;
-        context->mouse_down = input::mouseButtonDown(0);
-        context->mouse_y = pos.second;
-        context->mouse_x = pos.first;
-        context->active = 0;
-        context->hot = 0;
-    }
-
-    void update_context() noexcept
-    {
-        tnt::input::updateCurrent();
-        tnt::input::updatePrevious();
-        context->mouse_down = input::mouseButtonDown(0);
-    }
-
-    void destroy_context() noexcept
-    {
-        context->mouse_down = false;
-        context->mouse_x = 0;
-        context->mouse_y = 0;
-        context->active = 0;
-        context->hot = 0;
-
-        for (auto const &it : context->lists_text)
-            if (it.second != nullptr)
-                SDL_DestroyTexture(it.second);
-
-        for (auto const &it : context->windows)
-            if (it.second != nullptr)
-                delete it.second;
-
-        delete context;
-        context = nullptr;
+        context.on_window = false;
+        context.mouse_down = input::mouseButtonDown(0);
+        context.mouse_x = pos.first;
+        context.mouse_y = pos.second;
+        context.active = 0;
+        context.hot = 0;
     }
 
     /////////////
     // widgets //
     /////////////
 
-    bool Begin(Window const *win, std::string_view name, int x_, int y_, WindowFlags flags) noexcept
+    bool Begin(Window const &win, std::string_view name, int x_, int y_, WindowFlags flags) noexcept
     {
         window_data *tmp{get_window(name.data())};
 
-        if (context->windows.find(name.data()) == context->windows.end())
+        if (context.windows.find(name.data()) == context.windows.cend())
         {
-            if (context->last_window == name.data())
+            if (context.last_window == name.data())
             {
                 tnt::logger::debug("Calling Begin() twice for the same window title!!");
                 return false;
@@ -345,13 +339,14 @@ namespace tnt::ImGui
             tmp->win_flags = flags;
             tmp->title = name.data();
 
-            context->windows[name.data()] = tmp;
+            context.windows[name.data()] = tmp;
         }
 
-        context->on_window = true;
-        context->last_window = name;
+        context.on_window = true;
+        context.last_window = name;
 
-        context->hot = 0;
+        context.hot = 0;
+
         tmp->list_indent_level = 0;
         tmp->list_index = 0;
         tmp->next_x = 10 + tmp->x;
@@ -365,7 +360,7 @@ namespace tnt::ImGui
 
             check_button(collapse_id, tmp->x + 5, tmp->y + 3, 10, 10);
 
-            if (context->active == collapse_id)
+            if (context.active == collapse_id)
                 tmp->collapsed = !tmp->collapsed;
         }
 
@@ -374,10 +369,10 @@ namespace tnt::ImGui
         {
             check_button(id, tmp->x, tmp->y, tmp->w, 20);
 
-            if (context->active == id)
+            if (context.active == id)
             {
-                tmp->x = tmp->x + pos.first - context->mouse_x;
-                tmp->y = tmp->y + pos.second - context->mouse_y;
+                tmp->x += pos.first - context.mouse_x;
+                tmp->y += pos.second - context.mouse_y;
             }
         }
 
@@ -402,25 +397,25 @@ namespace tnt::ImGui
                 check_button(resize_right_down_id, tmp->x + tmp->w - 10,
                              tmp->y + tmp->h - 10, 10, 10);
 
-                if (context->active == resize_right_down_id)
+                if (context.active == resize_right_down_id)
                 {
-                    if (int dx{pos.first - context->mouse_x}; tmp->w >= minW || dx >= 0)
+                    if (int const dx{pos.first - context.mouse_x}; tmp->w >= minW || dx >= 0)
                         tmp->w = tmp->w + dx;
-                    if (int dy{pos.second - context->mouse_y}; tmp->h >= 40 || dy >= 0)
+                    if (int const dy{pos.second - context.mouse_y}; tmp->h >= 40 || dy >= 0)
                         tmp->h = tmp->h + dy;
                 }
 
-                if (context->active == resize_right_id)
-                    if (int dx{pos.first - context->mouse_x}; tmp->w >= minW || dx >= 0) // bigger than double of the height of the title bar
+                if (context.active == resize_right_id)
+                    if (int const dx{pos.first - context.mouse_x}; tmp->w >= minW || dx >= 0) // bigger than double of the height of the title bar
                         tmp->w = tmp->w + dx;
 
-                if (context->active == resize_down_id)
-                    if (int dy{pos.second - context->mouse_y}; tmp->h >= 40 || dy >= 0)
+                if (context.active == resize_down_id)
+                    if (int const dy{pos.second - context.mouse_y}; tmp->h >= 40 || dy >= 0)
                         tmp->h = tmp->h + dy;
             }
 
-        context->mouse_x = pos.first;
-        context->mouse_y = pos.second;
+        context.mouse_x = pos.first;
+        context.mouse_y = pos.second;
 
         tmp->next_y = tmp->y + 25;
 
@@ -430,7 +425,7 @@ namespace tnt::ImGui
             if (!tmp->collapsed)
                 draw_rect(win, {tmp->x, tmp->y, tmp->w, tmp->h}, {50, 50, 50, 255}); // body
             if (has_flag(tmp->win_flags, WindowFlags::WithTitleBar))
-                draw_rect(win, {tmp->x, tmp->y, tmp->w, 20}, theme->idle_color); // title bar
+                draw_rect(win, {tmp->x, tmp->y, tmp->w, 20}, theme.idle_color); // title bar
         }
 
         if (has_flag(tmp->win_flags, WindowFlags::Collapsible))
@@ -449,49 +444,55 @@ namespace tnt::ImGui
 
     void End() noexcept
     {
-        if (!context->on_window)
+        if (!context.on_window)
         {
             tnt::logger::debug("Calling tnt::ImGui::End() without "
                                "calling tnt::ImGui::Begin() before!!");
             return;
         }
 
-        context->on_window = false;
-        window_data *last{get_last_win()};
-        last->next_y = 0;
-        last->menu_called = false;
+        context.on_window = false;
 
-        if (!context->mouse_down)
-            context->active = 0;
+        {
+            window_data *last{get_last_win()};
+            last->next_y = 0;
+            last->menu_called = false;
+        }
+
+        if (!context.mouse_down)
+            context.active = 0;
         else
         {
-            if (context->active == 0)
-                context->active = -1;
+            if (context.active == 0)
+                context.active = -1;
         }
+
+        SDL_PumpEvents();
+        update_context();
     }
 
-    bool BeginSection(Window const *win, std::string_view text) noexcept
+    bool BeginSection(Window const &win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
-        const int w{tmp->w - static_cast<int>(10)}; // 10 padding to left, 10 to right
+        const int w{tmp->w - 10}; // 10 padding to left, 10 to right
 
         // 40 = 5 + 5 left/right padding for +/-, 10 right padding for text, 10 +/- size.
-        if (tmp->collapsed || tmp->next_y + theme->section_h > tmp->y + tmp->h ||
+        if (tmp->collapsed || tmp->next_y + theme.section_h > tmp->y + tmp->h ||
             tmp->w < static_cast<int>(text.size() * 7 + 40))
             return false;
 
         const std::size_t id{im_hash(tmp->title + text.data())};
-        context->last_section = id;
+        context.last_section = id;
 
         check_button(id, tmp->next_x + 5, tmp->next_y + 5, 10, 10);
 
-        if (context->active == id)
-            context->sections[id] = !context->sections[id];
+        if (context.active == id)
+            context.sections[id] = !context.sections[id];
 
-        draw_rect(win, {tmp->next_x - 5, tmp->next_y, w, theme->section_h}, theme->idle_color);
+        draw_rect(win, {tmp->next_x - 5, tmp->next_y, w, theme.section_h}, theme.idle_color);
         draw_rect(win, {tmp->next_x + 5, tmp->next_y + 8, 10, 4}, {255, 255, 255});
 
-        if (!context->sections[id])
+        if (!context.sections[id])
             draw_rect(win, {tmp->next_x + 8, tmp->next_y + 5, 4, 10}, {255, 255, 255});
         else
             tmp->next_x = tmp->next_x + 10;
@@ -499,14 +500,14 @@ namespace tnt::ImGui
         draw_text(win, text.data(), tmp->next_x + 20, tmp->next_y + 1);
         tmp->next_y = tmp->next_y + 30;
 
-        return context->sections[id];
+        return context.sections[id];
     }
 
     void EndSection() noexcept
     {
         window_data *tmp{get_last_win()};
 
-        if (context->sections[context->last_section] && !tmp->collapsed)
+        if (context.sections[context.last_section] && !tmp->collapsed)
             tmp->next_x = tmp->next_x - 10;
     }
 
@@ -542,135 +543,135 @@ namespace tnt::ImGui
         if (window_data * tmp{get_last_win()}; tmp->collapsed)
         {
             tmp->menu_called = true;
-            tmp->next_y = tmp->next_y + theme->font_size + 10;
+            tmp->next_y = tmp->next_y + theme.font_size + 10;
         }
     }
 
-    bool button(Window const *win, std::string_view text) noexcept
+    bool button(Window const &win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->collapsed || tmp->next_y + theme->button_h > tmp->y + tmp->h ||
-            tmp->w < theme->button_w + 10)
+        if (tmp->collapsed || tmp->next_y + theme.button_h > tmp->y + tmp->h ||
+            tmp->w < theme.button_w + 10)
             return false;
 
-        std::string key{tmp->title};
-        key.append(text);
-        const std::size_t id{im_hash(key)};
+        const std::size_t id{im_hash(tmp->title + text.data())};
 
-        theme->button_w = static_cast<int>(text.size()) * 7 + 10;
-        theme->button_h = 10 + theme->font_size;
+        theme.button_w = static_cast<int>(text.size()) * 7 + 10;
+        theme.button_h = 10 + theme.font_size;
 
-        check_button(id, tmp->next_x, tmp->next_y, theme->button_w, theme->button_h);
+        check_button(id, tmp->next_x, tmp->next_y, theme.button_w, theme.button_h);
 
-        const SDL_Rect dst{tmp->next_x, tmp->next_y, theme->button_w, theme->button_h};
-        SDL_Color widgetColor;
+        {
+            const SDL_Rect dst{tmp->next_x, tmp->next_y, theme.button_w, theme.button_h};
+            SDL_Color widgetColor;
 
-        if (context->hot == id && context->active == id)
-            widgetColor = theme->active_color;
-        else
-            widgetColor = theme->idle_color;
+            if (context.hot == id && context.active == id)
+                widgetColor = theme.active_color;
+            else
+                widgetColor = theme.idle_color;
 
-        draw_rect(win, dst, widgetColor);
-        draw_text(win, text.data(), tmp->next_x + 5, tmp->next_y + 5, theme->text_color, theme->font_size);
+            draw_rect(win, dst, widgetColor);
+        }
+        draw_text(win, text.data(), tmp->next_x + 5, tmp->next_y + 5, theme.text_color, theme.font_size);
 
         tmp->next_y = tmp->next_y + 30;
 
-        if (context->hot == id && context->active == id)
+        if (context.hot == id && context.active == id)
             return true;
         return false;
     }
 
-    bool slider_int(Window const *win, int min_, int max_,
+    bool slider_int(Window const &win, int min_, int max_,
                     int *value) noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->collapsed || tmp->next_y + theme->slider_h > tmp->y + tmp->h ||
-            tmp->w < theme->slider_w)
+        if (tmp->collapsed || tmp->next_y + theme.slider_h > tmp->y + tmp->h ||
+            tmp->w < theme.slider_w)
             return false;
 
         const std::size_t id{im_hash(tmp->title + std::to_string(*value))};
 
-        const int ypos{((theme->slider_h - theme->slider_thumb_size) * (*value - min_)) / (max_ - min_)};
-        const int offset{theme->slider_w - theme->slider_thumb_size};
+        const int ypos{((theme.slider_h - theme.slider_thumb_size) * (*value - min_)) / (max_ - min_)};
+        const int offset{theme.slider_w - theme.slider_thumb_size};
 
-        const SDL_Rect thumb{tmp->next_x + (offset / 2), tmp->next_y + (offset / 2) + ypos, theme->slider_thumb_size,
-                             theme->slider_thumb_size};
+        const SDL_Rect thumb{tmp->next_x + (offset / 2), tmp->next_y + (offset / 2) + ypos, theme.slider_thumb_size,
+                             theme.slider_thumb_size};
 
-        check_button(id, tmp->next_x, tmp->next_y, theme->slider_w, theme->slider_h);
+        check_button(id, tmp->next_x, tmp->next_y, theme.slider_w, theme.slider_h);
 
-        draw_rect(win, {tmp->next_x, tmp->next_y, theme->slider_w, theme->slider_h + offset}, theme->static_color);
-        draw_rect(win, thumb, theme->idle_color);
+        draw_rect(win, {tmp->next_x, tmp->next_y, theme.slider_w, theme.slider_h + offset}, theme.static_color);
+        draw_rect(win, thumb, theme.idle_color);
 
         bool ret{false};
 
-        if (context->active == id)
+        if (context.active == id)
         {
-            int mousePos{context->mouse_y - (tmp->next_y + (offset / 2))};
+            int mousePos{context.mouse_y - (tmp->next_y + (offset / 2))};
             if (mousePos < 0)
                 mousePos = 0;
-            if (mousePos > (theme->slider_h - 1))
-                mousePos = (theme->slider_h - 1);
-            if (int v{min_ + (mousePos * (max_ - min_)) / (theme->slider_h - 1)}; v != *value)
+            if (mousePos > (theme.slider_h - 1))
+                mousePos = (theme.slider_h - 1);
+            if (int v{min_ + (mousePos * (max_ - min_)) / (theme.slider_h - 1)}; v != *value)
             {
                 *value = v;
                 ret = true;
             }
         }
 
-        tmp->next_y = tmp->next_y + theme->slider_h + 5;
+        tmp->next_y = tmp->next_y + theme.slider_h + 5;
 
         return ret;
     }
 
-    bool slider_float(Window const *win, float min_, float max_,
+    bool slider_float(Window const &win, float min_, float max_,
                       float *value) noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->collapsed || tmp->next_y + theme->slider_h > tmp->y + tmp->h ||
-            tmp->w < theme->slider_w)
+        if (tmp->collapsed || tmp->next_y + theme.slider_h > tmp->y + tmp->h ||
+            tmp->w < theme.slider_w)
             return false;
 
         const std::size_t id{im_hash(tmp->title + std::to_string(*value))};
-        const int ypos{static_cast<int>(((theme->slider_h - theme->slider_thumb_size) * (*value - min_)) /
+        const int ypos{static_cast<int>(((theme.slider_h - theme.slider_thumb_size) * (*value - min_)) /
                                         (max_ - min_))};
-        const int offset{theme->slider_w - theme->slider_thumb_size};
+        const int offset{theme.slider_w - theme.slider_thumb_size};
 
-        if (on_rect(tmp->next_x, tmp->next_y, theme->slider_w, theme->slider_h))
+        if (on_rect(tmp->next_x, tmp->next_y, theme.slider_w, theme.slider_h))
         {
-            context->hot = id;
-            if (context->active == 0 && context->mouse_down)
-                context->active = id;
+            context.hot = id;
+            if (context.active == 0 && context.mouse_down)
+                context.active = id;
         }
 
-        draw_rect(win, {tmp->next_x, tmp->next_y, theme->slider_w, theme->slider_h + offset}, theme->static_color);
+        draw_rect(win, {tmp->next_x, tmp->next_y, theme.slider_w, theme.slider_h + offset}, theme.static_color);
 
-        const SDL_Rect thumb{tmp->next_x + (offset / 2), tmp->next_y + (offset / 2) + ypos, theme->slider_thumb_size,
-                             theme->slider_thumb_size};
+        const SDL_Rect thumb{tmp->next_x + (offset / 2), tmp->next_y + (offset / 2) + ypos, theme.slider_thumb_size,
+                             theme.slider_thumb_size};
 
-        draw_rect(win, thumb, theme->idle_color);
+        draw_rect(win, thumb, theme.idle_color);
 
         bool ret{false};
 
-        if (context->active == id)
+        if (context.active == id)
         {
-            int mousePos{context->mouse_y - (tmp->next_y + (offset / 2))};
+            int mousePos{context.mouse_y - (tmp->next_y + (offset / 2))};
             if (mousePos < 0)
                 mousePos = 0;
-            if (mousePos > (theme->slider_h - 1))
-                mousePos = (theme->slider_h - 1);
-            if (float v{static_cast<float>(min_ + (mousePos * (max_ - min_)) / (theme->slider_h - 1))}; v != *value)
+            if (mousePos > (theme.slider_h - 1))
+                mousePos = (theme.slider_h - 1);
+            if (float v{static_cast<float>(min_ + (mousePos * (max_ - min_)) / (theme.slider_h - 1))}; v != *value)
             {
                 *value = v;
                 ret = true;
             }
         }
 
-        tmp->next_y = tmp->next_y + theme->slider_h + 5;
+        tmp->next_y = tmp->next_y + theme.slider_h + 5;
 
         return ret;
     }
 
-    bool hslider_int(Window const *win, std::string_view text, int min_, int max_,
+    bool hslider_int(Window const &win, std::string_view text, int min_, int max_,
                      int *value) noexcept
     {
         window_data *tmp{get_last_win()};
@@ -679,7 +680,7 @@ namespace tnt::ImGui
         const int w{tmp->w - static_cast<int>(7 * text.size() + 40)};
 
         // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
-        if (tmp->collapsed || tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
+        if (tmp->collapsed || tmp->next_y + theme.hslider_h > tmp->y + tmp->h ||
             tmp->w < static_cast<int>(80 + 7 * text.size()))
             return false;
 
@@ -688,12 +689,12 @@ namespace tnt::ImGui
 
         draw_text(win, text.data(), tmp->next_x + w + 20, tmp->next_y);
 
-        tmp->next_y = tmp->next_y + theme->hslider_h + 5;
+        tmp->next_y = tmp->next_y + theme.hslider_h + 5;
 
         return ret;
     } // namespace tnt::ImGui
 
-    bool hslider_float(Window const *win, std::string_view text, float min_, float max_,
+    bool hslider_float(Window const &win, std::string_view text, float min_, float max_,
                        float *value) noexcept
     {
         window_data *tmp{get_last_win()};
@@ -702,7 +703,7 @@ namespace tnt::ImGui
         const int w{tmp->w - static_cast<int>(7 * text.size() + 40)};
 
         // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
-        if (tmp->collapsed || tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
+        if (tmp->collapsed || tmp->next_y + theme.hslider_h > tmp->y + tmp->h ||
             tmp->w < static_cast<int>(80 + 7 * text.size()))
             return false;
 
@@ -711,12 +712,12 @@ namespace tnt::ImGui
 
         draw_text(win, text.data(), tmp->next_x + w + 20, tmp->next_y);
 
-        tmp->next_y = tmp->next_y + theme->hslider_h + 5;
+        tmp->next_y = tmp->next_y + theme.hslider_h + 5;
 
         return ret;
     }
 
-    bool hslider_int2(Window const *win, std::string_view text,
+    bool hslider_int2(Window const &win, std::string_view text,
                       int min_, int max_, int *value1, int *value2) noexcept
     {
         window_data *tmp{get_last_win()};
@@ -726,7 +727,7 @@ namespace tnt::ImGui
         const int w{(tmp->w - static_cast<int>(7 * text.size())) / 2 - 25};
 
         // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
-        if (tmp->collapsed || tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
+        if (tmp->collapsed || tmp->next_y + theme.hslider_h > tmp->y + tmp->h ||
             tmp->w < static_cast<int>(80 + 7 * text.size()))
             return false;
 
@@ -738,12 +739,12 @@ namespace tnt::ImGui
 
         draw_text(win, text.data(), tmp->next_x + 2 * w + 0, tmp->next_y);
 
-        tmp->next_y = tmp->next_y + theme->hslider_h + 5;
+        tmp->next_y = tmp->next_y + theme.hslider_h + 5;
 
         return (ret1 || ret2);
     }
 
-    bool hslider_float2(Window const *win, std::string_view text,
+    bool hslider_float2(Window const &win, std::string_view text,
                         float min_, float max_, float *value1, float *value2) noexcept
     {
         window_data *tmp{get_last_win()};
@@ -753,7 +754,7 @@ namespace tnt::ImGui
         const int w{(tmp->w - static_cast<int>(7 * text.size())) / 2 - 25};
 
         // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
-        if (tmp->collapsed || tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
+        if (tmp->collapsed || tmp->next_y + theme.hslider_h > tmp->y + tmp->h ||
             tmp->w < static_cast<int>(80 + 7 * text.size()))
             return false;
 
@@ -765,12 +766,12 @@ namespace tnt::ImGui
 
         draw_text(win, text.data(), tmp->next_x + 2 * w + 20, tmp->next_y);
 
-        tmp->next_y = tmp->next_y + theme->hslider_h + 5;
+        tmp->next_y = tmp->next_y + theme.hslider_h + 5;
 
         return (ret1 || ret2);
     }
 
-    bool hslider_vec(Window const *win, std::string_view text,
+    bool hslider_vec(Window const &win, std::string_view text,
                      float min1, float max1, float min2, float max2,
                      tnt::Vector *value) noexcept
     {
@@ -781,7 +782,7 @@ namespace tnt::ImGui
         const int w{(tmp->w - static_cast<int>(7 * text.size())) / 2 - 25};
 
         // 50 + 10 + 20, 50 -> slider minimal width, 10 -> padding from the left of the window, 20 -> distance between the slider and it's text
-        if (tmp->collapsed || tmp->next_y + theme->hslider_h > tmp->y + tmp->h ||
+        if (tmp->collapsed || tmp->next_y + theme.hslider_h > tmp->y + tmp->h ||
             tmp->w < static_cast<int>(80 + 7 * text.size()))
             return false;
 
@@ -800,16 +801,16 @@ namespace tnt::ImGui
 
         draw_text(win, text.data(), tmp->next_x + 2 * w + 20, tmp->next_y);
 
-        tmp->next_y = tmp->next_y + theme->hslider_h + 5;
+        tmp->next_y = tmp->next_y + theme.hslider_h + 5;
 
         return (ret1 || ret2);
     }
 
-    bool menu_button(Window const *win, std::string_view text) noexcept
+    bool menu_button(Window const &win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
 
-        const int x{tmp->x + tmp->menu_index * theme->menu_spacing + 7 * tmp->menu_txt_size};
+        const int x{tmp->x + tmp->menu_index * theme.menu_spacing + 7 * tmp->menu_txt_size};
 
         if (tmp->collapsed || x + static_cast<int>(text.size() + 1) * 7 > tmp->x + tmp->w)
             return false;
@@ -818,23 +819,23 @@ namespace tnt::ImGui
 
         check_button(
             id, x, tmp->y + 20,
-            static_cast<int>(text.size()) * 7, theme->font_size + 6);
+            static_cast<int>(text.size()) * 7, theme.font_size + 6);
         draw_text(win, text.data(), x + 10, tmp->y + 20);
 
         tmp->menu_index = tmp->menu_index + 1;
         tmp->last_menu_txt_size = tmp->menu_txt_size;
         tmp->menu_txt_size = tmp->menu_txt_size + static_cast<int>(text.size());
 
-        if (context->hot == id && context->active == id)
+        if (context.hot == id && context.active == id)
             return true;
         return false;
     }
 
-    bool menu_item(Window const *win, std::string_view text) noexcept
+    bool menu_item(Window const &win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
 
-        const int x{tmp->x + (tmp->menu_index - 1) * theme->menu_spacing + 7 * tmp->last_menu_txt_size};
+        const int x{tmp->x + (tmp->menu_index - 1) * theme.menu_spacing + 7 * tmp->last_menu_txt_size};
 
         // 100 = 30 -> padding from left and right + 70 -> size of 10 letters (with the current font)
         if (tmp->collapsed || x + 100 > tmp->x + tmp->w)
@@ -842,108 +843,108 @@ namespace tnt::ImGui
 
         const std::size_t id{im_hash(tmp->title + text.data())};
 
-        check_button(id, x, tmp->next_y, 100, theme->font_size + 10);
+        check_button(id, x, tmp->next_y, 100, theme.font_size + 10);
 
         SDL_Color color{0, 0, 0, 200};
 
-        if (context->hot == id && context->active == id)
+        if (context.hot == id && context.active == id)
             color = SDL_Color{50, 50, 50, 200};
 
-        draw_rect(win, {x, tmp->next_y + theme->font_size, 100, theme->font_size + 10}, color);
-        draw_text(win, text.data(), x + 15, tmp->next_y + 5 + theme->font_size);
+        draw_rect(win, {x, tmp->next_y + theme.font_size, 100, theme.font_size + 10}, color);
+        draw_text(win, text.data(), x + 15, tmp->next_y + 5 + theme.font_size);
 
         tmp->context_menu_index = tmp->context_menu_index + 1;
 
         return false;
     }
 
-    bool checkbox(Window const *win, std::string_view text, bool *value) noexcept
+    bool checkbox(Window const &win, std::string_view text, bool *value) noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->collapsed || tmp->next_y + theme->checkbox_size + 10 > tmp->y + tmp->h)
+        if (tmp->collapsed || tmp->next_y + theme.checkbox_size + 10 > tmp->y + tmp->h)
             return false;
 
         const std::size_t id{im_hash(tmp->title + text.data())};
 
-        check_button(id, tmp->next_x, tmp->next_y, theme->checkbox_size, theme->checkbox_size);
+        check_button(id, tmp->next_x, tmp->next_y, theme.checkbox_size, theme.checkbox_size);
 
-        draw_rect(win, {tmp->next_x, tmp->next_y, theme->checkbox_size, theme->checkbox_size},
+        draw_rect(win, {tmp->next_x, tmp->next_y, theme.checkbox_size, theme.checkbox_size},
                   {130, 130, 130, 255});
-        draw_text(win, text.data(), tmp->next_x + theme->checkbox_size + 10, tmp->next_y);
-        tmp->next_y = tmp->next_y + theme->checkbox_size + 10;
+        draw_text(win, text.data(), tmp->next_x + theme.checkbox_size + 10, tmp->next_y);
+        tmp->next_y = tmp->next_y + theme.checkbox_size + 10;
 
-        if (context->hot == id && context->active == id)
+        if (context.hot == id && context.active == id)
             *value = !(*value);
 
         if (*value)
         {
-            const SDL_Rect box{tmp->next_x, tmp->next_y, theme->checkbox_size, theme->checkbox_size};
-            SDL_RenderCopy(win->getRenderer(), theme->checkbox_tick, nullptr, &box);
+            const SDL_Rect box{tmp->next_x, tmp->next_y, theme.checkbox_size, theme.checkbox_size};
+            SDL_RenderCopy(win.getRenderer(), theme.checkbox_tick, nullptr, &box);
             return true;
         }
 
         return false;
     }
 
-    void progress_bar(Window const *win, std::string_view text, int min_, int max_,
+    void progress_bar(Window const &win, std::string_view text, int min_, int max_,
                       int *value) noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->collapsed || tmp->w < theme->pbar_w ||
-            tmp->next_y + theme->pbar_h > tmp->y + tmp->h)
+        if (tmp->collapsed || tmp->w < theme.pbar_w ||
+            tmp->next_y + theme.pbar_h > tmp->y + tmp->h)
             return;
-        const int xpos{theme->pbar_w * (*value - min_) / (max_ - min_)};
+        const int xpos{theme.pbar_w * (*value - min_) / (max_ - min_)};
 
-        draw_rect(win, {tmp->x + 10, tmp->next_y, theme->pbar_w, theme->pbar_h},
-                  theme->idle_color);
-        draw_text(win, text.data(), tmp->x + theme->pbar_w + 20, tmp->next_y);
-        draw_rect(win, {tmp->x + 12, tmp->next_y + 2, xpos, theme->pbar_h - 4}, theme->active_color);
+        draw_rect(win, {tmp->x + 10, tmp->next_y, theme.pbar_w, theme.pbar_h},
+                  theme.idle_color);
+        draw_text(win, text.data(), tmp->x + theme.pbar_w + 20, tmp->next_y);
+        draw_rect(win, {tmp->x + 12, tmp->next_y + 2, xpos, theme.pbar_h - 4}, theme.active_color);
 
-        tmp->next_y = tmp->next_y + theme->pbar_h + 10;
+        tmp->next_y = tmp->next_y + theme.pbar_h + 10;
     }
 
     void newline() noexcept
     {
         window_data *tmp{get_last_win()};
-        if (tmp->collapsed || tmp->next_y + theme->font_size > tmp->y + tmp->h)
+        if (tmp->collapsed || tmp->next_y + theme.font_size > tmp->y + tmp->h)
             return;
-        tmp->next_y = tmp->next_y + theme->font_size;
+        tmp->next_y = tmp->next_y + theme.font_size;
     }
 
-    void text(Window const *win, std::string_view text) noexcept
+    void text(Window const &win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
         if (tmp->collapsed || tmp->w < 10 + 7 * text.size() ||
-            tmp->next_y + theme->font_size + 5 > tmp->y + tmp->h)
+            tmp->next_y + theme.font_size + 5 > tmp->y + tmp->h)
             return;
         draw_text(win, text.data(), tmp->next_x, tmp->next_y);
-        tmp->next_y = tmp->next_y + theme->font_size + 5;
+        tmp->next_y = tmp->next_y + theme.font_size + 5;
     }
 
-    void colored_text(Window const *win, std::string_view text,
+    void colored_text(Window const &win, std::string_view text,
                       unsigned char r, unsigned char g,
                       unsigned char b, unsigned char a) noexcept
     {
         window_data *tmp{get_last_win()};
         if (tmp->collapsed || tmp->w < 10 + 7 * text.size() ||
-            tmp->next_y + theme->font_size + 5 > tmp->y + tmp->h)
+            tmp->next_y + theme.font_size + 5 > tmp->y + tmp->h)
             return;
         draw_text(win, text.data(), tmp->next_x, tmp->next_y, {r, g, b, a});
-        tmp->next_y = tmp->next_y + theme->font_size + 5;
+        tmp->next_y = tmp->next_y + theme.font_size + 5;
     }
 
-    void list_item(Window const *win, std::string_view text) noexcept
+    void list_item(Window const &win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
         if (tmp->collapsed ||
-            tmp->list_indent_level * 10 + text.size() * theme->font_size < tmp->w ||
-            tmp->next_y + theme->font_size > tmp->y + tmp->h)
+            tmp->list_indent_level * 10 + text.size() * theme.font_size < tmp->w ||
+            tmp->next_y + theme.font_size > tmp->y + tmp->h)
             return;
         const int xpos{tmp->x + tmp->list_indent_level * 10};
-        if (context->lists_text.find(text.data()) != context->lists_text.cend())
-            context->lists_text[text.data()] = load_text(win, text.data());
+        if (context.lists_text.find(text.data()) != context.lists_text.cend())
+            context.lists_text[text.data()] = load_text(win, text.data());
         draw_text(win, text.data(), xpos, tmp->next_y);
-        tmp->next_y = tmp->next_y + theme->font_size;
+        tmp->next_y = tmp->next_y + theme.font_size;
     }
 } // namespace tnt::ImGui
 
@@ -951,37 +952,29 @@ namespace tnt::ImGui
 // tnt_imgui_* //
 /////////////////
 
-void tnt_imgui_init(tnt::Window const *win) noexcept
+void tnt_imgui_init(tnt::Window const &win) noexcept
 {
-    int w{0}, h{0};
-    SDL_GetWindowSize((SDL_Window *)win, &w, &h);
-    if (tnt::ImGui::theme->w == 0)
-        tnt::ImGui::theme->w = w;
-    if (tnt::ImGui::theme->h == 0)
-        tnt::ImGui::theme->h = h;
+    // TODO: move w and h to context
+    tnt::ImGui::theme.w = win.getWidth();
+    tnt::ImGui::theme.h = win.getHeight();
 
-    tnt::ImGui::theme->font_data = TTF_OpenFont(tnt::ImGui::theme->default_font.data(),
-                                                tnt::ImGui::theme->font_size);
-    tnt::ImGui::theme->bg = win->getClearColor();
+    tnt::ImGui::theme.font_data = TTF_OpenFont(tnt::ImGui::theme.default_font.data(),
+                                               tnt::ImGui::theme.font_size);
+    tnt::ImGui::theme.bg = win.getClearColor();
 
-    tnt::ImGui::theme->checkbox_tick = tnt::ImGui::load_image(win, "assets/tick.png");
+    tnt::ImGui::theme.checkbox_tick = tnt::ImGui::load_image(win, "assets/tick.png");
 
     tnt::ImGui::make_context();
 }
 
 void tnt_imgui_close() noexcept
 {
-    SDL_DestroyTexture(tnt::ImGui::theme->button_text);
-    tnt::ImGui::theme->button_text = nullptr;
+    SDL_DestroyTexture(tnt::ImGui::theme.button_text);
+    tnt::ImGui::theme.button_text = nullptr;
 
-    SDL_DestroyTexture(tnt::ImGui::theme->checkbox_tick);
-    tnt::ImGui::theme->checkbox_tick = nullptr;
+    SDL_DestroyTexture(tnt::ImGui::theme.checkbox_tick);
+    tnt::ImGui::theme.checkbox_tick = nullptr;
 
-    TTF_CloseFont(tnt::ImGui::theme->font_data);
-    tnt::ImGui::theme->font_data = nullptr;
-
-    delete tnt::ImGui::theme;
-    tnt::ImGui::theme = nullptr;
-
-    tnt::ImGui::destroy_context();
+    TTF_CloseFont(tnt::ImGui::theme.font_data);
+    tnt::ImGui::theme.font_data = nullptr;
 }

@@ -3,6 +3,28 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a3]
+### Added
+- `tnt::input::Update`, which calls `tnt::input::updatePrevious` and `tnt::input::updateCurrent`.
+- `tnt::render_lock`, a RAII class which clears the given window on its ctor, and calls `Render` on its destructor.
+- `constexpr` on some members of `tnt::Vector`, `tnt::Rectangle`, and some other math functions.
+
+### Changed
+- Implementation of easings to use lambdas and `constexpr`.
+- All `tnt::default_*_cache` (except of `tnt::default_texture_cache`) now return a `small_cache` (initial size of 10) instead of a `medium_cache` (initial size of 50).
+- Made some performance improvements for `tnt::AudioPlayer`.
+- Rewrote a part of ImGui's backend to reduce dynamic memory allocations.
+- Implementation of `tnt::ensure`, `tnt::safe_ensure` and `tnt::check`. No behaviour change involved.
+
+### Removed
+- `json/JsonDooObject.hpp`.
+- `tnt::run_after` on `utils/TypeUtils.hpp`.
+- `tnt::ImGui::destroy_context`. Context resources are now freed automatically.
+- `tnt::ImGui::update_context` because `tnt::ImGui::End` now calls it for the user.
+- `tnt::doo::objects_sys::Update` and `tnt::doo::objects_sys::Draw`. Use `tnt::doo::physics_sys::Update` and `tnt::doo::sprites_sys::Draw` instead.
+- `concept tnt::doo::system`.
+
+
 ## [0.1.0a2]
 ### Added
 - Missing documentation over some places.

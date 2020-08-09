@@ -18,39 +18,38 @@ tnt::AssetManager::~AssetManager() noexcept
 {
     if (!images.empty())
         for (auto const &it : images)
-            if (it.second != nullptr)
+            if (it.second)
                 SDL_DestroyTexture(it.second);
     images.clear();
 
     // if (!text.empty())
     //     for (auto const &it : text)
-    //         if (it.second != nullptr)
+    //         if (it.second)
     //             SDL_DestroyTexture(it.second);
     // text.clear();
 
     if (!fonts.empty())
         for (auto const &it : fonts)
-            if (it.second != nullptr)
+            if (it.second)
                 TTF_CloseFont(it.second);
     fonts.clear();
 
     if (!music.empty())
         for (auto const &it : music)
-            if (it.second != nullptr)
+            if (it.second)
                 Mix_FreeMusic(it.second);
     music.clear();
 
     if (!sfx.empty())
         for (auto const &it : sfx)
-            if (it.second != nullptr)
+            if (it.second)
                 Mix_FreeChunk(it.second);
     sfx.clear();
 
     // for (auto const&it : maps)
-    //     if (it.second != nullptr)
+    //     if (it.second)
     //         maps.erase(it);
     // maps.clear();
-    // std::map<std::string, tmx::TileMap *>{}.swap(maps);
 }
 
 tnt::AssetManager &tnt::AssetManager::This()
@@ -86,12 +85,13 @@ auto absolute = [](std::string_view path_) -> std::string {
 };
 
 template <typename T>
-using assets_it = typename std::map<std::string, T>::const_iterator;
+using assets_it = typename std::map<std::string, T, std::less<>>::const_iterator;
 
 void tnt::AssetManager::AddImage(Window const *win, std::string_view image)
 {
     std::string image_{absolute(image)};
-    if (assets_it<SDL_Texture *> it{images.find(image_)}; it != images.cend() && it->second != nullptr)
+    if (assets_it<SDL_Texture *> it{images.find(image_)};
+        it != images.cend() && it->second)
         return;
     images[image_] = IMG_LoadTexture(win->getRenderer(), image_.c_str());
 }

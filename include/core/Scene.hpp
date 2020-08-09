@@ -40,7 +40,7 @@ namespace tnt
     private:
         SDL_Texture *bg;
         Camera camera_; // TODO: replace this with a concept if possible
-        std::map<std::string, Space *> spaces;
+        std::map<std::string, Space *, std::less<>> spaces;
     };
 } // namespace tnt
 

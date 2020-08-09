@@ -167,7 +167,7 @@ namespace tnt::mirror
     // used for registering members of a type. NOTE: not finished yet
     struct mirror_t final
     {
-        explicit constexpr mirror_t() noexcept = default;
+        explicit inline constexpr mirror_t() noexcept = default;
 
         template <detail::class_t T>
         inline auto reflect(char const *Name, auto &&Arg)

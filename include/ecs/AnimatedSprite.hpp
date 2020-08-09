@@ -55,7 +55,7 @@ namespace tnt
 
     private:
         std::string current;
-        std::map<std::string, detail::animation_data *> animations;
+        std::map<std::string, detail::animation_data *, std::less<>> animations;
     };
 
     namespace detail

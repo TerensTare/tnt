@@ -158,6 +158,26 @@ namespace tnt
         SDL_Renderer *renderer;
         SDL_Window *window;
     };
+
+    /// @brief A RAII class which clears the given window on its ctor, and calls Render on its destructor.
+    class render_lock final
+    {
+    public:
+        render_lock() noexcept = delete;
+        render_lock(render_lock const &) noexcept = delete;
+        render_lock &operator=(render_lock const &) noexcept = delete;
+        render_lock(render_lock &&) noexcept = delete;
+        render_lock &operator=(render_lock &&) noexcept = delete;
+
+        /// @brief Create a new render_lock.
+        /// @param win The window to clear/render.
+        explicit render_lock(Window const &win) noexcept;
+
+        ~render_lock() noexcept;
+
+    private:
+        SDL_Renderer *ren;
+    };
 } // namespace tnt
 
 #endif //! TNT_WINDOW_HPP

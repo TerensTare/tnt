@@ -44,13 +44,13 @@ export namespace tnt
             template <typename T, typename U>
             struct is_same
             {
-                inline static constexpr bool value = false;
+                inline static inline constexpr bool value = false;
             };
 
             template <typename T>
             struct is_same<T, T>
             {
-                inline static constexpr bool value = true;
+                inline static inline constexpr bool value = true;
             };
 
             template <bool, typename T = void>
@@ -68,13 +68,13 @@ export namespace tnt
                       typename = enable_if_t<is_same<T, U>::value>>
             struct is_less
             {
-                inline static constexpr bool value = (T < U);
+                inline static inline constexpr bool value = (T < U);
             };
 
             template <typename T, T a, T b>
             struct is_positive
             {
-                inline static constexpr bool value = ((a - b) > 0);
+                inline static inline constexpr bool value = ((a - b) > 0);
             };
 
             template <typename T, typename U>

@@ -6,40 +6,11 @@
 // TODO: check this
 // https://www.youtube.com/watch?v=Zcqwb3CWqs4&pbjreload=10
 
-#include <exception>
-#include <memory>
+#include <stdexcept>
 #include <thread>
-#include <system_error>
 
 namespace tnt
 {
-    // based on
-    // https://stackoverflow.com/questions/14650885/how-to-create-timer-events-using-c-11
-    class run_after
-    {
-    public:
-        template <class Callable, class... Args>
-        run_after(int after, bool is_async, Callable &&f, Args &&... args)
-        {
-            std::function<typename std::result_of<Callable(Args...)>::type()>
-                task(std::bind(std::forward<Callable>(f),
-                               std::forward<Args>(args)...));
-            if (is_async)
-            {
-                std::thread([after, task]() {
-                    std::this_thread::sleep_for(
-                        std::chrono::milliseconds(after));
-                    task();
-                }).detach();
-            }
-            else
-            {
-                std::this_thread::sleep_for(std::chrono::milliseconds(after));
-                task();
-            }
-        }
-    };
-
     // TODO:
     // concepts usage (std::invocable, etc)
     template <typename... Ts>
@@ -75,7 +46,7 @@ namespace tnt
     struct non_movable
     {
         non_movable() = default;
-        non_movable(non_movable const &) = delete;
+        non_movable(non_movable &&) = delete;
         non_movable &operator=(non_movable &&) = delete;
     };
 

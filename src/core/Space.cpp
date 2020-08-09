@@ -16,11 +16,11 @@ void tnt::Space::addObject(std::string_view id, Object const *obj)
         std::string{id.data()}, const_cast<Object *>(obj)));
 }
 
-tnt::Object *tnt::Space::getObject(std::string_view id) const { return objects.find(id.data())->second; }
+tnt::Object *tnt::Space::getObject(std::string_view id) const { return objects.find(id)->second; }
 
 void tnt::Space::removeObject(std::string_view id) noexcept
 {
-    if (auto it{objects.find(id.data())}; it != objects.end())
+    if (auto it{objects.find(id)}; it != objects.end())
         it = objects.erase(it);
 }
 

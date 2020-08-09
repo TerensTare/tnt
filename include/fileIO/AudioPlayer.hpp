@@ -3,13 +3,12 @@
 
 #include <string_view>
 
-// TODO: Consider making this a singleton or a namespace.
-// TODO: Consider making a shorter constructor.
+// TODO: Add a shorter constructor.
 
 namespace tnt
 {
   /// @brief The class used to handle audio playing.
-  class AudioPlayer
+  class AudioPlayer final
   {
   public:
     /// @brief Creates a new @c AudioPlayer for a certain audio format.
@@ -19,6 +18,9 @@ namespace tnt
     /// @param chunksize The size of the chunk.
     AudioPlayer(int frequency, unsigned short format, int channels,
                 int chunksize) noexcept;
+
+    /// @brief Close the audio player.
+    ~AudioPlayer() noexcept;
 
     /// @brief Plays the music of @c filename @c loops many times.
     /// If loops is -1, it plays the music ~65000 times.
