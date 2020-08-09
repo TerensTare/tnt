@@ -17,7 +17,7 @@
 # Thx Cristian Adam
 # https://cristianadam.eu/20191222/using-github-actions-with-c-plus-plus-and-cmake/
 name: build
-on: ["push", "pull request"]
+on: ["push", "pull_request"]
 
 jobs:
   check-code:
