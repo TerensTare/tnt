@@ -80,7 +80,7 @@ jobs:
           vcpkg-path: "/usr/local/share/vcpkg/installed/x64-osx"
           vctchain: "/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake"
 
-      steps:
+    steps:
       - uses: actions/checkout@v1
 
       - name: Download CMake and Ninja
