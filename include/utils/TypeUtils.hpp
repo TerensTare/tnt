@@ -6,9 +6,6 @@
 // TODO: check this
 // https://www.youtube.com/watch?v=Zcqwb3CWqs4&pbjreload=10
 
-#include <stdexcept>
-#include <thread>
-
 namespace tnt
 {
     // TODO:
@@ -62,22 +59,6 @@ namespace tnt
         }
     };
 
-    // TODO: remove this when std::jthread is available.
-    class scoped_thread : public non_copyable
-    {
-    public:
-        explicit scoped_thread(std::thread &th) : t{std::move(th)}
-        {
-            if (!t.joinable())
-                throw std::logic_error{"scoped_thread: No thread!!"};
-        }
-
-        ~scoped_thread() { t.join(); }
-
-    private:
-        std::thread t;
-    };
-
     // thx Jonathan Boccara
     // https://www.fluentcpp.com/2017/05/19/crtp-helper/
     template <typename T>
@@ -86,22 +67,6 @@ namespace tnt
         inline T &base() noexcept { return static_cast<T &>(*this); }
         inline T const &base() const noexcept { return static_cast<T const &>(*this); }
     };
-
-    // thx Jonathan Boccara
-    // https://www.fluentcpp.com/2020/05/29/how-to-make-derived-classes-implement-more-than-assignment/
-    template <template <typename...> class Expression, typename Attempt, typename... Ts>
-    struct is_detected : std::false_type
-    {
-    };
-
-    template <template <typename...> class Expression, typename... Ts>
-    struct is_detected<Expression, std::void_t<Expression<Ts...>>, Ts...> : std::true_type
-    {
-    };
-
-    template <template <typename...> class Expression, typename... Ts>
-    inline constexpr bool is_detected_v = is_detected<Expression, void, Ts...>::value;
-
 } // namespace tnt
 
 #endif //! TNT_TYPE_UTILS_HPP

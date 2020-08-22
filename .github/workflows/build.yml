@@ -145,10 +145,10 @@ jobs:
     name: Configure CMake
     runs-on: ${{ matrix.os }}
     needs: [get-deps]
-    shell: cmake -P {0}
     
     steps:
       - name: Config
+        shell: cmake -P {0}
         run: |
           set(ENV{CC} ${{ matrix.config.cc }})
           set(ENV{CXX} ${{ matrix.config.cxx }})

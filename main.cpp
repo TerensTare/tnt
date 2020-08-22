@@ -227,9 +227,9 @@ int main(int argc, char **argv)
         }
     }
 
-    SDL_Event e;
-    tnt::Timer timer;
     float dt{0.f};
+    tnt::Timer timer;
+    SDL_Event e;
 
     while (window.isOpened())
     {

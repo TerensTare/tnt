@@ -5,11 +5,10 @@
 #include <sol/sol.hpp>
 
 // TODO: register AND test all engine types and functions.
-// TODO: Add support for .tmx maps and text on Lua's AssetManager when available.
 // TODO: remove the need of passing a state on each argument.
 // TODO: dissolve each one of these functions on the corresponding files.
 // TODO: use doo_ecs_type::from_json on lua.
-// TODO: register asset_cache 
+// TODO: register asset_cache
 
 // TODO(maybe):
 // lib::CORE for window, input, timer ??
@@ -39,6 +38,7 @@ namespace tnt::lua
     void loadTimer(sol::state_view lua_);            // needs tests
     void loadObject(sol::state_view lua_);           // needs tests
     void loadInput(sol::state_view lua_);            // needs tests
+    void loadAudioPlayer(sol::state_view lua_);    // needs tests
     void loadWindow(sol::state_view lua_);           // needs test TODO(maybe): add more mebers functions
     void loadImGui(sol::state_view lua_);            // needs tests
     void loadSpace(sol::state_view lua_);            // needs tests
@@ -49,7 +49,6 @@ namespace tnt::lua
     void loadWidgets(sol::state_view lua_);          // TODO
     inline void loadUtils(sol::state_view lua_) {}   // last_write_time, etc
     // void loadAssetManager(sol::state const&lua_); // needs tests
-    // void loadAudioPlayer(sol::state const&lua_); // needs tests
     // void loadSprite(sol::state const&lua_);      // TODO
     // void loadRigidBody(sol::state& lua_); // TODO
 

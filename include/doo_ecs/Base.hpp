@@ -10,11 +10,12 @@
 // check for non-existent properties when loading from json.
 // load to lua
 // particle_sys
+// add constinit/constexpr
 // spaces/scenes implemented as id-s only and operations on objects related to spaces/scenes (move, remove, etc).
+// separate implementation in .cpp files.
 // TODO(maybe):
 // remove passive-like members because they are not used ??
 // add_object ONLY on objects_sys, and pass an object_data const& (a base class) to it ??
-
 
 // example of a simple update/draw loop with the new data oriented ECS
 // someWindow.Clear();
@@ -24,43 +25,60 @@
 //      animations.Update(o, deltaTime);
 //      if (tnt::doo::object const s{sprites.draw_queue.size()};
 //          s > obj && sprites.draw_queue[obj] != -1)
-//          painter.Draw(o, someWindow);
+//          sprites.Draw(o, someWindow);
 // }
 // someWindow.Render();
-
 
 // example of a .json chunk containing objects data
 // [
 //     {
 //         "angle": 0,
 //         "scale": {
-//             "x": 1,
-//             "y": 1
+//             "x": 10,
+//             "y": 10
 //         },
 //         "pos": {
 //             "x": 100,
 //             "y": 100
 //         },
 //         "phys": {
-//             "mass": 1
+//             "mass": 1,
+//             "bounds": {
+//                 "x": 0,
+//                 "y": 100,
+//                 "w": 100,
+//                 "h": 60
+//             }
 //         },
 //         "sprite": {
-//             "file": "myFile.png",
+//             "file": "assets/player.png",
 //             "crop": {
-//                 "x": 0,
+//                 "x": 3,
 //                 "y": 0,
-//                 "w": 8,
-//                 "h": 8
+//                 "w": 10,
+//                 "h": 16
 //             }
+//         },
+//         "anim": {
+//             "frames": 7,
+//             "space": 6,
+//             "speed": 1400,
+//             "dir": "horizontal",
+//             "wrap": "loop"
 //         }
-//     },
-//     ...
+//     }
+// ...
 // ]
-// NOTE: crop can be null to get the whole image to the texture.
+// NOTE: "phys.bounds" can be omitted to use the whole image area as the bounding box.
+// NOTE: "sprite.crop" can be omitted to get the whole image to the texture.
 
 namespace tnt::doo
 {
     using object = std::size_t; /// < A data type that serves as a unique id of an object.
+
+    inline const auto json_has = [](nlohmann::json const &j, char const *key) {
+        return (j.find(key) != j.cend());
+    };
 
     /// @brief A struct that holds the basic data of an object.
     struct object_data
@@ -89,15 +107,13 @@ namespace tnt::doo
 
             [[unlikely]] if (index == angle.capacity()) // if the vector got to his capacity, then we reserve more space
             {
-                active.reserve(5);
-                passive.reserve(5);
-                angle.reserve(5);
-                scale.reserve(5);
-                pos.reserve(5);
+                active.reserve(10);
+                angle.reserve(10);
+                scale.reserve(10);
+                pos.reserve(10);
             }
 
             active.emplace_back(index);
-            passive.emplace_back(-1);
             angle.emplace_back(data_.angle);
             scale.emplace_back(data_.scale);
             pos.emplace_back(data_.pos);
@@ -123,8 +139,6 @@ namespace tnt::doo
         }
 
         std::vector<object> active; /// < The id-s of all the active objects.
-
-        std::vector<object> passive; /// < The id-s of all the non-active objects.
 
         std::vector<float> angle;  /// < The angles of the objects.
         std::vector<Vector> scale; /// < The scales of the objects.

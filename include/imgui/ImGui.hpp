@@ -1,7 +1,8 @@
 #ifndef TNT_IMGUI_LIB_HPP
 #define TNT_IMGUI_LIB_HPP
 
-#include <string_view>
+#include "core/Window.hpp"
+#include "utils/BitFlags.hpp"
 
 // TODO: more widgets:
 // image, radio, text field, selection box, context menu, icon(button with image)
@@ -26,12 +27,8 @@
 
 namespace tnt
 {
-    class Window;
-    struct Vector;
-
     namespace ImGui
     {
-
         /// @brief An enum representing the flags that an ImGui window (not a
         /// game window) can have.
         /// @sa tnt::ImGui::Begin()
@@ -49,79 +46,15 @@ namespace tnt
 
             Default = Collapsible | Closable | Resizable | Movable | WithTitleBar | OpaqueBackground | WidgetThenText ///< has all the enum's values OR-ed
         };
+    } // namespace ImGui
 
-        //////////////////////////
-        // operator overloading //
-        //////////////////////////
+    template <>
+    struct enable_bit_mask<ImGui::WindowFlags> : std::true_type
+    {
+    };
 
-        /// @brief bit_or for @c WindowFlags.
-        /// @param lhs The left @c WindowFlag.
-        /// @param rhs The right @c WindowFlag.
-        /// @return tnt::ImGui::WindowFlags
-        inline WindowFlags operator|(WindowFlags const &lhs, WindowFlags const &rhs) noexcept
-        {
-            using type = std::underlying_type_t<WindowFlags>;
-            return static_cast<WindowFlags>(static_cast<type>(lhs) | static_cast<type>(rhs));
-        }
-
-        /// @brief bit_or equal for @c WindowFlags. Shorthand for lhs = (lhs | rhs).
-        /// @param lhs The left @c WindowFlag.
-        /// @param rhs The right @c WindowFlag.
-        /// @return tnt::ImGui::WindowFlags
-        inline WindowFlags &operator|=(WindowFlags &lhs, WindowFlags rhs) noexcept
-        {
-            lhs = lhs | rhs;
-            return lhs;
-        }
-
-        /// @brief bit_and for @c WindowFlags.
-        /// @param lhs The left @c WindowFlag.
-        /// @param rhs The right @c WindowFlag.
-        /// @return tnt::ImGui::WindowFlags
-        inline WindowFlags operator&(WindowFlags const &lhs, WindowFlags const &rhs) noexcept
-        {
-            using type = std::underlying_type_t<WindowFlags>;
-            return static_cast<WindowFlags>(static_cast<type>(lhs) & static_cast<type>(rhs));
-        }
-
-        /// @brief bit_and equal for @c WindowFlags. Shorthand for lhs = (lhs & rhs).
-        /// @param lhs The left @c WindowFlag.
-        /// @param rhs The right @c WindowFlag.
-        /// @return tnt::ImGui::WindowFlags
-        inline WindowFlags &operator&=(WindowFlags &lhs, WindowFlags rhs) noexcept
-        {
-            lhs = lhs & rhs;
-            return lhs;
-        }
-
-        /// @brief bit_xor for @c WindowFlags.
-        /// @param lhs The left @c WindowFlag.
-        /// @param rhs The right @c WindowFlag.
-        /// @return tnt::ImGui::WindowFlags
-        inline WindowFlags operator^(WindowFlags const &lhs, WindowFlags const &rhs) noexcept
-        {
-            using type = std::underlying_type_t<WindowFlags>;
-            return static_cast<WindowFlags>(static_cast<type>(lhs) ^ static_cast<type>(rhs));
-        }
-
-        /// @brief bit_xor equal for @c WindowFlags. Shorthand for lhs = (lhs ^ rhs).
-        /// @param lhs The left @c WindowFlag.
-        /// @param rhs The right @c WindowFlag.
-        /// @return tnt::ImGui::WindowFlags
-        inline WindowFlags &operator^=(WindowFlags &lhs, WindowFlags rhs) noexcept
-        {
-            lhs = lhs ^ rhs;
-            return lhs;
-        }
-
-        /// @brief bitwise complement for @c WindowFlags.
-        /// @param lhs The left @c WindowFlag.
-        /// @return tnt::ImGui::WindowFlags
-        inline WindowFlags operator~(WindowFlags const &lhs) noexcept
-        {
-            using type = std::underlying_type_t<WindowFlags>;
-            return static_cast<WindowFlags>(~static_cast<type>(lhs));
-        }
+    namespace ImGui
+    {
 
         /////////////
         // context //

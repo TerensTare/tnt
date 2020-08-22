@@ -3,6 +3,33 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+
+## [0.1.0a4]
+### Added
+- `tolua` folder, which contains separated files for Lua bindings. The files `utils/LuaManager.hpp`/`utils/LuaManager.cpp` are now deprecated, and you are encouraged to use the headers located on `tolua` folder.
+- Support for non-movable bodies on `physics_sys`.
+- Support for detecting and resolving collisions between `physics_sys` objects. See `tnt::doo::physics_sys::colliding` and `tnt::doo::physics_sys::resolve`.
+- Support for adding/removing global forces applied to the objects of `tnt::doo::physics_sys`.
+- `inline namespace phys`, which provides some physics-related constants, ex. forces that can be applied to objects (like gravity).
+- More `constexpr` for `tnt::Vector`.
+- Use three way comparison for `tnt::Vector` if supported by the compiler.
+- `utils/BitFlags.hpp`, which helps on generating bit manipulating operators for the enums the user selects.
+- `utils/Traits.hpp` which provides some type traits utilities.
+
+### Changed
+- Moved `tnt::is_detected`/`tnt::is_detected_v` to `utils/Traits.hpp`.
+- `tnt::doo::physics_sys::add_object` now accepts a `physics_comp const&` as an argument.
+- The Data Oriented ECS systems now reserve memory for 10 objects instead of 5 when needed.
+- The Data Oriented ECS systems now check if objects have a specific component when loaded from a .json file.
+
+### Removed
+- `utils/LuaManager.hpp`/`utils/LuaManager.cpp`. Use files located on the `tolua` folder instead.
+- `utils/LifetimeManager.hpp`.
+- `utils/Observer.hpp`.
+- `tnt::doo::phys_comp`.
+- `tnt::scoped_thread`.
+
+
 ## [0.1.0a3]
 ### Added
 - `tnt::input::Update`, which calls `tnt::input::updatePrevious` and `tnt::input::updateCurrent`.
@@ -59,13 +86,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 - `tnt::Rectangle` is now DefaultConstructible`.
 - Moved `STATIC_CHECK` from `Utils.hpp` to `utils/Assert.hpp`. Moved container-related stuff from `Utils.hpp` to `utils/Containers.hpp` and `utils/Convert.hpp`.
+- `tnt::AssetManager` is now `deprecated`.
 
 ### Removed
 - `tnt::Synchronized` from `utils/TypeUtils.hpp`.
 - `Utils.hpp`, `FormatedTypes.hpp` and `JsonTypes.hpp`.
 
-### Changed
-- `tnt::AssetManager` is now `deprecated`.
 
 ## 2020-06-20
 ### Added

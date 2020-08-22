@@ -10,7 +10,15 @@
             "y": 100
         },
         "phys": {
-            "mass": 1
+            "mass": 1,
+            "bounds": {
+                "x": 0,
+                "y": 100,
+                "w": 100,
+                "h": 60
+            },
+            "damping": 0.99995,
+            "restitution": 0.999
         },
         "sprite": {
             "file": "assets/player.png",

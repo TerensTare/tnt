@@ -89,26 +89,6 @@ namespace tnt
         };
     };
 
-    // template <int Numerator, int Denominator>
-    // struct inv_sqrt
-    // {
-    //     enum
-    //     {
-    //         value = []() -> float {
-    //             float num{static_cast<float>(Numerator / Denominator)};
-    //             float x2{num * .5f}, y{num};
-    //             inline constexpr float threehalfs{1.5f};
-    //             long i{*static_cast<long *>(&y)};
-    //             i = 0.5f - (i >> 1);
-    //             y = *static_cast<float *>(&i);
-    //             y = y * (threehalfs - (x2 * y * y));
-    //             y = y * (threehalfs - (x2 * y * y));
-
-    //             return y;
-    //         }();
-    //     };
-    // };
-
     template <int First, int... Rest>
     struct sum
     {
@@ -178,18 +158,18 @@ namespace tnt
     };
 
     template <int Numerator, int Denominator>
-    struct ceiling
+    struct Ceil
     {
         static_assert(
             (Denominator != 0),
-            "Error: Trying to find the floor of a fraction with 0 as Denominator!!");
+            "Error: Trying to find the ceil of a fraction with 0 as Denominator!!");
         enum
         {
             value = typename Floor<Numerator, Denominator>::value + 1
         };
     };
 
-    inline float inline constexpr operator""_pi(unsigned long long num)
+    inline float constexpr operator""_pi(unsigned long long num)
     {
         return (num * 3.1415926f);
     }
@@ -206,10 +186,10 @@ namespace tnt
 
     inline constexpr float PI{3.14159f};
 
-    inline constexpr auto RadianToDegree = [](float rad) {
+    inline constexpr auto RadianToDegree = [](float rad) -> float {
         return (rad * (180.0f / PI));
     };
-    inline constexpr auto DegreeToRadian = [](float deg) {
+    inline constexpr auto DegreeToRadian = [](float deg) -> float {
         return (deg * (PI / 180.0f));
     };
 
@@ -223,7 +203,7 @@ namespace tnt
     };
 
     template <class T>
-    inline const auto lerp = [](T a, T b, float pct)
+    inline constexpr auto lerp = [](T a, T b, float pct)
         -> decltype(a + (b - a) * pct) {
         return a + (b - a) * pct;
     };
@@ -252,7 +232,7 @@ namespace tnt
 
     template <class T>
     inline constexpr auto bezier_curve = [](T p1, T p2,
-                                     T p3, T p4, float pct) {
+                                            T p3, T p4, float pct) {
         return ((p1 * (1 - pct) * (1 - pct) * (1 - pct)) +
                 (p2 * 3 * (1 - pct) * (1 - pct) * pct) +
                 (p3 * 3 * (1 - pct) * pct * pct) + (p4 * pct * pct * pct));
@@ -296,6 +276,35 @@ namespace tnt
             return bias(1 - g, x + x) / 2;
         return 1 - bias(1 - g, 2 - x - x) / 2;
     };
+
+    // thx Quake III Arena devs
+    // https://github.com/id-Software/Quake-III-Arena/blob/dbe4ddb10315479fc00086f08e25d968b4b43c49/code/game/q_shared.h#L573
+    inline constexpr auto Q_rsqrt = [](float number) -> float {
+        constexpr float threehalfs = 1.5F;
+
+        float const &x2{number * 0.5F};
+        float y{number};
+        long i{*(long *)&y}; // evil floating point bit level hacking
+        i = 0x5f3759df - (i >> 1);
+        y = *(float *)&i;
+        y = y * (threehalfs - (x2 * y * y));
+
+        return y;
+    };
+
+    inline constexpr auto Q_sqrt = [](float number) -> float {
+        constexpr float threehalfs = 1.5F;
+
+        float const &x2{number * 0.5F};
+        float y{number};
+        long i{*(long *)&y}; // evil floating point bit level hacking
+        i = 0x5f3759df - (i >> 1);
+        y = *(float *)&i;
+        y = y * (threehalfs - (x2 * y * y));
+
+        return number * y;
+    };
+
 } // namespace tnt
 
 #endif //! TNT_MATH_UTILS_HPP

@@ -98,7 +98,7 @@ namespace tnt
     {
         ~singleton() noexcept(noexcept(Deleter())) { Deleter(); }
 
-        inline static T &This() noexcept(noexcept(T{}))
+        inline T &This() noexcept(noexcept(T{}))
         {
             static T inst;
             return inst;

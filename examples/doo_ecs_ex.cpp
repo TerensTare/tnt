@@ -22,6 +22,7 @@ int main(int argc, char **argv)
 
     {
         nlohmann::json j;
+
         for (std::ifstream{"objects.json"} >> j;
              nlohmann::json const &it : j)
         {
@@ -32,9 +33,9 @@ int main(int argc, char **argv)
         }
     }
 
-    SDL_Event e;
+    float dt{0.f};
     tnt::Timer timer;
-    float dt{0};
+    SDL_Event e;
 
     while (window.isOpened())
     {

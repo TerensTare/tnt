@@ -8,13 +8,14 @@
 #include "core/Space.hpp"
 #include "core/Scene.hpp"
 
-#include "doo_ecs/Objects.hpp"
+#include "doo_ecs/Physics.hpp"
+#include "doo_ecs/Animations.hpp"
 
 #include "ecs/Sprite.hpp"
 #include "ecs/RigidBody.hpp"
 
 #include "fileIO/AssetManager.hpp"
-// #include "fileIO/AudioPlayer.hpp"
+#include "fileIO/AudioPlayer.hpp"
 
 #include "imgui/ImGui.hpp"
 
@@ -36,13 +37,11 @@ void tnt::lua::loadVector(sol::state_view lua_)
         sol::meta_function::multiplication, sol::resolve<Vector(Vector const &, float const &)>(&tnt::operator*),
 
         sol::meta_function::equal_to, sol::resolve<bool(Vector const &, Vector const &)>(&tnt::operator==),
-        sol::meta_function::less_than, sol::resolve<bool(Vector const &) const>(&tnt::Vector::operator<),
-        sol::meta_function::less_than_or_equal_to, sol::resolve<bool(Vector const &, Vector const &)>(&tnt::operator<=),
+        sol::meta_function::less_than, [](Vector const &lhs, Vector const &rhs) -> bool { return lhs < rhs; },
+        sol::meta_function::less_than_or_equal_to, [](Vector const &lhs, Vector const &rhs) -> bool { return lhs <= rhs; },
 
-        sol::meta_function::to_string, sol::resolve<std::ostream &(std::ostream &, Vector const &)>(&tnt::operator<<),
-        sol::meta_function::unary_minus, [](const Vector &v) {
-            return Vector{-v.x, -v.y};
-        });
+        sol::meta_function::to_string, [](Vector const &v) -> std::string { return fmt::format("({}, {})", v.x, v.y); },
+        sol::meta_function::unary_minus, [](Vector const &v) { return Vector{-v.x, -v.y}; });
 
     // (maybe) enum these ??
     lua_["VECTOR_ZERO"] = VECTOR_ZERO;
@@ -105,15 +104,15 @@ void tnt::lua::loadTimer(sol::state_view lua_)
 //         "music", &AssetManager::Music, "sfx", &AssetManager::Sfx);
 // }
 
-// void tnt::lua::loadAudioPlayer(sol::state_view lua_)
-// {
-//     lua_.new_usertype<AudioPlayer>(
-//         "audio", sol::constructors<AudioPlayer(int, unsigned short, int, int) noexcept>{},
-//         "play", &AudioPlayer::PlayMusic,
-//         "pause", &AudioPlayer::PauseMusic,
-//         "resume", &AudioPlayer::ResumeMusic,
-//         "play_sfx", &AudioPlayer::PlaySFX);
-// }
+void tnt::lua::loadAudioPlayer(sol::state_view lua_)
+{
+    lua_.new_usertype<AudioPlayer>(
+        "audio", sol::constructors<AudioPlayer(int, unsigned short, int, int) noexcept>{},
+        "play", &AudioPlayer::PlayMusic,
+        "pause", &AudioPlayer::PauseMusic,
+        "resume", &AudioPlayer::ResumeMusic,
+        "play_sfx", &AudioPlayer::PlaySFX);
+}
 
 // this is needed to bind tnt::Object to Lua. Update() cannot be
 // called directly from LuaObject, so no undesired stuff happens.
@@ -179,7 +178,6 @@ void tnt::lua::loadObject(sol::state_view lua_)
 void tnt::lua::loadInput(sol::state_view lua_)
 {
     auto input{lua_["input"].get_or_create<sol::table>()};
-    input["close"] = &input::close;
 
     // keyboard stuff
     input["key_down"] = &input::keyDown;
@@ -211,11 +209,10 @@ void tnt::lua::loadImGui(sol::state_view lua_)
                    "widget_first", ImGui::WindowFlags::WidgetThenText);
 
     imgui["init"] = &tnt_imgui_init;
-    imgui["update"] = &ImGui::update_context;
     imgui["close"] = &tnt_imgui_close;
 
     imgui["Begin"] = sol::overload(
-        [](Window const *win, std::string_view name, int x, int y) -> bool {
+        [](Window const &win, std::string_view name, int x, int y) -> bool {
             return ImGui::Begin(win, name, x, y);
         },
         &ImGui::Begin);
@@ -323,7 +320,6 @@ void tnt::lua::loadPhysComp(sol::state_view lua_)
         "do_phys", &PhysicsComponent::doPhysics);
 }
 
-// TODO: update this
 void tnt::lua::loadDooEcs(sol::state_view lua_)
 {
     using namespace doo;
@@ -333,6 +329,12 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "angle", &object_data::angle,
         "scale", &object_data::scale,
         "pos", &object_data::pos);
+
+    lua_.new_usertype<objects_sys>(
+        "objects_sys", sol::constructors<objects_sys()>{},
+        "add_object", &objects_sys::add_object,
+        "get_data", &objects_sys::get_data,
+        "active", &objects_sys::active);
 
     // sprites
     lua_.new_usertype<sprite_comp>(
@@ -346,13 +348,17 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         sol::overload(
             sol::resolve<void(tnt::Window const &, std::string_view)>(&sprites_sys::add_object),
             sol::resolve<void(tnt::Window const &, std::string_view, tnt::Rectangle const &)>(&sprites_sys::add_object)),
+        "draw", &sprites_sys::Draw,
         "draw_queue", &sprites_sys::draw_queue);
 
     // physics
-    lua_.new_usertype<phys_comp>(
-        "phys_comp", sol::constructors<phys_comp(float const &, tnt::Vector const &)>{},
-        "inv_mass", &phys_comp::inv_mass,
-        "vel", &phys_comp::vel, "accel", &phys_comp::accel);
+    lua_.new_usertype<physics_comp>(
+        "phys_comp", sol::constructors<physics_comp(body_type const &, float, float, float, Rectangle const &) noexcept, physics_comp(body_type const &, float, float, float) noexcept>{},
+        "type", &physics_comp::type,
+        "mass", &physics_comp::mass,
+        "damping", &physics_comp::damping,
+        "restitution", &physics_comp::restitution,
+        "bound_box", &physics_comp::bound_box);
 
     lua_.new_usertype<physics_sys>(
         "physics_sys", sol::constructors<physics_sys()>{},
@@ -363,17 +369,38 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "vel", &physics_sys::vel,
         "accel", &physics_sys::accel);
 
-    lua_.new_usertype<objects_sys>(
-        "objects_sys", sol::constructors<objects_sys()>{},
-        "add_object", &objects_sys::add_object,
-        "update", &objects_sys::Update,
-        "draw", &objects_sys::Draw,
-        "get_data", &objects_sys::get_data,
-        "active", &objects_sys::active);
+    // animations
+    lua_.new_enum("anim_wrap",
+                  "single_run", animation_comp::wrap_mode::single_run,
+                  "loop", animation_comp::wrap_mode::loop);
 
+    lua_.new_enum("anim_dir",
+                  "horizontal", animation_comp::direction::horizontal,
+                  "vertical", animation_comp::direction::vertical);
+
+    lua_.new_usertype<animation_comp>(
+        "anim_comp", sol::constructors<animation_comp(Rectangle const &, int const, float const, float const, animation_comp::direction const &, animation_comp::wrap_mode const &) noexcept>{});
+
+    lua_.new_usertype<animations_sys>(
+        "animations", sol::constructors<animations_sys()>{},
+        "add_object", &animations_sys::add_object,
+        "update", &animations_sys::Update,
+
+        "wrap", &animations_sys::wrap,
+        "dir", &animations_sys::dir,
+        "startX", &animations_sys::startX,
+        "startY", &animations_sys::startY,
+        "speed", &animations_sys::speed,
+        "elapsed", &animations_sys::elapsed,
+        "timePerFrame", &animations_sys::timePerFrame,
+        "spacing", &animations_sys::spacing,
+        "current", &animations_sys::current,
+        "running", &animations_sys::running);
+
+    lua_["objects"] = objects;
     lua_["sprites"] = sprites;
     lua_["physics"] = physics;
-    lua_["objects"] = objects;
+    lua_["animations"] = animations;
 }
 
 void tnt::lua::loadAll(sol::state_view lua_)
@@ -389,14 +416,14 @@ void tnt::lua::loadAll(sol::state_view lua_)
     loadScene(lua_);
     loadSpriteComp(lua_);
     loadPhysComp(lua_);
+    loadAudioPlayer(lua_);
     // loadAssetManager(lua_);
-    // loadAudioPlayer(lua_);
     // loadSprite(lua_);
 }
 
 void tnt::lua::load(sol::state_view lua_, std::span<tnt::lua::lib> libs)
 {
-    for (auto l : libs)
+    for (tnt::lua::lib const &l : libs)
     {
         if (l == lib::ALL)
         {

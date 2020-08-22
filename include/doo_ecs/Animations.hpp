@@ -64,18 +64,16 @@ namespace tnt::doo
             object const index{wrap.size()};
             [[unlikely]] if (index == wrap.capacity())
             {
-                wrap.reserve(5);
-                dir.reserve(5);
-                startX.reserve(5);
-                startY.reserve(5);
-                elapsed.reserve(5);
-                speed.reserve(5);
-                timePerFrame.reserve(5);
-                spacing.reserve(5);
-                current.reserve(5);
-                running.reserve(5);
-
-                finished.reserve(5);
+                wrap.reserve(10);
+                dir.reserve(10);
+                startX.reserve(10);
+                startY.reserve(10);
+                elapsed.reserve(10);
+                speed.reserve(10);
+                timePerFrame.reserve(10);
+                spacing.reserve(10);
+                current.reserve(10);
+                running.reserve(10);
             }
 
             wrap.emplace_back(anim_.wrap);
@@ -89,7 +87,6 @@ namespace tnt::doo
             current.emplace_back(0);
 
             running.emplace_back(if_else(!anim_.finished, index, -1)); // -1 or index
-            finished.emplace_back(if_else(anim_.finished, index, -1)); // -1 or index
         }
 
         /// @brief Update the animation of the given object.
@@ -101,8 +98,8 @@ namespace tnt::doo
             if (elapsed[id] - (timePerFrame[id] * (current[id] + 1)) >= FLT_EPSILON)
             {
                 ++current[id];
-                int const index_{current[id] % int(speed[id] / timePerFrame[id])};
-                if (wrap[id] == animation_comp::loop)
+                if (int const index_{current[id] % int(speed[id] / timePerFrame[id])};
+                    wrap[id] == animation_comp::loop)
                 {
                     sprites.clip[id].x = (int)if_then(
                         dir[id] == animation_comp::horizontal,
@@ -114,7 +111,6 @@ namespace tnt::doo
                 else
                 {
                     running[id] = -1;
-                    finished[id] = id;
                     elapsed[id] = speed[id] - timePerFrame[id];
                     sprites.clip[id].x = (int)startX[id];
                     sprites.clip[id].y = (int)startY[id];
@@ -126,25 +122,28 @@ namespace tnt::doo
         /// @param j The json chunk.
         inline void from_json(nlohmann::json const &j)
         {
-            Rectangle const rect{j["sprite"]["crop"]};
-            nlohmann::json const &chunk{j["anim"]};
-            int const frames{chunk["frames"]};
-            float const speed{chunk["speed"]};
-            float const space{
-                if_else(chunk.at("space").is_null(),
-                        0.f, chunk["space"])};
-            animation_comp::direction const dir_{
-                if_else(chunk["dir"] == "horizontal",
-                        animation_comp::horizontal,
-                        if_then(chunk["dir"] == "vertical",
-                                animation_comp::vertical))};
-            animation_comp::wrap_mode const wrap_{
-                if_else(chunk["wrap"] == "once",
-                        animation_comp::single_run,
-                        if_then(chunk["wrap"] == "loop",
-                                animation_comp::loop))};
+            if (json_has(j, "anim"))
+            {
+                Rectangle const &rect{j["sprite"]["crop"]};
+                nlohmann::json const &chunk{j["anim"]};
+                int const &frames{chunk["frames"]};
+                float const &speed{chunk["speed"]};
+                float const &space{
+                    if_else(json_has(chunk, "space"),
+                            chunk["space"], 0.f)};
+                animation_comp::direction const dir_{
+                    if_else(chunk["dir"] == "horizontal",
+                            animation_comp::horizontal,
+                            if_then(chunk["dir"] == "vertical",
+                                    animation_comp::vertical))};
+                animation_comp::wrap_mode const wrap_{
+                    if_else(chunk["wrap"] == "once",
+                            animation_comp::single_run,
+                            if_then(chunk["wrap"] == "loop",
+                                    animation_comp::loop))};
 
-            add_object(animation_comp{rect, frames, speed, space, dir_, wrap_});
+                add_object(animation_comp{rect, frames, speed, space, dir_, wrap_});
+            }
         }
 
         std::vector<animation_comp::wrap_mode> wrap; /// < The wrap modes of the animations.
@@ -157,8 +156,7 @@ namespace tnt::doo
         std::vector<float> spacing;                  /// < The spacing between the frames of the sprites, 0 if none.
         std::vector<int> current;                    /// < The index of the current frame.
 
-        std::vector<object> running;  /// < The id-s of the running animations.
-        std::vector<object> finished; /// < The id-s of the finished animations.
+        std::vector<object> running; /// < The id-s of the running animations.
     } animations;
 } // namespace tnt::doo
 

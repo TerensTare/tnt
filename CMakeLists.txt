@@ -76,7 +76,7 @@ find_package(nlohmann_json CONFIG REQUIRED)
 
 file(GLOB SOURCE_FILES
     src/core/*.cpp src/ecs/*.cpp src/ai/steer/*.cpp src/fileIO/*.cpp
-    src/ImGui/*.cpp src/math/*.cpp src/utils/*.cpp)
+    src/ImGui/*.cpp src/math/*.cpp src/tolua/*.cpp src/utils/*.cpp)
 
 list(FILTER SOURCE_FILES EXCLUDE REGEX "Context.cpp$")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "AnimatedSprite.cpp$")

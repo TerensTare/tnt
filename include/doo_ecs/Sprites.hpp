@@ -57,9 +57,9 @@ namespace tnt::doo
             object const index{tex.size()};
             [[unlikely]] if (index == tex.capacity())
             {
-                draw_queue.reserve(5);
-                tex.reserve(5);
-                clip.reserve(5);
+                draw_queue.reserve(10);
+                tex.reserve(10);
+                clip.reserve(10);
             }
 
             sprite_comp const &comp{win, filename};
@@ -80,9 +80,9 @@ namespace tnt::doo
             object const index{tex.size()};
             [[unlikely]] if (index == tex.capacity())
             {
-                draw_queue.reserve(5);
-                tex.reserve(5);
-                clip.reserve(5);
+                draw_queue.reserve(10);
+                tex.reserve(10);
+                clip.reserve(10);
             }
 
             sprite_comp const &comp{win, filename, rect};
@@ -96,13 +96,16 @@ namespace tnt::doo
         /// @param j The json chunk from where to load the sprite data of the objects.
         inline void from_json(Window const &win, nlohmann::json const &j)
         {
-            std::string_view const file{j["sprite"]["file"].get<std::string_view>()};
-            if (j["sprite"]["crop"].is_null())
-                add_object(win, file);
-            else
+            if (json_has(j, "sprite"))
             {
-                Rectangle const rect{j["sprite"]["crop"]};
-                add_object(win, file, rect);
+                std::string_view const &file{j["sprite"]["file"].get<std::string_view>()};
+                if (json_has(j["sprite"], "crop"))
+                {
+                    Rectangle const rect{j["sprite"]["crop"]};
+                    add_object(win, file, rect);
+                }
+                else
+                    add_object(win, file);
             }
         }
 
@@ -111,9 +114,9 @@ namespace tnt::doo
         /// @param win The window where the object will be drawed.
         inline void Draw(object id, Window const &win) noexcept
         {
-            float const dx{sprites.clip[id].w * objects.scale[id].x * .5f};
-            float const dy{sprites.clip[id].h * objects.scale[id].y * .5f};
-            SDL_FRect const dst{objects.pos[id].x - dx, objects.pos[id].y - dy, 2 * dx, 2 * dy};
+            float const &dx{sprites.clip[id].w * objects.scale[id].x * .5f};
+            float const &dy{sprites.clip[id].h * objects.scale[id].y * .5f};
+            SDL_FRect const &dst{objects.pos[id].x - dx, objects.pos[id].y - dy, 2 * dx, 2 * dy};
 
             SDL_RenderCopyExF(
                 win.getRenderer(), sprites.tex[id],
