@@ -16,9 +16,10 @@
 
 namespace tnt
 {
-    class VirtualFS
+    class [[deprecated("tnt::VirtualFS is depreated and"
+                       " will be removed in a future release.")]] VirtualFS
     {
-      public:
+    public:
         VirtualFS();
         ~VirtualFS() noexcept;
 
@@ -42,7 +43,7 @@ namespace tnt
 
         std::string_view operator>>(std::string_view alias);
 
-      private:
+    private:
         std::string_view asDir(std::string_view path);
 
         std::string_view basePath{"." PATH_SEPARATOR}; // for now

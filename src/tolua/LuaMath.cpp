@@ -19,13 +19,11 @@ void tnt::lua::loadVector(sol::state_view lua_)
         sol::meta_function::addition, sol::resolve<Vector(Vector const &, Vector const &)>(&tnt::operator+),
         sol::meta_function::subtraction, sol::resolve<Vector(Vector const &, Vector const &)>(&tnt::operator-),
         sol::meta_function::division, sol::resolve<Vector(Vector const &, float const &)>(&tnt::operator/),
-        sol::meta_function::multiplication, sol::resolve<Vector(Vector const &, float const &)>(&tnt::operator*),
+        sol::meta_function::multiplication, sol::resolve<Vector(Vector const &, float const &)>(&tnt::operator*)); //,
 
-        sol::meta_function::equal_to, sol::resolve<bool(Vector const &, Vector const &)>(&tnt::operator==),
-        sol::meta_function::less_than, [](Vector const &lhs, Vector const &rhs) -> bool { return lhs < rhs; },
-        sol::meta_function::less_than_or_equal_to, [](Vector const &lhs, Vector const &rhs) -> bool { return lhs <= rhs; },
-
-        sol::meta_function::unary_minus, [](const Vector &v) { return Vector{-v.x, -v.y}; });
+    // sol::meta_function::equal_to, sol::resolve<bool(Vector const &, Vector const &)>(&tnt::operator==),
+    // sol::meta_function::less_than, [](Vector const &lhs, Vector const &rhs) -> bool { return lhs < rhs; },
+    // sol::meta_function::less_than_or_equal_to, [](Vector const &lhs, Vector const &rhs) -> bool { return lhs <= rhs; });
 
     // (maybe) enum these ??
     lua_["VECTOR_ZERO"] = VECTOR_ZERO;
@@ -39,7 +37,7 @@ void tnt::lua::loadVector(sol::state_view lua_)
 void tnt::lua::loadRect(sol::state_view lua_)
 {
     lua_.new_usertype<Rectangle>(
-        "rect", sol::constructors<Rectangle(), Rectangle(float, float, float, float), Rectangle(int, int, int, int), Rectangle(Vector const &, float, float), Rectangle(Rectangle const&)>{},
+        "rect", sol::constructors<Rectangle(), Rectangle(float, float, float, float), Rectangle(int, int, int, int), Rectangle(Vector const &, float, float), Rectangle(Rectangle const &)>{},
         "x", &Rectangle::x, "y", &Rectangle::y, "w", &Rectangle::w, "h", &Rectangle::h,
         "point_in", &Rectangle::Contains, "point_out", &Rectangle::Outside,
 

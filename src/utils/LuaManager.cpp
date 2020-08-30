@@ -21,7 +21,7 @@
 
 #include "utils/Timer.hpp"
 
-void tnt::lua::loadVector(sol::state_view lua_)
+void tnt::lua::deprecated::loadVector(sol::state_view lua_)
 {
     lua_.new_usertype<Vector>(
         "vector", sol::constructors<Vector(float, float), Vector(Vector const &)>(),
@@ -52,7 +52,7 @@ void tnt::lua::loadVector(sol::state_view lua_)
     lua_["DOWN"] = VECTOR_DOWN;
 }
 
-void tnt::lua::loadRectangle(sol::state_view lua_)
+void tnt::lua::deprecated::loadRectangle(sol::state_view lua_)
 {
     lua_.new_usertype<Rectangle>(
         "rect", sol::constructors<Rectangle(), Rectangle(float, float, float, float), Rectangle(int, int, int, int), Rectangle(Vector const &, float, float), Rectangle(Rectangle)>{},
@@ -86,7 +86,7 @@ void tnt::lua::loadRectangle(sol::state_view lua_)
         });
 }
 
-void tnt::lua::loadTimer(sol::state_view lua_)
+void tnt::lua::deprecated::loadTimer(sol::state_view lua_)
 {
     lua_.new_usertype<Timer>(
         "timer", sol::default_constructor,
@@ -94,7 +94,7 @@ void tnt::lua::loadTimer(sol::state_view lua_)
         "paused", &Timer::paused, "delta", &Timer::deltaTime);
 }
 
-// void tnt::lua::loadAssetManager(sol::state_view lua_)
+// void tnt::lua::deprecated::loadAssetManager(sol::state_view lua_)
 // {
 //     lua_.new_usertype<AssetManager>(
 //         "assets", "new", sol::no_constructor, "this", &AssetManager::This,
@@ -104,7 +104,7 @@ void tnt::lua::loadTimer(sol::state_view lua_)
 //         "music", &AssetManager::Music, "sfx", &AssetManager::Sfx);
 // }
 
-void tnt::lua::loadAudioPlayer(sol::state_view lua_)
+void tnt::lua::deprecated::loadAudioPlayer(sol::state_view lua_)
 {
     lua_.new_usertype<AudioPlayer>(
         "audio", sol::constructors<AudioPlayer(int, unsigned short, int, int) noexcept>{},
@@ -123,7 +123,7 @@ private:
     void Update(float) noexcept override { return; }
 };
 
-void tnt::lua::loadObject(sol::state_view lua_)
+void tnt::lua::deprecated::loadObject(sol::state_view lua_)
 {
     lua_.new_enum("coords",
                   "local", LuaObject::LOCAL,
@@ -148,7 +148,7 @@ void tnt::lua::loadObject(sol::state_view lua_)
         "active", sol::property(&LuaObject::isActive, &LuaObject::setActive));
 }
 
-// void tnt::lua::loadComponents(sol::state_view lua_)
+// void tnt::lua::deprecated::loadComponents(sol::state_view lua_)
 // {
 //     lua_.new_usertype<SpriteComponent>(
 //         "sprite_comp", sol::constructors<SpriteComponent(Window const *, std::string_view), SpriteComponent(Window const *, std::string_view, Rectangle const &)>{},
@@ -167,7 +167,7 @@ void tnt::lua::loadObject(sol::state_view lua_)
 //     sol::table Update(long long) noexcept override { return; }
 // };
 
-// void tnt::lua::loadSprite(sol::state_view lua_)
+// void tnt::lua::deprecated::loadSprite(sol::state_view lua_)
 // {
 //     lua_.new_usertype<LuaSprite>(
 //         "sprite", sol::constructors<Sprite(Window const *, std::string_view, float), Sprite(Window const *)>{}
@@ -175,7 +175,7 @@ void tnt::lua::loadObject(sol::state_view lua_)
 //     );
 // }
 
-void tnt::lua::loadInput(sol::state_view lua_)
+void tnt::lua::deprecated::loadInput(sol::state_view lua_)
 {
     auto input{lua_["input"].get_or_create<sol::table>()};
 
@@ -195,7 +195,7 @@ void tnt::lua::loadInput(sol::state_view lua_)
     input["update_last"] = &input::updatePrevious;
 }
 
-void tnt::lua::loadImGui(sol::state_view lua_)
+void tnt::lua::deprecated::loadImGui(sol::state_view lua_)
 {
     auto imgui{lua_["imgui"].get_or_create<sol::table>()};
 
@@ -250,7 +250,7 @@ void tnt::lua::loadImGui(sol::state_view lua_)
     imgui["colored_text"] = &ImGui::colored_text;
 }
 
-void tnt::lua::loadWindow(sol::state_view lua_)
+void tnt::lua::deprecated::loadWindow(sol::state_view lua_)
 {
     lua_.new_usertype<Window>(
         "window", sol::constructors<Window(std::string_view, int, int, int, int, Uint32), Window(std::string_view, int, int)>{},
@@ -266,7 +266,7 @@ void tnt::lua::loadWindow(sol::state_view lua_)
             &Window::Draw<Sprite, FullTrackingCamera>));
 }
 
-void tnt::lua::loadSpace(sol::state_view lua_)
+void tnt::lua::deprecated::loadSpace(sol::state_view lua_)
 {
     lua_.new_usertype<Space>(
         "space", sol::constructors<Space()>{},
@@ -280,7 +280,7 @@ void tnt::lua::loadSpace(sol::state_view lua_)
         "remove", &Space::removeObject);
 }
 
-void tnt::lua::loadScene(sol::state_view lua_)
+void tnt::lua::deprecated::loadScene(sol::state_view lua_)
 {
     lua_.new_usertype<Scene>(
         "scene", sol::constructors<Scene(Window const *, std::string_view) noexcept, Scene(Window const *) noexcept>{},
@@ -288,7 +288,7 @@ void tnt::lua::loadScene(sol::state_view lua_)
         "draw", &Scene::Draw, "update", &Scene::Update);
 }
 
-void tnt::lua::loadSpriteComp(sol::state_view lua_)
+void tnt::lua::deprecated::loadSpriteComp(sol::state_view lua_)
 {
     lua_.new_usertype<SpriteComponent>(
         "sprite_comp",
@@ -304,7 +304,7 @@ void tnt::lua::loadSpriteComp(sol::state_view lua_)
         "h", &SpriteComponent::getHeight);
 }
 
-void tnt::lua::loadPhysComp(sol::state_view lua_)
+void tnt::lua::deprecated::loadPhysComp(sol::state_view lua_)
 {
     lua_.new_usertype<PhysicsComponent>(
         "phys_comp", sol::constructors<PhysicsComponent(float const &, Vector const &, Vector const &)>{},
@@ -320,7 +320,7 @@ void tnt::lua::loadPhysComp(sol::state_view lua_)
         "do_phys", &PhysicsComponent::doPhysics);
 }
 
-void tnt::lua::loadDooEcs(sol::state_view lua_)
+void tnt::lua::deprecated::loadDooEcs(sol::state_view lua_)
 {
     using namespace doo;
 
@@ -403,7 +403,7 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
     lua_["animations"] = animations;
 }
 
-void tnt::lua::loadAll(sol::state_view lua_)
+void tnt::lua::deprecated::loadAll(sol::state_view lua_)
 {
     loadVector(lua_);
     loadRectangle(lua_);
@@ -421,9 +421,9 @@ void tnt::lua::loadAll(sol::state_view lua_)
     // loadSprite(lua_);
 }
 
-void tnt::lua::load(sol::state_view lua_, std::span<tnt::lua::lib> libs)
+void tnt::lua::deprecated::load(sol::state_view lua_, std::span<tnt::lua::deprecated::lib> libs)
 {
-    for (tnt::lua::lib const &l : libs)
+    for (tnt::lua::deprecated::lib const &l : libs)
     {
         if (l == lib::ALL)
         {

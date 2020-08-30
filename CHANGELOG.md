@@ -4,6 +4,24 @@ All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [0.1.0a5]
+### Added
+- `tnt::doo::scripts_sys`, which connects `.lua` scripts to objects of the Data Oriented ECS.
+- `tnt::bubble_sort_view`, `tnt::bubble_sort_fn` and `tnt::views::bubble_sort` on `utils/Sort.hpp` which wrap the bubble sort algorithm.
+
+### Changed
+- Marked some stuff as deprecated. A warning will be emited when you use them. The affected files/classes are: `tnt::AssetManager`, `tnt::VirtualFS` and `LuaManager.hpp`/`LuaManager.cpp`.
+- Trailing `0` after comma won't show on ImGui's `silder_*` and `hslider_*` functtions.
+- Rewrote a part of `exp/Runtimer`.
+- `tnt::doo:sprites_sys::add_object` now accepts `tnt::doo::sprite_comp const&`.
+- `tnt::doo::objects_sys::get_data` is now `[[nodiscard]]`.
+- Systems from the Data Oriented ECS now are non-copyable and accept `tnt::doo::object const&` instead of just `tnt::doo::object` as function parameters.
+- The implementation of the functions of the Data Oriented ECS is now located on `.cpp` files.
+
+### Removed
+- An overload of `tnt::doo::sprites_sys::add_object`.
+
+
 ## [0.1.0a4]
 ### Added
 - `tolua` folder, which contains separated files for Lua bindings. The files `utils/LuaManager.hpp`/`utils/LuaManager.cpp` are now deprecated, and you are encouraged to use the headers located on `tolua` folder.

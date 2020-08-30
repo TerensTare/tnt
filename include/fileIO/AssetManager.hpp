@@ -29,7 +29,9 @@ namespace tnt
 
     /// @brief The class responsible for caching and handling
     /// assets like audio, fonts, textures and Tiled Maps.
-    class AssetManager final
+    /// @note It is deprecated and will be removed on a future release.
+    class [[deprecated("tnt::AssetManager is deprecated and will be removed in a future release."
+                       " Use tnt::asset_cache<T, I> instead.")]] AssetManager final
     {
     public:
         /// @brief The destructor of @c AssetManager.

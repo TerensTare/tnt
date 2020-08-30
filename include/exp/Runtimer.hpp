@@ -4,65 +4,70 @@
 #include <string_view>
 #include <unordered_map>
 #include <filesystem>
-#include <vector>
+
+#include <SDL2/SDL_loadso.h>
 
 // library to handle Hot Code Reloading.
 // thx Nicolas Guillemot
 // https://github.com/nlguillemot/live_reload_test
 
 // TODO: experimental.
-// TODO: handle Linux and MacOSX cases.
 // TODO(test): automatically update RuntimeObject on trigger.
 // TODO: keep a file that stores loaded DLL names.
-// TODO(test): handle dll-s without header files, that's how it should be done.
-// TODO: Copy the original dll to a temporary one before reloading.
-// TODO(test): rebuild the dll on the update function.
-// TODO: avoid using new/delete.
 // TODO: free the memory ocupied by *objects.
 // TODO: with SDL2, only C libraries are supported. Add support for C++ dll-s.
+// TODO: make this asynchronous/thread safe
 
 // TODO(??):
-// typename RuntimeObject::dll should be std::any ??
 // private RuntimeObject ??
 // make this an extension ??
 // store loaded object names in the project file ??
 // build runtimer as a dll ??
-// C Structure RuntimeObject
 // && RuntimeObject::unload moved to RuntimeManager ??
 // Store RuntimeObject-s as a map with their build command as a key ??
 
 namespace tnt::rpp
 {
-struct RuntimeObject
-{
-    bool valid;
-    std::string binPath;
-    std::filesystem::file_time_type lastTime;
-    void *dll;
-    std::vector<std::string> procsToLoad;
-    std::unordered_map<std::string, void *> processes;
-};
+    struct RuntimeObject final
+    {
+        RuntimeObject(std::string_view path) noexcept;
+        ~RuntimeObject() noexcept;
 
-void Update(RuntimeObject *obj) noexcept;
+        // TODO: check if Func is a function-like type
+        template <typename Func>
+        inline Func *Load(std::string_view func) noexcept
+        {
+            processes.try_emplace(func.data(), nullptr);
+            return (Func *)SDL_LoadFunction(dll, func.data());
+        }
 
-// class RuntimeManager
-// {
-// public:
-//   RuntimeManager();
-//   ~RuntimeManager() noexcept;
+        void Update() noexcept;
 
-//   void LoadObject(char const *name, char const *srcFile);
+    private:
+        void *dll;
+        std::string const binPath;
+        std::filesystem::file_time_type lastTime;
+        std::unordered_map<std::string, void *> processes;
+    };
 
-//   void *LoadFunction(char const *handle, char const *name);
-//   void Update();
-//   void UpdateObject(char const *name);
+    // class RuntimeManager
+    // {
+    // public:
+    //   RuntimeManager();
+    //   ~RuntimeManager() noexcept;
 
-//   void UnloadObject(char const *name);
+    //   void LoadObject(char const *name, char const *srcFile);
 
-// private:
-//   std::unordered_map<std::string, std::string> objectSrc;
-//   std::unordered_map<std::string, RuntimeObject *> objects;
-// };
+    //   void *LoadFunction(char const *handle, char const *name);
+    //   void Update();
+    //   void UpdateObject(char const *name);
+
+    //   void UnloadObject(char const *name);
+
+    // private:
+    //   std::unordered_map<std::string, std::string> objectSrc;
+    //   std::unordered_map<std::string, RuntimeObject *> objects;
+    // };
 } // namespace tnt::rpp
 
 #endif //!TNT_RUNTIMER_HPP

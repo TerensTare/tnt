@@ -1,41 +1,48 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-#include <SDL2/SDL_loadso.h>
 #include "exp/Runtimer.hpp"
+
+#include <iostream>
 
 namespace fs = std::filesystem;
 
-void tnt::rpp::Update(tnt::rpp::RuntimeObject *obj) noexcept
+tnt::rpp::RuntimeObject::RuntimeObject(std::string_view path) noexcept
+    : binPath{path.data()}
 {
-    if (fs::path dll_path{obj->binPath}; fs::exists(dll_path))
-    {
-        if (fs::file_time_type last_time{fs::last_write_time(dll_path)}; last_time != obj->lastTime)
-        {
-            if (obj->dll)
-            {
-                SDL_UnloadObject(obj->dll);
-                obj->processes.clear();
-            }
+    if (dll = SDL_LoadObject(path.data()); !dll)
+        std::cout << "Error loading " << path << "!! " << SDL_GetError();
+}
 
-            std::string tmp{obj->binPath + "_temp.dll"};
-            if (fs::copy_file(obj->binPath.c_str(), tmp.c_str()))
+tnt::rpp::RuntimeObject::~RuntimeObject() noexcept
+{
+    SDL_UnloadObject(dll);
+}
+
+void tnt::rpp::RuntimeObject::Update() noexcept
+{
+    if (fs::path const &dll_path{binPath};
+        fs::exists(dll_path))
+    {
+        if (fs::file_time_type const &last{fs::last_write_time(dll_path)};
+            last != lastTime)
+        {
+            if (std::string const &tmp{binPath + "_tmp.dll"};
+                fs::copy_file(binPath, tmp))
             {
-                obj->dll = SDL_LoadObject(tmp.c_str());
-                if (obj->dll)
+                if (void *temp{SDL_LoadObject(tmp.c_str())};
+                    temp)
                 {
-                    for (auto proc{obj->procsToLoad.begin()}; proc != obj->procsToLoad.end(); ++proc)
-                    {
-                        obj->processes[*proc] = SDL_LoadFunction(obj->dll, proc->c_str());
-                        obj->procsToLoad.erase(proc);
-                    }
-                    obj->lastTime = last_time;
+                    for (auto const &[proc, _] : processes)
+                        processes[proc] = SDL_LoadFunction(temp, proc.c_str());
+
+                    SDL_UnloadObject(dll);
+                    dll = temp;
+                    lastTime = last;
                 }
             }
         }
     }
-    else
-        return;
 }
 
 // tnt::rpp::RuntimeManager::RuntimeManager()

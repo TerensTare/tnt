@@ -75,16 +75,14 @@ find_package(fmt CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 
 file(GLOB SOURCE_FILES
-    src/core/*.cpp src/ecs/*.cpp src/ai/steer/*.cpp src/fileIO/*.cpp
-    src/ImGui/*.cpp src/math/*.cpp src/tolua/*.cpp src/utils/*.cpp)
+    src/core/*.cpp src/doo_ecs/*.cpp src/fileIO/*.cpp
+    src/ImGui/ImGui.cpp src/math/*.cpp)
 
 list(FILTER SOURCE_FILES EXCLUDE REGEX "Context.cpp$")
-list(FILTER SOURCE_FILES EXCLUDE REGEX "AnimatedSprite.cpp$")
-list(FILTER SOURCE_FILES EXCLUDE REGEX "Particle.cpp$")
-list(FILTER SOURCE_FILES EXCLUDE REGEX "Scriptable.cpp$")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "Space.cpp$")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "Scene.cpp$")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "VirtualFS.cpp$")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "LuaManager.cpp$")
-
-list(APPEND ${SOURCE_FILES} src/ImGui/ImGui.cpp)
 
 if (TNT_DO_EXPERIMENTS)
     list(APPEND SOURCE_FILES exp/Runtimer.cpp)

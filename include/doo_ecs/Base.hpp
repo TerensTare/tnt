@@ -2,7 +2,7 @@
 #define TNT_DOO_ECS_BASE_HPP
 
 #include <nlohmann/json.hpp>
-#include "json/JsonVector.hpp"
+#include "math/Vector.hpp"
 
 // TODO:
 // optimizations (ex. use pmr)
@@ -76,7 +76,8 @@ namespace tnt::doo
 {
     using object = std::size_t; /// < A data type that serves as a unique id of an object.
 
-    inline const auto json_has = [](nlohmann::json const &j, char const *key) {
+    inline const auto json_has = [](nlohmann::json const &j, char const *key) noexcept(
+                                     noexcept(j.find(key))) -> bool {
         return (j.find(key) != j.cend());
     };
 
@@ -87,8 +88,7 @@ namespace tnt::doo
         /// @param angle_ The initial angle of the object.
         /// @param scale_ The initial scale of the object.
         /// @param pos_ The initial position of the object.
-        inline constexpr object_data(float angle_, Vector const &pos_, Vector const &scale_) noexcept
-            : angle{angle_}, pos{pos_}, scale{scale_} {}
+        constexpr object_data(float angle_, Vector const &pos_, Vector const &scale_) noexcept;
 
         float angle;  /// < The angle of the object.
         Vector scale; /// < The scale of the object.
@@ -98,45 +98,24 @@ namespace tnt::doo
     /// @brief A struct that handles objects data.
     inline struct objects_sys final
     {
+        inline objects_sys() noexcept = default;
+
+        objects_sys(objects_sys const &) = delete;
+        objects_sys &operator=(objects_sys const &) = delete;
+
         /// @brief Create a new object in place and add it to the system.
         /// Return the id of the newly created @c object.
         /// @return tnt::doo::object
-        inline object add_object(object_data const &data_) noexcept
-        {
-            const object index{angle.size()};
-
-            [[unlikely]] if (index == angle.capacity()) // if the vector got to his capacity, then we reserve more space
-            {
-                active.reserve(10);
-                angle.reserve(10);
-                scale.reserve(10);
-                pos.reserve(10);
-            }
-
-            active.emplace_back(index);
-            angle.emplace_back(data_.angle);
-            scale.emplace_back(data_.scale);
-            pos.emplace_back(data_.pos);
-
-            return index;
-        }
+        object add_object(object_data const &data_) noexcept;
 
         /// @brief Get the data of the object with the given id.
         /// @param id The id of the object.
         /// @return object_data
-        inline object_data get_data(object id) const noexcept
-        {
-            return object_data{angle[id], pos[id], scale[id]};
-        }
+        [[nodiscard]] object_data get_data(object const &id) const noexcept;
 
         /// @brief Load objects data from a json chunk.
         /// @param j The json chunk that contains the objects data.
-        inline void from_json(nlohmann::json const &j)
-        {
-            add_object({j["angle"].get<float>(),
-                        j["pos"].get<Vector>(),
-                        j["scale"].get<Vector>()});
-        }
+        void from_json(nlohmann::json const &j);
 
         std::vector<object> active; /// < The id-s of all the active objects.
 

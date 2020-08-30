@@ -16,107 +16,107 @@ export module TnT.Utils : Logger;
 export namespace tnt::logger
 {
     template <typename T>
-    void trace(std::string_view format, T data)
+    inline void trace(std::string_view format, T data)
     {
         fmt::print("{} TRACE: {}\n", __TIME__,
                    fmt::format(format, std::forward<T>(data)));
     }
 
     template <typename... Args>
-    void trace(std::string_view format, Args &&... args)
+    inline void trace(std::string_view format, Args &&... args)
     {
         fmt::print("{} TRACE: {}\n", __TIME__,
                    fmt::format(format, std::forward<Args>(args)...));
     }
 
     template <>
-    void trace(std::string_view format)
+    inline void trace(std::string_view format)
     {
         fmt::print("{} TRACE: {}\n", __TIME__, format);
     }
 
     template <typename T>
-    void debug(std::string_view format, T data)
+    inline void debug(std::string_view format, T data)
     {
         fmt::print("{} DEBUG: {}\n", __TIME__,
                    fmt::format(format, std::forward<T>(data)));
     }
 
     template <typename... Args>
-    void debug(std::string_view format, Args &&... args)
+    inline void debug(std::string_view format, Args &&... args)
     {
         fmt::print("{} DEBUG: {}\n", __TIME__,
                    fmt::format(format, std::forward<Args>(args)...));
     }
 
     template <>
-    void debug(std::string_view format)
+    inline void debug(std::string_view format)
     {
         fmt::print("{} DEBUG: {}\n", __TIME__, format);
     }
 
     template <typename T>
-    void info(std::string_view format, T data)
+    inline void info(std::string_view format, T data)
     {
         fmt::print("{} INFO: {}\n", __TIME__,
                    fmt::format(format, std::forward<T>(data)));
     }
 
     template <class... Args>
-    void info(std::string_view format, Args &&... args)
+    inline void info(std::string_view format, Args &&... args)
     {
         fmt::print("{} INFO: {}\n", __TIME__,
                    fmt::format(format, std::forward<Args>(args)...));
     }
 
     template <>
-    void info(std::string_view format)
+    inline void info(std::string_view format)
     {
         fmt::print("{} INFO: {}\n", __TIME__, format);
     }
 
     template <typename T>
-    void notice(std::string_view format, T data)
+    inline void notice(std::string_view format, T data)
     {
         fmt::print("{} NOTICE: {}\n", __TIME__,
                    fmt::format(format, std::forward<T>(data)));
     }
 
     template <typename... Args>
-    void notice(std::string_view format, Args &&... args)
+    inline void notice(std::string_view format, Args &&... args)
     {
         fmt::print("{} NOTICE: {}\n", __TIME__,
                    fmt::format(format, std::forward<Args>(args)...));
     }
 
     template <>
-    void notice(std::string_view format)
+    inline void notice(std::string_view format)
     {
         fmt::print("{} NOTICE: {}\n", __TIME__, format);
     }
 
     template <typename T>
-    void warning(std::string_view format, T data)
+    inline void warning(std::string_view format, T data)
     {
         fmt::print("{} WARNING: {}\n", __TIME__,
                    fmt::format(format, std::forward<T>(data)));
     }
 
     template <typename... Args>
-    void warning(std::string_view format, Args &&... args)
+    inline void warning(std::string_view format, Args &&... args)
     {
         fmt::print("{} WARNING: {}\n", __TIME__,
                    fmt::format(format, std::forward<Args>(args)...));
     }
 
     template <>
-    void warning(std::string_view format)
+    inline void warning(std::string_view format)
     {
         fmt::print("{} WARNING: {}\n", __TIME__, format);
     }
 
     template <typename T>
-    void error(std::string_view format, T data)
+    inline void error(std::string_view format, T data)
     {
         fmt::print("{} ERROR: {}\n", __TIME__,
                    fmt::format(format, std::forward<T>(data)));
@@ -124,7 +124,7 @@ export namespace tnt::logger
     }
 
     template <typename... Args>
-    void error(std::string_view format, Args &&... args)
+    inline void error(std::string_view format, Args &&... args)
     {
         fmt::print("{} ERROR: {}\n", __TIME__,
                    fmt::format(format, std::forward<Args>(args)...));
@@ -132,28 +132,28 @@ export namespace tnt::logger
     }
 
     template <>
-    void error(std::string_view format)
+    inline void error(std::string_view format)
     {
         fmt::print("{} ERROR: {}\n", __TIME__, format);
         std::quick_exit(-1);
     }
 
     template <typename T>
-    void critical(std::string_view format, T data)
+    inline void critical(std::string_view format, T data)
     {
         fmt::print("{} CRITICAL: {}\n", __TIME__,
                    fmt::format(format, std::forward<T>(data)));
     }
 
     template <typename... Args>
-    void critical(std::string_view format, Args &&... args)
+    inline void critical(std::string_view format, Args &&... args)
     {
         fmt::print("{} CRITICAL: {}\n", __TIME__,
                    fmt::format(format, std::forward<Args>(args)...));
     }
 
     template <>
-    void critical(std::string_view format)
+    inline void critical(std::string_view format)
     {
         fmt::print("{} CRITICAL: {}\n", __TIME__, format);
     }

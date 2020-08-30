@@ -5,6 +5,7 @@
 
 #include "doo_ecs/Animations.hpp"
 #include "doo_ecs/Physics.hpp"
+#include "doo_ecs/Sprites.hpp"
 
 #include "tolua/LuaDooEcs.hpp"
 
@@ -34,10 +35,7 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
 
     lua_.new_usertype<sprites_sys>(
         "sprites_sys", sol::no_constructor,
-        "add_object",
-        sol::overload(
-            sol::resolve<void(tnt::Window const &, std::string_view)>(&sprites_sys::add_object),
-            sol::resolve<void(tnt::Window const &, std::string_view, tnt::Rectangle const &)>(&sprites_sys::add_object)),
+        "add_object", &sprites_sys::add_object,
         "draw", &sprites_sys::Draw,
         "draw_queue", &sprites_sys::draw_queue);
 

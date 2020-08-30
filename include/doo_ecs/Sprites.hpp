@@ -3,8 +3,6 @@
 
 #include "core/Window.hpp"
 #include "doo_ecs/Base.hpp"
-#include "fileIO/AssetCache.hpp"
-#include "json/JsonRectangle.hpp"
 
 // TODO: find a way to store the medium_texture_cache* on sprites_sys.
 
@@ -16,113 +14,42 @@ namespace tnt::doo
         /// @brief Create a new sprite component from an image file.
         /// @param win The window where the sprite will be drawed.
         /// @param file The name of the image file to load.
-        inline sprite_comp(Window const &win, std::string_view filename) noexcept
-            : crop{0, 0, 0, 0}
-        {
-            tex = cache->get(win.getRenderer(), filename);
-            SDL_QueryTexture(tex, nullptr, nullptr, &w, &h);
-            crop.w = w;
-            crop.h = h;
-        }
+        sprite_comp(Window const &win, std::string_view filename) noexcept;
 
         /// @brief Create a new sprite component from an image file.
         /// @param win The window where the sprite will be drawed.
         /// @param file The name of the image file to load.
         /// @param rect The area of the image you want to have on the sprite.
-        inline sprite_comp(
-            Window const &win, std::string_view filename,
-            Rectangle const &rect) noexcept
-            : crop{(int)rect.x, (int)rect.y, (int)rect.w, (int)rect.h},
-              w{(int)rect.w}, h{(int)rect.h}
-        {
-            tex = cache->get(win.getRenderer(), filename);
-        }
+        sprite_comp(Window const &win, std::string_view filename,
+                    Rectangle const &rect) noexcept;
 
         SDL_Texture *tex; /// < The texture handle for the object.
         SDL_Rect crop;    /// < The area of the image represented on the sprite.
 
     private:
         int w, h;
-        inline static medium_texture_cache *cache{default_texture_cache()};
     };
 
     /// @brief A struct that handles the sprite data for all the objects.
     inline struct sprites_sys final
     {
-        /// @brief Add a new object to the sprites system.
-        /// @param win The window where the object will be drawed.
-        /// @param filename The name of the image file to load.
-        inline void add_object(Window const &win, std::string_view filename)
-        {
-            object const index{tex.size()};
-            [[unlikely]] if (index == tex.capacity())
-            {
-                draw_queue.reserve(10);
-                tex.reserve(10);
-                clip.reserve(10);
-            }
+        inline sprites_sys() noexcept = default;
 
-            sprite_comp const &comp{win, filename};
-
-            draw_queue.emplace_back(index);
-            tex.emplace_back(comp.tex);
-            clip.emplace_back(comp.crop);
-        }
+        sprites_sys(sprites_sys const &) = delete;
+        sprites_sys &operator=(sprites_sys const &) = delete;
 
         /// @brief Add a new object to the sprites system.
-        /// @param win The window where the object will be drawed.
-        /// @param filename The name of the image file to load.
-        /// @param rect The area of the image you want to have on the sprite.
-        inline void add_object(Window const &win,
-                               std::string_view filename,
-                               Rectangle const &rect)
-        {
-            object const index{tex.size()};
-            [[unlikely]] if (index == tex.capacity())
-            {
-                draw_queue.reserve(10);
-                tex.reserve(10);
-                clip.reserve(10);
-            }
-
-            sprite_comp const &comp{win, filename, rect};
-
-            draw_queue.emplace_back(index);
-            tex.emplace_back(comp.tex);
-            clip.emplace_back(comp.crop);
-        }
+        /// @param sprite The sprite component of the object.
+        void add_object(sprite_comp const &sprite);
 
         /// @brief Load the sprite data of the objects from a given json chunk.
         /// @param j The json chunk from where to load the sprite data of the objects.
-        inline void from_json(Window const &win, nlohmann::json const &j)
-        {
-            if (json_has(j, "sprite"))
-            {
-                std::string_view const &file{j["sprite"]["file"].get<std::string_view>()};
-                if (json_has(j["sprite"], "crop"))
-                {
-                    Rectangle const rect{j["sprite"]["crop"]};
-                    add_object(win, file, rect);
-                }
-                else
-                    add_object(win, file);
-            }
-        }
+        void from_json(Window const &win, nlohmann::json const &j);
 
         /// @brief Draw object with the given id on the given window.
         /// @param id The id of the object to draw.
         /// @param win The window where the object will be drawed.
-        inline void Draw(object id, Window const &win) noexcept
-        {
-            float const &dx{sprites.clip[id].w * objects.scale[id].x * .5f};
-            float const &dy{sprites.clip[id].h * objects.scale[id].y * .5f};
-            SDL_FRect const &dst{objects.pos[id].x - dx, objects.pos[id].y - dy, 2 * dx, 2 * dy};
-
-            SDL_RenderCopyExF(
-                win.getRenderer(), sprites.tex[id],
-                &sprites.clip[id], &dst, objects.angle[id],
-                nullptr, SDL_FLIP_NONE);
-        }
+        void Draw(object const &id, Window const &win) noexcept;
 
         std::vector<object> draw_queue; /// < All the id-s of the objects that should be drawed.
         std::vector<SDL_Texture *> tex; /// < The texture data of the objects.
