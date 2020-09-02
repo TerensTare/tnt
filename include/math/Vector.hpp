@@ -167,7 +167,7 @@ namespace tnt
 
     inline constexpr float Dot(Vector const &lhs, Vector const &rhs) noexcept
     {
-        return lhs.x + rhs.x + lhs.y * rhs.y;
+        return lhs.x * rhs.x + lhs.y * rhs.y;
     }
 
     inline constexpr float Cross(Vector const &lhs, Vector const &rhs) noexcept
