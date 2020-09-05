@@ -22,8 +22,13 @@ namespace tnt::doo
 
             vel.reserve(10);
             accel.reserve(10);
+
+            physics_queue.reserve(10);
+
             bound_box.reserve(10);
         }
+
+        physics_queue.emplace_back(id);
 
         inv_mass.emplace_back(if_else(body.type == body_type::fixed, 0.f, 1 / body.mass));
 
@@ -40,6 +45,34 @@ namespace tnt::doo
 
         vel.emplace_back(VECTOR_ZERO);
         accel.emplace_back(VECTOR_ZERO);
+    }
+
+    void physics_sys::add_invalid()
+    {
+        [[unlikely]] if (inv_mass.size() == inv_mass.capacity())
+        {
+            inv_mass.reserve(10);
+
+            damping.reserve(10);
+            restitution.reserve(10);
+
+            vel.reserve(10);
+            accel.reserve(10);
+
+            physics_queue.reserve(10);
+            bound_box.reserve(10);
+        }
+
+        inv_mass.emplace_back(0.f);
+
+        damping.emplace_back(0.f);
+        restitution.emplace_back(0.f);
+
+        vel.emplace_back(VECTOR_ZERO);
+        accel.emplace_back(VECTOR_ZERO);
+
+        physics_queue.emplace_back(-1);
+        bound_box.emplace_back(0.f, 0.f, 0.f, 0.f);
     }
 
     void physics_sys::addForce(object const &id, Vector const &force) noexcept
@@ -117,14 +150,6 @@ namespace tnt::doo
                 add_object(physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}});
         }
         else
-        {
-            inv_mass.emplace_back(0.f);
-            bound_box.emplace_back(0, 0, 0, 0);
-            damping.emplace_back(0.f);
-            restitution.emplace_back(0.f);
-
-            vel.emplace_back(VECTOR_ZERO);
-            accel.emplace_back(VECTOR_ZERO);
-        }
+            add_invalid();
     }
 } // namespace tnt::doo

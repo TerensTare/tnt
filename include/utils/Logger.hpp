@@ -119,7 +119,7 @@ namespace tnt::logger
     }
 
     template <typename T>
-    inline void error(std::string_view format, T &&data)
+    [[noreturn]] inline void error(std::string_view format, T &&data)
     {
         fmt::print("{} ERROR: {}\n", __TIME__,
                    fmt::format(format, std::forward<T>(data)));
@@ -127,7 +127,7 @@ namespace tnt::logger
     }
 
     template <typename... Args>
-    inline void error(std::string_view format, Args &&... args)
+    [[noreturn]] inline void error(std::string_view format, Args &&... args)
     {
         fmt::print("{} ERROR: {}\n", __TIME__,
                    fmt::format(format, std::forward<Args>(args)...));
@@ -135,7 +135,7 @@ namespace tnt::logger
     }
 
     template <>
-    inline void error(std::string_view format)
+    [[noreturn]] inline void error(std::string_view format)
     {
         fmt::print("{} ERROR: {}\n", __TIME__, format);
         std::quick_exit(-1);

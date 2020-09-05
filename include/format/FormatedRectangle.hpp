@@ -11,7 +11,7 @@ namespace fmt
     {
         char presentation{' '};
 
-        inline constexpr auto parse(format_parse_context &ctx)
+        constexpr auto parse(format_parse_context &ctx)
         {
             char const *it{ctx.begin()};
             char const *end{ctx.end()};

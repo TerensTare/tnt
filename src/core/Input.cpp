@@ -8,10 +8,24 @@ namespace tnt::input
 {
     inline struct input_handle_t final
     {
-        inline input_handle_t() noexcept(noexcept(
-            prevkb.assign(currentkb, currentkb + keyLength)))
+        inline input_handle_t()
         {
             prevkb.assign(currentkb, currentkb + keyLength);
+            if (int const &jnum{SDL_NumJoysticks()}; jnum > 0)
+            {
+                for (int i{0}; i < jnum; ++i)
+                    if (SDL_Joystick *joy = SDL_JoystickOpen(i);
+                        joy)
+                        joysticks.emplace_back(joy);
+                joySense.reserve(jnum);
+                std::fill_n(&joySense[0], joySense.size(), 8000);
+            }
+        }
+
+        inline ~input_handle_t() noexcept
+        {
+            for (auto const &it : joysticks)
+                SDL_JoystickClose(it);
         }
 
         int keyLength{0};
@@ -20,8 +34,11 @@ namespace tnt::input
         Uint32 currentMouse{0};
         Uint32 prevMouse{0};
         Uint32 lastMouse{0};
+
         const Uint8 *currentkb{SDL_GetKeyboardState(&keyLength)};
         std::vector<Uint8> prevkb;
+        std::vector<SDL_Joystick *> joysticks;
+        std::vector<Sint16> joySense;
     } input_handle;
 } // namespace tnt::input
 
@@ -87,13 +104,45 @@ void tnt::input::updatePrevious()
     input_handle.prevMouse = input_handle.currentMouse;
 }
 
+void tnt::input::updateJoystick()
+{
+    if (std::size_t const &size{input_handle.joySense.size()};
+        size != SDL_NumJoysticks())
+    {
+        int jnum{SDL_NumJoysticks()};
+        for (std::size_t i{size}; i < jnum; ++i)
+            if (SDL_Joystick *joy = SDL_JoystickOpen((int)i);
+                joy)
+                input_handle.joysticks.emplace_back(joy);
+
+        input_handle.joySense.reserve(SDL_NumJoysticks() - size);
+        std::fill_n(&input_handle.joySense[size], input_handle.joySense.capacity() - size, 8000);
+    }
+}
+
 void tnt::input::Update()
 {
     updatePrevious();
     updateCurrent();
+    updateJoystick();
 }
 
 std::pair<int, int> tnt::input::mousePosition() noexcept
 {
     return std::make_pair(input_handle.mX, input_handle.mY);
+}
+
+void tnt::input::setDefaultDeadZone(Sint16 sense) noexcept
+{
+    std::fill_n(&input_handle.joySense[0], input_handle.joySense.size(), sense);
+}
+
+void tnt::input::setDeadZone(SDL_JoystickID id, Sint16 sense) noexcept
+{
+    input_handle.joySense[id] = sense;
+}
+
+Sint16 tnt::input::getDeadZone(SDL_JoystickID id) noexcept
+{
+    return input_handle.joySense[id];
 }

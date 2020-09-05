@@ -54,6 +54,12 @@ WIP
 Please see [CONTRIBUTING.md](./CONTRIBUTING.md) to learn how you can contribute to this project.
 
 
+## Contributors
+
+A special thanks goes to:
+- cgyurgyik (#8)
+
+
 ## Q&A
 
 For any question you may have, please visit TnT's Discord [server](https://discord.gg/s5Y9VCR) or Slack [workspace](https://join.slack.com/t/tnt2d/shared_invite/zt-f3q4v25s-2m5FyEKU29J8mYsz2zDWjQ).

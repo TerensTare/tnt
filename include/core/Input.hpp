@@ -5,7 +5,7 @@
 
 #include <utility>
 
-// TODO: Joystick and GameController support.
+// TODO: Better Joystick and GameController support.
 
 namespace tnt::input
 {
@@ -50,6 +50,9 @@ namespace tnt::input
     /// @brief Updates the last input handles.
     void updatePrevious();
 
+    /// @brief Updates joystick-related datas.
+    void updateJoystick();
+
     /// @brief Updates all the input handles.
     void Update();
 
@@ -59,6 +62,20 @@ namespace tnt::input
     /// @return The position of the mouse as a @c std::pair<int, int>.
     std::pair<int, int> mousePosition() noexcept;
 
+    /// @brief Set the default sensitivity to all the connected joysticks.
+    /// @note The default sensitivity of the joystick when connected is 8000.
+    /// @param sense The desired sensitivity.
+    void setDefaultDeadZone(Sint16 sense) noexcept;
+
+    /// @brief Set the sensitivity of a joystick.
+    /// @param id The id of the joystick.
+    /// @param sense The sensitivity of the joystick (from 0 to 32767).
+    void setDeadZone(SDL_JoystickID id, Sint16 sense) noexcept;
+
+    /// @brief Get the sensitivity of the joystick.
+    /// @param id The id of the joystick.
+    /// @return Sint16
+    Sint16 getDeadZone(SDL_JoystickID id) noexcept;
 } // namespace tnt::input
 
 #endif //! TNT_INPUT_HPP

@@ -47,11 +47,11 @@ namespace tnt::ecs2
           public Components...
     {
     public:
-        explicit inline constexpr Object(Components &&... comps) noexcept
+        explicit constexpr Object(Components &&... comps) noexcept
             : Components{std::forward<Components>(comps)}... {}
 
         template <component Comp>
-        inline constexpr bool has() noexcept { return std::is_base_of_v<Comp, Object>; }
+        constexpr bool has() noexcept { return std::is_base_of_v<Comp, Object>; }
 
         inline void Update(float time_) noexcept
         {
@@ -60,7 +60,7 @@ namespace tnt::ecs2
 
         inline void Draw(tnt::Window const *win) noexcept
         {
-            if inline constexpr (is_detected_v<decltype(typename T::Draw), T>::value)
+            if constexpr (is_detected_v<decltype(typename T::Draw), T>::value)
                 this->base().Draw(win);
         }
     };

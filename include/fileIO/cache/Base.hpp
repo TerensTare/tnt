@@ -10,7 +10,7 @@ namespace tnt
     template <typename T, int I>
     class asset_cache
     {
-        inline constexpr asset_cache() noexcept = default;
+        constexpr asset_cache() noexcept = default;
     };
 
     namespace detail

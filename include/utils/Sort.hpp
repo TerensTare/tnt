@@ -13,9 +13,6 @@
 
 namespace tnt
 {
-    template <typename T>
-    using element_t = decltype(*std::ranges::begin(std::declval<T &>()));
-
     // clang-format off
     template <std::ranges::input_range R>
     class bubble_sort_view : public std::ranges::view_interface<bubble_sort_view<R>>
@@ -27,9 +24,9 @@ namespace tnt
         bubble_sort_view() noexcept = default;
 
         // clang-format off
-        inline constexpr bubble_sort_view(R &&r)
+        constexpr bubble_sort_view(R &&r)
             requires std::move_constructible<R> &&
-            std::three_way_comparable<element_t<R>>
+            std::three_way_comparable<std::ranges::range_value_t<R>>
             // clang-format on
             : base_{std::move(r)}
         {
@@ -37,22 +34,22 @@ namespace tnt
                 for (std::size_t j{0}; j < base_.size() - 1; ++j)
                     if (base_[j] > base_[j + 1])
                     {
-                        if constexpr (std::is_swappable_v<element_t<R>>)
+                        if constexpr (std::is_swappable_v<std::ranges::range_value_t<R>>)
                             std::swap(base_[j], base_[j + 1]);
                         else
                         {
-                            element_t<R> const &temp{base_[j]};
+                            std::ranges::range_value_t<R> const &temp{base_[j]};
                             base_[j] = base_[j + 1];
                             base_[j + 1] = temp;
                         }
                     }
         }
 
-        inline constexpr iterator begin() const noexcept { return std::ranges::begin(base_); }
-        inline constexpr auto end() const noexcept { return std::ranges::end(base_); }
+        constexpr iterator begin() const noexcept { return std::ranges::begin(base_); }
+        constexpr auto end() const noexcept { return std::ranges::end(base_); }
 
-        inline constexpr iterator cbegin() const noexcept { return std::ranges::cbegin(base_); }
-        inline constexpr auto cend() const noexcept { return std::ranges::cend(base_); }
+        constexpr iterator cbegin() const noexcept { return std::ranges::cbegin(base_); }
+        constexpr auto cend() const noexcept { return std::ranges::cend(base_); }
     };
 
 // MSVC doesn't support std::ranges::views::all_t yet.
@@ -65,14 +62,14 @@ namespace tnt
     struct bubble_sort_fn
     {
         template <std::ranges::input_range R>
-        inline constexpr auto operator()(R &&rng) const noexcept
+        constexpr auto operator()(R &&rng) const noexcept
         {
             return bubble_sort_view<R>{std::forward<R>(rng)};
         }
     };
 
     template <std::ranges::input_range R>
-    inline constexpr auto operator|(R &&rng, bubble_sort_fn const &) noexcept
+    constexpr auto operator|(R &&rng, bubble_sort_fn const &) noexcept
     {
         return bubble_sort_view<R>{std::forward<R>(rng)};
     }

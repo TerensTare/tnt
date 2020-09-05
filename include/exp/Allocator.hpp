@@ -20,7 +20,7 @@ namespace tnt
 
         using value_type = T;
 
-        explicit inline constexpr stack_allocator(std::size_t S) noexcept
+        explicit constexpr stack_allocator(std::size_t S) noexcept
             : stack_ptr{0}
         {
             char *buffer{new char[S * sizeof(T)]};
@@ -28,26 +28,26 @@ namespace tnt
         }
 
         template <typename U>
-        inline constexpr stack_allocator(stack_allocator<U> const &) noexcept = delete;
+        constexpr stack_allocator(stack_allocator<U> const &) noexcept = delete;
 
         template <typename U>
-        inline constexpr stack_allocator &operator=(stack_allocator<U> const &) noexcept = delete;
+        constexpr stack_allocator &operator=(stack_allocator<U> const &) noexcept = delete;
 
-        inline constexpr stack_allocator(stack_allocator const &) noexcept = delete;
-        inline constexpr stack_allocator &operator=(stack_allocator const &) noexcept = delete;
+        constexpr stack_allocator(stack_allocator const &) noexcept = delete;
+        constexpr stack_allocator &operator=(stack_allocator const &) noexcept = delete;
 
         ~stack_allocator() noexcept
         {
             delete[] data;
         }
 
-        [[nodiscard]] inline constexpr T *allocate() noexcept
+        [[nodiscard]] constexpr T *allocate() noexcept
         {
             ++stack_ptr;
             return data[stack_ptr - 1];
         }
 
-        inline constexpr void deallocate() noexcept
+        constexpr void deallocate() noexcept
         {
             if (stack_ptr >= 1)
                 --stack_ptr;

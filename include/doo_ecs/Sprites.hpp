@@ -42,6 +42,10 @@ namespace tnt::doo
         /// @param sprite The sprite component of the object.
         void add_object(sprite_comp const &sprite);
 
+        /// @brief Add a new object with invalid data to the next index.
+        /// Useful when you want the object with next id not to be in a certain system.
+        void add_invalid();
+
         /// @brief Load the sprite data of the objects from a given json chunk.
         /// @param j The json chunk from where to load the sprite data of the objects.
         void from_json(Window const &win, nlohmann::json const &j);

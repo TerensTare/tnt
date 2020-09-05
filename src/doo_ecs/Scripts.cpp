@@ -9,11 +9,27 @@ namespace tnt::doo
     void scripts_sys::add_object(std::string_view filename)
     {
         [[unlikely]] if (updates.size() == updates.capacity())
+        {
+            script_queue.reserve(10);
             updates.reserve(10);
+        }
 
+        script_queue.emplace_back(updates.size());
         lua_ctx.script_file(filename.data());
 
         updates.emplace_back(lua_ctx["update"]);
+    }
+
+    void scripts_sys::add_invalid()
+    {
+        [[unlikely]] if (updates.size() == updates.capacity())
+        {
+            script_queue.reserve(10);
+            updates.reserve(10);
+        }
+
+        script_queue.emplace_back(-1);
+        updates.emplace_back(lua_ctx["nocollide_functionName"].get_or_create<sol::protected_function>());
     }
 
     void scripts_sys::Update(tnt::doo::object const &id, float time_)
@@ -26,6 +42,6 @@ namespace tnt::doo
         if (json_has(j, "script"))
             add_object(j["script"]);
         else
-            updates.emplace_back(lua_ctx["nocollide_functionName"].get_or_create<sol::protected_function>());
+            add_invalid();
     }
 } // namespace tnt::doo

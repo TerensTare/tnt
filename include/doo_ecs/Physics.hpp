@@ -16,8 +16,8 @@ namespace tnt::doo
 {
     inline namespace phys
     {
-        inline static constexpr float beta{0.05f};         /// < A constant used for baumgarte stabilization.
-        inline static constexpr Vector gravity{0.f, 10.f}; /// < A vector acting as the gravity force.
+        inline constexpr float beta{0.05f};         /// < A constant used for baumgarte stabilization.
+        inline constexpr Vector gravity{0.f, 10.f}; /// < A vector acting as the gravity force.
     }                                                      // namespace phys
 
     enum class body_type
@@ -55,6 +55,10 @@ namespace tnt::doo
         /// @note The position of the bounding box of the component is considered
         /// to be relative to the position of the body.
         void add_object(physics_comp const &body);
+
+        /// @brief Add a new object with invalid data to the next index.
+        /// Useful when you want the object with next id not to be in a certain system.
+        void add_invalid();
 
         /// @brief Apply the given force to the object with the given id.
         /// @param id The id of the object.
@@ -97,6 +101,8 @@ namespace tnt::doo
 
         std::vector<Vector> vel;   /// < The velocities of the objects.
         std::vector<Vector> accel; /// < The accelerations of the objects.
+
+        std::vector<object> physics_queue; /// < The id-s of all the objects of the physics system.
 
         std::vector<Rectangle> bound_box; /// < The bounding boxes of the bodies.
     } physics;                            /// < An instance of phys_sys.

@@ -3,6 +3,26 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a6]
+### Added
+- `Contributors` section on `README.md`.
+- `add_invalid` on each system of the Data Oriented ECS except `objects_sys`.
+- Partial support for Joysticks on `core/Input`. Joysticks are automatically detected when connected/removed from the device.
+- `utils/CoUtils.hpp`, which contains some coroutine-related utilities.
+- `cmake/Setup.cmake`, which contains some functions that wrap a part of the code on `CMakeLists.txt`.
+
+
+### Fixed
+- Incorrect behaviour of `tnt::Dot` on `math/Vector.hpp`. (thx [cgyurgyik](https://github.com/TerensTare/tnt/pull/8)).
+
+
+### Changed
+- `tnt::logger::error` is now marked as `[[noreturn]]`.
+
+
+### Removed
+- Redundant `inline` on `constexpr` functions. (thx again cgyurgyik).
+
 
 ## [0.1.0a5]
 ### Added
@@ -165,10 +185,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `tnt::lua::load` to load all needed packages. It works similar to `sol::state_view::open_libraries`.
 - `tnt::lua::lib` to be used as argument of `tnt::lua::load`.
 
+
+### Fixed
+- Some stuff on `README.md`.
+
+
 ### Changed
 - `Player::to_lua` on `main.cpp` is now `static`.
 - `tnt::lua::*` functions now return `sol::table`.
-- Rewrote/fixed some stuff on `README.md`.
+
 
 ### Removed
 - `math/GenericMath.hpp`, but its contents are available on `math/MathUtils.hpp`.
@@ -178,6 +203,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## 2020-06-12
 ### Added
 - `ai/steer/Steering.hpp`/`ai/steer/Steering.cpp`. It contains some basic steering behaviours that can be applied to `tnt::Object`s that have a `tnt::PhysicsComponent`.
+
 
 ### Fixed
 - Steering functions not producing desired behaviour.
@@ -210,7 +236,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - header `math/GenericMath.hpp`. There you will find `PI` (to be removed when C++20 adds support for some 'special' numbers like pi and e) and templated math-related lambdas like lerp, blerp and beziercurve.
 - `tnt::pcg::randomVector`.
-- Library's ImGui bindings for Lua. However, `sol2` gives anerror when using the vcpkg version for Windows. It is a known issue, and I hope it gets fixed soon.
+- Library's ImGui bindings for Lua.
 - `concept tnt::object`. Please use it as a function argument to reduce the number of `new`/`delete` calls.
 
 ### Changed
@@ -289,10 +315,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - A partial implementation of animations for `drawable` `tnt::Object`s. Not fully finished/tested yet.
 - Check for window resizing on `tnt::Window::handleEvents`.
 
+
 ### Fixed
 - `tnt::Object` rotating incorrectly.
 - `tnt::drawable` not showing when using `tnt::Space`.
 - `tnt::ImGui::hslider_*` not drawing correctly and/or out of bounds.
+
 
 ### Changed
 - Some functions on the implementation of `tnt::Scene`.
@@ -470,8 +498,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Stuff to turn `Logger.hpp` into a C++20 module partition.
 - `TnT.ixx`, which will be used as the main file of the module TnT.
 
+
+### Fixed
+- A typo related to `SDL2_DIR` on `azure-pipelines.yml`.
+
+
 ### Changed
-- Fixed a typo related to `SDL2_DIR` on `azure-pipelines.yml`.
 - Every `class` derived from `class Component` is (and should be) `final`, derived ONLY from `clas Component` and NOT `virtual`-ly inherited.
 - Moved the `class Timer` test to folder `test/timer/`.
 
@@ -483,10 +515,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Conditional check before `delete`-ing an `Object`'s `parent`.
 - Ability to move and resize ImGui windows. Widgets won't be drawn if they won't fit on the window.
 
+
+### Fixed
+- Missing `#include` on `AudioPlayer.cpp`.
+
+
 ### Changed
 - Renamed `concept camera_type` to `concept camera`.
 - Renamed `StackAllocator` to `stack_allocator`. It is still not functional.
-- Fixed `#include` on `AudioPlayer.cpp`.
 
 ## 2020-04-27
 ### Added
@@ -504,7 +540,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `noexcept` on some `struct Camera` functions.
 - Widget `text` and `newline` for ImGui.
 
+
 ## 2020-04-25
+### Fixed
+- A bug with `tnt::ImGui::button()` showing the wrong color.
+
+
 ### Changed
 - `tnt::ImGui::menu()` now needs a `std::string_view*` rather than `std::string*` to conserve space.
 - Now ImGui widgets require `std::size_t` for their id rather than `long long`, so that the id is not negative and it is compatible with `std::hash`.
@@ -512,7 +553,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `tnt::ImGui::checkbox()` now doesn't need to have an `id`, `x` and `y`, because it is drawn on the window. Just a `window` where to draw it, the `text` to draw to it and a `bool *value`. The same with `tnt::ImGui::button()` and `tnt::ImGui::menu()`.
 - `tnt::ImGui::progress_bar()` now has an offset between it's body and it's filled part and doesn't need `x` and `y` as parameter, but needs a `text` to draw on its side.
 - `tnt::ImGui::button()`'s width is now dependent on the size of the text you want to display on it.
-- Fixed a bug with `tnt::ImGui::button()` showing the wrong color.
 - Made the text size of `tnt::ImGui::button()` to be equal to the global font size.
 - The font ImGui used from `zeldadx` to `Inconsolata`.
 - The slider color of `hslider` and `slider` ImGui widgets.

@@ -93,9 +93,9 @@ namespace tnt::mirror
         inline explicit(!detail::copyable<V>) type(V const &v) noexcept(detail::nothrow_copyable<V>)
             : value{v} {}
 
-        inline constexpr char const *name() const noexcept { return this->base().name(); }
+        constexpr char const *name() const noexcept { return this->base().name(); }
 
-        inline constexpr size_t size() const noexcept { return sizeof(V); }
+        constexpr size_t size() const noexcept { return sizeof(V); }
 
         V value;
     };
@@ -108,7 +108,7 @@ namespace tnt::mirror
         inline explicit class_type(std::map<char const *, void *> const &data_) noexcept
             : data{data_} {}
 
-        inline constexpr char const *name() const noexcept { return typeid(T).name(); }
+        constexpr char const *name() const noexcept { return typeid(T).name(); }
 
         inline class_type<T> reflect(
             char const *Name, auto const T::*Arg)
@@ -143,7 +143,7 @@ namespace tnt::mirror
     {
         explicit enum_type() noexcept = default;
 
-        inline constexpr char const *name() const noexcept { return typeid(T).name(); }
+        constexpr char const *name() const noexcept { return typeid(T).name(); }
 
         inline enum_type<T> reflect(char const *Name, T const &Arg)
         {
@@ -167,7 +167,7 @@ namespace tnt::mirror
     // used for registering members of a type. NOTE: not finished yet
     struct mirror_t final
     {
-        explicit inline constexpr mirror_t() noexcept = default;
+        explicit constexpr mirror_t() noexcept = default;
 
         template <detail::class_t T>
         inline auto reflect(char const *Name, auto &&Arg)

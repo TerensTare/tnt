@@ -45,6 +45,36 @@ namespace tnt::doo
         running.emplace_back(if_else(!anim_.finished, index, -1)); // -1 or index
     }
 
+    void animations_sys::add_invalid()
+    {
+        object const &index{wrap.size()};
+        [[unlikely]] if (index == wrap.capacity())
+        {
+            wrap.reserve(10);
+            dir.reserve(10);
+            startX.reserve(10);
+            startY.reserve(10);
+            elapsed.reserve(10);
+            speed.reserve(10);
+            timePerFrame.reserve(10);
+            spacing.reserve(10);
+            current.reserve(10);
+            running.reserve(10);
+        }
+
+        wrap.emplace_back(animation_comp::wrap_mode::loop);
+        dir.emplace_back(animation_comp::direction::horizontal);
+        startX.emplace_back(0.f);
+        startY.emplace_back(0.f);
+        elapsed.emplace_back(0.f);
+        speed.emplace_back(0.f);
+        timePerFrame.emplace_back(0.f);
+        spacing.emplace_back(0.f);
+        current.emplace_back(0);
+
+        running.emplace_back(-1);
+    }
+
     void animations_sys::Update(object const &id, float time_) noexcept
     {
         elapsed[id] += time_;
@@ -96,18 +126,6 @@ namespace tnt::doo
             add_object(animation_comp{rect, frames, speed, space, dir_, wrap_});
         }
         else
-        {
-            wrap.emplace_back(animation_comp::single_run);
-            dir.emplace_back(animation_comp::horizontal);
-            startX.emplace_back(0.f);
-            startY.emplace_back(0.f);
-            elapsed.emplace_back(0.f);
-            speed.emplace_back(0.f);
-            timePerFrame.emplace_back(0.f);
-            spacing.emplace_back(0.f);
-            current.emplace_back(0);
-
-            running.emplace_back(-1);
-        }
+            add_invalid();
     }
 } // namespace tnt::doo

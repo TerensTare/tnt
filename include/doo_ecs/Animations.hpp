@@ -63,6 +63,10 @@ namespace tnt::doo
         /// @param anim_ The data of the animation.
         void add_object(animation_comp const &anim_);
 
+        /// @brief Add a new object with invalid data to the next index.
+        /// Useful when you want the object with next id not to be in a certain system.
+        void add_invalid();
+
         /// @brief Update the animation of the given object.
         /// @param id The id of the object's animation to update.
         /// @param time_ The time elapsed since the last Update() call.

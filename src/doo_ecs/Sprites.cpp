@@ -31,17 +31,30 @@ namespace tnt::doo
     // sprites_sys
     void sprites_sys::add_object(sprite_comp const &sprite)
     {
-        object const &index{tex.size()};
-        [[unlikely]] if (index == tex.capacity())
+        [[unlikely]] if (tex.size() == tex.capacity())
         {
             draw_queue.reserve(10);
             tex.reserve(10);
             clip.reserve(10);
         }
 
-        draw_queue.emplace_back(index);
+        draw_queue.emplace_back(tex.size());
         tex.emplace_back(sprite.tex);
         clip.emplace_back(sprite.crop);
+    }
+
+    void sprites_sys::add_invalid()
+    {
+        [[unlikely]] if (tex.size() == tex.capacity())
+        {
+            draw_queue.reserve(10);
+            tex.reserve(10);
+            clip.reserve(10);
+        }
+
+        draw_queue.emplace_back(-1);
+        tex.emplace_back(nullptr);
+        clip.emplace_back(SDL_Rect{0, 0, 0, 0});
     }
 
     void sprites_sys::from_json(Window const &win, nlohmann::json const &j)
@@ -55,11 +68,7 @@ namespace tnt::doo
                 add_object({win, file});
         }
         else
-        {
-            draw_queue.emplace_back(-1);
-            tex.emplace_back(nullptr);
-            clip.emplace_back(SDL_Rect{0, 0, 0, 0});
-        }
+            add_invalid();
     }
 
     void sprites_sys::Draw(object const &id, Window const &win) noexcept

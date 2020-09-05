@@ -6,7 +6,9 @@
 
 #include "pcg/Noise.hpp"
 #include "pcg/Random.hpp"
+
 #include "utils/Logger.hpp"
+#include "utils/CoUtils.hpp"
 
 SDL_Texture *tnt::pcg::staticNoise(SDL_Renderer *ren, int w, int h)
 {
@@ -20,20 +22,20 @@ SDL_Texture *tnt::pcg::staticNoise(SDL_Renderer *ren, int w, int h)
     std::vector<Uint32> pixels;
     pixels.reserve(w * h * 4);
     int pitch{0};
-    if (SDL_LockTexture(ret, nullptr, (void **)&pixels, &pitch) < 0)
+    if (SDL_LockTexture(ret, nullptr, (void **)pixels.data(), &pitch) < 0)
     {
         logger::debug("staticNoise couldn't lock texture!!\nError: {}", SDL_GetError());
         return nullptr;
     }
 
-    for (int i{0}; i < h; ++i)
-        for (int j{0}; j < w; ++j)
+    for (int const &i : range(0, h))
+        for (int const &j : range(0, w))
         {
-            const uint8_t r{static_cast<Uint8>(randomInt(0, 255))};
-            const uint8_t g{static_cast<Uint8>(randomInt(0, 255))};
-            const uint8_t b{static_cast<Uint8>(randomInt(0, 255))};
+            const uint8_t &r{static_cast<Uint8>(randomInt(0, 255))};
+            const uint8_t &g{static_cast<Uint8>(randomInt(0, 255))};
+            const uint8_t &b{static_cast<Uint8>(randomInt(0, 255))};
 
-            const Uint32 color{SDL_MapRGB(&pixelFmt, r, g, b)};
+            const Uint32 &color{SDL_MapRGB(&pixelFmt, r, g, b)};
             const Uint32 pos{i * (pitch / sizeof(unsigned)) + j};
             pixels[pos] = color;
         }

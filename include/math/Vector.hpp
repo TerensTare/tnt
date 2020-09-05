@@ -16,7 +16,7 @@
 
 namespace tnt {
 struct Vector {
-  inline constexpr Vector(float _x = 0.f, float _y = 0.f) noexcept
+  constexpr Vector(float _x = 0.f, float _y = 0.f) noexcept
       : x{_x}, y{_y} {}
 
   // template <typename T1, typename T2 = T1,
@@ -32,80 +32,80 @@ struct Vector {
   Vector(const Vector &) = default;
   Vector(Vector &&) = default;
 
-  inline constexpr float MagnitudeSqr() const noexcept { return x * x + y * y; }
-  inline constexpr float Magnitude() const noexcept {
+  constexpr float MagnitudeSqr() const noexcept { return x * x + y * y; }
+  constexpr float Magnitude() const noexcept {
     return Q_sqrt(x * x + y * y);
   }
 
-  inline constexpr void Normalize() noexcept {
+  constexpr void Normalize() noexcept {
     float const &rsqrt{Q_rsqrt(x * x + y * y)};
     x *= rsqrt;
     y *= rsqrt;
   }
 
-  inline constexpr Vector Normalized() const noexcept {
+  constexpr Vector Normalized() const noexcept {
     return Vector{x * Q_rsqrt(x * x + y * y), y * Q_rsqrt(x * x + y * y)};
   }
 
   // operators
-  inline constexpr Vector operator-() const noexcept { return Vector{-x, -y}; }
+  constexpr Vector operator-() const noexcept { return Vector{-x, -y}; }
 
-  inline constexpr Vector &operator+=(const Vector &rhs) noexcept {
+  constexpr Vector &operator+=(const Vector &rhs) noexcept {
     x += rhs.x;
     y += rhs.y;
     return *this;
   }
 
-  inline constexpr Vector &operator-=(const Vector &rhs) noexcept {
+  constexpr Vector &operator-=(const Vector &rhs) noexcept {
     x -= rhs.x;
     y -= rhs.y;
     return *this;
   }
 
-  inline constexpr Vector &operator*=(const Vector &rhs) noexcept {
+  constexpr Vector &operator*=(const Vector &rhs) noexcept {
     x *= rhs.x;
     y *= rhs.y;
     return *this;
   }
 
-  inline constexpr Vector &operator*=(float rhs) noexcept {
+  constexpr Vector &operator*=(float rhs) noexcept {
     x *= rhs;
     y *= rhs;
     return *this;
   }
 
-  inline constexpr Vector &operator/=(const Vector &rhs) noexcept {
+  constexpr Vector &operator/=(const Vector &rhs) noexcept {
     x /= rhs.x;
     y /= rhs.y;
     return *this;
   }
 
-  inline constexpr Vector &operator/=(float rhs) noexcept {
+  constexpr Vector &operator/=(float rhs) noexcept {
     x /= rhs;
     y /= rhs;
     return *this;
   }
 
-  inline constexpr Vector &operator=(const Vector &rhs) noexcept {
+  constexpr Vector &operator=(const Vector &rhs) noexcept {
     x = rhs.x;
     y = rhs.y;
     return *this;
   }
 
 #if defined(__cpp_impl_three_way_comparison) && __has_include(<compare>)
-  inline constexpr auto operator<=>(Vector const &rhs) const noexcept {
+  constexpr auto operator<=>(Vector const &rhs) const noexcept {
     if (auto const &cmp{x <=> rhs.x}; cmp != 0)
       return cmp;
     else
       return y <=> rhs.y;
   }
 #else
-  inline constexpr bool operator<(const Vector &rhs) const noexcept {
+  constexpr bool operator<(const Vector &rhs) const noexcept {
     return (x - rhs.x < FLT_EPSILON) ||
            ((x - rhs.x == FLT_EPSILON) && (y - rhs.y < FLT_EPSILON));
   }
 
-  inline constexpr bool operator>(const Vector &rhs) const noexcept {
+  constexpr bool operator>(const Vector &rhs) const noexcept {
     return (x - rhs.x > FLT_EPSILON) ||
            ((x - rhs.x == FLT_EPSILON) && (y - rhs.y > FLT_EPSILON));
   }
@@ -115,27 +115,27 @@ struct Vector {
   float y;
 };
 
-inline constexpr Vector operator+(const Vector &lhs,
+constexpr Vector operator+(const Vector &lhs,
                                   const Vector &rhs) noexcept {
   return Vector{lhs.x + rhs.x, lhs.y + rhs.y};
 }
 
-inline constexpr Vector operator-(const Vector &lhs,
+constexpr Vector operator-(const Vector &lhs,
                                   const Vector &rhs) noexcept {
   return Vector{lhs.x - rhs.x, lhs.y - rhs.y};
 }
 
-inline constexpr Vector operator*(const Vector &vec,
+constexpr Vector operator*(const Vector &vec,
                                   const float &num) noexcept {
   return Vector{vec.x * num, vec.y * num};
 }
 
-inline constexpr Vector operator/(const Vector &vec,
+constexpr Vector operator/(const Vector &vec,
                                   const float &num) noexcept {
   return Vector{vec.x / num, vec.y / num};
 }
 
-inline constexpr float Magnitude(float x, float y) noexcept {
+constexpr float Magnitude(float x, float y) noexcept {
   return Q_sqrt(x * x + y * y);
 }
 
@@ -145,11 +145,11 @@ inline float AngleOf(Vector const &lhs, Vector const &rhs) noexcept {
   return RadianToDegree(acosf(angleCos));
 }
 
-inline constexpr float Dot(Vector const &lhs, Vector const &rhs) noexcept {
+constexpr float Dot(Vector const &lhs, Vector const &rhs) noexcept {
   return lhs.x * rhs.x + lhs.y * rhs.y;
 }
 
-inline constexpr float Cross(Vector const &lhs, Vector const &rhs) noexcept {
+constexpr float Cross(Vector const &lhs, Vector const &rhs) noexcept {
   return lhs.x * rhs.y - lhs.y * rhs.x;
 }
 
@@ -167,35 +167,35 @@ inline Vector nlerp(Vector const &left, Vector const &right,
 }
 
 #if !defined(__cpp_impl_three_way_comparison) && !__has_include(<compare>)
-inline constexpr bool operator<=(Vector const &lhs,
+constexpr bool operator<=(Vector const &lhs,
                                  Vector const &rhs) noexcept {
   return !(lhs > rhs);
 }
 
-inline constexpr bool operator>=(const Vector &lhs,
+constexpr bool operator>=(const Vector &lhs,
                                  const Vector &rhs) noexcept {
   return !(lhs < rhs);
 }
 #endif
 
-inline constexpr bool operator==(const Vector &lhs,
+constexpr bool operator==(const Vector &lhs,
                                  const Vector &rhs) noexcept {
   return (lhs <= rhs) && (lhs >= rhs);
 }
 
 #if !defined(__cpp_impl_three_way_comparison) && !__has_include(<compare>)
-inline constexpr bool operator!=(const Vector &lhs,
+constexpr bool operator!=(const Vector &lhs,
                                  const Vector &rhs) noexcept {
   return !(lhs == rhs);
 }
 #endif
 
-inline static constexpr Vector VECTOR_ZERO{0.f, 0.f};
-inline static constexpr Vector VECTOR_ONE{1.f, 1.f};
-inline static constexpr Vector VECTOR_UP{0.f, -1.f};
-inline static constexpr Vector VECTOR_RIGHT{1.f, 0.f};
-inline static constexpr Vector VECTOR_DOWN{0.f, 1.f};
-inline static constexpr Vector VECTOR_LEFT{-1.f, 0.f};
+inline constexpr Vector VECTOR_ZERO{0.f, 0.f};
+inline constexpr Vector VECTOR_ONE{1.f, 1.f};
+inline constexpr Vector VECTOR_UP{0.f, -1.f};
+inline constexpr Vector VECTOR_RIGHT{1.f, 0.f};
+inline constexpr Vector VECTOR_DOWN{0.f, 1.f};
+inline constexpr Vector VECTOR_LEFT{-1.f, 0.f};
 } // namespace tnt
 
 inline std::ostream &operator<<(std::ostream &os, tnt::Vector const &rhs) {

@@ -18,23 +18,23 @@ namespace tnt
     struct Rectangle
     {
         // Needed for JSON
-        inline constexpr Rectangle() noexcept
+        constexpr Rectangle() noexcept
             : x{0.f}, y{0.f}, w{0.f}, h{0.f} {}
 
-        inline constexpr Rectangle(float x_, float y_, float w_, float h_) noexcept
+        constexpr Rectangle(float x_, float y_, float w_, float h_) noexcept
             : x{x_}, y{y_}, w{w_}, h{h_} {}
 
-        inline constexpr Rectangle(int x_, int y_, int w_, int h_) noexcept
+        constexpr Rectangle(int x_, int y_, int w_, int h_) noexcept
             : x{static_cast<float>(x_)}, y{static_cast<float>(y_)},
               w{static_cast<float>(w_)}, h{static_cast<float>(h_)} {}
 
-        inline constexpr Rectangle(Vector const &pos, float w_, float h_) noexcept
+        constexpr Rectangle(Vector const &pos, float w_, float h_) noexcept
             : x{pos.x}, y{pos.y}, w{w_}, h{h_} {}
 
         Rectangle(Rectangle const &) = default;
         Rectangle(Rectangle &&) = default;
 
-        inline constexpr Rectangle &operator=(Rectangle const &other) noexcept
+        constexpr Rectangle &operator=(Rectangle const &other) noexcept
         {
             x = other.x;
             y = other.y;
@@ -45,7 +45,7 @@ namespace tnt
 
         Rectangle &operator=(Rectangle &&other) noexcept = default;
 
-        inline constexpr Rectangle &operator+=(Rectangle const &other) noexcept
+        constexpr Rectangle &operator+=(Rectangle const &other) noexcept
         {
             x += other.x;
             y += other.y;
@@ -54,14 +54,14 @@ namespace tnt
             return *this;
         }
 
-        inline constexpr Rectangle &operator+=(Vector const &pos) noexcept
+        constexpr Rectangle &operator+=(Vector const &pos) noexcept
         {
             x += pos.x;
             y += pos.y;
             return *this;
         }
 
-        inline constexpr Rectangle &operator-=(Rectangle const &other) noexcept
+        constexpr Rectangle &operator-=(Rectangle const &other) noexcept
         {
             x -= other.x;
             y -= other.y;
@@ -70,35 +70,35 @@ namespace tnt
             return *this;
         }
 
-        inline constexpr Rectangle &operator-=(Vector const &pos) noexcept
+        constexpr Rectangle &operator-=(Vector const &pos) noexcept
         {
             x -= pos.x;
             y -= pos.y;
             return *this;
         }
 
-        inline constexpr Rectangle &operator*=(float const &scale) noexcept
+        constexpr Rectangle &operator*=(float const &scale) noexcept
         {
             w *= scale;
             h *= scale;
             return *this;
         }
 
-        inline constexpr Rectangle &operator*=(Vector const &scale) noexcept
+        constexpr Rectangle &operator*=(Vector const &scale) noexcept
         {
             w *= scale.x;
             h *= scale.y;
             return *this;
         }
 
-        inline constexpr Rectangle &operator/=(float const &scale) noexcept
+        constexpr Rectangle &operator/=(float const &scale) noexcept
         {
             w /= scale;
             h /= scale;
             return *this;
         }
 
-        inline constexpr Rectangle &operator/=(Vector const &scale) noexcept
+        constexpr Rectangle &operator/=(Vector const &scale) noexcept
         {
             w /= scale.x;
             h /= scale.y;
@@ -111,13 +111,13 @@ namespace tnt
         operator const SDL_Rect() const noexcept;
         operator const SDL_FRect() const noexcept;
 
-        inline constexpr bool Outside(Vector const &point) const noexcept
+        constexpr bool Outside(Vector const &point) const noexcept
         {
             return ((point.x < x) || (point.x > x + w) || (point.y < y) ||
                     (point.y > y + h));
         }
 
-        inline constexpr bool Contains(Vector const &point) const noexcept
+        constexpr bool Contains(Vector const &point) const noexcept
         {
             return !Outside(point);
         }
@@ -128,51 +128,51 @@ namespace tnt
         float h;
     };
 
-    inline constexpr Rectangle operator+(Rectangle const &lhs,
+    constexpr Rectangle operator+(Rectangle const &lhs,
                                          Rectangle const &rhs) noexcept
     {
         return Rectangle{lhs.x + rhs.x, lhs.y + rhs.y, lhs.w + rhs.w,
                          lhs.h + rhs.h};
     }
 
-    inline constexpr Rectangle operator+(Rectangle const &lhs,
+    constexpr Rectangle operator+(Rectangle const &lhs,
                                          Vector const &rhs) noexcept
     {
         return Rectangle{lhs.x + rhs.x, lhs.y + rhs.y,
                          lhs.w, lhs.h};
     }
 
-    inline constexpr Rectangle operator-(Rectangle const &lhs,
+    constexpr Rectangle operator-(Rectangle const &lhs,
                                          Rectangle const &rhs) noexcept
     {
         return Rectangle{lhs.x - rhs.x, lhs.y - rhs.y, lhs.w - rhs.w,
                          lhs.h - rhs.h};
     }
 
-    inline constexpr Rectangle operator-(Rectangle const &lhs,
+    constexpr Rectangle operator-(Rectangle const &lhs,
                                          Vector const &rhs) noexcept
     {
         return Rectangle{lhs.x - rhs.x, lhs.y - rhs.y,
                          lhs.w, lhs.h};
     }
 
-    inline constexpr Rectangle operator*(Rectangle const &lhs, float const &num) noexcept
+    constexpr Rectangle operator*(Rectangle const &lhs, float const &num) noexcept
     {
         return Rectangle{lhs.x, lhs.y, lhs.w * num, lhs.h * num};
     }
 
-    inline constexpr Rectangle operator/(Rectangle const &lhs, float const &num) noexcept
+    constexpr Rectangle operator/(Rectangle const &lhs, float const &num) noexcept
     {
         return Rectangle{lhs.x, lhs.y, lhs.w / num, lhs.h / num};
     }
 
-    inline constexpr Rectangle operator*(Rectangle const &lhs,
+    constexpr Rectangle operator*(Rectangle const &lhs,
                                          Vector const &scale) noexcept
     {
         return Rectangle{lhs.x, lhs.y, lhs.w * scale.x, lhs.h * scale.y};
     }
 
-    inline constexpr Rectangle operator/(Rectangle const &lhs,
+    constexpr Rectangle operator/(Rectangle const &lhs,
                                          Vector const &scale) noexcept
     {
         return Rectangle{lhs.x, lhs.y, lhs.w / scale.x, lhs.h / scale.y};

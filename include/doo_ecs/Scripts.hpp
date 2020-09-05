@@ -21,6 +21,10 @@ namespace tnt::doo
         /// @param filename The name of the .lua script file.
         void add_object(std::string_view filename);
 
+        /// @brief Add a new object with invalid data to the next index.
+        /// Useful when you want the object with next id not to be in a certain system.
+        void add_invalid();
+
         /// @brief Run update() from the script.
         /// @param id The id of the object to update.
         /// @param time_ The elapsed time since the last update call.
@@ -29,6 +33,7 @@ namespace tnt::doo
         /// @brief Load script data from a json chunk.
         void from_json(nlohmann::json const &j);
 
+        std::vector<object> script_queue;            /// < The id-s of all the objects connected to scripts.
         std::vector<sol::protected_function> updates; /// < The script functions of the objects.
     } scripts;                                        /// < An instance of scripts_sys
 } // namespace tnt::doo

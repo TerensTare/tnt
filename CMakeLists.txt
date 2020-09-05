@@ -69,7 +69,6 @@ find_package(sdl2-image CONFIG REQUIRED)
 find_package(sdl2-mixer CONFIG REQUIRED)
 find_package(sdl2-ttf CONFIG REQUIRED)
 find_package(sdl2-net CONFIG REQUIRED)
-# find_package(sdl2-gfx CONFIG REQUIRED)
 find_package(sol2 CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
@@ -89,52 +88,21 @@ if (TNT_DO_EXPERIMENTS)
 endif()
 
 # documentation stuff
-option(BUILD_DOCS "Build TnT documentation" ON)
+include(cmake/Setup.cmake)
 
-find_package(Doxygen)
-if(DOXYGEN_FOUND)
-    set(DOXYGEN_IN ${PROJECT_SOURCE_DIR}/Doxyfile.in)
-    set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/docs/Doxyfile)
-    set(DOXYGEN_INPUT_DIR ${PROJECT_SOURCE_DIR}/include)
-    set(DOXYGEN_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/docs)
-    file(WRITE ${DOXYGEN_OUT} "")
-    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
-    add_custom_target(DOCUMENTATION ALL
-        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/docs
-        COMMENT "Generating documentation with Doxygen"
-        VERBATIM)
-else()
-    message("Not generating documentation because Doxygen was not found")
+option(BUILD_DOCS "Build TnT documentation" ON)
+if(BUILD_DOCS)
+    build_docs()
 endif()
 
 add_executable(TnT main.cpp ${SOURCE_FILES})
 
-set_target_properties(TnT PROPERTIES LINKER_LANGUAGE CXX)
-
-target_include_directories(TnT PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
-target_include_directories(TnT PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
-target_link_libraries(TnT PRIVATE ${LUA_LIBRARIES})
-
 target_include_directories(TnT PRIVATE ${LUA_INCLUDE_DIR})
+target_include_directories(TnT PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
+target_include_directories(TnT PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
+    
 
-if(WIN32)
-    target_link_libraries(TnT PRIVATE SDL2::SDL2 SDL2::SDL2main)
-else()
-    target_link_libraries(TnT PRIVATE SDL2::SDL2 SDL2::SDL2-static)
-endif()
-
-# target_link_libraries(TnT PRIVATE SDL2::SDL2_gfx)
-target_link_libraries(TnT PRIVATE SDL2::SDL2_image)
-target_link_libraries(TnT PRIVATE SDL2::SDL2_mixer)
-target_link_libraries(TnT PRIVATE SDL2::SDL2_net)
-target_link_libraries(TnT PRIVATE SDL2::SDL2_ttf)
-target_link_libraries(TnT PRIVATE sol2::sol2)
-target_link_libraries(TnT PRIVATE fmt::fmt fmt::fmt-header-only)
-target_link_libraries(TnT PRIVATE nlohmann_json nlohmann_json::nlohmann_json)
-
-target_link_directories(TnT PRIVATE
-    ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/lib)
+setup_target(TnT)
 
 # Copy assets folder to build directory
 if(EXISTS ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/assets)
@@ -150,39 +118,5 @@ set(CMAKE_INSTALL_BINDIR .)
 option(BUILD_INSTALLER "Build the installer" OFF)
 
 if(BUILD_INSTALLER)
-    include(InstallRequiredSystemLibraries)
-
-    set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "The TnT engine.")
-    set(CPACK_PACKAGE_VENDOR "Terens Tare")
-
-    set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
-    set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-
-    set(CPACK_PACKAGE_VERSION_MAJOR "0")
-    set(CPACK_PACKAGE_VERSION_MINOR "1")
-    set(CPACK_PACKAGE_VERSION_PATCH "0")
-    set(CPACK_PACKAGE_INSTALL_DIRECTORY "TnT")
-    set(CPACK_PACKAGE_FILE_NAME "TnT")
-
-    set(CPACK_COMPONENTS_ALL binary assets)
-    set (CPACK_COMPONENT_APPLICATIONS_DISPLAY_NAME "TnT engine")
-    set (CPACK_COMPONENT_APPLICATIONS_DESCRIPTION
-        "A 2d game engine that uses Lua and C++20.")
-
-    if(WIN32 AND NOT UNIX)
-        set(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/assets\\\\TnT.png")
-        set(CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/assets\\\\TnT.ico")
-        set(CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/assets\\\\TnT.ico")
-        set(CPACK_NSIS_INSTALLED_ICON_NAME "${CMAKE_SOURCE_DIR}/assets\\\\TnT.ico")
-        set(CPACK_NSIS_DISPLAY_NAME "The TnT engine")
-        set(CPACK_NSIS_HELP_LINK "https:\\\\github.com/TerensTare/tnt")
-        set(CPACK_NSIS_MODIFY_PATH ON)
-    else()
-        set(CPACK_STRIP_FILES "build/Release/TnT")
-        set(CPACK_SOURCE_STRIP_FILES "")
-    endif()
-
-    set(CPACK_PACKAGE_EXECUTABLES "TnT" "assets/TnT.png")
-
-    include(CPack)
+    build_installer(TnT 0 1 0)
 endif()

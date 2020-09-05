@@ -57,7 +57,4 @@ namespace std
     };
 } // namespace std
 
-namespace tnt
-{} // namespace tnt
-
 #endif //! TNT_SDL_UTILS_HPP
