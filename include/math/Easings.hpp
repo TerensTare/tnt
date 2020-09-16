@@ -14,7 +14,7 @@ namespace tnt
     namespace back
     {
         inline constexpr auto EaseIn = [](float time, float begin, float change,
-                                   float duration) -> float {
+                                          float duration) -> float {
             time /= duration;
             return change * time * time *
                        ((PennerNumber + 1) * time - PennerNumber) +
@@ -22,7 +22,7 @@ namespace tnt
         };
 
         inline constexpr auto EaseOut = [](float time, float begin, float change,
-                                    float duration) -> float {
+                                           float duration) -> float {
             time = time / duration - 1;
             return change * (time * time *
                                  ((PennerNumber + 1) * time + PennerNumber) +
@@ -31,8 +31,8 @@ namespace tnt
         };
 
         inline constexpr auto EaseInOut = [](float time, float begin, float change,
-                                      float duration) -> float {
-            float const s{PennerNumber * 1.525f};
+                                             float duration) -> float {
+            float const &s{PennerNumber * 1.525f};
             if ((time /= duration / 2) < 1)
                 return change / 2 * (time * time * ((s + 1.f) * time - s)) +
                        begin;
@@ -45,7 +45,7 @@ namespace tnt
     namespace bounce
     {
         inline constexpr auto EaseOut = [](float time, float begin, float change,
-                                    float duration) -> float {
+                                           float duration) -> float {
             if ((time /= duration) < (1 / 2.75f))
                 return change * (7.5625f * time * time) + begin;
             else if (time < (2 / 2.75f))
@@ -66,13 +66,13 @@ namespace tnt
         };
 
         inline constexpr auto EaseIn = [](float time, float begin, float change,
-                                   float duration) -> float {
+                                          float duration) -> float {
             return change - EaseOut(duration - time, 0, change, duration) +
                    begin;
         };
 
         inline constexpr auto EaseInOut = [](float time, float begin, float change,
-                                      float duration) -> float {
+                                             float duration) -> float {
             if (time < duration / 2)
                 return EaseIn(time * 2, 0, change, duration) * .5f + begin;
             else
@@ -84,19 +84,19 @@ namespace tnt
     namespace circular
     {
         inline constexpr auto EaseIn = [](float time, float begin, float change,
-                                   float duration) -> float {
+                                          float duration) -> float {
             time /= duration;
             return -change * (sqrtf(1 - time * time) - 1) + begin;
         };
 
         inline constexpr auto EaseOut = [](float time, float begin, float change,
-                                    float duration) -> float {
+                                           float duration) -> float {
             time = time / duration - 1.f;
             return change * sqrtf(1 - time * time) + begin;
         };
 
         inline constexpr auto EaseInOut = [](float time, float begin, float change,
-                                      float duration) -> float {
+                                             float duration) -> float {
             if ((time /= duration / 2) < 1)
                 return -change / 2 * (sqrtf(1 - time * time) - 1) + begin;
             else
@@ -107,19 +107,19 @@ namespace tnt
     namespace cubic
     {
         inline constexpr auto EaseIn = [](float time, float begin, float change,
-                                   float duration) -> float {
+                                          float duration) -> float {
             time /= duration;
             return change * time * time * time + begin;
         };
 
         inline constexpr auto EaseOut = [](float time, float begin, float change,
-                                    float duration) -> float {
+                                           float duration) -> float {
             time = time / duration - 1.f;
             return change * (time * time * time + 1) + begin;
         };
 
         inline constexpr auto EaseInOut = [](float time, float begin, float change,
-                                      float duration) -> float {
+                                             float duration) -> float {
             if ((time /= duration / 2) < 1)
                 return change / 2 * time * time * time + begin;
             time -= 2;
@@ -207,12 +207,12 @@ namespace tnt
     namespace linear
     {
         inline constexpr auto NoEase = [](float time, float begin, float change,
-                                   float duration) -> float {
+                                          float duration) -> float {
             return change * time / duration + begin;
         };
 
         inline constexpr auto EaseIn = [](float time, float begin, float change,
-                                   float duration) -> float {
+                                          float duration) -> float {
             return change * time / duration + begin;
         };
 
@@ -228,7 +228,7 @@ namespace tnt
     namespace quad
     {
         inline constexpr auto EaseIn = [](float time, float begin, float change,
-                                   float duration) -> float {
+                                          float duration) -> float {
             time /= duration;
             return change * time * time + begin;
         };
@@ -250,7 +250,7 @@ namespace tnt
     namespace quart
     {
         inline constexpr auto EaseIn = [](float time, float begin, float change,
-                                   float duration) -> float {
+                                          float duration) -> float {
             time /= duration;
             return change * time * time * time * time + begin;
         };
@@ -274,7 +274,7 @@ namespace tnt
     namespace quint
     {
         inline constexpr auto EaseIn = [](float time, float begin, float change,
-                                   float duration) -> float {
+                                          float duration) -> float {
             time /= duration;
             return change * time * time * time * time * time + begin;
         };

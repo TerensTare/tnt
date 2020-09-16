@@ -37,8 +37,7 @@ namespace tnt::rpp
         template <typename Func>
         inline Func *Load(std::string_view func) noexcept
         {
-            processes.try_emplace(func.data(), nullptr);
-            return (Func *)SDL_LoadFunction(dll, func.data());
+            return (Func *)processes.try_emplace(func.data(), SDL_LoadFunction(dll, func.data())).first->second;
         }
 
         void Update() noexcept;

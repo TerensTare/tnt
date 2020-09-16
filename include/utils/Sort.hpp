@@ -24,7 +24,7 @@ namespace tnt
         bubble_sort_view() noexcept = default;
 
         // clang-format off
-        constexpr bubble_sort_view(R &&r)
+        explicit constexpr bubble_sort_view(R &&r)
             requires std::move_constructible<R> &&
             std::three_way_comparable<std::ranges::range_value_t<R>>
             // clang-format on
@@ -59,7 +59,7 @@ namespace tnt
         ->bubble_sort_view<std::ranges::views::all_t<R>>;
 #endif
 
-    struct bubble_sort_fn
+    struct bubble_sort_fn final
     {
         template <std::ranges::input_range R>
         constexpr auto operator()(R &&rng) const noexcept

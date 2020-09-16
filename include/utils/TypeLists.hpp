@@ -5,11 +5,8 @@
 // https://monoinfinito.wordpress.com/series/introduction-to-c-template-metaprogramming/?fbclid=IwAR2cfx-NAVUFEDyG7NtSwKAhrkDE0cdIycTq39Ii91oMYoKIQ2gILbhPNq4
 
 // TODO: use sth similar to TypeLists to create a decision making AI.
-// NOTE: tl::at can be used carefully as it doesn't check for out of bounds
+// NOTE: tl::at should be used carefully as it doesn't check for out of bounds
 // value.
-
-// TODO(maybe):
-// use this to hold Components ??
 
 namespace tnt
 {

@@ -2,8 +2,7 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 #include "exp/Runtimer.hpp"
-
-#include <iostream>
+#include "utils/Logger.hpp"
 
 namespace fs = std::filesystem;
 
@@ -11,12 +10,13 @@ tnt::rpp::RuntimeObject::RuntimeObject(std::string_view path) noexcept
     : binPath{path.data()}
 {
     if (dll = SDL_LoadObject(path.data()); !dll)
-        std::cout << "Error loading " << path << "!! " << SDL_GetError();
+        logger::info("Error loading {}!! {}", path, SDL_GetError());
 }
 
 tnt::rpp::RuntimeObject::~RuntimeObject() noexcept
 {
-    SDL_UnloadObject(dll);
+    if (dll)
+        SDL_UnloadObject(dll);
 }
 
 void tnt::rpp::RuntimeObject::Update() noexcept
@@ -28,7 +28,7 @@ void tnt::rpp::RuntimeObject::Update() noexcept
             last != lastTime)
         {
             if (std::string const &tmp{binPath + "_tmp.dll"};
-                fs::copy_file(binPath, tmp))
+                fs::copy_file(binPath, tmp, fs::copy_options::overwrite_existing))
             {
                 if (void *temp{SDL_LoadObject(tmp.c_str())};
                     temp)
@@ -37,11 +37,23 @@ void tnt::rpp::RuntimeObject::Update() noexcept
                         processes[proc] = SDL_LoadFunction(temp, proc.c_str());
 
                     SDL_UnloadObject(dll);
+                    fs::remove(dll_path);
+
+                    fs::copy_file(tmp, binPath, fs::copy_options::overwrite_existing);
                     dll = temp;
-                    lastTime = last;
+
+                    // for (auto const &[proc, _] : processes)
+                    //     processes[proc] = SDL_LoadFunction(dll, proc.c_str());
                 }
+                else
+                    logger::info("Error loading {}!! {}", tmp, SDL_GetError());
+
+                fs::remove(tmp);
+                lastTime = last;
             }
         }
+        else
+            tnt::logger::info("Not updating this frame");
     }
 }
 

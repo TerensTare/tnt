@@ -3,6 +3,29 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a7]
+### Added
+- `doo_ecs/Steering`, which adds support for steering behaviours to the objects that are part of the physics system.
+- `tnt::AngleOfR`, which is just the same as `tnt::AngleOf`, but the result is in radians.
+- Overload of `tnt::AngleOf`, which returns the rotation of a `tnt::Vector`.
+- Support for giving physics objects a maximum velocity and acceleration. If one of these properties is specified when loading from a json chunk, the other is mandatory to be specified.
+- `tnt::doo::has_object` on `doo_ecs/Base`, to check whenever a certain DOO ECS system have a member with the given id.
+- An experimental work-in-progress implementation for handling skeletal animations (`doo_ecs/Bones`).
+- `CODESTYLE.md`, which contains a guide to the coding style used on the engine's source code.
+- A partial experimental implementation of actions and action lists, which supports coroutine functions.
+- Support for logging with colored output.
+- `tnt::doo::object_data::parent` and `tnt::doo::objects_sys::parent`, which keep track of the parent of the object. That means the Data Oriented ECS objects now support global/local coordinates. Use `-1` to show that the object has no parent. The members `angle`, `scale` and `pos` now store the local coordinates. The same applies to physics' `vel`, `maxVel`, `accel` and `maxAccel` properties. NOTE: when constructing a new object for `objects_sys` or `physics_sys`, the upmentioned parameter members are treated like using the global context.
+- `gAngle`, `gScale`, and `gPos` on `tnt::doo::objects_sys`,
+which get the required data related to the global context.
+- `tnt::doo::objects_sys::set_parent`, which changes the parent of the given object.
+
+### Changed
+- The Data Oriented ECS now updates and draws objects using global coordinates.
+- `tnt::bubble_sort_fn` is now `final`.
+- `tnt::doo::object_data` is now `final`.
+- Rewrote some of the implementation of `utils/TypeLists.hpp`.
+
+
 ## [0.1.0a6]
 ### Added
 - `Contributors` section on `README.md`.

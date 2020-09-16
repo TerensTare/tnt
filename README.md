@@ -57,7 +57,7 @@ Please see [CONTRIBUTING.md](./CONTRIBUTING.md) to learn how you can contribute 
 ## Contributors
 
 A special thanks goes to:
-- cgyurgyik (#8)
+- cgyurgyik ([#8](https://github.com/TerensTare/tnt/pull/8))
 
 
 ## Q&A

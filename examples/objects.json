@@ -18,7 +18,15 @@
                 "h": 60
             },
             "damping": 0.99995,
-            "restitution": 0.999
+            "restitution": 0.999,
+            "max_vel": {
+                "x": 100,
+                "y": 100
+            },
+            "max_accel": {
+                "x": 30,
+                "y": 30
+            }
         },
         "sprite": {
             "file": "assets/player.png",

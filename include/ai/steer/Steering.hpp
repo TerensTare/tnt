@@ -13,7 +13,7 @@ namespace tnt
     class Object;
 }
 
-namespace tnt::steer
+namespace [[deprecated("Use tnt::doo::steer instead.")]] tnt::steer
 {
     /// @brief Direct @c obj towards @c target.
     /// @param obj The object to make seek towards @c target.

@@ -5,7 +5,10 @@
 
 #include "doo_ecs/Physics.hpp"
 #include "doo_ecs/Sprites.hpp"
+
 #include "json/JsonRectangle.hpp"
+#include "json/JsonVector.hpp"
+
 #include "utils/Assert.hpp"
 
 namespace tnt::doo
@@ -21,30 +24,43 @@ namespace tnt::doo
             restitution.reserve(10);
 
             vel.reserve(10);
+            maxVel.reserve(10);
             accel.reserve(10);
+            maxAccel.reserve(10);
 
             physics_queue.reserve(10);
 
             bound_box.reserve(10);
         }
 
-        physics_queue.emplace_back(id);
-
         inv_mass.emplace_back(if_else(body.type == body_type::fixed, 0.f, 1 / body.mass));
-
-        if (body.bound_box != Rectangle{0, 0, 0, 0})
-            bound_box.emplace_back(body.bound_box + objects.pos[id]);
-        else
-            bound_box.emplace_back(
-                objects.pos[id],
-                objects.scale[id].x * sprites.clip[id].w,
-                objects.scale[id].y * sprites.clip[id].h);
 
         damping.emplace_back(body.damping);
         restitution.emplace_back(body.restitution);
 
-        vel.emplace_back(VECTOR_ZERO);
-        accel.emplace_back(VECTOR_ZERO);
+        if (objects.parent[id] == -1)
+        {
+            vel.emplace_back(VECTOR_ZERO);
+            maxVel.emplace_back(body.maxVel);
+            accel.emplace_back(VECTOR_ZERO);
+            maxAccel.emplace_back(body.maxAccel);
+        }
+        else
+        {
+            vel.emplace_back(-gVel(objects.parent[id]));
+            maxVel.emplace_back(body.maxVel - gMaxVel(objects.parent[id]));
+            accel.emplace_back(-gAccel(objects.parent[id]));
+            maxAccel.emplace_back(body.maxAccel - gMaxAccel(objects.parent[id]));
+        }
+
+        physics_queue.emplace_back(id);
+        if (body.bound_box != Rectangle{0, 0, 0, 0})
+            bound_box.emplace_back(body.bound_box + objects.gPos(id));
+        else
+            bound_box.emplace_back(
+                objects.gPos(id),
+                objects.gScale(id).x * sprites.clip[id].w,
+                objects.gScale(id).y * sprites.clip[id].h);
     }
 
     void physics_sys::add_invalid()
@@ -57,7 +73,9 @@ namespace tnt::doo
             restitution.reserve(10);
 
             vel.reserve(10);
+            maxVel.reserve(10);
             accel.reserve(10);
+            maxAccel.reserve(10);
 
             physics_queue.reserve(10);
             bound_box.reserve(10);
@@ -69,7 +87,9 @@ namespace tnt::doo
         restitution.emplace_back(0.f);
 
         vel.emplace_back(VECTOR_ZERO);
+        maxVel.emplace_back(40.f, 40.f);
         accel.emplace_back(VECTOR_ZERO);
+        maxAccel.emplace_back(15.f, 15.f);
 
         physics_queue.emplace_back(-1);
         bound_box.emplace_back(0.f, 0.f, 0.f, 0.f);
@@ -78,6 +98,7 @@ namespace tnt::doo
     void physics_sys::addForce(object const &id, Vector const &force) noexcept
     {
         accel[id] += (force * inv_mass[id]);
+        accel[id] = if_else(accel[id] > maxAccel[id], maxAccel[id], accel[id]);
     }
 
     void physics_sys::addGlobalForce(Vector const &force) noexcept
@@ -87,7 +108,7 @@ namespace tnt::doo
             std::execution::par_unseq,
             objects.active.cbegin(), objects.active.cend(),
             [this, &force](object const &id) noexcept -> void {
-                accel[id] += (totalForce * inv_mass[id]);
+                addForce(id, totalForce);
             });
     }
 
@@ -101,6 +122,7 @@ namespace tnt::doo
 
         vel[id] += (accel[id] * time_);
         vel[id] *= damp;
+        vel[id] = if_else(vel[id] > maxVel[id], maxVel[id], vel[id]);
     }
 
     bool physics_sys::colliding(object const &id, object const &id2) noexcept
@@ -117,8 +139,7 @@ namespace tnt::doo
     void physics_sys::resolve(object const &id, object const &id2) noexcept
     {
         Vector const &normal{[&id, &id2]() -> Vector {
-            Vector const &n{objects.pos[id2] - objects.pos[id]};
-            return n.Normalized();
+            return (objects.gPos(id2) - objects.gPos(id)).Normalized();
         }()};
 
         Vector const &rel_vel{vel[id2] - vel[id]};
@@ -138,6 +159,7 @@ namespace tnt::doo
 
         vel[id] -= impulse * totalMass * inv_mass[id];
         vel[id2] += impulse * totalMass * inv_mass[id2];
+        vel[id2] = if_else(vel[id2] > maxVel[id2], maxVel[id2], vel[id2]);
     }
 
     void physics_sys::from_json(nlohmann::json const &j)
@@ -145,11 +167,53 @@ namespace tnt::doo
         if (json_has(j, "phys"))
         {
             if (nlohmann::json const &phys{j["phys"]}; json_has(phys, "bounds"))
-                add_object(physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}, .bound_box{phys["bounds"]}});
+            {
+                if (json_has(phys, "max_vel") || json_has(phys, "max_accel"))
+                    add_object(physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}, .maxVel = phys["max_vel"], .maxAccel = phys["max_accel"], .bound_box{phys["bounds"]}});
+                else
+                    add_object(physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}, .bound_box{phys["bounds"]}});
+            }
             else
-                add_object(physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}});
+            {
+                if (json_has(phys, "max_vel") || json_has(phys, "max_accel"))
+                    add_object(physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}, .maxVel = phys["max_vel"], .maxAccel = phys["max_accel"]});
+                else
+                    add_object(physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}});
+            }
         }
         else
             add_invalid();
+    }
+
+    Vector physics_sys::gVel(object const &id) const noexcept
+    {
+        if (objects.parent[id] == -1)
+            return vel[id];
+        Vector const &parent_vel{gVel(objects.parent[id])};
+        return parent_vel + RotateVector(vel[id], AngleOf(parent_vel) - AngleOf(vel[id]));
+    }
+
+    Vector physics_sys::gMaxVel(object const &id) const noexcept
+    {
+        if (objects.parent[id] == -1)
+            return maxVel[id];
+        Vector const &parent_vel{gMaxVel(objects.parent[id])};
+        return parent_vel + RotateVector(maxVel[id], AngleOf(parent_vel) - AngleOf(maxVel[id]));
+    }
+
+    Vector physics_sys::gAccel(object const &id) const noexcept
+    {
+        if (objects.parent[id] == -1)
+            return accel[id];
+        Vector const &parent_accel{gAccel(objects.parent[id])};
+        return parent_accel + RotateVector(accel[id], AngleOf(parent_accel) - AngleOf(accel[id]));
+    }
+
+    Vector physics_sys::gMaxAccel(object const &id) const noexcept
+    {
+        if (objects.parent[id] == -1)
+            return maxAccel[id];
+        Vector const &parent_accel{gMaxAccel(objects.parent[id])};
+        return parent_accel + RotateVector(maxAccel[id], AngleOf(parent_accel) - AngleOf(maxAccel[id]));
     }
 } // namespace tnt::doo

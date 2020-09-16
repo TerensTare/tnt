@@ -8,8 +8,9 @@
 #include "doo_ecs/Animations.hpp"
 #include "doo_ecs/Physics.hpp"
 #include "doo_ecs/Sprites.hpp"
+#include "doo_ecs/Steering.hpp"
 
-#include "imgui/ImGui.hpp"
+#include "format/FormatedVector.hpp"
 
 #include "utils/Timer.hpp"
 #include "utils/Logger.hpp"
@@ -18,6 +19,7 @@ using tnt::doo::animations;
 using tnt::doo::objects;
 using tnt::doo::physics;
 using tnt::doo::sprites;
+using tnt::doo::steer;
 
 int main(int argc, char **argv)
 {
@@ -36,8 +38,6 @@ int main(int argc, char **argv)
         }
     }
 
-    tnt_imgui_init(window);
-
     float dt{0.f};
     tnt::Timer timer;
     SDL_Event e;
@@ -50,39 +50,26 @@ int main(int argc, char **argv)
         while (SDL_PollEvent(&e))
             window.handleEvents(e);
 
+
         window.Clear();
         for (tnt::doo::object const &obj : objects.active)
         {
             // update
-            physics.Update(obj, dt);
-            animations.Update(obj, dt);
+            if (tnt::doo::has_object(physics.physics_queue, obj))
+                physics.Update(obj, dt);
+
+            if (tnt::doo::has_object(animations.running, obj))
+                animations.Update(obj, dt);
 
             // draw
-            if (sprites.draw_queue.size() > obj &&
-                sprites.draw_queue[obj] != -1)
+            if (tnt::doo::has_object(sprites.draw_queue, obj))
                 sprites.Draw(obj, window);
-        }
 
-        if (tnt::ImGui::Begin(window, "Hello", 300, 100))
-        {
-            if (tnt::ImGui::BeginSection(window, "Test"))
-            {
-                tnt::ImGui::colored_text(window, "Some text", 255, 140, 0, 0);
-                tnt::ImGui::EndSection();
-            }
-
-            {
-                static float value{125678.23f};
-                tnt::ImGui::hslider_float(window, "float", 1000.f, 200000.f, &value);
-            }
-
-            tnt::ImGui::End();
+            tnt::logger::info("{}:\npos: {}", obj, objects.gPos(obj));
         }
 
         window.Render();
     }
-
-    tnt_imgui_close();
 
     return 0;
 }

@@ -73,12 +73,12 @@ namespace tnt::doo
 
     void sprites_sys::Draw(object const &id, Window const &win) noexcept
     {
-        float const &dx{clip[id].w * objects.scale[id].x * .5f};
-        float const &dy{clip[id].h * objects.scale[id].y * .5f};
-        SDL_FRect const &dst{objects.pos[id].x - dx, objects.pos[id].y - dy, 2 * dx, 2 * dy};
+        float const &dx{clip[id].w * objects.gScale(id).x * .5f};
+        float const &dy{clip[id].h * objects.gScale(id).y * .5f};
+        SDL_FRect const &dst{objects.gPos(id).x - dx, objects.gPos(id).y - dy, 2 * dx, 2 * dy};
 
         SDL_RenderCopyExF(win.getRenderer(), tex[id],
-                          &clip[id], &dst, objects.angle[id],
+                          &clip[id], &dst, objects.gAngle(id),
                           nullptr, SDL_FLIP_NONE);
     }
 } // namespace tnt::doo

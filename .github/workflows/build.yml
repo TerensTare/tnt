@@ -22,7 +22,7 @@ on: ["push", "pull_request"]
 jobs:
   check-code:
     name: Check code quality
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
     steps:
       - name: IntelliCode Team Completions
         uses: microsoft/vs-intellicode@v1.0

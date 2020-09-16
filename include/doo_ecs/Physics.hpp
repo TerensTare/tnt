@@ -6,8 +6,7 @@
 
 // TODO:
 // springs.
-// maximal speed/acceleration.
-// move the bounding box when the body/object moves.
+// when adding a new fixed object, ignore it's mass value.
 // modify the collision algorithm to return what kind of collision occurs (horizontal/vertical/none).
 // (maybe):
 // set some default values (ex for damping, mass) ??
@@ -18,12 +17,13 @@ namespace tnt::doo
     {
         inline constexpr float beta{0.05f};         /// < A constant used for baumgarte stabilization.
         inline constexpr Vector gravity{0.f, 10.f}; /// < A vector acting as the gravity force.
-    }                                                      // namespace phys
+    }                                               // namespace phys
 
-    enum class body_type
+    enum class body_type : uint8_t
     {
         fixed = 0, /// < The body is fixed in a certain position.
-        dynamic    /// < The body can move freely.
+        kinematic, /// < The body can move freely and collide only with kinematic bodies.
+        dynamic    /// < The body can move freely and collide with dynamic or fixed bodies.
     };
 
     enum class collision_type
@@ -35,17 +35,19 @@ namespace tnt::doo
 
     struct physics_comp final
     {
-        body_type type;
+        body_type type{body_type::dynamic};
         float mass;
         float damping;
         float restitution;
-        Rectangle bound_box{};
+        Vector maxVel{40.f, 40.f};
+        Vector maxAccel{15.f, 15.f};
+        Rectangle bound_box;
     };
 
     /// @brief A struct that handles the physics data of all the objects.
     inline struct physics_sys final
     {
-        inline physics_sys() noexcept = default;
+        physics_sys() = default;
 
         physics_sys(physics_sys const &) = delete;
         physics_sys &operator=(physics_sys const &) = delete;
@@ -92,6 +94,22 @@ namespace tnt::doo
         /// @param j The json chunk that contains the objects data.
         void from_json(nlohmann::json const &j);
 
+        /// @brief Get the velocity of the object in global context.
+        /// @param id The id of the object.
+        [[nodiscard]] Vector gVel(object const &id) const noexcept;
+
+        /// @brief Get the maximal velocity of the object in global context.
+        /// @param id The id of the object.
+        [[nodiscard]] Vector gMaxVel(object const &id) const noexcept;
+
+        /// @brief Get the acceleration of the object in global context.
+        /// @param id The id of the object.
+        [[nodiscard]] Vector gAccel(object const &id) const noexcept;
+
+        /// @brief Get the maximum acceleration of the object in global context.
+        /// @param id The id of the object.
+        [[nodiscard]] Vector gMaxAccel(object const &id) const noexcept;
+
         tnt::Vector totalForce{0.f, 0.f};
 
         std::vector<float> inv_mass; /// < The inverse of the mass of each objects.
@@ -99,8 +117,10 @@ namespace tnt::doo
         std::vector<float> damping;     /// < The damping of the objects.
         std::vector<float> restitution; /// < The restitution of the objects.
 
-        std::vector<Vector> vel;   /// < The velocities of the objects.
-        std::vector<Vector> accel; /// < The accelerations of the objects.
+        std::vector<Vector> vel;      /// < The velocities of the objects.
+        std::vector<Vector> maxVel;   /// < The maximal velocities of the objects.
+        std::vector<Vector> accel;    /// < The accelerations of the objects.
+        std::vector<Vector> maxAccel; /// < The maximal accelerations of the objects.
 
         std::vector<object> physics_queue; /// < The id-s of all the objects of the physics system.
 

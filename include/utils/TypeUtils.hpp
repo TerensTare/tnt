@@ -1,15 +1,8 @@
 #ifndef TNT_TYPE_UTILS_HPP
 #define TNT_TYPE_UTILS_HPP
 
-// TODO:
-// separate multithreading utilities into a different file.
-// TODO: check this
-// https://www.youtube.com/watch?v=Zcqwb3CWqs4&pbjreload=10
-
 namespace tnt
 {
-    // TODO:
-    // concepts usage (std::invocable, etc)
     template <typename... Ts>
     struct overload final : Ts...
     {
@@ -17,9 +10,8 @@ namespace tnt
     };
 
     template <typename... Ts>
-    overload(Ts...)->overload<Ts...>;
+    overload(Ts...) -> overload<Ts...>;
 
-    // TODO: use boolean concept.
     // TODO: ensure ret can multiply an int
     inline constexpr auto if_then = [](bool cond, auto const &ret) {
         return (ret * cond);
