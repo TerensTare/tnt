@@ -3,6 +3,36 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a8]
+### Added
+- `struct`s for checking supported SIMD instructions by the machine on `utils/Traits.hpp`.
+- `vcpkg.json`, which will automatically install the dependencies of the engine using vcpkg.
+- Support for more steering behaviours.
+- `concept tnt::doo::system`, which contains the basic requirements that a data type should have to be called a system of the Data Oriented ECS.
+- `concept tnt::logger::printable`, which checks if a type can be used as a parameter to the engine's logger.
+- `tnt::doo::sprites_sys::draw_area`, which returns the area where the object passed as a parameter will be drawed.
+
+### Fixed
+- An issue with `fileIO/TextureAtlas`.
+- Some issues related to non-correct calculations with global data on the Data Oriented ECS.
+
+### Changed
+- Updated Github Actions, Microsoft Azure Pipelines and AppVeyor build due to changes to `CMakeLists.txt`.
+- Updated `INSTALL.md` to explain how the build steps change using vcpkg manifests.
+- CMake will now automatically find vcpkg, but you have to define the `VCPKG_ROOT` environment variable.
+- When building with CMake, `/fp:fast` and `-ffast-math` will be defined if using MSVC and GCC/Clang to enable faster floating point operations.
+- All the functions of `tnt::logger` now require that their parameters satisfy `tnt::logger::printable`.
+- All the Data Oriented ECS systems will now check if an object is part of the system when calling `Update`. `tnt::doo::sprites_sys` will do the same thing on the `Draw` function.
+- Rewrote `tnt::Rectangle::Outside` using `tnt::Rectangle::Contains`.
+- Rewrote `utils/Logger.hpp` to have no overload (one function for each logging level).
+- Some style-related stuff on `Doxyfile.in`.
+- Modified the example program to show how to use the global coordinates with the Data Oriented ECS.
+
+### Removed
+- Folder `ai`, which contained `ai/steer/Steering` files.
+- `tnt_imgui_close`. ImGui-related resources will be freed automatically on exit.
+
+
 ## [0.1.0a7]
 ### Added
 - `doo_ecs/Steering`, which adds support for steering behaviours to the objects that are part of the physics system.

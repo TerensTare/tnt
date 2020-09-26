@@ -9,6 +9,8 @@
 #include "json/JsonRectangle.hpp"
 #include "json/JsonVector.hpp"
 
+#include "imgui/ImGui.hpp"
+
 #include "utils/Assert.hpp"
 
 namespace tnt::doo
@@ -106,7 +108,7 @@ namespace tnt::doo
         totalForce += force;
         std::for_each(
             std::execution::par_unseq,
-            objects.active.cbegin(), objects.active.cend(),
+            physics_queue.cbegin(), physics_queue.cend(),
             [this, &force](object const &id) noexcept -> void {
                 addForce(id, totalForce);
             });
@@ -114,6 +116,9 @@ namespace tnt::doo
 
     void physics_sys::Update(object const &id, float time_) noexcept
     {
+        if (!has_object(physics_queue, id))
+            return;
+
         check(time_ > 0.f, "Calling tnt::doo::physics_sys::Update with parameter time_ equal to 0. Objects will not be updated!!");
         float const &damp{std::powf(damping[id], time_)};
 
@@ -138,9 +143,7 @@ namespace tnt::doo
 
     void physics_sys::resolve(object const &id, object const &id2) noexcept
     {
-        Vector const &normal{[&id, &id2]() -> Vector {
-            return (objects.gPos(id2) - objects.gPos(id)).Normalized();
-        }()};
+        Vector const &normal{(objects.gPos(id2) - objects.gPos(id)).Normalized()};
 
         Vector const &rel_vel{vel[id2] - vel[id]};
         float const &velAlongNormal{Dot(rel_vel, normal)};
@@ -183,6 +186,17 @@ namespace tnt::doo
         }
         else
             add_invalid();
+    }
+
+    void physics_sys::draw_imgui(object const &id, Window const &win) noexcept
+    {
+        if (tnt::ImGui::BeginSection(win, "Physics"))
+        {
+            tnt::ImGui::hslider_float(win, "Damping", 0.f, 1.f, &physics.damping[id]);
+            tnt::ImGui::hslider_float(win, "Restitution", 0.f, 1.f, &physics.restitution[id]);
+
+            tnt::ImGui::EndSection();
+        }
     }
 
     Vector physics_sys::gVel(object const &id) const noexcept

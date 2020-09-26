@@ -94,6 +94,11 @@ namespace tnt::doo
         /// @param j The json chunk that contains the objects data.
         void from_json(nlohmann::json const &j);
 
+        /// @brief Draw widgets on the given window to modify the datas of the system.
+        /// @param id The id of the active object.
+        /// @param win The window where to draw the widgets.
+        void draw_imgui(object const &id, Window const &win) noexcept;
+
         /// @brief Get the velocity of the object in global context.
         /// @param id The id of the object.
         [[nodiscard]] Vector gVel(object const &id) const noexcept;

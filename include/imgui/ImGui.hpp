@@ -280,7 +280,4 @@ namespace tnt
 /// @param win The target game window.
 void tnt_imgui_init(tnt::Window const &win) noexcept;
 
-/// @brief Cleans up all ImGui-related stuff.
-void tnt_imgui_close() noexcept;
-
 #endif //! TNT_IMGUI_LIB_HPP

@@ -113,13 +113,13 @@ namespace tnt
 
         constexpr bool Outside(Vector const &point) const noexcept
         {
-            return ((point.x < x) || (point.x > x + w) || (point.y < y) ||
-                    (point.y > y + h));
+            return !Contains(point);
         }
 
         constexpr bool Contains(Vector const &point) const noexcept
         {
-            return !Outside(point);
+            return ((point.x > x) && (point.x < x + w) && (point.y > y) &&
+                    (point.y < y + h));
         }
 
         float x;
@@ -129,28 +129,28 @@ namespace tnt
     };
 
     constexpr Rectangle operator+(Rectangle const &lhs,
-                                         Rectangle const &rhs) noexcept
+                                  Rectangle const &rhs) noexcept
     {
         return Rectangle{lhs.x + rhs.x, lhs.y + rhs.y, lhs.w + rhs.w,
                          lhs.h + rhs.h};
     }
 
     constexpr Rectangle operator+(Rectangle const &lhs,
-                                         Vector const &rhs) noexcept
+                                  Vector const &rhs) noexcept
     {
         return Rectangle{lhs.x + rhs.x, lhs.y + rhs.y,
                          lhs.w, lhs.h};
     }
 
     constexpr Rectangle operator-(Rectangle const &lhs,
-                                         Rectangle const &rhs) noexcept
+                                  Rectangle const &rhs) noexcept
     {
         return Rectangle{lhs.x - rhs.x, lhs.y - rhs.y, lhs.w - rhs.w,
                          lhs.h - rhs.h};
     }
 
     constexpr Rectangle operator-(Rectangle const &lhs,
-                                         Vector const &rhs) noexcept
+                                  Vector const &rhs) noexcept
     {
         return Rectangle{lhs.x - rhs.x, lhs.y - rhs.y,
                          lhs.w, lhs.h};
@@ -167,13 +167,13 @@ namespace tnt
     }
 
     constexpr Rectangle operator*(Rectangle const &lhs,
-                                         Vector const &scale) noexcept
+                                  Vector const &scale) noexcept
     {
         return Rectangle{lhs.x, lhs.y, lhs.w * scale.x, lhs.h * scale.y};
     }
 
     constexpr Rectangle operator/(Rectangle const &lhs,
-                                         Vector const &scale) noexcept
+                                  Vector const &scale) noexcept
     {
         return Rectangle{lhs.x, lhs.y, lhs.w / scale.x, lhs.h / scale.y};
     }

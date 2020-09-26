@@ -12,12 +12,9 @@
 
 SDL_Texture *tnt::pcg::staticNoise(SDL_Renderer *ren, int w, int h)
 {
-    Uint32 format{0};
-    SDL_Texture *ret = SDL_CreateTexture(ren, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, w, h);
-    SDL_QueryTexture(ret, &format, nullptr, nullptr, nullptr);
-
     SDL_PixelFormat pixelFmt;
-    pixelFmt.format = format;
+    SDL_Texture *ret = SDL_CreateTexture(ren, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, w, h);
+    SDL_QueryTexture(ret, &pixelFmt.format, nullptr, nullptr, nullptr);
 
     std::vector<Uint32> pixels;
     pixels.reserve(w * h * 4);

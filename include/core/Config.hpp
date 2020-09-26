@@ -1,8 +1,6 @@
 #ifndef CONFIG_HPP
 #define CONFIG_HPP
 
-#define TNT_NODISCARD [[nodiscard]]
-
 #define TNT_NON_COPYABLE(type)   \
     type(type const &) = delete; \
     type &operator=(type const &) = delete;
@@ -12,13 +10,17 @@
     type &operator=(type &&) = delete;
 
 #if defined(DEBUG) || defined(_DEBUG)
-#define TNT_DEBUG
 
+#define TNT_DEBUG
 #define dbg
 #define rel if (0)
-#elif defined(TNT_RELEASE)
+
+#else
+
+#define TNT_RELEASE
 #define dbg if (0)
 #define rel
+
 #endif // !DEBUG
 
 #define forever for (;;)
@@ -34,6 +36,7 @@
 
 #if defined(_WIN32) || defined(_WIN64)
 
+#define TNT_WINDOWS
 #define PATH_SEPARATOR "\\"
 
 #ifdef _MSC_VER
@@ -50,7 +53,9 @@
 #define android if (0)
 #define ios if (0)
 
-#elif defined(__linux__)
+#elif defined(__linux__) && !defined(__android__)
+
+#define TNT_LINUX
 
 // TODO(maybe): this should be sth different.
 #define TNT_API
@@ -66,7 +71,6 @@
 
 #endif // !__ANDROID__
 
-#define TNT_NOVTABLE
 
 #define windows if (0)
 #define linux
@@ -91,8 +95,6 @@
 #elif TARGET_OS_IPHONE == 1
 #define PATH_SEPARATOR "/"
 
-#define TNT_NOVTABLE
-
 #define windows if (0)
 #define linux if (0)
 #define mac if (0)
@@ -101,8 +103,6 @@
 
 #elif TARGET_OS_MAC == 1
 #define PATH_SEPARATOR "/"
-
-#define TNT_NOVTABLE
 
 #define windows if (0)
 #define linux if (0)

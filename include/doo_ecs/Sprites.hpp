@@ -50,10 +50,20 @@ namespace tnt::doo
         /// @param j The json chunk from where to load the sprite data of the objects.
         void from_json(Window const &win, nlohmann::json const &j);
 
+        /// @brief Draw widgets on the given window to modify the datas of the system.
+        /// @param id The id of the active object.
+        /// @param win The window where to draw the widgets.
+        inline void draw_imgui(object const &id, Window const &win) noexcept {}
+
+        /// @brief Get a @a tnt::Rectangle that contains the area where the object will be drawed.
+        /// @param id The id of the object.
+        /// @return tnt::Rectangle
+        Rectangle draw_area(object const &id) const noexcept;
+
         /// @brief Draw object with the given id on the given window.
         /// @param id The id of the object to draw.
         /// @param win The window where the object will be drawed.
-        void Draw(object const &id, Window const &win) noexcept;
+        void Draw(object const &id, Window const &win) const noexcept;
 
         std::vector<object> draw_queue; /// < All the id-s of the objects that should be drawed.
         std::vector<SDL_Texture *> tex; /// < The texture data of the objects.

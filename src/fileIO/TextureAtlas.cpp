@@ -14,7 +14,8 @@ tnt::TextureAtlas::TextureAtlas(tnt::Window const &win, std::string_view file, t
 
 void tnt::TextureAtlas::Draw(tnt::Window const &win, tnt::Vector const &pos, tnt::Vector const &scale, float angle) noexcept
 {
-    SDL_FRect const dst{pos.x, pos.y, clip.w * scale.x, clip.h * scale.y};
+    SDL_FRect const &dst{pos.x, pos.y, clip.w * scale.x, clip.h * scale.y};
     SDL_Texture *tex{cache->get(win.getRenderer(), filename)};
-    SDL_RenderCopyExF(win.getRenderer(), tex, &(SDL_Rect)clip, &dst, angle, nullptr, SDL_FLIP_NONE);
+    SDL_Rect const &from{(SDL_Rect)clip};
+    SDL_RenderCopyExF(win.getRenderer(), tex, &from, &dst, angle, nullptr, SDL_FLIP_NONE);
 }

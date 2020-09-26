@@ -7,6 +7,31 @@
 cmake_minimum_required(VERSION 3.12.4 FATAL_ERROR)
 set(PROJECT_NAME "TnT")
 
+if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+        CACHE STRING "")
+endif()
+
+if(NOT DEFINED ENV{VCPKG_DEFAULT_TRIPLET})
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8) # 64 bit os
+        if(WIN32)
+            set(ENV{VCPKG_DEFAULT_TRIPLET} "x64-windows")
+        elseif(UNIX AND NOT APPLE)
+            set(ENV{VCPKG_DEFAULT_TRIPLET} "x64-linux")
+        elseif(APPLE)
+            set(ENV{VCPKG_DEFAULT_TRIPLET} "x64-osx")
+        endif()
+    elseif(CMAKE_SIZEOF_VOID_P EQUAL 4) # 32 bit os
+        if(WIN32)
+            set(ENV{VCPKG_DEFAULT_TRIPLET} "x86-windows")
+        elseif(UNIX AND NOT APPLE)
+            set(ENV{VCPKG_DEFAULT_TRIPLET} "x86-linux")
+        elseif(APPLE)
+            set(ENV{VCPKG_DEFAULT_TRIPLET} "x86-osx")
+        endif()
+    endif()
+endif()
+
 project(${PROJECT_NAME}
     VERSION 0.1.0
     DESCRIPTION "A 2d game engine written using C++20 features"
@@ -44,17 +69,11 @@ include(cmake/Sanitizers.cmake)
 enable_sanitizers(project_options)
 include(cmake/StaticAnalyzers.cmake)
 
-# Find vcpkg.exe and use its path.
-if(WIN32)
-    find_file(VCPKG_EXE_PATH vcpkg.exe)
+if(MSVC)
+    list(APPEND CMAKE_CXX_FLAGS /fp:fast) # /GR- for no rtti
 else()
-    find_file(VCPKG_EXE_PATH vcpkg)
+    list(APPEND CMAKE_CXX_FLAGS -ffast-math) # -fno-rtti for no rtti
 endif()
-message("Vcpkg found at ${VCPKG_EXE_PATH}.")
-
-set(CMAKE_TOOLCHAIN_FILE
-    ${VCPKG_EXE_PATH}/../scripts/buildsystems/vcpkg.cmake
-    CACHE PATH "TOOLCHAIN")
 
 if(NOT DEFINED CMAKE_PREFIX_PATH)
     set(CMAKE_PREFIX_PATH "")

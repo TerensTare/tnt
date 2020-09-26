@@ -6,13 +6,13 @@ The engine is planned to be available in two ways: as source code (and be built 
 
 ### Prerequisites (aka getting the dependencies)
 
-The project uses [vcpkg](https://github.com/microsoft/vcpkg) to handle the dependencies as vcpkg is cross-platform, and CMake to build the code, so before you go to the next section, make sure you have installed vcpkg and [CMake](https://cmake.org) (at least version 3.12.4) and set the `VCPKG_DEFAULT_TRIPLET` environmental variable.
+The project uses [vcpkg](https://github.com/microsoft/vcpkg) to handle the dependencies as vcpkg is cross-platform, and CMake to build the code, so before you go to the next section, make sure you have installed vcpkg and [CMake](https://cmake.org) (at least version 3.12.4)
 
-*Note*: If you want to build for x86, set `VCPKG_DEFAULT_TRIPLET` as `x86-{yourTargetOS}`. Otherwise, define it as `x64-{yourTargetOS}`.
-
- After setting up vcpkg properly, please run:
-`vcpkg install sdl2 sdl2-image sdl2-mixer sdl2-ttf fmt`.
-to get the minimal dependencies needed to build `main.cpp`.
+- Install vcpkg from your terminal using `git clone https://github.com/microsoft/vcpkg.git`.
+- Define the environment variable `VCPKG_ROOT` as the directory where you ran `git clone`, but with `/vcpkg` suffix (`\vcpkg` if you are on Windows).
+- Define the environment variable `VCPKG_FEATURE_FLAGS` with value `manifests`.
+- Get CMake from [https://cmake.org/download/](https://cmake.org/download/).
+- Set environment variable `VCPKG_DEFAULT_TRIPLET` to your corresponding cpu architecture/os. You can skip this step and let CMake choose the triplet that best suits your os/architecture. However, it is recommended that you set this environment variable by yourself.
 
 *Note*: If you want to use some specific types asset files, you have to install additional "patches" for sdl2 packages from vcpkg as listed here:
 
@@ -29,34 +29,12 @@ to get the minimal dependencies needed to build `main.cpp`.
 
 ### Running the build commands.
 
-At the time of speaking, the engine could be used by including header files and adding source files(.cpp) to your compile command. But there is planned support for building the engine as Windows DLL's and C++20 modules. Until then, the build command is as follows:
+At the time of speaking, the engine can be used by including header files and adding source files(.cpp) to your compile command. But there is planned support for building the engine as Windows DLL's and C++20 modules. Until then, the build command is as follows:
 ``` cmd
 mkdir build
 cd build
 cmake ..
-```
-
-*Note*: If `cmake ..` fails, please run `cmake .. -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake`.
-
-*Note*: If you are using Microsoft's Visual C++ compiler with CMake (ex. on Visual Studio), you should run the following commands. Otherwise, skip this step.
-
-``` cmd
-:: for x86 build
-vsdevcmd.bat
-
-:: for x86-debug build
-msbuild TnT.sln
-:: for x86-release build
-msbuild TnT.sln /p:Configuration=Release
-
-
-:: for x64 build
-vcvars64.bat
-
-:: for x64-debug build
-msbuild.exe TnT.sln /p:Platform=x64
-:: for x64-release build
-msbuild.exe TnT.sln /p:Platform=x64 /p:Configuration=Release
+cmake --build .
 ```
 
 ### Building the documentation

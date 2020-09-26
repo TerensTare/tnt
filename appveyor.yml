@@ -9,19 +9,18 @@ configuration:
 
 environment:
   VCPKG_DEFAULT_TRIPLET: x64-windows
+  VCPKG_FEATURE_FLAGS: manifests,binarycaching
 
 install:
   - cd C:\Tools\vcpkg
   - git pull
-  - .\bootstrap-vcpkg.bat -win64
-  - vcpkg install sdl2 sdl2-net sdl2-image sdl2-image[libjpeg-turbo] sdl2-image[tiff] sdl2-image[libwebp] sdl2-mixer sdl2-mixer[dynamic-load] sdl2-mixer[libflac] sdl2-mixer[mpg123] sdl2-mixer[libmodplug] sdl2-mixer[libvorbis] sdl2-mixer[opusfile] sdl2-ttf nlohmann-json sol2 fmt
-  - vcpkg integrate install
+  - .\bootstrap-vcpkg.bat -win64 -disableMetrics
   - cd %APPVEYOR_BUILD_FOLDER%
 
 before_build:
   - mkdir build
   - cd build
-  - cmake .. -G "Visual Studio 16 2019" -DCMAKE_TOOLCHAIN_FILE=C:\Tools\vcpkg\scripts\buildsystems\vcpkg.cmake
+  - cmake .. -G "Visual Studio 16 2019"
 
 build:
   project: $(APPVEYOR_BUILD_FOLDER)\build\TnT.sln

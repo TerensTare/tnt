@@ -77,6 +77,9 @@ namespace tnt::doo
 
     void animations_sys::Update(object const &id, float time_) noexcept
     {
+        if (!has_object(running, id))
+            return;
+
         elapsed[id] += time_;
         if (elapsed[id] - (timePerFrame[id] * (current[id] + 1)) >= FLT_EPSILON)
         {

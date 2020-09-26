@@ -71,11 +71,19 @@ namespace tnt::doo
             add_invalid();
     }
 
-    void sprites_sys::Draw(object const &id, Window const &win) noexcept
+    Rectangle sprites_sys::draw_area(object const &id) const noexcept
     {
         float const &dx{clip[id].w * objects.gScale(id).x * .5f};
         float const &dy{clip[id].h * objects.gScale(id).y * .5f};
-        SDL_FRect const &dst{objects.gPos(id).x - dx, objects.gPos(id).y - dy, 2 * dx, 2 * dy};
+        return {objects.gPos(id).x - dx, objects.gPos(id).y - dy, 2 * dx, 2 * dy};
+    }
+
+    void sprites_sys::Draw(object const &id, Window const &win) const noexcept
+    {
+        if (draw_queue.size() <= id || draw_queue[id] == -1)
+            return;
+
+        SDL_FRect const &dst{(SDL_FRect)draw_area(id)};
 
         SDL_RenderCopyExF(win.getRenderer(), tex[id],
                           &clip[id], &dst, objects.gAngle(id),

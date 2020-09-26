@@ -14,7 +14,7 @@ namespace tnt::detail::gfx
 
     inline bool Init() noexcept
     {
-        [[likely]] if (!detail::gfx::init)
+        if (!detail::gfx::init)
         {
             if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
             {
@@ -42,6 +42,7 @@ namespace tnt::detail::gfx
         }
 
         ++window_count;
+        detail::gfx::init = true;
         return true;
     }
 
@@ -189,12 +190,12 @@ void tnt::Window::handleEvents(const SDL_Event &events) noexcept
 {
     if (events.type == SDL_QUIT)
         running = false;
-    if (events.type == SDL_WINDOWEVENT)
-        if (events.window.event == SDL_WINDOWEVENT_RESIZED)
-        {
-            w = events.window.data1;
-            h = events.window.data2;
-        }
+    if (events.type == SDL_WINDOWEVENT &&
+        events.window.event == SDL_WINDOWEVENT_RESIZED)
+    {
+        w = events.window.data1;
+        h = events.window.data2;
+    }
 }
 
 bool tnt::Window::isOpened() const noexcept { return running; }

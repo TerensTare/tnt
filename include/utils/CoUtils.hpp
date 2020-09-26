@@ -3,6 +3,9 @@
 
 #if __has_include(<experimental/generator>)
 #include <experimental/generator>
+#elif __has_include(<generator>)
+#include <generator>
+#endif
 
 #if defined(__cpp_coroutines) || defined(__cpp_impl_coroutines)
 
@@ -29,7 +32,6 @@ namespace tnt
 } // namespace tnt
 // clang-format on
 
-#endif
 #endif
 
 #endif //!TNT_COROUTINES_UTILITIES_HPP

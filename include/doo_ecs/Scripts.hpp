@@ -33,6 +33,11 @@ namespace tnt::doo
         /// @brief Load script data from a json chunk.
         void from_json(nlohmann::json const &j);
 
+        /// @brief Draw widgets on the given window to modify the datas of the system.
+        /// @param id The id of the active object.
+        /// @param win The window where to draw the widgets.
+        inline void draw_imgui(object const &id, Window const &win) noexcept {}
+
         std::vector<object> script_queue;            /// < The id-s of all the objects connected to scripts.
         std::vector<sol::protected_function> updates; /// < The script functions of the objects.
     } scripts;                                        /// < An instance of scripts_sys

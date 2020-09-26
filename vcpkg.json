@@ -1,0 +1,37 @@
+{
+    "name": "tnt",
+    "version-string": "0.1.0-a8",
+    "maintainers": [
+        "Terens Tare"
+    ],
+    "homepage": "https://github.com/TerensTare/tnt",
+    "license": "MIT",
+    "description": "A 2d game engine written in C++20",
+    "dependencies": [
+        "sdl2",
+        {
+            "name": "sdl2-image",
+            "features": [
+                "libjpeg-turbo",
+                "libwebp",
+                "tiff"
+            ]
+        },
+        {
+            "name": "sdl2-mixer",
+            "features": [
+                "dynamic-load",
+                "libflac",
+                "libmodplug",
+                "libvorbis",
+                "mpg123",
+                "nativemidi",
+                "opusfile"
+            ]
+        },
+        "sdl2-ttf",
+        "sol2",
+        "nlohmann-json",
+        "fmt"
+    ]
+}

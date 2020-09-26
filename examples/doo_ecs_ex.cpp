@@ -4,17 +4,20 @@
 #include <fstream>
 
 #include "core/Window.hpp"
-#include "core/Input.hpp"
 
 #include "doo_ecs/Animations.hpp"
 #include "doo_ecs/Physics.hpp"
+#include "doo_ecs/Sprites.hpp"
+#include "doo_ecs/Steering.hpp"
 
 #include "utils/Timer.hpp"
+#include "utils/Logger.hpp"
 
 using tnt::doo::animations;
 using tnt::doo::objects;
 using tnt::doo::physics;
 using tnt::doo::sprites;
+using tnt::doo::steer;
 
 int main(int argc, char **argv)
 {
@@ -45,18 +48,25 @@ int main(int argc, char **argv)
         while (SDL_PollEvent(&e))
             window.handleEvents(e);
 
+        objects.pos[0] += {dt / 100.f, dt / 100.f};
+
         window.Clear();
         for (tnt::doo::object const &obj : objects.active)
-        {
-            // update
-            physics.Update(obj, dt);
-            animations.Update(obj, dt);
+            if (obj != -1)
+            {
+                objects.angle[obj] += (dt / 100.f);
 
-            // draw
-            if (sprites.draw_queue.size() > obj &&
-                sprites.draw_queue[obj] != -1)
-                sprites.Draw(obj, window);
-        }
+                // update
+                if (tnt::doo::has_object(physics.physics_queue, obj))
+                    physics.Update(obj, dt);
+
+                if (tnt::doo::has_object(animations.running, obj))
+                    animations.Update(obj, dt);
+
+                // draw
+                if (tnt::doo::has_object(sprites.draw_queue, obj))
+                    sprites.Draw(obj, window);
+            }
         window.Render();
     }
 

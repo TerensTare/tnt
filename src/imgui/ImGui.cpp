@@ -8,7 +8,6 @@
 #include <charconv>
 
 #include "core/Input.hpp"
-#include "core/Window.hpp"
 #include "imgui/ImGui.hpp"
 #include "imgui/gui_config.hpp"
 #include "utils/Logger.hpp"
@@ -358,8 +357,8 @@ namespace tnt::ImGui
         tmp->list_index = 0;
         tmp->next_x = 10 + tmp->x;
 
-        const std::pair pos{input::mousePosition()};
-        const std::size_t id{im_hash(name)};
+        const std::pair<int, int> &pos{input::mousePosition()};
+        const std::size_t &id{im_hash(name)};
 
         if (has_flag(tmp->win_flags, WindowFlags::Collapsible))
         {
@@ -386,15 +385,15 @@ namespace tnt::ImGui
         if (!tmp->collapsed)
             if (has_flag(tmp->win_flags, WindowFlags::Resizable))
             {
-                const std::size_t minW{name.size() * 7 + 32};
+                const std::size_t &minW{name.size() * 7 + 32};
 
                 // TODO: make sure these *_id don't match the id of any other widget.
-                const std::size_t resize_left_id{1 + id};
-                const std::size_t resize_right_id{2 + id};
-                const std::size_t resize_down_id{3 + id};
+                const std::size_t &resize_left_id{1 + id};
+                const std::size_t &resize_right_id{2 + id};
+                const std::size_t &resize_down_id{3 + id};
 
-                const std::size_t resize_right_down_id{4 + id};
-                const std::size_t resize_left_down_id{5 + id};
+                const std::size_t &resize_right_down_id{4 + id};
+                const std::size_t &resize_left_down_id{5 + id};
 
                 // check for resizing
                 check_button(resize_right_id, tmp->x + tmp->w - 10,
@@ -406,25 +405,25 @@ namespace tnt::ImGui
 
                 if (context.active == resize_right_down_id)
                 {
-                    if (int const dx{pos.first - context.mouse_x}; tmp->w >= minW || dx >= 0)
+                    if (int const &dx{pos.first - context.mouse_x}; tmp->w >= minW || dx >= 0)
                         tmp->w = tmp->w + dx;
-                    if (int const dy{pos.second - context.mouse_y}; tmp->h >= 40 || dy >= 0)
+                    if (int const &dy{pos.second - context.mouse_y}; tmp->h >= 40 || dy >= 0)
                         tmp->h = tmp->h + dy;
                 }
 
                 if (context.active == resize_right_id)
-                    if (int const dx{pos.first - context.mouse_x}; tmp->w >= minW || dx >= 0) // bigger than double of the height of the title bar
+                    if (int const &dx{pos.first - context.mouse_x}; tmp->w >= minW || dx >= 0) // bigger than double of the height of the title bar
                         tmp->w = tmp->w + dx;
 
                 if (context.active == resize_down_id)
-                    if (int const dy{pos.second - context.mouse_y}; tmp->h >= 40 || dy >= 0)
+                    if (int const &dy{pos.second - context.mouse_y}; tmp->h >= 40 || dy >= 0)
                         tmp->h = tmp->h + dy;
             }
 
         context.mouse_x = pos.first;
         context.mouse_y = pos.second;
 
-        tmp->next_y = tmp->y + 25;
+        tmp->next_y = tmp->y + 20;
 
         // drawing
         if (has_flag(tmp->win_flags, WindowFlags::OpaqueBackground))
@@ -824,25 +823,24 @@ namespace tnt::ImGui
 
         const std::size_t &id{im_hash(tmp->title + text.data())};
 
-        check_button(
-            id, x, tmp->y + 20,
+        check_button( // 24 = 20 + 4 -> window title + menu_item padding
+            id, x, tmp->next_y + 20,
             static_cast<int>(text.size()) * 7, theme.font_size + 6);
-        draw_text(win, text.data(), x + 10, tmp->y + 20);
+        draw_text(win, text.data(), x + 10, tmp->next_y + 20);
+        logger::info("x: {}", x + 10);
 
-        tmp->menu_index = tmp->menu_index + 1;
+        ++tmp->menu_index;
         tmp->last_menu_txt_size = tmp->menu_txt_size;
-        tmp->menu_txt_size = tmp->menu_txt_size + static_cast<int>(text.size());
+        tmp->menu_txt_size += static_cast<int>(text.size());
 
-        if (context.hot == id && context.active == id)
-            return true;
-        return false;
+        return (context.hot == id && context.active == id);
     }
 
     bool menu_item(Window const &win, std::string_view text) noexcept
     {
         window_data *tmp{get_last_win()};
 
-        const int &x{tmp->x + (tmp->menu_index - 1) * theme.menu_spacing + 7 * tmp->last_menu_txt_size};
+        const int &x{tmp->x + tmp->menu_index * theme.menu_spacing + 7 * tmp->last_menu_txt_size};
 
         // 100 = 30 -> padding from left and right + 70 -> size of 10 letters (with the current font)
         if (tmp->collapsed || x + 100 > tmp->x + tmp->w)
@@ -852,17 +850,15 @@ namespace tnt::ImGui
 
         check_button(id, x, tmp->next_y, 100, theme.font_size + 10);
 
-        SDL_Color color{0, 0, 0, 200};
-
         if (context.hot == id && context.active == id)
-            color = SDL_Color{50, 50, 50, 200};
+            draw_rect(win, {x, tmp->next_y, 100, theme.font_size + 10}, {0, 0, 0, 200});
 
-        draw_rect(win, {x, tmp->next_y + theme.font_size, 100, theme.font_size + 10}, color);
-        draw_text(win, text.data(), x + 15, tmp->next_y + 5 + theme.font_size);
+        draw_text(win, text.data(), x + 15, tmp->next_y + 4);
 
-        tmp->context_menu_index = tmp->context_menu_index + 1;
+        ++tmp->context_menu_index;
+        tmp->next_y += theme.font_size + 24;
 
-        return false;
+        return (context.hot == id);
     }
 
     bool checkbox(Window const &win, std::string_view text, bool *value) noexcept
@@ -974,14 +970,17 @@ void tnt_imgui_init(tnt::Window const &win) noexcept
     tnt::ImGui::make_context();
 }
 
-void tnt_imgui_close() noexcept
+struct imgui_close
 {
-    SDL_DestroyTexture(tnt::ImGui::theme.button_text);
-    tnt::ImGui::theme.button_text = nullptr;
+    inline ~imgui_close() noexcept
+    {
+        SDL_DestroyTexture(tnt::ImGui::theme.button_text);
+        tnt::ImGui::theme.button_text = nullptr;
 
-    SDL_DestroyTexture(tnt::ImGui::theme.checkbox_tick);
-    tnt::ImGui::theme.checkbox_tick = nullptr;
+        SDL_DestroyTexture(tnt::ImGui::theme.checkbox_tick);
+        tnt::ImGui::theme.checkbox_tick = nullptr;
 
-    TTF_CloseFont(tnt::ImGui::theme.font_data);
-    tnt::ImGui::theme.font_data = nullptr;
-}
+        TTF_CloseFont(tnt::ImGui::theme.font_data);
+        tnt::ImGui::theme.font_data = nullptr;
+    }
+} _;

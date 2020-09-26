@@ -3,7 +3,9 @@
 
 #include <span>
 #include <nlohmann/json.hpp>
+
 #include "math/Vector.hpp"
+#include "core/Window.hpp"
 
 // TODO:
 // optimizations (ex. use pmr)
@@ -78,10 +80,9 @@ namespace tnt::doo
     /// @param members The list of the id-s of the members of a system.
     /// @param id The id of the desired object.
     /// @return bool
-    inline const bool has_object(std::span<object> members, object const &id) noexcept
-    {
+    inline const auto has_object = [](std::span<object> members, object const &id) noexcept -> bool {
         return (members.size() > id && members[id] != -1);
-    }
+    };
 
     /// @brief Check if the given json chunk has a certain field.
     /// @param j The json chunk to check.
@@ -130,6 +131,11 @@ namespace tnt::doo
         /// @param j The json chunk that contains the objects data.
         void from_json(nlohmann::json const &j);
 
+        /// @brief Draw widgets on the given window to modify the datas of the system.
+        /// @param id The id of the active object.
+        /// @param win The window where to draw the widgets.
+        void draw_imgui(object const &id, Window const &win) noexcept;
+
         /// @brief Get the angle of the object in global context.
         /// @param id The id of the object.
         /// @return float
@@ -161,6 +167,19 @@ namespace tnt::doo
         std::vector<Vector> scale; /// < The scales of the objects.
         std::vector<Vector> pos;   /// < The positions of the objects.
     } objects;                     /// < An instance of objects_sys.
+
+    // clang-format off
+    template <typename T>
+    concept system = std::is_final_v<T> && std::same_as<T, objects_sys> ||
+        (std::default_initializable<T> && !std::copy_constructible<T> &&
+            requires(T && t) {
+                t.add_object;
+                t.add_invalid;
+                t.from_json;
+                t.draw_imgui;
+            } && (requires (T && t) { t.Update; }
+             || requires (T && t) { t.Draw; }));
+    // clang-format on
 } // namespace tnt::doo
 
 #endif //!TNT_DOO_ECS_BASE_HPP

@@ -3,10 +3,20 @@
 
 #include "doo_ecs/Base.hpp"
 #include "json/JsonVector.hpp"
+#include "imgui/ImGui.hpp"
 #include "utils/TypeUtils.hpp"
 
 namespace tnt::doo
 {
+    inline constexpr auto local_scale = [](Vector const &myScale, Vector const &pScale) noexcept -> Vector {
+        return {myScale.x / pScale.x, myScale.y / pScale.y};
+    };
+
+    inline constexpr auto local_pos = [](Vector const &myPos, float pAngle, Vector const &pScale, Vector const &pPos) noexcept -> Vector {
+        Vector const &diff{RotateVector(myPos - pPos, -pAngle)};
+        return local_scale(diff, pScale);
+    };
+
     constexpr object_data::object_data(float angle_, Vector const &pos_,
                                        Vector const &scale_, object const &parent_) noexcept
         : angle{angle_}, pos{pos_}, scale{scale_}, parent{parent_} {}
@@ -37,8 +47,8 @@ namespace tnt::doo
         {
             parent.emplace_back(data_.parent);
             angle.emplace_back(data_.angle - gAngle(data_.parent));
-            scale.emplace_back(data_.scale - gScale(data_.parent));
-            pos.emplace_back(data_.pos - gPos(data_.parent));
+            scale.emplace_back(local_scale(data_.scale, gScale(data_.parent)));
+            pos.emplace_back(local_pos(data_.pos, angle[parent[index]], gScale(parent[index]), gPos(parent[index])));
         }
 
         return index;
@@ -62,10 +72,20 @@ namespace tnt::doo
                         j["scale"].get<Vector>()});
     }
 
+    void objects_sys::draw_imgui(object const &id, Window const &win) noexcept
+    {
+        tnt::ImGui::hslider_float(win, "Angle", -360.f, 360.f, &objects.angle[id]);
+        tnt::ImGui::hslider_vec(win, "Scale", .1f, 20.f, .1f, 20.f, &objects.scale[id]);
+        tnt::ImGui::hslider_vec(win, "Pos", 0.f, win.getWidth() * 1.f,
+                                0.f, win.getHeight() * 1.f,
+                                &objects.pos[id]);
+    }
+
     float objects_sys::gAngle(object const &id) const noexcept
     {
-        return angle[id] + if_then(parent[id] != -1,
-                                   angle[parent[id]]);
+        if (parent[id] == -1)
+            return angle[id];
+        return angle[id] + gAngle(parent[id]);
     }
 
     Vector objects_sys::gScale(object const &id) const noexcept
@@ -81,7 +101,7 @@ namespace tnt::doo
         if (parent[id] == -1)
             return pos[id];
 
-        Vector const &pScale{scale[parent[id]]};
+        Vector const &pScale{gScale(parent[id])};
         Vector const &rotPos{RotateVector({pos[id].x * pScale.x, pos[id].y * pScale.y}, angle[parent[id]])};
         return gPos(parent[id]) + rotPos;
     }

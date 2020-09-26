@@ -12,24 +12,23 @@ jobs:
         linux:
           Image: 'ubuntu-latest'
           vpath: "/usr/local/share/vcpkg/installed/x64-linux"
-          vtchain: "/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake"
           get_yasm: "sudo apt-get install yasm"
           triplet: x64-linux
         windows:
           Image: 'windows-latest'
           vpath: "C:\\vcpkg\\installed\\x64-windows"
-          vtchain: "C:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake"
           get_yasm: "echo" # on Windows, yasm is automatically installed if missing
           triplet: x64-windows
         mac:
           Image: 'macos-latest'
           vpath: "/usr/local/share/vcpkg/installed/x64-osx"
-          vtchain: "/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake"
           get_yasm: "brew install yasm"
           triplet: x64-osx
       maxParallel: 4
     variables:
       VCPKG_DEFAULT_TRIPLET: $(triplet)
+      VCPKG_ROOT: $(vpath)
+      VCPKG_FEATURE_FLAGS: "manifests,binarycaching"
     
     pool:
       vmImage: $(Image)
@@ -45,13 +44,11 @@ jobs:
       inputs:
         script: |
           $(get_yasm)
-          vcpkg install sdl2 sdl2-image sdl2-net sdl2-image[libjpeg-turbo] sdl2-image[tiff] sdl2-image[libwebp] sdl2-mixer sdl2-mixer[dynamic-load] sdl2-mixer[libflac] sdl2-mixer[mpg123] sdl2-mixer[libmodplug] sdl2-mixer[libvorbis] sdl2-mixer[opusfile] sdl2-ttf nlohmann-json sol2 fmt
-          vcpkg integrate install
       condition: ne(variables.GOT_CACHE, 'true')
     
     - task: CMake@1
       inputs:
-        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=$(vtchain) -DBUILD_DOCS=OFF'
+        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release'
     displayName: 'Build for '
 
   - job: "MSBuild_Windows"

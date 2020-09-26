@@ -47,8 +47,7 @@ jobs:
           cxx: "cl"
           environment-script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
           triplet: x64-windows
-          vcpkg-path: "C:\\vcpkg\\installed\\x64-windows"
-          vctchain: "C:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake" 
+          vcpkg-path: "C:\\vcpkg"
         # Windows with GCC
         - name: "Windows Latest MinGW"
           artifact: "Windows-MinGW.zip"
@@ -57,8 +56,7 @@ jobs:
           cc: "gcc"
           cxx: "g++"
           triplet: x64-windows
-          vcpkg-path: "C:\\vcpkg\\installed\\x64-windows"
-          vctchain: "C:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake" 
+          vcpkg-path: "C:\\vcpkg"
         # Ubuntu with GCC
         - name: "Ubuntu Latest GCC"
           artifact: "Linux.tar.xz"
@@ -67,8 +65,7 @@ jobs:
           cc: "gcc"
           cxx: "g++"
           triplet: x64-linux
-          vcpkg-path: "/usr/local/share/vcpkg/installed/x64-linux"
-          vctchain: "/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake"
+          vcpkg-path: "/usr/local/share/vcpkg"
         # Mac with Clang
         - name: "MacOS Latest Clang"
           artifact: "Mac.tar.xz"
@@ -77,8 +74,7 @@ jobs:
           cc: "clang"
           cxx: "clang++"
           triplet: x64-osx 
-          vcpkg-path: "/usr/local/share/vcpkg/installed/x64-osx"
-          vctchain: "/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake"
+          vcpkg-path: "/usr/local/share/vcpkg"
 
     steps:
       - uses: actions/checkout@v1
@@ -123,30 +119,15 @@ jobs:
             )
           endif()
 
-  get-deps:
-        name: ${{ matrix.os }}-dependencies
-        runs-on: ${{ matrix.os }}
-        needs: [check-code]
-        steps:
-          - name: Cache packages
-            uses: actions/cache@v1.1.2
-            id: pack-cache
-            with:
-             path: ${{ matrix.vcpkg-path }}
-             key: ${{ matrix.os }}-dependencies
-          - name: Get dependencies using vcpkg
-            env:
-              VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
-            if: steps.pack-cache.outputs.cache-hit != 'true'
-            run: |
-                vcpkg install sdl2 sdl2-net sdl2-image sdl2-image[libjpeg-turbo] sdl2-image[tiff] sdl2-image[libwebp] sdl2-mixer sdl2-mixer[dynamic-load] sdl2-mixer[libflac] sdl2-mixer[mpg123] sdl2-mixer[libmodplug] sdl2-mixer[libvorbis] sdl2-mixer[opusfile] sdl2-ttf nlohmann-json sol2 fmt
-                vcpkg integrate install
-
   run_build:
     name: Configure CMake
     runs-on: ${{ matrix.os }}
-    needs: [get-deps]
-    
+    needs: [check-code]
+    env:
+      VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
+      VCPKG_ROOT: ${{ matrix.vcpkg-path }}
+      VCPKG_FEATURE_FLAGS: "manifests,binarycaching"
+
     steps:
       - name: Config
         shell: cmake -P {0}
