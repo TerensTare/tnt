@@ -6,24 +6,27 @@ trigger:
 - master
 
 jobs:
-  - job: "Build"
+  - job: "Generate"
     strategy:
       matrix:
         linux:
           Image: 'ubuntu-latest'
-          vpath: "/usr/local/share/vcpkg/installed/x64-linux"
+          vpath: "/usr/local/share/vcpkg"
           get_yasm: "sudo apt-get install yasm"
           triplet: x64-linux
+          gen: "Unix Makefiles"
         windows:
           Image: 'windows-latest'
-          vpath: "C:\\vcpkg\\installed\\x64-windows"
+          vpath: "C:\\vcpkg"
           get_yasm: "echo" # on Windows, yasm is automatically installed if missing
           triplet: x64-windows
+          gen: "Visual Studio 16 2019"
         mac:
           Image: 'macos-latest'
-          vpath: "/usr/local/share/vcpkg/installed/x64-osx"
+          vpath: "/usr/local/share/vcpkg"
           get_yasm: "brew install yasm"
           triplet: x64-osx
+          gen: "XCode"
       maxParallel: 4
     variables:
       VCPKG_DEFAULT_TRIPLET: $(triplet)
@@ -48,31 +51,16 @@ jobs:
     
     - task: CMake@1
       inputs:
-        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release'
-    displayName: 'Build for '
+        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -G $(gen)'
+    displayName: 'Generate for '
 
   - job: "MSBuild_Windows"
     dependsOn: Build
     condition: succeeded()
     pool:
-      vmImage: 'windows-latest'
+      vmImage: $(Image)
     steps:
-    - task: VSBuild@1
+    - task: CMake@1
       inputs:
-        solution: 'build\TnT.sln'
-        platform: 'x64'
-        configuration: 'Debug'
-        clean: true
-        maximumCpuCount: true
-        msbuildArchitecture: 'x64'
-        createLogFile: true
-    - task: VSBuild@1
-      inputs:
-        solution: 'build\TnT.sln'
-        vsVersion: 'latest'
-        platform: 'x64'
-        configuration: 'Release'
-        clean: true
-        maximumCpuCount: true
-        msbuildArchitecture: 'x64'
-        createLogFile: true
+        cmakeArgs: '--build .'
+      displayName: 'Build for '
