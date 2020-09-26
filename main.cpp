@@ -10,8 +10,6 @@
 #include "doo_ecs/Physics.hpp"
 #include "doo_ecs/Sprites.hpp"
 
-#include "imgui/ImGui.hpp"
-
 #include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
 
@@ -37,10 +35,7 @@ int main(int argc, char **argv)
         }
     }
 
-    tnt_imgui_init(window);
-
     float dt{0.f};
-    tnt::doo::object active{0};
 
     tnt::Timer timer;
     SDL_Event e;
@@ -63,23 +58,7 @@ int main(int argc, char **argv)
 
                 // draw
                 sprites.Draw(obj, window);
-
-                if (std::pair<int, int> const &pos{tnt::input::mousePosition()};
-                    sprites.draw_area(obj).Contains(
-                        {(float)pos.first, (float)pos.second}) &&
-                    tnt::input::mouseButtonDown(0))
-                    active = obj;
             }
-
-        if (tnt::ImGui::Begin(window, "Components", 500, 200))
-        {
-            tnt::ImGui::text(window, fmt::format("Object ID: {}", active));
-
-            objects.draw_imgui(active, window);
-            physics.draw_imgui(active, window);
-
-            tnt::ImGui::End();
-        }
         window.Render();
     }
 

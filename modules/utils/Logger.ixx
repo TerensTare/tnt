@@ -1,6 +1,6 @@
 module;
 #include <fmt/core.h>
-export module TnT.Utils : Logger;
+export module TnT.Utils:Logger;
 
 // TODO: unfinished
 // TODO: make colored output, and maybe write to html/xml files for better output.

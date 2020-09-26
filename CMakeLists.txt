@@ -69,11 +69,11 @@ include(cmake/Sanitizers.cmake)
 enable_sanitizers(project_options)
 include(cmake/StaticAnalyzers.cmake)
 
-if(MSVC)
-    list(APPEND CMAKE_CXX_FLAGS /fp:fast) # /GR- for no rtti
-else()
-    list(APPEND CMAKE_CXX_FLAGS -ffast-math) # -fno-rtti for no rtti
-endif()
+# if(MSVC)
+#     list(APPEND CMAKE_CXX_FLAGS /fp:fast) # /GR- for no rtti
+# else()
+#     list(APPEND CMAKE_CXX_FLAGS -ffast-math) # -fno-rtti for no rtti
+# endif()
 
 if(NOT DEFINED CMAKE_PREFIX_PATH)
     set(CMAKE_PREFIX_PATH "")

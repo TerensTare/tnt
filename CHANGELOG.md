@@ -20,7 +20,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Updated Github Actions, Microsoft Azure Pipelines and AppVeyor build due to changes to `CMakeLists.txt`.
 - Updated `INSTALL.md` to explain how the build steps change using vcpkg manifests.
 - CMake will now automatically find vcpkg, but you have to define the `VCPKG_ROOT` environment variable.
-- When building with CMake, `/fp:fast` and `-ffast-math` will be defined if using MSVC and GCC/Clang to enable faster floating point operations.
 - All the functions of `tnt::logger` now require that their parameters satisfy `tnt::logger::printable`.
 - All the Data Oriented ECS systems will now check if an object is part of the system when calling `Update`. `tnt::doo::sprites_sys` will do the same thing on the `Draw` function.
 - Rewrote `tnt::Rectangle::Outside` using `tnt::Rectangle::Contains`.
