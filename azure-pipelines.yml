@@ -51,7 +51,7 @@ jobs:
     
     - task: CMake@1
       inputs:
-        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -G $(gen)'
+        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -G "$(gen)"'
     displayName: 'Generate for '
 
   - job: "Build"
