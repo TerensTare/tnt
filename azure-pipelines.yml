@@ -54,8 +54,8 @@ jobs:
         cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -G $(gen)'
     displayName: 'Generate for '
 
-  - job: "MSBuild_Windows"
-    dependsOn: Build
+  - job: "Build"
+    dependsOn: Generate
     condition: succeeded()
     pool:
       vmImage: $(Image)
