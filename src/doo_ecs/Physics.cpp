@@ -3,6 +3,7 @@
 
 #include <execution>
 
+#include "doo_ecs/Objects.hpp"
 #include "doo_ecs/Physics.hpp"
 #include "doo_ecs/Sprites.hpp"
 
@@ -40,7 +41,7 @@ namespace tnt::doo
         damping.emplace_back(body.damping);
         restitution.emplace_back(body.restitution);
 
-        if (objects.parent[id] == -1)
+        if (objects.parent[id] == null)
         {
             vel.emplace_back(VECTOR_ZERO);
             maxVel.emplace_back(body.maxVel);
@@ -93,7 +94,7 @@ namespace tnt::doo
         accel.emplace_back(VECTOR_ZERO);
         maxAccel.emplace_back(15.f, 15.f);
 
-        physics_queue.emplace_back(-1);
+        physics_queue.emplace_back(null);
         bound_box.emplace_back(0.f, 0.f, 0.f, 0.f);
     }
 
@@ -141,28 +142,58 @@ namespace tnt::doo
         return ret;
     }
 
-    void physics_sys::resolve(object const &id, object const &id2) noexcept
+    void physics_sys::resolveVel(object const &id, object const &id2) noexcept
     {
-        Vector const &normal{(objects.gPos(id2) - objects.gPos(id)).Normalized()};
-
-        Vector const &rel_vel{vel[id2] - vel[id]};
-        float const &velAlongNormal{Dot(rel_vel, normal)};
-
-        if (velAlongNormal > 0.f)
+        if (!(has_object(physics_queue, id) && has_object(physics_queue, id2)))
             return;
 
-        float const &eps{if_else(restitution[id] < restitution[id2],
+        Vector const &normal{(objects.gPos(id) - objects.gPos(id2)).Normalized()};
+
+        float const &sep_vel = [this, &normal](object const &id, object const &id2) noexcept -> float {
+            Vector const &rel_vel{gVel(id) - gVel(id2)};
+            return Dot(rel_vel, normal);
+        }(id, id2);
+
+        if (sep_vel > 0.f)
+            return;
+
+        float const &res{if_else(restitution[id] < restitution[id2],
                                  restitution[id], restitution[id2])};
-        float j{-(1 + eps) / velAlongNormal};
-        j /= (inv_mass[id] + inv_mass[id2]);
 
-        Vector const &impulse{normal * j};
+        float new_sep_vel{-sep_vel * res};
+        Vector const &acc_caused_vel{gAccel(id) - gAccel(id2)};
 
-        float const &totalMass{(1 / inv_mass[id]) + (1 / inv_mass[id2])};
+        if (float const &acc_caused_sep_vel{
+                Dot(acc_caused_vel, normal)};
+            acc_caused_sep_vel < 0.f)
+        {
+            new_sep_vel += res * acc_caused_sep_vel;
+            if (new_sep_vel < 0.f)
+                new_sep_vel = 0.f;
+        }
 
-        vel[id] -= impulse * totalMass * inv_mass[id];
-        vel[id2] += impulse * totalMass * inv_mass[id2];
-        vel[id2] = if_else(vel[id2] > maxVel[id2], maxVel[id2], vel[id2]);
+        float const &delta_vel{new_sep_vel - sep_vel};
+        float const &total_inv_mass{inv_mass[id] + inv_mass[id2]};
+        float const &impulse{delta_vel / total_inv_mass};
+        Vector const &impulse_per_mass{normal * impulse};
+
+        vel[id] += impulse_per_mass * inv_mass[id];
+        vel[id] = if_else(vel[id] > maxVel[id],
+                          maxVel[id], vel[id]);
+
+        vel[id2] -= impulse_per_mass * inv_mass[id2];
+        vel[id2] = if_else(vel[id2] > maxVel[id2],
+                           maxVel[id2], vel[id2]);
+    }
+
+    void physics_sys::resolveInterpenetration(object const &id, object const &id2) noexcept
+    {
+    }
+
+    void physics_sys::resolve(object const &id, object const &id2) noexcept
+    {
+        resolveVel(id, id2);
+        resolveInterpenetration(id, id2);
     }
 
     void physics_sys::from_json(nlohmann::json const &j)
@@ -201,7 +232,7 @@ namespace tnt::doo
 
     Vector physics_sys::gVel(object const &id) const noexcept
     {
-        if (objects.parent[id] == -1)
+        if (objects.parent[id] == null)
             return vel[id];
         Vector const &parent_vel{gVel(objects.parent[id])};
         return parent_vel + RotateVector(vel[id], AngleOf(parent_vel) - AngleOf(vel[id]));
@@ -209,7 +240,7 @@ namespace tnt::doo
 
     Vector physics_sys::gMaxVel(object const &id) const noexcept
     {
-        if (objects.parent[id] == -1)
+        if (objects.parent[id] == null)
             return maxVel[id];
         Vector const &parent_vel{gMaxVel(objects.parent[id])};
         return parent_vel + RotateVector(maxVel[id], AngleOf(parent_vel) - AngleOf(maxVel[id]));
@@ -217,7 +248,7 @@ namespace tnt::doo
 
     Vector physics_sys::gAccel(object const &id) const noexcept
     {
-        if (objects.parent[id] == -1)
+        if (objects.parent[id] == null)
             return accel[id];
         Vector const &parent_accel{gAccel(objects.parent[id])};
         return parent_accel + RotateVector(accel[id], AngleOf(parent_accel) - AngleOf(accel[id]));
@@ -225,7 +256,7 @@ namespace tnt::doo
 
     Vector physics_sys::gMaxAccel(object const &id) const noexcept
     {
-        if (objects.parent[id] == -1)
+        if (objects.parent[id] == null)
             return maxAccel[id];
         Vector const &parent_accel{gMaxAccel(objects.parent[id])};
         return parent_accel + RotateVector(maxAccel[id], AngleOf(parent_accel) - AngleOf(maxAccel[id]));

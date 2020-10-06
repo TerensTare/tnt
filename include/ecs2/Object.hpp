@@ -60,7 +60,7 @@ namespace tnt::ecs2
 
         inline void Draw(tnt::Window const *win) noexcept
         {
-            if constexpr (is_detected_v<decltype(typename T::Draw), T>::value)
+            if constexpr (requires(T t) { t.Draw; })
                 this->base().Draw(win);
         }
     };

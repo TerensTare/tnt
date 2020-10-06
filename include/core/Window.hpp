@@ -2,11 +2,8 @@
 #define TNT_WINDOW_HPP
 
 #include <string>
-
 #include <SDL2/SDL.h>
-
 #include "ecs/Base.hpp"
-#include "core/Camera.hpp"
 
 // TODO: overload to render a Scene when Draw is called.
 // TODO: support drawing fonts.
@@ -113,22 +110,6 @@ namespace tnt
         /// This function clears the entire rendering target, ignoring the viewport and
         /// the clip rectangle.
         void Clear() noexcept;
-
-        /// @brief Copy a portion of the source Object to the window.
-        /// @param obj The source @c drawable @c Object.
-        /// @param srcrect The source rectangle.
-        /// @param cam The destination camera.
-        /// @param flip An SDL_RendererFlip value stating which flipping actions should be performed on the obj's texture.
-        /// @note @c obj should be @c drawable, meaning it should have a @c SpriteComponent and have
-        /// a function named @c getSprite which returns @c obj's @c SpriteComponent*.
-        template <drawable D, camera C>
-        inline void Draw(D const *obj, SDL_Rect const &srcrect,
-                         C const &cam, SDL_RendererFlip flip = SDL_FLIP_NONE) const noexcept
-        {
-            const SDL_FRect dest{static_cast<SDL_FRect>(cam.Bounds())};
-            SDL_RenderCopyExF(renderer, obj->getSprite()->getTexture(),
-                              &srcrect, &dest, obj->getAngle(), nullptr, flip);
-        }
 
         /// @brief Update the screen with rendering performed.
         void Render() noexcept;

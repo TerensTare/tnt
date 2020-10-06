@@ -1,79 +1,99 @@
-[
-    {
-        "angle": 0,
-        "scale": {
-            "x": 10,
-            "y": 10
-        },
-        "pos": {
-            "x": 100,
-            "y": 100
-        },
-        "phys": {
-            "mass": 1,
-            "bounds": {
-                "x": 0,
-                "y": 100,
-                "w": 100,
-                "h": 60
+{
+    "objects": [
+        {
+            "angle": 10,
+            "scale": {
+                "x": 10,
+                "y": 10
             },
-            "damping": 0.99995,
-            "restitution": 0.999
-        },
-        "sprite": {
-            "file": "assets/player.png",
-            "crop": {
-                "x": 3,
-                "y": 0,
-                "w": 10,
-                "h": 16
+            "pos": {
+                "x": 100,
+                "y": 100
+            },
+            "phys": {
+                "mass": 1,
+                "bounds": {
+                    "x": 0,
+                    "y": 100,
+                    "w": 100,
+                    "h": 60
+                },
+                "damping": 0.99995,
+                "restitution": 0.999
+            },
+            "sprite": {
+                "file": "assets/player.png",
+                "crop": {
+                    "x": 3,
+                    "y": 0,
+                    "w": 10,
+                    "h": 16
+                }
+            },
+            "anim": {
+                "frames": 7,
+                "space": 6,
+                "speed": 1400,
+                "dir": "horizontal",
+                "wrap": "loop"
             }
         },
-        "anim": {
-            "frames": 7,
-            "space": 6,
-            "speed": 1400,
-            "dir": "horizontal",
-            "wrap": "loop"
-        }
-    },
-    {
-        "angle": 0,
-        "scale": {
-            "x": 10,
-            "y": 10
-        },
-        "pos": {
-            "x": 300,
-            "y": 300
-        },
-        "parent": 0,
-        "phys": {
-            "mass": 1,
-            "bounds": {
-                "x": 0,
-                "y": 100,
-                "w": 100,
-                "h": 60
+        {
+            "angle": 0,
+            "scale": {
+                "x": 10,
+                "y": 10
             },
-            "damping": 0.99995,
-            "restitution": 0.999
-        },
-        "sprite": {
-            "file": "assets/player.png",
-            "crop": {
-                "x": 3,
-                "y": 0,
-                "w": 10,
-                "h": 16
+            "pos": {
+                "x": 300,
+                "y": 300
+            },
+            "parent": 0,
+            "phys": {
+                "mass": 1,
+                "bounds": {
+                    "x": 0,
+                    "y": 100,
+                    "w": 100,
+                    "h": 60
+                },
+                "damping": 0.99995,
+                "restitution": 0.999
+            },
+            "sprite": {
+                "file": "assets/player.png",
+                "crop": {
+                    "x": 3,
+                    "y": 0,
+                    "w": 10,
+                    "h": 16
+                }
+            },
+            "anim": {
+                "frames": 7,
+                "space": 6,
+                "speed": 1400,
+                "dir": "horizontal",
+                "wrap": "loop"
             }
-        },
-        "anim": {
-            "frames": 7,
-            "space": 6,
-            "speed": 1400,
-            "dir": "horizontal",
-            "wrap": "loop"
         }
-    }
-]
+    ],
+    "cameras": [
+        {
+            "angle": 10,
+            "pos": {
+                "x": 100,
+                "y": 100
+            },
+            "w": 800,
+            "h": 600,
+            "speed": 1,
+            "scale": {
+                "x": 2,
+                "y": 2
+            },
+            "shake": 0.6,
+            "shake_loss": 0.9
+        }
+    ]
+}

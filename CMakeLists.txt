@@ -12,6 +12,10 @@ if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
         CACHE STRING "")
 endif()
 
+if(NOT DEFINED ENV{VCPKG_FEATURE_FLAGS})
+    set(ENV{VCPKG_FEATURE_FLAGS} "manifests,binarycaching")
+endif()
+
 if(NOT DEFINED ENV{VCPKG_DEFAULT_TRIPLET})
     if(CMAKE_SIZEOF_VOID_P EQUAL 8) # 64 bit os
         if(WIN32)
@@ -40,18 +44,11 @@ project(${PROJECT_NAME}
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
-# Remove the /RTC* flags in case of compiling with MSVC.
-foreach(flag_var
-        CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
-        CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
-    STRING (REGEX REPLACE "/RTC[^ ]*" "" ${flag_var} "${${flag_var}}")
-endforeach(flag_var)
-
 file(TO_CMAKE_PATH "${PROJECT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
 if (EXISTS "${LOC_PATH}")
-message(FATAL_ERROR
-    "CMake should not be used to build TnT in a directory that has a CMakeLists.txt file!!\n
-    Please consider making a \"build\" subdirectory and run cmake .. from the \"build\" subdirectory.")
+    message(FATAL_ERROR
+        "CMake should not be used to build TnT in a directory that has a CMakeLists.txt file!!\n
+        Please consider making a \"build\" subdirectory and run cmake .. from the \"build\" subdirectory.")
 endif()
 
 include(FindLua)

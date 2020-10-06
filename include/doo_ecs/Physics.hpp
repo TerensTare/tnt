@@ -82,10 +82,19 @@ namespace tnt::doo
         /// @return bool
         bool colliding(object const &id, object const &id2) noexcept;
 
-        // thx Randy Gaul
-        // https://gamedevelopment.tutsplus.com/tutorials/how-to-create-a-custom-2d-physics-engine-the-basics-and-impulse-resolution--gamedev-6331
+        /// @brief Resolve the velocity between two objects that have collided.
+        /// @param id The id of the first object.
+        /// @param id2 The id of the second object.
+        /// @note This is called by resolve().
+        void resolveVel(object const &id, object const &id2) noexcept;
 
-        /// @brief Resolve the collision between the two objects.
+        /// @brief Resolve the interpenetration between two objects that have collided.
+        /// @param id The id of the first object.
+        /// @param id2 The id of the second object.
+        /// @note This is called by resolve().
+        void resolveInterpenetration(object const &id, object const &id2) noexcept;
+
+        /// @brief Resolve the collision between two objects.
         /// @param id The id of the first object.
         /// @param id2 The id of the second object.
         void resolve(object const &id, object const &id2) noexcept;

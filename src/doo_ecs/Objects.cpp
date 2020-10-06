@@ -1,7 +1,7 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-#include "doo_ecs/Base.hpp"
+#include "doo_ecs/Objects.hpp"
 #include "json/JsonVector.hpp"
 #include "imgui/ImGui.hpp"
 #include "utils/TypeUtils.hpp"
@@ -36,20 +36,12 @@ namespace tnt::doo
 
         active.emplace_back(index);
 
-        if (data_.parent == -1)
-        {
-            parent.emplace_back(-1);
-            angle.emplace_back(data_.angle);
-            scale.emplace_back(data_.scale);
-            pos.emplace_back(data_.pos);
-        }
-        else
-        {
-            parent.emplace_back(data_.parent);
-            angle.emplace_back(data_.angle - gAngle(data_.parent));
-            scale.emplace_back(local_scale(data_.scale, gScale(data_.parent)));
-            pos.emplace_back(local_pos(data_.pos, angle[parent[index]], gScale(parent[index]), gPos(parent[index])));
-        }
+        parent.emplace_back(null);
+        angle.emplace_back(data_.angle);
+        scale.emplace_back(data_.scale);
+        pos.emplace_back(data_.pos);
+
+        set_parent(index, data_.parent);
 
         return index;
     }
@@ -83,14 +75,14 @@ namespace tnt::doo
 
     float objects_sys::gAngle(object const &id) const noexcept
     {
-        if (parent[id] == -1)
+        if (parent[id] == null)
             return angle[id];
         return angle[id] + gAngle(parent[id]);
     }
 
     Vector objects_sys::gScale(object const &id) const noexcept
     {
-        if (parent[id] == -1)
+        if (parent[id] == null)
             return scale[id];
         Vector const &globScale{gScale(parent[id])};
         return Vector{globScale.x * scale[id].x, globScale.y * scale[id].y};
@@ -98,7 +90,7 @@ namespace tnt::doo
 
     Vector objects_sys::gPos(object const &id) const noexcept
     {
-        if (parent[id] == -1)
+        if (parent[id] == null)
             return pos[id];
 
         Vector const &pScale{gScale(parent[id])};
@@ -108,7 +100,7 @@ namespace tnt::doo
 
     void objects_sys::set_parent(object const &id, object const &parent_) noexcept
     {
-        if (parent_ == -1)
+        if (parent_ == null)
         {
             angle[id] = gAngle(id);
             scale[id] = gScale(id);
@@ -116,8 +108,8 @@ namespace tnt::doo
         }
         else
         {
-            if (parent[id] != -1)
-                set_parent(id, -1); // remove the current parent
+            if (parent[id] != null)
+                set_parent(id, null); // remove the current parent
 
             Vector const &pScale{gScale(parent_)};
             pos[id] = RotateVector(gPos(id) - gPos(parent_), -gAngle(parent_));

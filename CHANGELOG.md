@@ -3,6 +3,31 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+
+## [0.1.0a9]
+### Added
+- `tnt::randomUnitVector` on `pcg/Random.hpp`.
+- `tnt::doo::null` on `doo_ecs/Base`, which serves as an id for non-existent entities on a system.
+- `tnt::doo::physics_sys::resolveVel` and `tnt::doo::physics_sys::resolveInterpenetration`, which are called by `tnt::doo::physics_sys::resolve`.
+- `tnt::has_flag`, `tnt::set_flag`, `tnt::unset_flag` on `utils/BitFlags.hpp`.
+- `tnt::Rectangle::TopLeft`, `tnt::Rectangle::TopRight`, `tnt::Rectangle::BottomLeft` and `tnt::Rectangle::BottomRight`, which return the corresponding corner of the rectangle.
+- `concept basic_system` on [doo_ecs/Base.hpp](./include/doo_ecs/Base.hpp), which contains all the members that a system must have.
+- Support for drawing objects on a camera/multiple cameras for the Data Oriented ECS. See [doo_ecs/Cameras.hpp](./include/doo_ecs/Cameras.hpp).
+
+### Changed
+- Optimized `tnt::RotateVector` for cases when the angle is 0.
+- The following files are deprecated, and will be removed on the next version update:
+`core/Camera`, `core/Space`, `core/Scene`, all the files on `ecs`, `ecs2` and `tiled`. Use files on `doo_ecs` as a replacement instead.
+- `tnt::doo::physics_sys::resolve` now resolves both the velocity and the interpenetration of the colliding objects.
+- Updated `examples/doo_ecs_ex.cpp` to include the new cameras system.
+- `tnt::doo::sprites_sys::Draw`, now needs the id of a camera as the last argument, set it to `-1` (the default) to switch to old-style drawing.
+- Moved `object_data`, `concept system` and `objects_sys` to [doo_ecs/Objects.hpp](./include/doo_ecs/Objects.hpp).
+
+### Removed
+- `utils/LuaManager`. Use files on the `tolua` folder instead.
+- `tnt::Window::Draw`. Use `tnt::doo::sprites_sys::Draw` instead.
+
+
 ## [0.1.0a8]
 ### Added
 - `struct`s for checking supported SIMD instructions by the machine on `utils/Traits.hpp`.

@@ -1,10 +1,15 @@
 #ifndef TNT_DOO_ECS_SPRITES_HPP
 #define TNT_DOO_ECS_SPRITES_HPP
 
-#include "core/Window.hpp"
 #include "doo_ecs/Base.hpp"
+#include "math/Rectangle.hpp"
 
-// TODO: find a way to store the medium_texture_cache* on sprites_sys.
+// TODO:
+// find a way to store the medium_texture_cache* on sprites_sys.
+// find a way to make objects innactive when out of the camera.
+
+// TODO(maybe):
+// change draw method to render all sprites inside a camera (this solves the problem of rendering with multiple cameras) ??
 
 namespace tnt::doo
 {
@@ -63,7 +68,7 @@ namespace tnt::doo
         /// @brief Draw object with the given id on the given window.
         /// @param id The id of the object to draw.
         /// @param win The window where the object will be drawed.
-        void Draw(object const &id, Window const &win) const noexcept;
+        void Draw(object const &id, Window const &win, tnt::doo::camera const &cam = null) const noexcept;
 
         std::vector<object> draw_queue; /// < All the id-s of the objects that should be drawed.
         std::vector<SDL_Texture *> tex; /// < The texture data of the objects.

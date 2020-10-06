@@ -66,14 +66,12 @@ function(setup_target project_name)
         target_link_libraries(${project_name} PRIVATE SDL2::SDL2 SDL2::SDL2-static)
     endif()
 
-    target_link_libraries(${project_name} PRIVATE SDL2::SDL2_image)
-    target_link_libraries(${project_name} PRIVATE SDL2::SDL2_mixer)
-    target_link_libraries(${project_name} PRIVATE SDL2::SDL2_net)
-    target_link_libraries(${project_name} PRIVATE SDL2::SDL2_ttf)
-    target_link_libraries(${project_name} PRIVATE sol2::sol2)
-    target_link_libraries(${project_name} PRIVATE fmt::fmt fmt::fmt-header-only)
-    target_link_libraries(${project_name} PRIVATE nlohmann_json nlohmann_json::nlohmann_json)
+    target_link_libraries(${project_name} PRIVATE
+        SDL2::SDL2_image SDL2::SDL2_mixer
+        SDL2::SDL2_net SDL2::SDL2_ttf
+        sol2::sol2 fmt::fmt fmt::fmt-header-only
+        nlohmann_json nlohmann_json::nlohmann_json)
 
     target_link_directories(${project_name} PRIVATE
-        ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET}/lib)
+        ${VCPKG_ROOT}/installed/${VCPKG_DEFAULT_TRIPLET}/lib)
 endfunction()

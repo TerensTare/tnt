@@ -1,8 +1,10 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+#include "doo_ecs/Cameras.hpp"
+#include "doo_ecs/Objects.hpp"
 #include "doo_ecs/Sprites.hpp"
-#include "doo_ecs/Base.hpp"
+
 #include "fileIO/AssetCache.hpp"
 #include "json/JsonRectangle.hpp"
 
@@ -52,7 +54,7 @@ namespace tnt::doo
             clip.reserve(10);
         }
 
-        draw_queue.emplace_back(-1);
+        draw_queue.emplace_back(null);
         tex.emplace_back(nullptr);
         clip.emplace_back(SDL_Rect{0, 0, 0, 0});
     }
@@ -73,20 +75,37 @@ namespace tnt::doo
 
     Rectangle sprites_sys::draw_area(object const &id) const noexcept
     {
-        float const &dx{clip[id].w * objects.gScale(id).x * .5f};
-        float const &dy{clip[id].h * objects.gScale(id).y * .5f};
-        return {objects.gPos(id).x - dx, objects.gPos(id).y - dy, 2 * dx, 2 * dy};
+        float const &dx{clip[id].w * objects.gScale(id).x};
+        float const &dy{clip[id].h * objects.gScale(id).y};
+        return {objects.gPos(id).x, objects.gPos(id).y, dx, dy};
     }
 
-    void sprites_sys::Draw(object const &id, Window const &win) const noexcept
+    inline const auto draw_area_cam =
+        [](object const &id, tnt::doo::camera const &cam) noexcept -> SDL_FRect {
+        Vector const &gPos{RotateVector(objects.gPos(id) - cameras.pos[cam], -cameras.angle[cam])};
+        float const &dx{sprites.clip[id].w * objects.gScale(id).x * cameras.scale[cam].x};
+        float const &dy{sprites.clip[id].h * objects.gScale(id).y * cameras.scale[cam].y};
+        return SDL_FRect{gPos.x, gPos.y, dx, dy};
+    };
+
+    void sprites_sys::Draw(object const &id, Window const &win, tnt::doo::camera const &cam) const noexcept
     {
-        if (draw_queue.size() <= id || draw_queue[id] == -1)
+        if (draw_queue.size() <= id || draw_queue[id] == null)
             return;
 
-        SDL_FRect const &dst{(SDL_FRect)draw_area(id)};
+        if (cam == null || cameras.active.size() <= cam)
+        {
+            SDL_FRect const &dst{(SDL_FRect)draw_area(id)};
 
-        SDL_RenderCopyExF(win.getRenderer(), tex[id],
-                          &clip[id], &dst, objects.gAngle(id),
-                          nullptr, SDL_FLIP_NONE);
+            SDL_RenderCopyExF(win.getRenderer(), tex[id],
+                              &clip[id], &dst,
+                              objects.gAngle(id),
+                              nullptr, SDL_FLIP_NONE);
+        }
+        else
+            SDL_RenderCopyExF(win.getRenderer(), tex[id],
+                              &clip[id], &draw_area_cam(id, cam),
+                              objects.gAngle(id) - cameras.angle[cam],
+                              nullptr, SDL_FLIP_NONE);
     }
 } // namespace tnt::doo

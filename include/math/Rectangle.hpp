@@ -122,6 +122,11 @@ namespace tnt
                     (point.y < y + h));
         }
 
+        constexpr Vector TopLeft() const noexcept { return Vector{x, y}; }
+        constexpr Vector TopRight() const noexcept { return Vector{x + w, y}; }
+        constexpr Vector BottomLeft() const noexcept { return Vector{x, y + h}; }
+        constexpr Vector BottomRight() const noexcept { return Vector{x + w, y + h}; }
+
         float x;
         float y;
         float w;

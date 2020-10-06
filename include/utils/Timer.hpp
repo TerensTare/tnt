@@ -59,8 +59,9 @@ namespace tnt
                 std::chrono::steady_clock::now() - beginning - deltaPaused)))
         {
             start();
-            fast_milli const deltaT = std::chrono::duration_cast<fast_milli>(
-                std::chrono::steady_clock::now() - beginning - deltaPaused);
+            fast_milli const &deltaT{
+                std::chrono::duration_cast<fast_milli>(
+                    std::chrono::steady_clock::now() - beginning - deltaPaused)};
             reset();
             return deltaT.count();
         }

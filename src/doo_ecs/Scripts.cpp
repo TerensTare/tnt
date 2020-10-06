@@ -28,7 +28,7 @@ namespace tnt::doo
             updates.reserve(10);
         }
 
-        script_queue.emplace_back(-1);
+        script_queue.emplace_back(null);
         updates.emplace_back(lua_ctx["nocollide_functionName"].get_or_create<sol::protected_function>());
     }
 

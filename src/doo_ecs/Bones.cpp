@@ -2,6 +2,8 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 #include "doo_ecs/Bones.hpp"
+#include "doo_ecs/Objects.hpp"
+
 #include "utils/Assert.hpp"
 
 namespace tnt::doo

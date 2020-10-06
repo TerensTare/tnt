@@ -7,6 +7,8 @@
 #include "core/Input.hpp"
 
 #include "doo_ecs/Animations.hpp"
+#include "doo_ecs/Cameras.hpp"
+#include "doo_ecs/Objects.hpp"
 #include "doo_ecs/Physics.hpp"
 #include "doo_ecs/Sprites.hpp"
 
@@ -14,6 +16,7 @@
 #include "utils/Timer.hpp"
 
 using tnt::doo::animations;
+using tnt::doo::cameras;
 using tnt::doo::objects;
 using tnt::doo::physics;
 using tnt::doo::sprites;
@@ -26,13 +29,16 @@ int main(int argc, char **argv)
         nlohmann::json j;
 
         for (std::ifstream{"objects.json"} >> j;
-             nlohmann::json const &it : j)
+             nlohmann::json const &it : j["objects"])
         {
             objects.from_json(it);
             physics.from_json(it);
             sprites.from_json(window, it);
             animations.from_json(it);
         }
+
+        for (nlohmann::json const &it : j["cameras"])
+            cameras.from_json(it);
     }
 
     float dt{0.f};
@@ -48,16 +54,32 @@ int main(int argc, char **argv)
         while (SDL_PollEvent(&e))
             window.handleEvents(e);
 
+        float const &change{dt * .2f};
+
+        if (tnt::input::keyDown(SDL_SCANCODE_LEFT))
+            objects.pos[0].x -= change;
+        else if (tnt::input::keyDown(SDL_SCANCODE_RIGHT))
+            objects.pos[0].x += change;
+        else if (tnt::input::keyDown(SDL_SCANCODE_UP))
+            objects.pos[0].y -= change;
+        else if (tnt::input::keyDown(SDL_SCANCODE_DOWN))
+            objects.pos[0].y += change;
+        else if (tnt::input::keyDown(SDL_SCANCODE_S))
+            cameras.shake(0);
+
+        cameras.follow(0, 0, dt);
+        objects.angle[0] += (dt * .01f);
+
         window.Clear();
         for (tnt::doo::object const &obj : objects.active)
-            if (obj != -1)
+            if (obj != tnt::doo::null)
             {
                 // update
                 physics.Update(obj, dt);
                 animations.Update(obj, dt);
 
                 // draw
-                sprites.Draw(obj, window);
+                sprites.Draw(obj, window, 0);
             }
         window.Render();
     }

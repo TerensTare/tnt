@@ -14,19 +14,6 @@ The project uses [vcpkg](https://github.com/microsoft/vcpkg) to handle the depen
 - Get CMake from [https://cmake.org/download/](https://cmake.org/download/).
 - Set environment variable `VCPKG_DEFAULT_TRIPLET` to your corresponding cpu architecture/os. You can skip this step and let CMake choose the triplet that best suits your os/architecture. However, it is recommended that you set this environment variable by yourself.
 
-*Note*: If you want to use some specific types asset files, you have to install additional "patches" for sdl2 packages from vcpkg as listed here:
-
-| File extension | Needed package |
-|:--------------:|:--------------:|
-|.jpg| sdl2-image[libjpeg-turbo] |
-|.webp| sdl2-image[libwebp] |
-|.tiff, .tif| sdl2-image[tiff] |
-|.flac| sdl2-mixer[libflac] |
-|.mod| sdl2-mixer[libmodplug] |
-|.ogg, .ogv, .oga, .ogx, .ogm, .spx| sdl2-mixer[libvorbis] |
-|.opus| sdl2-mixer[opusfile] |
-|.mp3| sdl2-mixer[mpg123] |
-
 ### Running the build commands.
 
 At the time of speaking, the engine can be used by including header files and adding source files(.cpp) to your compile command. But there is planned support for building the engine as Windows DLL's and C++20 modules. Until then, the build command is as follows:

@@ -42,7 +42,7 @@ namespace tnt::doo
         spacing.emplace_back(anim_.spacing);
         current.emplace_back(0);
 
-        running.emplace_back(if_else(!anim_.finished, index, -1)); // -1 or index
+        running.emplace_back(if_else(!anim_.finished, index, null)); // null or index
     }
 
     void animations_sys::add_invalid()
@@ -72,7 +72,7 @@ namespace tnt::doo
         spacing.emplace_back(0.f);
         current.emplace_back(0);
 
-        running.emplace_back(-1);
+        running.emplace_back(null);
     }
 
     void animations_sys::Update(object const &id, float time_) noexcept
@@ -96,7 +96,7 @@ namespace tnt::doo
             }
             else
             {
-                running[id] = -1;
+                running[id] = null;
                 elapsed[id] = speed[id] - timePerFrame[id];
                 sprites.clip[id].x = (int)startX[id];
                 sprites.clip[id].y = (int)startY[id];

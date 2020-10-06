@@ -2,6 +2,7 @@
 #define TNT_IMGUI_LIB_HPP
 
 #include "core/Window.hpp"
+#include "math/Vector.hpp"
 #include "utils/BitFlags.hpp"
 
 // TODO: more widgets:

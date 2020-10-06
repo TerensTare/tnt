@@ -17,7 +17,27 @@ namespace tnt
     };
 
     template <typename T>
-    concept bit_mask = enum_type<T> &&enable_bit_mask<T>::value == true;
+    concept bit_mask = enum_type<T> && enable_bit_mask<T>::value == true;
+
+    template <bit_mask E>
+    constexpr bool has_flag(E &bit, E const &flag) noexcept
+    {
+        return (bit & flag) == flag;
+    }
+
+    template<bit_mask E>
+    constexpr void set_flag(E& bit, E const&flag) noexcept
+    {
+        if constexpr(!has_flag(bit, flag))
+        bit |= flag;
+    }
+
+    template <bit_mask E>
+    constexpr void unset_flag(E&bit, E const&flag) noexcept
+    {
+        if constexpr(has_flag(bit, flag))
+        bit &= ~flag;
+    }
 } // namespace tnt
 
 template <tnt::bit_mask E>
