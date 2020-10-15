@@ -16,86 +16,53 @@
 
 namespace tnt::doo
 {
-    void physics_sys::add_object(physics_comp const &body)
+    void physics_sys::add_object(object const &id, physics_comp const &body)
     {
-        object const &id{inv_mass.size()};
-        [[unlikely]] if (id == inv_mass.capacity())
+        [[unlikely]] if (id > inv_mass.capacity())
         {
-            inv_mass.reserve(10);
+            inv_mass.reserve(id - inv_mass.capacity());
 
-            damping.reserve(10);
-            restitution.reserve(10);
+            damping.reserve(id - inv_mass.capacity());
+            restitution.reserve(id - inv_mass.capacity());
 
-            vel.reserve(10);
-            maxVel.reserve(10);
-            accel.reserve(10);
-            maxAccel.reserve(10);
+            vel.reserve(id - inv_mass.capacity());
+            maxVel.reserve(id - inv_mass.capacity());
+            accel.reserve(id - inv_mass.capacity());
+            maxAccel.reserve(id - inv_mass.capacity());
 
-            physics_queue.reserve(10);
+            physics_queue.reserve(id - inv_mass.capacity());
 
-            bound_box.reserve(10);
+            bound_box.reserve(id - inv_mass.capacity());
         }
 
-        inv_mass.emplace_back(if_else(body.type == body_type::fixed, 0.f, 1 / body.mass));
+        inv_mass.emplace(inv_mass.cbegin() + id, if_else(body.type == body_type::fixed, 0.f, 1 / body.mass));
 
-        damping.emplace_back(body.damping);
-        restitution.emplace_back(body.restitution);
+        damping.emplace(damping.cbegin() + id, body.damping);
+        restitution.emplace(restitution.cbegin() + id, body.restitution);
 
         if (objects.parent[id] == null)
         {
-            vel.emplace_back(VECTOR_ZERO);
-            maxVel.emplace_back(body.maxVel);
-            accel.emplace_back(VECTOR_ZERO);
-            maxAccel.emplace_back(body.maxAccel);
+            vel.emplace(vel.cbegin() + id, VECTOR_ZERO);
+            maxVel.emplace(maxVel.cbegin() + id, body.maxVel);
+            accel.emplace(accel.cbegin() + id, VECTOR_ZERO);
+            maxAccel.emplace(maxAccel.cbegin() + id, body.maxAccel);
         }
         else
         {
-            vel.emplace_back(-gVel(objects.parent[id]));
-            maxVel.emplace_back(body.maxVel - gMaxVel(objects.parent[id]));
-            accel.emplace_back(-gAccel(objects.parent[id]));
-            maxAccel.emplace_back(body.maxAccel - gMaxAccel(objects.parent[id]));
+            vel.emplace(vel.cbegin() + id, -gVel(objects.parent[id]));
+            maxVel.emplace(maxVel.cbegin() + id, body.maxVel - gMaxVel(objects.parent[id]));
+            accel.emplace(accel.cbegin() + id, -gAccel(objects.parent[id]));
+            maxAccel.emplace(maxAccel.cbegin() + id, body.maxAccel - gMaxAccel(objects.parent[id]));
         }
 
-        physics_queue.emplace_back(id);
+        physics_queue.emplace(physics_queue.cbegin() + id, id);
         if (body.bound_box != Rectangle{0, 0, 0, 0})
-            bound_box.emplace_back(body.bound_box + objects.gPos(id));
+            bound_box.emplace(bound_box.cbegin() + id, body.bound_box + objects.gPos(id));
         else
-            bound_box.emplace_back(
-                objects.gPos(id),
-                objects.gScale(id).x * sprites.clip[id].w,
-                objects.gScale(id).y * sprites.clip[id].h);
-    }
-
-    void physics_sys::add_invalid()
-    {
-        [[unlikely]] if (inv_mass.size() == inv_mass.capacity())
-        {
-            inv_mass.reserve(10);
-
-            damping.reserve(10);
-            restitution.reserve(10);
-
-            vel.reserve(10);
-            maxVel.reserve(10);
-            accel.reserve(10);
-            maxAccel.reserve(10);
-
-            physics_queue.reserve(10);
-            bound_box.reserve(10);
-        }
-
-        inv_mass.emplace_back(0.f);
-
-        damping.emplace_back(0.f);
-        restitution.emplace_back(0.f);
-
-        vel.emplace_back(VECTOR_ZERO);
-        maxVel.emplace_back(40.f, 40.f);
-        accel.emplace_back(VECTOR_ZERO);
-        maxAccel.emplace_back(15.f, 15.f);
-
-        physics_queue.emplace_back(null);
-        bound_box.emplace_back(0.f, 0.f, 0.f, 0.f);
+            bound_box.emplace(bound_box.begin() + id,
+                              objects.gPos(id),
+                              objects.gScale(id).x * sprites.clip[id].w,
+                              objects.gScale(id).y * sprites.clip[id].h);
     }
 
     void physics_sys::addForce(object const &id, Vector const &force) noexcept
@@ -196,27 +163,25 @@ namespace tnt::doo
         resolveInterpenetration(id, id2);
     }
 
-    void physics_sys::from_json(nlohmann::json const &j)
+    void physics_sys::from_json(object const &id, nlohmann::json const &j)
     {
         if (json_has(j, "phys"))
         {
             if (nlohmann::json const &phys{j["phys"]}; json_has(phys, "bounds"))
             {
                 if (json_has(phys, "max_vel") || json_has(phys, "max_accel"))
-                    add_object(physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}, .maxVel = phys["max_vel"], .maxAccel = phys["max_accel"], .bound_box{phys["bounds"]}});
+                    add_object(id, physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}, .maxVel = phys["max_vel"], .maxAccel = phys["max_accel"], .bound_box{phys["bounds"]}});
                 else
-                    add_object(physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}, .bound_box{phys["bounds"]}});
+                    add_object(id, physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}, .bound_box{phys["bounds"]}});
             }
             else
             {
                 if (json_has(phys, "max_vel") || json_has(phys, "max_accel"))
-                    add_object(physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}, .maxVel = phys["max_vel"], .maxAccel = phys["max_accel"]});
+                    add_object(id, physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}, .maxVel = phys["max_vel"], .maxAccel = phys["max_accel"]});
                 else
-                    add_object(physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}});
+                    add_object(id, physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}});
             }
         }
-        else
-            add_invalid();
     }
 
     void physics_sys::draw_imgui(object const &id, Window const &win) noexcept

@@ -3,76 +3,41 @@
 
 #include "doo_ecs/Animations.hpp"
 #include "doo_ecs/Sprites.hpp"
+
 #include "json/JsonRectangle.hpp"
 #include "utils/TypeUtils.hpp"
 
 namespace tnt::doo
 {
-    constexpr animation_comp::animation_comp(tnt::Rectangle const &rect,
-                                             int const framesCount, float const animSpeed, float const space,
-                                             direction const &dir_, wrap_mode const &wrap_) noexcept
-        : clip{rect}, startX{rect.x}, startY{rect.y},
-          speed{animSpeed}, timePerFrame{animSpeed / framesCount},
-          spacing{space}, dir{dir_}, wrap{wrap_} {}
-
-    void animations_sys::add_object(animation_comp const &anim_)
+    void animations_sys::add_object(object const &id, animation_comp const &anim_)
     {
-        object const &index{wrap.size()};
-        [[unlikely]] if (index == wrap.capacity())
+        // TODO: handle cases when object doesn't exist on the objects_sys.
+
+        [[unlikely]] if (id > wrap.capacity())
         {
-            wrap.reserve(10);
-            dir.reserve(10);
-            startX.reserve(10);
-            startY.reserve(10);
-            elapsed.reserve(10);
-            speed.reserve(10);
-            timePerFrame.reserve(10);
-            spacing.reserve(10);
-            current.reserve(10);
-            running.reserve(10);
+            wrap.reserve(id - wrap.capacity());
+            dir.reserve(id - wrap.capacity());
+            startX.reserve(id - wrap.capacity());
+            startY.reserve(id - wrap.capacity());
+            elapsed.reserve(id - wrap.capacity());
+            speed.reserve(id - wrap.capacity());
+            timePerFrame.reserve(id - wrap.capacity());
+            spacing.reserve(id - wrap.capacity());
+            current.reserve(id - wrap.capacity());
+            running.reserve(id - wrap.capacity());
         }
 
-        wrap.emplace_back(anim_.wrap);
-        dir.emplace_back(anim_.dir);
-        startX.emplace_back(anim_.startX);
-        startY.emplace_back(anim_.startY);
-        elapsed.emplace_back(0.f);
-        speed.emplace_back(anim_.speed);
-        timePerFrame.emplace_back(anim_.timePerFrame);
-        spacing.emplace_back(anim_.spacing);
-        current.emplace_back(0);
+        wrap.emplace(wrap.cbegin() + id, anim_.wrap);
+        dir.emplace(dir.cbegin() + id, anim_.dir);
+        startX.emplace(startX.cbegin() + id, anim_.startX);
+        startY.emplace(startY.cbegin() + id, anim_.startY);
+        elapsed.emplace(elapsed.cbegin() + id, 0.f);
+        speed.emplace(speed.cbegin() + id, anim_.speed);
+        timePerFrame.emplace(timePerFrame.cbegin() + id, anim_.timePerFrame);
+        spacing.emplace(spacing.cbegin() + id, anim_.spacing);
+        current.emplace(current.cbegin() + id, 0);
 
-        running.emplace_back(if_else(!anim_.finished, index, null)); // null or index
-    }
-
-    void animations_sys::add_invalid()
-    {
-        object const &index{wrap.size()};
-        [[unlikely]] if (index == wrap.capacity())
-        {
-            wrap.reserve(10);
-            dir.reserve(10);
-            startX.reserve(10);
-            startY.reserve(10);
-            elapsed.reserve(10);
-            speed.reserve(10);
-            timePerFrame.reserve(10);
-            spacing.reserve(10);
-            current.reserve(10);
-            running.reserve(10);
-        }
-
-        wrap.emplace_back(animation_comp::wrap_mode::loop);
-        dir.emplace_back(animation_comp::direction::horizontal);
-        startX.emplace_back(0.f);
-        startY.emplace_back(0.f);
-        elapsed.emplace_back(0.f);
-        speed.emplace_back(0.f);
-        timePerFrame.emplace_back(0.f);
-        spacing.emplace_back(0.f);
-        current.emplace_back(0);
-
-        running.emplace_back(null);
+        running.emplace(running.cbegin() + id, if_else(!anim_.finished, id, null)); // null or index
     }
 
     void animations_sys::Update(object const &id, float time_) noexcept
@@ -104,7 +69,7 @@ namespace tnt::doo
         }
     }
 
-    void animations_sys::from_json(nlohmann::json const &j)
+    void animations_sys::from_json(object const &id, nlohmann::json const &j)
     {
         if (json_has(j, "anim"))
         {
@@ -112,9 +77,8 @@ namespace tnt::doo
             nlohmann::json const &chunk{j["anim"]};
             int const &frames{chunk["frames"]};
             float const &speed{chunk["speed"]};
-            float const &space{
-                if_else(json_has(chunk, "space"),
-                        chunk["space"], 0.f)};
+            float const &space{if_else(json_has(chunk, "space"),
+                                       chunk["space"], 0.f)};
             animation_comp::direction const dir_{
                 if_else(chunk["dir"] == "horizontal",
                         animation_comp::horizontal,
@@ -126,9 +90,7 @@ namespace tnt::doo
                         if_then(chunk["wrap"] == "loop",
                                 animation_comp::loop))};
 
-            add_object(animation_comp{rect, frames, speed, space, dir_, wrap_});
+            add_object(id, animation_comp{rect, frames, speed, space, dir_, wrap_});
         }
-        else
-            add_invalid();
     }
 } // namespace tnt::doo

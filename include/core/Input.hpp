@@ -1,9 +1,9 @@
 #ifndef TNT_INPUT_HPP
 #define TNT_INPUT_HPP
 
-#include <SDL2/SDL_events.h>
-
 #include <utility>
+
+#include <SDL2/SDL_events.h>
 
 // TODO: Better Joystick and GameController support.
 

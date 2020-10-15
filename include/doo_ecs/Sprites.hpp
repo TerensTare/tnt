@@ -40,20 +40,18 @@ namespace tnt::doo
     {
         inline sprites_sys() noexcept = default;
 
-        sprites_sys(sprites_sys const &) = delete;
-        sprites_sys &operator=(sprites_sys const &) = delete;
+        // sprites_sys(sprites_sys const &) = delete;
+        // sprites_sys &operator=(sprites_sys const &) = delete;
 
         /// @brief Add a new object to the sprites system.
+        /// @param id The id of the object to add to the sprites system.
         /// @param sprite The sprite component of the object.
-        void add_object(sprite_comp const &sprite);
-
-        /// @brief Add a new object with invalid data to the next index.
-        /// Useful when you want the object with next id not to be in a certain system.
-        void add_invalid();
+        void add_object(object const &id, sprite_comp const &sprite);
 
         /// @brief Load the sprite data of the objects from a given json chunk.
+        /// @param id The id of the object to load from json.
         /// @param j The json chunk from where to load the sprite data of the objects.
-        void from_json(Window const &win, nlohmann::json const &j);
+        void from_json(object const &id, Window const &win, nlohmann::json const &j);
 
         /// @brief Draw widgets on the given window to modify the datas of the system.
         /// @param id The id of the active object.

@@ -22,6 +22,7 @@
 // Add ability to draw camera and objects shrinked. (ex. on split screen games)
 // Add ability to zoom objects on the camera with lerp().
 // Pre-made aspect ratios (like 16:9, 4:3)
+// Scriptable cameras
 
 // TODO(maybe):
 // initialize the system with the size of the world ??
@@ -61,8 +62,8 @@ namespace tnt::doo
     {
         cameras_sys() = default;
 
-        cameras_sys(cameras_sys const &) = delete;
-        cameras_sys &operator=(cameras_sys const &) = delete;
+        // cameras_sys(cameras_sys const &) = delete;
+        // cameras_sys &operator=(cameras_sys const &) = delete;
 
         /// @brief Add a new camera to the system.
         /// @param data The data of the camera component.
@@ -90,6 +91,11 @@ namespace tnt::doo
         /// @todo Shake for a fixed amount of time with shake_for().
         /// @note Based on https://gist.github.com/ftvs/5822103
         void shake(camera const &cam) noexcept;
+
+        /// @brief Set the camera zoom to fit all the given objects.
+        /// @param cam The id of the camera to zoom.
+        /// @param objs The id-s of the objects that should fit on the camera.
+        void zoom_to_fit(camera const &cam, std::span<object> objs);
 
         std::vector<float> angle;      /// < The angles of all the cameras.
         std::vector<float> width;      /// < The width of all the cameras.

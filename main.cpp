@@ -12,6 +12,8 @@
 #include "doo_ecs/Physics.hpp"
 #include "doo_ecs/Sprites.hpp"
 
+#include "fileIO/VirtualFS.hpp"
+
 #include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
 
@@ -25,16 +27,20 @@ int main(int argc, char **argv)
 {
     tnt::Window window{"The TnT Engine", 800, 600};
 
+    tnt::vfs::mount("assets", "res");
+    tnt::logger::info("Path is {}", tnt::vfs::absolute("./scripts/player1.lua"));
+
     {
         nlohmann::json j;
 
         for (std::ifstream{"objects.json"} >> j;
              nlohmann::json const &it : j["objects"])
         {
-            objects.from_json(it);
-            physics.from_json(it);
-            sprites.from_json(window, it);
-            animations.from_json(it);
+            tnt::doo::object const &obj{objects.from_json(it)};
+
+            physics.from_json(obj, it);
+            sprites.from_json(obj, window, it);
+            animations.from_json(obj, it);
         }
 
         for (nlohmann::json const &it : j["cameras"])

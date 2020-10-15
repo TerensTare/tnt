@@ -2,46 +2,52 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 #include "doo_ecs/Scripts.hpp"
+#include "fileIO/VirtualFS.hpp"
 #include "tolua/LuaLoader.hpp"
+#include "utils/Logger.hpp"
 
 namespace tnt::doo
 {
-    void scripts_sys::add_object(std::string_view filename)
+    void scripts_sys::add_object(object const &id, std::string_view filename)
     {
-        [[unlikely]] if (updates.size() == updates.capacity())
+        [[unlikely]] if (id > states.capacity())
         {
             script_queue.reserve(10);
-            updates.reserve(10);
+            states.reserve(10);
         }
 
-        script_queue.emplace_back(updates.size());
-        lua_ctx.script_file(filename.data());
+        script_queue.emplace(script_queue.cbegin() + id, id);
+        states.emplace(states.cbegin() + id);
 
-        updates.emplace_back(lua_ctx["update"]);
-    }
+        states[id].open_libraries(sol::lib::base);
+        states[id]["id"] = id;
+        lua::lib libs[]{lua::lib::core, lua::lib::math,
+                        lua::lib::doo_ecs};
+        lua::load(states[id], libs);
 
-    void scripts_sys::add_invalid()
-    {
-        [[unlikely]] if (updates.size() == updates.capacity())
+        if (auto res = states[id].safe_script_file(vfs::absolute(filename)); !res.valid())
         {
-            script_queue.reserve(10);
-            updates.reserve(10);
+            sol::error err = res;
+            logger::error(err.what());
         }
-
-        script_queue.emplace_back(null);
-        updates.emplace_back(lua_ctx["nocollide_functionName"].get_or_create<sol::protected_function>());
     }
 
     void scripts_sys::Update(tnt::doo::object const &id, float time_)
     {
-        updates[id](time_);
+        if (!has_object(script_queue, id))
+            return;
+
+        sol::safe_function fn = states[id]["update"];
+        if (auto res = fn(time_); !res.valid())
+        {
+            sol::error err = res;
+            logger::error(err.what());
+        }
     }
 
-    void scripts_sys::from_json(nlohmann::json const &j)
+    void scripts_sys::from_json(object const &id, nlohmann::json const &j)
     {
         if (json_has(j, "script"))
-            add_object(j["script"]);
-        else
-            add_invalid();
+            add_object(id, j["script"]);
     }
 } // namespace tnt::doo

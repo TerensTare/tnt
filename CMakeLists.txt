@@ -1,5 +1,4 @@
 # TODO:
-
 # testing
 # flags for x64/x86, debug/release.
 
@@ -76,7 +75,7 @@ if(NOT DEFINED CMAKE_PREFIX_PATH)
     set(CMAKE_PREFIX_PATH "")
 endif()
 
-list(APPEND CMAKE_PREFIX_PATH ${VCPKG_EXE_PATH}/../installed/${VCPKG_DEFAULT_TRIPLET})
+list(APPEND CMAKE_PREFIX_PATH ENV{VCPKG_ROOT}/installed/ENV{VCPKG_DEFAULT_TRIPLET})
 
 # Load required packages.
 find_package(Lua REQUIRED)
@@ -91,13 +90,10 @@ find_package(nlohmann_json CONFIG REQUIRED)
 
 file(GLOB SOURCE_FILES
     src/core/*.cpp src/doo_ecs/*.cpp src/fileIO/*.cpp
-    src/ImGui/ImGui.cpp src/math/*.cpp)
+    src/ImGui/ImGui.cpp src/math/*.cpp src/tolua/*.cpp)
 
 list(FILTER SOURCE_FILES EXCLUDE REGEX "Context.cpp$")
-list(FILTER SOURCE_FILES EXCLUDE REGEX "Space.cpp$")
-list(FILTER SOURCE_FILES EXCLUDE REGEX "Scene.cpp$")
-list(FILTER SOURCE_FILES EXCLUDE REGEX "VirtualFS.cpp$")
-list(FILTER SOURCE_FILES EXCLUDE REGEX "LuaManager.cpp$")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "AssetManager.cpp$")
 
 if (TNT_DO_EXPERIMENTS)
     list(APPEND SOURCE_FILES exp/Runtimer.cpp)
@@ -111,12 +107,16 @@ if(BUILD_DOCS)
     build_docs()
 endif()
 
-add_executable(TnT main.cpp ${SOURCE_FILES})
+# if(WIN32 AND NOT (CMAKE_BUILD_TYPE MATCHES DEBUG))
+#     add_executable(TnT WIN32 main.cpp ${SOURCE_FILES})
+# else()
+    add_executable(TnT main.cpp ${SOURCE_FILES})
+# endif()
+
+add_compile_definitions(SOL_PRINT_ERRORS=1 SOL_NO_EXCEPTIONS=1)
 
 target_include_directories(TnT PRIVATE ${LUA_INCLUDE_DIR})
 target_include_directories(TnT PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
-target_include_directories(TnT PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
-    
 
 setup_target(TnT)
 

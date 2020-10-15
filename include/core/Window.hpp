@@ -3,7 +3,6 @@
 
 #include <string>
 #include <SDL2/SDL.h>
-#include "ecs/Base.hpp"
 
 // TODO: overload to render a Scene when Draw is called.
 // TODO: support drawing fonts.

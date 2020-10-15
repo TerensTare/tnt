@@ -17,15 +17,20 @@ namespace tnt::doo
         return local_scale(diff, pScale);
     };
 
-    constexpr object_data::object_data(float angle_, Vector const &pos_,
-                                       Vector const &scale_, object const &parent_) noexcept
-        : angle{angle_}, pos{pos_}, scale{scale_}, parent{parent_} {}
+    struct gen final
+    {
+        inline static object next() noexcept
+        {
+            static object id_{};
+            return id_++;
+        }
+    };
 
     object objects_sys::add_object(object_data const &data_) noexcept
     {
-        object const &index{angle.size()};
+        object const &index{gen::next()};
 
-        [[unlikely]] if (index == angle.capacity()) // if the vector got to his capacity, then we reserve more space
+        [[unlikely]] if (angle.size() == angle.capacity()) // if the vector got to his capacity, then we reserve more space
         {
             angle.reserve(10);
             active.reserve(10);
@@ -51,17 +56,19 @@ namespace tnt::doo
         return object_data{gAngle(id), gPos(id), gScale(id), parent[id]};
     }
 
-    void objects_sys::from_json(nlohmann::json const &j)
+    object objects_sys::from_json(nlohmann::json const &j)
     {
+        object id{null};
         if (json_has(j, "parent"))
-            add_object({j["angle"].get<float>(),
-                        j["pos"].get<Vector>(),
-                        j["scale"].get<Vector>(),
-                        j["parent"].get<object>()});
+            id = add_object({j["angle"].get<float>(),
+                             j["pos"].get<Vector>(),
+                             j["scale"].get<Vector>(),
+                             j["parent"].get<object>()});
         else
-            add_object({j["angle"].get<float>(),
-                        j["pos"].get<Vector>(),
-                        j["scale"].get<Vector>()});
+            id = add_object({j["angle"].get<float>(),
+                             j["pos"].get<Vector>(),
+                             j["scale"].get<Vector>()});
+        return id;
     }
 
     void objects_sys::draw_imgui(object const &id, Window const &win) noexcept

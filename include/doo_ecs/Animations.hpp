@@ -39,7 +39,10 @@ namespace tnt::doo
         /// @param wrap_ The wrap mode of the animation.
         constexpr animation_comp(Rectangle const &rect,
                                  int const framesCount, float const animSpeed, float const space,
-                                 direction const &dir_, wrap_mode const &wrap_) noexcept;
+                                 direction const &dir_, wrap_mode const &wrap_) noexcept
+            : clip{rect}, startX{rect.x}, startY{rect.y},
+              speed{animSpeed}, timePerFrame{animSpeed / framesCount},
+              spacing{space}, dir{dir_}, wrap{wrap_} {}
 
         bool finished{false};
         wrap_mode wrap;
@@ -56,16 +59,13 @@ namespace tnt::doo
     {
         inline animations_sys() noexcept = default;
 
-        animations_sys(animations_sys const &) = delete;
-        animations_sys &operator=(animations_sys const &) = delete;
+        // animations_sys(animations_sys const &) = delete;
+        // animations_sys &operator=(animations_sys const &) = delete;
 
         /// @brief Add an object to the animations system.
+        /// @param id The id of the object to add to the animations system.
         /// @param anim_ The data of the animation.
-        void add_object(animation_comp const &anim_);
-
-        /// @brief Add a new object with invalid data to the next index.
-        /// Useful when you want the object with next id not to be in a certain system.
-        void add_invalid();
+        void add_object(object const &id, animation_comp const &anim_);
 
         /// @brief Update the animation of the given object.
         /// @param id The id of the object's animation to update.
@@ -73,8 +73,9 @@ namespace tnt::doo
         void Update(object const &id, float time_) noexcept;
 
         /// @brief Load animation data from a json chunk.
+        /// @param id The id of the object to load from json.
         /// @param j The json chunk.
-        void from_json(nlohmann::json const &j);
+        void from_json(object const &id, nlohmann::json const &j);
 
         std::vector<animation_comp::wrap_mode> wrap; /// < The wrap modes of the animations.
         std::vector<animation_comp::direction> dir;  /// < The direction of the frames on the image.

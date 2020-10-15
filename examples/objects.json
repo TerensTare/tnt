@@ -22,7 +22,7 @@
                 "restitution": 0.999
             },
             "sprite": {
-                "file": "assets/player.png",
+                "file": "res://player.png",
                 "crop": {
                     "x": 3,
                     "y": 0,
@@ -61,7 +61,7 @@
                 "restitution": 0.999
             },
             "sprite": {
-                "file": "assets/player.png",
+                "file": "res://player.png",
                 "crop": {
                     "x": 3,
                     "y": 0,

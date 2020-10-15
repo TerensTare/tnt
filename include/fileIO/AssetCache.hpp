@@ -11,7 +11,6 @@
 
 // TODO(maybe):
 // add set_default_*asset*_cache ??
-// use a small cache (maybe 10 ??) for music and sfx ??
 
 namespace tnt::detail
 {

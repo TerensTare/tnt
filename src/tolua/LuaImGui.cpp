@@ -20,7 +20,6 @@ void tnt::lua::loadImGui(sol::state_view lua_)
                    "widget_first", ImGui::WindowFlags::WidgetThenText);
 
     imgui["init"] = &tnt_imgui_init;
-    imgui["close"] = &tnt_imgui_close;
 
     imgui["Begin"] = sol::overload(
         [](Window const &win, std::string_view name, int x, int y) -> bool {

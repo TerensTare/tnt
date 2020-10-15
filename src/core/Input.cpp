@@ -6,7 +6,7 @@
 
 namespace tnt::input
 {
-    inline struct input_handle_t final
+    inline static struct input_handle_t final
     {
         inline input_handle_t()
         {

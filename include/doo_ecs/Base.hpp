@@ -84,7 +84,7 @@ namespace tnt::doo
     /// @param id The id of the desired object.
     /// @return bool
     inline const auto has_object = [](std::span<object> members, object const &id) noexcept -> bool {
-        return (members.size() > id && members[id] != null);
+        return ((members.size() > id) && (members[id] != null));
     };
 
     /// @brief Check if the given json chunk has a certain field.
@@ -98,12 +98,10 @@ namespace tnt::doo
 
     // clang-format off
     template <typename T>
-    concept basic_system = std::is_final_v<T> &&
-        std::default_initializable<T> && 
-        !std::copy_constructible<T> &&
+    concept system = std::is_final_v<T> &&
+        std::default_initializable<T> &&
             requires(T && t) {
                 t.add_object;
-                t.add_invalid;
                 t.from_json;
                 t.draw_imgui;
             } && (requires (T && t) { t.Update; }

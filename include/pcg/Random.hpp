@@ -44,10 +44,33 @@ namespace tnt
         return {randomFloat(minX, maxX), randomFloat(minY, maxY)};
     }
 
+    /// @brief Create a randomly generated Vector with magnitude 1.
+    /// @return tnt::Vector
     inline tnt::Vector randomUnitVector()
     {
         float const &angle{randomFloat(0.f, 2_pi)};
         return Vector{cosf(angle), sinf(angle)};
+    }
+
+    /// @brief Generate a random number using a Halton sequence.
+    template <std::integral I>
+    inline auto halton1(I const base, I index) noexcept
+    {
+        decltype(base) result{0};
+        for (decltype(base) denom{1};
+             index > 0; index = floor(index / base))
+        {
+            denom *= base;
+            result += (index % base) / denom;
+        }
+        return result;
+    }
+
+    /// @brief Generate a random Vector using Halton sequences.
+    template <std::integral I>
+    inline Vector halton2(I const baseX, I const baseY, I index) noexcept
+    {
+        return {(float)halton1<I>(baseX, index), (float)halton1<I>(baseY, index)};
     }
 } // namespace tnt
 

@@ -1,54 +1,40 @@
 #ifndef TNT_VIRTUAL_FILE_SYSTEM_HPP
 #define TNT_VIRTUAL_FILE_SYSTEM_HPP
 
-#include <string_view>
+#include <string>
 
-#include <map>
-
-#include "core/Config.hpp"
-
-// TODO: check if alias exists in get() function and return "\"\"" if it
-// doesn't.
-// TODO: Consider making the map with value=std::filesystem::path
+// TODO:
+// Support for handling Zip archives, etc.
+// thread-safe operations.
 
 // TODO(maybe):
-// use an unordered_map ??
+// separate alias directories from alias files ??
+// suffix directory aliases with :// (ex. res://) ??
+// constexpr ops ??
 
-namespace tnt
+namespace tnt::vfs
 {
-    class [[deprecated("tnt::VirtualFS is depreated and"
-                       " will be removed in a future release.")]] VirtualFS
-    {
-    public:
-        VirtualFS();
-        ~VirtualFS() noexcept;
+    /// @brief Return the path separator used by the OS. "\\" on Windows, "/" otherwise.
+    /// @todo (maybe) Use consteval ??
+    /// @return constexpr const char const*
+    constexpr const char *path_sep() noexcept;
 
-        // VirtualFS(VirtualFS const &) = delete;
-        // VirtualFS &operator=(VirtualFS const &) = delete;
+    /// @brief Make @a alias evaluate to @a path when used with @a tnt::vfs::absolute.
+    /// @param path The path to be aliased.
+    /// @param alias The alias of @a path.
+    /// @note If @a alias has already been assigned to a different path, a debug log will be emmited and the old path will be replaced by the new one.
+    /// @sa tnt::vfs::absolute.
+    void mount(char const *path, char const *alias) noexcept;
 
-        // static VirtualFS &This();
+    /// @brief Remove @a path from the defined aliases.
+    /// @param path The alias path to be removed.
+    /// @note If @a path was never assigned, a debug log will be emmited and nothing will happen.
+    void unmount(char const *path) noexcept;
 
-        void mount(std::string_view alias, std::string_view path);
-        void unmount(std::string_view alias);
-
-        std::string_view CurrentDirectory();
-
-        std::string_view get(std::string_view alias) const;
-
-        std::string_view &operator[](std::string_view const &alias);
-
-        std::string_view path(std::string_view alias, std::string_view p);
-
-        void clean();
-
-        std::string_view operator>>(std::string_view alias);
-
-    private:
-        std::string_view asDir(std::string_view path);
-
-        std::string_view basePath{"." PATH_SEPARATOR}; // for now
-        std::map<std::string_view, std::string_view, std::less<>> aliases;
-    };
-} // namespace tnt
+    /// @brief Get the absolute path from a(n) absolute/relative/aliased path.
+    /// @param path The path to be turned to an absolute path.
+    /// @return std::string
+    std::string absolute(std::string_view path) noexcept;
+} // namespace tnt::vfs
 
 #endif //! TNT_VIRTUAL_FILE_SYSTEM_HPP

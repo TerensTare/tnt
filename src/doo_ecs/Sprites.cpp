@@ -31,46 +31,30 @@ namespace tnt::doo
     }
 
     // sprites_sys
-    void sprites_sys::add_object(sprite_comp const &sprite)
+    void sprites_sys::add_object(object const &id, sprite_comp const &sprite)
     {
-        [[unlikely]] if (tex.size() == tex.capacity())
+        [[unlikely]] if (id > tex.capacity())
         {
-            draw_queue.reserve(10);
-            tex.reserve(10);
-            clip.reserve(10);
+            draw_queue.reserve(id - tex.capacity());
+            tex.reserve(id - tex.capacity());
+            clip.reserve(id - tex.capacity());
         }
 
-        draw_queue.emplace_back(tex.size());
-        tex.emplace_back(sprite.tex);
-        clip.emplace_back(sprite.crop);
+        draw_queue.emplace(draw_queue.cbegin() + id, tex.size());
+        tex.emplace(tex.cbegin() + id, sprite.tex);
+        clip.emplace(clip.cbegin() + id, sprite.crop);
     }
 
-    void sprites_sys::add_invalid()
-    {
-        [[unlikely]] if (tex.size() == tex.capacity())
-        {
-            draw_queue.reserve(10);
-            tex.reserve(10);
-            clip.reserve(10);
-        }
-
-        draw_queue.emplace_back(null);
-        tex.emplace_back(nullptr);
-        clip.emplace_back(SDL_Rect{0, 0, 0, 0});
-    }
-
-    void sprites_sys::from_json(Window const &win, nlohmann::json const &j)
+    void sprites_sys::from_json(object const &id, Window const &win, nlohmann::json const &j)
     {
         if (json_has(j, "sprite"))
         {
             if (std::string_view const &file{j["sprite"]["file"].get<std::string_view>()};
                 json_has(j["sprite"], "crop"))
-                add_object({win, file, j["sprite"]["crop"]});
+                add_object(id, {win, file, j["sprite"]["crop"]});
             else
-                add_object({win, file});
+                add_object(id, {win, file});
         }
-        else
-            add_invalid();
     }
 
     Rectangle sprites_sys::draw_area(object const &id) const noexcept
@@ -90,7 +74,7 @@ namespace tnt::doo
 
     void sprites_sys::Draw(object const &id, Window const &win, tnt::doo::camera const &cam) const noexcept
     {
-        if (draw_queue.size() <= id || draw_queue[id] == null)
+        if (draw_queue.size() <= id || draw_queue[id] != id)
             return;
 
         if (cam == null || cameras.active.size() <= cam)

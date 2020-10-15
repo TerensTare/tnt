@@ -1,33 +1,36 @@
 #ifndef TNT_TEXTURE_ATLASES_ASSETS_CACHE_HPP
 #define TNT_TEXTURE_ATLASES_ASSETS_CACHE_HPP
 
+#include <map>
+#include <memory_resource>
+
 #include "fileIO/TextureAtlas.hpp"
 #include "fileIO/cache/Base.hpp"
 
 namespace tnt
 {
-    template <int I>
+    template <unsigned I>
     class asset_cache<TextureAtlas, I>
     {
     public:
         [[nodiscard]] inline TextureAtlas *get(tnt::Window const &win, std::string_view path, Rectangle const &rect)
         {
             load(win, path, rect);
-            return cache[path.data()];
+            return cache[vfs::absolute(path)];
         }
 
         inline void load(tnt::Window const &win, std::string_view path, Rectangle const &rect)
         {
-            cache.try_emplace(win, path, rect);
+            cache.try_emplace(vfs::absolute(path), win, path, rect);
         }
 
     private:
         std::byte memory[I * sizeof(TextureAtlas)];
         std::pmr::monotonic_buffer_resource res{memory, sizeof(memory)};
-        std::pmr::map<std::string, TextureAtlas> cache{&res};
+        std::pmr::unordered_map<std::string, TextureAtlas> cache{&res};
     };
 
-    template <int I>
+    template <unsigned I>
     using texture_atlas_cache = asset_cache<TextureAtlas, I>;
 
     using small_texture_atlas_cache = texture_atlas_cache<10>;

@@ -1,14 +1,17 @@
 #ifndef TNT_TEXTURES_ASSETS_CACHE_INL
 #define TNT_TEXTURES_ASSETS_CACHE_INL
 
-#include <SDL2/SDL.h>
+#include <unordered_map>
+#include <memory_resource>
+
 #include <SDL2/SDL_image.h>
 
 #include "fileIO/cache/Base.hpp"
+#include "fileIO/VirtualFS.hpp"
 
 namespace tnt
 {
-    template <int I>
+    template <unsigned I>
     class asset_cache<SDL_Texture, I>
     {
     public:
@@ -22,21 +25,22 @@ namespace tnt
                                               std::string_view path)
         {
             load(ren, path);
-            return cache[path.data()];
+            return cache[vfs::absolute(path)];
         }
 
         inline void load(SDL_Renderer *ren, std::string_view path)
         {
-            cache.try_emplace(path.data(), IMG_LoadTexture(ren, detail::to_abs(path.data()).c_str()));
+            cache.try_emplace(vfs::absolute(path), 
+            IMG_LoadTexture(ren, vfs::absolute(path).c_str()));
         }
 
     private:
         std::byte memory[I * sizeof(SDL_Texture *)];
         std::pmr::monotonic_buffer_resource res{memory, sizeof(memory)};
-        std::pmr::map<std::string, SDL_Texture *> cache{&res};
+        std::pmr::unordered_map<std::string, SDL_Texture *> cache{&res};
     };
 
-    template <int I>
+    template <unsigned I>
     using texture_cache = asset_cache<SDL_Texture, I>;
 
     using small_texture_cache = texture_cache<10>;

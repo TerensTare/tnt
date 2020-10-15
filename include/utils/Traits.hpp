@@ -50,8 +50,7 @@ namespace tnt
     struct tag_type_t
     {
         tag_type_t() = delete;
-        ~tag_type_t() = delete;
-
+        
         tag_type_t(tag_type_t const &) = delete;
         tag_type_t &operator=(tag_type_t const &) = delete;
 

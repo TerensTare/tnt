@@ -3,6 +3,32 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a10]
+### Added
+- `static` on some global variables on `.cpp` files.
+- `tnt::doo::cameras_sys::zoom_to_fit`.
+- `tnt::halton1` and `tnt::halton2` on `pcg/Random.hpp`, which generate a random number base on Halton sequences.
+- `tnt::doo::scripts_sys::call`, which calls a function from the lua script.
+- Support for `fileIO/VirtualFS`' alias paths for the built-in `asset_cache`s.
+
+### Changed
+- Renamed `concept tnt::doo::basic_system` to `concept tnt::doo::system` and removed some unnecessary requirements. 
+- `tnt::doo::animation_comp`'s and `tnt::doo::object_data`'s ctor is now moved to the respective header file.
+- Data Oriented Systems now don't need to be non-copyable.
+- `tnt::lua::load` now accepts a `sol::state_view` as the first argument.
+- `add_object` and `from_json` methods on each Data Oriented System (except `objects_sys`) now take `object const&` as the first parameter.
+- `tnt::doo::objects_sys::from_json` now returns `tnt::doo::object`.
+- Data Oriented Systems now don't need to implement `add_invalid`.
+- `tnt::asset_cache` now needs an `unsigned int` as a template parameter, rather than just an `int`. Also the built-in `asset_cache`s will now use `std::pmr::unordered_map` instead of `std::pmr::map`.
+- Rewrote `fileIO/VirtualFS`.
+
+### Removed
+- `concept tnt::doo::system`.
+- `game.lua`.
+- `tnt::lua_ctx` from `utils/LuaLoader.hpp`.
+- `add_invalid` from all built-in Data Oriented System.
+- `core/Camera`, `core/Space`, `core/Scene`, `ecs` and `ecs2` folders.
+
 
 ## [0.1.0a9]
 ### Added

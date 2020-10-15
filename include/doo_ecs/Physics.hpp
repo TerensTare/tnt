@@ -5,9 +5,12 @@
 #include "math/Rectangle.hpp"
 
 // TODO:
+// handle cases when the object's parent changes (so does it's speed, etc).
 // springs.
 // when adding a new fixed object, ignore it's mass value.
 // modify the collision algorithm to return what kind of collision occurs (horizontal/vertical/none).
+// custom collision polygons.
+
 // (maybe):
 // set some default values (ex for damping, mass) ??
 
@@ -49,18 +52,15 @@ namespace tnt::doo
     {
         physics_sys() = default;
 
-        physics_sys(physics_sys const &) = delete;
-        physics_sys &operator=(physics_sys const &) = delete;
+        // physics_sys(physics_sys const &) = delete;
+        // physics_sys &operator=(physics_sys const &) = delete;
 
         /// @brief Add a new object to the physics system.
+        /// @param id The id of the object to add to the physics system.
         /// @param body The physics component that has the data of the object.
         /// @note The position of the bounding box of the component is considered
         /// to be relative to the position of the body.
-        void add_object(physics_comp const &body);
-
-        /// @brief Add a new object with invalid data to the next index.
-        /// Useful when you want the object with next id not to be in a certain system.
-        void add_invalid();
+        void add_object(object const &id, physics_comp const &body);
 
         /// @brief Apply the given force to the object with the given id.
         /// @param id The id of the object.
@@ -100,8 +100,9 @@ namespace tnt::doo
         void resolve(object const &id, object const &id2) noexcept;
 
         /// @brief Load objects physics data from a json chunk.
+        /// @param id The id of the object to load from json.
         /// @param j The json chunk that contains the objects data.
-        void from_json(nlohmann::json const &j);
+        void from_json(object const &id, nlohmann::json const &j);
 
         /// @brief Draw widgets on the given window to modify the datas of the system.
         /// @param id The id of the active object.

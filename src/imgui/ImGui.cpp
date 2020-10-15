@@ -14,8 +14,21 @@
 
 namespace tnt::ImGui
 {
-    inline struct theme_t final
+    inline static struct theme_t final
     {
+        inline ~theme_t() noexcept
+        {
+            if (init)
+            {
+                SDL_DestroyTexture(tnt::ImGui::theme.button_text);
+                SDL_DestroyTexture(tnt::ImGui::theme.checkbox_tick);
+
+                TTF_CloseFont(tnt::ImGui::theme.font_data);
+            }
+        }
+
+        bool init{false};
+
         int w, h;
         int font_size;
 
@@ -968,19 +981,5 @@ void tnt_imgui_init(tnt::Window const &win) noexcept
     tnt::ImGui::theme.checkbox_tick = tnt::ImGui::load_image(win, "assets/tick.png");
 
     tnt::ImGui::make_context();
+    tnt::ImGui::theme.init = true;
 }
-
-struct imgui_close
-{
-    inline ~imgui_close() noexcept
-    {
-        SDL_DestroyTexture(tnt::ImGui::theme.button_text);
-        tnt::ImGui::theme.button_text = nullptr;
-
-        SDL_DestroyTexture(tnt::ImGui::theme.checkbox_tick);
-        tnt::ImGui::theme.checkbox_tick = nullptr;
-
-        TTF_CloseFont(tnt::ImGui::theme.font_data);
-        tnt::ImGui::theme.font_data = nullptr;
-    }
-} _;

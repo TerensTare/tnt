@@ -1,6 +1,8 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+#include <execution>
+
 #include "doo_ecs/Cameras.hpp"
 #include "doo_ecs/Objects.hpp"
 
@@ -91,5 +93,25 @@ namespace tnt::doo
     void cameras_sys::shake(camera const &cam) noexcept
     {
         pos[cam] += randomUnitVector() * shaking[cam];
+    }
+
+    void cameras_sys::zoom_to_fit(camera const &cam, std::span<object> objs)
+    {
+        // TODO: not *perfect*. Ex. A corner may be left outside.
+        Vector min_{objects.gPos(objs.front())};
+        Vector max_{objects.gPos(objs.front())}, curr; // first value
+        for (auto const &obj : objs)
+        {
+            curr = objects.gPos(obj);
+            if (curr < min_)
+                min_ = curr;
+            if (curr > max_)
+                max_ = curr;
+        }
+        pos[cam] = min_;
+
+        // TODO: change scale here
+        width[cam] = max_.x - min_.x; // (maybe) * cosf(gAngle(obj)-angle[cam])
+        height[cam] = max_.y - min_.y;// (maybe) * sinf(gAngle(obj)-angle[cam])
     }
 } // namespace tnt::doo

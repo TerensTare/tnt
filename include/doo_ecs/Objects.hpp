@@ -13,7 +13,8 @@ namespace tnt::doo
         /// @param scale_ The initial scale of the object.
         /// @param pos_ The initial position of the object.
         constexpr object_data(float angle_, Vector const &pos_, Vector const &scale_,
-                              object const &parent_ = null) noexcept;
+                              object const &parent_ = null) noexcept
+            : angle{angle_}, pos{pos_}, scale{scale_}, parent{parent_} {}
 
         float angle;   /// < The angle of the object.
         Vector scale;  /// < The scale of the object.
@@ -26,8 +27,8 @@ namespace tnt::doo
     {
         objects_sys() = default;
 
-        objects_sys(objects_sys const &) = delete;
-        objects_sys &operator=(objects_sys const &) = delete;
+        // objects_sys(objects_sys const &) = delete;
+        // objects_sys &operator=(objects_sys const &) = delete;
 
         /// @brief Create a new object in place and add it to the system.
         /// Return the id of the newly created @c object.
@@ -41,7 +42,8 @@ namespace tnt::doo
 
         /// @brief Load objects data from a json chunk.
         /// @param j The json chunk that contains the objects data.
-        void from_json(nlohmann::json const &j);
+        /// @return The id of the created object.
+        object from_json(nlohmann::json const &j);
 
         /// @brief Draw widgets on the given window to modify the datas of the system.
         /// @param id The id of the active object.
@@ -79,9 +81,6 @@ namespace tnt::doo
         std::vector<Vector> scale; /// < The scales of the objects.
         std::vector<Vector> pos;   /// < The positions of the objects.
     } objects;                     /// < An instance of objects_sys.
-
-    template <typename T>
-    concept system = std::same_as<T, objects_sys> || basic_system<T>;
 } // namespace tnt::doo
 
 #endif //!TNT_DOO_ECS_BASE_OBJECTS_SYSTEM_HPP
