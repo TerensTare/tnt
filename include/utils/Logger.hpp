@@ -5,6 +5,7 @@
 #include <fmt/core.h>
 #include <fmt/color.h>
 
+
 // TODO: unfinished
 // TODO: temporary use libfmt, but after MSVC will support C++20's <format>, use that instead.
 // TODO: support writing to files.

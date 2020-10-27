@@ -5,11 +5,14 @@
 #include <mutex>
 #include <filesystem>
 
+#include "core/Config.hpp"
+
 // TODO:
 // make this class's operations asynchronous.
 // support watching directories.
 // void onModify() specialization.
 // arguments for lambda at onModify.
+// use vfs alias paths here.
 
 // TODO(maybe):
 // a singleton. ??
@@ -30,7 +33,7 @@ namespace tnt
     using file = std::pair<std::string, std::filesystem::file_time_type>;
 
     /// @brief A basic file watcher. Useful for asset hotloading and other stuff.
-    class Snipper final
+    class TNT_API Snipper final
     {
     public:
         /// @brief Watch @c name to check if it has been modified.

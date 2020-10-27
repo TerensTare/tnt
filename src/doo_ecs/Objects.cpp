@@ -8,11 +8,11 @@
 
 namespace tnt::doo
 {
-    inline constexpr auto local_scale = [](Vector const &myScale, Vector const &pScale) noexcept -> Vector {
+    inline static constexpr auto local_scale = [](Vector const &myScale, Vector const &pScale) noexcept -> Vector {
         return {myScale.x / pScale.x, myScale.y / pScale.y};
     };
 
-    inline constexpr auto local_pos = [](Vector const &myPos, float pAngle, Vector const &pScale, Vector const &pPos) noexcept -> Vector {
+    inline static constexpr auto local_pos = [](Vector const &myPos, float pAngle, Vector const &pScale, Vector const &pPos) noexcept -> Vector {
         Vector const &diff{RotateVector(myPos - pPos, -pAngle)};
         return local_scale(diff, pScale);
     };
@@ -21,7 +21,7 @@ namespace tnt::doo
     {
         inline static object next() noexcept
         {
-            static object id_{};
+            static object id_{(object)0};
             return id_++;
         }
     };

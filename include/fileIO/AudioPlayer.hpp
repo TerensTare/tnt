@@ -2,13 +2,14 @@
 #define AUDIO_PLAYER_HPP
 
 #include <string_view>
+#include "core/Config.hpp"
 
 // TODO: Add a shorter constructor.
 
 namespace tnt
 {
   /// @brief The class used to handle audio playing.
-  class AudioPlayer final
+  class TNT_API AudioPlayer final
   {
   public:
     /// @brief Creates a new @c AudioPlayer for a certain audio format.

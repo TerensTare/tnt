@@ -1,6 +1,7 @@
 #ifndef TNT_RECTANGLE_HPP
 #define TNT_RECTANGLE_HPP
 
+#include "core/Config.hpp"
 #include "math/Vector.hpp"
 
 struct SDL_Rect;
@@ -11,11 +12,7 @@ typedef struct SDL_FRect SDL_FRect;
 
 namespace tnt
 {
-    // TODO: WIP
-    // TODO: different operators support.
-
-    // TODO(maybe):
-    struct Rectangle
+    struct TNT_API Rectangle
     {
         // Needed for JSON
         constexpr Rectangle() noexcept

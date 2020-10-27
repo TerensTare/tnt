@@ -5,18 +5,20 @@
 #include <new>
 #include <stdexcept>
 
+#include "core/Config.hpp"
+
 // TODO: add comparison operators for two Excepted<T>.
 
 namespace tnt
 {
-struct invalid
+struct TNT_API invalid final
 {
 };
 
 // code taken from
 // https://bell0bytes.eu/expected/
 template <class T>
-class Expected
+class TNT_API Expected
 {
 protected:
     union {

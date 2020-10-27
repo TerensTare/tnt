@@ -167,19 +167,34 @@ namespace tnt::doo
     {
         if (json_has(j, "phys"))
         {
-            if (nlohmann::json const &phys{j["phys"]}; json_has(phys, "bounds"))
+            if (nlohmann::json const &phys{j["phys"]};
+                json_has(phys, "bounds"))
             {
                 if (json_has(phys, "max_vel") || json_has(phys, "max_accel"))
-                    add_object(id, physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}, .maxVel = phys["max_vel"], .maxAccel = phys["max_accel"], .bound_box{phys["bounds"]}});
+                    add_object(id, {.mass{phys["mass"]},
+                                    .damping{phys["damping"]},
+                                    .restitution{phys["restitution"]},
+                                    .maxVel = phys["max_vel"],
+                                    .maxAccel = phys["max_accel"],
+                                    .bound_box{phys["bounds"]}});
                 else
-                    add_object(id, physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}, .bound_box{phys["bounds"]}});
+                    add_object(id, {.mass{phys["mass"]},
+                                    .damping{phys["damping"]},
+                                    .restitution{phys["restitution"]},
+                                    .bound_box{phys["bounds"]}});
             }
             else
             {
                 if (json_has(phys, "max_vel") || json_has(phys, "max_accel"))
-                    add_object(id, physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}, .maxVel = phys["max_vel"], .maxAccel = phys["max_accel"]});
+                    add_object(id, {.mass{phys["mass"]},
+                                    .damping{phys["damping"]},
+                                    .restitution{phys["restitution"]},
+                                    .maxVel = phys["max_vel"],
+                                    .maxAccel = phys["max_accel"]});
                 else
-                    add_object(id, physics_comp{.mass{phys["mass"]}, .damping{phys["damping"]}, .restitution{phys["restitution"]}});
+                    add_object(id, {.mass{phys["mass"]},
+                                    .damping{phys["damping"]},
+                                    .restitution{phys["restitution"]}});
             }
         }
     }

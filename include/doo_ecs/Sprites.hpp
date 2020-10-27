@@ -1,6 +1,7 @@
 #ifndef TNT_DOO_ECS_SPRITES_HPP
 #define TNT_DOO_ECS_SPRITES_HPP
 
+#include "core/Config.hpp"
 #include "doo_ecs/Base.hpp"
 #include "math/Rectangle.hpp"
 
@@ -14,7 +15,7 @@
 namespace tnt::doo
 {
     /// @brief A struct that handles an object's sprite data.
-    struct sprite_comp final
+    struct TNT_API sprite_comp final
     {
         /// @brief Create a new sprite component from an image file.
         /// @param win The window where the sprite will be drawed.
@@ -36,7 +37,7 @@ namespace tnt::doo
     };
 
     /// @brief A struct that handles the sprite data for all the objects.
-    inline struct sprites_sys final
+    inline struct TNT_API sprites_sys final
     {
         inline sprites_sys() noexcept = default;
 

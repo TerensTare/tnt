@@ -1,9 +1,9 @@
-#ifndef TNT_WINDOW_HPP
-#define TNT_WINDOW_HPP
+module;
 
-#include <string>
+#include <string_view>
 #include <SDL2/SDL.h>
-#include "core/Config.hpp"
+
+export module TnT.Window;
 
 // TODO: support drawing fonts.
 
@@ -11,10 +11,10 @@
 // a default window icon ??
 // rename to RenderWindow ??
 
-namespace tnt
+export namespace tnt
 {
     /// @brief A class representing an application window.
-    class TNT_API Window final
+    class Window final
     {
     public:
         /// @brief Creates a window with the given parameters.
@@ -157,5 +157,3 @@ namespace tnt
         SDL_Renderer *ren;
     };
 } // namespace tnt
-
-#endif //! TNT_WINDOW_HPP

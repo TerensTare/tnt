@@ -1,6 +1,7 @@
 #ifndef TNT_DOO_ECS_CAMERAS_SYSTEM_HPP
 #define TNT_DOO_ECS_CAMERAS_SYSTEM_HPP
 
+#include "core/Config.hpp"
 #include "doo_ecs/Base.hpp"
 
 // example of a json chunk containing the cameras.
@@ -30,7 +31,7 @@
 
 namespace tnt::doo
 {
-    struct camera_comp final
+    struct TNT_API camera_comp final
     {
         /// @brief Create a new camera.
         /// @param angle_ The angle of the camera.
@@ -58,7 +59,7 @@ namespace tnt::doo
         Vector scale;    /// < The scale of the objects on the camera.
     };
 
-    inline struct cameras_sys final
+    inline struct TNT_API cameras_sys final
     {
         cameras_sys() = default;
 

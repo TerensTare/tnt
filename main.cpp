@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     tnt::Window window{"The TnT Engine", 800, 600};
 
     tnt::vfs::mount("assets", "res");
-    tnt::logger::info("Path is {}", tnt::vfs::absolute("./scripts/player1.lua"));
+    tnt::vfs::mount("scripts", "lua");
 
     {
         nlohmann::json j;

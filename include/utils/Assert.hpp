@@ -9,6 +9,9 @@
 
 // TODO: boolean concept for ensure_t
 
+// TODO(maybe):
+// remove the why parameter from failed_ensure ?? (you already know why)
+
 namespace tnt
 {
     /// @brief Exception thrown if the condition of ensure_t::operator() is false.

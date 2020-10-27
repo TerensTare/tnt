@@ -3,8 +3,8 @@
 
 #include "utils/Logger.hpp"
 
-inline tnt::small_music_cache *music{tnt::default_music_cache()};
-inline tnt::small_sfx_cache *sfx{tnt::default_sfx_cache()};
+inline static tnt::small_music_cache *music{tnt::default_music_cache()};
+inline static tnt::small_sfx_cache *sfx{tnt::default_sfx_cache()};
 
 tnt::AudioPlayer::AudioPlayer(int frequency, unsigned short format, int channels, int chunksize) noexcept
 {

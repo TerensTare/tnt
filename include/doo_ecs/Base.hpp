@@ -77,7 +77,7 @@ namespace tnt::doo
     using object = std::size_t; /// < A data type that serves as a unique id of an object.
     using camera = std::size_t; /// < A data type that serves as a unique id of a camera.
 
-    inline constexpr object null{(object)-1}; /// < An object id indicating that the object is abset on the desired system.
+    inline constexpr object null{(object)-1}; /// < An object id indicating that the object is absent on the desired system.
 
     /// @brief Check if the given object exists on the given system's object list.
     /// @param members The list of the id-s of the members of a system.

@@ -1,12 +1,13 @@
 #ifndef TNT_DOO_ECS_BASE_OBJECTS_SYSTEM_HPP
 #define TNT_DOO_ECS_BASE_OBJECTS_SYSTEM_HPP
 
+#include "core/Config.hpp"
 #include "doo_ecs/Base.hpp"
 
 namespace tnt::doo
 {
     /// @brief A struct that holds the basic data of an object.
-    struct object_data final
+    struct TNT_API object_data final
     {
         /// @brief Create a new object data handle from the given params.
         /// @param angle_ The initial angle of the object.
@@ -23,7 +24,7 @@ namespace tnt::doo
     };
 
     /// @brief A struct that handles objects data.
-    inline struct objects_sys final
+    inline struct TNT_API objects_sys final
     {
         objects_sys() = default;
 

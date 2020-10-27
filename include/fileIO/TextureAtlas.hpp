@@ -1,12 +1,13 @@
 #ifndef TNT_ASSETS_TEXTURE_ATLAS_HPP
 #define TNT_ASSETS_TEXTURE_ATLAS_HPP
 
+#include "core/Config.hpp"
 #include "math/Rectangle.hpp"
 #include "core/Window.hpp"
 
 namespace tnt
 {
-    class TextureAtlas final
+    class TNT_API TextureAtlas final
     {
     public:
         TextureAtlas(Window const &win, std::string_view file_, Rectangle const &area) noexcept;

@@ -28,7 +28,8 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "pos", &object_data::pos);
 
     lua_.new_usertype<objects_sys>(
-        "objects_sys", sol::factories([] { return &objects; }),
+        "objects_sys",
+        "new", sol::no_constructor,
         "add_object", &objects_sys::add_object,
         "get_data", &objects_sys::get_data,
         "active", &objects_sys::active,
@@ -52,7 +53,8 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "crop", &sprite_comp::crop);
 
     lua_.new_usertype<sprites_sys>(
-        "sprites_sys", sol::factories([] { return &sprites; }),
+        "sprites_sys",
+        "new", sol::no_constructor,
         "add_object", &sprites_sys::add_object,
         "draw", &sprites_sys::Draw,
         "draw_area", &sprites_sys::draw_area,
@@ -76,7 +78,8 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "bound_box", &physics_comp::bound_box);
 
     lua_.new_usertype<physics_sys>(
-        "physics_sys", sol::factories([] { return &physics; }),
+        "physics_sys",
+        "new", sol::no_constructor,
         "add_object", &physics_sys::add_object,
         "add_force", &physics_sys::addForce,
         "add_glob_force", &physics_sys::addGlobalForce,
@@ -115,7 +118,8 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
                                          animation_comp::wrap_mode const &) noexcept>{});
 
     lua_.new_usertype<animations_sys>(
-        "animations_sys", sol::factories([] { return &animations; }),
+        "animations_sys",
+        "new", sol::no_constructor,
         "add_object", &animations_sys::add_object,
         "update", &animations_sys::Update,
 

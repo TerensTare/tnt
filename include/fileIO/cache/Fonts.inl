@@ -7,13 +7,14 @@
 
 #include <SDL2/SDL_ttf.h>
 
+#include "core/Config.hpp"
 #include "fileIO/cache/Base.hpp"
 #include "fileIO/VirtualFS.hpp"
 
 namespace tnt
 {
     template <unsigned I>
-    class asset_cache<TTF_Font, I>
+    class TNT_API asset_cache<TTF_Font, I>
     {
     public:
         inline ~asset_cache() noexcept

@@ -27,7 +27,7 @@ namespace tnt::vfs
 
     void mount(char const *path, char const *alias) noexcept
     {
-        if (std::lock_guard _{mtx}; !entries.contains(alias))
+        if (/* std::lock_guard _{mtx}; */ !entries.contains(alias))
             entries[alias] = path;
         else
             logger::debug("vfs: Replacing alias path {} with a new path.", alias);
@@ -35,7 +35,7 @@ namespace tnt::vfs
 
     void unmount(char const *path) noexcept
     {
-        if (std::lock_guard _{mtx}; entries.contains(path))
+        if (/* std::lock_guard _{mtx}; */ entries.contains(path))
             entries.erase(path);
         else
             logger::debug("vfs: Trying to unmount() a non-existent alias path. Nothing will happen.");
@@ -45,8 +45,9 @@ namespace tnt::vfs
     {
         // TODO: check invalid paths.
         // TODO: handle cases when the path is absolute by default.
+        // TODO(maybe): return a std::pmr::string with buffer size 256 ??
 
-        std::lock_guard _{mtx};
+        /* std::lock_guard _{mtx}; */
 
         // If the first character is '.', the path is NOT an alias
         if (path.starts_with('.'))
@@ -62,10 +63,8 @@ namespace tnt::vfs
         {
             if (std::string const &alias{path.data(), it};
                 entries.count(alias) > 0)
-            {
                 return base + entries.find(alias)->second +
                        path_sep() + (path.data() + it + 3);
-            }
             else
                 logger::error("vfs: Using non-existent alias \"{}\" "
                               "with absolute()!!",

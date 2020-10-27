@@ -12,6 +12,8 @@
 #include "imgui/gui_config.hpp"
 #include "utils/Logger.hpp"
 
+// TODO: use std::unordered_map
+
 namespace tnt::ImGui
 {
     inline static struct theme_t final

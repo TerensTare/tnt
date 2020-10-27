@@ -3,6 +3,29 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a11]
+### Added
+- `include/TnT.hpp`, which `#include`s all the current headers of the TnT Engine SDK.
+- `utils/SparseSet.hpp`, which contains an implementation of a sparse set.
+- Support for building the engine as a dynamic library.
+- `tnt::doo::scripts_sys::Init()` and `tnt::doo::scripts_sys::call()`.
+- More `static` on some global variables on `.cpp` files.
+- `utils/Benchmark.cpp`.
+
+### Fixed
+- Lua bindings are working!!
+
+### Changed
+- `tnt::Timer` now uses `std::chrono::high_resolution_clock`.
+- Rewrote `utils/Benchmark.hpp`.
+
+### Removed
+- `utils/SDL_Utils.hpp`.
+- `fileIO/AssetManager`.
+- `cmake/Setup.cmake`.
+- `include/tiled` folder.
+
+
 ## [0.1.0a10]
 ### Added
 - `static` on some global variables on `.cpp` files.

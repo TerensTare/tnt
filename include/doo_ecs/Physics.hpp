@@ -1,6 +1,7 @@
 #ifndef TNT_DOO_ECS_PHYSICS_HPP
 #define TNT_DOO_ECS_PHYSICS_HPP
 
+#include "core/Config.hpp"
 #include "doo_ecs/Base.hpp"
 #include "math/Rectangle.hpp"
 
@@ -36,7 +37,7 @@ namespace tnt::doo
         vertical,   /// < The objects collide on their top/down side.
     };
 
-    struct physics_comp final
+    struct TNT_API physics_comp final
     {
         body_type type{body_type::dynamic};
         float mass;
@@ -48,7 +49,7 @@ namespace tnt::doo
     };
 
     /// @brief A struct that handles the physics data of all the objects.
-    inline struct physics_sys final
+    inline struct TNT_API physics_sys final
     {
         physics_sys() = default;
 

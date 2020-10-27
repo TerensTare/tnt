@@ -12,6 +12,7 @@ This file contains sites where you can contribute to the development of the TnT 
 - Discord [server](https://discord.gg/s5Y9VCR)
 - Reddit [subreddit](https://www.reddit.com/r/TnT2d/)
 - Gitter [room](https://gitter.im/tnt2d/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+- Google [group](https://groups.google.com/g/tnt2d)
 
 ## Suggesting features
 - Github [issues](https://github.com/TerensTare/tnt/isues)

@@ -1,16 +1,17 @@
 #ifndef TNT_TEXTURE_ATLASES_ASSETS_CACHE_HPP
 #define TNT_TEXTURE_ATLASES_ASSETS_CACHE_HPP
 
-#include <map>
+#include <unordered_map>
 #include <memory_resource>
 
+#include "core/Config.hpp"
 #include "fileIO/TextureAtlas.hpp"
 #include "fileIO/cache/Base.hpp"
 
 namespace tnt
 {
     template <unsigned I>
-    class asset_cache<TextureAtlas, I>
+    class TNT_API asset_cache<TextureAtlas, I>
     {
     public:
         [[nodiscard]] inline TextureAtlas *get(tnt::Window const &win, std::string_view path, Rectangle const &rect)

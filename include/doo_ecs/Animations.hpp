@@ -1,6 +1,7 @@
 #ifndef TNT_DOO_ECS_ANIMATED_OBJECTS_HPP
 #define TNT_DOO_ECS_ANIMATED_OBJECTS_HPP
 
+#include "core/Config.hpp"
 #include "doo_ecs/Base.hpp"
 #include "math/Rectangle.hpp"
 
@@ -14,7 +15,7 @@
 namespace tnt::doo
 {
     /// @brief A struct that holds the data for an animation.
-    struct animation_comp final
+    struct TNT_API animation_comp final
     {
         /// @brief The wrap mode of the animation.
         enum wrap_mode : unsigned
@@ -55,7 +56,7 @@ namespace tnt::doo
     };
 
     /// @brief The system that controls the animations of the sprites.
-    inline struct animations_sys final
+    inline struct TNT_API animations_sys final
     {
         inline animations_sys() noexcept = default;
 

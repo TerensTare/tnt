@@ -1,17 +1,18 @@
 #ifndef TNT_DOO_ECS_STEERING_BEHAVIOURS_HPP
 #define TNT_DOO_ECS_STEERING_BEHAVIOURS_HPP
 
+#include "core/Config.hpp"
 #include "doo_ecs/Base.hpp"
 
 namespace tnt::doo
 {
     /// @brief A system that adds support steering behaviours to the objects.
-    inline struct steering_sys final
+    inline struct TNT_API steering_sys final
     {
         steering_sys() = default;
 
-        steering_sys(steering_sys const &) = delete;
-        steering_sys &operator=(steering_sys const &) = delete;
+        // steering_sys(steering_sys const &) = delete;
+        // steering_sys &operator=(steering_sys const &) = delete;
 
         /// @brief Move object @c id towards @c target.
         /// @param id The id of the moving object.

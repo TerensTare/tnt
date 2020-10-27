@@ -2,4 +2,5 @@
 
 export module TnT;
 
+export import TnT.Core;
 export import TnT.Utils;

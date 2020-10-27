@@ -1,10 +1,14 @@
 # TODO:
-# testing
+# testing, examples
 # flags for x64/x86, debug/release.
 
 # The project uses C++20, which is minimally supported by CMake 3.12.4
 cmake_minimum_required(VERSION 3.12.4 FATAL_ERROR)
-set(PROJECT_NAME "TnT")
+
+
+###############
+# Vcpkg stuff #
+###############
 
 if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
@@ -35,13 +39,15 @@ if(NOT DEFINED ENV{VCPKG_DEFAULT_TRIPLET})
     endif()
 endif()
 
-project(${PROJECT_NAME}
-    VERSION 0.1.0
-    DESCRIPTION "A 2d game engine written using C++20 features"
-    HOMEPAGE_URL "https://terenstare.github.io/tnt/"
-    LANGUAGES CXX)
 
-set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+#######################
+# The Dynamic Library #
+#######################
+
+project(TnT VERSION 0.1.0
+    DESCRIPTION "The TnT engine SDK"
+    HOMEPAGE_URL "https://github.com/TerensTare/tnt"
+    LANGUAGES CXX)
 
 file(TO_CMAKE_PATH "${PROJECT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
 if (EXISTS "${LOC_PATH}")
@@ -50,13 +56,18 @@ if (EXISTS "${LOC_PATH}")
         Please consider making a \"build\" subdirectory and run cmake .. from the \"build\" subdirectory.")
 endif()
 
-include(FindLua)
-include(cmake/StandardProjectSettings.cmake)
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
-# add_library(project_options INTERFACE)
-# target_compile_features(project_options INTERFACE cxx_std_20)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+if(NOT DEFINED CMAKE_PREFIX_PATH)
+    set(CMAKE_PREFIX_PATH "")
+endif()
+
+list(APPEND CMAKE_PREFIX_PATH $ENV{VCPKG_ROOT}/installed/$ENV{VCPKG_DEFAULT_TRIPLET})
+
+include(cmake/StandardProjectSettings.cmake)
 
 add_library(project_warnings INTERFACE)
 include(cmake/CompilerWarnings.cmake)
@@ -65,19 +76,38 @@ include(cmake/Sanitizers.cmake)
 enable_sanitizers(project_options)
 include(cmake/StaticAnalyzers.cmake)
 
-# if(MSVC)
-#     list(APPEND CMAKE_CXX_FLAGS /fp:fast) # /GR- for no rtti
-# else()
-#     list(APPEND CMAKE_CXX_FLAGS -ffast-math) # -fno-rtti for no rtti
-# endif()
 
-if(NOT DEFINED CMAKE_PREFIX_PATH)
-    set(CMAKE_PREFIX_PATH "")
+#################
+# Documentation #
+#################
+
+option(BUILD_DOCS "Build TnT's documentation" ON)
+if(BUILD_DOCS)
+    find_package(Doxygen)
+    if(DOXYGEN_FOUND)
+        set(DOXYGEN_IN ${PROJECT_SOURCE_DIR}/Doxyfile.in)
+        set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/docs/Doxyfile)
+        set(DOXYGEN_INPUT_DIR ${PROJECT_SOURCE_DIR}/include)
+        set(DOXYGEN_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/docs)
+        file(WRITE ${DOXYGEN_OUT} "")
+        configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+        add_custom_target(DOCUMENTATION ALL
+            COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+            WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/docs
+            COMMENT "Generating documentation with Doxygen"
+            VERBATIM)
+    else()
+        message("Not generating documentation because Doxygen was not found")
+    endif()
 endif()
 
-list(APPEND CMAKE_PREFIX_PATH ENV{VCPKG_ROOT}/installed/ENV{VCPKG_DEFAULT_TRIPLET})
 
-# Load required packages.
+########################
+# Find the dependecies #
+########################
+
+include(FindLua)
+
 find_package(Lua REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
 find_package(sdl2-image CONFIG REQUIRED)
@@ -88,51 +118,111 @@ find_package(sol2 CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 
+
+#####################
+# Build the library #
+#####################
+
 file(GLOB SOURCE_FILES
     src/core/*.cpp src/doo_ecs/*.cpp src/fileIO/*.cpp
-    src/ImGui/ImGui.cpp src/math/*.cpp src/tolua/*.cpp)
+    src/ImGui/ImGui.cpp src/math/*.cpp src/tolua/*.cpp
+    $<DEFINED ${TNT_DO_EXPERIMENTS}>:src/exp/Runtimer.cpp)
 
 list(FILTER SOURCE_FILES EXCLUDE REGEX "Context.cpp$")
-list(FILTER SOURCE_FILES EXCLUDE REGEX "AssetManager.cpp$")
 
-if (TNT_DO_EXPERIMENTS)
-    list(APPEND SOURCE_FILES exp/Runtimer.cpp)
+add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
+add_library(TnT::TnT ALIAS TnT)
+
+target_compile_definitions(${PROJECT_NAME} PUBLIC
+    # When in Debug or RelWithDebInfo build, enable profiling
+    $<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:TNT_PROFILING
+    TNT_BUILD SOL_PRINT_ERRORS=1 SOL_NO_EXCEPTIONS=1)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    SOVERSION 0.1
+    VERSION ${PROJECT_VERSION}
+    LINKER_LANGUAGE CXX)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    SDL2::SDL2 SDL2::SDL2main
+    SDL2::SDL2_image SDL2::SDL2_mixer
+    SDL2::SDL2_net SDL2::SDL2_ttf
+    ${LUA_LIBRARIES} sol2::sol2 fmt::fmt
+    nlohmann_json nlohmann_json::nlohmann_json)
+
+target_include_directories(${PROJECT_NAME}
+    PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+    PRIVATE ${LUA_INCLUDE_DIR})
+
+include(GNUInstallDirs)
+set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/TnT)
+
+if(${CMAKE_VERSION} VERSION_LESS "3.14.0")
+    install(TARGETS ${PROJECT_NAME}
+        EXPORT TnTTargets
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+else()
+    install(TARGETS ${PROJECT_NAME}
+        EXPORT TnTTargets) # A shorthand CMake 3.14 feature
 endif()
 
-# documentation stuff
-include(cmake/Setup.cmake)
+install(EXPORT TnTTargets
+    FILE TnTTargets.cmake
+    NAMESPACE TnT::
+    DESTINATION ${INSTALL_CONFIGDIR})
 
-option(BUILD_DOCS "Build TnT documentation" ON)
-if(BUILD_DOCS)
-    build_docs()
-endif()
+install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}
+    FILES_MATCHING PATTERN "*.hpp")
 
-# if(WIN32 AND NOT (CMAKE_BUILD_TYPE MATCHES DEBUG))
-#     add_executable(TnT WIN32 main.cpp ${SOURCE_FILES})
+
+################################
+# TnTConfigVersion.cmake stuff #
+################################
+
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(
+    ${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake.in
+    ${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake
+    INSTALL_DESTINATION ${INSTALL_CONFIGDIR})
+
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/TnTConfigVersion.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY AnyNewerVersion)
+
+install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/TnTConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/TnTConfigVersion.cmake
+    DESTINATION ${INSTALL_CONFIGDIR})
+
+
+##############
+# The editor #
+##############
+
+add_executable(TnTEditor main.cpp)
+
+# add_library(project_options INTERFACE)
+# target_compile_features(project_options INTERFACE cxx_std_20)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# if(MSVC)
+#     list(APPEND CMAKE_CXX_FLAGS /fp:fast) # /GR- for no rtti
 # else()
-    add_executable(TnT main.cpp ${SOURCE_FILES})
+#     list(APPEND CMAKE_CXX_FLAGS -ffast-math) # -fno-rtti for no rtti
 # endif()
 
-add_compile_definitions(SOL_PRINT_ERRORS=1 SOL_NO_EXCEPTIONS=1)
-
-target_include_directories(TnT PRIVATE ${LUA_INCLUDE_DIR})
-target_include_directories(TnT PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
-
-setup_target(TnT)
-
-# Copy assets folder to build directory
-if(EXISTS ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/assets)
-    file(REMOVE_RECURSE ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/assets)
-endif()
-
-install(TARGETS TnT ARCHIVE COMPONENT assets RUNTIME DESTINATION assets)
-install(TARGETS TnT ARCHIVE COMPONENT binary RUNTIME DESTINATION .)
-
-set(CMAKE_INSTALL_BINDIR .)
-
-# CPack config stuff
-option(BUILD_INSTALLER "Build the installer" OFF)
-
-if(BUILD_INSTALLER)
-    build_installer(TnT 0 1 0)
-endif()
+target_link_libraries(TnTEditor
+    PRIVATE TnT::TnT
+    SDL2::SDL2 SDL2::SDL2main
+    SDL2::SDL2_image SDL2::SDL2_mixer
+    SDL2::SDL2_net SDL2::SDL2_ttf
+    ${LUA_LIBRARIES} sol2::sol2 fmt::fmt
+    nlohmann_json nlohmann_json::nlohmann_json)
