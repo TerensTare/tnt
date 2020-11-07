@@ -4,6 +4,8 @@
 #include <mutex>
 #include <queue>
 
+#include <nlohmann/json_fwd.hpp>
+
 namespace tnt
 {
     template <class T>
@@ -121,6 +123,42 @@ namespace tnt
         mutable std::mutex mutex;
     };
 
+    namespace detail
+    {
+        // clang-format off
+        template <typename T>
+        concept has_contains = std::ranges::input_range<T>
+            && requires(T const &t)
+        {
+            { t.contains } -> std::same_as<bool>;
+            requires std::invocable<
+                decltype(t.contains),
+                std::ranges::range_value_t<T>>;
+        };
+
+        template <typename T>
+        concept has_key = std::ranges::input_range<T> &&
+            requires { typename T::key_type; };
+        // clang-format on
+    } // namespace detail
+
+    /// @brief Check if the range with the given begin/end contains a certain value.
+    /// @tparam R The type of the range.
+    /// @tparam T The type of the element to search.
+    /// @param rng The range to check.
+    /// @param value The desired value to find.
+    /// @return bool
+    template <std::ranges::input_range R,
+              typename T = std::ranges::range_value_t<R>>
+    constexpr bool contains(R const &rng, std::remove_cvref_t<T> const &value)
+    {
+        if constexpr (detail::has_contains<R>)
+            return r.contains(value);
+        return !(std::ranges::empty(rng) ||
+                 std::ranges::find(rng, value) ==
+                     std::ranges::end(rng));
+    }
+
     template <typename R, typename... Ts>
     inline const auto matches(const R &range, Ts... ts) noexcept
     {
@@ -177,7 +215,7 @@ namespace tnt
     template <typename C, typename T>
     void insert_sorted(C &v, const T &item)
     {
-        const auto insert_pos{
+        auto const &insert_pos{
             std::lower_bound(std::begin(v), std::end(v), item)};
         v.insert(insert_pos, item);
     }

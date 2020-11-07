@@ -9,6 +9,11 @@
 
 namespace tnt::doo
 {
+    inline static bool contains(nlohmann::json const &j, const char *value) noexcept
+    {
+        return j.find(value) != j.end();
+    }
+
     void animations_sys::add_object(object const &id, animation_comp const &anim_)
     {
         // TODO: handle cases when object doesn't exist on the objects_sys.
@@ -24,7 +29,6 @@ namespace tnt::doo
             timePerFrame.reserve(id - wrap.capacity());
             spacing.reserve(id - wrap.capacity());
             current.reserve(id - wrap.capacity());
-            running.reserve(id - wrap.capacity());
         }
 
         wrap.emplace(wrap.cbegin() + id, anim_.wrap);
@@ -37,47 +41,47 @@ namespace tnt::doo
         spacing.emplace(spacing.cbegin() + id, anim_.spacing);
         current.emplace(current.cbegin() + id, 0);
 
-        running.emplace(running.cbegin() + id, if_else(!anim_.finished, id, null)); // null or index
+        active.insert(id, if_else(!anim_.finished, id, null)); // null or index
     }
 
     void animations_sys::Update(object const &id, float time_) noexcept
     {
-        if (!has_object(running, id))
-            return;
-
-        elapsed[id] += time_;
-        if (elapsed[id] - (timePerFrame[id] * (current[id] + 1)) >= FLT_EPSILON)
+        if (active.contains(id))
         {
-            ++current[id];
-            if (int const &index_{current[id] % int(speed[id] / timePerFrame[id])};
-                wrap[id] == animation_comp::loop)
+            elapsed[id] += time_;
+            if (elapsed[id] - (timePerFrame[id] * (current[id] + 1)) >= FLT_EPSILON)
             {
-                sprites.clip[id].x = (int)if_then(
-                    dir[id] == animation_comp::horizontal,
-                    startX[id] + (sprites.clip[id].w + spacing[id]) * index_);
-                sprites.clip[id].y = (int)if_then(
-                    dir[id] == animation_comp::vertical,
-                    startY[id] + (sprites.clip[id].h + spacing[id]) * index_);
-            }
-            else
-            {
-                running[id] = null;
-                elapsed[id] = speed[id] - timePerFrame[id];
-                sprites.clip[id].x = (int)startX[id];
-                sprites.clip[id].y = (int)startY[id];
+                ++current[id];
+                if (int const &index_{current[id] % int(speed[id] / timePerFrame[id])};
+                    wrap[id] == animation_comp::loop)
+                {
+                    sprites.clip[id].x = (int)if_then(
+                        dir[id] == animation_comp::horizontal,
+                        startX[id] + (sprites.clip[id].w + spacing[id]) * index_);
+                    sprites.clip[id].y = (int)if_then(
+                        dir[id] == animation_comp::vertical,
+                        startY[id] + (sprites.clip[id].h + spacing[id]) * index_);
+                }
+                else
+                {
+                    active.edit(id, null);
+                    elapsed[id] = speed[id] - timePerFrame[id];
+                    sprites.clip[id].x = (int)startX[id];
+                    sprites.clip[id].y = (int)startY[id];
+                }
             }
         }
     }
 
     void animations_sys::from_json(object const &id, nlohmann::json const &j)
     {
-        if (json_has(j, "anim"))
+        if (contains(j, "anim"))
         {
             Rectangle const &rect{j["sprite"]["crop"]};
             nlohmann::json const &chunk{j["anim"]};
             int const &frames{chunk["frames"]};
             float const &speed{chunk["speed"]};
-            float const &space{if_else(json_has(chunk, "space"),
+            float const &space{if_else(contains(chunk, "space"),
                                        chunk["space"], 0.f)};
             animation_comp::direction const dir_{
                 if_else(chunk["dir"] == "horizontal",

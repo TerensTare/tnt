@@ -1,6 +1,7 @@
 # TODO:
 # testing, examples
 # flags for x64/x86, debug/release.
+# install the editor and assets.
 
 # The project uses C++20, which is minimally supported by CMake 3.12.4
 cmake_minimum_required(VERSION 3.12.4 FATAL_ERROR)
@@ -38,7 +39,6 @@ if(NOT DEFINED ENV{VCPKG_DEFAULT_TRIPLET})
         endif()
     endif()
 endif()
-
 
 #######################
 # The Dynamic Library #
@@ -124,11 +124,12 @@ find_package(nlohmann_json CONFIG REQUIRED)
 #####################
 
 file(GLOB SOURCE_FILES
-    src/core/*.cpp src/doo_ecs/*.cpp src/fileIO/*.cpp
+    src/core/*.cpp src/fileIO/*.cpp
     src/ImGui/ImGui.cpp src/math/*.cpp src/tolua/*.cpp
     $<DEFINED ${TNT_DO_EXPERIMENTS}>:src/exp/Runtimer.cpp)
 
 list(FILTER SOURCE_FILES EXCLUDE REGEX "Context.cpp$")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "LuaDooEcs.cpp$")
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 add_library(TnT::TnT ALIAS TnT)
@@ -155,6 +156,10 @@ target_include_directories(${PROJECT_NAME}
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     PRIVATE ${LUA_INCLUDE_DIR})
+
+if(WIN32 AND CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(CMAKE_INSTALL_PREFIX "C:/Program Files/TnT")
+endif()
 
 include(GNUInstallDirs)
 set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/TnT)
@@ -197,7 +202,7 @@ write_basic_package_version_file(
     COMPATIBILITY AnyNewerVersion)
 
 install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/TnTConfig.cmake
+    ${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/TnTConfigVersion.cmake
     DESTINATION ${INSTALL_CONFIGDIR})
 
@@ -206,23 +211,32 @@ install(FILES
 # The editor #
 ##############
 
-add_executable(TnTEditor main.cpp)
+option(BUILD_EDITOR "Build TnT's visual editor" ON)
 
-# add_library(project_options INTERFACE)
-# target_compile_features(project_options INTERFACE cxx_std_20)
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+if(BUILD_EDITOR)
+    message("Building the visual editor of TnT.")
 
-# if(MSVC)
-#     list(APPEND CMAKE_CXX_FLAGS /fp:fast) # /GR- for no rtti
-# else()
-#     list(APPEND CMAKE_CXX_FLAGS -ffast-math) # -fno-rtti for no rtti
-# endif()
+    file(GLOB EXE_SOURCES src/doo_ecs/*.cpp)
 
-target_link_libraries(TnTEditor
-    PRIVATE TnT::TnT
-    SDL2::SDL2 SDL2::SDL2main
-    SDL2::SDL2_image SDL2::SDL2_mixer
-    SDL2::SDL2_net SDL2::SDL2_ttf
-    ${LUA_LIBRARIES} sol2::sol2 fmt::fmt
-    nlohmann_json nlohmann_json::nlohmann_json)
+    add_executable(TnTEditor
+        main.cpp ${EXE_SOURCES} src/tolua/LuaDooEcs.cpp)
+
+    # add_library(project_options INTERFACE)
+    # target_compile_features(project_options INTERFACE cxx_std_20)
+    set(CMAKE_CXX_STANDARD 20)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+    # if(MSVC)
+    #     list(APPEND CMAKE_CXX_FLAGS /fp:fast) # /GR- for no rtti
+    # else()
+    #     list(APPEND CMAKE_CXX_FLAGS -ffast-math) # -fno-rtti for no rtti
+    # endif()
+
+    target_link_libraries(TnTEditor
+        PRIVATE TnT::TnT
+        SDL2::SDL2 SDL2::SDL2main
+        SDL2::SDL2_image SDL2::SDL2_mixer
+        SDL2::SDL2_net SDL2::SDL2_ttf
+        ${LUA_LIBRARIES} sol2::sol2 fmt::fmt
+        nlohmann_json nlohmann_json::nlohmann_json)
+endif()

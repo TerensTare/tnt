@@ -1,9 +1,11 @@
 #ifndef TNT_DOO_ECS_ANIMATED_OBJECTS_HPP
 #define TNT_DOO_ECS_ANIMATED_OBJECTS_HPP
 
-#include "core/Config.hpp"
+#include <nlohmann/json_fwd.hpp>
+
 #include "doo_ecs/Base.hpp"
 #include "math/Rectangle.hpp"
+#include "utils/SparseSet.hpp"
 
 // TODO:
 // timed animations (on wrap_mode)
@@ -15,7 +17,7 @@
 namespace tnt::doo
 {
     /// @brief A struct that holds the data for an animation.
-    struct TNT_API animation_comp final
+    struct animation_comp final
     {
         /// @brief The wrap mode of the animation.
         enum wrap_mode : unsigned
@@ -56,7 +58,7 @@ namespace tnt::doo
     };
 
     /// @brief The system that controls the animations of the sprites.
-    inline struct TNT_API animations_sys final
+    inline struct animations_sys final
     {
         inline animations_sys() noexcept = default;
 
@@ -87,7 +89,8 @@ namespace tnt::doo
         std::vector<float> timePerFrame;             /// < Shows how long a frame should be drawed.
         std::vector<float> spacing;                  /// < The spacing between the frames of the sprites, 0 if none.
         std::vector<int> current;                    /// < The index of the current frame.
-        std::vector<object> running;                 /// < The id-s of the running animations.
+
+        tnt::sparse_set<object> active; /// < The id-s of the running animations.
     } animations;
 } // namespace tnt::doo
 

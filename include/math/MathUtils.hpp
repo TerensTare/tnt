@@ -184,7 +184,7 @@ namespace tnt
     //     };
     // };
 
-    inline constexpr float PI{3.14159f};
+    inline constexpr float PI{3.1415926f};
 
     inline constexpr auto RadianToDegree = [](float rad) -> float {
         return (rad * (180.0f / PI));
@@ -194,7 +194,7 @@ namespace tnt
     };
 
     template <typename T>
-    auto clamp = [](T val, T min, T max) {
+    inline auto clamp = [](T val, T min, T max) {
         if (val < min)
             val = min;
         if (val > max)

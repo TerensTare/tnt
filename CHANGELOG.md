@@ -3,6 +3,34 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a12]
+### Added
+- Support for steering behaviours on Lua.
+- Deduction guides for `tnt::sparse_iterator<T>`.
+- `utils/LuaUtils.hpp`, which will contain functions that export some stuff from folder `utils` to lua. For now, only `tnt::sparse_set<T>` is supported.
+- Some `noexcept` on `tnt::sparse_set<T>`.
+- You can now assign a `tnt::sparse_sentinel` to a `tnt::sparse_iterator`.
+- `tnt::doo::sprites_sys::target_cam`, to set a camera as a target for the renderer.
+- Some small missing parts of the documentations.
+- Section on how to build the engine as a DLL on `INSTALL.md`.
+- `tnt::sparse_set<T>::edit`, `tnt::sparse_set<T>::index`,`tnt::sparse_set<T>::insert`, `tnt::sparse_set<U>::operator==`.
+
+### Fixed
+- A small bug with comparing `tnt::sparse_iterator<T>` and `tnt::sparse_sentinel`.
+- Exported `tnt::lua::load`.
+- `exe` linked with `TnT.dll` crash randomly. NOTE that if you need to use the Data Oriented ECS (you normally need) and the Lua bindings for the Data Oriented ECS (`src/tolua/LuaDooEcs.cpp`), you have to build the source files on the `src/doo_ecs` folder together with your executable.
+
+### Changed
+- `tnt::lua::load` now needs `std::span<const tnt::lua::lib>` as an argument.
+- `tnt::sparse_iterator`'s `explicit` ctor now accepts a `tnt::sparse_set<T> const&` instead of `tnt::sparse_set<T> const*`.
+- `tnt::sparse_set<T>` is now copy-constructible.
+- Renamed all the member of the systems of the Data Oriented ECS that holded the id-s of the objects to `active`. Also changed their data type from `std::vector<object>` to `tnt::sparse_set<object>`.
+
+### Removed
+- `tnt::lua::lib::doo_ecs`. Load the Data Oriented ECS by hand (just call `tnt::lua::loadDooEcs`).
+- `tnt::doo::has_object` and `tnt::doo::json_has`. Use `tnt::contains()` from `utils/Containers.hpp` instead.
+
+
 ## [0.1.0a11]
 ### Added
 - `include/TnT.hpp`, which `#include`s all the current headers of the TnT Engine SDK.

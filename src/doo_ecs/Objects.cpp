@@ -4,10 +4,14 @@
 #include "doo_ecs/Objects.hpp"
 #include "json/JsonVector.hpp"
 #include "imgui/ImGui.hpp"
-#include "utils/TypeUtils.hpp"
 
 namespace tnt::doo
 {
+    inline static bool contains(nlohmann::json const &j, const char *value) noexcept
+    {
+        return j.find(value) != j.end();
+    }
+
     inline static constexpr auto local_scale = [](Vector const &myScale, Vector const &pScale) noexcept -> Vector {
         return {myScale.x / pScale.x, myScale.y / pScale.y};
     };
@@ -33,13 +37,12 @@ namespace tnt::doo
         [[unlikely]] if (angle.size() == angle.capacity()) // if the vector got to his capacity, then we reserve more space
         {
             angle.reserve(10);
-            active.reserve(10);
             parent.reserve(10);
             scale.reserve(10);
             pos.reserve(10);
         }
 
-        active.emplace_back(index);
+        active.push_back(index);
 
         parent.emplace_back(null);
         angle.emplace_back(data_.angle);
@@ -59,7 +62,7 @@ namespace tnt::doo
     object objects_sys::from_json(nlohmann::json const &j)
     {
         object id{null};
-        if (json_has(j, "parent"))
+        if (contains(j, "parent"))
             id = add_object({j["angle"].get<float>(),
                              j["pos"].get<Vector>(),
                              j["scale"].get<Vector>(),
@@ -75,6 +78,7 @@ namespace tnt::doo
     {
         tnt::ImGui::hslider_float(win, "Angle", -360.f, 360.f, &objects.angle[id]);
         tnt::ImGui::hslider_vec(win, "Scale", .1f, 20.f, .1f, 20.f, &objects.scale[id]);
+        // TODO: rethink this (maybe) substract (gPos(id) - pos[id]) ??
         tnt::ImGui::hslider_vec(win, "Pos", 0.f, win.getWidth() * 1.f,
                                 0.f, win.getHeight() * 1.f,
                                 &objects.pos[id]);

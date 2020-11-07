@@ -12,10 +12,10 @@ namespace tnt
     public:
         TextureAtlas(Window const &win, std::string_view file_, Rectangle const &area) noexcept;
 
-        void Draw(Window const &win, Vector const &pos, Vector const& scale = {1.f, 1.f}, float angle = 0.f) noexcept;
+        void Draw(Window const &win, Vector const &pos, Vector const &scale = {1.f, 1.f}, float angle = 0.f) noexcept;
 
     private:
-        std::string_view filename;
+        const char *filename;
         Rectangle clip;
     };
 } // namespace tnt

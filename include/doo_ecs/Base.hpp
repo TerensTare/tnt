@@ -1,21 +1,11 @@
 #ifndef TNT_DOO_ECS_BASE_HPP
 #define TNT_DOO_ECS_BASE_HPP
 
-#include <span>
-#include <nlohmann/json.hpp>
-
-#include "math/Vector.hpp"
-#include "core/Window.hpp"
-
 // TODO:
 // optimizations (ex. use pmr)
-// ensure objects index on each system and each vector is the same.
-// load to lua (needs tests)
 // particle_sys
 // add constinit/constexpr
 // spaces/scenes implemented as id-s only and operations on objects related to spaces/scenes (move, remove, etc).
-// TODO(maybe):
-// add_object ONLY on objects_sys, and pass an object_data const& (a base class) to it ??
 
 // example of a simple update/draw loop with the new data oriented ECS
 // someWindow.Clear();
@@ -23,9 +13,8 @@
 // {
 //      physics.Update(o, deltaTime);
 //      animations.Update(o, deltaTime);
-//      if (tnt::doo::object const s{sprites.draw_queue.size()};
-//          s > obj && sprites.draw_queue[obj] != -1)
-//          sprites.Draw(o, someWindow);
+//
+//      sprites.Draw(o, someWindow);
 // }
 // someWindow.Render();
 
@@ -79,34 +68,15 @@ namespace tnt::doo
 
     inline constexpr object null{(object)-1}; /// < An object id indicating that the object is absent on the desired system.
 
-    /// @brief Check if the given object exists on the given system's object list.
-    /// @param members The list of the id-s of the members of a system.
-    /// @param id The id of the desired object.
-    /// @return bool
-    inline const auto has_object = [](std::span<object> members, object const &id) noexcept -> bool {
-        return ((members.size() > id) && (members[id] != null));
-    };
-
-    /// @brief Check if the given json chunk has a certain field.
-    /// @param j The json chunk to check.
-    /// @param key The desired key.
-    /// @return bool
-    inline const auto json_has = [](nlohmann::json const &j, char const *key) noexcept(
-                                     noexcept(j.find(key))) -> bool {
-        return (j.find(key) != j.cend());
-    };
-
-    // clang-format off
-    template <typename T>
-    concept system = std::is_final_v<T> &&
-        std::default_initializable<T> &&
-            requires(T && t) {
-                t.add_object;
-                t.from_json;
-                t.draw_imgui;
-            } && (requires (T && t) { t.Update; }
-             || requires (T && t) { t.Draw; });
-    // clang-format on
+    // template <typename T>
+    // concept system = std::is_final_v<T> &&
+    //     std::default_initializable<T> &&
+    //         requires(T && t) {
+    //             t.add_object;
+    //             t.from_json;
+    //             t.draw_imgui;
+    //         } && (requires (T && t) { t.Update; }
+    //          || requires (T && t) { t.Draw; });
 } // namespace tnt::doo
 
 #endif //!TNT_DOO_ECS_BASE_HPP

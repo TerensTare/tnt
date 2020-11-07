@@ -127,6 +127,26 @@ jobs:
       VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
       VCPKG_ROOT: ${{ matrix.vcpkg-path }}
       VCPKG_FEATURE_FLAGS: "manifests,binarycaching"
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        # Windows with MSVC
+        - name: "Windows Latest MSVC"
+          artifact: "Windows-MSVC.zip"
+          os: windows-latest
+        # Windows with GCC
+        - name: "Windows Latest MinGW"
+          artifact: "Windows-MinGW.zip"
+          os: windows-latest
+        # Ubuntu with GCC
+        - name: "Ubuntu Latest GCC"
+          artifact: "Linux.tar.xz"
+          os: ubuntu-latest
+        # Mac with Clang
+        - name: "MacOS Latest Clang"
+          artifact: "Mac.tar.xz"
+          os: macos-latest
 
     steps:
       - name: Config
@@ -162,7 +182,7 @@ jobs:
             message(FATAL_ERROR "Bad exit status")
           endif()
 
-    
+
       - name: Install
         run: ${ { steps.cmake_and_ninja.outputs.cmake_dir } }/cmake --install build
       - name: Pack

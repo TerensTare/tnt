@@ -3,13 +3,12 @@
 
 #include <SDL2/SDL_mixer.h>
 
-#include "core/Config.hpp"
 #include "fileIO/cache/Base.hpp"
 
 namespace tnt
 {
     template <unsigned I>
-    class TNT_API asset_cache<Mix_Music, I>
+    class asset_cache<Mix_Music, I>
     {
     public:
         inline ~asset_cache() noexcept
@@ -44,7 +43,7 @@ namespace tnt
     using large_music_cache = music_cache<100>;
 
     template <unsigned I>
-    class TNT_API asset_cache<Mix_Chunk, I>
+    class asset_cache<Mix_Chunk, I>
     {
     public:
         inline ~asset_cache() noexcept

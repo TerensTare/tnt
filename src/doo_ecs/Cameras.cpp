@@ -12,6 +12,11 @@
 
 namespace tnt::doo
 {
+    inline static bool contains(nlohmann::json const &j, const char *value) noexcept
+    {
+        return j.find(value) != j.end();
+    }
+
     void cameras_sys::add_object(camera_comp const &data)
     {
         [[unlikely]] if (angle.size() == angle.capacity())
@@ -23,14 +28,13 @@ namespace tnt::doo
             shaking.reserve(3);
             shakeLoss.reserve(3);
             shake_time.reserve(3);
-            active.reserve(3);
             target.reserve(3);
             pos.reserve(3);
             scale.reserve(3);
             offset.reserve(3);
         }
 
-        active.emplace_back(angle.size());
+        active.push_back(angle.size());
         angle.emplace_back(data.angle);
         width.emplace_back(data.w);
         height.emplace_back(data.h);
@@ -52,15 +56,15 @@ namespace tnt::doo
         float shake_loss_{1.f};
         Vector scale_{1.f, 1.f};
 
-        if (json_has(j, "angle"))
+        if (contains(j, "angle"))
             angle = j["angle"];
-        if (json_has(j, "speed"))
+        if (contains(j, "speed"))
             speed_ = j["speed"];
-        if (json_has(j, "scale"))
+        if (contains(j, "scale"))
             scale_ = j["scale"];
-        if (json_has(j, "shake"))
+        if (contains(j, "shake"))
             shaking_ = j["shake"];
-        if (json_has(j, "shake_loss"))
+        if (contains(j, "shake_loss"))
             shake_loss_ = j["shake_loss"];
 
         add_object({angle, j["pos"].get<Vector>(),
@@ -111,7 +115,7 @@ namespace tnt::doo
         pos[cam] = min_;
 
         // TODO: change scale here
-        width[cam] = max_.x - min_.x; // (maybe) * cosf(gAngle(obj)-angle[cam])
-        height[cam] = max_.y - min_.y;// (maybe) * sinf(gAngle(obj)-angle[cam])
+        width[cam] = max_.x - min_.x;  // (maybe) * cosf(gAngle(obj)-angle[cam])
+        height[cam] = max_.y - min_.y; // (maybe) * sinf(gAngle(obj)-angle[cam])
     }
 } // namespace tnt::doo

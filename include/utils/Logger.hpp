@@ -1,7 +1,6 @@
 #ifndef TNT_LOGGER_HPP
 #define TNT_LOGGER_HPP
 
-#include <concepts>
 #include <fmt/core.h>
 #include <fmt/color.h>
 

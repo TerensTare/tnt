@@ -2,7 +2,11 @@
 #define TNT_WINDOW_HPP
 
 #include <string>
-#include <SDL2/SDL.h>
+
+#include <SDL2/SDL_events.h>
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_video.h>
+
 #include "core/Config.hpp"
 
 // TODO: support drawing fonts.
@@ -27,9 +31,10 @@ namespace tnt
         Window(std::string_view title, int xpos, int ypos, int width,
                int height, Uint32 flags) noexcept;
 
-        /// @overload This constructor does the same as the other constructor,
-        /// except that it draws the window on the center of the screen and
-        /// the window is only resizable and shown.
+        /// @overload
+        /// @param title The title of the window.
+        /// @param width The width of the window.
+        /// @param height The height of the window.
         Window(std::string_view title, int width, int height) noexcept;
 
         /// @brief Destroys the window and clears the memory occupied by it.
@@ -119,7 +124,11 @@ namespace tnt
         /// @param color The color used to draw on the Window's renderer.
         void setClearColor(SDL_Color const &color) noexcept;
 
-        /// @overload Set the clear color using separate values for RGBA.
+        /// @overload
+        /// @param r Red.
+        /// @param g Green.
+        /// @param b Blue.
+        /// @param a Alpha.
         void setClearColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a) noexcept;
 
         /// @brief Get the color used for drawing operations.

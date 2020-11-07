@@ -38,14 +38,14 @@ namespace tnt
     /// @param maxX The maximum value of the x coordinate.
     /// @param minY The minimum value of the y coordinate.
     /// @param maxY The maximum value of the y coordinate.
-    /// @return tnt::Vector
+    /// @return @ref tnt::Vector
     TNT_API inline tnt::Vector randomVector(float minX, float maxX, float minY, float maxY)
     {
         return {randomFloat(minX, maxX), randomFloat(minY, maxY)};
     }
 
     /// @brief Create a randomly generated Vector with magnitude 1.
-    /// @return tnt::Vector
+    /// @return @ref tnt::Vector
     TNT_API inline tnt::Vector randomUnitVector()
     {
         float const &angle{randomFloat(0.f, 2_pi)};

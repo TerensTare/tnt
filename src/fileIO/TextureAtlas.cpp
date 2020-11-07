@@ -7,7 +7,7 @@
 inline static tnt::texture_cache<3> *cache;
 
 tnt::TextureAtlas::TextureAtlas(tnt::Window const &win, std::string_view file, tnt::Rectangle const &area) noexcept
-    : filename{file}, clip{area}
+    : filename{file.data()}, clip{area}
 {
     cache->load(win.getRenderer(), file);
 }

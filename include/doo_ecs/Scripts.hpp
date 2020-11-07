@@ -2,8 +2,11 @@
 #define TNT_DOO_ECS_SCRIPTS_SYSTEM_HPP
 
 #include <sol/sol.hpp>
-#include "core/Config.hpp"
+#include <nlohmann/json_fwd.hpp>
+
+#include "core/Window.hpp"
 #include "doo_ecs/Base.hpp"
+#include "utils/SparseSet.hpp"
 
 // TODO:
 // find a way to support script reloading.
@@ -12,7 +15,7 @@
 namespace tnt::doo
 {
     /// @brief The system that handles the scripts of the objects.
-    inline struct TNT_API scripts_sys final
+    inline struct scripts_sys final
     {
         inline scripts_sys() noexcept = default;
 
@@ -31,7 +34,7 @@ namespace tnt::doo
         /// @brief Call the desired function from the lua state of the given object.
         /// @param id The id of the object that has the function.
         /// @param fn The name of the function.
-        /// @param args... The arguments to pass to the function.
+        /// @param args The arguments to pass to the function.
         template <typename... Args>
         inline decltype(auto) call(object const &id, std::string_view fn, Args &&... args)
         {
@@ -61,8 +64,8 @@ namespace tnt::doo
         /// @param win The window where to draw the widgets.
         inline void draw_imgui(object const &id, Window const &win) noexcept {}
 
-        std::vector<object> script_queue; /// < The id-s of all the objects connected to scripts.
-    } scripts;                            /// < An instance of scripts_sys
+        sparse_set<object> active; /// < The id-s of all the objects connected to scripts.
+    } scripts;                     /// < An instance of scripts_sys
 } // namespace tnt::doo
 
 #endif //!TNT_DOO_ECS_SCRIPTS_SYSTEM_HPP

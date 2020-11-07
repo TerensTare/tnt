@@ -2,14 +2,13 @@
 #define TNT_TIMER_HPP
 
 #include <chrono>
-#include "core/Config.hpp"
 
 // TODO(maybe):
 // asynchronous timer ??
 
 namespace tnt
 {
-    class TNT_API Timer
+    class Timer
     {
         using fast_milli = std::chrono::duration<float, std::milli>;
 

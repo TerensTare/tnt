@@ -12,7 +12,7 @@
 // TODO:
 // add a ScalableVector struct, which has x, y and z coordinates, and uses
 // z as a scale of itself.
-// add math operators (*, /, *=, /=) with this signature (float, Vector const&)
+// add math operators (*, *=) with this signature (float, Vector const&)
 
 namespace tnt
 {

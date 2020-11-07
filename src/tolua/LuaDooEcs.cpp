@@ -7,6 +7,7 @@
 #include "doo_ecs/Objects.hpp"
 #include "doo_ecs/Physics.hpp"
 #include "doo_ecs/Sprites.hpp"
+#include "doo_ecs/Steering.hpp"
 
 #include "tolua/LuaDooEcs.hpp"
 
@@ -14,7 +15,7 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
 {
     using namespace doo;
 
-    // TODO: animations, cameras, steering
+    // TODO: cameras, steering
     // TODO(maybe): remove Draw/Update/draw_imgui functions ??
 
     lua_.new_usertype<object_data>(
@@ -59,7 +60,7 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "draw", &sprites_sys::Draw,
         "draw_area", &sprites_sys::draw_area,
 
-        "draw_queue", &sprites_sys::draw_queue,
+        "draw_queue", &sprites_sys::active,
         "clip", &sprites_sys::clip);
 
     // physics
@@ -98,7 +99,7 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "gMaxAccel", &physics_sys::gMaxAccel,
         "damping", &physics_sys::damping,
         "restitution", &physics_sys::restitution,
-        "active", &physics_sys::physics_queue,
+        "active", &physics_sys::active,
         "bound", &physics_sys::bound_box);
 
     // animations
@@ -132,10 +133,21 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "timePerFrame", &animations_sys::timePerFrame,
         "spacing", &animations_sys::spacing,
         "current", &animations_sys::current,
-        "running", &animations_sys::running);
+        "running", &animations_sys::active);
+
+    lua_.new_usertype<steering_sys>(
+        "steering_sys", "new", sol::no_constructor,
+
+        "seek", &steering_sys::Seek,
+        "flee", &steering_sys::Flee,
+        "ranged_flee", &steering_sys::RangedFlee,
+        "arrive", &steering_sys::Arrive,
+        "pursuit", &steering_sys::Pursuit,
+        "evade", &steering_sys::Evade);
 
     lua_["objects"] = &objects;
     lua_["sprites"] = &sprites;
     lua_["physics"] = &physics;
     lua_["animations"] = &animations;
+    lua_["steer"] = &steer;
 }

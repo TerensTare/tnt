@@ -6,12 +6,13 @@
 #include "doo_ecs/Steering.hpp"
 
 #include "utils/TypeUtils.hpp"
+#include "utils/Containers.hpp"
 
 namespace tnt::doo
 {
     void steering_sys::Seek(object const &id, Vector const &target) const noexcept
     {
-        [[likely]] if (has_object(physics.physics_queue, id))
+        [[likely]] if (physics.active.contains(id))
         {
             physics.addForce(id, (target - objects.gPos(id)).Normalized() *
                                          physics.gMaxVel(id).Magnitude() -
@@ -23,7 +24,7 @@ namespace tnt::doo
 
     void steering_sys::Flee(object const &id, Vector const &target) const noexcept
     {
-        [[likely]] if (has_object(physics.physics_queue, id))
+        [[likely]] if (physics.active.contains(id))
         {
             physics.addForce(id, (objects.gPos(id) - target).Normalized() *
                                          physics.gMaxVel(id).Magnitude() -
@@ -35,7 +36,7 @@ namespace tnt::doo
 
     void steering_sys::RangedFlee(object const &id, Vector const &target, float range) const noexcept
     {
-        [[likely]] if (has_object(physics.physics_queue, id))
+        [[likely]] if (physics.active.contains(id))
         {
             float const &dstSquared{range * range};
             if (Vector const &deltaPos{objects.gPos(id) - target};
@@ -51,7 +52,7 @@ namespace tnt::doo
 
     void steering_sys::Arrive(object const &id, Vector const &target) const noexcept
     {
-        [[likely]] if (has_object(physics.physics_queue, id))
+        [[likely]] if (physics.active.contains(id))
         {
             Vector const &to_target(target - objects.gPos(id));
             if (float const &dst{to_target.Magnitude()}; dst)
@@ -69,9 +70,9 @@ namespace tnt::doo
 
     void steering_sys::Pursuit(object const &id, object const &target) const noexcept
     {
-        [[likely]] if (has_object(physics.physics_queue, id))
+        [[likely]] if (physics.active.contains(id))
         {
-            [[unlikely]] if (!has_object(physics.physics_queue, target))
+            [[unlikely]] if (!physics.active.contains(target))
                 Seek(id, objects.gPos(target));
             else [[likely]]
             {

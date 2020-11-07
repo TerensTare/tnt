@@ -4,14 +4,13 @@
 #include <unordered_map>
 #include <memory_resource>
 
-#include "core/Config.hpp"
 #include "fileIO/TextureAtlas.hpp"
 #include "fileIO/cache/Base.hpp"
 
 namespace tnt
 {
     template <unsigned I>
-    class TNT_API asset_cache<TextureAtlas, I>
+    class asset_cache<TextureAtlas, I>
     {
     public:
         [[nodiscard]] inline TextureAtlas *get(tnt::Window const &win, std::string_view path, Rectangle const &rect)

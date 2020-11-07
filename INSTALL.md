@@ -16,13 +16,14 @@ The project uses [vcpkg](https://github.com/microsoft/vcpkg) to handle the depen
 
 ### Running the build commands.
 
-At the time of speaking, the engine can be used by including header files and adding source files(.cpp) to your compile command. But there is planned support for building the engine as Windows DLL's and C++20 modules. Until then, the build command is as follows:
+At the time of speaking, the engine can be used by including header files and adding source files(`.cpp`) to your compile command. But there is planned support for building the engine as C++20 modules. As of version `0.1.0a12`, the engine is built as a DLL, and the command is as follows:
 ``` cmd
 mkdir build
 cd build
 cmake ..
 cmake --build .
 ```
+The engine's `CMakeLists.txt` also ships with a target that builds the visual editor of the engine. This `option` is `ON` by default. To disable it, please add `-DBUILD_EDITOR=OFF` to the first `cmake` command.
 
 ### Building the documentation
 

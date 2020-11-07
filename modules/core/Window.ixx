@@ -27,9 +27,7 @@ export namespace tnt
         Window(std::string_view title, int xpos, int ypos, int width,
                int height, Uint32 flags) noexcept;
 
-        /// @overload This constructor does the same as the other constructor,
-        /// except that it draws the window on the center of the screen and
-        /// the window is only resizable and shown.
+        /// @overload
         Window(std::string_view title, int width, int height) noexcept;
 
         /// @brief Destroys the window and clears the memory occupied by it.

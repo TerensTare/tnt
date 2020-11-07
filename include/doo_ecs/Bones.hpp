@@ -1,6 +1,7 @@
 #ifndef TNT_DOO_ECS_2D_SKELETAL_ANIMATIONS_SYSTEM_HPP
 #define TNT_DOO_ECS_2D_SKELETAL_ANIMATIONS_SYSTEM_HPP
 
+#include <nlohmann/json_fwd.hpp>
 #include "doo_ecs/Base.hpp"
 
 // a basic json file:

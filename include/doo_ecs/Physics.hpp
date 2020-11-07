@@ -1,9 +1,9 @@
 #ifndef TNT_DOO_ECS_PHYSICS_HPP
 #define TNT_DOO_ECS_PHYSICS_HPP
 
-#include "core/Config.hpp"
 #include "doo_ecs/Base.hpp"
 #include "math/Rectangle.hpp"
+#include "utils/SparseSet.hpp"
 
 // TODO:
 // handle cases when the object's parent changes (so does it's speed, etc).
@@ -37,7 +37,7 @@ namespace tnt::doo
         vertical,   /// < The objects collide on their top/down side.
     };
 
-    struct TNT_API physics_comp final
+    struct physics_comp final
     {
         body_type type{body_type::dynamic};
         float mass;
@@ -49,7 +49,7 @@ namespace tnt::doo
     };
 
     /// @brief A struct that handles the physics data of all the objects.
-    inline struct TNT_API physics_sys final
+    inline struct physics_sys final
     {
         physics_sys() = default;
 
@@ -133,15 +133,14 @@ namespace tnt::doo
         std::vector<float> damping;     /// < The damping of the objects.
         std::vector<float> restitution; /// < The restitution of the objects.
 
-        std::vector<Vector> vel;      /// < The velocities of the objects.
-        std::vector<Vector> maxVel;   /// < The maximal velocities of the objects.
-        std::vector<Vector> accel;    /// < The accelerations of the objects.
-        std::vector<Vector> maxAccel; /// < The maximal accelerations of the objects.
-
-        std::vector<object> physics_queue; /// < The id-s of all the objects of the physics system.
-
+        std::vector<Vector> vel;          /// < The velocities of the objects.
+        std::vector<Vector> maxVel;       /// < The maximal velocities of the objects.
+        std::vector<Vector> accel;        /// < The accelerations of the objects.
+        std::vector<Vector> maxAccel;     /// < The maximal accelerations of the objects.
         std::vector<Rectangle> bound_box; /// < The bounding boxes of the bodies.
-    } physics;                            /// < An instance of phys_sys.
+
+        sparse_set<object> active; /// < The id-s of all the objects of the physics system.
+    } physics;                     /// < An instance of phys_sys.
 } // namespace tnt::doo
 
 #endif //!TNT_DOO_ECS_PHYSICS_HPP

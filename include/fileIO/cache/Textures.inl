@@ -6,14 +6,13 @@
 
 #include <SDL2/SDL_image.h>
 
-#include "core/Config.hpp"
 #include "fileIO/cache/Base.hpp"
 #include "fileIO/VirtualFS.hpp"
 
 namespace tnt
 {
     template <unsigned I>
-    class TNT_API asset_cache<SDL_Texture, I>
+    class asset_cache<SDL_Texture, I>
     {
     public:
         inline ~asset_cache() noexcept

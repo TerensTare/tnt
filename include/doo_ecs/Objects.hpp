@@ -1,18 +1,23 @@
 #ifndef TNT_DOO_ECS_BASE_OBJECTS_SYSTEM_HPP
 #define TNT_DOO_ECS_BASE_OBJECTS_SYSTEM_HPP
 
-#include "core/Config.hpp"
+#include <nlohmann/json_fwd.hpp>
+
+#include "core/Window.hpp"
 #include "doo_ecs/Base.hpp"
+#include "math/Vector.hpp"
+#include "utils/SparseSet.hpp"
 
 namespace tnt::doo
 {
     /// @brief A struct that holds the basic data of an object.
-    struct TNT_API object_data final
+    struct object_data final
     {
         /// @brief Create a new object data handle from the given params.
         /// @param angle_ The initial angle of the object.
         /// @param scale_ The initial scale of the object.
         /// @param pos_ The initial position of the object.
+        /// @param parent_ The parent of the new object. Leave it as is if you don't want the object to have a parent.
         constexpr object_data(float angle_, Vector const &pos_, Vector const &scale_,
                               object const &parent_ = null) noexcept
             : angle{angle_}, pos{pos_}, scale{scale_}, parent{parent_} {}
@@ -24,7 +29,7 @@ namespace tnt::doo
     };
 
     /// @brief A struct that handles objects data.
-    inline struct TNT_API objects_sys final
+    inline struct objects_sys final
     {
         objects_sys() = default;
 
@@ -76,7 +81,7 @@ namespace tnt::doo
 
         std::vector<float> angle; /// < The angles of the objects.
 
-        std::vector<object> active; /// < The id-s of all the active objects.
+        tnt::sparse_set<object> active; /// < The id-s of all the active objects.
         std::vector<object> parent; /// < The id-s of the parents of the objects.
 
         std::vector<Vector> scale; /// < The scales of the objects.

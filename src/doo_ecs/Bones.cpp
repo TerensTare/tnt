@@ -1,10 +1,13 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+#include <nlohmann/json.hpp>
+
 #include "doo_ecs/Bones.hpp"
 #include "doo_ecs/Objects.hpp"
 
 #include "utils/Assert.hpp"
+#include "utils/Containers.hpp"
 
 namespace tnt::doo
 {
@@ -79,13 +82,13 @@ namespace tnt::doo
 
     void bones_sys::from_json(nlohmann::json const &j)
     {
-        if (json_has(j, "bones"))
+        if (contains(j, "bones"))
         {
             nlohmann::json const &b{j["bones"]};
             float min{0.f}, max{360.f};
-            if (json_has(b, "minAngle"))
+            if (contains(b, "minAngle"))
                 min = b["minAngle"];
-            if (json_has(b, "maxAngle"))
+            if (contains(b, "maxAngle"))
                 max = b["maxAngle"];
             add_object(bone_data{.length{b["length"]}, .minAngle{min}, .maxAngle{max}});
         }

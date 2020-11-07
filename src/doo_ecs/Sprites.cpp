@@ -10,6 +10,11 @@
 
 namespace tnt::doo
 {
+    inline static bool contains(nlohmann::json const &j, const char *value) noexcept
+    {
+        return j.find(value) != j.end();
+    }
+
     inline medium_texture_cache *cache{default_texture_cache()};
 
     // sprites_comp
@@ -33,51 +38,62 @@ namespace tnt::doo
     // sprites_sys
     void sprites_sys::add_object(object const &id, sprite_comp const &sprite)
     {
-        [[unlikely]] if (id > tex.capacity())
+        [[unlikely]] if (id >= tex.capacity())
         {
-            draw_queue.reserve(id - tex.capacity());
-            tex.reserve(id - tex.capacity());
-            clip.reserve(id - tex.capacity());
+            tex.reserve(id - tex.capacity() + 1);
+            clip.reserve(id - tex.capacity() + 1);
         }
 
-        draw_queue.emplace(draw_queue.cbegin() + id, tex.size());
+        active.insert(id, id);
         tex.emplace(tex.cbegin() + id, sprite.tex);
         clip.emplace(clip.cbegin() + id, sprite.crop);
     }
 
     void sprites_sys::from_json(object const &id, Window const &win, nlohmann::json const &j)
     {
-        if (json_has(j, "sprite"))
+        if (contains(j, "sprite"))
         {
             if (std::string_view const &file{j["sprite"]["file"].get<std::string_view>()};
-                json_has(j["sprite"], "crop"))
+                contains(j["sprite"], "crop"))
                 add_object(id, {win, file, j["sprite"]["crop"]});
             else
                 add_object(id, {win, file});
         }
     }
 
+    void sprites_sys::draw_imgui(object const &id, Window const &win) noexcept {}
+
     Rectangle sprites_sys::draw_area(object const &id) const noexcept
     {
-        float const &dx{clip[id].w * objects.gScale(id).x};
-        float const &dy{clip[id].h * objects.gScale(id).y};
-        return {objects.gPos(id).x, objects.gPos(id).y, dx, dy};
+        Rectangle ret;
+        if (active.contains(id))
+        {
+            if (cameras.active.contains(target))
+            {
+                Vector const &gPos{RotateVector(objects.gPos(id) - cameras.pos[target], -cameras.angle[target])};
+                float const &dx{sprites.clip[id].w * objects.gScale(id).x * cameras.scale[target].x};
+                float const &dy{sprites.clip[id].h * objects.gScale(id).y * cameras.scale[target].y};
+                ret = {gPos.x, gPos.y, dx, dy};
+            }
+            else
+            {
+                float const &dx{clip[id].w * objects.gScale(id).x};
+                float const &dy{clip[id].h * objects.gScale(id).y};
+                ret = {objects.gPos(id).x, objects.gPos(id).y, dx, dy};
+            }
+        }
+
+        return ret;
     }
 
-    inline const auto draw_area_cam =
-        [](object const &id, tnt::doo::camera const &cam) noexcept -> SDL_FRect {
-        Vector const &gPos{RotateVector(objects.gPos(id) - cameras.pos[cam], -cameras.angle[cam])};
-        float const &dx{sprites.clip[id].w * objects.gScale(id).x * cameras.scale[cam].x};
-        float const &dy{sprites.clip[id].h * objects.gScale(id).y * cameras.scale[cam].y};
-        return SDL_FRect{gPos.x, gPos.y, dx, dy};
-    };
-
-    void sprites_sys::Draw(object const &id, Window const &win, tnt::doo::camera const &cam) const noexcept
+    void sprites_sys::target_cam(camera const &cam) noexcept
     {
-        if (draw_queue.size() <= id || draw_queue[id] != id)
-            return;
+        target = cam;
+    }
 
-        if (cam == null || cameras.active.size() <= cam)
+    void sprites_sys::Draw(object const &id, Window const &win) const noexcept
+    {
+        if (active.contains(id))
         {
             SDL_FRect const &dst{(SDL_FRect)draw_area(id)};
 
@@ -86,10 +102,5 @@ namespace tnt::doo
                               objects.gAngle(id),
                               nullptr, SDL_FLIP_NONE);
         }
-        else
-            SDL_RenderCopyExF(win.getRenderer(), tex[id],
-                              &clip[id], &draw_area_cam(id, cam),
-                              objects.gAngle(id) - cameras.angle[cam],
-                              nullptr, SDL_FLIP_NONE);
     }
 } // namespace tnt::doo

@@ -1,8 +1,6 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-#include <execution>
-
 #include "doo_ecs/Objects.hpp"
 #include "doo_ecs/Physics.hpp"
 #include "doo_ecs/Sprites.hpp"
@@ -16,6 +14,11 @@
 
 namespace tnt::doo
 {
+    inline static bool contains(nlohmann::json const &j, const char *value) noexcept
+    {
+        return j.find(value) != j.end();
+    }
+
     void physics_sys::add_object(object const &id, physics_comp const &body)
     {
         [[unlikely]] if (id > inv_mass.capacity())
@@ -29,8 +32,6 @@ namespace tnt::doo
             maxVel.reserve(id - inv_mass.capacity());
             accel.reserve(id - inv_mass.capacity());
             maxAccel.reserve(id - inv_mass.capacity());
-
-            physics_queue.reserve(id - inv_mass.capacity());
 
             bound_box.reserve(id - inv_mass.capacity());
         }
@@ -55,7 +56,8 @@ namespace tnt::doo
             maxAccel.emplace(maxAccel.cbegin() + id, body.maxAccel - gMaxAccel(objects.parent[id]));
         }
 
-        physics_queue.emplace(physics_queue.cbegin() + id, id);
+        active.insert(id, id);
+
         if (body.bound_box != Rectangle{0, 0, 0, 0})
             bound_box.emplace(bound_box.cbegin() + id, body.bound_box + objects.gPos(id));
         else
@@ -74,28 +76,24 @@ namespace tnt::doo
     void physics_sys::addGlobalForce(Vector const &force) noexcept
     {
         totalForce += force;
-        std::for_each(
-            std::execution::par_unseq,
-            physics_queue.cbegin(), physics_queue.cend(),
-            [this, &force](object const &id) noexcept -> void {
-                addForce(id, totalForce);
-            });
+        for (auto const &id : active)
+            addForce(id, totalForce);
     }
 
     void physics_sys::Update(object const &id, float time_) noexcept
     {
-        if (!has_object(physics_queue, id))
-            return;
+        if (active.contains(id))
+        {
+            check(time_ > 0.f, "Calling tnt::doo::physics_sys::Update with parameter time_ equal to 0. Objects will not be updated!!");
+            float const &damp{std::powf(damping[id], time_)};
 
-        check(time_ > 0.f, "Calling tnt::doo::physics_sys::Update with parameter time_ equal to 0. Objects will not be updated!!");
-        float const &damp{std::powf(damping[id], time_)};
+            objects.pos[id] += (physics.vel[id] * time_);
+            bound_box[id] += (physics.vel[id] * time_);
 
-        objects.pos[id] += (physics.vel[id] * time_);
-        bound_box[id] += (physics.vel[id] * time_);
-
-        vel[id] += (accel[id] * time_);
-        vel[id] *= damp;
-        vel[id] = if_else(vel[id] > maxVel[id], maxVel[id], vel[id]);
+            vel[id] += (accel[id] * time_);
+            vel[id] *= damp;
+            vel[id] = if_else(vel[id] > maxVel[id], maxVel[id], vel[id]);
+        }
     }
 
     bool physics_sys::colliding(object const &id, object const &id2) noexcept
@@ -111,46 +109,46 @@ namespace tnt::doo
 
     void physics_sys::resolveVel(object const &id, object const &id2) noexcept
     {
-        if (!(has_object(physics_queue, id) && has_object(physics_queue, id2)))
-            return;
-
-        Vector const &normal{(objects.gPos(id) - objects.gPos(id2)).Normalized()};
-
-        float const &sep_vel = [this, &normal](object const &id, object const &id2) noexcept -> float {
-            Vector const &rel_vel{gVel(id) - gVel(id2)};
-            return Dot(rel_vel, normal);
-        }(id, id2);
-
-        if (sep_vel > 0.f)
-            return;
-
-        float const &res{if_else(restitution[id] < restitution[id2],
-                                 restitution[id], restitution[id2])};
-
-        float new_sep_vel{-sep_vel * res};
-        Vector const &acc_caused_vel{gAccel(id) - gAccel(id2)};
-
-        if (float const &acc_caused_sep_vel{
-                Dot(acc_caused_vel, normal)};
-            acc_caused_sep_vel < 0.f)
+        if (active.contains(id) && active.contains(id2))
         {
-            new_sep_vel += res * acc_caused_sep_vel;
-            if (new_sep_vel < 0.f)
-                new_sep_vel = 0.f;
+            Vector const &normal{(objects.gPos(id) - objects.gPos(id2)).Normalized()};
+
+            float const &sep_vel = [this, &normal](object const &id, object const &id2) noexcept -> float {
+                Vector const &rel_vel{gVel(id) - gVel(id2)};
+                return Dot(rel_vel, normal);
+            }(id, id2);
+
+            if (sep_vel > 0.f)
+                return;
+
+            float const &res{if_else(restitution[id] < restitution[id2],
+                                     restitution[id], restitution[id2])};
+
+            float new_sep_vel{-sep_vel * res};
+            Vector const &acc_caused_vel{gAccel(id) - gAccel(id2)};
+
+            if (float const &acc_caused_sep_vel{
+                    Dot(acc_caused_vel, normal)};
+                acc_caused_sep_vel < 0.f)
+            {
+                new_sep_vel += res * acc_caused_sep_vel;
+                if (new_sep_vel < 0.f)
+                    new_sep_vel = 0.f;
+            }
+
+            float const &delta_vel{new_sep_vel - sep_vel};
+            float const &total_inv_mass{inv_mass[id] + inv_mass[id2]};
+            float const &impulse{delta_vel / total_inv_mass};
+            Vector const &impulse_per_mass{normal * impulse};
+
+            vel[id] += impulse_per_mass * inv_mass[id];
+            vel[id] = if_else(vel[id] > maxVel[id],
+                              maxVel[id], vel[id]);
+
+            vel[id2] -= impulse_per_mass * inv_mass[id2];
+            vel[id2] = if_else(vel[id2] > maxVel[id2],
+                               maxVel[id2], vel[id2]);
         }
-
-        float const &delta_vel{new_sep_vel - sep_vel};
-        float const &total_inv_mass{inv_mass[id] + inv_mass[id2]};
-        float const &impulse{delta_vel / total_inv_mass};
-        Vector const &impulse_per_mass{normal * impulse};
-
-        vel[id] += impulse_per_mass * inv_mass[id];
-        vel[id] = if_else(vel[id] > maxVel[id],
-                          maxVel[id], vel[id]);
-
-        vel[id2] -= impulse_per_mass * inv_mass[id2];
-        vel[id2] = if_else(vel[id2] > maxVel[id2],
-                           maxVel[id2], vel[id2]);
     }
 
     void physics_sys::resolveInterpenetration(object const &id, object const &id2) noexcept
@@ -165,12 +163,12 @@ namespace tnt::doo
 
     void physics_sys::from_json(object const &id, nlohmann::json const &j)
     {
-        if (json_has(j, "phys"))
+        if (contains(j, "phys"))
         {
             if (nlohmann::json const &phys{j["phys"]};
-                json_has(phys, "bounds"))
+                contains(phys, "bounds"))
             {
-                if (json_has(phys, "max_vel") || json_has(phys, "max_accel"))
+                if (contains(phys, "max_vel") || contains(phys, "max_accel"))
                     add_object(id, {.mass{phys["mass"]},
                                     .damping{phys["damping"]},
                                     .restitution{phys["restitution"]},
@@ -185,7 +183,7 @@ namespace tnt::doo
             }
             else
             {
-                if (json_has(phys, "max_vel") || json_has(phys, "max_accel"))
+                if (contains(phys, "max_vel") || contains(phys, "max_accel"))
                     add_object(id, {.mass{phys["mass"]},
                                     .damping{phys["damping"]},
                                     .restitution{phys["restitution"]},
@@ -201,13 +199,14 @@ namespace tnt::doo
 
     void physics_sys::draw_imgui(object const &id, Window const &win) noexcept
     {
-        if (tnt::ImGui::BeginSection(win, "Physics"))
-        {
-            tnt::ImGui::hslider_float(win, "Damping", 0.f, 1.f, &physics.damping[id]);
-            tnt::ImGui::hslider_float(win, "Restitution", 0.f, 1.f, &physics.restitution[id]);
+        if (active.contains(id))
+            if (tnt::ImGui::BeginSection(win, "Physics"))
+            {
+                tnt::ImGui::hslider_float(win, "Damping", 0.f, 1.f, &physics.damping[id]);
+                tnt::ImGui::hslider_float(win, "Restitution", 0.f, 1.f, &physics.restitution[id]);
 
-            tnt::ImGui::EndSection();
-        }
+                tnt::ImGui::EndSection();
+            }
     }
 
     Vector physics_sys::gVel(object const &id) const noexcept

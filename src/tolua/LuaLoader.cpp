@@ -4,9 +4,9 @@
 #include "tolua/LuaLoader.hpp"
 
 #include "tolua/LuaCore.hpp"
-#include "tolua/LuaDooEcs.hpp"
 #include "tolua/LuaImGui.hpp"
 #include "tolua/LuaMath.hpp"
+#include "tolua/LuaUtils.hpp"
 
 #include "core/Window.hpp"
 #include "core/Input.hpp"
@@ -38,7 +38,7 @@
 //     return 0;
 // }();
 
-void tnt::lua::load(sol::state_view lua_, std::span<tnt::lua::lib> libs)
+void tnt::lua::load(sol::state_view lua_, std::span<const tnt::lua::lib> libs)
 {
     for (lib const &l : libs)
         if (l == lib::core)
@@ -52,8 +52,8 @@ void tnt::lua::load(sol::state_view lua_, std::span<tnt::lua::lib> libs)
             loadVector(lua_);
             loadRect(lua_);
         }
-        else if (l == lib::doo_ecs)
-            loadDooEcs(lua_);
         else if (l == lib::imgui)
             loadImGui(lua_);
+        else if (l == lib::utils)
+            loadSparseSet(lua_);
 }

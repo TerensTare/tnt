@@ -1,8 +1,13 @@
 #ifndef TNT_DOO_ECS_CAMERAS_SYSTEM_HPP
 #define TNT_DOO_ECS_CAMERAS_SYSTEM_HPP
 
-#include "core/Config.hpp"
+#include <span>
+#include <nlohmann/json_fwd.hpp>
+
+#include "core/Window.hpp"
 #include "doo_ecs/Base.hpp"
+#include "math/Vector.hpp"
+#include "utils/SparseSet.hpp"
 
 // example of a json chunk containing the cameras.
 // [
@@ -17,7 +22,6 @@
 
 // TODO:
 // Axis locking (move camera only on x-axis/y-axis/both).
-// Screenshake
 // Keep a minimal offset from the object the camera is following.
 // Define maximal distance that the camera can have from the origin, by knowing the world and camera size.
 // Add ability to draw camera and objects shrinked. (ex. on split screen games)
@@ -31,7 +35,7 @@
 
 namespace tnt::doo
 {
-    struct TNT_API camera_comp final
+    struct camera_comp final
     {
         /// @brief Create a new camera.
         /// @param angle_ The angle of the camera.
@@ -59,7 +63,7 @@ namespace tnt::doo
         Vector scale;    /// < The scale of the objects on the camera.
     };
 
-    inline struct TNT_API cameras_sys final
+    inline struct cameras_sys final
     {
         cameras_sys() = default;
 
@@ -98,6 +102,8 @@ namespace tnt::doo
         /// @param objs The id-s of the objects that should fit on the camera.
         void zoom_to_fit(camera const &cam, std::span<object> objs);
 
+        sparse_set<camera> active;    /// < The id-s of all the active cameras. Not related to the id-s of the objects.
+        
         std::vector<float> angle;      /// < The angles of all the cameras.
         std::vector<float> width;      /// < The width of all the cameras.
         std::vector<float> height;     /// < The height of all the cameras.
@@ -105,7 +111,7 @@ namespace tnt::doo
         std::vector<float> shaking;    /// < The amount of shaking for each camera.
         std::vector<float> shakeLoss;  /// < The amount of decreasing on the shaking of each camera per second.
         std::vector<float> shake_time; /// < The amount of time in milliseconds a camera should shake, if it is shaking.
-        std::vector<camera> active;    /// < The id-s of all the active cameras. Not related to the id-s of the objects.
+        
         std::vector<object> target;    /// < The id-s of the object each camera is centered to. -1 if none.
         std::vector<Vector> pos;       /// < The position of each camera.
         std::vector<Vector> scale;     /// < The scale of the objects drawed on each camera.
