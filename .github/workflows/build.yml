@@ -90,7 +90,7 @@ jobs:
       - name: Update vcpkg
         id: update_vcpkg
         run: |
-          cd ${{ matrix.vcpkg-path }}
+          cd ${{ matrix.config.vcpkg-path }}
           git pull
           bootstrap-vcpkg${{ matrix.config.script-ext }}
 
