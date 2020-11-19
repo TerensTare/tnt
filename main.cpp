@@ -2,7 +2,9 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 #include <fstream>
+
 #include <nlohmann/json.hpp>
+#include <nfd.h>
 
 #include "core/Window.hpp"
 #include "core/Input.hpp"
@@ -12,6 +14,7 @@
 #include "doo_ecs/Objects.hpp"
 #include "doo_ecs/Physics.hpp"
 #include "doo_ecs/Sprites.hpp"
+#include "doo_ecs/Scripts.hpp"
 
 #include "imgui/ImGui.hpp"
 
@@ -24,84 +27,189 @@ using tnt::doo::animations;
 using tnt::doo::cameras;
 using tnt::doo::objects;
 using tnt::doo::physics;
+using tnt::doo::scripts;
 using tnt::doo::sprites;
 
-// TODO: load/save from specific project.
+// TODO:
+// load/save from specific project.
+// customizable keybindings.
+// zoom in/out.
+// export to executable.
+// extensions.
+// take json and lua files path relative to project path.
+// multi-window support.
+
+auto load_proj = [](tnt::Window const &window, nlohmann::json const &j) {
+    tnt::safe_ensure(j.contains("name"), "Project file doesn't have \"name\" field!!");
+    tnt::safe_ensure(j.contains("width"), "Project file doesn't have \"width\" field!!");
+    tnt::safe_ensure(j.contains("height"), "Project file doesn't have \"height\" field!!");
+
+    for (nlohmann::json const &it : j["objects"])
+    {
+        tnt::logger::info("Loading object from {}.", it.get<std::string_view>());
+
+        nlohmann::json j;
+        std::ifstream{tnt::vfs::absolute(it)} >> j;
+
+        tnt::doo::object const &obj{objects.from_json(j)};
+
+        physics.from_json(obj, j);
+        sprites.from_json(obj, window, j);
+        animations.from_json(obj, j);
+        scripts.from_json(obj, j);
+    }
+
+    if (j.contains("cameras"))
+        for (nlohmann::json const &it : j["cameras"])
+        {
+            tnt::logger::info("Loading camera from {}.", it.get<std::string_view>());
+
+            nlohmann::json c;
+            std::ifstream{tnt::vfs::absolute(it)} >> c;
+
+            cameras.from_json(c);
+        }
+};
+
+auto update_from_input = [](tnt::doo::object const &active, float dt) noexcept {
+    float const &dst{dt * .01f};                     // 10 pixel/sec
+    float const &rot{dt * .02f};                     // 20 degree/sec
+    tnt::Vector const &zoom{dt * .001f, dt * .001f}; // 1 pixel/sec
+
+    if (tnt::input::keyDown(SDL_SCANCODE_LEFT))
+        objects.pos[active].x -= dst;
+    else if (tnt::input::keyDown(SDL_SCANCODE_RIGHT))
+        objects.pos[active].x += dst;
+    else if (tnt::input::keyDown(SDL_SCANCODE_UP))
+        objects.pos[active].y -= dst;
+    else if (tnt::input::keyDown(SDL_SCANCODE_DOWN))
+        objects.pos[active].y += dst;
+    else if (tnt::input::keyDown(SDL_SCANCODE_Q))
+        objects.angle[active] -= rot;
+    else if (tnt::input::keyDown(SDL_SCANCODE_W))
+        objects.angle[active] += rot;
+    else if (tnt::input::keyDown(SDL_SCANCODE_S))
+        objects.scale[active] += zoom;
+    else if (tnt::input::keyDown(SDL_SCANCODE_A))
+        objects.scale[active] -= zoom;
+};
+
+auto doo_loop = [](tnt::doo::object &active, tnt::Window const &window, bool const game, float dt) {
+    auto const &[x, y]{tnt::input::mousePosition()};
+    tnt::Vector const &pos{(float)x, (float)y};
+
+    for (tnt::doo::object const &obj : objects.active)
+    {
+        if (auto const &area{sprites.draw_area(obj)};
+            area.Contains(pos) && tnt::input::mouseButtonDown(0))
+            active = obj;
+
+        if (game)
+        {
+            scripts.Update(obj, dt);
+            physics.Update(obj, dt);
+            animations.Update(obj, dt);
+        }
+
+        // draw
+        sprites.Draw(obj, window);
+    }
+};
 
 int main(int argc, char **argv)
 {
     tnt::Window window{"The TnT Engine", 800, 600};
 
-    tnt::vfs::mount("assets", "res");
-
-    {
-        nlohmann::json j;
-
-        for (std::ifstream{"objects.json"} >> j;
-             nlohmann::json const &it : j["objects"])
-        {
-            tnt::doo::object const &obj{objects.from_json(it)};
-
-            physics.from_json(obj, it);
-            sprites.from_json(obj, window, it);
-            animations.from_json(obj, it);
-        }
-
-        for (nlohmann::json const &it : j["cameras"])
-            cameras.from_json(it);
-    }
-
     float dt{0.f};
     bool game{false};
-    const char *button_text[]{"Play", "Pause"};
-    tnt::doo::object active{0};
+    bool help{false};
+    bool project{false};
+
+    const char *game_text[]{"Play", "Pause"};
+    const char *help_text[]{"Show Help", "Hide Help"};
+    tnt::doo::object active{tnt::doo::null};
 
     tnt::Timer timer;
     SDL_Event e;
 
+    tnt::vfs::mount("assets", "res");
+
     tnt_imgui_init(window);
-    sprites.target_cam(0);
 
     while (window.isOpened())
     {
         dt = timer.deltaCount();
-        tnt::logger::info("{} ms, {} fps", dt, 1000 / dt);
 
         while (SDL_PollEvent(&e))
             window.handleEvents(e);
+        tnt::input::Update();
 
-        auto const &[x, y]{tnt::input::mousePosition()};
-        tnt::Vector const &pos{(float)x, (float)y};
+        if (project && !game && (active != tnt::doo::null))
+            update_from_input(active, dt);
 
         window.Clear();
 
-        for (tnt::doo::object const &obj : objects.active)
-        {
-            if (auto const &area{sprites.draw_area(obj)};
-                area.Contains(pos) && tnt::input::mouseButtonDown(0))
-                active = obj;
+        doo_loop(active, window, game, dt);
 
-            if (game)
+        if (tnt::ImGui::Begin(window, "Components", 500, 300))
+        {
+            if (project)
+                tnt::ImGui::text(window, fmt::format("{} ms, {} fps", dt, 1000 / dt));
+
+            tnt::ImGui::newline();
+            if (tnt::ImGui::button(window, "Load"))
             {
-                physics.Update(obj, dt);
-                animations.Update(obj, dt);
+                if (nfdchar_t * name{nullptr}; NFD_OpenDialog("tnt", nullptr, &name) == NFD_OKAY)
+                {
+                    tnt::logger::info("Loading project...", name);
+
+                    nlohmann::json p;
+                    std::ifstream{name} >> p;
+
+                    if (objects.active.size() > 0)
+                    {
+                        physics.clear();
+                        animations.clear();
+                        sprites.clear();
+                        scripts.clear();
+                        objects.clear();
+                    }
+
+                    load_proj(window, p);
+
+                    window.setTitle(p["name"].get<std::string_view>().data());
+                    window.setSize(p["width"].get<int>(), p["height"].get<int>());
+
+                    project = true;
+
+                    tnt::logger::info("Successfully loaded project {} from {}",
+                                      p["name"], name);
+
+                    free(name);
+                }
             }
 
-            // draw
-            sprites.Draw(obj, window);
-        }
-
-        if (tnt::ImGui::Begin(window, "Components", 400, 300))
-        {
-            tnt::ImGui::newline();
-            if (tnt::ImGui::button(window, button_text[game]))
+            if (project && tnt::ImGui::button(window, game_text[game]))
                 game = !game;
 
-            if (!game)
+            if (project && tnt::ImGui::button(window, help_text[help]))
+                help = !help;
+
+            if (project && !game && (active != tnt::doo::null))
             {
                 objects.draw_imgui(active, window);
                 physics.draw_imgui(active, window);
             }
+
+            tnt::ImGui::End();
+        }
+
+        if (project && help && tnt::ImGui::Begin(window, "Help", 0, 400))
+        {
+            tnt::ImGui::text(window, "Controls:");
+            tnt::ImGui::text(window, "Up, Left, Down, Right: Move the current active object.");
+            tnt::ImGui::text(window, "S, A: Scale Up/Down");
+            tnt::ImGui::text(window, "Q, W: Rotate Left/Right");
 
             tnt::ImGui::End();
         }

@@ -10,11 +10,6 @@
 #include "tolua/LuaDooEcs.hpp"
 #include "tolua/LuaUtils.hpp"
 
-namespace
-{
-    std::vector<sol::state> states; /// < The lua handles of the objects.
-}
-
 namespace tnt::doo
 {
     void scripts_sys::add_object(object const &id, std::string_view filename)
@@ -71,7 +66,19 @@ namespace tnt::doo
 
     void scripts_sys::from_json(object const &id, nlohmann::json const &j)
     {
-        if (j.find("script") != j.cend())
+        if (j.contains("script"))
             add_object(id, j["script"]);
+    }
+
+    void scripts_sys::remove(object const &id) noexcept
+    {
+        active.erase(id);
+        states.erase(states.cbegin() + id);
+    }
+
+    void scripts_sys::clear() noexcept
+    {
+        active.clear();
+        states.clear();
     }
 } // namespace tnt::doo

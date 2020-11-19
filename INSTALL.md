@@ -13,10 +13,15 @@ The project uses [vcpkg](https://github.com/microsoft/vcpkg) to handle the depen
 - Define the environment variable `VCPKG_FEATURE_FLAGS` with value `manifests`.
 - Get CMake from [https://cmake.org/download/](https://cmake.org/download/).
 - Set environment variable `VCPKG_DEFAULT_TRIPLET` to your corresponding cpu architecture/os. You can skip this step and let CMake choose the triplet that best suits your os/architecture. However, it is recommended that you set this environment variable by yourself.
+- Install the dependencies using
+``` bat
+vcpkg install sdl2 sdl2-image[libjpeg-turbo,libwebp,tiff] sdl2-mixer[dynamic-load,libflac,libmodplug,libvorbis,nativemidi,opusfile] sdl2-ttf sdl2-net sol2 nlohmann-json fmt yasm
+```
+If you want to build the editor (not only the dynamic library), you should also install `nativefiledialog`.
 
 ### Running the build commands.
 
-At the time of speaking, the engine can be used by including header files and adding source files(`.cpp`) to your compile command. But there is planned support for building the engine as C++20 modules. As of version `0.1.0a12`, the engine is built as a DLL, and the command is as follows:
+As of version `0.1.0a12`, the engine is built as a DLL, and the command is as follows:
 ``` cmd
 mkdir build
 cd build

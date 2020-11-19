@@ -102,8 +102,15 @@ namespace tnt::doo
         /// @param objs The id-s of the objects that should fit on the camera.
         void zoom_to_fit(camera const &cam, std::span<object> objs);
 
-        sparse_set<camera> active;    /// < The id-s of all the active cameras. Not related to the id-s of the objects.
-        
+        /// @brief Remove the given object from the camera system.
+        /// @param id The id of the object you want to remove.
+        void remove(object const &id) noexcept;
+
+        /// @brief Remove all the objects from the camera system.
+        void clear() noexcept;
+
+        sparse_set<camera> active; /// < The id-s of all the active cameras. Not related to the id-s of the objects.
+
         std::vector<float> angle;      /// < The angles of all the cameras.
         std::vector<float> width;      /// < The width of all the cameras.
         std::vector<float> height;     /// < The height of all the cameras.
@@ -111,12 +118,12 @@ namespace tnt::doo
         std::vector<float> shaking;    /// < The amount of shaking for each camera.
         std::vector<float> shakeLoss;  /// < The amount of decreasing on the shaking of each camera per second.
         std::vector<float> shake_time; /// < The amount of time in milliseconds a camera should shake, if it is shaking.
-        
-        std::vector<object> target;    /// < The id-s of the object each camera is centered to. -1 if none.
-        std::vector<Vector> pos;       /// < The position of each camera.
-        std::vector<Vector> scale;     /// < The scale of the objects drawed on each camera.
-        std::vector<Vector> offset;    /// < The offset that the object can have from the center of the camera.
-    } cameras;                         /// < An instance of cameras_sys.
+
+        std::vector<object> target; /// < The id-s of the object each camera is centered to. -1 if none.
+        std::vector<Vector> pos;    /// < The position of each camera.
+        std::vector<Vector> scale;  /// < The scale of the objects drawed on each camera.
+        std::vector<Vector> offset; /// < The offset that the object can have from the center of the camera.
+    } cameras;                      /// < An instance of cameras_sys.
 } // namespace tnt::doo
 
 #endif //!TNT_DOO_ECS_CAMERAS_SYSTEM_HPP

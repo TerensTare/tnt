@@ -1,0 +1,12 @@
+{
+    "name": "TnT example project",
+    "width": 800,
+    "height": 600,
+    "objects": [
+        "data/player1.json",
+        "data/player2.json"
+    ],
+    "cameras": [
+        "data/camera.json"
+    ]
+}

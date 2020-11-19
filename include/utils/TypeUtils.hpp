@@ -1,6 +1,8 @@
 #ifndef TNT_TYPE_UTILS_HPP
 #define TNT_TYPE_UTILS_HPP
 
+#include "utils/TypeLists.hpp"
+
 namespace tnt
 {
     template <typename... Ts>
@@ -59,6 +61,20 @@ namespace tnt
         inline T &base() noexcept { return static_cast<T &>(*this); }
         inline T const &base() const noexcept { return static_cast<T const &>(*this); }
     };
+
+    template <typename>
+    struct template_traits;
+
+    template <template <typename...> typename T, typename... Args>
+    struct template_traits<T<Args...>>
+    {
+        template <std::size_t Index>
+        requires requires { Index < sizeof...(Args); }
+        using arg_t = tl::at_t<type_list<Args...>, Index>;
+    };
+
+    template <typename T, std::size_t I>
+    using template_arg_t = typename template_traits<T>::template arg_t<I>;
 } // namespace tnt
 
 #endif //! TNT_TYPE_UTILS_HPP

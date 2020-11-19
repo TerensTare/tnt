@@ -10,249 +10,150 @@
 
 namespace tnt
 {
-    struct NullType
-    {};
-
-    template <typename H, typename T> struct TypeList
+    template <typename...>
+    struct type_list
     {
-        typedef H Head;
-        typedef T Tail;
-    };
-
-    template <typename H> struct TypeList<H, NullType>
-    {
-        typedef H Head;
-        typedef NullType Tail;
-    };
-
-    template <typename H, typename... T> struct TypeList<H, TypeList<T...>>
-    {
-        typedef H Head;
-        typedef typename TypeList<T...>::Tail Tail;
     };
 
     namespace tl
     {
-        namespace detail
-        {
-            template <typename T, typename U> struct is_same
-            {
-                inline static inline constexpr bool value = false;
-            };
-
-            template <typename T> struct is_same<T, T>
-            {
-                inline static inline constexpr bool value = true;
-            };
-
-            template <bool, typename T = void> struct enable_if
-            {};
-
-            template <typename T> struct enable_if<true, T>
-            {
-                typedef T type;
-            };
-
-            template <typename T, typename U,
-                      typename = enable_if_t<is_same<T, U>::value>>
-            struct is_less
-            {
-                inline static inline constexpr bool value = (T < U);
-            };
-
-            template <typename T, T a, T b> struct is_positive
-            {
-                inline static inline constexpr bool value = ((a - b) > 0);
-            };
-
-            template <typename T, typename U>
-            inline constexpr bool is_same_v = typename is_same<T, U>::value;
-
-            template <bool B, typename T = void>
-            using enable_if_t = typename enable_if<B, T>::type;
-
-            template <typename T, T a, T b>
-            inline constexpr bool is_positive_v =
-                typename is_positive<T, a, b>::value;
-
-        } // namespace detail
-
         ////////////
         // length //
         ////////////
 
-        template <typename T> struct length;
+        template <typename T>
+        struct length;
 
-        template <> struct length<NullType>
+        template <>
+        struct length<type_list<>>
         {
-            enum
-            {
-                value = 0
-            };
+            inline static constexpr size_t value{0};
         };
 
-        template <typename Head, typename Tail>
-        struct length<TypeList<Head, Tail>>
+        template <typename T, typename... Ts>
+        struct length<type_list<T, Ts...>>
         {
-            enum
-            {
-                value = 1 + length<Tail>::value;
-            };
+            inline static constexpr size_t value{1 + length<type_list<Ts...>>::value};
         };
 
         ////////
         // at //
         ////////
 
-        template <typename List, unsigned Index> struct at;
+        template <typename List, size_t Index>
+        struct at;
 
-        template <typename Head, typename Tail>
-        struct at<TypeList<Head, Tail>, 0>
+        template <std::size_t Index>
+        struct at<type_list<>, Index>
         {
-            typedef Head type;
+            using type = type_list<>;
         };
 
-        template <typename Head, typename Tail, unsigned Index>
-        struct at<TypeList<Head, Tail>, Index>
+        template <typename T, typename... Ts>
+        struct at<type_list<T, Ts...>, 0>
         {
-            typedef typename at<Tail, i - 1>::type type;
+            using type = T;
         };
 
-        template <typename List, typename T> struct index;
-
-        template <typename T> struct index<NullType, T>
+        template <typename T, typename... Ts, size_t Index>
+        struct at<type_list<T, Ts...>, Index>
         {
-            enum
-            {
-                value = -1
-            };
+            using type = typename at<type_list<Ts...>, Index - 1>::type;
         };
 
-        template <typename T, typename Tail> struct index<TypeList<T, Tail>, T>
+        template <typename List, typename T>
+        struct index;
+
+        template <typename T, typename... Ts>
+        struct index<type_list<T, Ts...>, T>
         {
-            enum
-            {
-                value = 0
-            };
+            inline static constexpr size_t value{0};
         };
 
-        template <typename Head, typename Tail, typename T>
-        struct index<TypeList<Head, Tail>, T>
+        template <typename T, typename... Ts, typename F>
+        struct index<type_list<T, Ts...>, F>
         {
-            enum
-            {
-                value = ((index<Tail, T>::value == -1)
-                             ? (-1)
-                             : (1 + index<Tail, T>::value))
-            };
+            inline static constexpr size_t value{1 + append<type_list<Ts...>, F>::value};
         };
 
-        template <typename List, typename T> struct append;
+        template <typename List, typename T>
+        struct append;
 
-        template <> struct append<NullType, NullType>
+        template <typename... Ts, typename T>
+        struct append<type_list<Ts...>, T>
         {
-            typedef NullType type;
+            using type = type_list<Ts..., T>;
         };
 
-        template <typename T> struct append<NullType, T>
+        template <typename List, typename T>
+        struct erase;
+
+        template <typename T>
+        struct erase<type_list<>, T>
         {
-            typedef TypeList<T, NullType> type;
+            using type = type_list<>;
         };
 
-        template <typename Head, typename Tail>
-        struct append<NullType, TypeList<Head, Tail>>
+        template <typename T, typename... Ts>
+        struct erase<type_list<T, Ts...>, T>
         {
-            typedef TypeList<Head, Tail> type;
+            using type = type_list<Ts...>;
         };
 
-        template <typename Head, typename Tail, typename T>
-        struct append<TypeList<Head, Tail>, T>
+        template <typename T, typename... Ts, typename E>
+        struct erase<type_list<T, Ts...>, E>
         {
-            typedef TypeList<Head, typename append<Tail, T>::type> type;
+            using type = type_list<T, typename erase<type_list<Ts...>, E>::value>;
         };
 
-        template <typename List, typename T> struct erase;
+        template <typename List, typename T>
+        struct erase_all;
 
-        template <typename T> struct erase<NullType, T>
+        template <typename T>
+        struct erase_all<type_list<>, T>
         {
-            typedef NullType type;
+            using type = type_list<>;
         };
 
-        template <typename T, typename Tail> struct erase<TypeList<T, Tail>, T>
+        template <typename T, typename... Ts>
+        struct erase_all<type_list<T, Ts...>, T>
         {
-            typedef Tail type;
+            using type = typename erase_all<type_list<Ts...>, T>::type;
         };
 
-        template <typename Head, typename Tail, typename T>
-        struct erase<TypeList<Head, Tail>, T>
+        template <typename T, typename... Ts, typename E>
+        struct erase_all<type_list<T, Ts...>, E>
         {
-            typedef TypeList<Head, typename erase<Tail, T>::type> type;
+            using type = type_list<T, typename erase_all<type_list<Ts...>, E>::type>;
         };
 
-        template <typename List, typename T> struct erase_all;
+        template <typename List, typename T, typename U>
+        struct replace;
 
-        template <typename T> struct erase_all<NullType, T>
+        template <typename T, typename... Ts, typename U>
+        struct replace<type_list<T, Ts...>, T, U>
         {
-            typedef NullType type;
+            using type = type_list<U, Ts...>;
         };
 
-        template <typename T, typename Tail>
-        struct erase_all<TypeList<T, Tail>, T>
+        template <typename T, typename... Ts, typename O, typename N>
+        struct replace<type_list<T, Ts...>, O, N>
         {
-            typedef typename erase_all<Tail, T>::type type;
+            using type = type_list<T, typename replace<type_list<Ts...>, O, N>::type>;
         };
 
-        template <typename Head, typename Tail, typename T>
-        struct erase_all<TypeList<Head, Tail>, T>
-        {
-            typedef TypeList<Head, typename erase_all<Tail, T>::type> type;
-        };
-
-        template <typename List> struct unique_list;
-
-        template <> struct unique_list<NullType>
-        {
-            typedef NullType type;
-        };
-
-        template <typename Head, typename Tail>
-        struct unique_list<TypeList<Head, Tail>>
-        {
-            typedef TypeList<
-                Head, typedef typename erase<
-                          typedef typename unique_list<Tail>::type, Head>::type>
-                type;
-        };
-
-        template <typename List, typename T, typename U> struct replace;
-
-        template <typename T, typename U> struct replace<NullType, T, U>
-        {
-            typedef NullType type;
-        };
-
-        template <typename T, typename Tail, typename U>
-        struct replace<TypeList<T, Tail>, T, U>
-        {
-            typedef TypeList<U, Tail> type;
-        };
-
-        template <typename Head, typename Tail, typename T, typename U>
-        struct replace<TypeList<Head, Tail>, T, U>
-        {
-            typedef TypeList<Head, typename replace<Tail, T, U>::type> type;
-        };
         ///////////
         // using //
         ///////////
 
-        template <typename T> using length_v = typename length<T>::value;
+        template <typename T>
+        inline constexpr size_t length_v{length<T>::value};
 
-        template <typename List, int Index>
+        template <typename List, size_t Index>
         using at_t = typename at<List, Index>::type;
 
         template <typename List, typename T>
-        using index_v = index<List, T>::value;
+        inline constexpr size_t index_v = index<List, T>::value;
 
         template <typename List, typename T>
         using append_t = typename append<List, T>::type;
@@ -262,9 +163,6 @@ namespace tnt
 
         template <typename List, typename T>
         using erase_all_t = typename erase_all<List, T>::type;
-
-        template <typename List>
-        using unique_list_t = typename unique_list<List>::type;
 
         template <typename List, typename T, typename U>
         using replace_t = typename replace<List, T, U>::type;

@@ -24,14 +24,16 @@
                 "libflac",
                 "libmodplug",
                 "libvorbis",
-                "mpg123",
                 "nativemidi",
                 "opusfile"
             ]
         },
         "sdl2-ttf",
+        "sdl2-net",
         "sol2",
         "nlohmann-json",
-        "fmt"
+        "fmt",
+        "yasm",
+        "nativefiledialog"
     ]
 }

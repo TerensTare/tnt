@@ -64,8 +64,16 @@ namespace tnt::doo
         /// @param win The window where to draw the widgets.
         inline void draw_imgui(object const &id, Window const &win) noexcept {}
 
-        sparse_set<object> active; /// < The id-s of all the objects connected to scripts.
-    } scripts;                     /// < An instance of scripts_sys
+        /// @brief Remove the desired object from the scripts system.
+        /// @param id The id of the object you want to remove.
+        void remove(object const &id) noexcept;
+
+        /// @brief Remove all the objects from the scripts system.
+        void clear() noexcept;
+
+        sparse_set<object> active;      /// < The id-s of all the objects connected to scripts.
+        std::vector<sol::state> states; /// < The lua handles of the objects.
+    } scripts;                          /// < An instance of scripts_sys
 } // namespace tnt::doo
 
 #endif //!TNT_DOO_ECS_SCRIPTS_SYSTEM_HPP

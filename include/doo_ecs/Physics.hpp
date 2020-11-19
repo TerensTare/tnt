@@ -110,6 +110,13 @@ namespace tnt::doo
         /// @param win The window where to draw the widgets.
         void draw_imgui(object const &id, Window const &win) noexcept;
 
+        /// @brief Remove the desired object from the physics system.
+        /// @param id The id of the object you want to remove.
+        void remove(object const &id) noexcept;
+
+        /// @brief Remove all the objects from the physics system.
+        void clear() noexcept;
+
         /// @brief Get the velocity of the object in global context.
         /// @param id The id of the object.
         [[nodiscard]] Vector gVel(object const &id) const noexcept;

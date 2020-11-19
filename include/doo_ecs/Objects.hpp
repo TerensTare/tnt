@@ -79,10 +79,19 @@ namespace tnt::doo
         /// @param parent_ The id of the new parent.
         void set_parent(object const &id, object const &parent_) noexcept;
 
+        /// @brief Remove the desired object from the objects system.
+        /// @param id The id of the object you want to remove.
+        /// @note Please call remove() from the other systems first.
+        void remove(object const &id) noexcept;
+
+        /// @brief Remove all the objects from the objects system.
+        /// @note Please call clear() from the other systems first.
+        void clear() noexcept;
+
         std::vector<float> angle; /// < The angles of the objects.
 
         tnt::sparse_set<object> active; /// < The id-s of all the active objects.
-        std::vector<object> parent; /// < The id-s of the parents of the objects.
+        std::vector<object> parent;     /// < The id-s of the parents of the objects.
 
         std::vector<Vector> scale; /// < The scales of the objects.
         std::vector<Vector> pos;   /// < The positions of the objects.

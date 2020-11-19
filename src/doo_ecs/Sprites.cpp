@@ -10,11 +10,6 @@
 
 namespace tnt::doo
 {
-    inline static bool contains(nlohmann::json const &j, const char *value) noexcept
-    {
-        return j.find(value) != j.end();
-    }
-
     inline medium_texture_cache *cache{default_texture_cache()};
 
     // sprites_comp
@@ -38,6 +33,8 @@ namespace tnt::doo
     // sprites_sys
     void sprites_sys::add_object(object const &id, sprite_comp const &sprite)
     {
+        safe_ensure(objects.active.contains(id), "Adding inexistent object to sprites_sys!!");
+
         [[unlikely]] if (id >= tex.capacity())
         {
             tex.reserve(id - tex.capacity() + 1);
@@ -51,10 +48,10 @@ namespace tnt::doo
 
     void sprites_sys::from_json(object const &id, Window const &win, nlohmann::json const &j)
     {
-        if (contains(j, "sprite"))
+        if (j.contains("sprite"))
         {
             if (std::string_view const &file{j["sprite"]["file"].get<std::string_view>()};
-                contains(j["sprite"], "crop"))
+                j["sprite"].contains("crop"))
                 add_object(id, {win, file, j["sprite"]["crop"]});
             else
                 add_object(id, {win, file});
@@ -102,5 +99,19 @@ namespace tnt::doo
                               objects.gAngle(id),
                               nullptr, SDL_FLIP_NONE);
         }
+    }
+
+    void sprites_sys::remove(object const &id) noexcept
+    {
+        active.erase(id);
+        tex.erase(tex.cbegin() + id);
+        clip.erase(clip.cbegin() + id);
+    }
+
+    void sprites_sys::clear() noexcept
+    {
+        active.clear();
+        tex.clear();
+        clip.clear();
     }
 } // namespace tnt::doo

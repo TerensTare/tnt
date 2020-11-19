@@ -2,21 +2,20 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 #include "doo_ecs/Animations.hpp"
+#include "doo_ecs/Objects.hpp"
 #include "doo_ecs/Sprites.hpp"
 
 #include "json/JsonRectangle.hpp"
 #include "utils/TypeUtils.hpp"
 
+#include "utils/Assert.hpp"
+
 namespace tnt::doo
 {
-    inline static bool contains(nlohmann::json const &j, const char *value) noexcept
-    {
-        return j.find(value) != j.end();
-    }
-
     void animations_sys::add_object(object const &id, animation_comp const &anim_)
     {
-        // TODO: handle cases when object doesn't exist on the objects_sys.
+        safe_ensure(objects.active.contains(id), "Adding inexistent object to animations_sys!!");
+        safe_ensure(sprites.active.contains(id), "Adding object without sprite component to animations_sys!! Add the object to sprites_sys first!!");
 
         [[unlikely]] if (id > wrap.capacity())
         {
@@ -41,7 +40,7 @@ namespace tnt::doo
         spacing.emplace(spacing.cbegin() + id, anim_.spacing);
         current.emplace(current.cbegin() + id, 0);
 
-        active.insert(id, if_else(!anim_.finished, id, null)); // null or index
+        active.insert(id, id);
     }
 
     void animations_sys::Update(object const &id, float time_) noexcept
@@ -64,7 +63,7 @@ namespace tnt::doo
                 }
                 else
                 {
-                    active.edit(id, null);
+                    active.erase(id);
                     elapsed[id] = speed[id] - timePerFrame[id];
                     sprites.clip[id].x = (int)startX[id];
                     sprites.clip[id].y = (int)startY[id];
@@ -75,13 +74,13 @@ namespace tnt::doo
 
     void animations_sys::from_json(object const &id, nlohmann::json const &j)
     {
-        if (contains(j, "anim"))
+        if (j.contains("anim"))
         {
             Rectangle const &rect{j["sprite"]["crop"]};
             nlohmann::json const &chunk{j["anim"]};
             int const &frames{chunk["frames"]};
             float const &speed{chunk["speed"]};
-            float const &space{if_else(contains(chunk, "space"),
+            float const &space{if_else(chunk.contains("space"),
                                        chunk["space"], 0.f)};
             animation_comp::direction const dir_{
                 if_else(chunk["dir"] == "horizontal",
@@ -96,5 +95,33 @@ namespace tnt::doo
 
             add_object(id, animation_comp{rect, frames, speed, space, dir_, wrap_});
         }
+    }
+
+    void animations_sys::remove(object const &id) noexcept
+    {
+        active.erase(id);
+        wrap.erase(wrap.cbegin() + id);
+        dir.erase(dir.cbegin() + id);
+        startX.erase(startX.cbegin() + id);
+        startY.erase(startY.cbegin() + id);
+        elapsed.erase(elapsed.cbegin() + id);
+        speed.erase(speed.cbegin() + id);
+        timePerFrame.erase(timePerFrame.cbegin() + id);
+        spacing.erase(spacing.cbegin() + id);
+        current.erase(current.cbegin() + id);
+    }
+
+    void animations_sys::clear() noexcept
+    {
+        active.clear();
+        wrap.clear();
+        dir.clear();
+        startX.clear();
+        startY.clear();
+        elapsed.clear();
+        speed.clear();
+        timePerFrame.clear();
+        spacing.clear();
+        current.clear();
     }
 } // namespace tnt::doo

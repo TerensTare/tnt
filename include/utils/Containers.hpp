@@ -135,10 +135,6 @@ namespace tnt
                 decltype(t.contains),
                 std::ranges::range_value_t<T>>;
         };
-
-        template <typename T>
-        concept has_key = std::ranges::input_range<T> &&
-            requires { typename T::key_type; };
         // clang-format on
     } // namespace detail
 
@@ -153,7 +149,7 @@ namespace tnt
     constexpr bool contains(R const &rng, std::remove_cvref_t<T> const &value)
     {
         if constexpr (detail::has_contains<R>)
-            return r.contains(value);
+            return rng.contains(value);
         return !(std::ranges::empty(rng) ||
                  std::ranges::find(rng, value) ==
                      std::ranges::end(rng));

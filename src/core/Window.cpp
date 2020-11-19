@@ -129,6 +129,25 @@ int tnt::Window::getWidth() const noexcept { return w; }
 
 int tnt::Window::getHeight() const noexcept { return h; }
 
+void tnt::Window::setWidth(int const width) noexcept
+{
+    w = width;
+    SDL_SetWindowSize(window, w, h);
+}
+
+void tnt::Window::setHeight(int const height) noexcept
+{
+    h = height;
+    SDL_SetWindowSize(window, w, h);
+}
+
+void tnt::Window::setSize(int width, int height) noexcept
+{
+    w = width;
+    h = height;
+    SDL_SetWindowSize(window, w, h);
+}
+
 Uint32 tnt::Window::getPixelFormat() const noexcept
 {
     return SDL_GetWindowPixelFormat(window);

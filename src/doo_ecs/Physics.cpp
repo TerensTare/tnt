@@ -14,13 +14,10 @@
 
 namespace tnt::doo
 {
-    inline static bool contains(nlohmann::json const &j, const char *value) noexcept
-    {
-        return j.find(value) != j.end();
-    }
-
     void physics_sys::add_object(object const &id, physics_comp const &body)
     {
+        safe_ensure(objects.active.contains(id), "Adding inexistent object to animations_sys!!");
+
         [[unlikely]] if (id > inv_mass.capacity())
         {
             inv_mass.reserve(id - inv_mass.capacity());
@@ -163,12 +160,12 @@ namespace tnt::doo
 
     void physics_sys::from_json(object const &id, nlohmann::json const &j)
     {
-        if (contains(j, "phys"))
+        if (j.contains("phys"))
         {
             if (nlohmann::json const &phys{j["phys"]};
-                contains(phys, "bounds"))
+                phys.contains("bounds"))
             {
-                if (contains(phys, "max_vel") || contains(phys, "max_accel"))
+                if (phys.contains("max_vel") || phys.contains("max_accel"))
                     add_object(id, {.mass{phys["mass"]},
                                     .damping{phys["damping"]},
                                     .restitution{phys["restitution"]},
@@ -183,7 +180,7 @@ namespace tnt::doo
             }
             else
             {
-                if (contains(phys, "max_vel") || contains(phys, "max_accel"))
+                if (phys.contains("max_vel") || phys.contains("max_accel"))
                     add_object(id, {.mass{phys["mass"]},
                                     .damping{phys["damping"]},
                                     .restitution{phys["restitution"]},
@@ -195,6 +192,36 @@ namespace tnt::doo
                                     .restitution{phys["restitution"]}});
             }
         }
+    }
+
+    void physics_sys::remove(object const &id) noexcept
+    {
+        active.erase(id);
+        inv_mass.erase(inv_mass.cbegin() + id);
+        damping.erase(damping.cbegin() + id);
+        restitution.erase(restitution.cbegin() + id);
+
+        vel.erase(vel.cbegin() + id);
+        maxVel.erase(maxVel.cbegin() + id);
+        accel.erase(accel.cbegin() + id);
+        maxAccel.erase(maxAccel.cbegin() + id);
+
+        bound_box.erase(bound_box.cbegin() + id);
+    }
+
+    void physics_sys::clear() noexcept
+    {
+        active.clear();
+        inv_mass.clear();
+        damping.clear();
+        restitution.clear();
+
+        vel.clear();
+        maxVel.clear();
+        accel.clear();
+        maxAccel.clear();
+
+        bound_box.clear();
     }
 
     void physics_sys::draw_imgui(object const &id, Window const &win) noexcept

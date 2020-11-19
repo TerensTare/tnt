@@ -76,6 +76,25 @@ namespace tnt
         /// @return int
         int getHeight() const noexcept;
 
+        /// @brief Change the width of the window.
+        /// @param width The new width.
+        /// @sa @ref tnt::Window::setHeight
+        /// @sa @ref tnt::Window::setSize
+        void setWidth(int const width) noexcept;
+
+        /// @brief Change the height of the window.
+        /// @param height The new height.
+        /// @sa @ref tnt::Window::setWidth
+        /// @sa @ref tnt::Window::setSize
+        void setHeight(int const height) noexcept;
+
+        /// @brief Change the width and height of the window.
+        /// @param width The new width.
+        /// @param height The new height.
+        /// @sa @ref tnt::Window::setWidth
+        /// @sa @ref tnt::Window::setHeight
+        void setSize(int const width, int const height) noexcept;
+
         /// @brief Get the pixel format associated with the window.
         /// @return unsigned int
         Uint32 getPixelFormat() const noexcept;

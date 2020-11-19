@@ -104,7 +104,7 @@ namespace tnt
 
         /// @brief Remove the given element from the sparse set.
         /// @param val The value to be removed.
-        inline void erase(value_type const val)
+        inline void erase(value_type const val) noexcept
         {
             safe_ensure(contains(val), "Erasing non-existent value from sparse_set!!");
 
@@ -147,25 +147,6 @@ namespace tnt
 
                 sparse.insert(sparse.cbegin() + val,
                               *dense.insert(dense.cbegin() + *it, val));
-            }
-        }
-
-        /// @brief Change the value at the given index.
-        /// @param index The desired index.
-        /// @param val The new value.
-        inline void edit(std::size_t const index, value_type const val)
-        {
-            safe_ensure(size_ > index && contains(dense[index]),
-                        "Editing non-existant index of sparse_set!!");
-
-            if (val == (T)null && index < size_ &&
-                contains(dense[index]))
-                erase(dense[index]);
-            else
-            {
-                sparse[dense[index]] = null;
-                dense[index] = val;
-                sparse[val] = index;
             }
         }
 

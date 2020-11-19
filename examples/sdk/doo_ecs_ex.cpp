@@ -2,6 +2,7 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 #include <fstream>
+#include <nlohmann/json.hpp>
 
 #include "core/Window.hpp"
 #include "core/Input.hpp"
@@ -31,15 +32,17 @@ int main(int argc, char **argv)
         for (std::ifstream{"objects.json"} >> j;
              nlohmann::json const &it : j["objects"])
         {
-            objects.from_json(it);
-            physics.from_json(it);
-            sprites.from_json(window, it);
-            animations.from_json(it);
+            tnt::doo::object const &obj{objects.from_json(it)};
+
+            physics.from_json(obj, it);
+            sprites.from_json(obj, window, it);
+            animations.from_json(obj, it);
         }
 
         for (nlohmann::json const &it : j["cameras"])
             cameras.from_json(it);
     }
+    sprites.target_cam(0);
 
     float dt{0.f};
 
@@ -55,6 +58,7 @@ int main(int argc, char **argv)
             window.handleEvents(e);
 
         float const &change{dt * .2f};
+        float const &zoom_change{dt * .001f};
 
         if (tnt::input::keyDown(SDL_SCANCODE_LEFT))
             objects.pos[0].x -= change;
@@ -83,7 +87,7 @@ int main(int argc, char **argv)
                 animations.Update(obj, dt);
 
                 // draw
-                sprites.Draw(obj, window, 0);
+                sprites.Draw(obj, window);
             }
         window.Render();
     }

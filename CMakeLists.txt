@@ -49,6 +49,8 @@ project(TnT VERSION 0.1.0
     HOMEPAGE_URL "https://github.com/TerensTare/tnt"
     LANGUAGES CXX)
 
+set(TNT_BUILD ON)
+
 file(TO_CMAKE_PATH "${PROJECT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
 if (EXISTS "${LOC_PATH}")
     message(FATAL_ERROR
@@ -157,6 +159,12 @@ target_include_directories(${PROJECT_NAME}
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     PRIVATE ${LUA_INCLUDE_DIR})
 
+    if(MSVC)
+        target_compile_options(TnT PRIVATE /fp:fast)
+    else()
+        target_compile_options(TnT PRIVATE --ffast-math)
+    endif()
+
 if(WIN32 AND CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(CMAKE_INSTALL_PREFIX "C:/Program Files/TnT")
 endif()
@@ -215,8 +223,11 @@ option(BUILD_EDITOR "Build TnT's visual editor" ON)
 
 if(BUILD_EDITOR)
     message("Building the visual editor of TnT.")
+    unset(TNT_BUILD)
 
     file(GLOB EXE_SOURCES src/doo_ecs/*.cpp)
+
+    find_package(unofficial-nativefiledialog CONFIG REQUIRED)
 
     add_executable(TnTEditor
         main.cpp ${EXE_SOURCES} src/tolua/LuaDooEcs.cpp)
@@ -226,11 +237,11 @@ if(BUILD_EDITOR)
     set(CMAKE_CXX_STANDARD 20)
     set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-    # if(MSVC)
-    #     list(APPEND CMAKE_CXX_FLAGS /fp:fast) # /GR- for no rtti
-    # else()
-    #     list(APPEND CMAKE_CXX_FLAGS -ffast-math) # -fno-rtti for no rtti
-    # endif()
+    if(MSVC)
+        target_compile_options(TnTEditor PRIVATE /fp:fast)
+    else()
+        target_compile_options(TnTEditor PRIVATE --ffast-math)
+    endif()
 
     target_link_libraries(TnTEditor
         PRIVATE TnT::TnT
@@ -238,5 +249,6 @@ if(BUILD_EDITOR)
         SDL2::SDL2_image SDL2::SDL2_mixer
         SDL2::SDL2_net SDL2::SDL2_ttf
         ${LUA_LIBRARIES} sol2::sol2 fmt::fmt
-        nlohmann_json nlohmann_json::nlohmann_json)
+        nlohmann_json nlohmann_json::nlohmann_json
+        unofficial::nativefiledialog::nfd)
 endif()

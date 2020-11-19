@@ -7,11 +7,6 @@
 
 namespace tnt::doo
 {
-    inline static bool contains(nlohmann::json const &j, const char *value) noexcept
-    {
-        return j.find(value) != j.end();
-    }
-
     inline static constexpr auto local_scale = [](Vector const &myScale, Vector const &pScale) noexcept -> Vector {
         return {myScale.x / pScale.x, myScale.y / pScale.y};
     };
@@ -21,18 +16,9 @@ namespace tnt::doo
         return local_scale(diff, pScale);
     };
 
-    struct gen final
-    {
-        inline static object next() noexcept
-        {
-            static object id_{(object)0};
-            return id_++;
-        }
-    };
-
     object objects_sys::add_object(object_data const &data_) noexcept
     {
-        object const &index{gen::next()};
+        object const &index{active.size()};
 
         [[unlikely]] if (angle.size() == angle.capacity()) // if the vector got to his capacity, then we reserve more space
         {
@@ -62,7 +48,7 @@ namespace tnt::doo
     object objects_sys::from_json(nlohmann::json const &j)
     {
         object id{null};
-        if (contains(j, "parent"))
+        if (j.contains("parent"))
             id = add_object({j["angle"].get<float>(),
                              j["pos"].get<Vector>(),
                              j["scale"].get<Vector>(),
@@ -132,5 +118,24 @@ namespace tnt::doo
         }
 
         parent[id] = parent_;
+    }
+
+    void objects_sys::remove(object const &id) noexcept
+    {
+        active.erase(id);
+
+        parent.erase(parent.cbegin() + id);
+        angle.erase(angle.cbegin() + id);
+        scale.erase(scale.cbegin() + id);
+        pos.erase(pos.cbegin() + id);
+    }
+
+    void objects_sys::clear() noexcept
+    {
+        active.clear();
+        parent.clear();
+        angle.clear();
+        scale.clear();
+        pos.clear();
     }
 } // namespace tnt::doo

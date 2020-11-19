@@ -2,7 +2,6 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 #include <map>
-#include <mutex>
 
 #include <SDL2/SDL_filesystem.h>
 
@@ -11,9 +10,7 @@
 #include "utils/Logger.hpp"
 #include "utils/Traits.hpp"
 
-inline static std::mutex mtx;
 inline static std::map<char const *, char const *, std::less<>> entries{};
-inline static std::string const &base{SDL_GetBasePath()};
 
 namespace tnt::vfs
 {
@@ -27,7 +24,7 @@ namespace tnt::vfs
 
     void mount(char const *path, char const *alias) noexcept
     {
-        if (/* std::lock_guard _{mtx}; */ !entries.contains(alias))
+        if (!entries.contains(alias))
             entries[alias] = path;
         else
             logger::debug("vfs: Replacing alias path {} with a new path.", alias);
@@ -35,7 +32,7 @@ namespace tnt::vfs
 
     void unmount(char const *path) noexcept
     {
-        if (/* std::lock_guard _{mtx}; */ entries.contains(path))
+        if (entries.contains(path))
             entries.erase(path);
         else
             logger::debug("vfs: Trying to unmount() a non-existent alias path. Nothing will happen.");
@@ -45,11 +42,10 @@ namespace tnt::vfs
     {
         // TODO: check invalid paths.
         // TODO: handle cases when the path is absolute by default.
-        // TODO(maybe): return a std::pmr::string with buffer size 256 ??
-
-        /* std::lock_guard _{mtx}; */
 
         // If the first character is '.', the path is NOT an alias
+        std::string const &base{SDL_GetBasePath()};
+
         if (path.starts_with('.'))
             return base + (path.data() + 2);
 

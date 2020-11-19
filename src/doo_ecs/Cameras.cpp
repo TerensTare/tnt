@@ -12,11 +12,6 @@
 
 namespace tnt::doo
 {
-    inline static bool contains(nlohmann::json const &j, const char *value) noexcept
-    {
-        return j.find(value) != j.end();
-    }
-
     void cameras_sys::add_object(camera_comp const &data)
     {
         [[unlikely]] if (angle.size() == angle.capacity())
@@ -56,15 +51,15 @@ namespace tnt::doo
         float shake_loss_{1.f};
         Vector scale_{1.f, 1.f};
 
-        if (contains(j, "angle"))
+        if (j.contains("angle"))
             angle = j["angle"];
-        if (contains(j, "speed"))
+        if (j.contains("speed"))
             speed_ = j["speed"];
-        if (contains(j, "scale"))
+        if (j.contains("scale"))
             scale_ = j["scale"];
-        if (contains(j, "shake"))
+        if (j.contains("shake"))
             shaking_ = j["shake"];
-        if (contains(j, "shake_loss"))
+        if (j.contains("shake_loss"))
             shake_loss_ = j["shake_loss"];
 
         add_object({angle, j["pos"].get<Vector>(),
@@ -117,5 +112,37 @@ namespace tnt::doo
         // TODO: change scale here
         width[cam] = max_.x - min_.x;  // (maybe) * cosf(gAngle(obj)-angle[cam])
         height[cam] = max_.y - min_.y; // (maybe) * sinf(gAngle(obj)-angle[cam])
+    }
+
+    void cameras_sys::remove(object const &id) noexcept
+    {
+        active.erase(id);
+        angle.erase(angle.cbegin() + id);
+        width.erase(width.cbegin() + id);
+        height.erase(height.cbegin() + id);
+        speed.erase(speed.cbegin() + id);
+        shaking.erase(shaking.cbegin() + id);
+        shakeLoss.erase(shakeLoss.cbegin() + id);
+        shake_time.erase(shake_time.cbegin() + id);
+        target.erase(target.cbegin() + id);
+        pos.erase(pos.cbegin() + id);
+        scale.erase(scale.cbegin() + id);
+        offset.erase(offset.cbegin() + id);
+    }
+
+    void cameras_sys::clear() noexcept
+    {
+        active.clear();
+        angle.clear();
+        width.clear();
+        height.clear();
+        speed.clear();
+        shaking.clear();
+        shakeLoss.clear();
+        shake_time.clear();
+        target.clear();
+        pos.clear();
+        scale.clear();
+        offset.clear();
     }
 } // namespace tnt::doo

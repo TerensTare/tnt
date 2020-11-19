@@ -87,7 +87,7 @@ namespace tnt::ImGui
         bool collapsed;
         WindowFlags win_flags;
         int x, y, w, h;
-        int next_x, next_y; // next_x and next_y are used to arrange widgets on the window.
+        int next_x, next_y; // used to arrange widgets on the window.
         int menu_index, menu_txt_size, last_menu_txt_size, menu_item_index;
         int context_menu_index;
         int list_indent_level, list_index, list_number;
@@ -842,7 +842,6 @@ namespace tnt::ImGui
             id, x, tmp->next_y + 20,
             static_cast<int>(text.size()) * 7, theme.font_size + 6);
         draw_text(win, text.data(), x + 10, tmp->next_y + 20);
-        logger::info("x: {}", x + 10);
 
         ++tmp->menu_index;
         tmp->last_menu_txt_size = tmp->menu_txt_size;

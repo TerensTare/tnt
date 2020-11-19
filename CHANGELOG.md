@@ -3,6 +3,24 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a13]
+### Added
+- `tnt::Window::setWidth`, `tnt::Window::setHeight` and `tnt::Window::setSize`, to manipulate the size of the window.
+- New example named `project`, showing a simple project that can be loaded on the editor.
+- `remove` member function for the systems of the Data Oriented ECS that lets you remove entities from the given system and `clear` which removes all the entities from the given system.
+- `utils/PolyResource.hpp`, which contains a helper to handle data that uses `std::pmr::polymorphic_allocator`.
+- `tnt::template_traits`, which give you the tools to play around with templates.
+
+### Changed
+- Added some small features to the editor.
+- TnT now builds with fast floating point model.
+- The systems of the Data Oriented ECS will now check for inexistent objects on `add_object`.
+- Rewrote `utils/TypeLists.hpp` to use lowercase for the name of the `struct`s and support for more than 2 types stored on a `type_list`.
+
+### Removed
+- `tnt::sparse_set<T>::edit`.
+
+
 ## [0.1.0a12]
 ### Added
 - Support for steering behaviours on Lua.

@@ -46,8 +46,10 @@ jobs:
           cc: "cl"
           cxx: "cl"
           environment-script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
-          triplet: x64-windows
+          triplet: 'x64-windows'
           vcpkg-path: "C:\\vcpkg"
+          script-ext: ''
+          mono: ''
         # Windows with GCC
         - name: "Windows Latest MinGW"
           artifact: "Windows-MinGW.zip"
@@ -55,8 +57,10 @@ jobs:
           build_type: "Release"
           cc: "gcc"
           cxx: "g++"
-          triplet: x64-windows
+          triplet: 'x64-windows'
           vcpkg-path: "C:\\vcpkg"
+          script-ext: ''
+          mono: ''
         # Ubuntu with GCC
         - name: "Ubuntu Latest GCC"
           artifact: "Linux.tar.xz"
@@ -64,8 +68,10 @@ jobs:
           build-type: "Release"
           cc: "gcc"
           cxx: "g++"
-          triplet: x64-linux
+          triplet: 'x64-linux'
           vcpkg-path: "/usr/local/share/vcpkg"
+          script-ext: '.bash'
+          mono: 'mono'
         # Mac with Clang
         - name: "MacOS Latest Clang"
           artifact: "Mac.tar.xz"
@@ -73,11 +79,20 @@ jobs:
           build_type: "Release"
           cc: "clang"
           cxx: "clang++"
-          triplet: x64-osx 
+          triplet: 'x64-osx'
           vcpkg-path: "/usr/local/share/vcpkg"
+          script-ext: '.bash'
+          mono: 'mono'
 
     steps:
       - uses: actions/checkout@v1
+
+      - name: Update vcpkg
+        id: update_vcpkg
+        run: |
+          cd ${{ matrix.vcpkg-path }}
+          git pull
+          bootstrap-vcpkg.${{ matrix.config.script-ext }}
 
       - name: Download CMake and Ninja
         id: cmake_and_ninja
@@ -119,37 +134,7 @@ jobs:
             )
           endif()
 
-  run_build:
-    name: Configure CMake
-    runs-on: ${{ matrix.os }}
-    needs: [check-code]
-    env:
-      VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
-      VCPKG_ROOT: ${{ matrix.vcpkg-path }}
-      VCPKG_FEATURE_FLAGS: "manifests,binarycaching"
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-        # Windows with MSVC
-        - name: "Windows Latest MSVC"
-          artifact: "Windows-MSVC.zip"
-          os: windows-latest
-        # Windows with GCC
-        - name: "Windows Latest MinGW"
-          artifact: "Windows-MinGW.zip"
-          os: windows-latest
-        # Ubuntu with GCC
-        - name: "Ubuntu Latest GCC"
-          artifact: "Linux.tar.xz"
-          os: ubuntu-latest
-        # Mac with Clang
-        - name: "MacOS Latest Clang"
-          artifact: "Mac.tar.xz"
-          os: macos-latest
-
-    steps:
-      - name: Config
+      - name: Configure CMake
         shell: cmake -P {0}
         run: |
           set(ENV{CC} ${{ matrix.config.cc }})

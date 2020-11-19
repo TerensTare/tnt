@@ -49,6 +49,7 @@
 #include "utils/CoUtils.hpp"
 #include "utils/Expected.hpp"
 #include "utils/Logger.hpp"
+#include "utils/PolyResource.hpp"
 #include "utils/ScopeUtils.hpp"
 #include "utils/Sort.hpp"
 #include "utils/Timer.hpp"

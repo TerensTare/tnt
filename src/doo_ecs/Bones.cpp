@@ -82,13 +82,13 @@ namespace tnt::doo
 
     void bones_sys::from_json(nlohmann::json const &j)
     {
-        if (contains(j, "bones"))
+        if (j.contains("bones"))
         {
             nlohmann::json const &b{j["bones"]};
             float min{0.f}, max{360.f};
-            if (contains(b, "minAngle"))
+            if (b.contains("minAngle"))
                 min = b["minAngle"];
-            if (contains(b, "maxAngle"))
+            if (b.contains("maxAngle"))
                 max = b["maxAngle"];
             add_object(bone_data{.length{b["length"]}, .minAngle{min}, .maxAngle{max}});
         }

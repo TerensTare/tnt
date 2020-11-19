@@ -80,6 +80,13 @@ namespace tnt::doo
         /// @param j The json chunk.
         void from_json(object const &id, nlohmann::json const &j);
 
+        /// @brief Remove the desired object from the animations system.
+        /// @param id The id of the object you want to remove.
+        void remove(object const &id) noexcept;
+
+        /// @brief Remove all the entities from the animations system.
+        void clear() noexcept;
+
         std::vector<animation_comp::wrap_mode> wrap; /// < The wrap modes of the animations.
         std::vector<animation_comp::direction> dir;  /// < The direction of the frames on the image.
         std::vector<float> startX;                   /// < The starting x coordinate of the animation.

@@ -75,6 +75,13 @@ namespace tnt::doo
         /// @param win The window where the object will be drawed.
         void Draw(object const &id, Window const &win) const noexcept;
 
+        /// @brief Remove the desired object from the sprites system.
+        /// @param id The id of the object you want to remove.
+        void remove(object const &id) noexcept;
+
+        /// @brief Remove all the objects from the sprites system.
+        void clear() noexcept;
+
         camera target{null}; /// < The camera where the objects will be drawed.
 
         std::vector<SDL_Texture *> tex; /// < The texture data of the objects.
