@@ -92,7 +92,7 @@ jobs:
         run: |
           cd ${{ matrix.vcpkg-path }}
           git pull
-          bootstrap-vcpkg.${{ matrix.config.script-ext }}
+          bootstrap-vcpkg${{ matrix.config.script-ext }}
 
       - name: Download CMake and Ninja
         id: cmake_and_ninja
