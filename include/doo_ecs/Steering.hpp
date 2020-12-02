@@ -8,7 +8,7 @@ namespace tnt::doo
     /// @brief A system that adds support steering behaviours to the objects.
     inline struct steering_sys final
     {
-        steering_sys() = default;
+        // steering_sys() = default;
 
         // steering_sys(steering_sys const &) = delete;
         // steering_sys &operator=(steering_sys const &) = delete;

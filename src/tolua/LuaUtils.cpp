@@ -66,5 +66,6 @@ namespace
 
 void tnt::lua::loadSparseSet(sol::state_view lua_)
 {
+    loadGenericSparseSet<tnt::doo::camera>(lua_);
     loadGenericSparseSet<tnt::doo::object>(lua_);
 }

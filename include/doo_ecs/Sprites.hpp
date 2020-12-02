@@ -40,7 +40,7 @@ namespace tnt::doo
     /// @brief A struct that handles the sprite data for all the objects.
     inline struct sprites_sys final
     {
-        sprites_sys() = default;
+        // sprites_sys() = default;
 
         // sprites_sys(sprites_sys const &) = delete;
         // sprites_sys &operator=(sprites_sys const &) = delete;

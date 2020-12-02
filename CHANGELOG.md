@@ -3,6 +3,35 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a14]
+### Added
+- Support for loading only desired libraries of TnT for each object part of `tnt::doo::scripts_sys`.
+- Support for logical operators for `tnt::lua::lib`.
+- More specific flags to `tnt::lua::lib`.
+
+### Fixed
+- Error with auto-generated `tnt::operator |=`, `tnt::operator &=` and `tnt::operator ^=` for bitmask types.
+- `tnt::has_flag` from `utils/BitFlags.hpp` now supports `const` flags.
+
+### Changed
+- Data Oriented Systems now have no constructor/destructor.
+- `tnt::lua::loadSparseSet` will now load `tnt::sparse_set<tnt::doo::camera>` along with `tnt::sparse_set<tnt::doo::object>`.
+- The json structure of the scripting component is now:
+```json
+    {
+        "script": {
+            "file": "script.lua",
+            // optional, core by default.
+            "libs": ["core", "math"]
+        }
+    }
+```
+- Type of second argument of `tnt::lua::load` from `std::span<const tnt::lua::lib>` to `tnt::lua::lib`.
+
+### Removed
+- `core/Context.hpp`.
+
+
 ## [0.1.0a13]
 ### Added
 - `input:mouse_pos` to the Lua API.

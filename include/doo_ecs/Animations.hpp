@@ -60,7 +60,7 @@ namespace tnt::doo
     /// @brief The system that controls the animations of the sprites.
     inline struct animations_sys final
     {
-        inline animations_sys() noexcept = default;
+        // inline animations_sys() noexcept = default;
 
         // animations_sys(animations_sys const &) = delete;
         // animations_sys &operator=(animations_sys const &) = delete;

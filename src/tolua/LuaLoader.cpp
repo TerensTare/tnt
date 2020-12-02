@@ -33,27 +33,20 @@
 //         loadImGui(lua_ctx);
 // };
 
-// [[maybe_unused]] int ret = []() -> int {
-//     tnt::lua_ctx["load"] = &luaLoad;
-//     return 0;
-// }();
-
-void tnt::lua::load(sol::state_view lua_, std::span<const tnt::lua::lib> libs)
+void tnt::lua::load(sol::state_view lua_, tnt::lua::lib const &libs)
 {
-    for (lib const &l : libs)
-        if (l == lib::core)
-        {
-            loadWindow(lua_);
-            loadInput(lua_);
-            // loadAudio(lua_);
-        }
-        else if (l == lib::math)
-        {
-            loadVector(lua_);
-            loadRect(lua_);
-        }
-        else if (l == lib::imgui)
-            loadImGui(lua_);
-        else if (l == lib::utils)
-            loadSparseSet(lua_);
+    if (has_flag(libs, lib::window))
+        loadWindow(lua_);
+    if (has_flag(libs, lib::input))
+        loadInput(lua_);
+    if (has_flag(libs, lib::audio))
+        loadAudio(lua_);
+    if (has_flag(libs, lib::vector))
+        loadVector(lua_);
+    if (has_flag(libs, lib::rect))
+        loadRect(lua_);
+    if (has_flag(libs, lib::imgui))
+        loadImGui(lua_);
+    if (has_flag(libs, lib::utils))
+        loadSparseSet(lua_);
 }

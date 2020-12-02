@@ -65,7 +65,7 @@ namespace tnt::doo
 
     inline struct cameras_sys final
     {
-        cameras_sys() = default;
+        // cameras_sys() = default;
 
         // cameras_sys(cameras_sys const &) = delete;
         // cameras_sys &operator=(cameras_sys const &) = delete;

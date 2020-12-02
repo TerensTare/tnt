@@ -6,18 +6,34 @@
 
 #include "core/Window.hpp"
 #include "doo_ecs/Base.hpp"
+#include "tolua/LuaLoader.hpp"
 #include "utils/SparseSet.hpp"
 
 // TODO:
 // find a way to support script reloading.
 // remove unnecessary #include-s.
+// load custom Lua bindings for each objects from json or code.
+
+namespace tnt::lua
+{
+    NLOHMANN_JSON_SERIALIZE_ENUM(
+        lib, {{lib::audio, "audio"},
+              {lib::core, "core"},
+              {lib::imgui, "imgui"},
+              {lib::input, "input"},
+              {lib::math, "math"},
+              {lib::rect, "rect"},
+              {lib::utils, "utils"},
+              {lib::vector, "vector"},
+              {lib::window, "window"}})
+}
 
 namespace tnt::doo
 {
     /// @brief The system that handles the scripts of the objects.
     inline struct scripts_sys final
     {
-        inline scripts_sys() noexcept = default;
+        // inline scripts_sys() noexcept = default;
 
         // scripts_sys(scripts_sys const &) = delete;
         // scripts_sys &operator=(scripts_sys const &) = delete;
@@ -25,7 +41,9 @@ namespace tnt::doo
         /// @brief The name of the *.lua script to attach to the next object.
         /// @param id The id of the object to add to the scripting system.
         /// @param filename The name of the .lua script file.
-        void add_object(object const &id, std::string_view filename);
+        /// @param libs The desired libraries you need for this object. Defaults to @ref tnt::lua::lib::core.
+        void add_object(object const &id, std::string_view filename,
+                        tnt::lua::lib const &libs = tnt::lua::lib::core);
 
         /// @brief Run `init()` from the object's lua script. If no function named init() is found, it does nothing.
         /// @param id The id of the object to init().

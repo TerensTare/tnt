@@ -12,7 +12,8 @@
 
 namespace tnt::doo
 {
-    void scripts_sys::add_object(object const &id, std::string_view filename)
+    void scripts_sys::add_object(object const &id, std::string_view filename,
+                                 tnt::lua::lib const &libs)
     {
         [[unlikely]] if (id > states.capacity())
             states.reserve(10);
@@ -23,7 +24,6 @@ namespace tnt::doo
         states[id].open_libraries(sol::lib::base);
         states[id]["id"] = id + 1;
 
-        const lua::lib libs[]{lua::lib::core, lua::lib::math, lua::lib::utils};
         lua::load(states[id], libs);
         lua::loadDooEcs(states[id]);
 
@@ -60,7 +60,19 @@ namespace tnt::doo
     void scripts_sys::from_json(object const &id, nlohmann::json const &j)
     {
         if (j.contains("script"))
-            add_object(id, j["script"]);
+        {
+            if (j["script"].contains("libs"))
+            {
+                nlohmann::json const &jlib{j["script"]["libs"]};
+                lua::lib arr[]{j["script"]["libs"]};
+                lua::lib libs{arr[0]};
+                for (int i{1}; i < std::size(arr); ++i)
+                    libs |= arr[i];
+                add_object(id, j["script"]["file"], libs);
+            }
+            else
+                add_object(id, j["script"]["file"]);
+        }
     }
 
     void scripts_sys::remove(object const &id) noexcept

@@ -35,8 +35,6 @@ namespace tnt::doo
     /// @brief A system that handles bones animations.
     inline struct bones_sys final
     {
-        bones_sys() = default;
-
         /// @brief Add a new object to the bones system.
         /// @param id The id of the object that will have a bone component.
         /// @param data_ The data that the object will contain.

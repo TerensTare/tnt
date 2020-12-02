@@ -31,7 +31,7 @@ namespace tnt::doo
     /// @brief A struct that handles objects data.
     inline struct objects_sys final
     {
-        objects_sys() = default;
+        // objects_sys() = default;
 
         // objects_sys(objects_sys const &) = delete;
         // objects_sys &operator=(objects_sys const &) = delete;

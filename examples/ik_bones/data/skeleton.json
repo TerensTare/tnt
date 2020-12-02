@@ -17,7 +17,13 @@
             "h": 16
         }
     },
-    "script": "scripts/skeleton.lua",
+    "script": {
+        "file": "scripts/skeleton.lua",
+        "libs": [
+            "input",
+            "vector"
+        ]
+    },
     "bone": {
         "length": 50,
         "joint": {

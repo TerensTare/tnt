@@ -8,7 +8,7 @@ namespace tnt::lua
 {
     TNT_API void loadWindow(sol::state_view lua_);
     TNT_API void loadInput(sol::state_view lua_);
-    // void loadAudio(sol::state_view lua_); // TODO
+    inline void loadAudio(sol::state_view lua_){}; // TODO
 } // namespace tnt::lua
 
 #endif //!TNT_EXPORT_CORE_TO_LUA_HPP

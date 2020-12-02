@@ -51,7 +51,7 @@ namespace tnt::doo
     /// @brief A struct that handles the physics data of all the objects.
     inline struct physics_sys final
     {
-        physics_sys() = default;
+        // physics_sys() = default;
 
         // physics_sys(physics_sys const &) = delete;
         // physics_sys &operator=(physics_sys const &) = delete;
