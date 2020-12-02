@@ -3,7 +3,7 @@
 
 #include <map>
 
-#include <SDL2/SDL_filesystem.h>
+#include <filesystem>
 
 #include "fileIO/VirtualFS.hpp"
 
@@ -44,7 +44,7 @@ namespace tnt::vfs
         // TODO: handle cases when the path is absolute by default.
 
         // If the first character is '.', the path is NOT an alias
-        std::string const &base{SDL_GetBasePath()};
+        std::string const &base{std::filesystem::current_path().string() + path_sep()};
 
         if (path.starts_with('.'))
             return base + (path.data() + 2);

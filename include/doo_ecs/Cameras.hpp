@@ -104,7 +104,7 @@ namespace tnt::doo
 
         /// @brief Remove the given object from the camera system.
         /// @param id The id of the object you want to remove.
-        void remove(object const &id) noexcept;
+        void remove(camera const &id) noexcept;
 
         /// @brief Remove all the objects from the camera system.
         void clear() noexcept;

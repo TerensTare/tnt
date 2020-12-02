@@ -2,6 +2,7 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 #include <fstream>
+#include <filesystem>
 
 #include <nlohmann/json.hpp>
 #include <nfd.h>
@@ -10,6 +11,7 @@
 #include "core/Input.hpp"
 
 #include "doo_ecs/Animations.hpp"
+#include "doo_ecs/Bones.hpp"
 #include "doo_ecs/Cameras.hpp"
 #include "doo_ecs/Objects.hpp"
 #include "doo_ecs/Physics.hpp"
@@ -24,6 +26,7 @@
 #include "utils/Timer.hpp"
 
 using tnt::doo::animations;
+using tnt::doo::bones;
 using tnt::doo::cameras;
 using tnt::doo::objects;
 using tnt::doo::physics;
@@ -39,17 +42,31 @@ using tnt::doo::sprites;
 // take json and lua files path relative to project path.
 // multi-window support.
 
-auto load_proj = [](tnt::Window const &window, nlohmann::json const &j) {
+auto load_proj = [](tnt::Window const &window, nlohmann::json const &j, nfdchar_t *base) {
     tnt::safe_ensure(j.contains("name"), "Project file doesn't have \"name\" field!!");
     tnt::safe_ensure(j.contains("width"), "Project file doesn't have \"width\" field!!");
     tnt::safe_ensure(j.contains("height"), "Project file doesn't have \"height\" field!!");
 
+    if (objects.active.size() > 0)
+    {
+        physics.clear();
+        bones.clear();
+        animations.clear();
+        sprites.clear();
+        scripts.clear();
+        objects.clear();
+    }
+
     for (nlohmann::json const &it : j["objects"])
     {
-        tnt::logger::info("Loading object from {}.", it.get<std::string_view>());
+        std::filesystem::path p{base};
+        p = p.parent_path();
+        std::filesystem::current_path(p);
+        p /= it.get<std::string_view>();
+        tnt::logger::info("Loading object from {}.", p.string());
 
         nlohmann::json j;
-        std::ifstream{tnt::vfs::absolute(it)} >> j;
+        std::ifstream{p.c_str()} >> j;
 
         tnt::doo::object const &obj{objects.from_json(j)};
 
@@ -57,6 +74,7 @@ auto load_proj = [](tnt::Window const &window, nlohmann::json const &j) {
         sprites.from_json(obj, window, j);
         animations.from_json(obj, j);
         scripts.from_json(obj, j);
+        bones.from_json(obj, j);
     }
 
     if (j.contains("cameras"))
@@ -161,28 +179,19 @@ int main(int argc, char **argv)
             {
                 if (nfdchar_t * name{nullptr}; NFD_OpenDialog("tnt", nullptr, &name) == NFD_OKAY)
                 {
-                    tnt::logger::info("Loading project...", name);
+                    tnt::logger::info("Loading project \"{}\"...", name);
 
                     nlohmann::json p;
                     std::ifstream{name} >> p;
 
-                    if (objects.active.size() > 0)
-                    {
-                        physics.clear();
-                        animations.clear();
-                        sprites.clear();
-                        scripts.clear();
-                        objects.clear();
-                    }
-
-                    load_proj(window, p);
+                    load_proj(window, p, name);
 
                     window.setTitle(p["name"].get<std::string_view>().data());
                     window.setSize(p["width"].get<int>(), p["height"].get<int>());
 
                     project = true;
 
-                    tnt::logger::info("Successfully loaded project {} from {}",
+                    tnt::logger::info("Successfully loaded project \"{}\" from {}",
                                       p["name"], name);
 
                     free(name);

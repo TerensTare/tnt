@@ -19,7 +19,8 @@ namespace tnt
         inline ~asset_cache() noexcept
         {
             for (auto const &it : cache)
-                TTF_CloseFont(it.second);
+                if (it.second != nullptr)
+                    TTF_CloseFont(it.second);
         }
 
         [[nodiscard]] inline TTF_Font *get(std::string_view path, int size)
@@ -30,7 +31,19 @@ namespace tnt
 
         inline void load(std::string_view path, int size)
         {
-            cache.try_emplace(vfs::absolute(path), TTF_OpenFont(vfs::absolute(path).c_str(), size));
+            const char *p{vfs::absolute(path).c_str()};
+            cache.try_emplace(p, TTF_OpenFont(p, size));
+        }
+
+        inline void remove(std::string_view path)
+        {
+            if (const char *p{vfs::absolute(path).c_str()};
+                cache.contains(p))
+            {
+                TTF_CloseFont(cache[p]);
+                cache.erase(p);
+                cache[p] = nullptr;
+            }
         }
 
     private:

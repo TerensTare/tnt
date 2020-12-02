@@ -14,7 +14,8 @@ namespace tnt
         inline ~asset_cache() noexcept
         {
             for (auto const &it : cache)
-                Mix_FreeMusic(it.second);
+                if (it.second != nullptr)
+                    Mix_FreeMusic(it.second);
         }
 
         inline Mix_Music *get(std::string_view path)
@@ -25,8 +26,19 @@ namespace tnt
 
         inline void load(std::string_view path)
         {
-            cache.try_emplace(vfs::absolute(path),
-                              Mix_LoadMUS(vfs::absolute(path).c_str()));
+            const char *p{vfs::absolute(path).c_str()};
+            cache.try_emplace(p, Mix_LoadMUS(p));
+        }
+
+        inline void remove(std::string_view path)
+        {
+            if (const char *p{vfs::absolute(path).c_str()};
+                cache.contains(p))
+            {
+                Mix_FreeMusic(cache[p]);
+                cache.erase(p);
+                cache[p] = nullptr;
+            }
         }
 
     private:
@@ -49,7 +61,8 @@ namespace tnt
         inline ~asset_cache() noexcept
         {
             for (auto const &it : cache)
-                Mix_FreeChunk(it.second);
+                if (it.second != nullptr)
+                    Mix_FreeChunk(it.second);
         }
 
         [[nodiscard]] inline Mix_Chunk *get(std::string_view path)
@@ -60,8 +73,19 @@ namespace tnt
 
         inline void load(std::string_view path)
         {
-            cache.try_emplace(vfs::absolute(path),
-                              Mix_LoadWAV(vfs::absolute(path).c_str()));
+            const char *p{vfs::absolute(path).c_str()};
+            cache.try_emplace(p, Mix_LoadWAV(p));
+        }
+
+        inline void remove(std::string_view path)
+        {
+            if (const char *p{vfs::absolute(path).c_str()};
+                cache.contains(p))
+            {
+                Mix_FreeChunk(cache[p]);
+                cache.erase(p);
+                cache[p] = nullptr;
+            }
         }
 
     private:

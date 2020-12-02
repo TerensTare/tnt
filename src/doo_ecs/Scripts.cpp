@@ -25,16 +25,9 @@ namespace tnt::doo
 
         const lua::lib libs[]{lua::lib::core, lua::lib::math, lua::lib::utils};
         lua::load(states[id], libs);
-
         lua::loadDooEcs(states[id]);
 
-        if (auto const &res = states[id].safe_script_file(
-                vfs::absolute(filename));
-            !res.valid())
-        {
-            sol::error err = res;
-            logger::error(err.what());
-        }
+        states[id].safe_script_file(vfs::absolute(filename));
     }
 
     void scripts_sys::Init(object const &id)

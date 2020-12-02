@@ -1,0 +1,28 @@
+{
+    "angle": 0,
+    "scale": {
+        "x": 10,
+        "y": 10
+    },
+    "pos": {
+        "x": 100,
+        "y": 100
+    },
+    "sprite": {
+        "file": "res://player.png",
+        "crop": {
+            "x": 3,
+            "y": 0,
+            "w": 10,
+            "h": 16
+        }
+    },
+    "script": "scripts/skeleton.lua",
+    "bone": {
+        "length": 50,
+        "joint": {
+            "x": 115,
+            "y": 110
+        }
+    }
+}

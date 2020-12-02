@@ -18,7 +18,8 @@ namespace tnt
         inline ~asset_cache() noexcept
         {
             for (auto const &it : cache)
-                SDL_DestroyTexture(it.second);
+                if (it.second != nullptr)
+                    SDL_DestroyTexture(it.second);
         }
 
         [[nodiscard]] inline SDL_Texture *get(SDL_Renderer *ren,
@@ -30,8 +31,19 @@ namespace tnt
 
         inline void load(SDL_Renderer *ren, std::string_view path)
         {
-            cache.try_emplace(vfs::absolute(path), 
-            IMG_LoadTexture(ren, vfs::absolute(path).c_str()));
+            const char *p{vfs::absolute(path).c_str()};
+            cache.try_emplace(p, IMG_LoadTexture(ren, p));
+        }
+
+        inline void remove(std::string_view path)
+        {
+            if (const char *p{vfs::absolute(path).c_str()};
+                cache.contains(p))
+            {
+                SDL_DestroyTexture(cache[p]);
+                cache.erase(p);
+                cache[p] = nullptr;
+            }
         }
 
     private:

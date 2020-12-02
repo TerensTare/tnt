@@ -167,7 +167,7 @@ namespace tnt
 
     inline float AngleOfR(Vector const &vec) noexcept
     {
-        return acosf(vec.x / vec.Magnitude());
+        return atan2f(vec.y, vec.x);
     }
 
     inline float AngleOf(Vector const &lhs, Vector const &rhs) noexcept
@@ -178,7 +178,7 @@ namespace tnt
 
     inline float AngleOf(Vector const &vec) noexcept
     {
-        return RadianToDegree(acosf(vec.x / vec.Magnitude()));
+        return RadianToDegree(atan2f(vec.y, vec.x));
     }
 
     constexpr float Dot(Vector const &lhs, Vector const &rhs) noexcept

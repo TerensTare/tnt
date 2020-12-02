@@ -1,13 +1,8 @@
 #ifndef TNT_COROUTINES_UTILITIES_HPP
 #define TNT_COROUTINES_UTILITIES_HPP
 
-#if __has_include(<experimental/generator>)
-#include <experimental/generator>
-#elif __has_include(<generator>)
-#include <generator>
-#endif
-
-#if defined(__cpp_coroutines) || defined(__cpp_impl_coroutines)
+#include <iterator>
+#include "async/Generator.hpp"
 
 // clang-format off
 namespace tnt
@@ -20,18 +15,14 @@ namespace tnt
     /// @param step The number that will be added to min_ each call. Defaults to 1.
     template <std::incrementable T, typename U = T>
     requires std::equality_comparable_with<T, U>
-    [[nodiscard]] std::experimental::generator<T> range(
-        T min_, U max_,
+    [[nodiscard]] tnt::generator<T> range(T min_, U max_,
         decltype(std::declval<U>() - std::declval<T>()) step =
             decltype(std::declval<U>() - std::declval<T>()){1})
     {
-        static_assert((max_-min_) % step == 0, "The difference between max_ and min_ isn't a multiplier of step!!");
         for (; min_ != max_; min_ += step)
             co_yield min_;
     }
 } // namespace tnt
 // clang-format on
-
-#endif
 
 #endif //!TNT_COROUTINES_UTILITIES_HPP

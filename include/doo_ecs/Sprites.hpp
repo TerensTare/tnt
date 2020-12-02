@@ -82,7 +82,7 @@ namespace tnt::doo
         /// @brief Remove all the objects from the sprites system.
         void clear() noexcept;
 
-        camera target{null}; /// < The camera where the objects will be drawed.
+        camera target{null_v<camera>}; /// < The camera where the objects will be drawed.
 
         std::vector<SDL_Texture *> tex; /// < The texture data of the objects.
         std::vector<SDL_Rect> clip;     /// < The cropped area from the image.

@@ -35,6 +35,8 @@ void tnt::lua::loadInput(sol::state_view lua_)
     input["button_released"] = &input::mouseButtonReleased;
     input["last_button"] = &input::lastMouseButton;
 
+    input["mouse_pos"] = &input::mousePosition;
+
     input["update"] = &input::updateCurrent;
     input["update_last"] = &input::updatePrevious;
 }

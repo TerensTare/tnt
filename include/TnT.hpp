@@ -1,6 +1,8 @@
 #ifndef TNT_MAIN_HEADER_HPP
 #define TNT_MAIN_HEADER_HPP
 
+#include "async/CoUtils.hpp"
+
 #include "core/Config.hpp"
 #include "core/Input.hpp"
 #include "core/Window.hpp"
@@ -46,7 +48,6 @@
 #include "utils/Benchmark.hpp"
 #include "utils/BitFlags.hpp"
 #include "utils/Containers.hpp"
-#include "utils/CoUtils.hpp"
 #include "utils/Expected.hpp"
 #include "utils/Logger.hpp"
 #include "utils/PolyResource.hpp"

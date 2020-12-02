@@ -63,10 +63,13 @@
 
 namespace tnt::doo
 {
-    using object = std::size_t; /// < A data type that serves as a unique id of an object.
-    using camera = std::size_t; /// < A data type that serves as a unique id of a camera.
+    using object = std::size_t;   /// < A data type that serves as a unique id of an object.
+    using camera = std::uint32_t; /// < A data type that serves as a unique id of a camera.
 
-    inline constexpr object null{(object)-1}; /// < An object id indicating that the object is absent on the desired system.
+    template <std::unsigned_integral I>
+    inline constexpr I null_v{(I)-1};
+
+    inline constexpr object null{null_v<object>}; /// < An object id indicating that the object is absent on the desired system.
 
     // template <typename T>
     // concept system = std::is_final_v<T> &&

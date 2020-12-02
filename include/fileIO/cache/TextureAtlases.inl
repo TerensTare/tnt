@@ -21,7 +21,15 @@ namespace tnt
 
         inline void load(tnt::Window const &win, std::string_view path, Rectangle const &rect)
         {
-            cache.try_emplace(vfs::absolute(path), win, path, rect);
+            const char *p{vfs::absolute(path).c_str()};
+            cache.try_emplace(p, win, p, rect);
+        }
+
+        inline void remove(std::string_view path)
+        {
+            if (const char *p{vfs::absolute(path).c_str()};
+                cache.contains(p))
+                cache.erase(p);
         }
 
     private:

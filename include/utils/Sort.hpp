@@ -13,10 +13,9 @@
 
 namespace tnt
 {
-    // clang-format off
     template <std::ranges::input_range R>
-    class bubble_sort_view : public std::ranges::view_interface<bubble_sort_view<R>>
-    // clang-format on
+    class bubble_sort_view
+        : public std::ranges::view_interface<bubble_sort_view<R>>
     {
         R base_{};
 
@@ -34,7 +33,7 @@ namespace tnt
                 for (std::size_t j{0}; j < base_.size() - 1; ++j)
                     if (base_[j] > base_[j + 1])
                     {
-                        if constexpr (std::is_swappable_v<std::ranges::range_value_t<R>>)
+                        if constexpr (std::swappable<std::ranges::range_value_t<R>>)
                             std::swap(base_[j], base_[j + 1]);
                         else
                         {
@@ -52,26 +51,25 @@ namespace tnt
         constexpr auto cend() const noexcept { return std::ranges::cend(base_); }
     };
 
-// MSVC doesn't support std::ranges::views::all_t yet.
-#if !defined(_MSC_VER) || defined(__clang__)
     template <std::ranges::input_range R>
     bubble_sort_view(R &&) noexcept
         ->bubble_sort_view<std::ranges::views::all_t<R>>;
-#endif
 
     struct bubble_sort_fn final
     {
         template <std::ranges::input_range R>
-        constexpr auto operator()(R &&rng) const noexcept
+        constexpr bubble_sort_view<std::ranges::views::all_t<R>>
+        operator()(R &&rng) const noexcept
         {
-            return bubble_sort_view<R>{std::forward<R>(rng)};
+            return {std::ranges::views::all(static_cast<R &&>(rng))};
         }
     };
 
     template <std::ranges::input_range R>
-    constexpr auto operator|(R &&rng, bubble_sort_fn const &) noexcept
+    constexpr bubble_sort_view<std::ranges::views::all_t<R>>
+    operator|(R &&rng, bubble_sort_fn const &) noexcept
     {
-        return bubble_sort_view<R>{std::forward<R>(rng)};
+        return {std::ranges::views::all(static_cast<R &&>(rng))};
     }
 
     namespace views

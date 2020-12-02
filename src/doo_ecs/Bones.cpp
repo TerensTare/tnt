@@ -1,98 +1,68 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-#include <nlohmann/json.hpp>
-
 #include "doo_ecs/Bones.hpp"
 #include "doo_ecs/Objects.hpp"
 
-#include "utils/Assert.hpp"
-#include "utils/Containers.hpp"
+#include "json/JsonVector.hpp"
 
 namespace tnt::doo
 {
-    inline const auto bottom = [](object const &id, bone_data const &data_) noexcept -> Vector {
-        Vector const &gPos{objects.gPos(id)};
-        float const &gAngle{objects.gAngle(id)};
-        Vector const &lEnd{data_.length * cosf(gAngle),
-                           data_.length * sinf(gAngle)};
-        return gPos + lEnd;
-    };
-
-    bone_tree::bone_tree(bone_data const &data_)
+    void bones_sys::add_object(object const &id, bone_comp const &data_)
     {
-        if (length.size() == length.capacity())
+        if (id == length.capacity())
         {
             length.reserve(10);
-            minAngle.reserve(10);
-            maxAngle.reserve(10);
-            ids.reserve(10);
-            parents.reserve(10);
+            joint.reserve(10);
         }
 
+        active.push_back(id);
         length.emplace_back(data_.length);
-        minAngle.emplace_back(data_.minAngle);
-        maxAngle.emplace_back(data_.maxAngle);
-        ids.emplace_back(length.size() - 1);
-        parents.emplace_back(-1);
+        joint.emplace_back(data_.joint);
     }
 
-    void bone_tree::add_bone(object const &parent_, bone_data const &data_)
+    void bones_sys::from_json(object const &id, nlohmann::json const &j)
     {
-        if (length.size() == length.capacity())
-        {
-            length.reserve(10);
-            minAngle.reserve(10);
-            maxAngle.reserve(10);
-            ids.reserve(10);
-            parents.reserve(10);
-        }
-
-        length.emplace_back(data_.length);
-        minAngle.emplace_back(data_.minAngle);
-        maxAngle.emplace_back(data_.maxAngle);
-        ids.emplace_back(length.size() - 1);
-        parents.emplace_back(parent_);
+        if (j.contains("bone"))
+            add_object(id, {.joint{j["bone"]["joint"].get<tnt::Vector>()},
+                            .length{j["bone"]["length"]}});
     }
 
-    void bones_sys::add_object(bone_data const &data_)
+    void bones_sys::remove(object const &id) noexcept
     {
-        object const &id{active.size()};
-        if (id == active.capacity())
-        {
-            active.reserve(10);
-            trees.reserve(10);
-        }
-
-        active.emplace_back(id);
-        trees.emplace_back(data_);
+        active.erase(id);
+        length.erase(length.cbegin() + id);
+        joint.erase(joint.cbegin() + id);
     }
 
-    void bones_sys::add_invalid()
+    void bones_sys::clear() noexcept
     {
-        if (active.size() == active.capacity())
-        {
-            active.reserve(10);
-            trees.reserve(10);
-        }
-
-        active.emplace_back(-1);
-        trees.emplace_back(bone_data{.length{0.f}, .minAngle{0.f}, .maxAngle{0.f}});
+        active.clear();
+        length.clear();
+        joint.clear();
     }
 
-    void bones_sys::from_json(nlohmann::json const &j)
+    Vector bones_sys::bottom(object const &id) const noexcept
     {
-        if (j.contains("bones"))
+        return {length[id] * cosf(objects.gAngle(id)), length[id] * sinf(objects.gAngle(id))};
+    }
+
+    // thx The Coding Train
+    // https://www.youtube.com/watch?v=hbgDqyy8bIw
+    void bones_sys::follow(object const &id, Vector const &target) noexcept
+    {
+        Vector const &dir{target - joint[id] - objects.gPos(id)};
+        objects.angle[id] += AngleOf(dir) - objects.gAngle(id);
+
+        // the last bone can't move, only rotate
+        if (objects.parent[id] != null)
         {
-            nlohmann::json const &b{j["bones"]};
-            float min{0.f}, max{360.f};
-            if (b.contains("minAngle"))
-                min = b["minAngle"];
-            if (b.contains("maxAngle"))
-                max = b["maxAngle"];
-            add_object(bone_data{.length{b["length"]}, .minAngle{min}, .maxAngle{max}});
+            objects.pos[id] = target - (dir.Normalized() * length[id]);
+            joint[id] = target - dir.Normalized() * length[id] - objects.gPos(id);
         }
-        else
-            add_invalid();
+
+        for (object obj{id}, parent{objects.parent[obj]};
+             parent != null; obj = parent, parent = objects.parent[obj])
+            follow(parent, joint[obj]);
     }
 } // namespace tnt::doo

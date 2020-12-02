@@ -4,6 +4,7 @@
 #include <sol/sol.hpp>
 
 #include "doo_ecs/Animations.hpp"
+#include "doo_ecs/Bones.hpp"
 #include "doo_ecs/Objects.hpp"
 #include "doo_ecs/Physics.hpp"
 #include "doo_ecs/Sprites.hpp"
@@ -15,7 +16,7 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
 {
     using namespace doo;
 
-    // TODO: cameras, steering
+    // TODO: cameras
     // TODO(maybe): remove Draw/Update/draw_imgui functions ??
 
     lua_.new_usertype<object_data>(
@@ -31,18 +32,21 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
     lua_.new_usertype<objects_sys>(
         "objects_sys",
         "new", sol::no_constructor,
-        "add_object", &objects_sys::add_object,
-        "get_data", &objects_sys::get_data,
+        "add_object", [](objects_sys &, object_data const &o) { return objects.add_object(o); },
+        "get_data", [](objects_sys &, object const &id) { return objects.get_data(id - 1); },
         "active", &objects_sys::active,
         "parent", &objects_sys::parent,
         "set_parent", &objects_sys::set_parent,
 
+        "remove", [](objects_sys &, object const &id) { objects.remove(id - 1); },
+        "clear", &objects_sys::clear,
+
         "angle", &objects_sys::angle,
-        "gAngle", &objects_sys::gAngle,
+        "gAngle", [](objects_sys &, object const &id) { return objects.gAngle(id - 1); },
         "scale", &objects_sys::scale,
-        "gScale", &objects_sys::gScale,
+        "gScale", [](objects_sys &, object const &id) { return objects.gScale(id - 1); },
         "pos", &objects_sys::pos,
-        "gPos", &objects_sys::gPos);
+        "gPos", [](objects_sys &, object const &id) { return objects.gPos(id - 1); });
 
     // sprites
     lua_.new_usertype<sprite_comp>(
@@ -56,11 +60,14 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
     lua_.new_usertype<sprites_sys>(
         "sprites_sys",
         "new", sol::no_constructor,
-        "add_object", &sprites_sys::add_object,
-        "draw", &sprites_sys::Draw,
-        "draw_area", &sprites_sys::draw_area,
+        "add_object", [](sprites_sys &, object const &id, sprite_comp const &s) { sprites.add_object(id - 1, s); },
+        "draw", [](sprites_sys &, object const &id, Window const &win) { sprites.Draw(id - 1, win); },
+        "draw_area", [](sprites_sys &, object const &id) { return sprites.draw_area(id - 1); },
 
-        "draw_queue", &sprites_sys::active,
+        "remove", [](sprites_sys &, object const &id) { sprites.remove(id - 1); },
+        "clear", &sprites_sys::clear,
+
+        "active", &sprites_sys::active,
         "clip", &sprites_sys::clip);
 
     // physics
@@ -81,22 +88,25 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
     lua_.new_usertype<physics_sys>(
         "physics_sys",
         "new", sol::no_constructor,
-        "add_object", &physics_sys::add_object,
-        "add_force", &physics_sys::addForce,
+        "add_object", [](physics_sys &, object const &id, physics_comp const &p) { physics.add_object(id - 1, p); },
+        "add_force", [](physics_sys &, object const &id, Vector const &f) { physics.addForce(id - 1, f); },
         "add_glob_force", &physics_sys::addGlobalForce,
-        "update", &physics_sys::Update,
-        "colliding", &physics_sys::colliding,
-        "resolve", &physics_sys::resolve,
+        "update", [](physics_sys &, object const &id, float dt) { physics.Update(id - 1, dt); },
+        "colliding", [](physics_sys &, object const &id, object const &id2) { return physics.colliding(id - 1, id2 - 1); },
+        "resolve", [](physics_sys &, object const &id, object const &id2) { physics.resolve(id - 1, id2 - 1); },
+
+        "remove", [](physics_sys &, object const &id) { physics.remove(id - 1); },
+        "clear", &physics_sys::clear,
 
         "inv_mass", &physics_sys::inv_mass,
         "vel", &physics_sys::vel,
-        "gVel", &physics_sys::gVel,
+        "gVel", [](physics_sys &, object const &id) { return physics.gVel(id - 1); },
         "max_vel", &physics_sys::maxVel,
-        "gMaxVel", &physics_sys::gMaxVel,
+        "gMaxVel", [](physics_sys &, object const &id) { return physics.gMaxVel(id - 1); },
         "accel", &physics_sys::accel,
-        "gAccel", &physics_sys::gAccel,
+        "gAccel", [](physics_sys &, object const &id) { return physics.gAccel(id - 1); },
         "max_accel", &physics_sys::maxAccel,
-        "gMaxAccel", &physics_sys::gMaxAccel,
+        "gMaxAccel", [](physics_sys &, object const &id) { return physics.gMaxAccel(id - 1); },
         "damping", &physics_sys::damping,
         "restitution", &physics_sys::restitution,
         "active", &physics_sys::active,
@@ -121,8 +131,11 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
     lua_.new_usertype<animations_sys>(
         "animations_sys",
         "new", sol::no_constructor,
-        "add_object", &animations_sys::add_object,
-        "update", &animations_sys::Update,
+        "add_object", [](animations_sys &, object const &id, animation_comp const &a) { animations.add_object(id - 1, a); },
+        "update", [](animations_sys &, object const &id, float dt) { animations.Update(id - 1, dt); },
+
+        "remove", [](animations_sys &, object const &id) { objects.remove(id - 1); },
+        "clear", &animations_sys::clear,
 
         "wrap", &animations_sys::wrap,
         "dir", &animations_sys::dir,
@@ -135,19 +148,39 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "current", &animations_sys::current,
         "running", &animations_sys::active);
 
+    lua_.new_usertype<bone_comp>(
+        "bone_comp", sol::factories([](Vector const &joint, float const length) noexcept {
+            return bone_comp{.joint{joint}, .length{length}};
+        }),
+        "joint", &bone_comp::joint,
+        "length", &bone_comp::length);
+
+    lua_.new_usertype<bones_sys>(
+        "bones_sys", "new", sol::no_constructor,
+
+        "add_object", [](bones_sys &, object const &id, bone_comp const &b) { bones.add_object(id - 1, b); },
+        "remove", [](bones_sys &, object const &id) { bones.remove(id - 1); },
+        "clear", &bones_sys::clear,
+        "follow", [](bones_sys &, object const &id, Vector const &p) { bones.follow(id - 1, p); },
+
+        "active", &bones_sys::active,
+        "joint", &bones_sys::joint,
+        "length", &bones_sys::length);
+
     lua_.new_usertype<steering_sys>(
         "steering_sys", "new", sol::no_constructor,
 
-        "seek", &steering_sys::Seek,
-        "flee", &steering_sys::Flee,
-        "ranged_flee", &steering_sys::RangedFlee,
-        "arrive", &steering_sys::Arrive,
-        "pursuit", &steering_sys::Pursuit,
-        "evade", &steering_sys::Evade);
+        "seek", [](steering_sys &, object const &id, Vector const &dst) { steer.Seek(id - 1, dst); },
+        "flee", [](steering_sys &, object const &id, Vector const &dst) { steer.Flee(id - 1, dst); },
+        "ranged_flee", [](steering_sys &, object const &id, Vector const &dst, float const r) { steer.RangedFlee(id - 1, dst, r); },
+        "arrive", [](steering_sys &, object const &id, Vector const &dst) { steer.Arrive(id - 1, dst); },
+        "pursuit", [](steering_sys &, object const &id, object const &id2) { steer.Pursuit(id - 1, id2 - 1); },
+        "evade", [](steering_sys &, object const &id, object const &id2) { steer.Evade(id - 1, id2 - 1); });
 
     lua_["objects"] = &objects;
     lua_["sprites"] = &sprites;
     lua_["physics"] = &physics;
     lua_["animations"] = &animations;
     lua_["steer"] = &steer;
+    lua_["bones"] = &bones;
 }

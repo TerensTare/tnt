@@ -5,13 +5,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [0.1.0a13]
 ### Added
+- `input:mouse_pos` to the Lua API.
+- Small improvements to the editor UI.
+- `tnt::doo::null_v`, which is generic version of `tnt::doo::null`. NOTE: It only works with types that satisfy `concept std::unsigned_integral`.
+- Example project showing how to use skeletal animation with TnT.
+- `remove` method from `tnt::asset_cache`.
+- `async/Generator.hpp` and `async/Task.hpp`.
+- `core/Graphics` which provides some helper functions related to drawing lines. More functions to come.
 - `tnt::Window::setWidth`, `tnt::Window::setHeight` and `tnt::Window::setSize`, to manipulate the size of the window.
 - New example named `project`, showing a simple project that can be loaded on the editor.
 - `remove` member function for the systems of the Data Oriented ECS that lets you remove entities from the given system and `clear` which removes all the entities from the given system.
 - `utils/PolyResource.hpp`, which contains a helper to handle data that uses `std::pmr::polymorphic_allocator`.
 - `tnt::template_traits`, which give you the tools to play around with templates.
 
+### Fixed
+- Some "incomplete" things in `utils/Sort.hpp`.
+- Lua functions of Data Oriented ECS systems failing unexpectedly.
+
 ### Changed
+- `tnt::vfs::absolute` now uses `<filesystem>` instead of `<SDL2/SDL_filesystem.h>`.
+- `tnt::doo::camera` is now `std::uint32_t`. This is done to save space.
+- Moved `utils/CoUtils.hpp` to folder `async`.
 - Added some small features to the editor.
 - TnT now builds with fast floating point model.
 - The systems of the Data Oriented ECS will now check for inexistent objects on `add_object`.

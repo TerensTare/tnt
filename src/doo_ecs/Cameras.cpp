@@ -29,7 +29,7 @@ namespace tnt::doo
             offset.reserve(3);
         }
 
-        active.push_back(angle.size());
+        active.push_back((camera)angle.size());
         angle.emplace_back(data.angle);
         width.emplace_back(data.w);
         height.emplace_back(data.h);
@@ -114,7 +114,7 @@ namespace tnt::doo
         height[cam] = max_.y - min_.y; // (maybe) * sinf(gAngle(obj)-angle[cam])
     }
 
-    void cameras_sys::remove(object const &id) noexcept
+    void cameras_sys::remove(camera const &id) noexcept
     {
         active.erase(id);
         angle.erase(angle.cbegin() + id);
