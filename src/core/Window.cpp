@@ -178,6 +178,27 @@ void tnt::Window::setIcon(SDL_Surface *icon) noexcept
     SDL_SetWindowIcon(window, icon);
 }
 
+void tnt::Window::setIcon(std::string_view icon) noexcept
+{
+    if (SDL_RWops *io = SDL_RWFromFile(icon.data(), "r"); io != nullptr)
+    {
+        if (SDL_Surface *surf = IMG_LoadICO_RW(io); surf != nullptr)
+        {
+            SDL_SetWindowIcon(window, surf);
+            SDL_FreeSurface(surf);
+        }
+        else
+        {
+            logger::error("tnt::Window::setIcon: Couldn't load icon surface!! {}", SDL_GetError());
+            SDL_RWclose(io);
+        }
+
+        SDL_RWclose(io);
+    }
+    else
+        logger::error("tnt::Window::setIcon: Couldn't open SDL_RWOps!! {}", SDL_GetError());
+}
+
 int *tnt::Window::getBordersSize() const noexcept
 {
     static int arr[5];

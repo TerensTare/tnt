@@ -1,5 +1,9 @@
 # The TnT Engine
 
+![Discord](https://img.shields.io/discord/710830349961396264?style=for-the-badge)
+![Gitter](https://img.shields.io/gitter/room/TerensTare/tnt?style=for-the-badge)
+![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/TnT2d?style=for-the-badge)
+
 TnT is a 2d Game Engine written in C++. At the time of speaking the engine uses
 features from the C++17 standard (because at the time of speaking there is no C++ compiler that fully supports C++20 features), but one of the goals of the engine is to use C++20 features such as modules, concepts, etc.
 
@@ -47,19 +51,17 @@ For instructions on how to get the binaries of the engine or to build from sourc
 WIP
 
 
-## Contributing
-
-[![Gitter](https://badges.gitter.im/tnt2d/community.svg)](https://gitter.im/tnt2d/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
-Please see [CONTRIBUTING.md](./CONTRIBUTING.md) to learn how you can contribute to this project.
-
-
 ## Contributors
 
 A special thanks goes to:
 - cgyurgyik ([#8](https://github.com/TerensTare/tnt/pull/8))
 
 
-## Q&A
+## Bugs, Support, Q&A
 
-For any question you may have, please visit TnT's Discord [server](https://discord.gg/s5Y9VCR) or Slack [workspace](https://join.slack.com/t/tnt2d/shared_invite/zt-f3q4v25s-2m5FyEKU29J8mYsz2zDWjQ).
+For any question you may have, feel free to open an issue, or describe it on:
+- [Discord](https://discord.gg/BcQdkfUmYv)
+- [Slack](https://join.slack.com/t/tnt2d/shared_invite/zt-iwayhwgj-W3YpcxnMs9WApGZwJ8qkOA)
+- [Reddit](https://www.reddit.com/r/TnT2d/)
+- [Gitter](https://gitter.im/tnt2d/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+- [Google](https://groups.google.com/g/tnt2d)

@@ -5,11 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [0.1.0a14]
 ### Added
+- A window icon for the TnTEditor.
+- New overload of `tnt::Window::setIcon`, which loads an icon for the window from a given path.
 - Support for loading only desired libraries of TnT for each object part of `tnt::doo::scripts_sys`.
 - Support for logical operators for `tnt::lua::lib`.
 - More specific flags to `tnt::lua::lib`.
 
 ### Fixed
+- Rewrote a part of `README.md` to be more informative.
 - Error with auto-generated `tnt::operator |=`, `tnt::operator &=` and `tnt::operator ^=` for bitmask types.
 - `tnt::has_flag` from `utils/BitFlags.hpp` now supports `const` flags.
 
@@ -29,6 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Type of second argument of `tnt::lua::load` from `std::span<const tnt::lua::lib>` to `tnt::lua::lib`.
 
 ### Removed
+- `CONTRIBUTING.md`. Everybody is now free to ask for support whereever it seems reasonable.
 - `core/Context.hpp`.
 
 

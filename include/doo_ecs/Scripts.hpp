@@ -33,11 +33,6 @@ namespace tnt::doo
     /// @brief The system that handles the scripts of the objects.
     inline struct scripts_sys final
     {
-        // inline scripts_sys() noexcept = default;
-
-        // scripts_sys(scripts_sys const &) = delete;
-        // scripts_sys &operator=(scripts_sys const &) = delete;
-
         /// @brief The name of the *.lua script to attach to the next object.
         /// @param id The id of the object to add to the scripting system.
         /// @param filename The name of the .lua script file.

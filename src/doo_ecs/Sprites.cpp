@@ -91,17 +91,9 @@ namespace tnt::doo
         {
             SDL_FRect const &dst{(SDL_FRect)draw_area(id)};
 
-            if (bones.active.contains(id))
-            {
-                SDL_FPoint const &join{bones.bottom(id).x, bones.bottom(id).y};
-                SDL_RenderCopyExF(win.getRenderer(), tex[id],
-                                  &clip[id], &dst, objects.gAngle(id),
-                                  &join, SDL_FLIP_NONE);
-            }
-            else
-                SDL_RenderCopyExF(win.getRenderer(), tex[id],
-                                  &clip[id], &dst, objects.gAngle(id),
-                                  nullptr, SDL_FLIP_NONE);
+            SDL_RenderCopyExF(win.getRenderer(), tex[id],
+                              &clip[id], &dst, objects.gAngle(id),
+                              nullptr, SDL_FLIP_NONE);
         }
     }
 

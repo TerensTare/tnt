@@ -35,7 +35,6 @@ namespace tnt::doo
         if (active.contains(id))
         {
             sol::safe_function init = states[id]["init"];
-
             if (auto const &res = init(); !res.valid())
             {
                 sol::error err = res;
@@ -61,17 +60,17 @@ namespace tnt::doo
     {
         if (j.contains("script"))
         {
-            if (j["script"].contains("libs"))
-            {
-                nlohmann::json const &jlib{j["script"]["libs"]};
-                lua::lib arr[]{j["script"]["libs"]};
-                lua::lib libs{arr[0]};
-                for (int i{1}; i < std::size(arr); ++i)
-                    libs |= arr[i];
-                add_object(id, j["script"]["file"], libs);
-            }
-            else
-                add_object(id, j["script"]["file"]);
+            // if (j["script"].contains("libs"))
+            // {
+            // nlohmann::json const &jlib{j["script"]["libs"]};
+            // lua::lib arr[]{j["script"]["libs"]};
+            // lua::lib libs{};
+            // for (int i{0}; i < std::size(arr); ++i)
+            //     libs |= arr[i];
+            //     add_object(id, j["script"]["file"], lua::lib::core | lua::lib::math | lua::lib::utils);
+            // }
+            // else
+            add_object(id, j["script"]["file"]);
         }
     }
 

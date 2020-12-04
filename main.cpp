@@ -112,7 +112,7 @@ auto update_from_input = [](tnt::doo::object const &active, float dt) noexcept {
         objects.scale[active] -= zoom;
 };
 
-auto doo_loop = [](tnt::doo::object &active, tnt::Window const &window, bool const game, float dt) {
+auto doo_loop = [](tnt::Window const &window, tnt::doo::object &active, float dt, bool const game) {
     auto const &[x, y]{tnt::input::mousePosition()};
     tnt::Vector const &pos{(float)x, (float)y};
 
@@ -134,17 +134,78 @@ auto doo_loop = [](tnt::doo::object &active, tnt::Window const &window, bool con
     }
 };
 
+auto draw_imgui = [](tnt::Window const &window, tnt::doo::object &active, float dt,
+                     bool &project, bool &game, bool &help) noexcept -> void {
+    constexpr const char *game_text[]{"Play", "Pause"};
+    constexpr const char *help_text[]{"Show Help", "Hide Help"};
+
+    if (tnt::ImGui::Begin(window, "Components", 500, 300))
+    {
+        if (project)
+            tnt::ImGui::text(window, fmt::format("{} ms, {} fps", dt, 1000 / dt));
+
+        tnt::ImGui::newline();
+        if (tnt::ImGui::button(window, "Load"))
+        {
+            if (nfdchar_t * name{nullptr}; NFD_OpenDialog("tnt", nullptr, &name) == NFD_OKAY)
+            {
+                tnt::logger::info("Loading project \"{}\"...", name);
+
+                nlohmann::json p;
+                std::ifstream{name} >> p;
+
+                load_proj(window, p, name);
+
+                SDL_Window *win = (SDL_Window *)const_cast<tnt::Window &>(window);
+
+                SDL_SetWindowTitle(win, p["name"].get<std::string_view>().data());
+                SDL_SetWindowSize(win, p["width"].get<int>(), p["height"].get<int>());
+
+                project = true;
+
+                tnt::logger::info("Successfully loaded project \"{}\" from {}",
+                                  p["name"], name);
+
+                free(name);
+            }
+        }
+
+        if (project && tnt::ImGui::button(window, game_text[game]))
+            game = !game;
+
+        if (project && tnt::ImGui::button(window, help_text[help]))
+            help = !help;
+
+        if (project && !game && (active != tnt::doo::null))
+        {
+            objects.draw_imgui(active, window);
+            physics.draw_imgui(active, window);
+        }
+
+        tnt::ImGui::End();
+    }
+
+    if (project && help && tnt::ImGui::Begin(window, "Help", 0, 400))
+    {
+        tnt::ImGui::text(window, "Controls:");
+        tnt::ImGui::text(window, "Up, Left, Down, Right: Move the current active object.");
+        tnt::ImGui::text(window, "S, A: Scale Up/Down");
+        tnt::ImGui::text(window, "Q, W: Rotate Left/Right");
+
+        tnt::ImGui::End();
+    }
+};
+
 int main(int argc, char **argv)
 {
     tnt::Window window{"The TnT Engine", 800, 600};
+    window.setIcon("assets/TnT.ico");
 
     float dt{0.f};
     bool game{false};
     bool help{false};
     bool project{false};
 
-    const char *game_text[]{"Play", "Pause"};
-    const char *help_text[]{"Show Help", "Hide Help"};
     tnt::doo::object active{tnt::doo::null};
 
     tnt::Timer timer;
@@ -167,61 +228,8 @@ int main(int argc, char **argv)
 
         window.Clear();
 
-        doo_loop(active, window, game, dt);
-
-        if (tnt::ImGui::Begin(window, "Components", 500, 300))
-        {
-            if (project)
-                tnt::ImGui::text(window, fmt::format("{} ms, {} fps", dt, 1000 / dt));
-
-            tnt::ImGui::newline();
-            if (tnt::ImGui::button(window, "Load"))
-            {
-                if (nfdchar_t * name{nullptr}; NFD_OpenDialog("tnt", nullptr, &name) == NFD_OKAY)
-                {
-                    tnt::logger::info("Loading project \"{}\"...", name);
-
-                    nlohmann::json p;
-                    std::ifstream{name} >> p;
-
-                    load_proj(window, p, name);
-
-                    window.setTitle(p["name"].get<std::string_view>().data());
-                    window.setSize(p["width"].get<int>(), p["height"].get<int>());
-
-                    project = true;
-
-                    tnt::logger::info("Successfully loaded project \"{}\" from {}",
-                                      p["name"], name);
-
-                    free(name);
-                }
-            }
-
-            if (project && tnt::ImGui::button(window, game_text[game]))
-                game = !game;
-
-            if (project && tnt::ImGui::button(window, help_text[help]))
-                help = !help;
-
-            if (project && !game && (active != tnt::doo::null))
-            {
-                objects.draw_imgui(active, window);
-                physics.draw_imgui(active, window);
-            }
-
-            tnt::ImGui::End();
-        }
-
-        if (project && help && tnt::ImGui::Begin(window, "Help", 0, 400))
-        {
-            tnt::ImGui::text(window, "Controls:");
-            tnt::ImGui::text(window, "Up, Left, Down, Right: Move the current active object.");
-            tnt::ImGui::text(window, "S, A: Scale Up/Down");
-            tnt::ImGui::text(window, "Q, W: Rotate Left/Right");
-
-            tnt::ImGui::End();
-        }
+        doo_loop(window, active, game, dt);
+        draw_imgui(window, active, dt, project, game, help);
 
         window.Render();
     }

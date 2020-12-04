@@ -75,24 +75,27 @@ template <tnt::bit_mask E>
 constexpr E &operator|=(E &a, E const &b)
 {
     using type = std::underlying_type_t<E>;
-    return (a = static_cast<E>(
-                static_cast<type>(a) | static_cast<type>(b)));
+    a = static_cast<E>(
+        static_cast<type>(a) | static_cast<type>(b));
+    return a;
 }
 
 template <tnt::bit_mask E>
 constexpr E &operator&=(E &a, E const &b)
 {
     using type = std::underlying_type_t<E>;
-    return (a = static_cast<E>(
-                static_cast<type>(a) & static_cast<type>(b)));
+    a = static_cast<E>(
+        static_cast<type>(a) & static_cast<type>(b));
+    return a;
 }
 
 template <tnt::bit_mask E>
 constexpr E &operator^=(E &a, E const &b)
 {
     using type = std::underlying_type_t<E>;
-    return (a = static_cast<E>(
-                static_cast<type>(a) ^ static_cast<type>(b)));
+    a = static_cast<E>(
+        static_cast<type>(a) ^ static_cast<type>(b));
+    return a;
 }
 
 #endif //!TNT_UTILS_ENUM_CLASS_BIT_FLAGS_HPP

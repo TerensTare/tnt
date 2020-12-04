@@ -119,6 +119,10 @@ namespace tnt
         /// @param icon The target SDL_Surface* to be set as an icon.
         void setIcon(SDL_Surface *icon) noexcept;
 
+        /// @overload
+        /// @param icon The path of the image to be used as icon.
+        void setIcon(std::string_view icon) noexcept;
+
         /// @brief Get the size of a window's borders (decorations)
         /// around the client area. The function's 5-th return is 0 on success,
         /// @return int* to an array with 5 members.

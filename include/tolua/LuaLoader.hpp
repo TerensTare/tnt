@@ -11,7 +11,7 @@ namespace tnt::lua
 {
     /// @brief An enum containing all of the engine's structures/functions that can be exported.
     /// @todo Add support for easings and numerical springing.
-    enum class lib : uint8_t
+    enum class lib : uint16_t
     {
         vector = 1 << 0,               /// < Export @ref tnt::Vector.
         rect = 1 << 1,                 /// < Export @ref tnt::Rectangle.
