@@ -38,50 +38,31 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        # Windows with MSVC
-        - name: "Windows Latest MSVC"
+        - name: "Windows"
           artifact: "Windows-MSVC.zip"
           os: windows-latest
           build_type: "Release"
-          cc: "cl"
-          cxx: "cl"
-          environment-script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
           triplet: 'x64-windows'
           vcpkg-path: "C:\\vcpkg"
-          script-ext: ''
+          script-ext: '.bat'
           mono: ''
-        # Windows with GCC
-        - name: "Windows Latest MinGW"
-          artifact: "Windows-MinGW.zip"
-          os: windows-latest
-          build_type: "Release"
-          cc: "gcc"
-          cxx: "g++"
-          triplet: 'x64-windows'
-          vcpkg-path: "C:\\vcpkg"
-          script-ext: ''
-          mono: ''
-        # Ubuntu with GCC
-        - name: "Ubuntu Latest GCC"
+
+        - name: "Ubuntu"
           artifact: "Linux.tar.xz"
           os: ubuntu-latest
           build-type: "Release"
-          cc: "gcc"
-          cxx: "g++"
           triplet: 'x64-linux'
           vcpkg-path: "/usr/local/share/vcpkg"
           script-ext: '.bash'
           mono: 'mono'
-        # Mac with Clang
-        - name: "MacOS Latest Clang"
+
+        - name: "MacOS"
           artifact: "Mac.tar.xz"
           os: macos-latest
           build_type: "Release"
-          cc: "clang"
-          cxx: "clang++"
           triplet: 'x64-osx'
           vcpkg-path: "/usr/local/share/vcpkg"
-          script-ext: '.bash'
+          script-ext: '.sh'
           mono: 'mono'
 
     steps:
@@ -94,86 +75,16 @@ jobs:
           git pull
           bootstrap-vcpkg${{ matrix.config.script-ext }}
 
-      - name: Download CMake and Ninja
-        id: cmake_and_ninja
-        shell: cmake -P {0}
-        run: |
-          set(ninja_version "1.10.0")
-          set(cmake_version "3.18.2")
-          set(os "${{ runner.os }}")
+      - name: Generate project
+        run: cmake -Bbuild -H.
 
-          if(os STREQUAL "Windows")
-            set(ninja_suffix "win.zip")
-            set(cmake_suffix "win64-x64.zip")
-            set(cmake_dir "cmake-${cmake-version}-win64-x64/bin")
-          elseif(os STREQUAL "Linux")
-            set(ninja_suffix "Linux.zip")
-            set(cmake_suffix "Linux-x86_64.tar.gz")
-            set(cmake_dir "cmake-${cmake_version}-Linux-x86_64/bin")
-          elseif(os STREQUAL "macOS")
-            set(ninja_suffix "mac.zip")
-            set(cmake_suffix "Darwin-x86_64.tar.gz")
-            set(cmake_dir "cmake-${cmake_version}-Darwin-x86_64/CMake.app/Contents/bin")
-          endif()
-
-          set(ninja_url "https://github.com/ninja-build/ninja/releases/download/v${ninja_version}/ninja-${ninja_suffix}")
-          file(DOWNLOAD "${ninja_url}" ./ninja.zip SHOW_PROGRESS)
-          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
-
-          set(cmake_url "https://github.com/Kitware/CMake/releases/download/v${cmake_version}/cmake-${cmake_version}-${cmake_suffix}")
-          file(DOWNLOAD "${cmake_url}" ./cmake.zip SHOW_PROGRESS)
-          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./cmake.zip)
-
-          # Save the path for other steps
-          file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/${cmake_dir}" cmake_dir)
-
-          if (NOT os STREQUAL "Windows")
-            execute_process(
-              COMMAND chmod +x ninja
-              COMMAND chmod +x ${cmake_dir}/cmake
-            )
-          endif()
-
-      - name: Configure CMake
-        shell: cmake -P {0}
-        run: |
-          set(ENV{CC} ${{ matrix.config.cc }})
-          set(ENV{CXX} ${{ matrix.config.cxx }})
-          set(os "${{ runner.os }}")
-
-          if (os STREQUAL "Windows" AND NOT "${ { matrix.config.environment_script } }" STREQUAL "x")
-            execute_process(
-              COMMAND "${ { matrix.config.environment_script } }" && set
-              OUTPUT_FILE environment_script_output.txt
-            )
-            file(STRINGS environment_script_output.txt output_lines)
-            foreach(line IN LISTS output_lines)
-              if (line MATCHES "^([a-zA-Z0-9_-]+)=(.*)$")
-                set(ENV{${CMAKE_MATCH_1} } "${CMAKE_MATCH_2}")
-              endif()
-            endforeach()
-          endif()
-
-          file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/ninja" ninja_program)
-
-          execute_process(
-            COMMAND ${ { steps.cmake_and_ninja.outputs.cmake_dir } }/cmake
-              -S .
-              -B build
-              -D CMAKE_BUILD_TYPE=${ { matrix.config.build_type } }
-              -G Ninja
-              -D CMAKE_MAKE_PROGRAM=${ninja_program}
-            RESULT_VARIABLE result
-          )
-          if (NOT result EQUAL 0)
-            message(FATAL_ERROR "Bad exit status")
-          endif()
-
+      - name: Build project
+        run: cmake --build build/ --target TnTEditor
 
       - name: Install
-        run: ${ { steps.cmake_and_ninja.outputs.cmake_dir } }/cmake --install build
+        run: cmake --install build
       - name: Pack
-        run: ${ { steps.cmake_and_ninja.outputs.cmake_dir } }/cmake -E tar cJfv ../${ { matrix.config.artifact } } .
+        run: cmake -E tar cJfv ../${ { matrix.config.artifact } } .
       - name: Upload
         uses: actions/upload-artifact@v1
         with:
