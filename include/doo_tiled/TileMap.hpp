@@ -5,58 +5,24 @@
 #include <string>
 #include <vector>
 
+#include <SDL2/SDL_pixels.h>
+
 #include "math/Vector.hpp"
 
 namespace tnt::tmx
 {
-    namespace detail
+    struct Map final
     {
-        enum tmx_bool
-        {
-            FALSE = 0,
-            TRUE
-        };
-    }
-
-    using tile_id_t = int;
-    using property_t = std::map<std::string, std::string>;
-
-    enum map_orientation
-    {
-        orthogonal = 0,
-        isometric,
-        staggered,
-        hexagonal
+        unsigned width, height;
+        unsigned tileW, tileH;
+        unsigned version;
+        SDL_Color bg;
+        // TODO: add tiles
     };
 
-    enum render_order
+    struct Layer final
     {
-        right_down = 0,
-        right_up,
-        left_down,
-        left_up
-    };
-
-    class TileMaps
-    {
-        std::vector<detail::tmx_bool> infinite;
-        std::vector<std::string> backgroundcolors; // (optional)
-        std::vector<tnt::Vector> sizes;            // width + height
-        std::vector<tnt::Vector> tilesizes;        // tilew + tileh
-        std::vector<property_t> properties;        // (maybe) the value should be std::string_view ??
-    };
-
-    class StaggeredMaps : public TileMaps
-    {
-        std::vector<detail::tmx_bool> staggered_axes;    // false if x, true if y
-        std::vector<detail::tmx_bool> staggered_indices; // false if odd, true if even
-    };
-
-    class HexTileMaps : public TileMaps
-    {
-        std::vector<int> hexsidelengths;
-        std::vector<detail::tmx_bool> staggered_axes;    // false if x, true if y
-        std::vector<detail::tmx_bool> staggered_indices; // false if odd, true if even
+        std::vector<unsigned> data;
     };
 } // namespace tnt::tmx
 

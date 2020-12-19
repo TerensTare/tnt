@@ -6,7 +6,6 @@
 #include "doo_ecs/Steering.hpp"
 
 #include "utils/TypeUtils.hpp"
-#include "utils/Containers.hpp"
 
 namespace tnt::doo
 {

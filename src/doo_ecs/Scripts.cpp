@@ -23,6 +23,7 @@ namespace tnt::doo
 
         states[id].open_libraries(sol::lib::base);
         states[id]["id"] = id + 1;
+        states[id]["file"] = vfs::absolute(filename);
 
         lua::load(states[id], libs);
         lua::loadDooEcs(states[id]);
@@ -41,6 +42,13 @@ namespace tnt::doo
                 logger::error(err.what());
             }
         }
+    }
+
+    void scripts_sys::reload(object const &id) noexcept
+    {
+        std::string tmp{states[id]["file"].get<std::string>()};
+        remove(id);
+        add_object(id, tmp);
     }
 
     void scripts_sys::Update(tnt::doo::object const &id, float time_)
@@ -70,8 +78,14 @@ namespace tnt::doo
             //     add_object(id, j["script"]["file"], lua::lib::core | lua::lib::math | lua::lib::utils);
             // }
             // else
-            add_object(id, j["script"]["file"]);
+            add_object(id, j["script"]["file"],
+                       lua::lib::input | lua::lib::math | lua::lib::utils);
         }
+    }
+
+    void scripts_sys::to_json(object const &id, nlohmann::json &j)
+    {
+        j["script"]["file"] = states[id]["file"];
     }
 
     void scripts_sys::remove(object const &id) noexcept

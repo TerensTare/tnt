@@ -61,9 +61,9 @@ namespace tnt
             return resource.data;
         }
 
-        inline const T &operator->() const requires std::copyable<T>
+        inline const T *operator->() const requires std::copyable<T>
         {
-            return resource.data;
+            return &resource.data;
         }
 
         inline T &get() requires std::copyable<T>
@@ -87,7 +87,7 @@ namespace tnt
             requires std::constructible_from<T, Args...>
             inline explicit(sizeof...(Args) != 1) poly_resource(Args &&... args)
             noexcept(std::is_nothrow_constructible_v<T, Args...>)
-            : data{std::forward<Args>(args)..., &res} {}
+                : data{std::forward<Args>(args)..., &res} {}
             // clang-format on
 
             std::byte buffer[Buffer];
@@ -102,7 +102,7 @@ namespace tnt
             requires std::constructible_from<T, Args...>
             inline explicit(sizeof...(Args) != 1) poly_resource(Args &&... args)
             noexcept(std::is_nothrow_constructible_v<T, Args...>)
-            : data{std::forward<Args>(args)..., &res} {}
+                : data{std::forward<Args>(args)..., &res} {}
             // clang-format on
 
             T data;
@@ -110,7 +110,7 @@ namespace tnt
             R res{buffer, Buffer};
         };
 
-        std::conditional_t<(sizeof(T) < sizeof(std::byte) * Buffer), s2, s1> resource;
+        std::conditional_t<(sizeof(T) < (sizeof(std::byte) * Buffer)), s2, s1> resource;
     };
 } // namespace tnt
 

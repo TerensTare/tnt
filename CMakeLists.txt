@@ -170,7 +170,7 @@ if(WIN32 AND CMAKE_SIZEOF_VOID_P EQUAL 8)
 endif()
 
 include(GNUInstallDirs)
-set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/TnT)
+set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake)
 
 if(${CMAKE_VERSION} VERSION_LESS "3.14.0")
     install(TARGETS ${PROJECT_NAME}
@@ -189,7 +189,7 @@ install(EXPORT TnTTargets
     DESTINATION ${INSTALL_CONFIGDIR})
 
 install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}
+    DESTINATION ${CMAKE_INSTALL_PREFIX}
     FILES_MATCHING PATTERN "*.hpp")
 
 
@@ -251,4 +251,6 @@ if(BUILD_EDITOR)
         ${LUA_LIBRARIES} sol2::sol2 fmt::fmt
         nlohmann_json nlohmann_json::nlohmann_json
         unofficial::nativefiledialog::nfd)
+
+    install(TARGETS TnTEditor)
 endif()

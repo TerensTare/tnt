@@ -6,8 +6,8 @@
 #include "doo_ecs/Base.hpp"
 #include "tolua/LuaUtils.hpp"
 
+#include "types/SparseSet.hpp"
 #include "utils/Logger.hpp"
-#include "utils/SparseSet.hpp"
 
 namespace sol
 {

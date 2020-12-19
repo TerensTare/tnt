@@ -7,7 +7,7 @@
 #include "core/Window.hpp"
 #include "doo_ecs/Base.hpp"
 #include "math/Vector.hpp"
-#include "utils/SparseSet.hpp"
+#include "types/SparseSet.hpp"
 
 // example of a json chunk containing the cameras.
 // [
@@ -77,6 +77,11 @@ namespace tnt::doo
         /// @brief Load camera data from a json chunk.
         /// @param j The json chunk.
         void from_json(nlohmann::json const &j);
+
+        /// @brief Store camera data of a specific object to a json chunk.
+        /// @param id The id of the camera to serialize to json.
+        /// @param j The json chunk where the data will be saved.
+        void to_json(camera const &id, nlohmann::json &j);
 
         /// @brief Draw widgets on the given window to modify the datas of the system.
         /// @param id The id of the desired camera.

@@ -19,7 +19,6 @@
 #include "doo_ecs/Scripts.hpp"
 
 #include "imgui/ImGui.hpp"
-
 #include "fileIO/VirtualFS.hpp"
 
 #include "utils/Logger.hpp"
@@ -34,12 +33,11 @@ using tnt::doo::scripts;
 using tnt::doo::sprites;
 
 // TODO:
-// load/save from specific project.
+// save to specific project.
 // customizable keybindings.
 // zoom in/out.
 // export to executable.
 // extensions.
-// take json and lua files path relative to project path.
 // multi-window support.
 
 auto load_proj = [](tnt::Window const &window, nlohmann::json const &j, nfdchar_t *base) {
@@ -63,7 +61,7 @@ auto load_proj = [](tnt::Window const &window, nlohmann::json const &j, nfdchar_
         p = p.parent_path();
         std::filesystem::current_path(p);
         p /= it.get<std::string_view>();
-        tnt::logger::info("Loading object from {}.", p.string());
+        tnt::logger::debug("Loading object from {}.", p.string());
 
         nlohmann::json j;
         std::ifstream{p.c_str()} >> j;
@@ -80,7 +78,7 @@ auto load_proj = [](tnt::Window const &window, nlohmann::json const &j, nfdchar_
     if (j.contains("cameras"))
         for (nlohmann::json const &it : j["cameras"])
         {
-            tnt::logger::info("Loading camera from {}.", it.get<std::string_view>());
+            tnt::logger::debug("Loading camera from {}.", it.get<std::string_view>());
 
             nlohmann::json c;
             std::ifstream{tnt::vfs::absolute(it)} >> c;
@@ -89,8 +87,10 @@ auto load_proj = [](tnt::Window const &window, nlohmann::json const &j, nfdchar_
         }
 };
 
-auto update_from_input = [](tnt::doo::object const &active, float dt) noexcept {
-    float const &dst{dt * .01f};                     // 10 pixel/sec
+auto save_proj = [](nlohmann::json &proj) {};
+
+auto update_from_input = [](tnt::doo::object const &active, float dt) noexcept -> void {
+    float const &dst{dt * .05f};                     // 10 pixel/sec
     float const &rot{dt * .02f};                     // 20 degree/sec
     tnt::Vector const &zoom{dt * .001f, dt * .001f}; // 1 pixel/sec
 
@@ -112,7 +112,7 @@ auto update_from_input = [](tnt::doo::object const &active, float dt) noexcept {
         objects.scale[active] -= zoom;
 };
 
-auto doo_loop = [](tnt::Window const &window, tnt::doo::object &active, float dt, bool const game) {
+auto doo_loop = [](tnt::Window const &window, tnt::doo::object &active, float dt, bool const game) noexcept -> void {
     auto const &[x, y]{tnt::input::mousePosition()};
     tnt::Vector const &pos{(float)x, (float)y};
 
@@ -185,7 +185,7 @@ auto draw_imgui = [](tnt::Window const &window, tnt::doo::object &active, float 
         tnt::ImGui::End();
     }
 
-    if (project && help && tnt::ImGui::Begin(window, "Help", 0, 400))
+    if (project && !game && help && tnt::ImGui::Begin(window, "Help", 0, 400))
     {
         tnt::ImGui::text(window, "Controls:");
         tnt::ImGui::text(window, "Up, Left, Down, Right: Move the current active object.");

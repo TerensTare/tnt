@@ -6,7 +6,7 @@
 #include "core/Window.hpp"
 #include "doo_ecs/Base.hpp"
 #include "math/Vector.hpp"
-#include "utils/SparseSet.hpp"
+#include "types/SparseSet.hpp"
 
 namespace tnt::doo
 {
@@ -50,6 +50,11 @@ namespace tnt::doo
         /// @param j The json chunk that contains the objects data.
         /// @return The id of the created object.
         object from_json(nlohmann::json const &j);
+
+        /// @brief Store general data of a specific object to a json chunk.
+        /// @param id The id of the object to serialize to json.
+        /// @param j The json chunk where the data will be saved.
+        void to_json(object const &id, nlohmann::json &j) ;
 
         /// @brief Draw widgets on the given window to modify the datas of the system.
         /// @param id The id of the active object.

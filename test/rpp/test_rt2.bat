@@ -1,1 +1,0 @@
-cl /EHsc /O2 /W4 /std:c++17 /MT /I..\..\include rpptest.cpp ..\..\src\exp\Runtimer.cpp /link kernel32.lib /subsystem:console

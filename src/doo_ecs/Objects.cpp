@@ -60,6 +60,14 @@ namespace tnt::doo
         return id;
     }
 
+    void objects_sys::to_json(object const &id, nlohmann::json &j) 
+    {
+        j["parent"] = parent[id];
+        j["angle"] = gAngle(id);
+        j["pos"] = gPos(id);
+        j["scale"] = gScale(id);
+    }
+
     void objects_sys::draw_imgui(object const &id, Window const &win) noexcept
     {
         tnt::ImGui::hslider_float(win, "Angle", -360.f, 360.f, &objects.angle[id]);

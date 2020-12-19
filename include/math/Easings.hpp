@@ -9,7 +9,7 @@
 
 namespace tnt
 {
-    inline constexpr auto PennerNumber{1.70158f};
+    inline constexpr float PennerNumber{1.70158f};
 
     namespace back
     {

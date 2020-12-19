@@ -139,7 +139,9 @@ jobs:
         run: |
           set(ENV{CC} ${{ matrix.config.cc }})
           set(ENV{CXX} ${{ matrix.config.cxx }})
-          if ("${ { runner.os } }" STREQUAL "Windows" AND NOT "x${ { matrix.config.environment_script } }" STREQUAL "x")
+          set(os "${{ runner.os }}")
+
+          if (os STREQUAL "Windows" AND NOT "${ { matrix.config.environment_script } }" STREQUAL "x")
             execute_process(
               COMMAND "${ { matrix.config.environment_script } }" && set
               OUTPUT_FILE environment_script_output.txt

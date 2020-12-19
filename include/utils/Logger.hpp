@@ -6,7 +6,6 @@
 
 
 // TODO: unfinished
-// TODO: temporary use libfmt, but after MSVC will support C++20's <format>, use that instead.
 // TODO: support writing to files.
 // TODO: support writing logs to the developer console built in the engine.
 // TODO: make sure that tnt::logger::debug writes sth only if DEBUG || _DEBUG is defined.
@@ -16,7 +15,6 @@
 
 // TODO(maybe):
 // make this an extension ??
-// write to html/xml files for better output.
 
 // colors:
 // trace -> dark slate blue

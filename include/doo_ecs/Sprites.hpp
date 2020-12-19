@@ -4,7 +4,7 @@
 #include "core/Window.hpp"
 #include "doo_ecs/Base.hpp"
 #include "math/Rectangle.hpp"
-#include "utils/SparseSet.hpp"
+#include "types/SparseSet.hpp"
 
 // TODO:
 // find a way to store the medium_texture_cache* on sprites_sys.
@@ -55,6 +55,11 @@ namespace tnt::doo
         /// @param win The window where the loaded sprite component will be drawed.
         /// @param j The json chunk from where to load the sprite data of the objects.
         void from_json(object const &id, Window const &win, nlohmann::json const &j);
+
+        /// @brief Store sprites data of a specific object to a json chunk.
+        /// @param id The id of the object to serialize to json.
+        /// @param j The json chunk where the data will be saved.
+        void to_json(object const &id, nlohmann::json &j) ;
 
         /// @brief Draw widgets on the given window to modify the datas of the system.
         /// @param id The id of the active object.

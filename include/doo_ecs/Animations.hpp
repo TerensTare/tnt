@@ -5,7 +5,7 @@
 
 #include "doo_ecs/Base.hpp"
 #include "math/Rectangle.hpp"
-#include "utils/SparseSet.hpp"
+#include "types/SparseSet.hpp"
 
 // TODO:
 // timed animations (on wrap_mode)
@@ -79,6 +79,11 @@ namespace tnt::doo
         /// @param id The id of the object to load from json.
         /// @param j The json chunk.
         void from_json(object const &id, nlohmann::json const &j);
+
+        /// @brief Store animation data of a specific object to a json chunk.
+        /// @param id The id of the object to serialize to json.
+        /// @param j The json chunk where the data will be saved.
+        void to_json(object const &id, nlohmann::json &j);
 
         /// @brief Remove the desired object from the animations system.
         /// @param id The id of the object you want to remove.

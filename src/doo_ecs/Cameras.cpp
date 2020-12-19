@@ -67,6 +67,19 @@ namespace tnt::doo
                     speed_, shaking_, shake_loss_, scale_});
     }
 
+    void cameras_sys::to_json(camera const &id, nlohmann::json &j)
+    {
+        if (active.contains(id))
+        {
+            nlohmann::json camera{j["camera"]};
+            camera["angle"] = angle[id];
+            camera["speed"] = speed[id];
+            camera["scale"] = scale[id];
+            camera["shake"] = shaking[id];
+            camera["shake_loss"] = shakeLoss[id];
+        }
+    }
+
     void cameras_sys::draw_imgui(camera const &id, Window const &win) noexcept
     {
         // TODO: from-player offset

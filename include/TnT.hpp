@@ -44,16 +44,17 @@
 #include "tolua/LuaLoader.hpp"
 #include "tolua/LuaMath.hpp"
 
+#include "types/Containers.hpp"
+#include "types/Expected.hpp"
+#include "types/PolyResource.hpp"
+#include "types/ScopeUtils.hpp"
+#include "types/Sort.hpp"
+#include "types/Timer.hpp"
+
 #include "utils/Assert.hpp"
 #include "utils/Benchmark.hpp"
 #include "utils/BitFlags.hpp"
-#include "utils/Containers.hpp"
-#include "utils/Expected.hpp"
 #include "utils/Logger.hpp"
-#include "utils/PolyResource.hpp"
-#include "utils/ScopeUtils.hpp"
-#include "utils/Sort.hpp"
-#include "utils/Timer.hpp"
 #include "utils/Traits.hpp"
 #include "utils/TypeUtils.hpp"
 

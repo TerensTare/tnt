@@ -28,6 +28,16 @@ namespace tnt::doo
                             .length{j["bone"]["length"]}});
     }
 
+    void bones_sys::to_json(object const &id, nlohmann::json &j) 
+    {
+        if (active.contains(id))
+        {
+            nlohmann::json &bone{j["bone"]};
+            bone["joint"] = joint[id];
+            bone["length"] = length[id];
+        }
+    }
+
     void bones_sys::remove(object const &id) noexcept
     {
         active.erase(id);

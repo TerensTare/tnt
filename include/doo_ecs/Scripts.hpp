@@ -7,7 +7,7 @@
 #include "core/Window.hpp"
 #include "doo_ecs/Base.hpp"
 #include "tolua/LuaLoader.hpp"
-#include "utils/SparseSet.hpp"
+#include "types/SparseSet.hpp"
 
 // TODO:
 // find a way to support script reloading.
@@ -44,6 +44,10 @@ namespace tnt::doo
         /// @param id The id of the object to init().
         void Init(object const &id);
 
+        /// @brief Reload the script data of the desired object.
+        /// @param id The id of the desired object.
+        void reload(object const &id) noexcept;
+
         /// @brief Call the desired function from the lua state of the given object.
         /// @param id The id of the object that has the function.
         /// @param fn The name of the function.
@@ -71,6 +75,11 @@ namespace tnt::doo
         /// @param id The id of the object to load from json.
         /// @param j The json chunk that holds the data.
         void from_json(object const &id, nlohmann::json const &j);
+
+        /// @brief Store scripts data of a specific object to a json chunk.
+        /// @param id The id of the object to serialize to json.
+        /// @param j The json chunk where the data will be saved.
+        void to_json(object const &id, nlohmann::json &j) ;
 
         /// @brief Draw widgets on the given window to modify the datas of the system.
         /// @param id The id of the active object.

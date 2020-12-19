@@ -5,7 +5,7 @@
 
 #include "doo_ecs/Base.hpp"
 #include "math/Vector.hpp"
-#include "utils/SparseSet.hpp"
+#include "types/SparseSet.hpp"
 
 // a basic json file:
 // [
@@ -44,6 +44,11 @@ namespace tnt::doo
         /// @param id The id of the object to add to the bones system.
         /// @param j The json chunk containing the objects data.
         void from_json(object const &id, nlohmann::json const &j);
+
+        /// @brief Store bones data of a specific object to a json chunk.
+        /// @param id The id of the object to serialize to json.
+        /// @param j The json chunk where the data will be saved.
+        void to_json(object const &id, nlohmann::json &j);
 
         /// @brief Remove an object from the bones system.
         /// @param id The id of the object to remove.

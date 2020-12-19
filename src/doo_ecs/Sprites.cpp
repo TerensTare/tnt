@@ -59,6 +59,11 @@ namespace tnt::doo
         }
     }
 
+    void sprites_sys::to_json(object const &id, nlohmann::json &j) 
+    {
+        j["sprite"]["crop"] = {clip[id].x, clip[id].y, clip[id].w, clip[id].h};
+    }
+
     void sprites_sys::draw_imgui(object const &id, Window const &win) noexcept {}
 
     Rectangle sprites_sys::draw_area(object const &id) const noexcept

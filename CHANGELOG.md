@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [0.1.0a14]
 ### Added
+- Folder `types`, which contains type-related utility files.
+- `mirror/TypeInfo.hpp` and `mirror/Any.hpp`.
+- `exp/TypeListsv2.hpp` which will replace the old implementation in the future.
+- `extra/tnt.natvis` which lets you check the values of `tnt::` data types on the Visual Studio debugger. NOTE: Data Oriented Systems are not included.
+- Destructor `tnt::Expected<T>` which correctly cleans memory occupied by the object.
+- `tnt::scripts_sys::reload`.
+- `to_json` method to Data Oriented ECS systems.
 - A window icon for the TnTEditor.
 - New overload of `tnt::Window::setIcon`, which loads an icon for the window from a given path.
 - Support for loading only desired libraries of TnT for each object part of `tnt::doo::scripts_sys`.
@@ -12,11 +19,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - More specific flags to `tnt::lua::lib`.
 
 ### Fixed
+- Minor things on the TnT install system from `CMakeLists.txt`.
 - Rewrote a part of `README.md` to be more informative.
 - Error with auto-generated `tnt::operator |=`, `tnt::operator &=` and `tnt::operator ^=` for bitmask types.
 - `tnt::has_flag` from `utils/BitFlags.hpp` now supports `const` flags.
 
 ### Changed
+- `tnt::Snipper::onModify` now returns `void`.
+- The TnT editor will now be installed too when the `install` CMake target is selected.
 - Data Oriented Systems now have no constructor/destructor.
 - `tnt::lua::loadSparseSet` will now load `tnt::sparse_set<tnt::doo::camera>` along with `tnt::sparse_set<tnt::doo::object>`.
 - The json structure of the scripting component is now:

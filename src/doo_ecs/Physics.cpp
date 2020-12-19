@@ -194,6 +194,20 @@ namespace tnt::doo
         }
     }
 
+    void physics_sys::to_json(object const &id, nlohmann::json &j) 
+    {
+        if (active.contains(id))
+        {
+            nlohmann::json &p{j["phys"]};
+            p["mass"] = 1 / inv_mass[id];
+            p["damping"] = damping[id];
+            p["restitution"] = restitution[id];
+            p["max_vel"] = gMaxVel(id);
+            p["max_accel"] = gMaxAccel(id);
+            p["bounds"] = bound_box[id];
+        }
+    }
+
     void physics_sys::remove(object const &id) noexcept
     {
         active.erase(id);

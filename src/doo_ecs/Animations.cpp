@@ -97,6 +97,19 @@ namespace tnt::doo
         }
     }
 
+    void animations_sys::to_json(object const &id, nlohmann::json &j)
+    {
+        if (active.contains(id))
+        {
+            nlohmann::json &anim{j.at("anim")};
+            anim["speed"] = speed[id];
+            anim["frames"] = speed[id] / timePerFrame[id];
+            anim["space"] = spacing[id];
+            anim["dir"] = dir[id];
+            anim["wrap"] = wrap[id];
+        }
+    }
+
     void animations_sys::remove(object const &id) noexcept
     {
         active.erase(id);
