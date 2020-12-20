@@ -53,7 +53,7 @@ jobs:
           build-type: "Release"
           triplet: 'x64-linux'
           vcpkg-path: "/usr/local/share/vcpkg"
-          script-ext: '.bash'
+          script-ext: '.sh'
           mono: 'mono'
 
         - name: "MacOS"
@@ -75,11 +75,14 @@ jobs:
           git pull
           bootstrap-vcpkg${{ matrix.config.script-ext }}
 
+      - name: Create directory
+        run: mkdir build && cd build
+
       - name: Generate project
-        run: cmake -Bbuild -H.
+        run: cmake ..
 
       - name: Build project
-        run: cmake --build build/ --target TnTEditor
+        run: cmake --build . --target TnTEditor --config Release
 
       - name: Install
         run: cmake --install build
