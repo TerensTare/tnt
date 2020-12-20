@@ -75,6 +75,10 @@ jobs:
       #     git pull
       #     bootstrap-vcpkg${{ matrix.config.script-ext }}
 
+      - name: Get dependencies
+        run: |
+          vcpkg install sdl2 sdl2-image[libjpeg-turbo,libwebp,tiff] sdl2-mixer[dynamic-load,libflac,libmodplug,libvorbis,nativemidi,opusfile] sdl2-ttf sdl2-net sol2 nlohmann-json fmt yasm nativefiledialog
+
       - name: Create directory
         run: mkdir build
 
