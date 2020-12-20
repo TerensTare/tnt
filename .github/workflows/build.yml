@@ -76,10 +76,10 @@ jobs:
           bootstrap-vcpkg${{ matrix.config.script-ext }}
 
       - name: Create directory
-        run: mkdir build && cd build
+        run: mkdir build
 
       - name: Generate project
-        run: cmake ..
+        run: cmake -Bbuild .
 
       - name: Build project
         run: cmake --build . --target TnTEditor --config Release
