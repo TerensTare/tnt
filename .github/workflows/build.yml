@@ -68,12 +68,12 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Update vcpkg
-        id: update_vcpkg
-        run: |
-          cd ${{ matrix.config.vcpkg-path }}
-          git pull
-          bootstrap-vcpkg${{ matrix.config.script-ext }}
+      # - name: Update vcpkg
+      #   id: update_vcpkg
+      #   run: |
+      #     cd ${{ matrix.config.vcpkg-path }}
+      #     git pull
+      #     bootstrap-vcpkg${{ matrix.config.script-ext }}
 
       - name: Create directory
         run: mkdir build
