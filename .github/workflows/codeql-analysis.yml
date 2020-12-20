@@ -9,6 +9,9 @@ on:
   schedule:
     - cron: '0 7 * * 1'
 
+env:
+  VCPKG_FEATURE_FLAGS: manifests,binarycaching
+
 jobs:
   analyse:
     name: Analyse
@@ -29,8 +32,8 @@ jobs:
       with:
         languages: cpp
 
+        # vcpkg install sdl2 sdl2-image[libjpeg-turbo,libwebp,tiff] sdl2-mixer[dynamic-load,libflac,libmodplug,libvorbis,nativemidi,opusfile] sdl2-ttf sdl2-net sol2 nlohmann-json fmt nativefiledialog ${{ matrix.config.extra }}
     - run: |
-        vcpkg install sdl2 sdl2-image[libjpeg-turbo,libwebp,tiff] sdl2-mixer[dynamic-load,libflac,libmodplug,libvorbis,nativemidi,opusfile] sdl2-ttf sdl2-net sol2 nlohmann-json fmt nativefiledialog ${{ matrix.config.extra }}
         mkdir build
         cmake -Bbuild . -DCMAKE_TOOLCHAIN_FILE=${{ matrix.config.vcpkg-path }}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --target TnTEditor --config Release
