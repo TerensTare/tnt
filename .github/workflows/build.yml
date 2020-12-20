@@ -74,15 +74,14 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      # - name: Get dependencies
-      #   run: |
-      #     vcpkg install sdl2 sdl2-image[libjpeg-turbo,libwebp,tiff] sdl2-mixer[dynamic-load,libflac,libmodplug,libvorbis,nativemidi,opusfile] sdl2-ttf sdl2-net sol2 nlohmann-json fmt nativefiledialog
-
-      - name: Create directory
-        run: mkdir build
+      - name: Get dependencies
+        run: |
+          vcpkg install sdl2 sdl2-image[libjpeg-turbo,libwebp,tiff] sdl2-mixer[dynamic-load,libflac,libmodplug,libvorbis,nativemidi,opusfile] sdl2-ttf sdl2-net sol2 nlohmann-json fmt nativefiledialog ${{ matrix.config.extra }}
 
       - name: Generate project
-        run: cmake -Bbuild .
+        run: |
+          mkdir build
+          cmake -Bbuild . -DCMAKE_TOOLCHAIN_FILE=${{ matrix.config.vcpkg-path }}/scripts/buildsystems/vcpkg.cmake
 
       - name: Build project
         run: cmake --build . --target TnTEditor --config Release
