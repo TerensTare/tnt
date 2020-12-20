@@ -19,6 +19,9 @@
 name: build
 on: ["push", "pull_request"]
 
+env:
+  VCPKG_FEATURE_FLAGS: manifests,binarycaching
+
 jobs:
   check-code:
     name: Check code quality
@@ -44,6 +47,7 @@ jobs:
           build_type: "Release"
           triplet: 'x64-windows'
           vcpkg-path: "C:\\vcpkg"
+          extra: yasm
           script-ext: '.bat'
           mono: ''
 
@@ -53,6 +57,7 @@ jobs:
           build-type: "Release"
           triplet: 'x64-linux'
           vcpkg-path: "/usr/local/share/vcpkg"
+          extra: ''
           script-ext: '.sh'
           mono: 'mono'
 
@@ -62,22 +67,16 @@ jobs:
           build_type: "Release"
           triplet: 'x64-osx'
           vcpkg-path: "/usr/local/share/vcpkg"
+          extra: ''
           script-ext: '.sh'
           mono: 'mono'
 
     steps:
       - uses: actions/checkout@v1
 
-      # - name: Update vcpkg
-      #   id: update_vcpkg
+      # - name: Get dependencies
       #   run: |
-      #     cd ${{ matrix.config.vcpkg-path }}
-      #     git pull
-      #     bootstrap-vcpkg${{ matrix.config.script-ext }}
-
-      - name: Get dependencies
-        run: |
-          vcpkg install sdl2 sdl2-image[libjpeg-turbo,libwebp,tiff] sdl2-mixer[dynamic-load,libflac,libmodplug,libvorbis,nativemidi,opusfile] sdl2-ttf sdl2-net sol2 nlohmann-json fmt yasm nativefiledialog
+      #     vcpkg install sdl2 sdl2-image[libjpeg-turbo,libwebp,tiff] sdl2-mixer[dynamic-load,libflac,libmodplug,libvorbis,nativemidi,opusfile] sdl2-ttf sdl2-net sol2 nlohmann-json fmt nativefiledialog
 
       - name: Create directory
         run: mkdir build
