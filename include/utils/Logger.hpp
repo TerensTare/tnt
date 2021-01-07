@@ -4,7 +4,6 @@
 #include <fmt/core.h>
 #include <fmt/color.h>
 
-
 // TODO: unfinished
 // TODO: support writing to files.
 // TODO: support writing logs to the developer console built in the engine.

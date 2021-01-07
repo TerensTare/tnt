@@ -5,7 +5,7 @@
 #include "doo_ecs/Physics.hpp"
 #include "doo_ecs/Steering.hpp"
 
-#include "utils/TypeUtils.hpp"
+#include "types/TypeUtils.hpp"
 
 namespace tnt::doo
 {

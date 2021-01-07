@@ -3,6 +3,25 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a15]
+### Added
+- `tnt::y_comb` on `types/TypeUtils.hpp`.
+- `tnt::vfs_handle` if you want to have separate virtual file systems. It is thread-safe, like the functions on `tnt::vfs` will be soon.
+- `tnt::crtp<T>::super`, which is the same as calling `tnt::crtp<T>::base()`.
+- `doo_ecs/System.hpp`, which contains some utilities related to Data Oriented ECS systems.
+- `utils/Bench.hpp` which will replace `utils/Benchmark.hpp`.
+- `tnt::sized_any<S>::operator bool` to check the validity of the content of the any type.
+
+### Changed
+- `tnt::crtp<T>` is now default constructible and  `constexpr`-ready.
+- `TypeUtils.hpp` is now moved on folder `types`.
+- `PROFILE_FUNCTION` now works with the three major compilers.
+- `tnt::any` is now `tnt::sized_any<S>` where S denotes the size of the storage for the any. It is deduced by default or can be set by the user. If you want to use different any objects with different sizes on an array/vector, use `tnt::any` which is equal to `tnt::sized_any<(std::size_t)-1>` and has a default size.
+
+## Deprecated
+- `utils/Benchmark.hpp`, but you should still use it, until `utils/Bench.hpp` is finished.
+
+
 ## [0.1.0a14]
 ### Added
 - Folder `types`, which contains type-related utility files.

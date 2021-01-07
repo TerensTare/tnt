@@ -7,6 +7,11 @@
 #include <nlohmann/json.hpp>
 #include <nfd.h>
 
+#if defined(_MSC_VER) and not defined(__clang__)
+#pragma warning(push)
+#pragma warning(disable: 4275)
+#endif
+
 #include "core/Window.hpp"
 #include "core/Input.hpp"
 
@@ -23,6 +28,11 @@
 
 #include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
+#include "utils/Benchmark.hpp"
+
+#if defined(_MSC_VER) and not defined(__clang__)
+#pragma warning(pop)
+#endif
 
 using tnt::doo::animations;
 using tnt::doo::bones;
@@ -198,6 +208,8 @@ auto draw_imgui = [](tnt::Window const &window, tnt::doo::object &active, float 
 
 int main(int argc, char **argv)
 {
+    tnt::bench::BeginSession("Editor", "benchmark.json");
+
     tnt::Window window{"The TnT Engine", 800, 600};
     window.setIcon("assets/TnT.ico");
 

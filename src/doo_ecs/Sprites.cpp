@@ -9,6 +9,8 @@
 #include "fileIO/AssetCache.hpp"
 #include "json/JsonRectangle.hpp"
 
+#include "utils/Benchmark.hpp"
+
 namespace tnt::doo
 {
     inline static medium_texture_cache *cache{default_texture_cache()};
@@ -36,6 +38,8 @@ namespace tnt::doo
     {
         safe_ensure(objects.active.contains(id), "Adding inexistent object to sprites_sys!!");
 
+        PROFILE_FUNCTION();
+
         [[unlikely]] if (id >= tex.capacity())
         {
             tex.reserve(id - tex.capacity() + 1);
@@ -51,6 +55,8 @@ namespace tnt::doo
     {
         if (j.contains("sprite"))
         {
+            PROFILE_FUNCTION();
+
             if (std::string_view const &file{j["sprite"]["file"].get<std::string_view>()};
                 j["sprite"].contains("crop"))
                 add_object(id, {win, file, j["sprite"]["crop"]});
@@ -59,8 +65,9 @@ namespace tnt::doo
         }
     }
 
-    void sprites_sys::to_json(object const &id, nlohmann::json &j) 
+    void sprites_sys::to_json(object const &id, nlohmann::json &j)
     {
+        PROFILE_FUNCTION();
         j["sprite"]["crop"] = {clip[id].x, clip[id].y, clip[id].w, clip[id].h};
     }
 
@@ -68,6 +75,8 @@ namespace tnt::doo
 
     Rectangle sprites_sys::draw_area(object const &id) const noexcept
     {
+        PROFILE_FUNCTION();
+
         Rectangle ret;
         if (target != null_v<camera>)
         {
@@ -94,6 +103,7 @@ namespace tnt::doo
     {
         if (active.contains(id))
         {
+            PROFILE_FUNCTION();
             SDL_FRect const &dst{(SDL_FRect)draw_area(id)};
 
             SDL_RenderCopyExF(win.getRenderer(), tex[id],
@@ -104,6 +114,7 @@ namespace tnt::doo
 
     void sprites_sys::remove(object const &id) noexcept
     {
+        PROFILE_FUNCTION();
         active.erase(id);
         tex.erase(tex.cbegin() + id);
         clip.erase(clip.cbegin() + id);
@@ -111,6 +122,7 @@ namespace tnt::doo
 
     void sprites_sys::clear() noexcept
     {
+        PROFILE_FUNCTION();
         active.clear();
         tex.clear();
         clip.clear();

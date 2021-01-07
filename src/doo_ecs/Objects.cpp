@@ -4,6 +4,7 @@
 #include "doo_ecs/Objects.hpp"
 #include "json/JsonVector.hpp"
 #include "imgui/ImGui.hpp"
+#include "utils/Benchmark.hpp"
 
 namespace tnt::doo
 {
@@ -18,6 +19,8 @@ namespace tnt::doo
 
     object objects_sys::add_object(object_data const &data_) noexcept
     {
+        PROFILE_FUNCTION();
+
         object const &index{active.size()};
 
         [[unlikely]] if (angle.size() == angle.capacity()) // if the vector got to his capacity, then we reserve more space
@@ -42,11 +45,14 @@ namespace tnt::doo
 
     [[nodiscard]] object_data objects_sys::get_data(object const &id) const noexcept
     {
+        PROFILE_FUNCTION();
         return object_data{gAngle(id), gPos(id), gScale(id), parent[id]};
     }
 
     object objects_sys::from_json(nlohmann::json const &j)
     {
+        PROFILE_FUNCTION();
+
         object id{null};
         if (j.contains("parent"))
             id = add_object({j["angle"].get<float>(),
@@ -60,8 +66,10 @@ namespace tnt::doo
         return id;
     }
 
-    void objects_sys::to_json(object const &id, nlohmann::json &j) 
+    void objects_sys::to_json(object const &id, nlohmann::json &j)
     {
+        PROFILE_FUNCTION();
+
         j["parent"] = parent[id];
         j["angle"] = gAngle(id);
         j["pos"] = gPos(id);
@@ -70,6 +78,8 @@ namespace tnt::doo
 
     void objects_sys::draw_imgui(object const &id, Window const &win) noexcept
     {
+        PROFILE_FUNCTION();
+
         tnt::ImGui::hslider_float(win, "Angle", -360.f, 360.f, &objects.angle[id]);
         tnt::ImGui::hslider_vec(win, "Scale", .1f, 20.f, .1f, 20.f, &objects.scale[id]);
         // TODO: rethink this (maybe) substract (gPos(id) - pos[id]) ??
@@ -80,6 +90,8 @@ namespace tnt::doo
 
     float objects_sys::gAngle(object const &id) const noexcept
     {
+        PROFILE_FUNCTION();
+
         if (parent[id] == null)
             return angle[id];
         return angle[id] + gAngle(parent[id]);
@@ -87,6 +99,8 @@ namespace tnt::doo
 
     Vector objects_sys::gScale(object const &id) const noexcept
     {
+        PROFILE_FUNCTION();
+
         if (parent[id] == null)
             return scale[id];
         Vector const &globScale{gScale(parent[id])};
@@ -95,6 +109,8 @@ namespace tnt::doo
 
     Vector objects_sys::gPos(object const &id) const noexcept
     {
+        PROFILE_FUNCTION();
+
         if (parent[id] == null)
             return pos[id];
 
@@ -105,6 +121,8 @@ namespace tnt::doo
 
     void objects_sys::set_parent(object const &id, object const &parent_) noexcept
     {
+        PROFILE_FUNCTION();
+
         if (parent_ == null)
         {
             angle[id] = gAngle(id);
@@ -130,6 +148,8 @@ namespace tnt::doo
 
     void objects_sys::remove(object const &id) noexcept
     {
+        PROFILE_FUNCTION();
+
         active.erase(id);
 
         parent.erase(parent.cbegin() + id);
@@ -140,6 +160,8 @@ namespace tnt::doo
 
     void objects_sys::clear() noexcept
     {
+        PROFILE_FUNCTION();
+
         active.clear();
         parent.clear();
         angle.clear();

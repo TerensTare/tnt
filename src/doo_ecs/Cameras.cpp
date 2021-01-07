@@ -9,11 +9,14 @@
 #include "imgui/ImGui.hpp"
 #include "json/JsonVector.hpp"
 #include "pcg/Random.hpp"
+#include "utils/Benchmark.hpp"
 
 namespace tnt::doo
 {
     void cameras_sys::add_object(camera_comp const &data)
     {
+        PROFILE_FUNCTION();
+
         [[unlikely]] if (angle.size() == angle.capacity())
         {
             angle.reserve(3);
@@ -45,6 +48,8 @@ namespace tnt::doo
 
     void cameras_sys::from_json(nlohmann::json const &j)
     {
+        PROFILE_FUNCTION();
+
         float angle{0.f};
         float speed_{5.f};
         float shaking_{.7f};
@@ -71,6 +76,8 @@ namespace tnt::doo
     {
         if (active.contains(id))
         {
+            PROFILE_FUNCTION();
+
             nlohmann::json camera{j["camera"]};
             camera["angle"] = angle[id];
             camera["speed"] = speed[id];
@@ -82,6 +89,8 @@ namespace tnt::doo
 
     void cameras_sys::draw_imgui(camera const &id, Window const &win) noexcept
     {
+        PROFILE_FUNCTION();
+
         // TODO: from-player offset
         if (tnt::ImGui::BeginSection(win, "Camera"))
         {
@@ -97,6 +106,8 @@ namespace tnt::doo
 
     void cameras_sys::follow(camera const &cam, object const &id, float time_, Vector const &off) noexcept
     {
+        PROFILE_FUNCTION();
+
         Vector const &target_{objects.gPos(id) - off};
         Vector const &half_wh{width[cam] * .5f, height[cam] * .5f};
         pos[cam] = lerp<Vector>(pos[cam], target_ - half_wh, time_ * speed[cam] * .001f);
@@ -104,11 +115,15 @@ namespace tnt::doo
 
     void cameras_sys::shake(camera const &cam) noexcept
     {
+        PROFILE_FUNCTION();
+
         pos[cam] += randomUnitVector() * shaking[cam];
     }
 
     void cameras_sys::zoom_to_fit(camera const &cam, std::span<object> objs)
     {
+        PROFILE_FUNCTION();
+
         // TODO: not *perfect*. Ex. A corner may be left outside.
         Vector min_{objects.gPos(objs.front())};
         Vector max_{objects.gPos(objs.front())}, curr; // first value
@@ -129,6 +144,8 @@ namespace tnt::doo
 
     void cameras_sys::remove(camera const &id) noexcept
     {
+        PROFILE_FUNCTION();
+
         active.erase(id);
         angle.erase(angle.cbegin() + id);
         width.erase(width.cbegin() + id);
@@ -145,6 +162,8 @@ namespace tnt::doo
 
     void cameras_sys::clear() noexcept
     {
+        PROFILE_FUNCTION();
+
         active.clear();
         angle.clear();
         width.clear();

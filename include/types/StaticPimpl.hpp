@@ -4,7 +4,8 @@
 #include <type_traits>
 #include "core/Config.hpp"
 
-// TODO: pimpl.emplace
+// TODO:
+// pimpl::emplace
 
 namespace tnt
 {

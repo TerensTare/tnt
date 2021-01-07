@@ -50,12 +50,12 @@
 #include "types/ScopeUtils.hpp"
 #include "types/Sort.hpp"
 #include "types/Timer.hpp"
+#include "types/TypeUtils.hpp"
 
 #include "utils/Assert.hpp"
 #include "utils/Benchmark.hpp"
 #include "utils/BitFlags.hpp"
 #include "utils/Logger.hpp"
 #include "utils/Traits.hpp"
-#include "utils/TypeUtils.hpp"
 
 #endif // !TNT_MAIN_HEADER_HPP

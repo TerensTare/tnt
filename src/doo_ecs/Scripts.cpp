@@ -10,11 +10,15 @@
 #include "tolua/LuaDooEcs.hpp"
 #include "tolua/LuaUtils.hpp"
 
+#include "utils/Benchmark.hpp"
+
 namespace tnt::doo
 {
     void scripts_sys::add_object(object const &id, std::string_view filename,
                                  tnt::lua::lib const &libs)
     {
+        PROFILE_FUNCTION();
+
         [[unlikely]] if (id > states.capacity())
             states.reserve(10);
 
@@ -35,6 +39,8 @@ namespace tnt::doo
     {
         if (active.contains(id))
         {
+            PROFILE_FUNCTION();
+
             sol::safe_function init = states[id]["init"];
             if (auto const &res = init(); !res.valid())
             {
@@ -46,6 +52,8 @@ namespace tnt::doo
 
     void scripts_sys::reload(object const &id) noexcept
     {
+        PROFILE_FUNCTION();
+
         std::string tmp{states[id]["file"].get<std::string>()};
         remove(id);
         add_object(id, tmp);
@@ -55,6 +63,8 @@ namespace tnt::doo
     {
         if (active.contains(id))
         {
+            PROFILE_FUNCTION();
+
             sol::safe_function fn = states[id]["update"];
             if (auto const &res = fn(time_); !res.valid())
             {
@@ -68,6 +78,7 @@ namespace tnt::doo
     {
         if (j.contains("script"))
         {
+            PROFILE_FUNCTION();
             // if (j["script"].contains("libs"))
             // {
             // nlohmann::json const &jlib{j["script"]["libs"]};
@@ -85,17 +96,20 @@ namespace tnt::doo
 
     void scripts_sys::to_json(object const &id, nlohmann::json &j)
     {
+        PROFILE_FUNCTION();
         j["script"]["file"] = states[id]["file"];
     }
 
     void scripts_sys::remove(object const &id) noexcept
     {
+        PROFILE_FUNCTION();
         active.erase(id);
         states.erase(states.cbegin() + id);
     }
 
     void scripts_sys::clear() noexcept
     {
+        PROFILE_FUNCTION();
         active.clear();
         states.clear();
     }

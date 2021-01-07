@@ -108,7 +108,7 @@ namespace tnt
 
         long long start =
             std::chrono::time_point_cast<std::chrono::microseconds>(
-                m_StartTimepoint)
+                *m_StartTimepoint)
                 .time_since_epoch()
                 .count();
         long long end =

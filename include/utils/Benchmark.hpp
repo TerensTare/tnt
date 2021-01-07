@@ -2,7 +2,9 @@
 #define BENCHMARK_HPP
 
 #include <chrono>
+
 #include "core/Config.hpp"
+#include "types/StaticPimpl.hpp"
 
 // TODO: more noexcept stuff here
 
@@ -17,14 +19,14 @@ namespace tnt
     namespace bench
     {
         TNT_API void BeginSession(std::string_view name,
-                          std::string_view filepath = "benchmark.json");
+                                  std::string_view filepath);
         TNT_API void EndSession();
     } // namespace bench
 
 #ifdef TNT_PROFILING
-    inline static constexpr bool is_profiling{true};
+    inline constexpr bool is_profiling{true};
 #else
-    inline static constexpr bool is_profiling{false};
+    inline constexpr bool is_profiling{false};
 #endif
 
     class TNT_API BenchValidTimer final
@@ -36,25 +38,29 @@ namespace tnt
         void Stop();
 
     private:
-        const char *m_Name;
-        std::chrono::time_point<std::chrono::high_resolution_clock>
-            m_StartTimepoint;
+        using unit = std::chrono::time_point<std::chrono::high_resolution_clock>;
+
         bool m_Stopped;
+        const char *m_Name;
+        pimpl<unit, sizeof(unit), alignof(unit)> m_StartTimepoint;
     };
 
     struct TNT_API BenchEmptyTimer final
     {
-        inline explicit BenchEmptyTimer(const char *) noexcept {}
-        inline void Stop() noexcept {}
+        explicit constexpr BenchEmptyTimer(const char *) noexcept {}
+        constexpr void Stop() noexcept {}
     };
 
     using BenchTimer = std::conditional_t<
         is_profiling, BenchValidTimer, BenchEmptyTimer>;
 } // namespace tnt
 
-// clang-format off
 #define PROFILE_SCOPE(name) \
-    tnt::BenchTimer timer## __LINE__ { name }
+    tnt::BenchTimer timer##__LINE__ { name }
+#if defined(_MSC_VER) && !defined(__clang__)
 #define PROFILE_FUNCTION() PROFILE_SCOPE(__FUNCSIG__)
+#else
+#define PROFILE_FUNCTION() PROFILE_SCOPE(__PRETTY_FUNCTION__)
+#endif
 
 #endif //! BENCHMARK_HPP

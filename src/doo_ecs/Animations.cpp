@@ -6,14 +6,17 @@
 #include "doo_ecs/Sprites.hpp"
 
 #include "json/JsonRectangle.hpp"
-#include "utils/TypeUtils.hpp"
+#include "types/TypeUtils.hpp"
 
 #include "utils/Assert.hpp"
+#include "utils/Benchmark.hpp"
 
 namespace tnt::doo
 {
     void animations_sys::add_object(object const &id, animation_comp const &anim_)
     {
+        PROFILE_FUNCTION();
+
         safe_ensure(objects.active.contains(id), "Adding inexistent object to animations_sys!!");
         safe_ensure(sprites.active.contains(id), "Adding object without sprite component to animations_sys!! Add the object to sprites_sys first!!");
 
@@ -47,6 +50,8 @@ namespace tnt::doo
     {
         if (active.contains(id))
         {
+            PROFILE_FUNCTION();
+
             elapsed[id] += time_;
             if (elapsed[id] - (timePerFrame[id] * (current[id] + 1)) >= FLT_EPSILON)
             {
@@ -76,6 +81,8 @@ namespace tnt::doo
     {
         if (j.contains("anim"))
         {
+            PROFILE_FUNCTION();
+
             Rectangle const &rect{j["sprite"]["crop"]};
             nlohmann::json const &chunk{j["anim"]};
             int const &frames{chunk["frames"]};
@@ -101,6 +108,8 @@ namespace tnt::doo
     {
         if (active.contains(id))
         {
+            PROFILE_FUNCTION();
+
             nlohmann::json &anim{j.at("anim")};
             anim["speed"] = speed[id];
             anim["frames"] = speed[id] / timePerFrame[id];
@@ -112,6 +121,8 @@ namespace tnt::doo
 
     void animations_sys::remove(object const &id) noexcept
     {
+        PROFILE_FUNCTION();
+
         active.erase(id);
         wrap.erase(wrap.cbegin() + id);
         dir.erase(dir.cbegin() + id);
@@ -126,6 +137,8 @@ namespace tnt::doo
 
     void animations_sys::clear() noexcept
     {
+        PROFILE_FUNCTION();
+
         active.clear();
         wrap.clear();
         dir.clear();

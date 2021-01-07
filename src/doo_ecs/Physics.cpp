@@ -11,12 +11,14 @@
 #include "imgui/ImGui.hpp"
 
 #include "utils/Assert.hpp"
+#include "utils/Benchmark.hpp"
 
 namespace tnt::doo
 {
     void physics_sys::add_object(object const &id, physics_comp const &body)
     {
         safe_ensure(objects.active.contains(id), "Adding inexistent object to animations_sys!!");
+        PROFILE_FUNCTION();
 
         [[unlikely]] if (id > inv_mass.capacity())
         {
@@ -66,12 +68,16 @@ namespace tnt::doo
 
     void physics_sys::addForce(object const &id, Vector const &force) noexcept
     {
+        PROFILE_FUNCTION();
+
         accel[id] += (force * inv_mass[id]);
         accel[id] = if_else(accel[id] > maxAccel[id], maxAccel[id], accel[id]);
     }
 
     void physics_sys::addGlobalForce(Vector const &force) noexcept
     {
+        PROFILE_FUNCTION();
+
         totalForce += force;
         for (auto const &id : active)
             addForce(id, totalForce);
@@ -81,6 +87,8 @@ namespace tnt::doo
     {
         if (active.contains(id))
         {
+            PROFILE_FUNCTION();
+
             check(time_ > 0.f, "Calling tnt::doo::physics_sys::Update with parameter time_ equal to 0. Objects will not be updated!!");
             float const &damp{std::powf(damping[id], time_)};
 
@@ -95,6 +103,8 @@ namespace tnt::doo
 
     bool physics_sys::colliding(object const &id, object const &id2) noexcept
     {
+        PROFILE_FUNCTION();
+
         // TODO: check for collision when angle is non-zero.
         bool ret = !(bound_box[id2].x - (bound_box[id].x + bound_box[id].w) > 0.f ||
                      bound_box[id2].y - (bound_box[id].y + bound_box[id].h) > 0.f);
@@ -108,6 +118,8 @@ namespace tnt::doo
     {
         if (active.contains(id) && active.contains(id2))
         {
+            PROFILE_FUNCTION();
+
             Vector const &normal{(objects.gPos(id) - objects.gPos(id2)).Normalized()};
 
             float const &sep_vel = [this, &normal](object const &id, object const &id2) noexcept -> float {
@@ -154,6 +166,8 @@ namespace tnt::doo
 
     void physics_sys::resolve(object const &id, object const &id2) noexcept
     {
+        PROFILE_FUNCTION();
+
         resolveVel(id, id2);
         resolveInterpenetration(id, id2);
     }
@@ -162,6 +176,8 @@ namespace tnt::doo
     {
         if (j.contains("phys"))
         {
+            PROFILE_FUNCTION();
+
             if (nlohmann::json const &phys{j["phys"]};
                 phys.contains("bounds"))
             {
@@ -194,10 +210,12 @@ namespace tnt::doo
         }
     }
 
-    void physics_sys::to_json(object const &id, nlohmann::json &j) 
+    void physics_sys::to_json(object const &id, nlohmann::json &j)
     {
         if (active.contains(id))
         {
+            PROFILE_FUNCTION();
+
             nlohmann::json &p{j["phys"]};
             p["mass"] = 1 / inv_mass[id];
             p["damping"] = damping[id];
@@ -210,6 +228,8 @@ namespace tnt::doo
 
     void physics_sys::remove(object const &id) noexcept
     {
+        PROFILE_FUNCTION();
+
         active.erase(id);
         inv_mass.erase(inv_mass.cbegin() + id);
         damping.erase(damping.cbegin() + id);
@@ -225,6 +245,8 @@ namespace tnt::doo
 
     void physics_sys::clear() noexcept
     {
+        PROFILE_FUNCTION();
+
         active.clear();
         inv_mass.clear();
         damping.clear();

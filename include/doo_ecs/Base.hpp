@@ -69,7 +69,7 @@ namespace tnt::doo
     template <std::unsigned_integral I>
     inline constexpr I null_v{(I)-1};
 
-    inline constexpr object null{null_v<object>}; /// < An object id indicating that the object is absent on the desired system.
+    inline constexpr object null{null_v<object>}; /// < A special id having a context-dependent meaning.
 
     // template <typename T>
     // concept system = std::is_final_v<T> &&
