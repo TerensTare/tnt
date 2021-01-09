@@ -3,6 +3,14 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a16]
+### Added
+- Deduction guides for classes on `types/ScopeUtils.hpp`.
+
+### Fixed
+- Some incorrect things on `doo_ecs/System.hpp`.
+
+
 ## [0.1.0a15]
 ### Added
 - `tnt::y_comb` on `types/TypeUtils.hpp`.

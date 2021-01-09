@@ -3,8 +3,7 @@
 
 #include <mutex>
 #include <queue>
-
-#include <nlohmann/json_fwd.hpp>
+#include <ranges>
 
 namespace tnt
 {

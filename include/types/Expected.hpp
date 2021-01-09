@@ -220,9 +220,6 @@ namespace tnt
     template <typename T>
     Expected(T) -> Expected<T>;
 
-    template <typename T>
-    Expected(T[]) -> Expected<T[]>;
-
     template <typename... Args>
     Expected(Args &&...) -> Expected<std::tuple<Args...>>;
 } // namespace tnt

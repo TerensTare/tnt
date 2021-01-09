@@ -17,3 +17,9 @@ TODO.md
 
 # SourceTrail stuff
 *.srctrl*
+
+# Documentation stuff
+_build
+_static
+_templates
+*docs*
