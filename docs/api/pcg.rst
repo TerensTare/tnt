@@ -1,7 +1,7 @@
 .. _tnt_pcg_api:
 
-File
-====
+Procedural Content Generation
+=============================
 
 .. toctree::
     :maxdepth: 2
