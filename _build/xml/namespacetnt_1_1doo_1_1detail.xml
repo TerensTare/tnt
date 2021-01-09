@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1doo_1_1detail" kind="namespace" language="C++">
+    <compoundname>tnt::doo::detail</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_system_8hpp_1ac5d44d0841ad46e646af7fff85112249" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::doo::detail::void_type</definition>
+        <argsstring></argsstring>
+        <name>void_type</name>
+        <initializer>= std::is_void_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/System.hpp" line="25" column="17" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/System.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/System.hpp" line="22" column="5"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Snipper &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Texture Atlas" href="TextureAtlas.html" />
+    <link rel="prev" title="Audio Player" href="AudioPlayer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../async.html">Async</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ecs.html">Entity Component System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../file.html">File</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="AudioPlayer.html">Audio Player</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Snipper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TextureAtlas.html">Texture Atlas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VirtualFS.html">Virtual File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cache.html">Cache</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../imgui.html">ImGui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math.html">Math</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../file.html">File</a> &raquo;</li>
+        
+      <li>Snipper</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/file/Snipper.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="snipper">
+<span id="tnt-file-watcher-api"></span><h1>Snipper<a class="headerlink" href="#snipper" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><dl class="cpp class">
+<dt id="_CPPv4N3tnt7SnipperE">
+<span id="_CPPv3N3tnt7SnipperE"></span><span id="_CPPv2N3tnt7SnipperE"></span><span id="tnt::Snipper"></span><span class="target" id="classtnt_1_1_snipper"></span><em class="property">class </em><code class="sig-name descname">Snipper</code><a class="headerlink" href="#_CPPv4N3tnt7SnipperE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;Snipper.hpp&gt;</em><p>A basic file watcher. Useful for asset hotloading and other stuff. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">The file that should be watched.</p>
+<p>Watch <code class="docutils literal notranslate"><span class="pre">name</span></code> to check if it has been modified. </p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt7Snipper9msvc_sizeE">
+<span id="_CPPv3N3tnt7Snipper9msvc_sizeE"></span><span id="_CPPv2N3tnt7Snipper9msvc_sizeE"></span><span id="tnt::Snipper::msvc_size__std::s"></span><span class="target" id="classtnt_1_1_snipper_1a5d8d6e820cf2031a5126bd11835531e9"></span><em class="property">constexpr</em> std::size_t <code class="sig-name descname">msvc_size</code> = {96}<a class="headerlink" href="#_CPPv4N3tnt7Snipper9msvc_sizeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt7Snipper10other_sizeE">
+<span id="_CPPv3N3tnt7Snipper10other_sizeE"></span><span id="_CPPv2N3tnt7Snipper10other_sizeE"></span><span id="tnt::Snipper::other_size__std::s"></span><span class="target" id="classtnt_1_1_snipper_1a9f3c51296de57e578deaf84e5d44b1c6"></span><em class="property">constexpr</em> std::size_t <code class="sig-name descname">other_size</code> = {88}<a class="headerlink" href="#_CPPv4N3tnt7Snipper10other_sizeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt7Snipper4dataE">
+<span id="_CPPv3N3tnt7Snipper4dataE"></span><span id="_CPPv2N3tnt7Snipper4dataE"></span><span id="tnt::Snipper::data__std::conditional_t:is_msvc_v.pimpl:impl.msvc_size.8:.pimpl:impl.other_size.8::"></span><span class="target" id="classtnt_1_1_snipper_1a40f1ab9f9433e3b6be7a33a20a23d48f"></span>std::conditional_t&lt;is_msvc_v, pimpl&lt;impl, <a class="reference internal" href="#_CPPv4N3tnt7Snipper9msvc_sizeE" title="tnt::Snipper::msvc_size">msvc_size</a>, 8&gt;, pimpl&lt;impl, <a class="reference internal" href="#_CPPv4N3tnt7Snipper10other_sizeE" title="tnt::Snipper::other_size">other_size</a>, 8&gt;&gt; <code class="sig-name descname">data</code><a class="headerlink" href="#_CPPv4N3tnt7Snipper4dataE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt7Snipper9watchFileENSt11string_viewE">
+<span id="_CPPv3N3tnt7Snipper9watchFileENSt11string_viewE"></span><span id="_CPPv2N3tnt7Snipper9watchFileENSt11string_viewE"></span><span id="tnt::Snipper::watchFile__std::string_view"></span><span class="target" id="classtnt_1_1_snipper_1a7e8ede5255e753e907e5df10ff95e606"></span>void <code class="sig-name descname">watchFile</code><span class="sig-paren">(</span>std::string_view <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt7Snipper9watchFileENSt11string_viewE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classtnt_1_1_snipper_1a094c990f7c6f50b538a2f11b33aba8b5"></span><code class="sig-name descname">template&lt;detail::callable&lt;&gt; Func&gt; void onModify (std::string_view file, Func &amp;&amp;func) noexcept(detail::safe_callable&lt; Func &gt;)</code></dt>
+<dd><p>Call a function if <code class="docutils literal notranslate"><span class="pre">file</span></code> has been modified. </p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The file watcher silently adds <code class="docutils literal notranslate"><span class="pre">file</span></code> to it’s watch list if the file isn’t there already. </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>The function is <code class="docutils literal notranslate"><span class="pre">noexcept</span></code> only if Func() is <code class="docutils literal notranslate"><span class="pre">noexcept</span></code>. </p>
+</dd>
+<dt><strong>Template Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Func</span></code>: A generic function representation. </p></li>
+</ul>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file</span></code>: The file that should be checked if it is modified or not. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">func</span></code>: The function that should be called if <code class="docutils literal notranslate"><span class="pre">file</span></code> has been modified. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt7Snipper11unwatchFileENSt11string_viewE">
+<span id="_CPPv3N3tnt7Snipper11unwatchFileENSt11string_viewE"></span><span id="_CPPv2N3tnt7Snipper11unwatchFileENSt11string_viewE"></span><span id="tnt::Snipper::unwatchFile__std::string_view"></span><span class="target" id="classtnt_1_1_snipper_1add8a773cc1321a28b8a093622ee6b9c8"></span>void <code class="sig-name descname">unwatchFile</code><span class="sig-paren">(</span>std::string_view <em>filename</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt7Snipper11unwatchFileENSt11string_viewE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Stops watching a file if it was already watching it. </p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>If the file wasn’t being watched, the file watcher doesn’r report anything. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt7Snipper10isModifiedENSt11string_viewE">
+<span id="_CPPv3N3tnt7Snipper10isModifiedENSt11string_viewE"></span><span id="_CPPv2N3tnt7Snipper10isModifiedENSt11string_viewE"></span><span id="tnt::Snipper::isModified__std::string_view"></span><span class="target" id="classtnt_1_1_snipper_1a76c9f598ca2e8327085eb9374e0b9926"></span>bool <code class="sig-name descname">isModified</code><span class="sig-paren">(</span>std::string_view <em>file</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt7Snipper10isModifiedENSt11string_viewE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if <code class="docutils literal notranslate"><span class="pre">file</span></code> has been modified since the last check. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file</span></code>: The name of the file to check. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N3tnt6detailE">
+<span id="_CPPv3N3tnt6detailE"></span><span id="_CPPv2N3tnt6detailE"></span><span id="tnt::detail"></span><span class="target" id="namespacetnt_1_1detail"></span><em class="property">namespace </em><code class="sig-name descname">detail</code><a class="headerlink" href="#_CPPv4N3tnt6detailE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="cpp var">
+<dt>
+<span class="target" id="_snipper_8hpp_1ae50a39fb669ed3a0d9c156efd354d061"></span><code class="sig-name descname">template&lt;typename T, typename... Args&gt; concept callable   = std::is_invocable_v&lt;T, Args...&gt;</code></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt>
+<span class="target" id="_snipper_8hpp_1adc4ef9f87655999c74819b2d9293e061"></span><code class="sig-name descname">template&lt;typename T, typename... Args&gt; concept safe_callable   = std::is_nothrow_invocable_v&lt;T, Args...&gt;</code></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="TextureAtlas.html" class="btn btn-neutral float-right" title="Texture Atlas" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="AudioPlayer.html" class="btn btn-neutral float-left" title="Audio Player" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

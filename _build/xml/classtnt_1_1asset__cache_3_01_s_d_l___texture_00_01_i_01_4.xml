@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4" kind="class" language="C++" prot="public">
+    <compoundname>tnt::asset_cache&lt; SDL_Texture, I &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>unsigned</type>
+        <declname>I</declname>
+        <defname>I</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1a2dd2d72187328b6c85b41aff6d32cdba" prot="private" static="no" mutable="no">
+        <type>std::byte</type>
+        <definition>std::byte tnt::asset_cache&lt; SDL_Texture, I &gt;::memory[I *sizeof(SDL_Texture *)]</definition>
+        <argsstring>[I *sizeof(SDL_Texture *)]</argsstring>
+        <name>memory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" line="50" column="19" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1ac61747e0104fe4e5e9792e7ad6bfd04f" prot="private" static="no" mutable="no">
+        <type>std::pmr::monotonic_buffer_resource</type>
+        <definition>std::pmr::monotonic_buffer_resource tnt::asset_cache&lt; SDL_Texture, I &gt;::res</definition>
+        <argsstring></argsstring>
+        <name>res</name>
+        <initializer>{memory, sizeof(memory)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" line="51" column="45" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1a39959a7ab5fda821b4d084b04e6c70e9" prot="private" static="no" mutable="no">
+        <type>std::pmr::unordered_map&lt; std::string, SDL_Texture * &gt;</type>
+        <definition>std::pmr::unordered_map&lt;std::string, SDL_Texture *&gt; tnt::asset_cache&lt; SDL_Texture, I &gt;::cache</definition>
+        <argsstring></argsstring>
+        <name>cache</name>
+        <initializer>{&amp;res}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" line="52" column="33" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1a8a905d46e9db9f2e7144f7c79eb1af7c" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::asset_cache&lt; SDL_Texture, I &gt;::~asset_cache</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>~asset_cache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" line="18" column="16" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" bodystart="18" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1ad5413263c8805ae2b90c61bfb53e9104" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>SDL_Texture *</type>
+        <definition>SDL_Texture* tnt::asset_cache&lt; SDL_Texture, I &gt;::get</definition>
+        <argsstring>(SDL_Renderer *ren, std::string_view path)</argsstring>
+        <name>get</name>
+        <param>
+          <type>SDL_Renderer *</type>
+          <declname>ren</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" line="25" column="29" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" bodystart="25" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1a825d614af93da96529bee533453f9c25" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::asset_cache&lt; SDL_Texture, I &gt;::load</definition>
+        <argsstring>(SDL_Renderer *ren, std::string_view path)</argsstring>
+        <name>load</name>
+        <param>
+          <type>SDL_Renderer *</type>
+          <declname>ren</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" line="32" column="21" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" bodystart="32" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1a90536aa1970f1aad49545fd2e0ad1836" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::asset_cache&lt; SDL_Texture, I &gt;::remove</definition>
+        <argsstring>(std::string_view path)</argsstring>
+        <name>remove</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" line="38" column="21" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" bodystart="38" bodyend="47"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" line="15" column="5" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl" bodystart="16" bodyend="53"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1a39959a7ab5fda821b4d084b04e6c70e9" prot="private" virt="non-virtual"><scope>tnt::asset_cache&lt; SDL_Texture, I &gt;</scope><name>cache</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1ad5413263c8805ae2b90c61bfb53e9104" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; SDL_Texture, I &gt;</scope><name>get</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1a825d614af93da96529bee533453f9c25" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; SDL_Texture, I &gt;</scope><name>load</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1a2dd2d72187328b6c85b41aff6d32cdba" prot="private" virt="non-virtual"><scope>tnt::asset_cache&lt; SDL_Texture, I &gt;</scope><name>memory</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1a90536aa1970f1aad49545fd2e0ad1836" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; SDL_Texture, I &gt;</scope><name>remove</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1ac61747e0104fe4e5e9792e7ad6bfd04f" prot="private" virt="non-virtual"><scope>tnt::asset_cache&lt; SDL_Texture, I &gt;</scope><name>res</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4_1a8a905d46e9db9f2e7144f7c79eb1af7c" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; SDL_Texture, I &gt;</scope><name>~asset_cache</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

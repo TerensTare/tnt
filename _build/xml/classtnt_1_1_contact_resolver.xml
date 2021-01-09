@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_contact_resolver" kind="class" language="C++" prot="public">
+    <compoundname>tnt::ContactResolver</compoundname>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_contact_resolver_1ab8ef4b423924ac01a3d31e9a022ec18a" prot="protected" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned tnt::ContactResolver::iterations</definition>
+        <argsstring></argsstring>
+        <name>iterations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="37" column="14" bodyfile="E:/thing/cpp/tnt/include/physics/Contact.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_contact_resolver_1ae88319984014c409f7b259ec5df60b3b" prot="protected" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned tnt::ContactResolver::iterationsUsed</definition>
+        <argsstring></argsstring>
+        <name>iterationsUsed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="38" column="14" bodyfile="E:/thing/cpp/tnt/include/physics/Contact.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_contact_resolver_1ae3820718fb0f2e3a3be5ad307686b108" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::ContactResolver::ContactResolver</definition>
+        <argsstring>(unsigned it)</argsstring>
+        <name>ContactResolver</name>
+        <param>
+          <type>unsigned</type>
+          <declname>it</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="31" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_contact_resolver_1a127f759522bed3836cba13eb3bcd48e8" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::ContactResolver::setIterations</definition>
+        <argsstring>(unsigned it) noexcept</argsstring>
+        <name>setIterations</name>
+        <param>
+          <type>unsigned</type>
+          <declname>it</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="33" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_contact_resolver_1ab6442ad9590762b4d8336b40894cc766" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::ContactResolver::resolve</definition>
+        <argsstring>(Contact *contacts, unsigned number, float duration)</argsstring>
+        <name>resolve</name>
+        <param>
+          <type><ref refid="classtnt_1_1_contact" kindref="compound">Contact</ref> *</type>
+          <declname>contacts</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>number</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="34" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="28" column="1" bodyfile="E:/thing/cpp/tnt/include/physics/Contact.hpp" bodystart="29" bodyend="39"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_contact_resolver_1ae3820718fb0f2e3a3be5ad307686b108" prot="public" virt="non-virtual"><scope>tnt::ContactResolver</scope><name>ContactResolver</name></member>
+      <member refid="classtnt_1_1_contact_resolver_1ab8ef4b423924ac01a3d31e9a022ec18a" prot="protected" virt="non-virtual"><scope>tnt::ContactResolver</scope><name>iterations</name></member>
+      <member refid="classtnt_1_1_contact_resolver_1ae88319984014c409f7b259ec5df60b3b" prot="protected" virt="non-virtual"><scope>tnt::ContactResolver</scope><name>iterationsUsed</name></member>
+      <member refid="classtnt_1_1_contact_resolver_1ab6442ad9590762b4d8336b40894cc766" prot="public" virt="non-virtual"><scope>tnt::ContactResolver</scope><name>resolve</name></member>
+      <member refid="classtnt_1_1_contact_resolver_1a127f759522bed3836cba13eb3bcd48e8" prot="public" virt="non-virtual"><scope>tnt::ContactResolver</scope><name>setIterations</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

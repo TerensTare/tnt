@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1tmx" kind="namespace" language="C++">
+    <compoundname>tnt::tmx</compoundname>
+    <innerclass refid="structtnt_1_1tmx_1_1_layer" prot="public">tnt::tmx::Layer</innerclass>
+    <innerclass refid="structtnt_1_1tmx_1_1_map" prot="public">tnt::tmx::Map</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/doo_tiled/TileMap.hpp" line="12" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,341 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_particle" kind="class" language="C++" prot="public">
+    <compoundname>tnt::Particle</compoundname>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_particle_1ab8742b799b8f8f581c2e37c8a72c37ab" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::Particle::damping</definition>
+        <argsstring></argsstring>
+        <name>damping</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="34" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/Particle.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_particle_1ac1a385652e581c9730eab3c1a8acc2f6" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::Particle::inverseMass</definition>
+        <argsstring></argsstring>
+        <name>inverseMass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="35" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/Particle.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_particle_1a8b89a45e2fa8e64672c0eb95c3d8c859" prot="protected" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::Particle::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="37" column="12" bodyfile="E:/thing/cpp/tnt/include/physics/Particle.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_particle_1a2d9d6ad7c6a24018ab41bb18259fa58e" prot="protected" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::Particle::velocity</definition>
+        <argsstring></argsstring>
+        <name>velocity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="38" column="12" bodyfile="E:/thing/cpp/tnt/include/physics/Particle.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_particle_1abe022c0ad6ec67acc4e3234f987774e8" prot="protected" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::Particle::acceleration</definition>
+        <argsstring></argsstring>
+        <name>acceleration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="39" column="12" bodyfile="E:/thing/cpp/tnt/include/physics/Particle.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_particle_1a074a4f376580d3dd833fed1c689ac3d3" prot="protected" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::Particle::forceAccumulator</definition>
+        <argsstring></argsstring>
+        <name>forceAccumulator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="41" column="12" bodyfile="E:/thing/cpp/tnt/include/physics/Particle.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_particle_1a847f27dc0de7622878c9de39a0f2529c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Particle::integrate</definition>
+        <argsstring>(float duration)</argsstring>
+        <name>integrate</name>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="11" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_particle_1a70a8644763117971dcab4e8a60b0045b" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Particle::setDamping</definition>
+        <argsstring>(float const &amp;value) noexcept</argsstring>
+        <name>setDamping</name>
+        <param>
+          <type>float const &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="13" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_particle_1af904450cf597165e9f2f37755561376d" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float tnt::Particle::getDamping</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>getDamping</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="14" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_particle_1a778bb3c9b522f278ddb7e3fd48bcd3d0" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Particle::setMass</definition>
+        <argsstring>(float const &amp;mass) noexcept</argsstring>
+        <name>setMass</name>
+        <param>
+          <type>float const &amp;</type>
+          <declname>mass</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="16" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_particle_1ad50962e813c5c8d7b0b4bb1c7df14b18" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float tnt::Particle::getMass</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>getMass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="17" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_particle_1ae34b285866221f9a44784bbd3848ab9a" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Particle::setPosition</definition>
+        <argsstring>(Vector const &amp;position) noexcept</argsstring>
+        <name>setPosition</name>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="19" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_particle_1a0b84d5a6180da7b110cbc6be5278460a" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::Particle::getPosition</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>getPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="20" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_particle_1aa8f99d32e71eb189d712b19e6e647778" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Particle::setVelocity</definition>
+        <argsstring>(Vector const &amp;vel) noexcept</argsstring>
+        <name>setVelocity</name>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>vel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="22" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_particle_1a72159c1ee08f66e56107790b2c759420" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::Particle::getVelocity</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>getVelocity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="23" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_particle_1a1202ecd04348a0acd59e72ca10d8af91" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Particle::setAcceleration</definition>
+        <argsstring>(Vector const &amp;accel) noexcept</argsstring>
+        <name>setAcceleration</name>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>accel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="25" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_particle_1ad65a15c5caf8cd836de75cfc027d03e4" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::Particle::getAcceleration</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>getAcceleration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="26" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_particle_1a825e021cb312f016bfbe01531bc967ff" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::Particle::hasFiniteMass</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>hasFiniteMass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="28" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_particle_1a478b67f9c60c6dec6aa32d29236880ba" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Particle::addForce</definition>
+        <argsstring>(Vector const &amp;force) noexcept</argsstring>
+        <name>addForce</name>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>force</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="30" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_particle_1a73e41e21cc57da3ca89c6c85333228ec" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Particle::clearAccumulator</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>clearAccumulator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="31" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>tnt::Vector</label>
+        <link refid="structtnt_1_1_vector"/>
+      </node>
+      <node id="1">
+        <label>tnt::Particle</label>
+        <link refid="classtnt_1_1_particle"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>acceleration</edgelabel>
+          <edgelabel>forceAccumulator</edgelabel>
+          <edgelabel>velocity</edgelabel>
+          <edgelabel>pos</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/physics/Particle.hpp" line="8" column="1" bodyfile="E:/thing/cpp/tnt/include/physics/Particle.hpp" bodystart="9" bodyend="42"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_particle_1abe022c0ad6ec67acc4e3234f987774e8" prot="protected" virt="non-virtual"><scope>tnt::Particle</scope><name>acceleration</name></member>
+      <member refid="classtnt_1_1_particle_1a478b67f9c60c6dec6aa32d29236880ba" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>addForce</name></member>
+      <member refid="classtnt_1_1_particle_1a73e41e21cc57da3ca89c6c85333228ec" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>clearAccumulator</name></member>
+      <member refid="classtnt_1_1_particle_1ab8742b799b8f8f581c2e37c8a72c37ab" prot="protected" virt="non-virtual"><scope>tnt::Particle</scope><name>damping</name></member>
+      <member refid="classtnt_1_1_particle_1a074a4f376580d3dd833fed1c689ac3d3" prot="protected" virt="non-virtual"><scope>tnt::Particle</scope><name>forceAccumulator</name></member>
+      <member refid="classtnt_1_1_particle_1ad65a15c5caf8cd836de75cfc027d03e4" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>getAcceleration</name></member>
+      <member refid="classtnt_1_1_particle_1af904450cf597165e9f2f37755561376d" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>getDamping</name></member>
+      <member refid="classtnt_1_1_particle_1ad50962e813c5c8d7b0b4bb1c7df14b18" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>getMass</name></member>
+      <member refid="classtnt_1_1_particle_1a0b84d5a6180da7b110cbc6be5278460a" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>getPosition</name></member>
+      <member refid="classtnt_1_1_particle_1a72159c1ee08f66e56107790b2c759420" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>getVelocity</name></member>
+      <member refid="classtnt_1_1_particle_1a825e021cb312f016bfbe01531bc967ff" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>hasFiniteMass</name></member>
+      <member refid="classtnt_1_1_particle_1a847f27dc0de7622878c9de39a0f2529c" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>integrate</name></member>
+      <member refid="classtnt_1_1_particle_1ac1a385652e581c9730eab3c1a8acc2f6" prot="protected" virt="non-virtual"><scope>tnt::Particle</scope><name>inverseMass</name></member>
+      <member refid="classtnt_1_1_particle_1a8b89a45e2fa8e64672c0eb95c3d8c859" prot="protected" virt="non-virtual"><scope>tnt::Particle</scope><name>pos</name></member>
+      <member refid="classtnt_1_1_particle_1a1202ecd04348a0acd59e72ca10d8af91" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>setAcceleration</name></member>
+      <member refid="classtnt_1_1_particle_1a70a8644763117971dcab4e8a60b0045b" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>setDamping</name></member>
+      <member refid="classtnt_1_1_particle_1a778bb3c9b522f278ddb7e3fd48bcd3d0" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>setMass</name></member>
+      <member refid="classtnt_1_1_particle_1ae34b285866221f9a44784bbd3848ab9a" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>setPosition</name></member>
+      <member refid="classtnt_1_1_particle_1aa8f99d32e71eb189d712b19e6e647778" prot="public" virt="non-virtual"><scope>tnt::Particle</scope><name>setVelocity</name></member>
+      <member refid="classtnt_1_1_particle_1a2d9d6ad7c6a24018ab41bb18259fa58e" prot="protected" virt="non-virtual"><scope>tnt::Particle</scope><name>velocity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

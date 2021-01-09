@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_audio_player" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>tnt::AudioPlayer</compoundname>
+    <includes local="no">AudioPlayer.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_audio_player_1a69209b4edb1079e2cd81d0b6a5a2382e" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::AudioPlayer::AudioPlayer</definition>
+        <argsstring>(int frequency, unsigned short format, int channels, int chunksize) noexcept</argsstring>
+        <name>AudioPlayer</name>
+        <param>
+          <type>int</type>
+          <declname>frequency</declname>
+        </param>
+        <param>
+          <type>unsigned short</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>channels</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>chunksize</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <computeroutput><ref refid="classtnt_1_1_audio_player" kindref="compound">AudioPlayer</ref></computeroutput> for a certain audio format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>frequency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frequency the audio should be played. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The format of the audio. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>channels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of the channels. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>chunksize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the chunk. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/AudioPlayer.hpp" line="20" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_audio_player_1a27f5d4bedf618f0688a7a4f421a7c5cd" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::AudioPlayer::~AudioPlayer</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>~AudioPlayer</name>
+        <briefdescription>
+<para>Close the audio player. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/AudioPlayer.hpp" line="24" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_audio_player_1a437076bc11e8554103b0aafe0ead6c6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::AudioPlayer::PlayMusic</definition>
+        <argsstring>(std::string_view filename, int loops)</argsstring>
+        <name>PlayMusic</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>loops</declname>
+        </param>
+        <briefdescription>
+<para>Plays the music of <computeroutput>filename</computeroutput> <computeroutput>loops</computeroutput> many times. If loops is -1, it plays the music ~65000 times. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the file to play. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>loops</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of times the music should be played. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/AudioPlayer.hpp" line="30" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_audio_player_1ab17455456ac7bf30e487232aee400a10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::AudioPlayer::PauseMusic</definition>
+        <argsstring>()</argsstring>
+        <name>PauseMusic</name>
+        <briefdescription>
+<para>Pauses the player if a music being played. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/AudioPlayer.hpp" line="33" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_audio_player_1aac31a115cf646e76ca7e392c2886f817" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::AudioPlayer::ResumeMusic</definition>
+        <argsstring>()</argsstring>
+        <name>ResumeMusic</name>
+        <briefdescription>
+<para>Resumes the player if it was paused. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/AudioPlayer.hpp" line="36" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_audio_player_1a49ba9d50d146307435fa2cac7a19dd50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::AudioPlayer::PlaySFX</definition>
+        <argsstring>(std::string_view filename, int channel, int loops)</argsstring>
+        <name>PlaySFX</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>channel</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>loops</declname>
+        </param>
+        <briefdescription>
+<para>Play a .sfx file on the given <computeroutput>channel</computeroutput> <computeroutput>loops</computeroutput> many times. If loops is -1, it plays the music ~65000 times. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the sfx file. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>channel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the channel where the music should be played. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>loops</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of times the sfx should be played. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/AudioPlayer.hpp" line="43" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The class used to handle audio playing. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/fileIO/AudioPlayer.hpp" line="12" column="3" bodyfile="E:/thing/cpp/tnt/include/fileIO/AudioPlayer.hpp" bodystart="13" bodyend="44"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_audio_player_1a69209b4edb1079e2cd81d0b6a5a2382e" prot="public" virt="non-virtual"><scope>tnt::AudioPlayer</scope><name>AudioPlayer</name></member>
+      <member refid="classtnt_1_1_audio_player_1ab17455456ac7bf30e487232aee400a10" prot="public" virt="non-virtual"><scope>tnt::AudioPlayer</scope><name>PauseMusic</name></member>
+      <member refid="classtnt_1_1_audio_player_1a437076bc11e8554103b0aafe0ead6c6d" prot="public" virt="non-virtual"><scope>tnt::AudioPlayer</scope><name>PlayMusic</name></member>
+      <member refid="classtnt_1_1_audio_player_1a49ba9d50d146307435fa2cac7a19dd50" prot="public" virt="non-virtual"><scope>tnt::AudioPlayer</scope><name>PlaySFX</name></member>
+      <member refid="classtnt_1_1_audio_player_1aac31a115cf646e76ca7e392c2886f817" prot="public" virt="non-virtual"><scope>tnt::AudioPlayer</scope><name>ResumeMusic</name></member>
+      <member refid="classtnt_1_1_audio_player_1a27f5d4bedf618f0688a7a4f421a7c5cd" prot="public" virt="non-virtual"><scope>tnt::AudioPlayer</scope><name>~AudioPlayer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

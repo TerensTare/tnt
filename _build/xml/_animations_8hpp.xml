@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="_animations_8hpp" kind="file" language="C++">
+    <compoundname>Animations.hpp</compoundname>
+    <includes local="no">nlohmann/json_fwd.hpp</includes>
+    <includes refid="doo__ecs_2_base_8hpp" local="yes">doo_ecs/Base.hpp</includes>
+    <includes refid="_rectangle_8hpp" local="yes">math/Rectangle.hpp</includes>
+    <includes refid="_sparse_set_8hpp" local="yes">types/SparseSet.hpp</includes>
+    <includedby refid="_tn_t_8hpp" local="yes">E:/thing/cpp/tnt/include/TnT.hpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>nlohmann/json_fwd.hpp</label>
+      </node>
+      <node id="1">
+        <label>E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp</label>
+        <link refid="_animations_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structtnt_1_1doo_1_1animation__comp" prot="public">tnt::doo::animation_comp</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1animations__sys" prot="public">tnt::doo::animations_sys</innerclass>
+    <innernamespace refid="namespacetnt">tnt</innernamespace>
+    <innernamespace refid="namespacetnt_1_1doo">tnt::doo</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>TNT_DOO_ECS_ANIMATED_OBJECTS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TNT_DOO_ECS_ANIMATED_OBJECTS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nlohmann/json_fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;doo_ecs/Base.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;math/Rectangle.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;types/SparseSet.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>timed<sp/>animations<sp/>(on<sp/>wrap_mode)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>multiple<sp/>animations<sp/>for<sp/>each<sp/>object.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO(maybe):</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>hide<sp/>some<sp/>members<sp/>??</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>remove<sp/>finished/passive<sp/>members<sp/>on<sp/>each<sp/>system<sp/>??<sp/>(you<sp/>don&apos;t<sp/>need<sp/>to<sp/>iterate<sp/>them)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tnt::doo</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20" refid="structtnt_1_1doo_1_1animation__comp" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtnt_1_1doo_1_1animation__comp" kindref="compound">animation_comp</ref><sp/>final</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1animation__comp_1ab7effed4ca50b25ae8b518e2f68580ec" kindref="member">wrap_mode</ref><sp/>:<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>single_run<sp/>=<sp/>0,<sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtnt_1_1doo_1_1animation__comp_1ab7effed4ca50b25ae8b518e2f68580eca0911dff42d43627db62344ecc3b525fb" kindref="member">loop</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1animation__comp_1abc523485e6425901ee4c712b03313aae" kindref="member">direction</ref><sp/>:<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>horizontal<sp/>=<sp/>0,<sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtnt_1_1doo_1_1animation__comp_1abc523485e6425901ee4c712b03313aaeadeea9b8c4c0e74352dce6c3d4af40a3e" kindref="member">vertical</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>constexpr<sp/><ref refid="structtnt_1_1doo_1_1animation__comp_1a0a0a1e0485507feb56f6e94c121a932a" kindref="member">animation_comp</ref>(<ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;rect,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>framesCount,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>animSpeed,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>space,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtnt_1_1doo_1_1animation__comp_1abc523485e6425901ee4c712b03313aae" kindref="member">direction</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;dir_,<sp/><ref refid="structtnt_1_1doo_1_1animation__comp_1ab7effed4ca50b25ae8b518e2f68580ec" kindref="member">wrap_mode</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;wrap_)<sp/>noexcept</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>clip{rect},<sp/>startX{rect.x},<sp/>startY{rect.y},</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>speed{animSpeed},<sp/>timePerFrame{animSpeed<sp/>/<sp/>framesCount},</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>spacing{space},<sp/>dir{dir_},<sp/>wrap{wrap_}<sp/>{}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>finished{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtnt_1_1doo_1_1animation__comp_1ab7effed4ca50b25ae8b518e2f68580ec" kindref="member">wrap_mode</ref><sp/>wrap;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtnt_1_1doo_1_1animation__comp_1abc523485e6425901ee4c712b03313aae" kindref="member">direction</ref><sp/>dir;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>startX,<sp/>startY;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>speed,<sp/>timePerFrame;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>elapsed{0.f};</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>spacing;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref><sp/>clip;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="structtnt_1_1doo_1_1animations__sys" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtnt_1_1doo_1_1animations__sys" kindref="compound">animations_sys</ref><sp/>final</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>inline<sp/>animations_sys()<sp/>noexcept<sp/>=<sp/>default;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>animations_sys(animations_sys<sp/>const<sp/>&amp;)<sp/>=<sp/>delete;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>animations_sys<sp/>&amp;operator=(animations_sys<sp/>const<sp/>&amp;)<sp/>=<sp/>delete;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1afe5db8d67e2192febd2c3d345fb4c4cb" kindref="member">add_object</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/><ref refid="structtnt_1_1doo_1_1animation__comp" kindref="compound">animation_comp</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;anim_);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1a655e0defbd42c4173d0c6b577eb4fc7e" kindref="member">Update</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>time_)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1a01ebca4f88778ce4bebc5156d655ff90" kindref="member">from_json</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>nlohmann::json<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;j);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1accb811eb6f38ed8da730d7cfdbcd7ab2" kindref="member">to_json</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>nlohmann::json<sp/>&amp;j);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1a1cd6299402a95f560b6de76bc12cf311" kindref="member">remove</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1a293ebf85c04ee0b19e35afd44dae4b65" kindref="member">clear</ref>()<sp/>noexcept;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;animation_comp::wrap_mode&gt;<sp/>wrap;<sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;animation_comp::direction&gt;<sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1a6ff4ef77721dcc0110e81c9729b24079" kindref="member">dir</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;float&gt;<sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1a0ad0369129ef61f113e4cb0db27fd9f7" kindref="member">startX</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;float&gt;<sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1a35b4c7cca5abdb56d08546163484f58c" kindref="member">startY</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;float&gt;<sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1ab42ea4de5b8187d17c0abdcb8eddce15" kindref="member">speed</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;float&gt;<sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1aed2d57e03ca18a4186c7b7c83731f8de" kindref="member">elapsed</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;float&gt;<sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1ae91865d2b9957110d0ae5a9a8fec6c1b" kindref="member">timePerFrame</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;float&gt;<sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1a9de06508af4ff1aac1c046b7d1c1f84b" kindref="member">spacing</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1a90d7e7059deea36a1c390ecca82bb299" kindref="member">current</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classtnt_1_1sparse__set" kindref="compound">tnt::sparse_set&lt;object&gt;</ref><sp/><ref refid="structtnt_1_1doo_1_1animations__sys_1ac132fb99ce72a6dcd066141d0b90a049" kindref="member">active</ref>;<sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>animations;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>tnt::doo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//!TNT_DOO_ECS_ANIMATED_OBJECTS_HPP</highlight></codeline>
+    </programlisting>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp"/>
+  </compounddef>
+</doxygen>

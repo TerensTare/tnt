@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Graphics &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Input" href="Input.html" />
+    <link rel="prev" title="Core" href="../core.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../core.html">Core</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Input.html">Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="window.html">Window</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../async.html">Async</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ecs.html">Entity Component System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file.html">File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imgui.html">ImGui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math.html">Math</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../core.html">Core</a> &raquo;</li>
+        
+      <li>Graphics</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/core/Graphics.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="graphics">
+<span id="tnt-core-graphics-api"></span><h1>Graphics<a class="headerlink" href="#graphics" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt>
+<span class="target" id="_graphics_8hpp_1a0fc9c593e3b4b42b9544cdf75e448bd6"></span><code class="sig-name descname">TNT_API void drawLine (Window const &amp;win, Vector const &amp;start, Vector const &amp;finish, SDL_Color const color=SDL_Color{255, 255, 255}, unsigned const thickness=1)</code></dt>
+<dd><p>Draw a line on the given window with the specified <em>color</em> from <em>start</em> to <em>finish</em> that is <em>thickness</em> pixels thick. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The window where the line will be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">start</span></code>: The starting point of the line. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">finish</span></code>: The other tip of the line. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: The color that will be used to draw the line. Default to white. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">thickness</span></code>: Parameter specifying how thick the line will be. Default to 1. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_graphics_8hpp_1a23de913e92f50d9ce4db7b14016977d1"></span><code class="sig-name descname">TNT_API void drawHorizontalLine (Window const &amp;win, float const x1, float const x2, float const y, SDL_Color const color=SDL_Color{255, 255, 255}, unsigned const thickness=1)</code></dt>
+<dd><p>Draw a horizontal line on the given window with the specified <em>color</em> from ( <em>x1</em>, <em>y</em>) to ( <em>x2</em>, <em>y</em>) that is <em>thickness</em> pixels thick. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The window where the line will be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x1</span></code>: The starting x position of the line. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x2</span></code>: The x position of the other tip of the line. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code>: The y position of each point on the line. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: The color that will be used to draw the line. Default to white. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">thickness</span></code>: Parameter specifying how thick the line will be. Default to 1. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_graphics_8hpp_1a4ab6c1c4e8ed1e5fbffae17119056226"></span><code class="sig-name descname">TNT_API void drawVerticalLine (Window const &amp;win, float const x, float const y1, float const y2, SDL_Color const color=SDL_Color{255, 255, 255}, unsigned const thickness=1)</code></dt>
+<dd><p>Draw a vertical line on the given window with the specified <em>color</em> from ( <em>x</em>, <em>y1</em>) to ( <em>x</em>, <em>y2</em>) that is <em>thickness</em> pixels thick. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The window where the line will be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: The x position of each point on the line. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y1</span></code>: The starting y position of the line. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y2</span></code>: The y position of the other tip of the line. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: The color that will be used to draw the line. Default to white. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">thickness</span></code>: Parameter specifying how thick the line will be. Default to 1. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_graphics_8hpp_1adaaee2a55e83fa766e74361b49f51352"></span><code class="sig-name descname">TNT_API void drawLines (Window const &amp;win, std::span&lt; tnt::Vector &gt; points, SDL_Color const color=SDL_Color{255, 255, 255})</code></dt>
+<dd><p>Draw lines defined by <em>points</em> with the given <em>color</em> on <em>win</em>. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The window where the lines will be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">points</span></code>: The points that define the lines borders. points.size() should be even. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: The color that will be used to draw the lines. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Input.html" class="btn btn-neutral float-right" title="Input" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../core.html" class="btn btn-neutral float-left" title="Core" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

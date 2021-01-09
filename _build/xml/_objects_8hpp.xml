@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="_objects_8hpp" kind="file" language="C++">
+    <compoundname>Objects.hpp</compoundname>
+    <includes local="no">nlohmann/json_fwd.hpp</includes>
+    <includes refid="_window_8hpp" local="yes">core/Window.hpp</includes>
+    <includes refid="doo__ecs_2_base_8hpp" local="yes">doo_ecs/Base.hpp</includes>
+    <includes refid="_vector_8hpp" local="yes">math/Vector.hpp</includes>
+    <includes refid="_sparse_set_8hpp" local="yes">types/SparseSet.hpp</includes>
+    <includedby refid="_tn_t_8hpp" local="yes">E:/thing/cpp/tnt/include/TnT.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp</label>
+        <link refid="_objects_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>nlohmann/json_fwd.hpp</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structtnt_1_1doo_1_1object__data" prot="public">tnt::doo::object_data</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1objects__sys" prot="public">tnt::doo::objects_sys</innerclass>
+    <innernamespace refid="namespacetnt">tnt</innernamespace>
+    <innernamespace refid="namespacetnt_1_1doo">tnt::doo</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>TNT_DOO_ECS_BASE_OBJECTS_SYSTEM_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TNT_DOO_ECS_BASE_OBJECTS_SYSTEM_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nlohmann/json_fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;core/Window.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;doo_ecs/Base.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;math/Vector.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;types/SparseSet.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tnt::doo</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="14" refid="structtnt_1_1doo_1_1object__data" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtnt_1_1doo_1_1object__data" kindref="compound">object_data</ref><sp/>final</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>constexpr<sp/><ref refid="structtnt_1_1doo_1_1object__data_1a70d1c5ce72fb1ad5217a0a263645b4a1" kindref="member">object_data</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>angle_,<sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;pos_,<sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;scale_,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;parent_<sp/>=<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">)<sp/>noexcept</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>angle{angle_},<sp/><ref refid="structtnt_1_1doo_1_1object__data_1a3d0b0f83b41fb0495ffc9cdac7b4e30c" kindref="member">pos</ref>{pos_},<sp/><ref refid="structtnt_1_1doo_1_1object__data_1a01a79a326544852ab0d424e37aa2407a" kindref="member">scale</ref>{scale_},<sp/><ref refid="structtnt_1_1doo_1_1object__data_1a791c476991c0c7e62c21b10e34912580" kindref="member">parent</ref>{parent_}<sp/>{}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>angle;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/><ref refid="structtnt_1_1doo_1_1object__data_1a01a79a326544852ab0d424e37aa2407a" kindref="member">scale</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/><ref refid="structtnt_1_1doo_1_1object__data_1a3d0b0f83b41fb0495ffc9cdac7b4e30c" kindref="member">pos</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1object__data_1a791c476991c0c7e62c21b10e34912580" kindref="member">parent</ref>;<sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="structtnt_1_1doo_1_1objects__sys" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtnt_1_1doo_1_1objects__sys" kindref="compound">objects_sys</ref><sp/>final</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>objects_sys()<sp/>=<sp/>default;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>objects_sys(objects_sys<sp/>const<sp/>&amp;)<sp/>=<sp/>delete;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>objects_sys<sp/>&amp;operator=(objects_sys<sp/>const<sp/>&amp;)<sp/>=<sp/>delete;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1a2e21b8794803edbe0e0d579224840666" kindref="member">add_object</ref>(<ref refid="structtnt_1_1doo_1_1object__data" kindref="compound">object_data</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;data_)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/><ref refid="structtnt_1_1doo_1_1object__data" kindref="compound">object_data</ref><sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1a1fe914c02007306724e9af62fc83fca2" kindref="member">get_data</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>noexcept;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1a3d3ed911e8a947d66618da3d6e05ff58" kindref="member">from_json</ref>(nlohmann::json<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;j);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1a0d6540859059fc82773df69575540090" kindref="member">to_json</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>nlohmann::json<sp/>&amp;j)<sp/>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1aeec63dc9f99a17cc4541a3cc37b2a28b" kindref="member">draw_imgui</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/><ref refid="classtnt_1_1_window" kindref="compound">Window</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;win)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1a05572a2a36527457805e6d6066a35779" kindref="member">gAngle</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>noexcept;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1a2e098eacf4d8b2f3b9c81c76b944ac52" kindref="member">gScale</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>noexcept;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1afe90d51c59d75559a33bc143044b0765" kindref="member">gPos</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>noexcept;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1a671b4d1e42948981a5994f5cade0f7cf" kindref="member">set_parent</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;parent_)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1a76ffe2a659e109088f596162eca548c9" kindref="member">remove</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1a75558034f5733958b7d4ecdbf6e7aa56" kindref="member">clear</ref>()<sp/>noexcept;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;float&gt;<sp/>angle;<sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classtnt_1_1sparse__set" kindref="compound">tnt::sparse_set&lt;object&gt;</ref><sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1a24ea8ea17c78393b8b0388d69675cc3b" kindref="member">active</ref>;<sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;object&gt;<sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1a9a016580732cc1da4aa5517552349fc2" kindref="member">parent</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Vector&gt;<sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1acb784fe3dbd28d8bea5b72f4552e279c" kindref="member">scale</ref>;<sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Vector&gt;<sp/><ref refid="structtnt_1_1doo_1_1objects__sys_1ac04d2030160f75a287dfeb61ce4b7cf1" kindref="member">pos</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>objects;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>tnt::doo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//!TNT_DOO_ECS_BASE_OBJECTS_SYSTEM_HPP</highlight></codeline>
+    </programlisting>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp"/>
+  </compounddef>
+</doxygen>

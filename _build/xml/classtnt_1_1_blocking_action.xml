@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_blocking_action" kind="class" language="C++" prot="public">
+    <compoundname>tnt::BlockingAction</compoundname>
+    <basecompoundref refid="classtnt_1_1detail_1_1base__action" prot="public" virt="non-virtual">tnt::detail::base_action</basecompoundref>
+    <derivedcompoundref refid="classtnt_1_1_delay" prot="public" virt="non-virtual">tnt::Delay</derivedcompoundref>
+    <includes local="no">Actions.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_blocking_action_1a7a5c694a7774d3ac060c63c160069ba5" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::BlockingAction::BlockingAction</definition>
+        <argsstring>(long long duration_)</argsstring>
+        <name>BlockingAction</name>
+        <param>
+          <type>long long</type>
+          <declname>duration_</declname>
+        </param>
+        <briefdescription>
+<para>Create a non-blocking action that lasts <computeroutput>duration_</computeroutput> milliseconds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>duration_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The duration of the action. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="75" column="18" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="75" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>An action that blocks other actions from running before it is finished. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>tnt::BlockingAction</label>
+        <link refid="classtnt_1_1_blocking_action"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::detail::base_action</label>
+        <link refid="classtnt_1_1detail_1_1base__action"/>
+      </node>
+      <node id="3">
+        <label>tnt::Delay</label>
+        <link refid="classtnt_1_1_delay"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::BlockingAction</label>
+        <link refid="classtnt_1_1_blocking_action"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::detail::base_action</label>
+        <link refid="classtnt_1_1detail_1_1base__action"/>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="70" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="71" bodyend="76"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1detail_1_1base__action_1a7c33167bcedaf46242dea08de75071c1" prot="public" virt="non-virtual"><scope>tnt::BlockingAction</scope><name>base_action</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1ac5778051794bcff5bd1cbabac3982b64" prot="protected" virt="non-virtual"><scope>tnt::BlockingAction</scope><name>blocking</name></member>
+      <member refid="classtnt_1_1_blocking_action_1a7a5c694a7774d3ac060c63c160069ba5" prot="public" virt="non-virtual"><scope>tnt::BlockingAction</scope><name>BlockingAction</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a96771863a141fba9042fa9cd07167870" prot="protected" virt="non-virtual"><scope>tnt::BlockingAction</scope><name>duration</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a9ef09e905150340879b1bd11c2e258e8" prot="protected" virt="non-virtual"><scope>tnt::BlockingAction</scope><name>elapsed</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a96ce7a7165e675dee00d00971833ca5a" prot="protected" virt="non-virtual"><scope>tnt::BlockingAction</scope><name>finished</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1ae3f93b7ed8bbb5c1bfee3fe4d05eb034" prot="public" virt="non-virtual"><scope>tnt::BlockingAction</scope><name>isBlocking</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1abb1f692ebf0e1f5fa66d13b8c9563a11" prot="public" virt="non-virtual"><scope>tnt::BlockingAction</scope><name>isFinished</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a4128b58c1a23129ce7bc4709ca388811" prot="protected" virt="non-virtual"><scope>tnt::BlockingAction</scope><name>lane</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1ad6df7abd1c9ade8c4fbe16fcbd197837" prot="protected" virt="non-virtual"><scope>tnt::BlockingAction</scope><name>Tick</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a91776f41be946661732a6cc15afb7dde" prot="public" virt="pure-virtual"><scope>tnt::BlockingAction</scope><name>Update</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a01467634724587dd6cec588d6314da53" prot="public" virt="virtual"><scope>tnt::BlockingAction</scope><name>~base_action</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

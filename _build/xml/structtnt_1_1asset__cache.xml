@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1asset__cache" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::asset_cache</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>unsigned</type>
+        <declname>I</declname>
+        <defname>I</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1asset__cache_1a197f18b0f9f1e2fdca80f84f8e8b8fd4" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr tnt::asset_cache&lt; T, I &gt;::asset_cache</definition>
+        <argsstring>() noexcept=default</argsstring>
+        <name>asset_cache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Base.hpp" line="9" column="19"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/fileIO/cache/Base.hpp" line="7" column="5" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Base.hpp" bodystart="8" bodyend="10"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1asset__cache_1a197f18b0f9f1e2fdca80f84f8e8b8fd4" prot="public" virt="non-virtual"><scope>tnt::asset_cache</scope><name>asset_cache</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

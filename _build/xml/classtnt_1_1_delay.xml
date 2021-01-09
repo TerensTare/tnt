@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_delay" kind="class" language="C++" prot="public">
+    <compoundname>tnt::Delay</compoundname>
+    <basecompoundref refid="classtnt_1_1_blocking_action" prot="public" virt="non-virtual">tnt::BlockingAction</basecompoundref>
+    <includes local="no">Actions.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_delay_1a6a6aed1a90bc083e1de52e55b2f534a9" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::Delay::Delay</definition>
+        <argsstring>(long long duration_)</argsstring>
+        <name>Delay</name>
+        <param>
+          <type>long long</type>
+          <declname>duration_</declname>
+        </param>
+        <briefdescription>
+<para>Create a delay action. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>duration_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The delay time in ms. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="136" column="18" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="136" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_delay_1a567400c7edfc69a1f29208d17a6d6dcf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void tnt::Delay::Update</definition>
+        <argsstring>(long long elapsed_) override</argsstring>
+        <name>Update</name>
+        <reimplements refid="classtnt_1_1detail_1_1base__action_1a91776f41be946661732a6cc15afb7dde">Update</reimplements>
+        <param>
+          <type>long long</type>
+          <declname>elapsed_</declname>
+        </param>
+        <briefdescription>
+<para>Update the elapsed time of the <ref refid="classtnt_1_1_delay" kindref="compound">Delay</ref> action. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>elapsed_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The elapsed time since the last <ref refid="classtnt_1_1_delay_1a567400c7edfc69a1f29208d17a6d6dcf" kindref="member">Update()</ref> call. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="140" column="21" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="140" bodyend="143"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>An action that delays the execution of the other actions for a specified time. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>tnt::BlockingAction</label>
+        <link refid="classtnt_1_1_blocking_action"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>tnt::detail::base_action</label>
+        <link refid="classtnt_1_1detail_1_1base__action"/>
+      </node>
+      <node id="1">
+        <label>tnt::Delay</label>
+        <link refid="classtnt_1_1_delay"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>tnt::BlockingAction</label>
+        <link refid="classtnt_1_1_blocking_action"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>tnt::detail::base_action</label>
+        <link refid="classtnt_1_1detail_1_1base__action"/>
+      </node>
+      <node id="1">
+        <label>tnt::Delay</label>
+        <link refid="classtnt_1_1_delay"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="131" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="132" bodyend="144"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1detail_1_1base__action_1a7c33167bcedaf46242dea08de75071c1" prot="public" virt="non-virtual"><scope>tnt::Delay</scope><name>base_action</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1ac5778051794bcff5bd1cbabac3982b64" prot="protected" virt="non-virtual"><scope>tnt::Delay</scope><name>blocking</name></member>
+      <member refid="classtnt_1_1_blocking_action_1a7a5c694a7774d3ac060c63c160069ba5" prot="public" virt="non-virtual"><scope>tnt::Delay</scope><name>BlockingAction</name></member>
+      <member refid="classtnt_1_1_delay_1a6a6aed1a90bc083e1de52e55b2f534a9" prot="public" virt="non-virtual"><scope>tnt::Delay</scope><name>Delay</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a96771863a141fba9042fa9cd07167870" prot="protected" virt="non-virtual"><scope>tnt::Delay</scope><name>duration</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a9ef09e905150340879b1bd11c2e258e8" prot="protected" virt="non-virtual"><scope>tnt::Delay</scope><name>elapsed</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a96ce7a7165e675dee00d00971833ca5a" prot="protected" virt="non-virtual"><scope>tnt::Delay</scope><name>finished</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1ae3f93b7ed8bbb5c1bfee3fe4d05eb034" prot="public" virt="non-virtual"><scope>tnt::Delay</scope><name>isBlocking</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1abb1f692ebf0e1f5fa66d13b8c9563a11" prot="public" virt="non-virtual"><scope>tnt::Delay</scope><name>isFinished</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a4128b58c1a23129ce7bc4709ca388811" prot="protected" virt="non-virtual"><scope>tnt::Delay</scope><name>lane</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1ad6df7abd1c9ade8c4fbe16fcbd197837" prot="protected" virt="non-virtual"><scope>tnt::Delay</scope><name>Tick</name></member>
+      <member refid="classtnt_1_1_delay_1a567400c7edfc69a1f29208d17a6d6dcf" prot="public" virt="virtual"><scope>tnt::Delay</scope><name>Update</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a01467634724587dd6cec588d6314da53" prot="public" virt="virtual"><scope>tnt::Delay</scope><name>~base_action</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

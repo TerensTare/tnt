@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="_steering_8hpp" kind="file" language="C++">
+    <compoundname>Steering.hpp</compoundname>
+    <includes refid="doo__ecs_2_base_8hpp" local="yes">doo_ecs/Base.hpp</includes>
+    <includedby refid="_tn_t_8hpp" local="yes">E:/thing/cpp/tnt/include/TnT.hpp</includedby>
+    <innerclass refid="structtnt_1_1doo_1_1steering__sys" prot="public">tnt::doo::steering_sys</innerclass>
+    <innernamespace refid="namespacetnt">tnt</innernamespace>
+    <innernamespace refid="namespacetnt_1_1doo">tnt::doo</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>TNT_DOO_ECS_STEERING_BEHAVIOURS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TNT_DOO_ECS_STEERING_BEHAVIOURS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;doo_ecs/Base.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tnt::doo</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9" refid="structtnt_1_1doo_1_1steering__sys" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtnt_1_1doo_1_1steering__sys" kindref="compound">steering_sys</ref><sp/>final</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>steering_sys()<sp/>=<sp/>default;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>steering_sys(steering_sys<sp/>const<sp/>&amp;)<sp/>=<sp/>delete;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>steering_sys<sp/>&amp;operator=(steering_sys<sp/>const<sp/>&amp;)<sp/>=<sp/>delete;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1steering__sys_1a786c421869a86592866fb8a17c85b7cf" kindref="member">Seek</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;target)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>noexcept;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1steering__sys_1af35d3b098b9db71b8d837776a5d979fe" kindref="member">Flee</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;target)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>noexcept;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1steering__sys_1ab07d86fa137679fce2be7a20d40f2682" kindref="member">RangedFlee</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;target,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>range)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>noexcept;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1steering__sys_1a843f966b89b8a9d6d712ad84cce72b45" kindref="member">Arrive</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;target)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>noexcept;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1steering__sys_1ae4fde9e88d5b8136e505559832c078d5" kindref="member">Pursuit</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;target)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>noexcept;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1steering__sys_1a5b01981e47d5410c66db10f119bb0f06" kindref="member">Evade</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;target)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>noexcept;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>steer;<sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>tnt::doo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//!TNT_DOO_ECS_STEERING_BEHAVIOURS_HPP</highlight></codeline>
+    </programlisting>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Steering.hpp"/>
+  </compounddef>
+</doxygen>

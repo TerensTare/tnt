@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1doo_1_1bone__comp" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::doo::bone_comp</compoundname>
+    <includes local="no">Bones.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1bone__comp_1ad2e47ecfdb5c061e7a3c26ba316ae191" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::bone_comp::joint</definition>
+        <argsstring></argsstring>
+        <name>joint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="31" column="16" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1bone__comp_1a6813d4ccc9b1808e278420f35be06aa4" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::bone_comp::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+<para>&lt; One end of the bone. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="32" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A basic struct representing a bone used for skeletal animation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::doo::bone_comp</label>
+        <link refid="structtnt_1_1doo_1_1bone__comp"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>joint</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::Vector</label>
+        <link refid="structtnt_1_1_vector"/>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="29" column="5" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" bodystart="30" bodyend="33"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1doo_1_1bone__comp_1ad2e47ecfdb5c061e7a3c26ba316ae191" prot="public" virt="non-virtual"><scope>tnt::doo::bone_comp</scope><name>joint</name></member>
+      <member refid="structtnt_1_1doo_1_1bone__comp_1a6813d4ccc9b1808e278420f35be06aa4" prot="public" virt="non-virtual"><scope>tnt::doo::bone_comp</scope><name>length</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

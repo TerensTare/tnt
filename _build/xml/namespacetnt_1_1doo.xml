@@ -1,0 +1,336 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1doo" kind="namespace" language="C++">
+    <compoundname>tnt::doo</compoundname>
+    <innerclass refid="structtnt_1_1doo_1_1animation__comp" prot="public">tnt::doo::animation_comp</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1animations__sys" prot="public">tnt::doo::animations_sys</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1bone__comp" prot="public">tnt::doo::bone_comp</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1bones__sys" prot="public">tnt::doo::bones_sys</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1camera__comp" prot="public">tnt::doo::camera_comp</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1cameras__sys" prot="public">tnt::doo::cameras_sys</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1object__data" prot="public">tnt::doo::object_data</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1objects__sys" prot="public">tnt::doo::objects_sys</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1physics__comp" prot="public">tnt::doo::physics_comp</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1physics__sys" prot="public">tnt::doo::physics_sys</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1scripts__sys" prot="public">tnt::doo::scripts_sys</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1sprite__comp" prot="public">tnt::doo::sprite_comp</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1sprites__sys" prot="public">tnt::doo::sprites_sys</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1steering__sys" prot="public">tnt::doo::steering_sys</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1system__base" prot="public">tnt::doo::system_base</innerclass>
+    <innernamespace refid="namespacetnt_1_1doo_1_1detail">tnt::doo::detail</innernamespace>
+    <innernamespace refid="namespacetnt_1_1doo_1_1phys">tnt::doo::phys</innernamespace>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="_physics_8hpp_1a9f5610e6eb13ad2ba7c43aa2f790698f" prot="public" static="no" strong="yes">
+        <type>uint8_t</type>
+        <name>body_type</name>
+        <enumvalue id="_physics_8hpp_1a9f5610e6eb13ad2ba7c43aa2f790698facec315e3d0975e5cc2811d5d8725f149" prot="public">
+          <name>fixed</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_physics_8hpp_1a9f5610e6eb13ad2ba7c43aa2f790698fa82221355e8922f4e93a2455d99c04aa2" prot="public">
+          <name>kinematic</name>
+          <briefdescription>
+<para>&lt; The body is fixed in a certain position. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_physics_8hpp_1a9f5610e6eb13ad2ba7c43aa2f790698fab72f3bd391ba731a35708bfd8cd8a68f" prot="public">
+          <name>dynamic</name>
+          <briefdescription>
+<para>&lt; The body can move freely and collide only with kinematic bodies. </para>
+          </briefdescription>
+          <detaileddescription>
+<para>&lt; The body can move freely and collide with dynamic or fixed bodies. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="26" column="5" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="27" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="enum" id="_physics_8hpp_1add982859657881a9e71cf1d9591a6e36" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>collision_type</name>
+        <enumvalue id="_physics_8hpp_1add982859657881a9e71cf1d9591a6e36a334c4a4c42fdb79d7ebc3e73b517e6f8" prot="public">
+          <name>none</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_physics_8hpp_1add982859657881a9e71cf1d9591a6e36a4505cad087312551a6fbbe6ebe163e0f" prot="public">
+          <name>horizontal</name>
+          <briefdescription>
+<para>&lt; The objects don&apos;t collide. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_physics_8hpp_1add982859657881a9e71cf1d9591a6e36ae6dec152d6a941fccb0a5e8cc2579cc3" prot="public">
+          <name>vertical</name>
+          <briefdescription>
+<para>&lt; The objects collide on their left/right side. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="33" column="5" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="34" bodyend="38"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="doo__ecs_2_base_8hpp_1a17f790db028ce6b1b691f1993edfb9fd" prot="public" static="no">
+        <type>std::size_t</type>
+        <definition>using tnt::doo::object = typedef std::size_t</definition>
+        <argsstring></argsstring>
+        <name>object</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Base.hpp" line="66" column="5" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Base.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="doo__ecs_2_base_8hpp_1a1e9e4a1fb5a1dd835934a5d498deebe6" prot="public" static="no">
+        <type>std::uint32_t</type>
+        <definition>using tnt::doo::camera = typedef std::uint32_t</definition>
+        <argsstring></argsstring>
+        <name>camera</name>
+        <briefdescription>
+<para>&lt; A data type that serves as a unique id of an object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Base.hpp" line="67" column="5" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Base.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_animations_8hpp_1abc18cb348c358e5b7016dc815fce2771" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtnt_1_1doo_1_1animations__sys" kindref="compound">tnt::doo::animations_sys</ref></type>
+        <definition>struct tnt::doo::animations_sys tnt::doo::animations</definition>
+        <argsstring></argsstring>
+        <name>animations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="106" column="16"/>
+      </memberdef>
+      <memberdef kind="variable" id="doo__ecs_2_base_8hpp_1a8270ed876c57ebaa7cb786e1aace5eea" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>std::unsigned_integral</type>
+            <declname>I</declname>
+            <defname>I</defname>
+          </param>
+        </templateparamlist>
+        <type>constexpr I</type>
+        <definition>constexpr I tnt::doo::null_v</definition>
+        <argsstring></argsstring>
+        <name>null_v</name>
+        <initializer>{(I)-1}</initializer>
+        <briefdescription>
+<para>&lt; A data type that serves as a unique id of a camera. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Base.hpp" line="70" column="24" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Base.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="doo__ecs_2_base_8hpp_1a974d50d424e9e27b4131d1d12307017b" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr object</type>
+        <definition>constexpr object tnt::doo::null</definition>
+        <argsstring></argsstring>
+        <name>null</name>
+        <initializer>{null_v&lt;object&gt;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Base.hpp" line="72" column="29" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Base.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_bones_8hpp_1a8f5f38d0a3c963186f837ab149128470" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtnt_1_1doo_1_1bones__sys" kindref="compound">tnt::doo::bones_sys</ref></type>
+        <definition>struct tnt::doo::bones_sys tnt::doo::bones</definition>
+        <argsstring></argsstring>
+        <name>bones</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="73" column="11"/>
+      </memberdef>
+      <memberdef kind="variable" id="_cameras_8hpp_1aa56968271d1a3c8f63206fa40cb9e64e" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtnt_1_1doo_1_1cameras__sys" kindref="compound">tnt::doo::cameras_sys</ref></type>
+        <definition>struct tnt::doo::cameras_sys tnt::doo::cameras</definition>
+        <argsstring></argsstring>
+        <name>cameras</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="131" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="_objects_8hpp_1addb5aae224bb12b2c8cd5e61b2131d58" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtnt_1_1doo_1_1objects__sys" kindref="compound">tnt::doo::objects_sys</ref></type>
+        <definition>struct tnt::doo::objects_sys tnt::doo::objects</definition>
+        <argsstring></argsstring>
+        <name>objects</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="103" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="_physics_8hpp_1a7b905843cce213bb57b029a84e3ed23f" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr float</type>
+        <definition>constexpr float tnt::doo::phys::beta</definition>
+        <argsstring></argsstring>
+        <name>beta</name>
+        <initializer>{0.05f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="22" column="32" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_physics_8hpp_1a50aee30a7f93a57a17092a8e216e80a0" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>constexpr Vector tnt::doo::phys::gravity</definition>
+        <argsstring></argsstring>
+        <name>gravity</name>
+        <initializer>{0.f, 10.f}</initializer>
+        <briefdescription>
+<para>&lt; A constant used for baumgarte stabilization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="23" column="33" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_physics_8hpp_1a848083bd92fcc5a4eea14d73f323a8af" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtnt_1_1doo_1_1physics__sys" kindref="compound">tnt::doo::physics_sys</ref></type>
+        <definition>struct tnt::doo::physics_sys tnt::doo::physics</definition>
+        <argsstring></argsstring>
+        <name>physics</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="155" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="_scripts_8hpp_1ab7f416273750e05775421c8dd23442e2" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtnt_1_1doo_1_1scripts__sys" kindref="compound">tnt::doo::scripts_sys</ref></type>
+        <definition>struct tnt::doo::scripts_sys tnt::doo::scripts</definition>
+        <argsstring></argsstring>
+        <name>scripts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Scripts.hpp" line="98" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="_sprites_8hpp_1a5d3409d89d97b4bb0a0722f10bc09093" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtnt_1_1doo_1_1sprites__sys" kindref="compound">tnt::doo::sprites_sys</ref></type>
+        <definition>struct tnt::doo::sprites_sys tnt::doo::sprites</definition>
+        <argsstring></argsstring>
+        <name>sprites</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="95" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="_steering_8hpp_1a12d504c3874f3248fb5c78bc3376ce94" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtnt_1_1doo_1_1steering__sys" kindref="compound">tnt::doo::steering_sys</ref></type>
+        <definition>struct tnt::doo::steering_sys tnt::doo::steer</definition>
+        <argsstring></argsstring>
+        <name>steer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Steering.hpp" line="58" column="11"/>
+      </memberdef>
+      <memberdef kind="variable" id="_system_8hpp_1ae18891fb460b39615069c8efe12da3c8" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::doo::system</definition>
+        <argsstring></argsstring>
+        <name>system</name>
+        <initializer>= requires { typename T::component; }
+        and requires (T &amp;t, object const&amp; o, nlohmann::json&amp; j,
+            typename T::component const&amp; c) {
+            { t.add_object(o, c) } -&gt; detail::void_type;
+            { t.remove(o) } -&gt; detail::void_type;
+            { t.clear() } -&gt; detail::void_type;
+            { t.Update(o, 1.f) } -&gt; detail::void_type;
+
+            { t.from_json(o, j) } -&gt; detail::void_type;
+            { t.to_json(o, j) } -&gt; detail::void_type;
+
+            
+
+            { t.active } -&gt; std::same_as&lt;<ref refid="classtnt_1_1sparse__set" kindref="compound">tnt::sparse_set</ref>&lt;tnt::doo::object&gt;&gt;;
+
+        }</initializer>
+        <briefdescription>
+<para>A concept representing the minimal requirements that a type must fulfill to be a DOO ECS system. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/System.hpp" line="31" column="13" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/System.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="17" column="1"/>
+  </compounddef>
+</doxygen>

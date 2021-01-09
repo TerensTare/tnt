@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1finally" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>tnt::finally</compoundname>
+    <includes local="no">ScopeUtils.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Function</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1finally_1aaa47df6fd16595a15649a76f422bf06e" prot="private" static="no" mutable="no">
+        <type>Function</type>
+        <definition>Function tnt::finally&lt; Function &gt;::f</definition>
+        <argsstring></argsstring>
+        <name>f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="100" column="14" bodyfile="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1finally_1aa49d45054e6213defbf1c633dd92ce21" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::finally&lt; Function &gt;::finally</definition>
+        <argsstring>(Function &amp;&amp;f_)</argsstring>
+        <name>finally</name>
+        <param>
+          <type>Function &amp;&amp;</type>
+          <declname>f_</declname>
+        </param>
+        <briefdescription>
+<para>Create a finally instance that wraps f_. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The function to be called by finally. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="88" column="14" bodyfile="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1finally_1a3fa2c3c41ee9c3c277da9d8ad2396f85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::finally&lt; Function &gt;::finally</definition>
+        <argsstring>(const finally &amp;)=delete</argsstring>
+        <name>finally</name>
+        <param>
+          <type>const <ref refid="classtnt_1_1finally" kindref="compound">finally</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="90" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1finally_1a9ccec97e8c3167424b794f1c3c2151b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::finally&lt; Function &gt;::finally</definition>
+        <argsstring>(finally &amp;&amp;)=delete</argsstring>
+        <name>finally</name>
+        <param>
+          <type><ref refid="classtnt_1_1finally" kindref="compound">finally</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="91" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1finally_1a1a02ff61e007a1b9f5ca18017ead062c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classtnt_1_1finally" kindref="compound">finally</ref> &amp;</type>
+        <definition>finally&amp; tnt::finally&lt; Function &gt;::operator=</definition>
+        <argsstring>(const finally &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classtnt_1_1finally" kindref="compound">finally</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="93" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1finally_1a38a1da50d7048318845f0b2e16f3bfb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classtnt_1_1finally" kindref="compound">finally</ref> &amp;</type>
+        <definition>finally&amp; tnt::finally&lt; Function &gt;::operator=</definition>
+        <argsstring>(finally &amp;&amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classtnt_1_1finally" kindref="compound">finally</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="94" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1finally_1aed4be6852d9d91ca7c00218ecc905420" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::finally&lt; Function &gt;::~finally</definition>
+        <argsstring>() noexcept(noexcept(f()))</argsstring>
+        <name>~finally</name>
+        <briefdescription>
+<para>Destroy the finally instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="97" column="5" bodyfile="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" bodystart="97" bodyend="97"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>execute function when goes out of scope. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the function to be wrapped by finally. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="83" column="3" bodyfile="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" bodystart="84" bodyend="101"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1finally_1aaa47df6fd16595a15649a76f422bf06e" prot="private" virt="non-virtual"><scope>tnt::finally</scope><name>f</name></member>
+      <member refid="classtnt_1_1finally_1aa49d45054e6213defbf1c633dd92ce21" prot="public" virt="non-virtual"><scope>tnt::finally</scope><name>finally</name></member>
+      <member refid="classtnt_1_1finally_1a3fa2c3c41ee9c3c277da9d8ad2396f85" prot="public" virt="non-virtual"><scope>tnt::finally</scope><name>finally</name></member>
+      <member refid="classtnt_1_1finally_1a9ccec97e8c3167424b794f1c3c2151b8" prot="public" virt="non-virtual"><scope>tnt::finally</scope><name>finally</name></member>
+      <member refid="classtnt_1_1finally_1a1a02ff61e007a1b9f5ca18017ead062c" prot="public" virt="non-virtual"><scope>tnt::finally</scope><name>operator=</name></member>
+      <member refid="classtnt_1_1finally_1a38a1da50d7048318845f0b2e16f3bfb9" prot="public" virt="non-virtual"><scope>tnt::finally</scope><name>operator=</name></member>
+      <member refid="classtnt_1_1finally_1aed4be6852d9d91ca7c00218ecc905420" prot="public" virt="non-virtual"><scope>tnt::finally</scope><name>~finally</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

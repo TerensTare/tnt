@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1non__movable" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::non_movable</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1non__movable_1a84eb7bf9b09f7c238814f8a35ef0d7d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::non_movable::non_movable</definition>
+        <argsstring>()=default</argsstring>
+        <name>non_movable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="65" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1non__movable_1a118f4509d7dd87cd8c53e14c2a0d615a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::non_movable::non_movable</definition>
+        <argsstring>(non_movable &amp;&amp;)=delete</argsstring>
+        <name>non_movable</name>
+        <param>
+          <type><ref refid="structtnt_1_1non__movable" kindref="compound">non_movable</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="66" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1non__movable_1a14b4e354268873b7f6f55ffbabefd9f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structtnt_1_1non__movable" kindref="compound">non_movable</ref> &amp;</type>
+        <definition>non_movable&amp; tnt::non_movable::operator=</definition>
+        <argsstring>(non_movable &amp;&amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="structtnt_1_1non__movable" kindref="compound">non_movable</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="67" column="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="63" column="5" bodyfile="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" bodystart="64" bodyend="68"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1non__movable_1a84eb7bf9b09f7c238814f8a35ef0d7d4" prot="public" virt="non-virtual"><scope>tnt::non_movable</scope><name>non_movable</name></member>
+      <member refid="structtnt_1_1non__movable_1a118f4509d7dd87cd8c53e14c2a0d615a" prot="public" virt="non-virtual"><scope>tnt::non_movable</scope><name>non_movable</name></member>
+      <member refid="structtnt_1_1non__movable_1a14b4e354268873b7f6f55ffbabefd9f7" prot="public" virt="non-virtual"><scope>tnt::non_movable</scope><name>operator=</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1rpp_1_1_runtime_object" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::rpp::RuntimeObject</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structtnt_1_1rpp_1_1_runtime_object_1a459024ab1443366d90a87d7f8b7affb4" prot="private" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* tnt::rpp::RuntimeObject::dll</definition>
+        <argsstring></argsstring>
+        <name>dll</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" line="46" column="14" bodyfile="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1rpp_1_1_runtime_object_1aafd4c7f3bdfda6142da5ceb1005bc0c1" prot="private" static="no" mutable="no">
+        <type>std::string const</type>
+        <definition>std::string const tnt::rpp::RuntimeObject::binPath</definition>
+        <argsstring></argsstring>
+        <name>binPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" line="47" column="27" bodyfile="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1rpp_1_1_runtime_object_1aa38e81e0669782b9d7540dcd79d4db01" prot="private" static="no" mutable="no">
+        <type>std::filesystem::file_time_type</type>
+        <definition>std::filesystem::file_time_type tnt::rpp::RuntimeObject::lastTime</definition>
+        <argsstring></argsstring>
+        <name>lastTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" line="48" column="41" bodyfile="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1rpp_1_1_runtime_object_1a6ee0088b02f520044b3727999d6d91d4" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; std::string, void * &gt;</type>
+        <definition>std::unordered_map&lt;std::string, void *&gt; tnt::rpp::RuntimeObject::processes</definition>
+        <argsstring></argsstring>
+        <name>processes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" line="49" column="28" bodyfile="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1rpp_1_1_runtime_object_1ae0c186883931a51de272db35ae28dd8d" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::rpp::RuntimeObject::RuntimeObject</definition>
+        <argsstring>(std::string_view path) noexcept</argsstring>
+        <name>RuntimeObject</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" line="33" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1rpp_1_1_runtime_object_1a46095c0f71e37dfb1124face379fb632" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::rpp::RuntimeObject::~RuntimeObject</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>~RuntimeObject</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" line="34" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1rpp_1_1_runtime_object_1a31623eea8e01f0be911ae13dbc58a46f" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Func</type>
+          </param>
+        </templateparamlist>
+        <type>Func *</type>
+        <definition>Func* tnt::rpp::RuntimeObject::Load</definition>
+        <argsstring>(std::string_view func) noexcept</argsstring>
+        <name>Load</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>func</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" line="38" column="21" bodyfile="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" bodystart="38" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1rpp_1_1_runtime_object_1a873f74af21118c27b4fdb78b625ffa44" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::rpp::RuntimeObject::Update</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>Update</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" line="43" column="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" line="31" column="5" bodyfile="E:/thing/cpp/tnt/include/exp/Runtimer.hpp" bodystart="32" bodyend="50"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1rpp_1_1_runtime_object_1aafd4c7f3bdfda6142da5ceb1005bc0c1" prot="private" virt="non-virtual"><scope>tnt::rpp::RuntimeObject</scope><name>binPath</name></member>
+      <member refid="structtnt_1_1rpp_1_1_runtime_object_1a459024ab1443366d90a87d7f8b7affb4" prot="private" virt="non-virtual"><scope>tnt::rpp::RuntimeObject</scope><name>dll</name></member>
+      <member refid="structtnt_1_1rpp_1_1_runtime_object_1aa38e81e0669782b9d7540dcd79d4db01" prot="private" virt="non-virtual"><scope>tnt::rpp::RuntimeObject</scope><name>lastTime</name></member>
+      <member refid="structtnt_1_1rpp_1_1_runtime_object_1a31623eea8e01f0be911ae13dbc58a46f" prot="public" virt="non-virtual"><scope>tnt::rpp::RuntimeObject</scope><name>Load</name></member>
+      <member refid="structtnt_1_1rpp_1_1_runtime_object_1a6ee0088b02f520044b3727999d6d91d4" prot="private" virt="non-virtual"><scope>tnt::rpp::RuntimeObject</scope><name>processes</name></member>
+      <member refid="structtnt_1_1rpp_1_1_runtime_object_1ae0c186883931a51de272db35ae28dd8d" prot="public" virt="non-virtual"><scope>tnt::rpp::RuntimeObject</scope><name>RuntimeObject</name></member>
+      <member refid="structtnt_1_1rpp_1_1_runtime_object_1a873f74af21118c27b4fdb78b625ffa44" prot="public" virt="non-virtual"><scope>tnt::rpp::RuntimeObject</scope><name>Update</name></member>
+      <member refid="structtnt_1_1rpp_1_1_runtime_object_1a46095c0f71e37dfb1124face379fb632" prot="public" virt="non-virtual"><scope>tnt::rpp::RuntimeObject</scope><name>~RuntimeObject</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

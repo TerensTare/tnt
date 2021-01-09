@@ -1,0 +1,411 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1input" kind="namespace" language="C++">
+    <compoundname>tnt::input</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_input_8hpp_1a63eb8faa504fac518a003e89571ef15f" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::input::keyDown</definition>
+        <argsstring>(SDL_Scancode key) noexcept</argsstring>
+        <name>keyDown</name>
+        <param>
+          <type>SDL_Scancode</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a keyboard key is being held down. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if <computeroutput>key</computeroutput> is held down. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="16" column="18" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="16" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1a0678b31046cd573ef73e0e8dafab49da" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::input::keyPressed</definition>
+        <argsstring>(SDL_Scancode key) noexcept</argsstring>
+        <name>keyPressed</name>
+        <param>
+          <type>SDL_Scancode</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a keyboard key is pressed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if <computeroutput>key</computeroutput> is pressed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="21" column="18" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="21" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1a32b73e8c3dd97bc747edf411442792ab" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::input::keyReleased</definition>
+        <argsstring>(SDL_Scancode key) noexcept</argsstring>
+        <name>keyReleased</name>
+        <param>
+          <type>SDL_Scancode</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a keyboard key is released. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if <computeroutput>key</computeroutput> is released. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="26" column="18" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="26" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1ade71b8d587d009c7e67ad775d3ca9486" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API SDL_Scancode</type>
+        <definition>TNT_API SDL_Scancode tnt::input::lastKeyPressed</definition>
+        <argsstring>(SDL_Event const &amp;e) noexcept</argsstring>
+        <name>lastKeyPressed</name>
+        <param>
+          <type>SDL_Event const &amp;</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+<para>Get the last key pressed by checking the event handler. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The event handler to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>SDL_Scancode </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="31" column="26" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="31" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1a443687b9c48637fc240ead8cf486a865" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::input::mouseButtonDown</definition>
+        <argsstring>(Uint32 button) noexcept</argsstring>
+        <name>mouseButtonDown</name>
+        <param>
+          <type>Uint32</type>
+          <declname>button</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a mouse button is being held down. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>button</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The button to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if <computeroutput>button</computeroutput> is being held down. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="36" column="18" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="36" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1af375eadb74a55fe6b0d4bd0a6223309b" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::input::mouseButtonPressed</definition>
+        <argsstring>(Uint32 button) noexcept</argsstring>
+        <name>mouseButtonPressed</name>
+        <param>
+          <type>Uint32</type>
+          <declname>button</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a mouse button is pressed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>button</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The button to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if <computeroutput>button</computeroutput> is pressed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="41" column="18" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="41" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1a62d2c5c9f7412adbbd79ae8d51dab62c" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::input::mouseButtonReleased</definition>
+        <argsstring>(Uint32 button) noexcept</argsstring>
+        <name>mouseButtonReleased</name>
+        <param>
+          <type>Uint32</type>
+          <declname>button</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a mouse button is released. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>button</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The button to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if <computeroutput>button</computeroutput> is released. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="46" column="18" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="46" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1a495a37ce601af4c92ea142035aa42c9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::input::updateCurrent</definition>
+        <argsstring>()</argsstring>
+        <name>updateCurrent</name>
+        <briefdescription>
+<para>Updates the current input handles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="49" column="18" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="49" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1a6f35996a5e89c614453f8b47ef60f19d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::input::updatePrevious</definition>
+        <argsstring>()</argsstring>
+        <name>updatePrevious</name>
+        <briefdescription>
+<para>Updates the last input handles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="52" column="18" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="52" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1a46749382666beaa26e7d9087923a329b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::input::updateJoystick</definition>
+        <argsstring>()</argsstring>
+        <name>updateJoystick</name>
+        <briefdescription>
+<para>Updates joystick-related datas. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="55" column="18" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="55" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1a9d9cbec592e4101b4dd025c9cd0e073f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::input::Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <briefdescription>
+<para>Updates all the input handles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="58" column="18" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="58" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1abc770eee133f5d8377d9b204bae88b6e" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API unsigned</type>
+        <definition>TNT_API unsigned tnt::input::lastMouseButton</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>lastMouseButton</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The last mouse button pressed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="61" column="22" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="61" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1a09e43328a34df8381b78bb30ae8bd863" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API std::pair&lt; int, int &gt;</type>
+        <definition>TNT_API std::pair&lt;int, int&gt; tnt::input::mousePosition</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>mousePosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The position of the mouse as a <computeroutput>std::pair&lt;int, int&gt;</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="64" column="23" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="64" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1ae0d58f76f042cad0dada72f11f77675c" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::input::setDefaultDeadZone</definition>
+        <argsstring>(Sint16 sense) noexcept</argsstring>
+        <name>setDefaultDeadZone</name>
+        <param>
+          <type>Sint16</type>
+          <declname>sense</declname>
+        </param>
+        <briefdescription>
+<para>Set the default sensitivity to all the connected joysticks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>The default sensitivity of the joystick when connected is 8000. </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sense</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired sensitivity. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="69" column="18" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="69" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1abf8eda0bb905b7fee13dd3e57a9160d5" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::input::setDeadZone</definition>
+        <argsstring>(SDL_JoystickID id, Sint16 sense) noexcept</argsstring>
+        <name>setDeadZone</name>
+        <param>
+          <type>SDL_JoystickID</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>Sint16</type>
+          <declname>sense</declname>
+        </param>
+        <briefdescription>
+<para>Set the sensitivity of a joystick. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the joystick. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sense</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The sensitivity of the joystick (from 0 to 32767). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="74" column="18" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="74" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_input_8hpp_1a7cb6b6c8b039eb6d3cbdf9851c839e58" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API Sint16</type>
+        <definition>TNT_API Sint16 tnt::input::getDeadZone</definition>
+        <argsstring>(SDL_JoystickID id) noexcept</argsstring>
+        <name>getDeadZone</name>
+        <param>
+          <type>SDL_JoystickID</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get the sensitivity of the joystick. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the joystick. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Sint16 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="79" column="20" declfile="E:/thing/cpp/tnt/include/core/Input.hpp" declline="79" declcolumn="20"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/core/Input.hpp" line="11" column="1"/>
+  </compounddef>
+</doxygen>

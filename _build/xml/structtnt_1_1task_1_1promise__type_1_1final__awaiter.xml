@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1task_1_1promise__type_1_1final__awaiter" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::task::promise_type::final_awaiter</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1task_1_1promise__type_1_1final__awaiter_1a623ddf8a8a0b361e982eb06a6e57ac22" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::task&lt; T &gt;::promise_type::final_awaiter::await_ready</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>await_ready</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Task.hpp" line="67" column="25" bodyfile="E:/thing/cpp/tnt/include/async/Task.hpp" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1task_1_1promise__type_1_1final__awaiter_1aa7213ae59d01f0f1d440b64c16d5b64c" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::task&lt; T &gt;::promise_type::final_awaiter::await_resume</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>await_resume</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Task.hpp" line="68" column="25" bodyfile="E:/thing/cpp/tnt/include/async/Task.hpp" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1task_1_1promise__type_1_1final__awaiter_1a6924116ab16cc67c09db21be93a7c198" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>std::coroutine_handle</type>
+        <definition>std::coroutine_handle tnt::task&lt; T &gt;::promise_type::final_awaiter::await_suspend</definition>
+        <argsstring>(std::coroutine_handle&lt; promise_type &gt; handle) const noexcept</argsstring>
+        <name>await_suspend</name>
+        <param>
+          <type>std::coroutine_handle&lt; <ref refid="structtnt_1_1task_1_1promise__type" kindref="compound">promise_type</ref> &gt;</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Task.hpp" line="70" column="21" bodyfile="E:/thing/cpp/tnt/include/async/Task.hpp" bodystart="70" bodyend="73"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/async/Task.hpp" line="65" column="9" bodyfile="E:/thing/cpp/tnt/include/async/Task.hpp" bodystart="66" bodyend="74"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1task_1_1promise__type_1_1final__awaiter_1a623ddf8a8a0b361e982eb06a6e57ac22" prot="public" virt="non-virtual"><scope>tnt::task::promise_type::final_awaiter</scope><name>await_ready</name></member>
+      <member refid="structtnt_1_1task_1_1promise__type_1_1final__awaiter_1aa7213ae59d01f0f1d440b64c16d5b64c" prot="public" virt="non-virtual"><scope>tnt::task::promise_type::final_awaiter</scope><name>await_resume</name></member>
+      <member refid="structtnt_1_1task_1_1promise__type_1_1final__awaiter_1a6924116ab16cc67c09db21be93a7c198" prot="public" virt="non-virtual"><scope>tnt::task::promise_type::final_awaiter</scope><name>await_suspend</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

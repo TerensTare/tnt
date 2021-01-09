@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_821002d4f10779a80d4fb17bc32f21f1" kind="dir">
+    <compoundname>E:/thing/cpp/tnt/include/utils</compoundname>
+    <innerfile refid="_actions_8hpp">Actions.hpp</innerfile>
+    <innerfile refid="_assert_8hpp">Assert.hpp</innerfile>
+    <innerfile refid="_bench_8hpp">Bench.hpp</innerfile>
+    <innerfile refid="_benchmark_8hpp">Benchmark.hpp</innerfile>
+    <innerfile refid="_bit_flags_8hpp">BitFlags.hpp</innerfile>
+    <innerfile refid="_convert_8hpp">Convert.hpp</innerfile>
+    <innerfile refid="_logger_8hpp">Logger.hpp</innerfile>
+    <innerfile refid="_timer_8hpp">Timer.hpp</innerfile>
+    <innerfile refid="_traits_8hpp">Traits.hpp</innerfile>
+    <innerfile refid="_type_lists_8hpp">TypeLists.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/"/>
+  </compounddef>
+</doxygen>

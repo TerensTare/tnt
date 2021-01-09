@@ -1,0 +1,641 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Utils &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Vector" href="Vector.html" />
+    <link rel="prev" title="Numerical Springing" href="Spring.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../async.html">Async</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ecs.html">Entity Component System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file.html">File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imgui.html">ImGui</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../math.html">Math</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Easings.html">Easings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Rect.html">Rectangle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Spring.html">Numerical Springing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vector.html">Vector</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../math.html">Math</a> &raquo;</li>
+        
+      <li>Utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/math/Utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="utils">
+<span id="tnt-math-utils-api"></span><h1>Utils<a class="headerlink" href="#utils" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tntli3_piEy">
+<span id="_CPPv3N3tntli3_piEy"></span><span id="_CPPv2N3tntli3_piEy"></span><span class="target" id="_math_utils_8hpp_1a2000d9a2cf63844a560c59a13b5dfcd1"></span><em class="property">constexpr</em> float <code class="sig-name descname">operator&quot;&quot;_pi</code><span class="sig-paren">(</span>unsigned long long <em>num</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tntli3_piEy" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt2PIE">
+<span id="_CPPv3N3tnt2PIE"></span><span id="_CPPv2N3tnt2PIE"></span><span id="tnt::PI__float"></span><span class="target" id="_math_utils_8hpp_1adfb8e8cdc2d3dc5a25f663627c520552"></span><em class="property">constexpr</em> float <code class="sig-name descname">PI</code> = {3.1415926f}<a class="headerlink" href="#_CPPv4N3tnt2PIE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt14RadianToDegreeE">
+<span id="_CPPv3N3tnt14RadianToDegreeE"></span><span id="_CPPv2N3tnt14RadianToDegreeE"></span><span id="tnt::RadianToDegree__auto"></span><span class="target" id="_math_utils_8hpp_1ac4c9d759f02e46568ff35e1a4841a79b"></span><em class="property">constexpr</em> auto <code class="sig-name descname">RadianToDegree</code> = [](float rad) -&gt; float {        return (rad * (180.0f / PI));    }<a class="headerlink" href="#_CPPv4N3tnt14RadianToDegreeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt14DegreeToRadianE">
+<span id="_CPPv3N3tnt14DegreeToRadianE"></span><span id="_CPPv2N3tnt14DegreeToRadianE"></span><span id="tnt::DegreeToRadian__auto"></span><span class="target" id="_math_utils_8hpp_1a0a00b5ef969e1afcaccf2417baaf6613"></span><em class="property">constexpr</em> auto <code class="sig-name descname">DegreeToRadian</code> = [](float deg) -&gt; float {        return (deg * (PI / 180.0f));    }<a class="headerlink" href="#_CPPv4N3tnt14DegreeToRadianE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4I0EN3tnt5clampE">
+<span id="_CPPv3I0EN3tnt5clampE"></span><span id="_CPPv2I0EN3tnt5clampE"></span>template&lt;typename <code class="sig-name descname">T</code>&gt;<br /><span class="target" id="_math_utils_8hpp_1a5cd2d8a5d449ae9dc90fbe0e9a5a0bf7"></span>auto <code class="sig-name descname">clamp</code> = [](T val, T min, T max) {        if (val &lt; min)            val = min;        if (val &gt; max)            val = max;        return val;    }<a class="headerlink" href="#_CPPv4I0EN3tnt5clampE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4I0EN3tnt4lerpE">
+<span id="_CPPv3I0EN3tnt4lerpE"></span><span id="_CPPv2I0EN3tnt4lerpE"></span>template&lt;class <code class="sig-name descname">T</code>&gt;<br /><span class="target" id="_math_utils_8hpp_1ac8466bd20cfbcc7063bdc6794cf9dd22"></span><em class="property">constexpr</em> auto <code class="sig-name descname">lerp</code> = [](T a, T b, float pct)        -&gt; decltype(a + (b - a) * pct) {        return a + (b - a) * pct;    }<a class="headerlink" href="#_CPPv4I0EN3tnt4lerpE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4I0EN3tnt5blerpE">
+<span id="_CPPv3I0EN3tnt5blerpE"></span><span id="_CPPv2I0EN3tnt5blerpE"></span>template&lt;class <code class="sig-name descname">T</code>&gt;<br /><span class="target" id="_math_utils_8hpp_1a1d4e618ba7f314a1f67efb132d5216c4"></span><em class="property">constexpr</em> auto <code class="sig-name descname">blerp</code> = [](T a1, T a2, T b1, T b2,           float pct1, float pct2) {            return (a1 * (1 - pct1) * (1 - pct2) + a2 * pct1 * (1 - pct2) +                    b1 * pct2 * (1 - pct1) + b2 * pct1 * pct2);        }<a class="headerlink" href="#_CPPv4I0EN3tnt5blerpE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4I0EN3tnt12bezier_curveE">
+<span id="_CPPv3I0EN3tnt12bezier_curveE"></span><span id="_CPPv2I0EN3tnt12bezier_curveE"></span>template&lt;class <code class="sig-name descname">T</code>&gt;<br /><span class="target" id="_math_utils_8hpp_1ae45159ed9f18a55852638538bb65af33"></span><em class="property">constexpr</em> auto <code class="sig-name descname">bezier_curve</code> = [](T p1, T p2,                                            T p3, T p4, float pct) {        return ((p1 * (1 - pct) * (1 - pct) * (1 - pct)) +                (p2 * 3 * (1 - pct) * (1 - pct) * pct) +                (p3 * 3 * (1 - pct) * pct * pct) + (p4 * pct * pct * pct));    }<a class="headerlink" href="#_CPPv4I0EN3tnt12bezier_curveE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4I0EN3tnt4stepE">
+<span id="_CPPv3I0EN3tnt4stepE"></span><span id="_CPPv2I0EN3tnt4stepE"></span>template&lt;typename <code class="sig-name descname">T</code>&gt;<br /><span class="target" id="_math_utils_8hpp_1a1892192ed68914008bb12dd5e9bb2491"></span><em class="property">constexpr</em> auto <code class="sig-name descname">step</code> = [](T a, T b) -&gt; float {        return static_cast&lt;float&gt;(a &lt;= b);    }<a class="headerlink" href="#_CPPv4I0EN3tnt4stepE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4I0EN3tnt7boxstepE">
+<span id="_CPPv3I0EN3tnt7boxstepE"></span><span id="_CPPv2I0EN3tnt7boxstepE"></span>template&lt;typename <code class="sig-name descname">T</code>&gt;<br /><span class="target" id="_math_utils_8hpp_1a28717389545f68ee707de351dec063cb"></span><em class="property">constexpr</em> auto <code class="sig-name descname">boxstep</code> = [](T a, T b, T x) -&gt; float {        return clamp&lt;decltype(x - a / b - a)&gt;(x - a / b - a, 0, 1);    }<a class="headerlink" href="#_CPPv4I0EN3tnt7boxstepE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4I0EN3tnt5pulseE">
+<span id="_CPPv3I0EN3tnt5pulseE"></span><span id="_CPPv2I0EN3tnt5pulseE"></span>template&lt;typename <code class="sig-name descname">T</code>&gt;<br /><span class="target" id="_math_utils_8hpp_1ab44561b53e6fb0a9678011be365017bf"></span><em class="property">constexpr</em> auto <code class="sig-name descname">pulse</code> = [](T a, T b, T x) -&gt; float {        return step&lt;T&gt;(a, x) - step&lt;T&gt;(b, x);    }<a class="headerlink" href="#_CPPv4I0EN3tnt5pulseE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt10smoothstepE">
+<span id="_CPPv3N3tnt10smoothstepE"></span><span id="_CPPv2N3tnt10smoothstepE"></span><span id="tnt::smoothstep__auto"></span><span class="target" id="_math_utils_8hpp_1aa12799b9952cb797c0c97e1e7a3afc6b"></span>auto <code class="sig-name descname">smoothstep</code> = [](float a, float b, float x) -&gt; float {        if (x &lt; a)            return 0;        else if (x &gt;= b)            return 1;        x = boxstep&lt;float&gt;(a, b, x);        return (x * x * (3 - x - x));    }<a class="headerlink" href="#_CPPv4N3tnt10smoothstepE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt11gamacorrectE">
+<span id="_CPPv3N3tnt11gamacorrectE"></span><span id="_CPPv2N3tnt11gamacorrectE"></span><span id="tnt::gamacorrect__autoC"></span><span class="target" id="_math_utils_8hpp_1a0400e991daa3a08828853a69387109ab"></span><em class="property">const</em> auto <code class="sig-name descname">gamacorrect</code> = [](float gamma, float x) -&gt; float {        return std::powf(x, 1 / gamma);    }<a class="headerlink" href="#_CPPv4N3tnt11gamacorrectE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt4biasE">
+<span id="_CPPv3N3tnt4biasE"></span><span id="_CPPv2N3tnt4biasE"></span><span id="tnt::bias__autoC"></span><span class="target" id="_math_utils_8hpp_1a9ba902cde5f212a078aef0d5c6889d66"></span><em class="property">const</em> auto <code class="sig-name descname">bias</code> = [](float b, float x) -&gt; float {        return std::powf(x, std::logf(b) / std::logf(0.5));    }<a class="headerlink" href="#_CPPv4N3tnt4biasE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt4gainE">
+<span id="_CPPv3N3tnt4gainE"></span><span id="_CPPv2N3tnt4gainE"></span><span id="tnt::gain__autoC"></span><span class="target" id="_math_utils_8hpp_1acf0f3072e7a0a12d7146f2e54fea1d27"></span><em class="property">const</em> auto <code class="sig-name descname">gain</code> = [](float g, float x) -&gt; float {        if (x &lt; 0.5)            return bias(1 - g, x + x) / 2;        return 1 - bias(1 - g, 2 - x - x) / 2;    }<a class="headerlink" href="#_CPPv4N3tnt4gainE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt7Q_rsqrtE">
+<span id="_CPPv3N3tnt7Q_rsqrtE"></span><span id="_CPPv2N3tnt7Q_rsqrtE"></span><span id="tnt::Q_rsqrt__auto"></span><span class="target" id="_math_utils_8hpp_1afaf3c77ab002106c083082700d44056a"></span><em class="property">constexpr</em> auto <code class="sig-name descname">Q_rsqrt</code> = [](float number) -&gt; float {        constexpr float threehalfs = 1.5F;        float const &amp;x2{number * 0.5F};        float y{number};        long i{*(long *)&amp;y};         i = 0x5f3759df - (i &gt;&gt; 1);        y = *(float *)&amp;i;        y = y * (threehalfs - (x2 * y * y));        return y;    }<a class="headerlink" href="#_CPPv4N3tnt7Q_rsqrtE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt6Q_sqrtE">
+<span id="_CPPv3N3tnt6Q_sqrtE"></span><span id="_CPPv2N3tnt6Q_sqrtE"></span><span id="tnt::Q_sqrt__auto"></span><span class="target" id="_math_utils_8hpp_1af2e05577e9e3af7b712ea1d98fb0223d"></span><em class="property">constexpr</em> auto <code class="sig-name descname">Q_sqrt</code> = [](float number) -&gt; float {        constexpr float threehalfs = 1.5F;        float const &amp;x2{number * 0.5F};        float y{number};        long i{*(long *)&amp;y};         i = 0x5f3759df - (i &gt;&gt; 1);        y = *(float *)&amp;i;        y = y * (threehalfs - (x2 * y * y));        return number * y;    }<a class="headerlink" href="#_CPPv4N3tnt6Q_sqrtE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4I_i_iEN3tnt4CeilE">
+<span id="_CPPv3I_i_iEN3tnt4CeilE"></span><span id="_CPPv2I_i_iEN3tnt4CeilE"></span>template&lt;int <code class="sig-name descname">Numerator</code>, int <code class="sig-name descname">Denominator</code>&gt;<br /><span class="target" id="structtnt_1_1_ceil"></span><em class="property">struct </em><code class="sig-name descname">Ceil</code><a class="headerlink" href="#_CPPv4I_i_iEN3tnt4CeilE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt4CeilUt2_16E">
+<span id="_CPPv3N3tnt4CeilUt2_16E"></span><span class="target" id="structtnt_1_1_ceil_1af5732db90e9e4e7c5b142bca975ef371"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt4CeilUt2_16E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt4CeilUt2_165valueE">
+<span id="_CPPv3N3tnt4CeilUt2_165valueE"></span><span class="target" id="structtnt_1_1_ceil_1af5732db90e9e4e7c5b142bca975ef371a83b3e0939e4cd2dd31467731465cc825"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = typename Floor&lt;Numerator, Denominator&gt;::value + 1<a class="headerlink" href="#_CPPv4N3tnt4CeilUt2_165valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4I_iEN3tnt9factorialE">
+<span id="_CPPv3I_iEN3tnt9factorialE"></span><span id="_CPPv2I_iEN3tnt9factorialE"></span>template&lt;int <code class="sig-name descname">I</code>&gt;<br /><span class="target" id="structtnt_1_1factorial"></span><em class="property">struct </em><code class="sig-name descname">factorial</code><a class="headerlink" href="#_CPPv4I_iEN3tnt9factorialE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt9factorialUt1_0E">
+<span id="_CPPv3N3tnt9factorialUt1_0E"></span><span class="target" id="structtnt_1_1factorial_1a303dbe112094a1c7cca881c3cd7877b1"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt9factorialUt1_0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt9factorialUt1_05valueE">
+<span id="_CPPv3N3tnt9factorialUt1_05valueE"></span><span class="target" id="structtnt_1_1factorial_1a303dbe112094a1c7cca881c3cd7877b1af908acca0a781d1b330ae7a847d0b1c8"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = <a class="reference internal" href="#_CPPv4I_iEN3tnt9factorialE" title="tnt::factorial::I">I</a> * <a class="reference internal" href="#_CPPv4I_iEN3tnt9factorialE" title="tnt::factorial">factorial</a>&lt;<a class="reference internal" href="#_CPPv4I_iEN3tnt9factorialE" title="tnt::factorial::I">I</a> - 1&gt;::value<a class="headerlink" href="#_CPPv4N3tnt9factorialUt1_05valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4IEN3tnt9factorialIXL1EEEE">
+<span id="_CPPv3IEN3tnt9factorialIXL1EEEE"></span><span id="_CPPv2IEN3tnt9factorialIX1EEE"></span>template&lt;&gt;<br /><span class="target" id="structtnt_1_1factorial_3_011_01_4"></span><em class="property">struct </em><code class="sig-name descname">factorial</code>&lt;1&gt;<a class="headerlink" href="#_CPPv4IEN3tnt9factorialIXL1EEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt9factorialIXL1EEEUt1_1E">
+<span id="_CPPv3N3tnt9factorialIXL1EEEUt1_1E"></span><span class="target" id="structtnt_1_1factorial_3_011_01_4_1abdd260bde04ee7640347c8f88b773071"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt9factorialIXL1EEEUt1_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt9factorialIXL1EEEUt1_15valueE">
+<span id="_CPPv3N3tnt9factorialIXL1EEEUt1_15valueE"></span><span class="target" id="structtnt_1_1factorial_3_011_01_4_1abdd260bde04ee7640347c8f88b773071ae991a0a00e32f8a31cb3ef00d9b0172c"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = 1<a class="headerlink" href="#_CPPv4N3tnt9factorialIXL1EEEUt1_15valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4I_iEN3tnt9fibonacciE">
+<span id="_CPPv3I_iEN3tnt9fibonacciE"></span><span id="_CPPv2I_iEN3tnt9fibonacciE"></span>template&lt;int <code class="sig-name descname">I</code>&gt;<br /><span class="target" id="structtnt_1_1fibonacci"></span><em class="property">struct </em><code class="sig-name descname">fibonacci</code><a class="headerlink" href="#_CPPv4I_iEN3tnt9fibonacciE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt9fibonacciUt1_2E">
+<span id="_CPPv3N3tnt9fibonacciUt1_2E"></span><span class="target" id="structtnt_1_1fibonacci_1a6f5c41342915b84236049d35ab3c242b"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt9fibonacciUt1_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt9fibonacciUt1_25valueE">
+<span id="_CPPv3N3tnt9fibonacciUt1_25valueE"></span><span class="target" id="structtnt_1_1fibonacci_1a6f5c41342915b84236049d35ab3c242bac2e54bb19e659fe4e85a0ce8bfa68d22"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = <a class="reference internal" href="#_CPPv4I_iEN3tnt9fibonacciE" title="tnt::fibonacci">fibonacci</a>&lt;<a class="reference internal" href="#_CPPv4I_iEN3tnt9fibonacciE" title="tnt::fibonacci::I">I</a> - 1&gt;::value + <a class="reference internal" href="#_CPPv4I_iEN3tnt9fibonacciE" title="tnt::fibonacci">fibonacci</a>&lt;<a class="reference internal" href="#_CPPv4I_iEN3tnt9fibonacciE" title="tnt::fibonacci::I">I</a> - 2&gt;::value<a class="headerlink" href="#_CPPv4N3tnt9fibonacciUt1_25valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4IEN3tnt9fibonacciIXL1EEEE">
+<span id="_CPPv3IEN3tnt9fibonacciIXL1EEEE"></span><span id="_CPPv2IEN3tnt9fibonacciIX1EEE"></span>template&lt;&gt;<br /><span class="target" id="structtnt_1_1fibonacci_3_011_01_4"></span><em class="property">struct </em><code class="sig-name descname">fibonacci</code>&lt;1&gt;<a class="headerlink" href="#_CPPv4IEN3tnt9fibonacciIXL1EEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt9fibonacciIXL1EEEUt1_4E">
+<span id="_CPPv3N3tnt9fibonacciIXL1EEEUt1_4E"></span><span class="target" id="structtnt_1_1fibonacci_3_011_01_4_1afde78fdb08e49686f172f641e2621bad"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt9fibonacciIXL1EEEUt1_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt9fibonacciIXL1EEEUt1_45valueE">
+<span id="_CPPv3N3tnt9fibonacciIXL1EEEUt1_45valueE"></span><span class="target" id="structtnt_1_1fibonacci_3_011_01_4_1afde78fdb08e49686f172f641e2621badaa0328dea01b4725e8780e77793a2ee65"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = 1<a class="headerlink" href="#_CPPv4N3tnt9fibonacciIXL1EEEUt1_45valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4IEN3tnt9fibonacciIXL2EEEE">
+<span id="_CPPv3IEN3tnt9fibonacciIXL2EEEE"></span><span id="_CPPv2IEN3tnt9fibonacciIX2EEE"></span>template&lt;&gt;<br /><span class="target" id="structtnt_1_1fibonacci_3_012_01_4"></span><em class="property">struct </em><code class="sig-name descname">fibonacci</code>&lt;2&gt;<a class="headerlink" href="#_CPPv4IEN3tnt9fibonacciIXL2EEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt9fibonacciIXL2EEEUt1_3E">
+<span id="_CPPv3N3tnt9fibonacciIXL2EEEUt1_3E"></span><span class="target" id="structtnt_1_1fibonacci_3_012_01_4_1a68524b35978fbe694f37057036f5cb3c"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt9fibonacciIXL2EEEUt1_3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt9fibonacciIXL2EEEUt1_35valueE">
+<span id="_CPPv3N3tnt9fibonacciIXL2EEEUt1_35valueE"></span><span class="target" id="structtnt_1_1fibonacci_3_012_01_4_1a68524b35978fbe694f37057036f5cb3cab38ebe80a1164f2c76c6d6bc7b8dca81"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = 1<a class="headerlink" href="#_CPPv4N3tnt9fibonacciIXL2EEEUt1_35valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4I_i_iEN3tnt5FloorE">
+<span id="_CPPv3I_i_iEN3tnt5FloorE"></span><span id="_CPPv2I_i_iEN3tnt5FloorE"></span>template&lt;int <code class="sig-name descname">Numerator</code>, int <code class="sig-name descname">Denominator</code>&gt;<br /><span class="target" id="structtnt_1_1_floor"></span><em class="property">struct </em><code class="sig-name descname">Floor</code><a class="headerlink" href="#_CPPv4I_i_iEN3tnt5FloorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt5FloorUt2_14E">
+<span id="_CPPv3N3tnt5FloorUt2_14E"></span><span class="target" id="structtnt_1_1_floor_1ab648ac3cc4de02a0255126fc89daf00e"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt5FloorUt2_14E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5FloorUt2_146remainE">
+<span id="_CPPv3N3tnt5FloorUt2_146remainE"></span><span class="target" id="structtnt_1_1_floor_1ab648ac3cc4de02a0255126fc89daf00eaccaaa57cd7622c7532bf606e34431d08"></span><em class="property">enumerator </em><code class="sig-name descname">remain</code> = <a class="reference internal" href="#_CPPv4I_i_iEN3tnt5FloorE" title="tnt::Floor::Numerator">Numerator</a> - ((int)(<a class="reference internal" href="#_CPPv4I_i_iEN3tnt5FloorE" title="tnt::Floor::Numerator">Numerator</a> / <a class="reference internal" href="#_CPPv4I_i_iEN3tnt5FloorE" title="tnt::Floor::Denominator">Denominator</a>) * <a class="reference internal" href="#_CPPv4I_i_iEN3tnt5FloorE" title="tnt::Floor::Denominator">Denominator</a>)<a class="headerlink" href="#_CPPv4N3tnt5FloorUt2_146remainE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5FloorUt2_145valueE">
+<span id="_CPPv3N3tnt5FloorUt2_145valueE"></span><span class="target" id="structtnt_1_1_floor_1ab648ac3cc4de02a0255126fc89daf00ea5396493406817137949b04a613af5941"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = ((<a class="reference internal" href="#_CPPv4I_i_iEN3tnt5FloorE" title="tnt::Floor::Numerator">Numerator</a> - <a class="reference internal" href="#_CPPv4N3tnt5FloorUt2_146remainE" title="tnt::Floor::[anonymous]::remain">remain</a>) / <a class="reference internal" href="#_CPPv4I_i_iEN3tnt5FloorE" title="tnt::Floor::Denominator">Denominator</a>)<a class="headerlink" href="#_CPPv4N3tnt5FloorUt2_145valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4I_iEN3tnt5FloorI9NumeratorXL1EEEE">
+<span id="_CPPv3I_iEN3tnt5FloorI9NumeratorXL1EEEE"></span><span id="_CPPv2I_iEN3tnt5FloorI9NumeratorX1EEE"></span>template&lt;int <code class="sig-name descname">Numerator</code>&gt;<br /><span class="target" id="structtnt_1_1_floor_3_01_numerator_00_011_01_4"></span><em class="property">struct </em><code class="sig-name descname">Floor</code>&lt;<a class="reference internal" href="#_CPPv4I_iEN3tnt5FloorI9NumeratorXL1EEEE" title="tnt::Floor&lt;Numerator, 1&gt;::Numerator">Numerator</a>, 1&gt;<a class="headerlink" href="#_CPPv4I_iEN3tnt5FloorI9NumeratorXL1EEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt5FloorI9NumeratorXL1EEEUt2_15E">
+<span id="_CPPv3N3tnt5FloorI9NumeratorXL1EEEUt2_15E"></span><span class="target" id="structtnt_1_1_floor_3_01_numerator_00_011_01_4_1a6527d8a10a1ee8602372146a57b5b024"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt5FloorI9NumeratorXL1EEEUt2_15E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5FloorI9NumeratorXL1EEEUt2_155valueE">
+<span id="_CPPv3N3tnt5FloorI9NumeratorXL1EEEUt2_155valueE"></span><span class="target" id="structtnt_1_1_floor_3_01_numerator_00_011_01_4_1a6527d8a10a1ee8602372146a57b5b024af49df574562a4d0a8efc27d3a6d3fcec"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = <a class="reference internal" href="#_CPPv4I_iEN3tnt5FloorI9NumeratorXL1EEEE" title="tnt::Floor&lt;Numerator, 1&gt;::Numerator">Numerator</a><a class="headerlink" href="#_CPPv4N3tnt5FloorI9NumeratorXL1EEEUt2_155valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4I_i_iEN3tnt7modulusE">
+<span id="_CPPv3I_i_iEN3tnt7modulusE"></span><span id="_CPPv2I_i_iEN3tnt7modulusE"></span>template&lt;int <code class="sig-name descname">First</code>, int <code class="sig-name descname">Second</code>&gt;<br /><span class="target" id="structtnt_1_1modulus"></span><em class="property">struct </em><code class="sig-name descname">modulus</code><a class="headerlink" href="#_CPPv4I_i_iEN3tnt7modulusE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt7modulusUt2_13E">
+<span id="_CPPv3N3tnt7modulusUt2_13E"></span><span class="target" id="structtnt_1_1modulus_1a9db6341b71022914251ce20c927d884b"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt7modulusUt2_13E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt7modulusUt2_135valueE">
+<span id="_CPPv3N3tnt7modulusUt2_135valueE"></span><span class="target" id="structtnt_1_1modulus_1a9db6341b71022914251ce20c927d884bafdbe96341cf64cb95697502eb8b5dbf7"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = (<a class="reference internal" href="#_CPPv4I_i_iEN3tnt7modulusE" title="tnt::modulus::First">First</a> - (<a class="reference internal" href="#_CPPv4I_i_iEN3tnt7modulusE" title="tnt::modulus::First">First</a> % <a class="reference internal" href="#_CPPv4I_i_iEN3tnt7modulusE" title="tnt::modulus::Second">Second</a>))<a class="headerlink" href="#_CPPv4N3tnt7modulusUt2_135valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4I_i_iEN3tnt5powerE">
+<span id="_CPPv3I_i_iEN3tnt5powerE"></span><span id="_CPPv2I_i_iEN3tnt5powerE"></span>template&lt;int <code class="sig-name descname">Base</code>, int <code class="sig-name descname">Expo</code>&gt;<br /><span class="target" id="structtnt_1_1power"></span><em class="property">struct </em><code class="sig-name descname">power</code><a class="headerlink" href="#_CPPv4I_i_iEN3tnt5powerE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt5powerUt1_5E">
+<span id="_CPPv3N3tnt5powerUt1_5E"></span><span class="target" id="structtnt_1_1power_1aec2dc29e09f7b36f7295b68e6f8d5faf"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt5powerUt1_5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5powerUt1_55valueE">
+<span id="_CPPv3N3tnt5powerUt1_55valueE"></span><span class="target" id="structtnt_1_1power_1aec2dc29e09f7b36f7295b68e6f8d5fafaa31444b2ba4f073c9706f6687c994c80"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = <a class="reference internal" href="#_CPPv4I_i_iEN3tnt5powerE" title="tnt::power::Base">Base</a> * <a class="reference internal" href="#_CPPv4I_i_iEN3tnt5powerE" title="tnt::power">power</a>&lt;<a class="reference internal" href="#_CPPv4I_i_iEN3tnt5powerE" title="tnt::power::Base">Base</a>, <a class="reference internal" href="#_CPPv4I_i_iEN3tnt5powerE" title="tnt::power::Expo">Expo</a> - 1&gt;::value<a class="headerlink" href="#_CPPv4N3tnt5powerUt1_55valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4I_iEN3tnt5powerIXL0EE4ExpoEE">
+<span id="_CPPv3I_iEN3tnt5powerIXL0EE4ExpoEE"></span><span id="_CPPv2I_iEN3tnt5powerIX0E4ExpoEE"></span>template&lt;int <code class="sig-name descname">Expo</code>&gt;<br /><span class="target" id="structtnt_1_1power_3_010_00_01_expo_01_4"></span><em class="property">struct </em><code class="sig-name descname">power</code>&lt;0, <a class="reference internal" href="#_CPPv4I_iEN3tnt5powerIXL0EE4ExpoEE" title="tnt::power&lt;0, Expo&gt;::Expo">Expo</a>&gt;<a class="headerlink" href="#_CPPv4I_iEN3tnt5powerIXL0EE4ExpoEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt5powerIXL0EE4ExpoEUt1_8E">
+<span id="_CPPv3N3tnt5powerIXL0EE4ExpoEUt1_8E"></span><span class="target" id="structtnt_1_1power_3_010_00_01_expo_01_4_1a18f1ee825ce90a396f97d0cbc751c35a"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt5powerIXL0EE4ExpoEUt1_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5powerIXL0EE4ExpoEUt1_85valueE">
+<span id="_CPPv3N3tnt5powerIXL0EE4ExpoEUt1_85valueE"></span><span class="target" id="structtnt_1_1power_3_010_00_01_expo_01_4_1a18f1ee825ce90a396f97d0cbc751c35aa8b65c8ed3e7d582c9f688316f983210f"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = 0<a class="headerlink" href="#_CPPv4N3tnt5powerIXL0EE4ExpoEUt1_85valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4I_iEN3tnt5powerIXL1EE4ExpoEE">
+<span id="_CPPv3I_iEN3tnt5powerIXL1EE4ExpoEE"></span><span id="_CPPv2I_iEN3tnt5powerIX1E4ExpoEE"></span>template&lt;int <code class="sig-name descname">Expo</code>&gt;<br /><span class="target" id="structtnt_1_1power_3_011_00_01_expo_01_4"></span><em class="property">struct </em><code class="sig-name descname">power</code>&lt;1, <a class="reference internal" href="#_CPPv4I_iEN3tnt5powerIXL1EE4ExpoEE" title="tnt::power&lt;1, Expo&gt;::Expo">Expo</a>&gt;<a class="headerlink" href="#_CPPv4I_iEN3tnt5powerIXL1EE4ExpoEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt5powerIXL1EE4ExpoEUt1_7E">
+<span id="_CPPv3N3tnt5powerIXL1EE4ExpoEUt1_7E"></span><span class="target" id="structtnt_1_1power_3_011_00_01_expo_01_4_1aabcd01072c0e5cfc82fd1a15ec7d8a0a"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt5powerIXL1EE4ExpoEUt1_7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5powerIXL1EE4ExpoEUt1_75valueE">
+<span id="_CPPv3N3tnt5powerIXL1EE4ExpoEUt1_75valueE"></span><span class="target" id="structtnt_1_1power_3_011_00_01_expo_01_4_1aabcd01072c0e5cfc82fd1a15ec7d8a0aa42d7f7bdeba44dbd51c99cc00d15bc79"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = 1<a class="headerlink" href="#_CPPv4N3tnt5powerIXL1EE4ExpoEUt1_75valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4I_iEN3tnt5powerI4BaseXL0EEEE">
+<span id="_CPPv3I_iEN3tnt5powerI4BaseXL0EEEE"></span><span id="_CPPv2I_iEN3tnt5powerI4BaseX0EEE"></span>template&lt;int <code class="sig-name descname">Base</code>&gt;<br /><span class="target" id="structtnt_1_1power_3_01_base_00_010_01_4"></span><em class="property">struct </em><code class="sig-name descname">power</code>&lt;<a class="reference internal" href="#_CPPv4I_iEN3tnt5powerI4BaseXL0EEEE" title="tnt::power&lt;Base, 0&gt;::Base">Base</a>, 0&gt;<a class="headerlink" href="#_CPPv4I_iEN3tnt5powerI4BaseXL0EEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt5powerI4BaseXL0EEEUt1_6E">
+<span id="_CPPv3N3tnt5powerI4BaseXL0EEEUt1_6E"></span><span class="target" id="structtnt_1_1power_3_01_base_00_010_01_4_1a1178c9c97dfb2a95b4bbe6acd9ac6fff"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt5powerI4BaseXL0EEEUt1_6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5powerI4BaseXL0EEEUt1_65valueE">
+<span id="_CPPv3N3tnt5powerI4BaseXL0EEEUt1_65valueE"></span><span class="target" id="structtnt_1_1power_3_01_base_00_010_01_4_1a1178c9c97dfb2a95b4bbe6acd9ac6fffa6d4c29a580b6dd0c9bdf33658b3ecb83"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = 1<a class="headerlink" href="#_CPPv4N3tnt5powerI4BaseXL0EEEUt1_65valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4I_i_DpiEN3tnt7productE">
+<span id="_CPPv3I_i_DpiEN3tnt7productE"></span><span id="_CPPv2I_i_DpiEN3tnt7productE"></span>template&lt;int <code class="sig-name descname">First</code>, int... <code class="sig-name descname">Rest</code>&gt;<br /><span class="target" id="structtnt_1_1product"></span><em class="property">struct </em><code class="sig-name descname">product</code><a class="headerlink" href="#_CPPv4I_i_DpiEN3tnt7productE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt7productUt2_11E">
+<span id="_CPPv3N3tnt7productUt2_11E"></span><span class="target" id="structtnt_1_1product_1acbbc7ca31a81f395095a016a924678e6"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt7productUt2_11E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt7productUt2_115valueE">
+<span id="_CPPv3N3tnt7productUt2_115valueE"></span><span class="target" id="structtnt_1_1product_1acbbc7ca31a81f395095a016a924678e6abca7ef14b7da4bd0b0323913bc386c01"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = <a class="reference internal" href="#_CPPv4I_i_DpiEN3tnt7productE" title="tnt::product::First">First</a> * <a class="reference internal" href="#_CPPv4I_i_DpiEN3tnt7productE" title="tnt::product">product</a>&lt;<a class="reference internal" href="#_CPPv4I_i_DpiEN3tnt7productE" title="tnt::product::Rest">Rest</a>...&gt;::value * 1<a class="headerlink" href="#_CPPv4N3tnt7productUt2_115valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4I_i_iEN3tnt7productI5First6SecondEE">
+<span id="_CPPv3I_i_iEN3tnt7productI5First6SecondEE"></span><span id="_CPPv2I_i_iEN3tnt7productI5First6SecondEE"></span>template&lt;int <code class="sig-name descname">First</code>, int <code class="sig-name descname">Second</code>&gt;<br /><span class="target" id="structtnt_1_1product_3_01_first_00_01_second_01_4"></span><em class="property">struct </em><code class="sig-name descname">product</code>&lt;<a class="reference internal" href="#_CPPv4I_i_iEN3tnt7productI5First6SecondEE" title="tnt::product&lt;First, Second&gt;::First">First</a>, <a class="reference internal" href="#_CPPv4I_i_iEN3tnt7productI5First6SecondEE" title="tnt::product&lt;First, Second&gt;::Second">Second</a>&gt;<a class="headerlink" href="#_CPPv4I_i_iEN3tnt7productI5First6SecondEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt7productI5First6SecondEUt2_12E">
+<span id="_CPPv3N3tnt7productI5First6SecondEUt2_12E"></span><span class="target" id="structtnt_1_1product_3_01_first_00_01_second_01_4_1afda7c6dc27740f25274af0256ceafd83"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt7productI5First6SecondEUt2_12E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt7productI5First6SecondEUt2_125valueE">
+<span id="_CPPv3N3tnt7productI5First6SecondEUt2_125valueE"></span><span class="target" id="structtnt_1_1product_3_01_first_00_01_second_01_4_1afda7c6dc27740f25274af0256ceafd83a1f2a25ce85cf2bcb8123192c34981997"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = <a class="reference internal" href="#_CPPv4I_i_iEN3tnt7productI5First6SecondEE" title="tnt::product&lt;First, Second&gt;::First">First</a> * <a class="reference internal" href="#_CPPv4I_i_iEN3tnt7productI5First6SecondEE" title="tnt::product&lt;First, Second&gt;::Second">Second</a><a class="headerlink" href="#_CPPv4N3tnt7productI5First6SecondEUt2_125valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4I_i_DpiEN3tnt3sumE">
+<span id="_CPPv3I_i_DpiEN3tnt3sumE"></span><span id="_CPPv2I_i_DpiEN3tnt3sumE"></span>template&lt;int <code class="sig-name descname">First</code>, int... <code class="sig-name descname">Rest</code>&gt;<br /><span class="target" id="structtnt_1_1sum"></span><em class="property">struct </em><code class="sig-name descname">sum</code><a class="headerlink" href="#_CPPv4I_i_DpiEN3tnt3sumE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt3sumUt1_9E">
+<span id="_CPPv3N3tnt3sumUt1_9E"></span><span class="target" id="structtnt_1_1sum_1ac4293e99bf0ddfd34830f715f15f6d93"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt3sumUt1_9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt3sumUt1_95valueE">
+<span id="_CPPv3N3tnt3sumUt1_95valueE"></span><span class="target" id="structtnt_1_1sum_1ac4293e99bf0ddfd34830f715f15f6d93a8592989352016187c234843de4da8ab7"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = <a class="reference internal" href="#_CPPv4I_i_DpiEN3tnt3sumE" title="tnt::sum::First">First</a> + <a class="reference internal" href="#_CPPv4I_i_DpiEN3tnt3sumE" title="tnt::sum">sum</a>&lt;<a class="reference internal" href="#_CPPv4I_i_DpiEN3tnt3sumE" title="tnt::sum::Rest">Rest</a>...&gt;::value + 0<a class="headerlink" href="#_CPPv4N3tnt3sumUt1_95valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4I_i_iEN3tnt3sumI5First6SecondEE">
+<span id="_CPPv3I_i_iEN3tnt3sumI5First6SecondEE"></span><span id="_CPPv2I_i_iEN3tnt3sumI5First6SecondEE"></span>template&lt;int <code class="sig-name descname">First</code>, int <code class="sig-name descname">Second</code>&gt;<br /><span class="target" id="structtnt_1_1sum_3_01_first_00_01_second_01_4"></span><em class="property">struct </em><code class="sig-name descname">sum</code>&lt;<a class="reference internal" href="#_CPPv4I_i_iEN3tnt3sumI5First6SecondEE" title="tnt::sum&lt;First, Second&gt;::First">First</a>, <a class="reference internal" href="#_CPPv4I_i_iEN3tnt3sumI5First6SecondEE" title="tnt::sum&lt;First, Second&gt;::Second">Second</a>&gt;<a class="headerlink" href="#_CPPv4I_i_iEN3tnt3sumI5First6SecondEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt3sumI5First6SecondEUt2_10E">
+<span id="_CPPv3N3tnt3sumI5First6SecondEUt2_10E"></span><span class="target" id="structtnt_1_1sum_3_01_first_00_01_second_01_4_1a569d3cd2946d00f68579abadc8f858c0"></span><em class="property">enum </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N3tnt3sumI5First6SecondEUt2_10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt3sumI5First6SecondEUt2_105valueE">
+<span id="_CPPv3N3tnt3sumI5First6SecondEUt2_105valueE"></span><span class="target" id="structtnt_1_1sum_3_01_first_00_01_second_01_4_1a569d3cd2946d00f68579abadc8f858c0abf5304b3b2ea3bf45799d908ed57ae2d"></span><em class="property">enumerator </em><code class="sig-name descname">value</code> = <a class="reference internal" href="#_CPPv4I_i_iEN3tnt3sumI5First6SecondEE" title="tnt::sum&lt;First, Second&gt;::First">First</a> + <a class="reference internal" href="#_CPPv4I_i_iEN3tnt3sumI5First6SecondEE" title="tnt::sum&lt;First, Second&gt;::Second">Second</a><a class="headerlink" href="#_CPPv4N3tnt3sumI5First6SecondEUt2_105valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Vector.html" class="btn btn-neutral float-right" title="Vector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Spring.html" class="btn btn-neutral float-left" title="Numerical Springing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

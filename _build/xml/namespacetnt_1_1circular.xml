@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1circular" kind="namespace" language="C++">
+    <compoundname>tnt::circular</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_easings_8hpp_1a91de80205372f55cb57dbbc091ad832a" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto tnt::circular::EaseIn</definition>
+        <argsstring></argsstring>
+        <name>EaseIn</name>
+        <initializer>= [](float time, float begin, float change,
+                                          float duration) -&gt; float {
+            time /= duration;
+            return -change * (sqrtf(1 - time * time) - 1) + begin;
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Easings.hpp" line="86" column="31" bodyfile="E:/thing/cpp/tnt/include/math/Easings.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_easings_8hpp_1a34ce3711502be3f905c841714b2382f9" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto tnt::circular::EaseOut</definition>
+        <argsstring></argsstring>
+        <name>EaseOut</name>
+        <initializer>= [](float time, float begin, float change,
+                                           float duration) -&gt; float {
+            time = time / duration - 1.f;
+            return change * sqrtf(1 - time * time) + begin;
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Easings.hpp" line="92" column="31" bodyfile="E:/thing/cpp/tnt/include/math/Easings.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_easings_8hpp_1a2b41bfb38c19e87a51e5a4b096581ec4" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto tnt::circular::EaseInOut</definition>
+        <argsstring></argsstring>
+        <name>EaseInOut</name>
+        <initializer>= [](float time, float begin, float change,
+                                             float duration) -&gt; float {
+            if ((time /= duration / 2) &lt; 1)
+                return -change / 2 * (sqrtf(1 - time * time) - 1) + begin;
+            else
+                return change / 2 * (sqrtf(1 - time * (time -= 2)) + 1) + begin;
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Easings.hpp" line="98" column="31" bodyfile="E:/thing/cpp/tnt/include/math/Easings.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/math/Easings.hpp" line="84" column="5"/>
+  </compounddef>
+</doxygen>

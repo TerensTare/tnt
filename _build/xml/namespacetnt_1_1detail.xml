@@ -1,0 +1,284 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1detail" kind="namespace" language="C++">
+    <compoundname>tnt::detail</compoundname>
+    <innerclass refid="classtnt_1_1detail_1_1base__action" prot="public">tnt::detail::base_action</innerclass>
+    <innerclass refid="structtnt_1_1detail_1_1is__sized__any" prot="public">tnt::detail::is_sized_any</innerclass>
+    <innerclass refid="structtnt_1_1detail_1_1is__sized__any_3_01sized__any_3_01_si_01_4_01_4" prot="public">tnt::detail::is_sized_any&lt; sized_any&lt; Si &gt; &gt;</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="_type_info_8hpp_1a2b84b7fbebc8ed7327f6ac37d1d3f4d3" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::remove_cvref_t&lt; std::decay_t&lt; std::remove_all_extents_t&lt; T &gt; &gt;&gt;</type>
+        <definition>using tnt::detail::unwrapped = typedef std::remove_cvref_t&lt;std::decay_t&lt;std::remove_all_extents_t&lt;T&gt; &gt;&gt;</definition>
+        <argsstring></argsstring>
+        <name>unwrapped</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/TypeInfo.hpp" line="11" column="9" bodyfile="E:/thing/cpp/tnt/include/mirror/TypeInfo.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_traits_8hpp_1a865575e48709ce95d484bcf0e6bb92be" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Ts</declname>
+            <defname>Ts</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>using tnt::detail::void_t = typedef void</definition>
+        <argsstring></argsstring>
+        <name>void_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="17" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_asset_cache_8hpp_1ab6cba959689ae0b6d8050346618bd684" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4" kindref="compound">small_font_cache</ref></type>
+        <definition>small_font_cache tnt::detail::def_font_cache</definition>
+        <argsstring></argsstring>
+        <name>def_font_cache</name>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/AssetCache.hpp" line="17" column="29" bodyfile="E:/thing/cpp/tnt/include/fileIO/AssetCache.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_asset_cache_8hpp_1ab59a0775ded92e947e01292909108d33" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1asset__cache_3_01_mix___music_00_01_i_01_4" kindref="compound">small_music_cache</ref></type>
+        <definition>small_music_cache tnt::detail::def_music_cache</definition>
+        <argsstring></argsstring>
+        <name>def_music_cache</name>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/AssetCache.hpp" line="18" column="30" bodyfile="E:/thing/cpp/tnt/include/fileIO/AssetCache.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_asset_cache_8hpp_1acb21100775c7aee39b97aeb91e3deb22" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4" kindref="compound">small_sfx_cache</ref></type>
+        <definition>small_sfx_cache tnt::detail::def_sfx_cache</definition>
+        <argsstring></argsstring>
+        <name>def_sfx_cache</name>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/AssetCache.hpp" line="19" column="28" bodyfile="E:/thing/cpp/tnt/include/fileIO/AssetCache.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_asset_cache_8hpp_1a178df7c731a79b26c825267f97beb963" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1asset__cache_3_01_s_d_l___texture_00_01_i_01_4" kindref="compound">medium_texture_cache</ref></type>
+        <definition>medium_texture_cache tnt::detail::def_texture_cache</definition>
+        <argsstring></argsstring>
+        <name>def_texture_cache</name>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/AssetCache.hpp" line="20" column="33" bodyfile="E:/thing/cpp/tnt/include/fileIO/AssetCache.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_asset_cache_8hpp_1a81f8fa24fc7cc451e46898d5218ac359" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4" kindref="compound">small_texture_atlas_cache</ref></type>
+        <definition>small_texture_atlas_cache tnt::detail::def_texture_atlas_cache</definition>
+        <argsstring></argsstring>
+        <name>def_texture_atlas_cache</name>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/AssetCache.hpp" line="21" column="38" bodyfile="E:/thing/cpp/tnt/include/fileIO/AssetCache.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_snipper_8hpp_1ae50a39fb669ed3a0d9c156efd354d061" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::detail::callable</definition>
+        <argsstring></argsstring>
+        <name>callable</name>
+        <initializer>= std::is_invocable_v&lt;T, Args...&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" line="25" column="13" bodyfile="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_snipper_8hpp_1adc4ef9f87655999c74819b2d9293e061" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::detail::safe_callable</definition>
+        <argsstring></argsstring>
+        <name>safe_callable</name>
+        <initializer>= std::is_nothrow_invocable_v&lt;T, Args...&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" line="28" column="13" bodyfile="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_any_8hpp_1ab4e52a2ccf91673cfd53dcf34d2afbe0" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::detail::not_any</definition>
+        <argsstring></argsstring>
+        <name>not_any</name>
+        <initializer>= not <ref refid="structtnt_1_1detail_1_1is__sized__any" kindref="compound">is_sized_any</ref>&lt;std::remove_cvref_t&lt;T&gt;&gt;::value</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Any.hpp" line="53" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Any.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_containers_8hpp_1a8e07443efac104ec1e81edcaf7e572db" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::detail::has_contains</definition>
+        <argsstring></argsstring>
+        <name>has_contains</name>
+        <initializer>= std::ranges::input_range&lt;T&gt;
+            &amp;&amp; requires(T const &amp;t)
+        {
+            { t.contains } -&gt; std::same_as&lt;bool&gt;;
+            requires std::invocable&lt;
+                decltype(t.contains),
+                std::ranges::range_value_t&lt;T&gt;&gt;;
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Containers.hpp" line="130" column="17" bodyfile="E:/thing/cpp/tnt/include/types/Containers.hpp" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_traits_8hpp_1a504e8e2359e87a7bb7e476ac85f181e3" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr bool</type>
+        <definition>constexpr bool tnt::detail::is_same_v</definition>
+        <argsstring></argsstring>
+        <name>is_same_v</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="21" column="31" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_traits_8hpp_1a5c71896ecb53aff75bc58fb2cf132652" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr bool</type>
+        <definition>constexpr bool tnt::detail::is_same_v&lt; T, T &gt;</definition>
+        <argsstring></argsstring>
+        <name>is_same_v&lt; T, T &gt;</name>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="24" column="26" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_traits_8hpp_1a3c3c9585b5c0894c582f907043623830" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Ts</declname>
+            <defname>Ts</defname>
+          </param>
+        </templateparamlist>
+        <type>constexpr bool</type>
+        <definition>constexpr bool tnt::detail::is_any_of_v</definition>
+        <argsstring></argsstring>
+        <name>is_any_of_v</name>
+        <initializer>{(is_same_v&lt;T, Ts&gt; || ...)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="28" column="31" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/fileIO/AssetCache.hpp" line="15" column="1"/>
+  </compounddef>
+</doxygen>

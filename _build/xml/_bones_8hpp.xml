@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="_bones_8hpp" kind="file" language="C++">
+    <compoundname>Bones.hpp</compoundname>
+    <includes local="no">nlohmann/json_fwd.hpp</includes>
+    <includes refid="doo__ecs_2_base_8hpp" local="yes">doo_ecs/Base.hpp</includes>
+    <includes refid="_vector_8hpp" local="yes">math/Vector.hpp</includes>
+    <includes refid="_sparse_set_8hpp" local="yes">types/SparseSet.hpp</includes>
+    <includedby refid="_tn_t_8hpp" local="yes">E:/thing/cpp/tnt/include/TnT.hpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>nlohmann/json_fwd.hpp</label>
+      </node>
+      <node id="1">
+        <label>E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp</label>
+        <link refid="_bones_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structtnt_1_1doo_1_1bone__comp" prot="public">tnt::doo::bone_comp</innerclass>
+    <innerclass refid="structtnt_1_1doo_1_1bones__sys" prot="public">tnt::doo::bones_sys</innerclass>
+    <innernamespace refid="namespacetnt">tnt</innernamespace>
+    <innernamespace refid="namespacetnt_1_1doo">tnt::doo</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>TNT_DOO_ECS_2D_SKELETAL_ANIMATIONS_SYSTEM_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TNT_DOO_ECS_2D_SKELETAL_ANIMATIONS_SYSTEM_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nlohmann/json_fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;doo_ecs/Base.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;math/Vector.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;types/SparseSet.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>a<sp/>basic<sp/>json<sp/>file:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>[</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>//<sp/>ommited<sp/>stuff<sp/>from<sp/>other<sp/>systems</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>&quot;bone&quot;:<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;length&quot;:10,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;joint&quot;:<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;x&quot;:<sp/>100,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;y&quot;:<sp/>100</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO:<sp/>modify<sp/>sprites_sys::Draw<sp/>to<sp/>render<sp/>using<sp/>joint<sp/>as<sp/>point<sp/>of<sp/>rotation.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tnt::doo</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="29" refid="structtnt_1_1doo_1_1bone__comp" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtnt_1_1doo_1_1bone__comp" kindref="compound">bone_comp</ref><sp/>final</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/>joint;<sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1bone__comp_1a6813d4ccc9b1808e278420f35be06aa4" kindref="member">length</ref>;<sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="structtnt_1_1doo_1_1bones__sys" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtnt_1_1doo_1_1bones__sys" kindref="compound">bones_sys</ref><sp/>final</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1bones__sys_1a4066d1c6d06d16eff76355cb2d7d2a81" kindref="member">add_object</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/><ref refid="structtnt_1_1doo_1_1bone__comp" kindref="compound">bone_comp</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;data_);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1bones__sys_1a7e1b2faed5b1381276ce9375dd1d5dd7" kindref="member">from_json</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>nlohmann::json<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;j);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1bones__sys_1aaf3e4fcb0ba4224dfc3e560569750a4a" kindref="member">to_json</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>nlohmann::json<sp/>&amp;j);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1bones__sys_1a472520efc1190004a7e78621ba30c21a" kindref="member">remove</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1bones__sys_1a889fa5c3a9443e5b112e882181162c47" kindref="member">clear</ref>()<sp/>noexcept;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/><ref refid="structtnt_1_1doo_1_1bones__sys_1a3d05780a7ed791b3657beb4b6d02f1c0" kindref="member">bottom</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>noexcept;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structtnt_1_1doo_1_1bones__sys_1a12454a556fb1317bf4a739232840c813" kindref="member">follow</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;target)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;float&gt;<sp/>length;<sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Vector&gt;<sp/><ref refid="structtnt_1_1doo_1_1bones__sys_1a353ae8b26d46aa1d0240a0708821b8cc" kindref="member">joint</ref>;<sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set&lt;object&gt;</ref><sp/><ref refid="structtnt_1_1doo_1_1bones__sys_1a66a05626526dd5e2ddf448738eacef22" kindref="member">active</ref>;<sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>bones;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>tnt::doo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//!TNT_DOO_ECS_2D_SKELETAL_ANIMATIONS_SYSTEM_HPP</highlight></codeline>
+    </programlisting>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp"/>
+  </compounddef>
+</doxygen>

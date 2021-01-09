@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="_input_8hpp" kind="file" language="C++">
+    <compoundname>Input.hpp</compoundname>
+    <includes local="no">utility</includes>
+    <includes local="no">SDL2/SDL_events.h</includes>
+    <includes refid="_config_8hpp" local="yes">core/Config.hpp</includes>
+    <includedby refid="_tn_t_8hpp" local="yes">E:/thing/cpp/tnt/include/TnT.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>E:/thing/cpp/tnt/include/core/Input.hpp</label>
+        <link refid="_input_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>SDL2/SDL_events.h</label>
+      </node>
+      <node id="2">
+        <label>utility</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacetnt">tnt</innernamespace>
+    <innernamespace refid="namespacetnt_1_1input">tnt::input</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>TNT_INPUT_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TNT_INPUT_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;SDL2/SDL_events.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;core/Config.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO:<sp/>Better<sp/>Joystick<sp/>and<sp/>GameController<sp/>support.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tnt::input</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>keyDown(SDL_Scancode<sp/>key)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>keyPressed(SDL_Scancode<sp/>key)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>keyReleased(SDL_Scancode<sp/>key)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/>SDL_Scancode<sp/>lastKeyPressed(SDL_Event<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;e)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>mouseButtonDown(Uint32<sp/>button)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>mouseButtonPressed(Uint32<sp/>button)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>mouseButtonReleased(Uint32<sp/>button)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateCurrent();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updatePrevious();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateJoystick();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>lastMouseButton()<sp/>noexcept;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/>std::pair&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;<sp/>mousePosition()<sp/>noexcept;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setDefaultDeadZone(Sint16<sp/>sense)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setDeadZone(SDL_JoystickID<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>Sint16<sp/>sense)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/>Sint16<sp/>getDeadZone(SDL_JoystickID<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>tnt::input</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//!<sp/>TNT_INPUT_HPP</highlight></codeline>
+    </programlisting>
+    <location file="E:/thing/cpp/tnt/include/core/Input.hpp"/>
+  </compounddef>
+</doxygen>

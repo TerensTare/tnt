@@ -1,0 +1,397 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Task &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Entity Component System" href="../ecs.html" />
+    <link rel="prev" title="Generator" href="Generator.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../async.html">Async</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="CoUtils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Generator.html">Generator</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Task</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ecs.html">Entity Component System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file.html">File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imgui.html">ImGui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math.html">Math</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../async.html">Async</a> &raquo;</li>
+        
+      <li>Task</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/async/Task.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="task">
+<span id="tnt-async-task-api"></span><h1>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><dl class="cpp class">
+<dt id="_CPPv4I0EN3tnt4taskE">
+<span id="_CPPv3I0EN3tnt4taskE"></span><span id="_CPPv2I0EN3tnt4taskE"></span>template&lt;typename <code class="sig-name descname">T</code>&gt;<br /><span class="target" id="classtnt_1_1task"></span><em class="property">class </em><code class="sig-name descname">task</code><a class="headerlink" href="#_CPPv4I0EN3tnt4taskE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt4task4taskERK4task">
+<span id="_CPPv3N3tnt4task4taskERK4task"></span><span id="_CPPv2N3tnt4task4taskERK4task"></span><span id="tnt::task::task__taskCR"></span><span class="target" id="classtnt_1_1task_1a507a2d91c5cc0a509a6bb94e981715b3"></span><code class="sig-name descname">task</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt4task4taskERK4task" title="tnt::task::task">task</a> <em class="property">const</em>&amp;<span class="sig-paren">)</span> = delete<a class="headerlink" href="#_CPPv4N3tnt4task4taskERK4task" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt4taskaSERK4task">
+<span id="_CPPv3N3tnt4taskaSERK4task"></span><span id="_CPPv2N3tnt4taskaSERK4task"></span><span id="tnt::task::assign-operator__taskCR"></span><span class="target" id="classtnt_1_1task_1a4b5c3d267e9208384c11f4eba804e0ab"></span><a class="reference internal" href="#_CPPv4I0EN3tnt4taskE" title="tnt::task">task</a> &amp;<code class="sig-name descname">operator=</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN3tnt4taskE" title="tnt::task">task</a> <em class="property">const</em>&amp;<span class="sig-paren">)</span> = delete<a class="headerlink" href="#_CPPv4N3tnt4taskaSERK4task" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt4task4taskERR4task">
+<span id="_CPPv3N3tnt4task4taskERR4task"></span><span id="_CPPv2N3tnt4task4taskERR4task"></span><span id="tnt::task::task__taskRR"></span><span class="target" id="classtnt_1_1task_1a29fc23f8952c9b82e6e393dc70805a7a"></span><code class="sig-name descname">task</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt4task4taskERR4task" title="tnt::task::task">task</a> &amp;&amp;<em>t</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt4task4taskERR4task" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt4taskaSERR4task">
+<span id="_CPPv3N3tnt4taskaSERR4task"></span><span id="_CPPv2N3tnt4taskaSERR4task"></span><span id="tnt::task::assign-operator__taskRR"></span><span class="target" id="classtnt_1_1task_1ac0ae131d786c2cc77db4c5af998e6c96"></span><a class="reference internal" href="#_CPPv4I0EN3tnt4taskE" title="tnt::task">task</a> &amp;<code class="sig-name descname">operator=</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN3tnt4taskE" title="tnt::task">task</a> &amp;&amp;<em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt4taskaSERR4task" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt4taskD0Ev">
+<span id="_CPPv3N3tnt4taskD0Ev"></span><span id="_CPPv2N3tnt4taskD0Ev"></span><span id="tnt::task::~task"></span><span class="target" id="classtnt_1_1task_1a65b3fdc3097593b8bcb9422b4399d92b"></span><code class="sig-name descname">~task</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt4taskD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NO3tnt4taskcv8co_awaitEv">
+<span id="_CPPv3NO3tnt4taskcv8co_awaitEv"></span><span id="_CPPv2NO3tnt4taskcv8co_awaitEv"></span><span id="tnt::task::castto-co_await-operatorO"></span><span class="target" id="classtnt_1_1task_1ad5cbc9ab3c6d19414eb6733795ed86e1"></span><a class="reference internal" href="#_CPPv4N3tnt4task7awaiterE" title="tnt::task::awaiter">awaiter</a> <code class="sig-name descname">operator co_await</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &amp;&amp; <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NO3tnt4taskcv8co_awaitEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt4task3getEv">
+<span id="_CPPv3N3tnt4task3getEv"></span><span id="_CPPv2N3tnt4task3getEv"></span><span id="tnt::task::get"></span><span class="target" id="classtnt_1_1task_1adc41186dc1c635baf6d39510be7e3df7"></span><a class="reference internal" href="#_CPPv4I0EN3tnt4taskE" title="tnt::task::T">T</a> <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt4task3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Private Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt4task4taskENSt16coroutine_handleI12promise_typeEE">
+<span id="_CPPv3N3tnt4task4taskENSt16coroutine_handleI12promise_typeEE"></span><span id="_CPPv2N3tnt4task4taskENSt16coroutine_handleI12promise_typeEE"></span><span id="tnt::task::task__std::coroutine_handle:promise_type:"></span><span class="target" id="classtnt_1_1task_1a20cfc8374983647b6bce63e4c61a4cf0"></span><code class="sig-name descname">task</code><span class="sig-paren">(</span>std::coroutine_handle&lt;<a class="reference internal" href="#_CPPv4N3tnt4task12promise_typeE" title="tnt::task::promise_type">promise_type</a>&gt; <em>h</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt4task4taskENSt16coroutine_handleI12promise_typeEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Private Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt4task4coroE">
+<span id="_CPPv3N3tnt4task4coroE"></span><span id="_CPPv2N3tnt4task4coroE"></span><span id="tnt::task::coro__std::coroutine_handle:promise_type:"></span><span class="target" id="classtnt_1_1task_1aaffb2e42d4076c696e464573dfe6c3ee"></span>std::coroutine_handle&lt;<a class="reference internal" href="#_CPPv4N3tnt4task12promise_typeE" title="tnt::task::promise_type">promise_type</a>&gt; <code class="sig-name descname">coro</code><a class="headerlink" href="#_CPPv4N3tnt4task4coroE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt4task7awaiterE">
+<span id="_CPPv3N3tnt4task7awaiterE"></span><span id="_CPPv2N3tnt4task7awaiterE"></span><span id="tnt::task::awaiter"></span><span class="target" id="structtnt_1_1task_1_1awaiter"></span><em class="property">struct </em><code class="sig-name descname">awaiter</code><a class="headerlink" href="#_CPPv4N3tnt4task7awaiterE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt4task7awaiter11await_readyEv">
+<span id="_CPPv3NK3tnt4task7awaiter11await_readyEv"></span><span id="_CPPv2NK3tnt4task7awaiter11await_readyEv"></span><span id="tnt::task::awaiter::await_readyC"></span><span class="target" id="structtnt_1_1task_1_1awaiter_1a9a4b10625d0d1870bae25824f1a5340d"></span>bool <code class="sig-name descname">await_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt4task7awaiter11await_readyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt4task7awaiter13await_suspendENSt16coroutine_handleIEE">
+<span id="_CPPv3N3tnt4task7awaiter13await_suspendENSt16coroutine_handleIEE"></span><span id="_CPPv2N3tnt4task7awaiter13await_suspendENSt16coroutine_handleIEE"></span><span id="tnt::task::awaiter::await_suspend__std::coroutine_handle::"></span><span class="target" id="structtnt_1_1task_1_1awaiter_1ac18bda335cd04bfe5f5876e075785a98"></span>std::coroutine_handle <code class="sig-name descname">await_suspend</code><span class="sig-paren">(</span>std::coroutine_handle&lt;&gt; <em>ctx</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt4task7awaiter13await_suspendENSt16coroutine_handleIEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt4task7awaiter12await_resumeEv">
+<span id="_CPPv3NK3tnt4task7awaiter12await_resumeEv"></span><span id="_CPPv2NK3tnt4task7awaiter12await_resumeEv"></span><span id="tnt::task::awaiter::await_resumeC"></span><span class="target" id="structtnt_1_1task_1_1awaiter_1ae7d9f59f3abfd31d1445e76472c62f8e"></span>void <code class="sig-name descname">await_resume</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt4task7awaiter12await_resumeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Private Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt4task7awaiter7awaiterENSt16coroutine_handleIN4taskI1TE12promise_typeEEE">
+<span id="_CPPv3N3tnt4task7awaiter7awaiterENSt16coroutine_handleIN4taskI1TE12promise_typeEEE"></span><span id="_CPPv2N3tnt4task7awaiter7awaiterENSt16coroutine_handleIN4taskI1TE12promise_typeEEE"></span><span id="tnt::task::awaiter::awaiter__std::coroutine_handle:task:T:::promise_type:"></span><span class="target" id="structtnt_1_1task_1_1awaiter_1add12a371d4644f4f433a0e6386b21c0b"></span><code class="sig-name descname">awaiter</code><span class="sig-paren">(</span>std::coroutine_handle&lt;<em class="property">typename</em> <a class="reference internal" href="#_CPPv4I0EN3tnt4taskE" title="tnt::task">task</a>&lt;<a class="reference internal" href="#_CPPv4I0EN3tnt4taskE" title="tnt::task::T">T</a>&gt;::promise_type&gt; <em>handle</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt4task7awaiter7awaiterENSt16coroutine_handleIN4taskI1TE12promise_typeEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Private Members</p>
+<dl class="cpp var">
+<dt>
+<span class="target" id="structtnt_1_1task_1_1awaiter_1a1dcba4a066a410f6658cd379a4e52049"></span><code class="sig-name descname">friend task&lt; T &gt;</code></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt4task7awaiter4coroE">
+<span id="_CPPv3N3tnt4task7awaiter4coroE"></span><span id="_CPPv2N3tnt4task7awaiter4coroE"></span><span id="tnt::task::awaiter::coro__std::coroutine_handle:task:T:::promise_type:"></span><span class="target" id="structtnt_1_1task_1_1awaiter_1ae7f7823a4b04ad2eee33332994b189b2"></span>std::coroutine_handle&lt;<em class="property">typename</em> <a class="reference internal" href="#_CPPv4I0EN3tnt4taskE" title="tnt::task">task</a>&lt;<a class="reference internal" href="#_CPPv4I0EN3tnt4taskE" title="tnt::task::T">T</a>&gt;::promise_type&gt; <code class="sig-name descname">coro</code><a class="headerlink" href="#_CPPv4N3tnt4task7awaiter4coroE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt4task12promise_typeE">
+<span id="_CPPv3N3tnt4task12promise_typeE"></span><span id="_CPPv2N3tnt4task12promise_typeE"></span><span id="tnt::task::promise_type"></span><span class="target" id="structtnt_1_1task_1_1promise__type"></span><em class="property">struct </em><code class="sig-name descname">promise_type</code><a class="headerlink" href="#_CPPv4N3tnt4task12promise_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt4task12promise_type17get_return_objectEv">
+<span id="_CPPv3N3tnt4task12promise_type17get_return_objectEv"></span><span id="_CPPv2N3tnt4task12promise_type17get_return_objectEv"></span><span id="tnt::task::promise_type::get_return_object"></span><span class="target" id="structtnt_1_1task_1_1promise__type_1a91ad980557e295b53cd56e4f67851aff"></span><a class="reference internal" href="#_CPPv4I0EN3tnt4taskE" title="tnt::task">task</a>&lt;<a class="reference internal" href="#_CPPv4I0EN3tnt4taskE" title="tnt::task::T">T</a>&gt; <code class="sig-name descname">get_return_object</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt4task12promise_type17get_return_objectEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt4task12promise_type15initial_suspendEv">
+<span id="_CPPv3NK3tnt4task12promise_type15initial_suspendEv"></span><span id="_CPPv2NK3tnt4task12promise_type15initial_suspendEv"></span><span id="tnt::task::promise_type::initial_suspendC"></span><span class="target" id="structtnt_1_1task_1_1promise__type_1a54d0eb4fdc17460f38c2d89c934834eb"></span>std::suspend_always <code class="sig-name descname">initial_suspend</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt4task12promise_type15initial_suspendEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt4task12promise_type13final_suspendEv">
+<span id="_CPPv3NK3tnt4task12promise_type13final_suspendEv"></span><span id="_CPPv2NK3tnt4task12promise_type13final_suspendEv"></span><span id="tnt::task::promise_type::final_suspendC"></span><span class="target" id="structtnt_1_1task_1_1promise__type_1ab1d6afe617b26c879a5e67eadb961d8a"></span><a class="reference internal" href="#_CPPv4N3tnt4task12promise_type13final_awaiterE" title="tnt::task::promise_type::final_awaiter">final_awaiter</a> <code class="sig-name descname">final_suspend</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt4task12promise_type13final_suspendEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt4task12promise_type12return_valueE1T">
+<span id="_CPPv3N3tnt4task12promise_type12return_valueE1T"></span><span id="_CPPv2N3tnt4task12promise_type12return_valueE1T"></span><span id="tnt::task::promise_type::return_value__T"></span><span class="target" id="structtnt_1_1task_1_1promise__type_1a5cd9b023a62462dbd4e84726da8add49"></span>std::suspend_never <code class="sig-name descname">return_value</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN3tnt4taskE" title="tnt::task::T">T</a> <em>val</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt4task12promise_type12return_valueE1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt4task12promise_type19unhandled_exceptionEv">
+<span id="_CPPv3NK3tnt4task12promise_type19unhandled_exceptionEv"></span><span id="_CPPv2NK3tnt4task12promise_type19unhandled_exceptionEv"></span><span id="tnt::task::promise_type::unhandled_exceptionC"></span><span class="target" id="structtnt_1_1task_1_1promise__type_1afe99ec43ae0caea79a506250c67fb891"></span>void <code class="sig-name descname">unhandled_exception</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt4task12promise_type19unhandled_exceptionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Private Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt4task12promise_type3ctxE">
+<span id="_CPPv3N3tnt4task12promise_type3ctxE"></span><span id="_CPPv2N3tnt4task12promise_type3ctxE"></span><span id="tnt::task::promise_type::ctx__std::coroutine_handle"></span><span class="target" id="structtnt_1_1task_1_1promise__type_1a3c0fdb1cdee22c0bc7ee2d57a6c5aff8"></span>std::coroutine_handle <code class="sig-name descname">ctx</code><a class="headerlink" href="#_CPPv4N3tnt4task12promise_type3ctxE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt4task12promise_type5valueE">
+<span id="_CPPv3N3tnt4task12promise_type5valueE"></span><span id="_CPPv2N3tnt4task12promise_type5valueE"></span><span id="tnt::task::promise_type::value__T"></span><span class="target" id="structtnt_1_1task_1_1promise__type_1a4d9085866688a0080394e9c0cbe02a46"></span><a class="reference internal" href="#_CPPv4I0EN3tnt4taskE" title="tnt::task::T">T</a> <code class="sig-name descname">value</code><a class="headerlink" href="#_CPPv4N3tnt4task12promise_type5valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt>
+<span class="target" id="structtnt_1_1task_1_1promise__type_1a36e6adbacb300fc02b55a139368881b7"></span><code class="sig-name descname">friend task&lt; T &gt;</code></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt4task12promise_type13final_awaiterE">
+<span id="_CPPv3N3tnt4task12promise_type13final_awaiterE"></span><span id="_CPPv2N3tnt4task12promise_type13final_awaiterE"></span><span id="tnt::task::promise_type::final_awaiter"></span><span class="target" id="structtnt_1_1task_1_1promise__type_1_1final__awaiter"></span><em class="property">struct </em><code class="sig-name descname">final_awaiter</code><a class="headerlink" href="#_CPPv4N3tnt4task12promise_type13final_awaiterE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt4task12promise_type13final_awaiter11await_readyEv">
+<span id="_CPPv3NK3tnt4task12promise_type13final_awaiter11await_readyEv"></span><span id="_CPPv2NK3tnt4task12promise_type13final_awaiter11await_readyEv"></span><span id="tnt::task::promise_type::final_awaiter::await_readyC"></span><span class="target" id="structtnt_1_1task_1_1promise__type_1_1final__awaiter_1a623ddf8a8a0b361e982eb06a6e57ac22"></span>bool <code class="sig-name descname">await_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt4task12promise_type13final_awaiter11await_readyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt4task12promise_type13final_awaiter12await_resumeEv">
+<span id="_CPPv3NK3tnt4task12promise_type13final_awaiter12await_resumeEv"></span><span id="_CPPv2NK3tnt4task12promise_type13final_awaiter12await_resumeEv"></span><span id="tnt::task::promise_type::final_awaiter::await_resumeC"></span><span class="target" id="structtnt_1_1task_1_1promise__type_1_1final__awaiter_1aa7213ae59d01f0f1d440b64c16d5b64c"></span>void <code class="sig-name descname">await_resume</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt4task12promise_type13final_awaiter12await_resumeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt4task12promise_type13final_awaiter13await_suspendENSt16coroutine_handleI12promise_typeEE">
+<span id="_CPPv3NK3tnt4task12promise_type13final_awaiter13await_suspendENSt16coroutine_handleI12promise_typeEE"></span><span id="_CPPv2NK3tnt4task12promise_type13final_awaiter13await_suspendENSt16coroutine_handleI12promise_typeEE"></span><span id="tnt::task::promise_type::final_awaiter::await_suspend__std::coroutine_handle:promise_type:C"></span><span class="target" id="structtnt_1_1task_1_1promise__type_1_1final__awaiter_1a6924116ab16cc67c09db21be93a7c198"></span>std::coroutine_handle <code class="sig-name descname">await_suspend</code><span class="sig-paren">(</span>std::coroutine_handle&lt;<a class="reference internal" href="#_CPPv4N3tnt4task12promise_typeE" title="tnt::task::promise_type">promise_type</a>&gt; <em>handle</em><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt4task12promise_type13final_awaiter13await_suspendENSt16coroutine_handleI12promise_typeEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ecs.html" class="btn btn-neutral float-right" title="Entity Component System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Generator.html" class="btn btn-neutral float-left" title="Generator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

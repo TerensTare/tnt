@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_texture_atlas" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>tnt::TextureAtlas</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_texture_atlas_1a543369809d82684c0d545c91e0905ded" prot="private" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* tnt::TextureAtlas::filename</definition>
+        <argsstring></argsstring>
+        <name>filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/TextureAtlas.hpp" line="18" column="20" bodyfile="E:/thing/cpp/tnt/include/fileIO/TextureAtlas.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_texture_atlas_1a949c25fe98e0056974619dfb47840ee6" prot="private" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref></type>
+        <definition>Rectangle tnt::TextureAtlas::clip</definition>
+        <argsstring></argsstring>
+        <name>clip</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/TextureAtlas.hpp" line="19" column="19" bodyfile="E:/thing/cpp/tnt/include/fileIO/TextureAtlas.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_texture_atlas_1a6bf676406feae14c2d4113ba2cb49683" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::TextureAtlas::TextureAtlas</definition>
+        <argsstring>(Window const &amp;win, std::string_view file_, Rectangle const &amp;area) noexcept</argsstring>
+        <name>TextureAtlas</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>file_</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref> const &amp;</type>
+          <declname>area</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/TextureAtlas.hpp" line="13" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_texture_atlas_1a69108128a49723ae85273ae8a18ff41f" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::TextureAtlas::Draw</definition>
+        <argsstring>(Window const &amp;win, Vector const &amp;pos, Vector const &amp;scale={1.f, 1.f}, float angle=0.f) noexcept</argsstring>
+        <name>Draw</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>scale</declname>
+          <defval>{1.f, 1.f}</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>angle</declname>
+          <defval>0.f</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/TextureAtlas.hpp" line="15" column="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/fileIO/TextureAtlas.hpp" line="10" column="5" bodyfile="E:/thing/cpp/tnt/include/fileIO/TextureAtlas.hpp" bodystart="11" bodyend="20"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_texture_atlas_1a949c25fe98e0056974619dfb47840ee6" prot="private" virt="non-virtual"><scope>tnt::TextureAtlas</scope><name>clip</name></member>
+      <member refid="classtnt_1_1_texture_atlas_1a69108128a49723ae85273ae8a18ff41f" prot="public" virt="non-virtual"><scope>tnt::TextureAtlas</scope><name>Draw</name></member>
+      <member refid="classtnt_1_1_texture_atlas_1a543369809d82684c0d545c91e0905ded" prot="private" virt="non-virtual"><scope>tnt::TextureAtlas</scope><name>filename</name></member>
+      <member refid="classtnt_1_1_texture_atlas_1a6bf676406feae14c2d4113ba2cb49683" prot="public" virt="non-virtual"><scope>tnt::TextureAtlas</scope><name>TextureAtlas</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

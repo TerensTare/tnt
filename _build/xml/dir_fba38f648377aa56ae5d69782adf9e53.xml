@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_fba38f648377aa56ae5d69782adf9e53" kind="dir">
+    <compoundname>E:/thing/cpp/tnt/include/math</compoundname>
+    <innerfile refid="_easings_8hpp">Easings.hpp</innerfile>
+    <innerfile refid="_math_utils_8hpp">MathUtils.hpp</innerfile>
+    <innerfile refid="_rectangle_8hpp">Rectangle.hpp</innerfile>
+    <innerfile refid="_springing_8hpp">Springing.hpp</innerfile>
+    <innerfile refid="_vector_8hpp">Vector.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/math/"/>
+  </compounddef>
+</doxygen>

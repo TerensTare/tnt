@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1bench__stream" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>tnt::bench_stream</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1bench__stream_1aaae64b4d0380ad59ccca6c53206eb243" prot="private" static="no" mutable="no">
+        <type>char</type>
+        <definition>char tnt::bench_stream::mem[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>mem</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="72" column="14" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1bench__stream_1a226eaf46c4900e319907af65a97e2de7" prot="private" static="no" mutable="no">
+        <type>std::pmr::monotonic_buffer_resource</type>
+        <definition>std::pmr::monotonic_buffer_resource tnt::bench_stream::buffer</definition>
+        <argsstring></argsstring>
+        <name>buffer</name>
+        <initializer>{mem, 256}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="73" column="45" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1bench__stream_1a51c8a964ee947ca02391dbe7c12d1e90" prot="private" static="no" mutable="no">
+        <type>std::pmr::string</type>
+        <definition>std::pmr::string tnt::bench_stream::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="74" column="26" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1bench__stream_1a4c9018f032a304c6c437a2454995e2a6" prot="private" static="no" mutable="no">
+        <type>fmt::buffered_file</type>
+        <definition>fmt::buffered_file tnt::bench_stream::file</definition>
+        <argsstring></argsstring>
+        <name>file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="76" column="28" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1bench__stream_1a9635c19979373af482ce5ce4eeaa7fba" prot="public" static="no" const="no" explicit="yes" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::bench_stream::bench_stream</definition>
+        <argsstring>(std::string_view name_=&quot;benchmark.json&quot;) noexcept</argsstring>
+        <name>bench_stream</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>name_</declname>
+          <defval>&quot;benchmark.json&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="64" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1bench__stream_1a14a6354128098829946d53f1c81b0290" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const char *</type>
+        <definition>const char* tnt::bench_stream::filename</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="66" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1bench__stream_1ac59eae8495b54f57f84296ce0d398b25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::bench_stream::write_to</definition>
+        <argsstring>(std::string_view file_)</argsstring>
+        <name>write_to</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>file_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="67" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1bench__stream_1adbb11cb4c66617a2517f6e1d5efdda0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::bench_stream::bench</definition>
+        <argsstring>(any const &amp;fn)</argsstring>
+        <name>bench</name>
+        <param>
+          <type><ref refid="classtnt_1_1sized__any" kindref="compound">any</ref> const &amp;</type>
+          <declname>fn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="69" column="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="61" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="62" bodyend="77"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1bench__stream_1adbb11cb4c66617a2517f6e1d5efdda0e" prot="public" virt="non-virtual"><scope>tnt::bench_stream</scope><name>bench</name></member>
+      <member refid="classtnt_1_1bench__stream_1a9635c19979373af482ce5ce4eeaa7fba" prot="public" virt="non-virtual"><scope>tnt::bench_stream</scope><name>bench_stream</name></member>
+      <member refid="classtnt_1_1bench__stream_1a226eaf46c4900e319907af65a97e2de7" prot="private" virt="non-virtual"><scope>tnt::bench_stream</scope><name>buffer</name></member>
+      <member refid="classtnt_1_1bench__stream_1a4c9018f032a304c6c437a2454995e2a6" prot="private" virt="non-virtual"><scope>tnt::bench_stream</scope><name>file</name></member>
+      <member refid="classtnt_1_1bench__stream_1a14a6354128098829946d53f1c81b0290" prot="public" virt="non-virtual"><scope>tnt::bench_stream</scope><name>filename</name></member>
+      <member refid="classtnt_1_1bench__stream_1aaae64b4d0380ad59ccca6c53206eb243" prot="private" virt="non-virtual"><scope>tnt::bench_stream</scope><name>mem</name></member>
+      <member refid="classtnt_1_1bench__stream_1a51c8a964ee947ca02391dbe7c12d1e90" prot="private" virt="non-virtual"><scope>tnt::bench_stream</scope><name>name</name></member>
+      <member refid="classtnt_1_1bench__stream_1ac59eae8495b54f57f84296ce0d398b25" prot="public" virt="non-virtual"><scope>tnt::bench_stream</scope><name>write_to</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

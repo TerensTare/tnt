@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1logger" kind="namespace" language="C++">
+    <compoundname>tnt::logger</compoundname>
+    <innernamespace refid="namespacetnt_1_1logger_1_1detail">tnt::logger::detail</innernamespace>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_logger_8hpp_1ae16dc4a7b11c2c3a051a37ea0daa7f3c" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::logger::printable</definition>
+        <argsstring></argsstring>
+        <name>printable</name>
+        <initializer>= requires(T t) { fmt::print(&quot;{}&quot;, t); }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="41" column="13" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_logger_8hpp_1a13be6da257ad277a3d3909613d6b1499" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>printable...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tnt::logger::trace</definition>
+        <argsstring>(std::string_view format, Args &amp;&amp;... args)</argsstring>
+        <name>trace</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="44" column="17" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="44" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="_logger_8hpp_1af6faa0e00491133d00232dab3b7ab495" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>printable...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tnt::logger::debug</definition>
+        <argsstring>(std::string_view format, Args &amp;&amp;... args)</argsstring>
+        <name>debug</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="54" column="17" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="54" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="_logger_8hpp_1a6a0aa8d4003e8fad1dbc362f00634043" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>printable...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tnt::logger::info</definition>
+        <argsstring>(std::string_view format, Args &amp;&amp;... args)</argsstring>
+        <name>info</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="64" column="17" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="64" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="_logger_8hpp_1a995b0c51b39f93089edc8cd51fa48968" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>printable...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tnt::logger::notice</definition>
+        <argsstring>(std::string_view format, Args &amp;&amp;... args)</argsstring>
+        <name>notice</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="74" column="17" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="74" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="_logger_8hpp_1aa69353b02b6278aa7d4f227399328ee2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>printable...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tnt::logger::warning</definition>
+        <argsstring>(std::string_view format, Args &amp;&amp;... args)</argsstring>
+        <name>warning</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="84" column="17" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="84" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="_logger_8hpp_1a7fa83105576a0ff77192d47ab366339a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>printable...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tnt::logger::error</definition>
+        <argsstring>(std::string_view format, Args &amp;&amp;... args)</argsstring>
+        <name>error</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="95" column="18" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="95" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="_logger_8hpp_1aca53746a2dfd577177db34c414130773" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>printable...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tnt::logger::critical</definition>
+        <argsstring>(std::string_view format, Args &amp;&amp;... args)</argsstring>
+        <name>critical</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="107" column="17" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="107" bodyend="114"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="28" column="1"/>
+  </compounddef>
+</doxygen>

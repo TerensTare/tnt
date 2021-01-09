@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1enable__bit__mask_3_01lua_1_1lib_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::enable_bit_mask&lt; lua::lib &gt;</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">true_type</basecompoundref>
+    <templateparamlist>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>tnt::enable_bit_mask&lt; lua::lib &gt;</label>
+        <link refid="structtnt_1_1enable__bit__mask_3_01lua_1_1lib_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>true_type</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::enable_bit_mask&lt; lua::lib &gt;</label>
+        <link refid="structtnt_1_1enable__bit__mask_3_01lua_1_1lib_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>true_type</label>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/tolua/LuaLoader.hpp" line="33" column="5" bodyfile="E:/thing/cpp/tnt/include/tolua/LuaLoader.hpp" bodystart="34" bodyend="35"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

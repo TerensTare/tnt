@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_contact_generator" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>tnt::ContactGenerator</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_contact_generator_1aa63c5a1b73ce6370d8781e1c2502dd9d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>unsigned</type>
+        <definition>virtual unsigned tnt::ContactGenerator::addContact</definition>
+        <argsstring>(Contact *contact, unsigned limit) const =0</argsstring>
+        <name>addContact</name>
+        <param>
+          <type><ref refid="classtnt_1_1_contact" kindref="compound">Contact</ref> *</type>
+          <declname>contact</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>limit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="44" column="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="41" column="1" bodyfile="E:/thing/cpp/tnt/include/physics/Contact.hpp" bodystart="42" bodyend="45"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_contact_generator_1aa63c5a1b73ce6370d8781e1c2502dd9d" prot="public" virt="pure-virtual"><scope>tnt::ContactGenerator</scope><name>addContact</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

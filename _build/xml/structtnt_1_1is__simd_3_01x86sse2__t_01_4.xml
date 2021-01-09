@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1is__simd_3_01x86sse2__t_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::is_simd&lt; x86sse2_t &gt;</compoundname>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structtnt_1_1is__simd_3_01x86sse2__t_01_4_1a744b21eddc4e607d3c91eadcb4df8daa" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool tnt::is_simd&lt; x86sse2_t &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="288" column="38" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="288" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="283" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="284" bodyend="290"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1is__simd_3_01x86sse2__t_01_4_1a744b21eddc4e607d3c91eadcb4df8daa" prot="public" virt="non-virtual"><scope>tnt::is_simd&lt; x86sse2_t &gt;</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

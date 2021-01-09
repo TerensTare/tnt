@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_force_registry" kind="class" language="C++" prot="public">
+    <compoundname>tnt::ForceRegistry</compoundname>
+    <innerclass refid="structtnt_1_1_force_registry_1_1_force_registration" prot="protected">tnt::ForceRegistry::ForceRegistration</innerclass>
+      <sectiondef kind="protected-type">
+      <memberdef kind="typedef" id="classtnt_1_1_force_registry_1add894ed6187468c1276c9edf18219f76" prot="protected" static="no">
+        <type>std::vector&lt; <ref refid="structtnt_1_1_force_registry_1_1_force_registration" kindref="compound">ForceRegistration</ref> &gt;</type>
+        <definition>using tnt::ForceRegistry::Registry =  std::vector&lt;ForceRegistration&gt;</definition>
+        <argsstring></argsstring>
+        <name>Registry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="35" column="5" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_force_registry_1a9fa262259039d44a63254dbd1a20f1e6" prot="protected" static="no" mutable="no">
+        <type>Registry</type>
+        <definition>Registry tnt::ForceRegistry::registrations</definition>
+        <argsstring></argsstring>
+        <name>registrations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="36" column="14" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_force_registry_1a6f0ca97ca651bd92bbc01f34dad110af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::ForceRegistry::add</definition>
+        <argsstring>(Particle *p, ForceGenerator *gen)</argsstring>
+        <name>add</name>
+        <param>
+          <type><ref refid="classtnt_1_1_particle" kindref="compound">Particle</ref> *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type><ref refid="classtnt_1_1_force_generator" kindref="compound">ForceGenerator</ref> *</type>
+          <declname>gen</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="22" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_force_registry_1aefd77f6f64eab1f673db998cf3109eb2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::ForceRegistry::remove</definition>
+        <argsstring>(Particle *p, ForceGenerator *gen)</argsstring>
+        <name>remove</name>
+        <param>
+          <type><ref refid="classtnt_1_1_particle" kindref="compound">Particle</ref> *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type><ref refid="classtnt_1_1_force_generator" kindref="compound">ForceGenerator</ref> *</type>
+          <declname>gen</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="23" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_force_registry_1a78d65b59c27391f91ba038daab8405af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::ForceRegistry::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="24" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_force_registry_1a08f462ff8ae3da3750480c686fe9f59f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::ForceRegistry::update</definition>
+        <argsstring>(float duration)</argsstring>
+        <name>update</name>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="26" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="19" column="1" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="20" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_force_registry_1a6f0ca97ca651bd92bbc01f34dad110af" prot="public" virt="non-virtual"><scope>tnt::ForceRegistry</scope><name>add</name></member>
+      <member refid="classtnt_1_1_force_registry_1a78d65b59c27391f91ba038daab8405af" prot="public" virt="non-virtual"><scope>tnt::ForceRegistry</scope><name>clear</name></member>
+      <member refid="classtnt_1_1_force_registry_1a9fa262259039d44a63254dbd1a20f1e6" prot="protected" virt="non-virtual"><scope>tnt::ForceRegistry</scope><name>registrations</name></member>
+      <member refid="classtnt_1_1_force_registry_1add894ed6187468c1276c9edf18219f76" prot="protected" virt="non-virtual"><scope>tnt::ForceRegistry</scope><name>Registry</name></member>
+      <member refid="classtnt_1_1_force_registry_1aefd77f6f64eab1f673db998cf3109eb2" prot="public" virt="non-virtual"><scope>tnt::ForceRegistry</scope><name>remove</name></member>
+      <member refid="classtnt_1_1_force_registry_1a08f462ff8ae3da3750480c686fe9f59f" prot="public" virt="non-virtual"><scope>tnt::ForceRegistry</scope><name>update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

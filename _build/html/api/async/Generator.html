@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Generator &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Task" href="Task.html" />
+    <link rel="prev" title="Utils" href="CoUtils.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../async.html">Async</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="CoUtils.html">Utils</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Task.html">Task</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ecs.html">Entity Component System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file.html">File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imgui.html">ImGui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math.html">Math</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../async.html">Async</a> &raquo;</li>
+        
+      <li>Generator</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/async/Generator.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="generator">
+<span id="tnt-async-gen-api"></span><h1>Generator<a class="headerlink" href="#generator" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><dl class="cpp class">
+<dt id="_CPPv4I0EN3tnt9generatorE">
+<span id="_CPPv3I0EN3tnt9generatorE"></span><span id="_CPPv2I0EN3tnt9generatorE"></span>template&lt;typename <code class="sig-name descname">T</code>&gt;<br /><span class="target" id="classtnt_1_1generator"></span><em class="property">class </em><code class="sig-name descname">generator</code><a class="headerlink" href="#_CPPv4I0EN3tnt9generatorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt9generator9generatorERK9generator">
+<span id="_CPPv3N3tnt9generator9generatorERK9generator"></span><span id="_CPPv2N3tnt9generator9generatorERK9generator"></span><span id="tnt::generator::generator__generatorCR"></span><span class="target" id="classtnt_1_1generator_1a2a17be4170310d59b6412507ae3608a9"></span><code class="sig-name descname">generator</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt9generator9generatorERK9generator" title="tnt::generator::generator">generator</a> <em class="property">const</em>&amp;<span class="sig-paren">)</span> = delete<a class="headerlink" href="#_CPPv4N3tnt9generator9generatorERK9generator" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt9generator9generatorERR9generator">
+<span id="_CPPv3N3tnt9generator9generatorERR9generator"></span><span id="_CPPv2N3tnt9generator9generatorERR9generator"></span><span id="tnt::generator::generator__generatorRR"></span><span class="target" id="classtnt_1_1generator_1aa9bf73d593d7b89bd9fd5ff10e99c182"></span><code class="sig-name descname">generator</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt9generator9generatorERR9generator" title="tnt::generator::generator">generator</a> &amp;&amp;<em>g</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt9generator9generatorERR9generator" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt9generatorD0Ev">
+<span id="_CPPv3N3tnt9generatorD0Ev"></span><span id="_CPPv2N3tnt9generatorD0Ev"></span><span id="tnt::generator::~generator"></span><span class="target" id="classtnt_1_1generator_1a37240c968f964751ca06e3c3367300b6"></span><code class="sig-name descname">~generator</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt9generatorD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt9generator13current_valueEv">
+<span id="_CPPv3NK3tnt9generator13current_valueEv"></span><span id="_CPPv2NK3tnt9generator13current_valueEv"></span><span id="tnt::generator::current_valueC"></span><span class="target" id="classtnt_1_1generator_1ab0ea96fc4393e97aa794ff0007f4e672"></span><a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator::T">T</a> <code class="sig-name descname">current_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt9generator13current_valueEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt9generator9move_nextEv">
+<span id="_CPPv3N3tnt9generator9move_nextEv"></span><span id="_CPPv2N3tnt9generator9move_nextEv"></span><span id="tnt::generator::move_next"></span><span class="target" id="classtnt_1_1generator_1a693c25000040be5d5324a7a7e934cd0c"></span>bool <code class="sig-name descname">move_next</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt9generator9move_nextEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt9generator5beginEv">
+<span id="_CPPv3N3tnt9generator5beginEv"></span><span id="_CPPv2N3tnt9generator5beginEv"></span><span id="tnt::generator::begin"></span><span class="target" id="classtnt_1_1generator_1a1bc79485c6d93e5f04ac139d25055a23"></span><a class="reference internal" href="#_CPPv4N3tnt9generator8iteratorE" title="tnt::generator::iterator">iterator</a> <code class="sig-name descname">begin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt9generator5beginEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt9generator3endEv">
+<span id="_CPPv3NK3tnt9generator3endEv"></span><span id="_CPPv2NK3tnt9generator3endEv"></span><span id="tnt::generator::endC"></span><span class="target" id="classtnt_1_1generator_1aa109009b2f3dc78d3c8b8178d00dcca3"></span><a class="reference internal" href="#_CPPv4N3tnt9generator8iteratorE" title="tnt::generator::iterator">iterator</a> <code class="sig-name descname">end</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt9generator3endEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Private Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt9generator9generatorENSt16coroutine_handleI12promise_typeEE">
+<span id="_CPPv3N3tnt9generator9generatorENSt16coroutine_handleI12promise_typeEE"></span><span id="_CPPv2N3tnt9generator9generatorENSt16coroutine_handleI12promise_typeEE"></span><span id="tnt::generator::generator__std::coroutine_handle:promise_type:"></span><span class="target" id="classtnt_1_1generator_1aab9af76163a0024506974b0ccaf93c0f"></span><code class="sig-name descname">generator</code><span class="sig-paren">(</span>std::coroutine_handle&lt;<a class="reference internal" href="#_CPPv4N3tnt9generator12promise_typeE" title="tnt::generator::promise_type">promise_type</a>&gt; <em>h</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt9generator9generatorENSt16coroutine_handleI12promise_typeEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Private Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt9generator4coroE">
+<span id="_CPPv3N3tnt9generator4coroE"></span><span id="_CPPv2N3tnt9generator4coroE"></span><span id="tnt::generator::coro__std::coroutine_handle:promise_type:"></span><span class="target" id="classtnt_1_1generator_1ac55aa2c711568a583dc26e0181545dd3"></span>std::coroutine_handle&lt;<a class="reference internal" href="#_CPPv4N3tnt9generator12promise_typeE" title="tnt::generator::promise_type">promise_type</a>&gt; <code class="sig-name descname">coro</code><a class="headerlink" href="#_CPPv4N3tnt9generator4coroE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt9generator8iteratorE">
+<span id="_CPPv3N3tnt9generator8iteratorE"></span><span id="_CPPv2N3tnt9generator8iteratorE"></span><span id="tnt::generator::iterator"></span><span class="target" id="structtnt_1_1generator_1_1iterator"></span><em class="property">struct </em><code class="sig-name descname">iterator</code><a class="headerlink" href="#_CPPv4N3tnt9generator8iteratorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp type">
+<dt id="_CPPv4N3tnt9generator8iterator17iterator_categoryE">
+<span id="_CPPv3N3tnt9generator8iterator17iterator_categoryE"></span><span id="_CPPv2N3tnt9generator8iterator17iterator_categoryE"></span><span class="target" id="structtnt_1_1generator_1_1iterator_1a46be64cbed69715f8f23736884f1a40e"></span><em class="property">using </em><code class="sig-name descname">iterator_category</code> = std::input_iterator_tag<a class="headerlink" href="#_CPPv4N3tnt9generator8iterator17iterator_categoryE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N3tnt9generator8iterator10value_typeE">
+<span id="_CPPv3N3tnt9generator8iterator10value_typeE"></span><span id="_CPPv2N3tnt9generator8iterator10value_typeE"></span><span class="target" id="structtnt_1_1generator_1_1iterator_1ae105db68edf4fef16b0b0bc878d853f4"></span><em class="property">using </em><code class="sig-name descname">value_type</code> = <a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator::T">T</a><a class="headerlink" href="#_CPPv4N3tnt9generator8iterator10value_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N3tnt9generator8iterator15difference_typeE">
+<span id="_CPPv3N3tnt9generator8iterator15difference_typeE"></span><span id="_CPPv2N3tnt9generator8iterator15difference_typeE"></span><span class="target" id="structtnt_1_1generator_1_1iterator_1acc36dbd28f713add67092c4c70507227"></span><em class="property">using </em><code class="sig-name descname">difference_type</code> = std::ptrdiff_t<a class="headerlink" href="#_CPPv4N3tnt9generator8iterator15difference_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N3tnt9generator8iterator7pointerE">
+<span id="_CPPv3N3tnt9generator8iterator7pointerE"></span><span id="_CPPv2N3tnt9generator8iterator7pointerE"></span><span class="target" id="structtnt_1_1generator_1_1iterator_1a96343671d95d09ed4ba0df0a209fbc85"></span><em class="property">using </em><code class="sig-name descname">pointer</code> = <a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator::T">T</a>*<a class="headerlink" href="#_CPPv4N3tnt9generator8iterator7pointerE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N3tnt9generator8iterator9referenceE">
+<span id="_CPPv3N3tnt9generator8iterator9referenceE"></span><span id="_CPPv2N3tnt9generator8iterator9referenceE"></span><span class="target" id="structtnt_1_1generator_1_1iterator_1a19743ae909178bdba63f401855a2258b"></span><em class="property">using </em><code class="sig-name descname">reference</code> = <a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator::T">T</a>&amp;<a class="headerlink" href="#_CPPv4N3tnt9generator8iterator9referenceE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt9generator8iterator8iteratorENSt9nullptr_tE">
+<span id="_CPPv3N3tnt9generator8iterator8iteratorENSt9nullptr_tE"></span><span id="_CPPv2N3tnt9generator8iterator8iteratorENSt9nullptr_tE"></span><span id="tnt::generator::iterator::iterator__std::nullptr_t"></span><span class="target" id="structtnt_1_1generator_1_1iterator_1a7c0f99363a87dbfbe8ec4f10914b8f35"></span><code class="sig-name descname">iterator</code><span class="sig-paren">(</span>std::nullptr_t<span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt9generator8iterator8iteratorENSt9nullptr_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt9generator8iterator8iteratorENSt16coroutine_handleIN9generatorI1T5AllocE12promise_typeEEE">
+<span id="_CPPv3N3tnt9generator8iterator8iteratorENSt16coroutine_handleIN9generatorI1T5AllocE12promise_typeEEE"></span><span id="_CPPv2N3tnt9generator8iterator8iteratorENSt16coroutine_handleIN9generatorI1T5AllocE12promise_typeEEE"></span><span id="tnt::generator::iterator::iterator__std::coroutine_handle:generator:T.Alloc:::promise_type:"></span><span class="target" id="structtnt_1_1generator_1_1iterator_1aeea7d6950931d56fad0de2651708ef2e"></span><code class="sig-name descname">iterator</code><span class="sig-paren">(</span>std::coroutine_handle&lt;<em class="property">typename</em> <a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator">generator</a>&lt;<a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator::T">T</a>, Alloc&gt;::promise_type&gt; <em>handle</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt9generator8iterator8iteratorENSt16coroutine_handleIN9generatorI1T5AllocE12promise_typeEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt9generator8iteratorppEv">
+<span id="_CPPv3N3tnt9generator8iteratorppEv"></span><span id="_CPPv2N3tnt9generator8iteratorppEv"></span><span id="tnt::generator::iterator::inc-operator"></span><span class="target" id="structtnt_1_1generator_1_1iterator_1aace32136c77d61306861a0778028d812"></span><a class="reference internal" href="#_CPPv4N3tnt9generator8iteratorE" title="tnt::generator::iterator">iterator</a> &amp;<code class="sig-name descname">operator++</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt9generator8iteratorppEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt9generator8iteratorppEi">
+<span id="_CPPv3N3tnt9generator8iteratorppEi"></span><span id="_CPPv2N3tnt9generator8iteratorppEi"></span><span id="tnt::generator::iterator::inc-operator__i"></span><span class="target" id="structtnt_1_1generator_1_1iterator_1a9ff83ee9a25a3039cf085101562f3d8f"></span><a class="reference internal" href="#_CPPv4N3tnt9generator8iteratorE" title="tnt::generator::iterator">iterator</a> <code class="sig-name descname">operator++</code><span class="sig-paren">(</span>int<span class="sig-paren">)</span> = delete<a class="headerlink" href="#_CPPv4N3tnt9generator8iteratorppEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt9generator8iteratormlEv">
+<span id="_CPPv3NK3tnt9generator8iteratormlEv"></span><span id="_CPPv2NK3tnt9generator8iteratormlEv"></span><span id="tnt::generator::iterator::mul-operatorC"></span><span class="target" id="structtnt_1_1generator_1_1iterator_1ad3ac8275957c209ff656d0250d3443a2"></span><a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator::T">T</a> <em class="property">const</em> &amp;<code class="sig-name descname">operator*</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt9generator8iteratormlEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt9generator8iteratorptEv">
+<span id="_CPPv3NK3tnt9generator8iteratorptEv"></span><span id="_CPPv2NK3tnt9generator8iteratorptEv"></span><span id="tnt::generator::iterator::pointer-operatorC"></span><span class="target" id="structtnt_1_1generator_1_1iterator_1a990bdfbcd0cba560218c797bfebf921e"></span><a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator::T">T</a> <em class="property">const</em> *<code class="sig-name descname">operator-&gt;</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt9generator8iteratorptEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt9generator8iteratoreqERK8iterator">
+<span id="_CPPv3NK3tnt9generator8iteratoreqERK8iterator"></span><span id="_CPPv2NK3tnt9generator8iteratoreqERK8iterator"></span><span id="tnt::generator::iterator::eq-operator__iteratorCRC"></span><span class="target" id="structtnt_1_1generator_1_1iterator_1a7f8dc4be09095ee7df9ef9d44277770d"></span>bool <code class="sig-name descname">operator==</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt9generator8iteratorE" title="tnt::generator::iterator">iterator</a> <em class="property">const</em> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK3tnt9generator8iteratoreqERK8iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt9generator8iterator4coroE">
+<span id="_CPPv3N3tnt9generator8iterator4coroE"></span><span id="_CPPv2N3tnt9generator8iterator4coroE"></span><span id="tnt::generator::iterator::coro__std::coroutine_handle:generator:T:::promise_type:"></span><span class="target" id="structtnt_1_1generator_1_1iterator_1a8a91de6187e8f257c17bb56c5f9f19bf"></span>std::coroutine_handle&lt;<em class="property">typename</em> <a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator">generator</a>&lt;<a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator::T">T</a>&gt;::promise_type&gt; <code class="sig-name descname">coro</code><a class="headerlink" href="#_CPPv4N3tnt9generator8iterator4coroE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt9generator12promise_typeE">
+<span id="_CPPv3N3tnt9generator12promise_typeE"></span><span id="_CPPv2N3tnt9generator12promise_typeE"></span><span id="tnt::generator::promise_type"></span><span class="target" id="structtnt_1_1generator_1_1promise__type"></span><em class="property">struct </em><code class="sig-name descname">promise_type</code><a class="headerlink" href="#_CPPv4N3tnt9generator12promise_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt9generator12promise_type15initial_suspendEv">
+<span id="_CPPv3NK3tnt9generator12promise_type15initial_suspendEv"></span><span id="_CPPv2NK3tnt9generator12promise_type15initial_suspendEv"></span><span id="tnt::generator::promise_type::initial_suspendC"></span><span class="target" id="structtnt_1_1generator_1_1promise__type_1a8f24ca764ff510115172be9a02a82efa"></span>std::suspend_always <code class="sig-name descname">initial_suspend</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt9generator12promise_type15initial_suspendEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt9generator12promise_type13final_suspendEv">
+<span id="_CPPv3NK3tnt9generator12promise_type13final_suspendEv"></span><span id="_CPPv2NK3tnt9generator12promise_type13final_suspendEv"></span><span id="tnt::generator::promise_type::final_suspendC"></span><span class="target" id="structtnt_1_1generator_1_1promise__type_1a9faad7f54abda20a0f83eb47b8711450"></span>std::suspend_always <code class="sig-name descname">final_suspend</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt9generator12promise_type13final_suspendEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt9generator12promise_type17get_return_objectEv">
+<span id="_CPPv3N3tnt9generator12promise_type17get_return_objectEv"></span><span id="_CPPv2N3tnt9generator12promise_type17get_return_objectEv"></span><span id="tnt::generator::promise_type::get_return_object"></span><span class="target" id="structtnt_1_1generator_1_1promise__type_1a9850848a300ef622ae3cdc4c9bd65be0"></span><a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator">generator</a>&lt;<a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator::T">T</a>&gt; <code class="sig-name descname">get_return_object</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt9generator12promise_type17get_return_objectEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt9generator12promise_type19unhandled_exceptionEv">
+<span id="_CPPv3NK3tnt9generator12promise_type19unhandled_exceptionEv"></span><span id="_CPPv2NK3tnt9generator12promise_type19unhandled_exceptionEv"></span><span id="tnt::generator::promise_type::unhandled_exceptionC"></span><span class="target" id="structtnt_1_1generator_1_1promise__type_1ab713165166936d6b466711a5cb1e954b"></span>void <code class="sig-name descname">unhandled_exception</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt9generator12promise_type19unhandled_exceptionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt9generator12promise_type11return_voidEv">
+<span id="_CPPv3NK3tnt9generator12promise_type11return_voidEv"></span><span id="_CPPv2NK3tnt9generator12promise_type11return_voidEv"></span><span id="tnt::generator::promise_type::return_voidC"></span><span class="target" id="structtnt_1_1generator_1_1promise__type_1ad2fb0173588abb4cc7af37ca7b57627d"></span>std::suspend_never <code class="sig-name descname">return_void</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt9generator12promise_type11return_voidEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt9generator12promise_type11yield_valueERK1T">
+<span id="_CPPv3N3tnt9generator12promise_type11yield_valueERK1T"></span><span id="_CPPv2N3tnt9generator12promise_type11yield_valueERK1T"></span><span id="tnt::generator::promise_type::yield_value__TCR"></span><span class="target" id="structtnt_1_1generator_1_1promise__type_1a2c41cd33aef505fa44ef1f2c1ab22567"></span>std::suspend_always <code class="sig-name descname">yield_value</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator::T">T</a> <em class="property">const</em> &amp;<em>val</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt9generator12promise_type11yield_valueERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Private Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt9generator12promise_type5valueE">
+<span id="_CPPv3N3tnt9generator12promise_type5valueE"></span><span id="_CPPv2N3tnt9generator12promise_type5valueE"></span><span id="tnt::generator::promise_type::value__TCP"></span><span class="target" id="structtnt_1_1generator_1_1promise__type_1aca1d0b60ca2046ff7ee284abac7f36f7"></span><a class="reference internal" href="#_CPPv4I0EN3tnt9generatorE" title="tnt::generator::T">T</a> <em class="property">const</em> *<code class="sig-name descname">value</code><a class="headerlink" href="#_CPPv4N3tnt9generator12promise_type5valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt>
+<span class="target" id="structtnt_1_1generator_1_1promise__type_1a1e42fd371f134c2be98ccc970931408f"></span><code class="sig-name descname">friend generator&lt; T &gt;</code></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Task.html" class="btn btn-neutral float-right" title="Task" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="CoUtils.html" class="btn btn-neutral float-left" title="Utils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

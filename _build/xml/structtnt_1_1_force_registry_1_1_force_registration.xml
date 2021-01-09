@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1_force_registry_1_1_force_registration" kind="struct" language="C++" prot="protected">
+    <compoundname>tnt::ForceRegistry::ForceRegistration</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1_force_registry_1_1_force_registration_1a8dec444a45d792727658ccd446153c75" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1_particle" kindref="compound">Particle</ref> *</type>
+        <definition>Particle* tnt::ForceRegistry::ForceRegistration::particle</definition>
+        <argsstring></argsstring>
+        <name>particle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="31" column="18" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1_force_registry_1_1_force_registration_1ab88829629551b4647c7f74382d956351" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1_force_generator" kindref="compound">ForceGenerator</ref> *</type>
+        <definition>ForceGenerator* tnt::ForceRegistry::ForceRegistration::generator</definition>
+        <argsstring></argsstring>
+        <name>generator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="32" column="24" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::ForceRegistry::ForceRegistration</label>
+        <link refid="structtnt_1_1_force_registry_1_1_force_registration"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>generator</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>particle</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::ForceGenerator</label>
+        <link refid="classtnt_1_1_force_generator"/>
+      </node>
+      <node id="4">
+        <label>tnt::Vector</label>
+        <link refid="structtnt_1_1_vector"/>
+      </node>
+      <node id="3">
+        <label>tnt::Particle</label>
+        <link refid="classtnt_1_1_particle"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>acceleration</edgelabel>
+          <edgelabel>forceAccumulator</edgelabel>
+          <edgelabel>velocity</edgelabel>
+          <edgelabel>pos</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="29" column="5" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="30" bodyend="33"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1_force_registry_1_1_force_registration_1ab88829629551b4647c7f74382d956351" prot="public" virt="non-virtual"><scope>tnt::ForceRegistry::ForceRegistration</scope><name>generator</name></member>
+      <member refid="structtnt_1_1_force_registry_1_1_force_registration_1a8dec444a45d792727658ccd446153c75" prot="public" virt="non-virtual"><scope>tnt::ForceRegistry::ForceRegistration</scope><name>particle</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

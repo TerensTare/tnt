@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1logger_1_1detail" kind="namespace" language="C++">
+    <compoundname>tnt::logger::detail</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_logger_8hpp_1aea30ec1c3475bcc1b9d110176b2e450c" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr fmt::text_style</type>
+        <definition>constexpr fmt::text_style tnt::logger::detail::crimson</definition>
+        <argsstring></argsstring>
+        <name>crimson</name>
+        <initializer>{fmt::fg(fmt::color::crimson)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="32" column="42" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_logger_8hpp_1a01e5028bd0cc7a83ed6368353e0bfd3d" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr fmt::text_style</type>
+        <definition>constexpr fmt::text_style tnt::logger::detail::cyan</definition>
+        <argsstring></argsstring>
+        <name>cyan</name>
+        <initializer>{fmt::fg(fmt::color::cyan)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="33" column="42" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_logger_8hpp_1adad92e20709ef23c2e2ca08c1bc73223" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr fmt::text_style</type>
+        <definition>constexpr fmt::text_style tnt::logger::detail::green</definition>
+        <argsstring></argsstring>
+        <name>green</name>
+        <initializer>{fmt::fg(fmt::color::dark_sea_green)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="34" column="42" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_logger_8hpp_1a2a28b13d2c05bb48be74faeb0bec325b" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr fmt::text_style</type>
+        <definition>constexpr fmt::text_style tnt::logger::detail::red</definition>
+        <argsstring></argsstring>
+        <name>red</name>
+        <initializer>{fmt::fg(fmt::color::red)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="35" column="42" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_logger_8hpp_1aef97367a14d4f96ecf07de59969a592e" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr fmt::text_style</type>
+        <definition>constexpr fmt::text_style tnt::logger::detail::slate_blue</definition>
+        <argsstring></argsstring>
+        <name>slate_blue</name>
+        <initializer>{fmt::fg(fmt::color::slate_blue)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="36" column="42" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_logger_8hpp_1a90b34e6aafc6b57c07e4473090126599" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr fmt::text_style</type>
+        <definition>constexpr fmt::text_style tnt::logger::detail::yellow</definition>
+        <argsstring></argsstring>
+        <name>yellow</name>
+        <initializer>{fmt::fg(fmt::color::yellow)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="37" column="42" bodyfile="E:/thing/cpp/tnt/include/utils/Logger.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/Logger.hpp" line="30" column="5"/>
+  </compounddef>
+</doxygen>

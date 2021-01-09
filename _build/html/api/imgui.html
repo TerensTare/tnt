@@ -1,0 +1,731 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ImGui &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Math" href="math.html" />
+    <link rel="prev" title="Textures" href="file/cache/TextureCache.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="async.html">Async</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ecs.html">Entity Component System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ImGui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="math.html">Math</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>ImGui</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/imgui.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="imgui">
+<span id="tnt-imgui-api"></span><h1>ImGui<a class="headerlink" href="#imgui" title="Permalink to this headline">¶</a></h1>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a35c935f398b8467cea2f8b16c32b4bd1"></span><code class="sig-name descname">TNT_API void tnt_imgui_init (tnt::Window const &amp;win) noexcept</code></dt>
+<dd><p>Initialize all needed stuff to use ImGui on <code class="docutils literal notranslate"><span class="pre">win</span></code>. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The target game window. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4IEN3tnt15enable_bit_maskIN5ImGui11WindowFlagsEEE">
+<span id="_CPPv3IEN3tnt15enable_bit_maskIN5ImGui11WindowFlagsEEE"></span><span id="_CPPv2IEN3tnt15enable_bit_maskIN5ImGui11WindowFlagsEEE"></span>template&lt;&gt;<br /><span class="target" id="structtnt_1_1enable__bit__mask_3_01_im_gui_1_1_window_flags_01_4"></span><em class="property">struct </em><code class="sig-name descname">enable_bit_mask</code>&lt;<a class="reference internal" href="#_CPPv4N3tnt5ImGuiE" title="tnt::ImGui">ImGui</a>::<a class="reference internal" href="#_CPPv4N3tnt5ImGui11WindowFlagsE" title="tnt::ImGui::WindowFlags">WindowFlags</a>&gt; : <em class="property">public</em> true_type<a class="headerlink" href="#_CPPv4IEN3tnt15enable_bit_maskIN5ImGui11WindowFlagsEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><dl class="cpp struct">
+<dt>
+<span class="target" id="structtnt_1_1enable__bit__mask_3_01_im_gui_1_1_window_flags_01_4"></span><code class="sig-name descname">template&lt;&gt; WindowFlags &gt; : public true_type</code></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N3tnt5ImGuiE">
+<span id="_CPPv3N3tnt5ImGuiE"></span><span id="_CPPv2N3tnt5ImGuiE"></span><span id="tnt::ImGui"></span><span class="target" id="namespacetnt_1_1_im_gui"></span><em class="property">namespace </em><code class="sig-name descname">ImGui</code><a class="headerlink" href="#_CPPv4N3tnt5ImGuiE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt5ImGui11WindowFlagsE">
+<span id="_CPPv3N3tnt5ImGui11WindowFlagsE"></span><span id="_CPPv2N3tnt5ImGui11WindowFlagsE"></span><span class="target" id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3b"></span><em class="property">enum </em><code class="sig-name descname">WindowFlags</code><a class="headerlink" href="#_CPPv4N3tnt5ImGui11WindowFlagsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>An enum representing the flags that an ImGui window (not a game window) can have. </p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::Begin() </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>This enum is not fully functional yet. This means that you should leave the default (last) argument of <code class="docutils literal notranslate"><span class="pre">tnt::ImGui::Begin()</span></code> as is. </p>
+</dd>
+</dl>
+</p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5ImGui11WindowFlags11CollapsibleE">
+<span id="_CPPv3N3tnt5ImGui11WindowFlags11CollapsibleE"></span><span id="_CPPv2N3tnt5ImGui11WindowFlags11CollapsibleE"></span><span class="target" id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3ba2efd8ed8f44373d71412de644235f908"></span><em class="property">enumerator </em><code class="sig-name descname">Collapsible</code> = (1 &lt;&lt; 0)<a class="headerlink" href="#_CPPv4N3tnt5ImGui11WindowFlags11CollapsibleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>with a collapse button </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5ImGui11WindowFlags8ClosableE">
+<span id="_CPPv3N3tnt5ImGui11WindowFlags8ClosableE"></span><span id="_CPPv2N3tnt5ImGui11WindowFlags8ClosableE"></span><span class="target" id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3ba070e2ab109093b213de9ede8dd0a5973"></span><em class="property">enumerator </em><code class="sig-name descname">Closable</code> = (1 &lt;&lt; 1)<a class="headerlink" href="#_CPPv4N3tnt5ImGui11WindowFlags8ClosableE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>with a close button </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5ImGui11WindowFlags9ResizableE">
+<span id="_CPPv3N3tnt5ImGui11WindowFlags9ResizableE"></span><span id="_CPPv2N3tnt5ImGui11WindowFlags9ResizableE"></span><span class="target" id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3baaff10bf1618da00a8a80b74044e719b2"></span><em class="property">enumerator </em><code class="sig-name descname">Resizable</code> = (1 &lt;&lt; 2)<a class="headerlink" href="#_CPPv4N3tnt5ImGui11WindowFlags9ResizableE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>with a resize button </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5ImGui11WindowFlags7MovableE">
+<span id="_CPPv3N3tnt5ImGui11WindowFlags7MovableE"></span><span id="_CPPv2N3tnt5ImGui11WindowFlags7MovableE"></span><span class="target" id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3ba7088d0affb208681b3cdbec3f72c59e3"></span><em class="property">enumerator </em><code class="sig-name descname">Movable</code> = (1 &lt;&lt; 3)<a class="headerlink" href="#_CPPv4N3tnt5ImGui11WindowFlags7MovableE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>can be moved </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5ImGui11WindowFlags12WithTitleBarE">
+<span id="_CPPv3N3tnt5ImGui11WindowFlags12WithTitleBarE"></span><span id="_CPPv2N3tnt5ImGui11WindowFlags12WithTitleBarE"></span><span class="target" id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3bad9fa2bb4592e2e460b0a83d9c056423a"></span><em class="property">enumerator </em><code class="sig-name descname">WithTitleBar</code> = (1 &lt;&lt; 4)<a class="headerlink" href="#_CPPv4N3tnt5ImGui11WindowFlags12WithTitleBarE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>has a title bar </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5ImGui11WindowFlags16OpaqueBackgroundE">
+<span id="_CPPv3N3tnt5ImGui11WindowFlags16OpaqueBackgroundE"></span><span id="_CPPv2N3tnt5ImGui11WindowFlags16OpaqueBackgroundE"></span><span class="target" id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3ba697964e4235aff412991fb25c2ad176f"></span><em class="property">enumerator </em><code class="sig-name descname">OpaqueBackground</code> = (1 &lt;&lt; 5)<a class="headerlink" href="#_CPPv4N3tnt5ImGui11WindowFlags16OpaqueBackgroundE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>draw text and widgets, and the background </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5ImGui11WindowFlags14WidgetThenTextE">
+<span id="_CPPv3N3tnt5ImGui11WindowFlags14WidgetThenTextE"></span><span id="_CPPv2N3tnt5ImGui11WindowFlags14WidgetThenTextE"></span><span class="target" id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3bab471a80b7c3913cef3272ba43cb82d16"></span><em class="property">enumerator </em><code class="sig-name descname">WidgetThenText</code> = (1 &lt;&lt; 6)<a class="headerlink" href="#_CPPv4N3tnt5ImGui11WindowFlags14WidgetThenTextE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>draw the widget on the left and it’s text on the right </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt5ImGui11WindowFlags7DefaultE">
+<span id="_CPPv3N3tnt5ImGui11WindowFlags7DefaultE"></span><span id="_CPPv2N3tnt5ImGui11WindowFlags7DefaultE"></span><span class="target" id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3ba7a1920d61156abc05a60135aefe8bc67"></span><em class="property">enumerator </em><code class="sig-name descname">Default</code> = <a class="reference internal" href="#_CPPv4N3tnt5ImGui11WindowFlags11CollapsibleE" title="tnt::ImGui::WindowFlags::Collapsible">Collapsible</a> | <a class="reference internal" href="#_CPPv4N3tnt5ImGui11WindowFlags8ClosableE" title="tnt::ImGui::WindowFlags::Closable">Closable</a> | <a class="reference internal" href="#_CPPv4N3tnt5ImGui11WindowFlags9ResizableE" title="tnt::ImGui::WindowFlags::Resizable">Resizable</a> | <a class="reference internal" href="#_CPPv4N3tnt5ImGui11WindowFlags7MovableE" title="tnt::ImGui::WindowFlags::Movable">Movable</a> | <a class="reference internal" href="#_CPPv4N3tnt5ImGui11WindowFlags12WithTitleBarE" title="tnt::ImGui::WindowFlags::WithTitleBar">WithTitleBar</a> | <a class="reference internal" href="#_CPPv4N3tnt5ImGui11WindowFlags16OpaqueBackgroundE" title="tnt::ImGui::WindowFlags::OpaqueBackground">OpaqueBackground</a> | <a class="reference internal" href="#_CPPv4N3tnt5ImGui11WindowFlags14WidgetThenTextE" title="tnt::ImGui::WindowFlags::WidgetThenText">WidgetThenText</a><a class="headerlink" href="#_CPPv4N3tnt5ImGui11WindowFlags7DefaultE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>has all the enum’s values OR-ed </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a2ec55b5186088ca636f55c180cd8bae6"></span><code class="sig-name descname">TNT_API void make_context () noexcept</code></dt>
+<dd><p>Creates a new context and makes ImGui ready to be used. </p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This is automatically called by <code class="docutils literal notranslate"><span class="pre">tnt_imgui_begin()</span></code>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a1e14849ccf30a9310cabd1aa3d9e5668"></span><code class="sig-name descname">TNT_API bool Begin (Window const &amp;win, std::string_view name, int x, int y, WindowFlags flags=WindowFlags::Default) noexcept</code></dt>
+<dd><p>Draw a new ImGui window on <code class="docutils literal notranslate"><span class="pre">win</span></code> at <code class="docutils literal notranslate"></code>(x,y) and handle events related to it. Widgets that don’t require position parameters are drawn on this window. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::WindowFlags </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">tnt::ImGui::End()</span></code> should be called for each <code class="docutils literal notranslate"><span class="pre">tnt::ImGui::Begin()</span></code>. </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>For the moment, you CANNOT call <code class="docutils literal notranslate"><span class="pre">tnt::ImGui::Begin()</span></code> inside another <code class="docutils literal notranslate"><span class="pre">tnt::ImGui::Begin()</span></code> / <code class="docutils literal notranslate"><span class="pre">tnt::ImGui::End()</span></code> pair. That’s the only case when this function returns false, but this is subject to change. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The window where the drawing should happen. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: The desired title for the window. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: The desired x position. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code>: The desired y position. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: The flags the window should have. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a5a52f12266c0299f3cdd7e1fee437200"></span><code class="sig-name descname">TNT_API void End () noexcept</code></dt>
+<dd><p>Stop drawing widgets on the last window where <code class="docutils literal notranslate"><span class="pre">tnt::ImGui::Begin()</span></code> is called. Also update some context-related data. </p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::Begin() </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a3f29b09ded45aed0bd8aba1f9262545e"></span><code class="sig-name descname">TNT_API bool BeginSection (Window const &amp;win, std::string_view text) noexcept</code></dt>
+<dd><p>Draw a “section” on the current ImGui window, which contains widgets and can be collapsed. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::EndSection() </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the drawing should happen. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The text to be displayed on the section. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1ab233bdd330cd2af8b783969314271f30"></span><code class="sig-name descname">TNT_API void EndSection () noexcept</code></dt>
+<dd><p>Stop drawing widgets on the current “section”. </p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::BeginSection() </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1af9854d44e9035a6d7e2c3c5d11b3d239"></span><code class="sig-name descname">TNT_API void BeginList (bool indexed) noexcept</code></dt>
+<dd><p>Prepare the current ImGui window for drawing a list on it. Calling <code class="docutils literal notranslate"><span class="pre">BeginList()</span></code> inside another <code class="docutils literal notranslate"><span class="pre">BeginList()</span></code> / <code class="docutils literal notranslate"><span class="pre">EndList()</span></code> pair indents the second list. This is useful for making sublists. </p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::EndList() </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::list_item() </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">tnt::ImGui::EndList()</span></code> should be called for each <code class="docutils literal notranslate"><span class="pre">tnt::ImGui::BeginList()</span></code>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1ac59117c742ff20abdf5f6af01ddfeb95"></span><code class="sig-name descname">TNT_API void EndList () noexcept</code></dt>
+<dd><p>End the current list of items. If this is a sublist (list inside another list) indentation is decreased. </p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::BeginList() </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::list_item() </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1aa807620297daa16dc944ecbb99ce6714"></span><code class="sig-name descname">TNT_API void BeginMenuBar () noexcept</code></dt>
+<dd><p>Prepare the last ImGui window to draw the menu bar on it. </p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::EndMenuBar() </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::menu_button() </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::menu_item() </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1ad224e0a9859566f226185ffd7a0a25f5"></span><code class="sig-name descname">TNT_API void EndMenuBar () noexcept</code></dt>
+<dd><p>Do the cleanup of the menu bar stuff on the last ImGui window. </p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::BeginMenuBar() </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::menu_button() </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::menu_item() </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a4c5ba21b6b012de4fa7ef3b0f0ee7be5"></span><code class="sig-name descname">TNT_API bool button (Window const &amp;win, std::string_view text) noexcept</code></dt>
+<dd><p>Draw a button on the current ImGui window, with <code class="docutils literal notranslate"><span class="pre">text</span></code> on it. Returns true if the button is pressed. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the button should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The text that should be drawn on the button. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a98d5c8b7bf3d52ea228efa3b54465207"></span><code class="sig-name descname">TNT_API bool slider_int (Window const &amp;win, int min_, int max_, int *value) noexcept</code></dt>
+<dd><p>Draw a vertical slider that modifies an <code class="docutils literal notranslate"><span class="pre">int</span></code> value on the current ImGui window. The widget returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the value has been modified, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the slider should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_</span></code>: The minimun value the widget can set. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_</span></code>: The maximum value the widget can set. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: The value that the widget can modify. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a8787af0f541b60d36730bcb324e1b3ac"></span><code class="sig-name descname">TNT_API bool slider_float (Window const &amp;win, float min_, float max_, float *value) noexcept</code></dt>
+<dd><p>Draw a vertical slider that modifies an <code class="docutils literal notranslate"><span class="pre">float</span></code> value on the current ImGui window. The widget returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the value has been modified, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the slider should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_</span></code>: The minimun value the widget can set. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_</span></code>: The maximum value the widget can set. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: The value that the widget can modify. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a3e991ebcb59ed74443c52835b19683fd"></span><code class="sig-name descname">TNT_API bool hslider_int (Window const &amp;win, std::string_view text, int min_, int max_, int *value) noexcept</code></dt>
+<dd><p>Draw a horizontal slider that modifies an <code class="docutils literal notranslate"><span class="pre">int</span></code> value on the current ImGui window. The widget returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the value has been modified, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the slider should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The text that should be drawn next to the slider. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_</span></code>: The minimun value the widget can set. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_</span></code>: The maximum value the widget can set. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: The value that the widget can modify. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1af5d28a54732732ebd9df0e3012f55d85"></span><code class="sig-name descname">TNT_API bool hslider_float (Window const &amp;win, std::string_view text, float min_, float max_, float *value) noexcept</code></dt>
+<dd><p>Draw a horizontal slider that modifies an <code class="docutils literal notranslate"><span class="pre">float</span></code> value on the current ImGui window. The widget returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the value has been modified, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the slider should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The text that should be drawn next to the slider. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_</span></code>: The minimun value the widget can set. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_</span></code>: The maximum value the widget can set. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: The value that the widget can modify. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a86f5c3b8578924f4c3397db594355a04"></span><code class="sig-name descname">TNT_API bool hslider_int2 (Window const &amp;win, std::string_view text, int min_, int max_, int *value1, int *value2) noexcept</code></dt>
+<dd><p>Draw two aligned horizontal sliders that modify 2 <code class="docutils literal notranslate"><span class="pre">int</span></code> values on the current ImGui window. The widget returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if any of the values have been modified, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the slider should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The text that should be drawn next to the sliders. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_</span></code>: The minimun value the widget can set for the first <code class="docutils literal notranslate"><span class="pre">int</span></code>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_</span></code>: The maximum value the widget can set for the first <code class="docutils literal notranslate"><span class="pre">int</span></code>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value1</span></code>: The first value that the widget can modify. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value2</span></code>: The second value that the widget can modify. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a95a0c4eee040b5ff9812657b85406630"></span><code class="sig-name descname">TNT_API bool hslider_float2 (Window const &amp;win, std::string_view text, float min_, float max_, float *value1, float *value2) noexcept</code></dt>
+<dd><p>Draw two aligned horizontal sliders that modify 2 <code class="docutils literal notranslate"><span class="pre">float</span></code> values on the current ImGui window. The widget returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if any of the values have been modified, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the slider should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The text that should be drawn next to the sliders. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_</span></code>: The minimun value the widget can set for the first <code class="docutils literal notranslate"><span class="pre">float</span></code>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_</span></code>: The maximum value the widget can set for the first <code class="docutils literal notranslate"><span class="pre">float</span></code>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value1</span></code>: The first value that the widget can modify. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value2</span></code>: The second value that the widget can modify. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a59cccfa5552f5a69aad6c3ada6665596"></span><code class="sig-name descname">TNT_API bool hslider_vec (Window const &amp;win, std::string_view text, float min1, float max1, float min2, float max2, tnt::Vector *value) noexcept</code></dt>
+<dd><p>Draw two aligned horizontal sliders that modify a <code class="docutils literal notranslate"><a class="reference internal" href="math/Vector.html#structtnt_1_1_vector"><span class="std std-ref"><span class="pre">tnt::Vector</span></span></a><span class="pre">'s</span></code> value on the current ImGui window. The widget returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if any of the values have been modified, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the slider should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The text that should be drawn next to the sliders. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min1</span></code>: The minimun value the widget can set for the first <code class="docutils literal notranslate"><span class="pre">float</span></code> of the <code class="docutils literal notranslate"><a class="reference internal" href="math/Vector.html#structtnt_1_1_vector"><span class="std std-ref"><span class="pre">tnt::Vector</span></span></a></code>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max1</span></code>: The maximum value the widget can set for the first <code class="docutils literal notranslate"><span class="pre">float</span></code> of the <code class="docutils literal notranslate"><a class="reference internal" href="math/Vector.html#structtnt_1_1_vector"><span class="std std-ref"><span class="pre">tnt::Vector</span></span></a></code>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min2</span></code>: The minimun value the widget can set for the second <code class="docutils literal notranslate"><span class="pre">float</span></code> of the <code class="docutils literal notranslate"><a class="reference internal" href="math/Vector.html#structtnt_1_1_vector"><span class="std std-ref"><span class="pre">tnt::Vector</span></span></a></code>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max2</span></code>: The maximum value the widget can set for the second <code class="docutils literal notranslate"><span class="pre">float</span></code> of the <code class="docutils literal notranslate"><a class="reference internal" href="math/Vector.html#structtnt_1_1_vector"><span class="std std-ref"><span class="pre">tnt::Vector</span></span></a></code>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: The <code class="docutils literal notranslate"><a class="reference internal" href="math/Vector.html#structtnt_1_1_vector"><span class="std std-ref"><span class="pre">tnt::Vector</span></span></a></code> that the widget can modify. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1ab88d3bb85dbaccc072380b5cf64a7263"></span><code class="sig-name descname">TNT_API bool checkbox (Window const &amp;win, std::string_view text, bool *value) noexcept</code></dt>
+<dd><p>Draw a checkbox with <code class="docutils literal notranslate"><span class="pre">text</span></code> on the side of it. Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if modified, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the checkbox should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The text that should be displayed next to the checkbox. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: The value representing the state of the checkbox. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a4be4e6e464f056d16c509c86f73c7f7f"></span><code class="sig-name descname">TNT_API bool menu_button (Window const &amp;win, std::string_view text) noexcept</code></dt>
+<dd><p>Draw a menu button on the current window. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::BeginMenuBar() </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::EndMenuBar() </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::menu_item() </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the menu button will be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The name of the menu button. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1adb0e445e1803d8c1dad06aaccc960431"></span><code class="sig-name descname">TNT_API bool menu_item (Window const &amp;win, std::string_view text) noexcept</code></dt>
+<dd><p>Draw a menu bar with options from the <code class="docutils literal notranslate"><span class="pre">options</span></code> array. Returns the index of the pressed menu button (if any), or -1 otherwise. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::BeginMenuBar() </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::EndMenuBar() </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::menu_button() </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the menu should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The text to be shown on the item’s button. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a57acd0433ae844ed0dc63bfcaf4e0a39"></span><code class="sig-name descname">TNT_API void progress_bar (Window const &amp;win, std::string_view text, int min_, int max_, int *value) noexcept</code></dt>
+<dd><p>Draw a progress bar with text on the side of it. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the progress bar should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The text that should be displayed next to the progress bar. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_</span></code>: The minimum value of the progress bar. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_</span></code>: The maximum value of the progress bar. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: The value that shows the current progress bar index. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a6106b1d0539ff05dc838b53e5c34bcc1"></span><code class="sig-name descname">TNT_API void newline () noexcept</code></dt>
+<dd><p>Add an empty line on the current window. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1ac408406c75c66b57dcf783c9fb18407f"></span><code class="sig-name descname">TNT_API void text (Window const &amp;win, std::string_view text) noexcept</code></dt>
+<dd><p>Draw <code class="docutils literal notranslate"><span class="pre">text</span></code> on the current window. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the text should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The text that should be drawed. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1aeaf586e24f9bc50af6e0172a40c336a2"></span><code class="sig-name descname">TNT_API void colored_text (Window const &amp;win, std::string_view text, unsigned char r, unsigned char g, unsigned char b, unsigned char a) noexcept</code></dt>
+<dd><p>Draw <code class="docutils literal notranslate"><span class="pre">text</span></code> with the specified color. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the text should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The text that should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r</span></code>: The red “component” of the text color. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">g</span></code>: The green “component” of the text color. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span></code>: The blue “component” of the text color. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code>: The transparent “component” of the text color. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_im_gui_8hpp_1a7701a76800d03478059debb38025775b"></span><code class="sig-name descname">TNT_API void list_item (Window const &amp;win, std::string_view text) noexcept</code></dt>
+<dd><p>Add a new item to the current list. </p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::BeginList() </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>tnt::ImGui::EndList() </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The game window where the list item should be drawed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: The text of the list item. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="math.html" class="btn btn-neutral float-right" title="Math" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="file/cache/TextureCache.html" class="btn btn-neutral float-left" title="Textures" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

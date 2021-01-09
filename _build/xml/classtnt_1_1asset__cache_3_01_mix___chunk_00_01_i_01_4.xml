@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4" kind="class" language="C++" prot="public">
+    <compoundname>tnt::asset_cache&lt; Mix_Chunk, I &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>unsigned</type>
+        <declname>I</declname>
+        <defname>I</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1a267597d582533dfd197cc621f023ec40" prot="private" static="no" mutable="no">
+        <type>std::byte</type>
+        <definition>std::byte tnt::asset_cache&lt; Mix_Chunk, I &gt;::memory[I *sizeof(Mix_Chunk *)]</definition>
+        <argsstring>[I *sizeof(Mix_Chunk *)]</argsstring>
+        <name>memory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" line="92" column="19" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1afa18577d2b3ba3f8616eb10e3e0816de" prot="private" static="no" mutable="no">
+        <type>std::pmr::monotonic_buffer_resource</type>
+        <definition>std::pmr::monotonic_buffer_resource tnt::asset_cache&lt; Mix_Chunk, I &gt;::res</definition>
+        <argsstring></argsstring>
+        <name>res</name>
+        <initializer>{memory, sizeof(memory)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" line="93" column="45" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1aa48b3f3cd9a606e4449f6e10c72828fe" prot="private" static="no" mutable="no">
+        <type>std::pmr::unordered_map&lt; std::string, Mix_Chunk * &gt;</type>
+        <definition>std::pmr::unordered_map&lt;std::string, Mix_Chunk *&gt; tnt::asset_cache&lt; Mix_Chunk, I &gt;::cache</definition>
+        <argsstring></argsstring>
+        <name>cache</name>
+        <initializer>{&amp;res}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" line="94" column="33" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1ae22a8550e7d4d12d1e73f742ee4390c8" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::asset_cache&lt; Mix_Chunk, I &gt;::~asset_cache</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>~asset_cache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" line="61" column="16" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" bodystart="61" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1aa8d74313214751b132a7c065c6f519f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Mix_Chunk *</type>
+        <definition>Mix_Chunk* tnt::asset_cache&lt; Mix_Chunk, I &gt;::get</definition>
+        <argsstring>(std::string_view path)</argsstring>
+        <name>get</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" line="68" column="27" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" bodystart="68" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1a208a85578f52f2d265df26671e15dc38" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::asset_cache&lt; Mix_Chunk, I &gt;::load</definition>
+        <argsstring>(std::string_view path)</argsstring>
+        <name>load</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" line="74" column="21" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" bodystart="74" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1afc1aae308d028c0c091ca517e59e7a10" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::asset_cache&lt; Mix_Chunk, I &gt;::remove</definition>
+        <argsstring>(std::string_view path)</argsstring>
+        <name>remove</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" line="80" column="21" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" bodystart="80" bodyend="89"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" line="58" column="5" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Music.inl" bodystart="59" bodyend="95"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1aa48b3f3cd9a606e4449f6e10c72828fe" prot="private" virt="non-virtual"><scope>tnt::asset_cache&lt; Mix_Chunk, I &gt;</scope><name>cache</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1aa8d74313214751b132a7c065c6f519f3" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; Mix_Chunk, I &gt;</scope><name>get</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1a208a85578f52f2d265df26671e15dc38" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; Mix_Chunk, I &gt;</scope><name>load</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1a267597d582533dfd197cc621f023ec40" prot="private" virt="non-virtual"><scope>tnt::asset_cache&lt; Mix_Chunk, I &gt;</scope><name>memory</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1afc1aae308d028c0c091ca517e59e7a10" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; Mix_Chunk, I &gt;</scope><name>remove</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1afa18577d2b3ba3f8616eb10e3e0816de" prot="private" virt="non-virtual"><scope>tnt::asset_cache&lt; Mix_Chunk, I &gt;</scope><name>res</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_mix___chunk_00_01_i_01_4_1ae22a8550e7d4d12d1e73f742ee4390c8" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; Mix_Chunk, I &gt;</scope><name>~asset_cache</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

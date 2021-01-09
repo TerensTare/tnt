@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Vector &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Utils" href="Utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../async.html">Async</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ecs.html">Entity Component System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file.html">File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imgui.html">ImGui</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../math.html">Math</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Easings.html">Easings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Rect.html">Rectangle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Spring.html">Numerical Springing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Utils.html">Utils</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Vector</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../math.html">Math</a> &raquo;</li>
+        
+      <li>Vector</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/math/Vector.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vector">
+<span id="tnt-math-vector-api"></span><h1>Vector<a class="headerlink" href="#vector" title="Permalink to this headline">¶</a></h1>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4lsRNSt7ostreamERKN3tnt6VectorE">
+<span id="_CPPv3lsRNSt7ostreamERKN3tnt6VectorE"></span><span id="_CPPv2lsRNSt7ostreamERKN3tnt6VectorE"></span><span id="lshift-operator__osR.tnt::VectorCR"></span><span class="target" id="_vector_8hpp_1a3110c93e313234b3314aad883a96284a"></span>std::ostream &amp;<code class="sig-name descname">operator&lt;&lt;</code><span class="sig-paren">(</span>std::ostream &amp;<em>os</em>, <a class="reference internal" href="../core/window.html#_CPPv43tnt" title="tnt">tnt</a>::<a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4lsRNSt7ostreamERKN3tnt6VectorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tntplERK6VectorRK6Vector">
+<span id="_CPPv3N3tntplERK6VectorRK6Vector"></span><span id="_CPPv2N3tntplERK6VectorRK6Vector"></span><span id="tnt::add-operator__VectorCR.VectorCRCE"></span><span class="target" id="_vector_8hpp_1a94765dd56d0d97f313dc71ee8a4ce52f"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">operator+</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>lhs</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tntplERK6VectorRK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tntmiERK6VectorRK6Vector">
+<span id="_CPPv3N3tntmiERK6VectorRK6Vector"></span><span id="_CPPv2N3tntmiERK6VectorRK6Vector"></span><span id="tnt::sub-operator__VectorCR.VectorCRCE"></span><span class="target" id="_vector_8hpp_1ab481a40f45202f6a3edeb818deb64c9d"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">operator-</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>lhs</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tntmiERK6VectorRK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tntmlERK6VectorRKf">
+<span id="_CPPv3N3tntmlERK6VectorRKf"></span><span id="_CPPv2N3tntmlERK6VectorRKf"></span><span id="tnt::mul-operator__VectorCR.floatCRCE"></span><span class="target" id="_vector_8hpp_1a7befc7ada8ad5457649b612911d2231f"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">operator*</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>vec</em>, <em class="property">const</em> float &amp;<em>num</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tntmlERK6VectorRKf" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tntdvERK6VectorRKf">
+<span id="_CPPv3N3tntdvERK6VectorRKf"></span><span id="_CPPv2N3tntdvERK6VectorRKf"></span><span id="tnt::div-operator__VectorCR.floatCRCE"></span><span class="target" id="_vector_8hpp_1afff77f85a6f83f2e832dde34863b4d7c"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">operator/</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>vec</em>, <em class="property">const</em> float &amp;<em>num</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tntdvERK6VectorRKf" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt9MagnitudeEff">
+<span id="_CPPv3N3tnt9MagnitudeEff"></span><span id="_CPPv2N3tnt9MagnitudeEff"></span><span id="tnt::Magnitude__float.floatCE"></span><span class="target" id="_vector_8hpp_1a259719926055890c818c3f3f65d34b47"></span><em class="property">constexpr</em> float <code class="sig-name descname">Magnitude</code><span class="sig-paren">(</span>float <em>x</em>, float <em>y</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt9MagnitudeEff" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt8AngleOfRERK6VectorRK6Vector">
+<span id="_CPPv3N3tnt8AngleOfRERK6VectorRK6Vector"></span><span id="_CPPv2N3tnt8AngleOfRERK6VectorRK6Vector"></span><span id="tnt::AngleOfR__VectorCR.VectorCR"></span><span class="target" id="_vector_8hpp_1a7d76c9bcd326fbea3062a9fda8bf7e8f"></span>float <code class="sig-name descname">AngleOfR</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>lhs</em>, <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt8AngleOfRERK6VectorRK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt8AngleOfRERK6Vector">
+<span id="_CPPv3N3tnt8AngleOfRERK6Vector"></span><span id="_CPPv2N3tnt8AngleOfRERK6Vector"></span><span id="tnt::AngleOfR__VectorCR"></span><span class="target" id="_vector_8hpp_1a7fffb4bacb42d4d0f467b9f3e364bfea"></span>float <code class="sig-name descname">AngleOfR</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>vec</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt8AngleOfRERK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt7AngleOfERK6VectorRK6Vector">
+<span id="_CPPv3N3tnt7AngleOfERK6VectorRK6Vector"></span><span id="_CPPv2N3tnt7AngleOfERK6VectorRK6Vector"></span><span id="tnt::AngleOf__VectorCR.VectorCR"></span><span class="target" id="_vector_8hpp_1a40058dd069097b7c373430cdf1869326"></span>float <code class="sig-name descname">AngleOf</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>lhs</em>, <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt7AngleOfERK6VectorRK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt7AngleOfERK6Vector">
+<span id="_CPPv3N3tnt7AngleOfERK6Vector"></span><span id="_CPPv2N3tnt7AngleOfERK6Vector"></span><span id="tnt::AngleOf__VectorCR"></span><span class="target" id="_vector_8hpp_1ad91fb067c3a2114b06e476cdbaa9cbb6"></span>float <code class="sig-name descname">AngleOf</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>vec</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt7AngleOfERK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3DotERK6VectorRK6Vector">
+<span id="_CPPv3N3tnt3DotERK6VectorRK6Vector"></span><span id="_CPPv2N3tnt3DotERK6VectorRK6Vector"></span><span id="tnt::Dot__VectorCR.VectorCRCE"></span><span class="target" id="_vector_8hpp_1a2effba4a856880f94f16632165ad5078"></span><em class="property">constexpr</em> float <code class="sig-name descname">Dot</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>lhs</em>, <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3DotERK6VectorRK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt5CrossERK6VectorRK6Vector">
+<span id="_CPPv3N3tnt5CrossERK6VectorRK6Vector"></span><span id="_CPPv2N3tnt5CrossERK6VectorRK6Vector"></span><span id="tnt::Cross__VectorCR.VectorCRCE"></span><span class="target" id="_vector_8hpp_1a4793fb339935d76e50d91f34b21daf6b"></span><em class="property">constexpr</em> float <code class="sig-name descname">Cross</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>lhs</em>, <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt5CrossERK6VectorRK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt12RotateVectorERK6Vectorf">
+<span id="_CPPv3N3tnt12RotateVectorERK6Vectorf"></span><span id="_CPPv2N3tnt12RotateVectorERK6Vectorf"></span><span id="tnt::RotateVector__VectorCR.float"></span><span class="target" id="_vector_8hpp_1a3c579241f7295b30a2096349fbf17b15"></span><a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">RotateVector</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>vec</em>, float <em>angle</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt12RotateVectorERK6Vectorf" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt5nlerpERK6VectorRK6Vectorf">
+<span id="_CPPv3N3tnt5nlerpERK6VectorRK6Vectorf"></span><span id="_CPPv2N3tnt5nlerpERK6VectorRK6Vectorf"></span><span id="tnt::nlerp__VectorCR.VectorCR.float"></span><span class="target" id="_vector_8hpp_1a306997f277f56f600b7c515acb0c9a72"></span><a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">nlerp</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>left</em>, <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>right</em>, float <em>pct</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt5nlerpERK6VectorRK6Vectorf" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnteqERK6VectorRK6Vector">
+<span id="_CPPv3N3tnteqERK6VectorRK6Vector"></span><span id="_CPPv2N3tnteqERK6VectorRK6Vector"></span><span id="tnt::eq-operator__VectorCR.VectorCRCE"></span><span class="target" id="_vector_8hpp_1ab0c2d26c42b88b983382dc9cc45d64c1"></span><em class="property">constexpr</em> bool <code class="sig-name descname">operator==</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>lhs</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnteqERK6VectorRK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tntleERK6VectorRK6Vector">
+<span id="_CPPv3N3tntleERK6VectorRK6Vector"></span><span id="_CPPv2N3tntleERK6VectorRK6Vector"></span><span id="tnt::lte-operator__VectorCR.VectorCRCE"></span><span class="target" id="_vector_8hpp_1ab325091dde38f1b39b9001be4cc6a055"></span><em class="property">constexpr</em> bool <code class="sig-name descname">operator&lt;=</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>lhs</em>, <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tntleERK6VectorRK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tntgeERK6VectorRK6Vector">
+<span id="_CPPv3N3tntgeERK6VectorRK6Vector"></span><span id="_CPPv2N3tntgeERK6VectorRK6Vector"></span><span id="tnt::gte-operator__VectorCR.VectorCRCE"></span><span class="target" id="_vector_8hpp_1a633013e3fc670d6d6cd2b7dfe7e30bad"></span><em class="property">constexpr</em> bool <code class="sig-name descname">operator&gt;=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>lhs</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tntgeERK6VectorRK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tntneERK6VectorRK6Vector">
+<span id="_CPPv3N3tntneERK6VectorRK6Vector"></span><span id="_CPPv2N3tntneERK6VectorRK6Vector"></span><span id="tnt::neq-operator__VectorCR.VectorCRCE"></span><span class="target" id="_vector_8hpp_1a7a7a1fb38a8a12fa01f5383453c671bb"></span><em class="property">constexpr</em> bool <code class="sig-name descname">operator!=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>lhs</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tntneERK6VectorRK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt11VECTOR_ZEROE">
+<span id="_CPPv3N3tnt11VECTOR_ZEROE"></span><span id="_CPPv2N3tnt11VECTOR_ZEROE"></span><span id="tnt::VECTOR_ZERO__Vector"></span><span class="target" id="_vector_8hpp_1a7c4910cdb44daa2c98834800d69e1817"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">VECTOR_ZERO</code> = {0.f, 0.f}<a class="headerlink" href="#_CPPv4N3tnt11VECTOR_ZEROE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt10VECTOR_ONEE">
+<span id="_CPPv3N3tnt10VECTOR_ONEE"></span><span id="_CPPv2N3tnt10VECTOR_ONEE"></span><span id="tnt::VECTOR_ONE__Vector"></span><span class="target" id="_vector_8hpp_1a0216c5b24f8adc45ddd3ea0cded12b3d"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">VECTOR_ONE</code> = {1.f, 1.f}<a class="headerlink" href="#_CPPv4N3tnt10VECTOR_ONEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt9VECTOR_UPE">
+<span id="_CPPv3N3tnt9VECTOR_UPE"></span><span id="_CPPv2N3tnt9VECTOR_UPE"></span><span id="tnt::VECTOR_UP__Vector"></span><span class="target" id="_vector_8hpp_1a771e0290026ee9af1d254f13bc231f79"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">VECTOR_UP</code> = {0.f, -1.f}<a class="headerlink" href="#_CPPv4N3tnt9VECTOR_UPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt12VECTOR_RIGHTE">
+<span id="_CPPv3N3tnt12VECTOR_RIGHTE"></span><span id="_CPPv2N3tnt12VECTOR_RIGHTE"></span><span id="tnt::VECTOR_RIGHT__Vector"></span><span class="target" id="_vector_8hpp_1aca19f59c7d8b32b968859b8b8bb9641f"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">VECTOR_RIGHT</code> = {1.f, 0.f}<a class="headerlink" href="#_CPPv4N3tnt12VECTOR_RIGHTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt11VECTOR_DOWNE">
+<span id="_CPPv3N3tnt11VECTOR_DOWNE"></span><span id="_CPPv2N3tnt11VECTOR_DOWNE"></span><span id="tnt::VECTOR_DOWN__Vector"></span><span class="target" id="_vector_8hpp_1af38b1e2717ca8862503917ebd76816a6"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">VECTOR_DOWN</code> = {0.f, 1.f}<a class="headerlink" href="#_CPPv4N3tnt11VECTOR_DOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt11VECTOR_LEFTE">
+<span id="_CPPv3N3tnt11VECTOR_LEFTE"></span><span id="_CPPv2N3tnt11VECTOR_LEFTE"></span><span id="tnt::VECTOR_LEFT__Vector"></span><span class="target" id="_vector_8hpp_1ab9adddf32a5778b7a146044f5bcb6fa1"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">VECTOR_LEFT</code> = {-1.f, 0.f}<a class="headerlink" href="#_CPPv4N3tnt11VECTOR_LEFTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt6VectorE">
+<span id="_CPPv3N3tnt6VectorE"></span><span id="_CPPv2N3tnt6VectorE"></span><span id="tnt::Vector"></span><span class="target" id="structtnt_1_1_vector"></span><em class="property">struct </em><code class="sig-name descname">Vector</code><a class="headerlink" href="#_CPPv4N3tnt6VectorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt6Vector6VectorEff">
+<span id="_CPPv3N3tnt6Vector6VectorEff"></span><span id="_CPPv2N3tnt6Vector6VectorEff"></span><span id="tnt::Vector::Vector__float.floatCE"></span><span class="target" id="structtnt_1_1_vector_1a7737eef130b97481885dfd106dd9cdfa"></span><em class="property">constexpr</em> <code class="sig-name descname">Vector</code><span class="sig-paren">(</span>float <em>_x</em> = 0.f, float <em>_y</em> = 0.f<span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt6Vector6VectorEff" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt6Vector6VectorERK6Vector">
+<span id="_CPPv3N3tnt6Vector6VectorERK6Vector"></span><span id="_CPPv2N3tnt6Vector6VectorERK6Vector"></span><span id="tnt::Vector::Vector__VectorCR"></span><span class="target" id="structtnt_1_1_vector_1ab26d37464e31ae607344ab64f622d18a"></span><code class="sig-name descname">Vector</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6Vector6VectorERK6Vector" title="tnt::Vector::Vector">Vector</a>&amp;<span class="sig-paren">)</span> = default<a class="headerlink" href="#_CPPv4N3tnt6Vector6VectorERK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt6Vector6VectorERR6Vector">
+<span id="_CPPv3N3tnt6Vector6VectorERR6Vector"></span><span id="_CPPv2N3tnt6Vector6VectorERR6Vector"></span><span id="tnt::Vector::Vector__VectorRR"></span><span class="target" id="structtnt_1_1_vector_1a0255c6a2f582f7e772b81ca32decf4e8"></span><code class="sig-name descname">Vector</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt6Vector6VectorERR6Vector" title="tnt::Vector::Vector">Vector</a>&amp;&amp;<span class="sig-paren">)</span> = default<a class="headerlink" href="#_CPPv4N3tnt6Vector6VectorERR6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt6Vector12MagnitudeSqrEv">
+<span id="_CPPv3NK3tnt6Vector12MagnitudeSqrEv"></span><span id="_CPPv2NK3tnt6Vector12MagnitudeSqrEv"></span><span id="tnt::Vector::MagnitudeSqrCCE"></span><span class="target" id="structtnt_1_1_vector_1a3034129c3fb884a5e1729e89a63a9ae6"></span><em class="property">constexpr</em> float <code class="sig-name descname">MagnitudeSqr</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt6Vector12MagnitudeSqrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt6Vector9MagnitudeEv">
+<span id="_CPPv3NK3tnt6Vector9MagnitudeEv"></span><span id="_CPPv2NK3tnt6Vector9MagnitudeEv"></span><span id="tnt::Vector::MagnitudeCCE"></span><span class="target" id="structtnt_1_1_vector_1a8f88805c321b258c2c08c4c68e38b8e9"></span><em class="property">constexpr</em> float <code class="sig-name descname">Magnitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt6Vector9MagnitudeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt6Vector9NormalizeEv">
+<span id="_CPPv3N3tnt6Vector9NormalizeEv"></span><span id="_CPPv2N3tnt6Vector9NormalizeEv"></span><span id="tnt::Vector::NormalizeCE"></span><span class="target" id="structtnt_1_1_vector_1a5fc6f1e5a27c8b2ad276c371630d1303"></span><em class="property">constexpr</em> void <code class="sig-name descname">Normalize</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt6Vector9NormalizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt6Vector10NormalizedEv">
+<span id="_CPPv3NK3tnt6Vector10NormalizedEv"></span><span id="_CPPv2NK3tnt6Vector10NormalizedEv"></span><span id="tnt::Vector::NormalizedCCE"></span><span class="target" id="structtnt_1_1_vector_1aff46cc2941fda1dcdc1361cff32b529b"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">Normalized</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt6Vector10NormalizedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt6VectormiEv">
+<span id="_CPPv3NK3tnt6VectormiEv"></span><span id="_CPPv2NK3tnt6VectormiEv"></span><span id="tnt::Vector::sub-operatorCCE"></span><span class="target" id="structtnt_1_1_vector_1adcb63845cb810e2397407c896ff9843f"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">operator-</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt6VectormiEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt6VectorpLERK6Vector">
+<span id="_CPPv3N3tnt6VectorpLERK6Vector"></span><span id="_CPPv2N3tnt6VectorpLERK6Vector"></span><span id="tnt::Vector::add-assign-operator__VectorCRCE"></span><span class="target" id="structtnt_1_1_vector_1afd2dc5116333fed47a2788240da6c748"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<code class="sig-name descname">operator+=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt6VectorpLERK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt6VectormIERK6Vector">
+<span id="_CPPv3N3tnt6VectormIERK6Vector"></span><span id="_CPPv2N3tnt6VectormIERK6Vector"></span><span id="tnt::Vector::sub-assign-operator__VectorCRCE"></span><span class="target" id="structtnt_1_1_vector_1a048996c8313952ea145a46847d2e4b69"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<code class="sig-name descname">operator-=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt6VectormIERK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt6VectormLERK6Vector">
+<span id="_CPPv3N3tnt6VectormLERK6Vector"></span><span id="_CPPv2N3tnt6VectormLERK6Vector"></span><span id="tnt::Vector::mul-assign-operator__VectorCRCE"></span><span class="target" id="structtnt_1_1_vector_1a79947080c5ba8937f5449d2d3ac55276"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<code class="sig-name descname">operator*=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt6VectormLERK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt6VectormLEf">
+<span id="_CPPv3N3tnt6VectormLEf"></span><span id="_CPPv2N3tnt6VectormLEf"></span><span id="tnt::Vector::mul-assign-operator__floatCE"></span><span class="target" id="structtnt_1_1_vector_1adc51f611eaf20210c34f01a6ddbb3f49"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<code class="sig-name descname">operator*=</code><span class="sig-paren">(</span>float <em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt6VectormLEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt6VectordVERK6Vector">
+<span id="_CPPv3N3tnt6VectordVERK6Vector"></span><span id="_CPPv2N3tnt6VectordVERK6Vector"></span><span id="tnt::Vector::div-assign-operator__VectorCRCE"></span><span class="target" id="structtnt_1_1_vector_1aac15bb2a1cbbb5348947ed2af841845a"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<code class="sig-name descname">operator/=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt6VectordVERK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt6VectordVEf">
+<span id="_CPPv3N3tnt6VectordVEf"></span><span id="_CPPv2N3tnt6VectordVEf"></span><span id="tnt::Vector::div-assign-operator__floatCE"></span><span class="target" id="structtnt_1_1_vector_1a1b676c6f61188045d90384f5bc11c456"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<code class="sig-name descname">operator/=</code><span class="sig-paren">(</span>float <em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt6VectordVEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt6VectoraSERK6Vector">
+<span id="_CPPv3N3tnt6VectoraSERK6Vector"></span><span id="_CPPv2N3tnt6VectoraSERK6Vector"></span><span id="tnt::Vector::assign-operator__VectorCRCE"></span><span class="target" id="structtnt_1_1_vector_1a3972a89f8855e66d01eae5fb742f76a7"></span><em class="property">constexpr</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<code class="sig-name descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt6VectoraSERK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt6VectorltERK6Vector">
+<span id="_CPPv3NK3tnt6VectorltERK6Vector"></span><span id="_CPPv2NK3tnt6VectorltERK6Vector"></span><span id="tnt::Vector::lt-operator__VectorCRCCE"></span><span class="target" id="structtnt_1_1_vector_1a3372fae196b64b33e5052ad17222204d"></span><em class="property">constexpr</em> bool <code class="sig-name descname">operator&lt;</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt6VectorltERK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt6VectorgtERK6Vector">
+<span id="_CPPv3NK3tnt6VectorgtERK6Vector"></span><span id="_CPPv2NK3tnt6VectorgtERK6Vector"></span><span id="tnt::Vector::gt-operator__VectorCRCCE"></span><span class="target" id="structtnt_1_1_vector_1a193e5fc2123a8aa5f95def0972045f46"></span><em class="property">constexpr</em> bool <code class="sig-name descname">operator&gt;</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> &amp;<em>rhs</em><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt6VectorgtERK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt6Vector1xE">
+<span id="_CPPv3N3tnt6Vector1xE"></span><span id="_CPPv2N3tnt6Vector1xE"></span><span id="tnt::Vector::x__float"></span><span class="target" id="structtnt_1_1_vector_1a39284725e8634d5a06a389b69251b1c6"></span>float <code class="sig-name descname">x</code><a class="headerlink" href="#_CPPv4N3tnt6Vector1xE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt6Vector1yE">
+<span id="_CPPv3N3tnt6Vector1yE"></span><span id="_CPPv2N3tnt6Vector1yE"></span><span id="tnt::Vector::y__float"></span><span class="target" id="structtnt_1_1_vector_1abdb3ce202928bb6090295cfc5e48bd85"></span>float <code class="sig-name descname">y</code><a class="headerlink" href="#_CPPv4N3tnt6Vector1yE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="Utils.html" class="btn btn-neutral float-left" title="Utils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

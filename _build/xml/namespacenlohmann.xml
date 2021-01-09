@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacenlohmann" kind="namespace" language="C++">
+    <compoundname>nlohmann</compoundname>
+    <innerclass refid="structnlohmann_1_1adl__serializer_3_01tnt_1_1_rectangle_01_4" prot="public">nlohmann::adl_serializer&lt; tnt::Rectangle &gt;</innerclass>
+    <innerclass refid="structnlohmann_1_1adl__serializer_3_01tnt_1_1_vector_01_4" prot="public">nlohmann::adl_serializer&lt; tnt::Vector &gt;</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/json/JsonRectangle.hpp" line="7" column="1"/>
+  </compounddef>
+</doxygen>

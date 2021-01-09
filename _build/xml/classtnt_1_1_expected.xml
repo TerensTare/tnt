@@ -1,0 +1,513 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_expected" kind="class" language="C++" prot="public">
+    <compoundname>tnt::Expected</compoundname>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_expected_1aa4a941c0d7fba307f438d69a56feace7" prot="public" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tnt::Expected&lt; T &gt;::result</definition>
+        <argsstring></argsstring>
+        <name>result</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="28" column="15" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_expected_1a7a2c1dbf5b885c564314ea2d61b183ff" prot="public" static="no" mutable="no">
+        <type>std::exception_ptr</type>
+        <definition>std::exception_ptr tnt::Expected&lt; T &gt;::spam</definition>
+        <argsstring></argsstring>
+        <name>spam</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="29" column="32" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_expected_1a99f7be802e5d4e4ccc64594526c0958b" prot="protected" static="no" mutable="no">
+        <type>union tnt::Expected::@17</type>
+        <definition>union tnt::Expected::@17 tnt::Expected&lt; T &gt;::@18</definition>
+        <argsstring></argsstring>
+        <name>@18</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="30" column="9"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_expected_1ae621104f13715847b43614a59429da8b" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tnt::Expected&lt; T &gt;::gotResult</definition>
+        <argsstring></argsstring>
+        <name>gotResult</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="31" column="14" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classtnt_1_1_expected_1ae1d9798b0eda3264062065e98b01ea89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class Expected&lt; void &gt;</definition>
+        <argsstring></argsstring>
+        <name>Expected&lt; void &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="157" column="14" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classtnt_1_1_expected_1aa1415e45766632829506332955d0634c" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::Expected&lt; T &gt;::Expected</definition>
+        <argsstring>()</argsstring>
+        <name>Expected</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="32" column="9" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="32" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_expected_1a6152c704b8d13fab9f8d20391391c275" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::Expected&lt; T &gt;::Expected</definition>
+        <argsstring>(T const &amp;r)</argsstring>
+        <name>Expected</name>
+        <param>
+          <type>T const &amp;</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="35" column="18" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a074f1c51d1461eb09dc1deb5be51b5df" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::Expected&lt; T &gt;::Expected</definition>
+        <argsstring>(T &amp;&amp;r)</argsstring>
+        <name>Expected</name>
+        <param>
+          <type>T &amp;&amp;</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="36" column="18" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a666085eaf849fa2488b91823274b221d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::Expected&lt; T &gt;::Expected</definition>
+        <argsstring>(Expected const &amp;e)</argsstring>
+        <name>Expected</name>
+        <param>
+          <type><ref refid="classtnt_1_1_expected" kindref="compound">Expected</ref> const &amp;</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="38" column="16" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="38" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a436b210b00783b51e06a237f45809023" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::Expected&lt; T &gt;::Expected</definition>
+        <argsstring>(Expected &amp;&amp;e)</argsstring>
+        <name>Expected</name>
+        <param>
+          <type><ref refid="classtnt_1_1_expected" kindref="compound">Expected</ref> &amp;&amp;</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="46" column="16" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="46" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a6647a802180a041cfe30b20248796ca6" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename E</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>tnt::Expected&lt; T &gt;::Expected</definition>
+        <argsstring>(E const &amp;e)</argsstring>
+        <name>Expected</name>
+        <param>
+          <type>E const &amp;</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="55" column="18" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="55" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a612d5596f081da06fbc5ccef9645968f" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::Expected&lt; T &gt;::~Expected</definition>
+        <argsstring>() noexcept(std::is_nothrow_destructible_v&lt; T &gt;)</argsstring>
+        <name>~Expected</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="58" column="16" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="58" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a921baef4a88f10fc8dfc6c72a01d6d0d" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Expected&lt; T &gt;::swap</definition>
+        <argsstring>(Expected const &amp;e) noexcept</argsstring>
+        <name>swap</name>
+        <param>
+          <type><ref refid="classtnt_1_1_expected" kindref="compound">Expected</ref> const &amp;</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="64" column="21" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="64" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a05a6f3406d9c320b72e8158639ee50e0" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classtnt_1_1_expected" kindref="compound">Expected</ref> &amp;</type>
+        <definition>Expected&amp; tnt::Expected&lt; T &gt;::operator=</definition>
+        <argsstring>(Expected const &amp;e) noexcept</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classtnt_1_1_expected" kindref="compound">Expected</ref> const &amp;</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="120" column="25" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="120" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a826feedae12472c7f18e6e4de52d170a" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::Expected&lt; T &gt;::operator==</definition>
+        <argsstring>(invalid const &amp;) const noexcept</argsstring>
+        <name>operator==</name>
+        <param>
+          <type><ref refid="structtnt_1_1invalid" kindref="compound">invalid</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="130" column="21" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="130" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a9edac8802e76d84231ccf5c4754b35ef" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::Expected&lt; T &gt;::operator!=</definition>
+        <argsstring>(invalid const &amp;) const noexcept</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type><ref refid="structtnt_1_1invalid" kindref="compound">invalid</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="131" column="21" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="131" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1acea994623234ebca5f3f78fea8e86b1f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::Expected&lt; T &gt;::operator&lt;=</definition>
+        <argsstring>(invalid const &amp;) const =delete</argsstring>
+        <name>operator&lt;=</name>
+        <param>
+          <type><ref refid="structtnt_1_1invalid" kindref="compound">invalid</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="133" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a133870782ed5d2a2dfc4b5ec9afb432a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::Expected&lt; T &gt;::operator&gt;=</definition>
+        <argsstring>(invalid const &amp;) const =delete</argsstring>
+        <name>operator&gt;=</name>
+        <param>
+          <type><ref refid="structtnt_1_1invalid" kindref="compound">invalid</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="134" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1ad32181662fa1c14e41de79bfc64e5303" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::Expected&lt; T &gt;::operator&lt;</definition>
+        <argsstring>(invalid const &amp;) const =delete</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type><ref refid="structtnt_1_1invalid" kindref="compound">invalid</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="136" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a37915b0fb295920eb70a27167c7c8071" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::Expected&lt; T &gt;::operator&gt;</definition>
+        <argsstring>(invalid const &amp;) const =delete</argsstring>
+        <name>operator&gt;</name>
+        <param>
+          <type><ref refid="structtnt_1_1invalid" kindref="compound">invalid</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="137" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a38fb89be855774d6c7d66f51a6c6bf1f" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::Expected&lt; T &gt;::isValid</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>isValid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="139" column="21" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="139" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a03b071a6f488ed674ee6c9ec3cb4c2bf" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::Expected&lt; T &gt;::successful</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>successful</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="140" column="21" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="140" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a59b842e4ce5f36c5fedac4654d0bb790" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>T&amp; tnt::Expected&lt; T &gt;::get</definition>
+        <argsstring>() noexcept(noexcept(gotResult))</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="142" column="18" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="142" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a0c2c8d850e5c045c4d57189de9a5bc53" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>const T &amp;</type>
+        <definition>const T&amp; tnt::Expected&lt; T &gt;::get</definition>
+        <argsstring>() const noexcept(noexcept(gotResult))</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="149" column="24" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="149" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1ae028e9f3a8854de87c63a362d0783fda" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class E</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool tnt::Expected&lt; T &gt;::hasException</definition>
+        <argsstring>() const</argsstring>
+        <name>hasException</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="157" column="14" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="157" bodyend="173"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classtnt_1_1_expected_1af9f40b7d8bebe1d94770ba2c0274d3fd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class E</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classtnt_1_1_expected" kindref="compound">Expected</ref>&lt; T &gt;</type>
+        <definition>static Expected&lt;T&gt; tnt::Expected&lt; T &gt;::fromException</definition>
+        <argsstring>(E const &amp;e)</argsstring>
+        <name>fromException</name>
+        <param>
+          <type>E const &amp;</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="89" column="25" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="89" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1af8d2f32439274ac8d40d29e3ed833d70" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classtnt_1_1_expected" kindref="compound">Expected</ref>&lt; T &gt;</type>
+        <definition>static Expected&lt;T&gt; tnt::Expected&lt; T &gt;::fromException</definition>
+        <argsstring>(std::exception_ptr const &amp;p) noexcept</argsstring>
+        <name>fromException</name>
+        <param>
+          <type>std::exception_ptr const &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="96" column="32" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="96" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a334bb988b6af5036dfea469345c9b804" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classtnt_1_1_expected" kindref="compound">Expected</ref>&lt; T &gt;</type>
+        <definition>static Expected&lt;T&gt; tnt::Expected&lt; T &gt;::fromException</definition>
+        <argsstring>()</argsstring>
+        <name>fromException</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="104" column="32" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="104" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_expected_1a27f2437d8dd33acf86936502bc13a23e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classtnt_1_1_expected" kindref="compound">Expected</ref></type>
+        <definition>static Expected tnt::Expected&lt; T &gt;::fromCode</definition>
+        <argsstring>(F func)</argsstring>
+        <name>fromCode</name>
+        <param>
+          <type>F</type>
+          <declname>func</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="110" column="25" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="110" bodyend="118"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/types/Expected.hpp" line="23" column="5" bodyfile="E:/thing/cpp/tnt/include/types/Expected.hpp" bodystart="24" bodyend="176"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_expected_1aa1415e45766632829506332955d0634c" prot="protected" virt="non-virtual"><scope>tnt::Expected</scope><name>Expected</name></member>
+      <member refid="classtnt_1_1_expected_1a6152c704b8d13fab9f8d20391391c275" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>Expected</name></member>
+      <member refid="classtnt_1_1_expected_1a074f1c51d1461eb09dc1deb5be51b5df" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>Expected</name></member>
+      <member refid="classtnt_1_1_expected_1a666085eaf849fa2488b91823274b221d" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>Expected</name></member>
+      <member refid="classtnt_1_1_expected_1a436b210b00783b51e06a237f45809023" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>Expected</name></member>
+      <member refid="classtnt_1_1_expected_1a6647a802180a041cfe30b20248796ca6" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>Expected</name></member>
+      <member refid="classtnt_1_1_expected_1ae1d9798b0eda3264062065e98b01ea89" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>Expected&lt; void &gt;</name></member>
+      <member refid="classtnt_1_1_expected_1a27f2437d8dd33acf86936502bc13a23e" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>fromCode</name></member>
+      <member refid="classtnt_1_1_expected_1af9f40b7d8bebe1d94770ba2c0274d3fd" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>fromException</name></member>
+      <member refid="classtnt_1_1_expected_1af8d2f32439274ac8d40d29e3ed833d70" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>fromException</name></member>
+      <member refid="classtnt_1_1_expected_1a334bb988b6af5036dfea469345c9b804" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>fromException</name></member>
+      <member refid="classtnt_1_1_expected_1a59b842e4ce5f36c5fedac4654d0bb790" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>get</name></member>
+      <member refid="classtnt_1_1_expected_1a0c2c8d850e5c045c4d57189de9a5bc53" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>get</name></member>
+      <member refid="classtnt_1_1_expected_1ae621104f13715847b43614a59429da8b" prot="protected" virt="non-virtual"><scope>tnt::Expected</scope><name>gotResult</name></member>
+      <member refid="classtnt_1_1_expected_1ae028e9f3a8854de87c63a362d0783fda" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>hasException</name></member>
+      <member refid="classtnt_1_1_expected_1a38fb89be855774d6c7d66f51a6c6bf1f" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>isValid</name></member>
+      <member refid="classtnt_1_1_expected_1a9edac8802e76d84231ccf5c4754b35ef" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>operator!=</name></member>
+      <member refid="classtnt_1_1_expected_1ad32181662fa1c14e41de79bfc64e5303" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>operator&lt;</name></member>
+      <member refid="classtnt_1_1_expected_1acea994623234ebca5f3f78fea8e86b1f" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>operator&lt;=</name></member>
+      <member refid="classtnt_1_1_expected_1a05a6f3406d9c320b72e8158639ee50e0" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>operator=</name></member>
+      <member refid="classtnt_1_1_expected_1a826feedae12472c7f18e6e4de52d170a" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>operator==</name></member>
+      <member refid="classtnt_1_1_expected_1a37915b0fb295920eb70a27167c7c8071" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>operator&gt;</name></member>
+      <member refid="classtnt_1_1_expected_1a133870782ed5d2a2dfc4b5ec9afb432a" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>operator&gt;=</name></member>
+      <member refid="classtnt_1_1_expected_1aa4a941c0d7fba307f438d69a56feace7" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>result</name></member>
+      <member refid="classtnt_1_1_expected_1a7a2c1dbf5b885c564314ea2d61b183ff" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>spam</name></member>
+      <member refid="classtnt_1_1_expected_1a03b071a6f488ed674ee6c9ec3cb4c2bf" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>successful</name></member>
+      <member refid="classtnt_1_1_expected_1a921baef4a88f10fc8dfc6c72a01d6d0d" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>swap</name></member>
+      <member refid="classtnt_1_1_expected_1a612d5596f081da06fbc5ccef9645968f" prot="public" virt="non-virtual"><scope>tnt::Expected</scope><name>~Expected</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

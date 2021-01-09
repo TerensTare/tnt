@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="_graphics_8hpp" kind="file" language="C++">
+    <compoundname>Graphics.hpp</compoundname>
+    <includes local="no">span</includes>
+    <includes refid="_window_8hpp" local="yes">core/Window.hpp</includes>
+    <includes refid="_rectangle_8hpp" local="yes">math/Rectangle.hpp</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>E:/thing/cpp/tnt/include/core/Graphics.hpp</label>
+        <link refid="_graphics_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>span</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacetnt">tnt</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>TNT_CORE_GRAPHICS_HELPER_API_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TNT_CORE_GRAPHICS_HELPER_API_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;span&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;core/Window.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;math/Rectangle.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO:<sp/>load<sp/>this<sp/>to<sp/>Lua</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tnt</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>drawLine(Window<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;win,<sp/>Vector<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;start,<sp/>Vector<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;finish,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SDL_Color<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>color<sp/>=<sp/>SDL_Color{255,<sp/>255,<sp/>255},<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>thickness<sp/>=<sp/>1);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>drawHorizontalLine(Window<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;win,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>x1,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>x2,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>y,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SDL_Color<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>color<sp/>=<sp/>SDL_Color{255,<sp/>255,<sp/>255},<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>thickness<sp/>=<sp/>1);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>drawVerticalLine(Window<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;win,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>y1,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>y2,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SDL_Color<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>color<sp/>=<sp/>SDL_Color{255,<sp/>255,<sp/>255},<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>thickness<sp/>=<sp/>1);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>TNT_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>drawLines(Window<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;win,<sp/>std::span&lt;tnt::Vector&gt;<sp/>points,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SDL_Color<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>color<sp/>=<sp/>SDL_Color{255,<sp/>255,<sp/>255});</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>tnt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//!TNT_CORE_GRAPHICS_HELPER_API_HPP</highlight></codeline>
+    </programlisting>
+    <location file="E:/thing/cpp/tnt/include/core/Graphics.hpp"/>
+  </compounddef>
+</doxygen>

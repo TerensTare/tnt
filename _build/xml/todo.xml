@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="todo" kind="page">
+    <compoundname>todo</compoundname>
+    <title>Todo List</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><variablelist>
+<varlistentry><term>Member <ref refid="structtnt_1_1doo_1_1cameras__sys_1af1cad736be9030cea404553dfb84a7b4" kindref="member">tnt::doo::cameras_sys::shake</ref>  (camera const &amp;cam) noexcept</term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000001"/>Return to the original posiition after shaking. </para>
+<para>Shake for a fixed amount of time with shake_for().  </para>
+</listitem>
+<varlistentry><term>" </term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000002"/>(maybe) Use consteval ?? </para>
+<para><anchor id="todo_1_todo000003"/>(maybe) return 1 if *value == max_ </para>
+<para><anchor id="todo_1_todo000004"/>Add support for easings and numerical springing. </para>
+</listitem>
+</variablelist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

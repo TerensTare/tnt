@@ -1,0 +1,468 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1doo_1_1objects__sys" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::doo::objects_sys</compoundname>
+    <includes local="no">Objects.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1objects__sys_1ae634ccd1b99e314a33c7f489c04beb56" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; tnt::doo::objects_sys::angle</definition>
+        <argsstring></argsstring>
+        <name>angle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="96" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1objects__sys_1a24ea8ea17c78393b8b0388d69675cc3b" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1sparse__set" kindref="compound">tnt::sparse_set</ref>&lt; object &gt;</type>
+        <definition>tnt::sparse_set&lt;object&gt; tnt::doo::objects_sys::active</definition>
+        <argsstring></argsstring>
+        <name>active</name>
+        <briefdescription>
+<para>&lt; The angles of the objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="98" column="25" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1objects__sys_1a9a016580732cc1da4aa5517552349fc2" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; object &gt;</type>
+        <definition>std::vector&lt;object&gt; tnt::doo::objects_sys::parent</definition>
+        <argsstring></argsstring>
+        <name>parent</name>
+        <briefdescription>
+<para>&lt; The id-s of all the active objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="99" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1objects__sys_1acb784fe3dbd28d8bea5b72f4552e279c" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &gt;</type>
+        <definition>std::vector&lt;Vector&gt; tnt::doo::objects_sys::scale</definition>
+        <argsstring></argsstring>
+        <name>scale</name>
+        <briefdescription>
+<para>&lt; The id-s of the parents of the objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="101" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1objects__sys_1ac04d2030160f75a287dfeb61ce4b7cf1" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &gt;</type>
+        <definition>std::vector&lt;Vector&gt; tnt::doo::objects_sys::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+<para>&lt; The scales of the objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="102" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1doo_1_1objects__sys_1a2e21b8794803edbe0e0d579224840666" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>object tnt::doo::objects_sys::add_object</definition>
+        <argsstring>(object_data const &amp;data_) noexcept</argsstring>
+        <name>add_object</name>
+        <param>
+          <type><ref refid="structtnt_1_1doo_1_1object__data" kindref="compound">object_data</ref> const &amp;</type>
+          <declname>data_</declname>
+        </param>
+        <briefdescription>
+<para>Create a new object in place and add it to the system. Return the id of the newly created <computeroutput>object</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>tnt::doo::object </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="42" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1objects__sys_1a1fe914c02007306724e9af62fc83fca2" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1doo_1_1object__data" kindref="compound">object_data</ref></type>
+        <definition>object_data tnt::doo::objects_sys::get_data</definition>
+        <argsstring>(object const &amp;id) const noexcept</argsstring>
+        <name>get_data</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get the data of the object with the given id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structtnt_1_1doo_1_1object__data" kindref="compound">object_data</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="47" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1objects__sys_1a3d3ed911e8a947d66618da3d6e05ff58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>object</type>
+        <definition>object tnt::doo::objects_sys::from_json</definition>
+        <argsstring>(nlohmann::json const &amp;j)</argsstring>
+        <name>from_json</name>
+        <param>
+          <type>nlohmann::json const &amp;</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Load objects data from a json chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The json chunk that contains the objects data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The id of the created object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="52" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1objects__sys_1a0d6540859059fc82773df69575540090" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::objects_sys::to_json</definition>
+        <argsstring>(object const &amp;id, nlohmann::json &amp;j)</argsstring>
+        <name>to_json</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>nlohmann::json &amp;</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Store general data of a specific object to a json chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object to serialize to json. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The json chunk where the data will be saved. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="57" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1objects__sys_1aeec63dc9f99a17cc4541a3cc37b2a28b" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::objects_sys::draw_imgui</definition>
+        <argsstring>(object const &amp;id, Window const &amp;win) noexcept</argsstring>
+        <name>draw_imgui</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <briefdescription>
+<para>Draw widgets on the given window to modify the datas of the system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the active object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The window where to draw the widgets. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="62" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1objects__sys_1a05572a2a36527457805e6d6066a35779" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float tnt::doo::objects_sys::gAngle</definition>
+        <argsstring>(object const &amp;id) const noexcept</argsstring>
+        <name>gAngle</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get the angle of the object in global context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>float </para>
+</simplesect>
+<simplesect kind="note"><para>The function returns angle[id] if the object has no parent (aka. parent[id] == -1). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="68" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1objects__sys_1a2e098eacf4d8b2f3b9c81c76b944ac52" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::objects_sys::gScale</definition>
+        <argsstring>(object const &amp;id) const noexcept</argsstring>
+        <name>gScale</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get the scale of the object in global context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> </para>
+</simplesect>
+<simplesect kind="note"><para>The function returns scale[id] if the object has no parent (aka. parent[id] == -1). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="74" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1objects__sys_1afe90d51c59d75559a33bc143044b0765" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::objects_sys::gPos</definition>
+        <argsstring>(object const &amp;id) const noexcept</argsstring>
+        <name>gPos</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get the position of the object in global context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> </para>
+</simplesect>
+<simplesect kind="note"><para>The function returns pos[id] if the object has no parent (aka. parent[id] == -1). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="80" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1objects__sys_1a671b4d1e42948981a5994f5cade0f7cf" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::objects_sys::set_parent</definition>
+        <argsstring>(object const &amp;id, object const &amp;parent_) noexcept</argsstring>
+        <name>set_parent</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>object const &amp;</type>
+          <declname>parent_</declname>
+        </param>
+        <briefdescription>
+<para>Change the parent of the given object and apply all the necessary changes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the child object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parent_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the new parent. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="85" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1objects__sys_1a76ffe2a659e109088f596162eca548c9" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::objects_sys::remove</definition>
+        <argsstring>(object const &amp;id) noexcept</argsstring>
+        <name>remove</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Remove the desired object from the objects system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object you want to remove. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Please call <ref refid="structtnt_1_1doo_1_1objects__sys_1a76ffe2a659e109088f596162eca548c9" kindref="member">remove()</ref> from the other systems first. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="90" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1objects__sys_1a75558034f5733958b7d4ecdbf6e7aa56" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::objects_sys::clear</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>clear</name>
+        <briefdescription>
+<para>Remove all the objects from the objects system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>Please call <ref refid="structtnt_1_1doo_1_1objects__sys_1a75558034f5733958b7d4ecdbf6e7aa56" kindref="member">clear()</ref> from the other systems first. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="94" column="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A struct that handles objects data. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>tnt::sparse_set&lt; T &gt;</label>
+        <link refid="classtnt_1_1sparse__set"/>
+      </node>
+      <node id="2">
+        <label>tnt::sparse_set&lt; object &gt;</label>
+        <link refid="classtnt_1_1sparse__set"/>
+        <childnode refid="3" relation="template-instance">
+          <edgelabel>&lt; object &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::doo::objects_sys</label>
+        <link refid="structtnt_1_1doo_1_1objects__sys"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>active</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="32" column="12" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" bodystart="33" bodyend="103"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1a24ea8ea17c78393b8b0388d69675cc3b" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>active</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1a2e21b8794803edbe0e0d579224840666" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>add_object</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1ae634ccd1b99e314a33c7f489c04beb56" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>angle</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1a75558034f5733958b7d4ecdbf6e7aa56" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>clear</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1aeec63dc9f99a17cc4541a3cc37b2a28b" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>draw_imgui</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1a3d3ed911e8a947d66618da3d6e05ff58" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>from_json</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1a05572a2a36527457805e6d6066a35779" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>gAngle</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1a1fe914c02007306724e9af62fc83fca2" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>get_data</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1afe90d51c59d75559a33bc143044b0765" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>gPos</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1a2e098eacf4d8b2f3b9c81c76b944ac52" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>gScale</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1a9a016580732cc1da4aa5517552349fc2" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>parent</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1ac04d2030160f75a287dfeb61ce4b7cf1" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>pos</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1a76ffe2a659e109088f596162eca548c9" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>remove</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1acb784fe3dbd28d8bea5b72f4552e279c" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>scale</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1a671b4d1e42948981a5994f5cade0f7cf" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>set_parent</name></member>
+      <member refid="structtnt_1_1doo_1_1objects__sys_1a0d6540859059fc82773df69575540090" prot="public" virt="non-virtual"><scope>tnt::doo::objects_sys</scope><name>to_json</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_c4c686920f3f30645f0f3027105ddfbd" kind="dir">
+    <compoundname>E:/thing/cpp/tnt/include/tolua</compoundname>
+    <innerfile refid="_lua_core_8hpp">LuaCore.hpp</innerfile>
+    <innerfile refid="_lua_doo_ecs_8hpp">LuaDooEcs.hpp</innerfile>
+    <innerfile refid="_lua_im_gui_8hpp">LuaImGui.hpp</innerfile>
+    <innerfile refid="_lua_loader_8hpp">LuaLoader.hpp</innerfile>
+    <innerfile refid="_lua_math_8hpp">LuaMath.hpp</innerfile>
+    <innerfile refid="_lua_utils_8hpp">LuaUtils.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/tolua/"/>
+  </compounddef>
+</doxygen>

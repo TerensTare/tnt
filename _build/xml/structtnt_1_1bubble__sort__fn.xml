@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1bubble__sort__fn" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::bubble_sort_fn</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1bubble__sort__fn_1a2489875942fa35f712b0e231b5ac30e3" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::ranges::input_range</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+        </templateparamlist>
+        <type>constexpr <ref refid="classtnt_1_1bubble__sort__view" kindref="compound">bubble_sort_view</ref>&lt; std::ranges::views::all_t&lt; R &gt; &gt;</type>
+        <definition>constexpr bubble_sort_view&lt;std::ranges::views::all_t&lt;R&gt; &gt; tnt::bubble_sort_fn::operator()</definition>
+        <argsstring>(R &amp;&amp;rng) const noexcept</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>R &amp;&amp;</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Sort.hpp" line="62" column="9" bodyfile="E:/thing/cpp/tnt/include/types/Sort.hpp" bodystart="62" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/types/Sort.hpp" line="58" column="5" bodyfile="E:/thing/cpp/tnt/include/types/Sort.hpp" bodystart="59" bodyend="66"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1bubble__sort__fn_1a2489875942fa35f712b0e231b5ac30e3" prot="public" virt="non-virtual"><scope>tnt::bubble_sort_fn</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

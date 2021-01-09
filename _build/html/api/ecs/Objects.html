@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Objects &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Physics" href="Physics.html" />
+    <link rel="prev" title="Camera" href="Cameras.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../async.html">Async</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ecs.html">Entity Component System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Animations.html">Animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Base.html">Base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Bones.html">Bones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Cameras.html">Camera</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Physics.html">Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts.html">Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sprites.html">Sprites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Steering.html">Steering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="System.html">System</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../file.html">File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imgui.html">ImGui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math.html">Math</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../ecs.html">Entity Component System</a> &raquo;</li>
+        
+      <li>Objects</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/ecs/Objects.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="objects">
+<span id="tnt-ecs-objects-api"></span><h1>Objects<a class="headerlink" href="#objects" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><dl class="cpp type">
+<dt id="_CPPv4N3tnt3dooE">
+<span id="_CPPv3N3tnt3dooE"></span><span id="_CPPv2N3tnt3dooE"></span><span id="tnt::doo"></span><span class="target" id="namespacetnt_1_1doo"></span><em class="property">namespace </em><code class="sig-name descname">doo</code><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo7objectsE">
+<span id="_CPPv3N3tnt3doo7objectsE"></span><span id="_CPPv2N3tnt3doo7objectsE"></span><span id="tnt::doo::objects__tnt::doo::objects_sys"></span><span class="target" id="_objects_8hpp_1addb5aae224bb12b2c8cd5e61b2131d58"></span><em class="property">struct</em> <a class="reference internal" href="../core/window.html#_CPPv43tnt" title="tnt">tnt</a>::<a class="reference internal" href="Animations.html#_CPPv4N3tnt3dooE" title="tnt::doo">doo</a>::<a class="reference internal" href="#_CPPv4N3tnt3doo11objects_sysE" title="tnt::doo::objects_sys">objects_sys</a> <code class="sig-name descname">objects</code><a class="headerlink" href="#_CPPv4N3tnt3doo7objectsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt3doo11object_dataE">
+<span id="_CPPv3N3tnt3doo11object_dataE"></span><span id="_CPPv2N3tnt3doo11object_dataE"></span><span id="tnt::doo::object_data"></span><span class="target" id="structtnt_1_1doo_1_1object__data"></span><em class="property">struct </em><code class="sig-name descname">object_data</code><a class="headerlink" href="#_CPPv4N3tnt3doo11object_dataE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;Objects.hpp&gt;</em><p>A struct that holds the basic data of an object. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11object_data11object_dataEfRK6VectorRK6VectorRK6object">
+<span id="_CPPv3N3tnt3doo11object_data11object_dataEfRK6VectorRK6VectorRK6object"></span><span id="_CPPv2N3tnt3doo11object_data11object_dataEfRK6VectorRK6VectorRK6object"></span><span id="tnt::doo::object_data::object_data__float.VectorCR.VectorCR.objectCRCE"></span><span class="target" id="structtnt_1_1doo_1_1object__data_1a70d1c5ce72fb1ad5217a0a263645b4a1"></span><em class="property">constexpr</em> <code class="sig-name descname">object_data</code><span class="sig-paren">(</span>float <em>angle_</em>, <a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>pos_</em>, <a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>scale_</em>, <a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>parent_</em> = <a class="reference internal" href="Base.html#_CPPv4N3tnt3doo4nullE" title="tnt::doo::null">null</a><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11object_data11object_dataEfRK6VectorRK6VectorRK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new object data handle from the given params. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">angle_</span></code>: The initial angle of the object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale_</span></code>: The initial scale of the object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pos_</span></code>: The initial position of the object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parent_</span></code>: The parent of the new object. Leave it as is if you don’t want the object to have a parent. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11object_data5angleE">
+<span id="_CPPv3N3tnt3doo11object_data5angleE"></span><span id="_CPPv2N3tnt3doo11object_data5angleE"></span><span id="tnt::doo::object_data::angle__float"></span><span class="target" id="structtnt_1_1doo_1_1object__data_1a092ad4035b06e55aa790e6c4aa77ae13"></span>float <code class="sig-name descname">angle</code><a class="headerlink" href="#_CPPv4N3tnt3doo11object_data5angleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11object_data5scaleE">
+<span id="_CPPv3N3tnt3doo11object_data5scaleE"></span><span id="_CPPv2N3tnt3doo11object_data5scaleE"></span><span id="tnt::doo::object_data::scale__Vector"></span><span class="target" id="structtnt_1_1doo_1_1object__data_1a01a79a326544852ab0d424e37aa2407a"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">scale</code><a class="headerlink" href="#_CPPv4N3tnt3doo11object_data5scaleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The angle of the object. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11object_data3posE">
+<span id="_CPPv3N3tnt3doo11object_data3posE"></span><span id="_CPPv2N3tnt3doo11object_data3posE"></span><span id="tnt::doo::object_data::pos__Vector"></span><span class="target" id="structtnt_1_1doo_1_1object__data_1a3d0b0f83b41fb0495ffc9cdac7b4e30c"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">pos</code><a class="headerlink" href="#_CPPv4N3tnt3doo11object_data3posE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The scale of the object. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11object_data6parentE">
+<span id="_CPPv3N3tnt3doo11object_data6parentE"></span><span id="_CPPv2N3tnt3doo11object_data6parentE"></span><span id="tnt::doo::object_data::parent__object"></span><span class="target" id="structtnt_1_1doo_1_1object__data_1a791c476991c0c7e62c21b10e34912580"></span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <code class="sig-name descname">parent</code><a class="headerlink" href="#_CPPv4N3tnt3doo11object_data6parentE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The position of the object. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt3doo11objects_sysE">
+<span id="_CPPv3N3tnt3doo11objects_sysE"></span><span id="_CPPv2N3tnt3doo11objects_sysE"></span><span id="tnt::doo::objects_sys"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys"></span><em class="property">struct </em><code class="sig-name descname">objects_sys</code><a class="headerlink" href="#_CPPv4N3tnt3doo11objects_sysE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;Objects.hpp&gt;</em><p>A struct that handles objects data. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11objects_sys10add_objectERK11object_data">
+<span id="_CPPv3N3tnt3doo11objects_sys10add_objectERK11object_data"></span><span id="_CPPv2N3tnt3doo11objects_sys10add_objectERK11object_data"></span><span id="tnt::doo::objects_sys::add_object__object_dataCR"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1a2e21b8794803edbe0e0d579224840666"></span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <code class="sig-name descname">add_object</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt3doo11object_dataE" title="tnt::doo::object_data">object_data</a> <em class="property">const</em> &amp;<em>data_</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11objects_sys10add_objectERK11object_data" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new object in place and add it to the system. Return the id of the newly created <code class="docutils literal notranslate"><span class="pre">object</span></code>. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>tnt::doo::object </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt3doo11objects_sys8get_dataERK6object">
+<span id="_CPPv3NK3tnt3doo11objects_sys8get_dataERK6object"></span><span id="_CPPv2NK3tnt3doo11objects_sys8get_dataERK6object"></span><span id="tnt::doo::objects_sys::get_data__objectCRC"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1a1fe914c02007306724e9af62fc83fca2"></span><a class="reference internal" href="#_CPPv4N3tnt3doo11object_dataE" title="tnt::doo::object_data">object_data</a> <code class="sig-name descname">get_data</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt3doo11objects_sys8get_dataERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the data of the object with the given id. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><a class="reference internal" href="#structtnt_1_1doo_1_1object__data"><span class="std std-ref">object_data</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11objects_sys9from_jsonERKN8nlohmann4jsonE">
+<span id="_CPPv3N3tnt3doo11objects_sys9from_jsonERKN8nlohmann4jsonE"></span><span id="_CPPv2N3tnt3doo11objects_sys9from_jsonERKN8nlohmann4jsonE"></span><span id="tnt::doo::objects_sys::from_json__nlohmann::jsonCR"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1a3d3ed911e8a947d66618da3d6e05ff58"></span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <code class="sig-name descname">from_json</code><span class="sig-paren">(</span>nlohmann::json <em class="property">const</em> &amp;<em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11objects_sys9from_jsonERKN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Load objects data from a json chunk. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The id of the created object. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: The json chunk that contains the objects data. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11objects_sys7to_jsonERK6objectRN8nlohmann4jsonE">
+<span id="_CPPv3N3tnt3doo11objects_sys7to_jsonERK6objectRN8nlohmann4jsonE"></span><span id="_CPPv2N3tnt3doo11objects_sys7to_jsonERK6objectRN8nlohmann4jsonE"></span><span id="tnt::doo::objects_sys::to_json__objectCR.nlohmann::jsonR"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1a0d6540859059fc82773df69575540090"></span>void <code class="sig-name descname">to_json</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, nlohmann::json &amp;<em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11objects_sys7to_jsonERK6objectRN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Store general data of a specific object to a json chunk. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to serialize to json. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: The json chunk where the data will be saved. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11objects_sys10draw_imguiERK6objectRK6Window">
+<span id="_CPPv3N3tnt3doo11objects_sys10draw_imguiERK6objectRK6Window"></span><span id="_CPPv2N3tnt3doo11objects_sys10draw_imguiERK6objectRK6Window"></span><span id="tnt::doo::objects_sys::draw_imgui__objectCR.WindowCR"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1aeec63dc9f99a17cc4541a3cc37b2a28b"></span>void <code class="sig-name descname">draw_imgui</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="../core/window.html#_CPPv4N3tnt6WindowE" title="tnt::Window">Window</a> <em class="property">const</em> &amp;<em>win</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11objects_sys10draw_imguiERK6objectRK6Window" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Draw widgets on the given window to modify the datas of the system. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the active object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The window where to draw the widgets. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt3doo11objects_sys6gAngleERK6object">
+<span id="_CPPv3NK3tnt3doo11objects_sys6gAngleERK6object"></span><span id="_CPPv2NK3tnt3doo11objects_sys6gAngleERK6object"></span><span id="tnt::doo::objects_sys::gAngle__objectCRC"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1a05572a2a36527457805e6d6066a35779"></span>float <code class="sig-name descname">gAngle</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt3doo11objects_sys6gAngleERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the angle of the object in global context. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>float </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>The function returns angle[id] if the object has no parent (aka. parent[id] == -1). </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt3doo11objects_sys6gScaleERK6object">
+<span id="_CPPv3NK3tnt3doo11objects_sys6gScaleERK6object"></span><span id="_CPPv2NK3tnt3doo11objects_sys6gScaleERK6object"></span><span id="tnt::doo::objects_sys::gScale__objectCRC"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1a2e098eacf4d8b2f3b9c81c76b944ac52"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">gScale</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt3doo11objects_sys6gScaleERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the scale of the object in global context. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><a class="reference internal" href="../math/Vector.html#structtnt_1_1_vector"><span class="std std-ref">Vector</span></a> </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>The function returns scale[id] if the object has no parent (aka. parent[id] == -1). </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt3doo11objects_sys4gPosERK6object">
+<span id="_CPPv3NK3tnt3doo11objects_sys4gPosERK6object"></span><span id="_CPPv2NK3tnt3doo11objects_sys4gPosERK6object"></span><span id="tnt::doo::objects_sys::gPos__objectCRC"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1afe90d51c59d75559a33bc143044b0765"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">gPos</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt3doo11objects_sys4gPosERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the position of the object in global context. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><a class="reference internal" href="../math/Vector.html#structtnt_1_1_vector"><span class="std std-ref">Vector</span></a> </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>The function returns pos[id] if the object has no parent (aka. parent[id] == -1). </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11objects_sys10set_parentERK6objectRK6object">
+<span id="_CPPv3N3tnt3doo11objects_sys10set_parentERK6objectRK6object"></span><span id="_CPPv2N3tnt3doo11objects_sys10set_parentERK6objectRK6object"></span><span id="tnt::doo::objects_sys::set_parent__objectCR.objectCR"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1a671b4d1e42948981a5994f5cade0f7cf"></span>void <code class="sig-name descname">set_parent</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>parent_</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11objects_sys10set_parentERK6objectRK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Change the parent of the given object and apply all the necessary changes. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the child object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parent_</span></code>: The id of the new parent. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11objects_sys6removeERK6object">
+<span id="_CPPv3N3tnt3doo11objects_sys6removeERK6object"></span><span id="_CPPv2N3tnt3doo11objects_sys6removeERK6object"></span><span id="tnt::doo::objects_sys::remove__objectCR"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1a76ffe2a659e109088f596162eca548c9"></span>void <code class="sig-name descname">remove</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11objects_sys6removeERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove the desired object from the objects system. </p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Please call <a class="reference internal" href="#structtnt_1_1doo_1_1objects__sys_1a76ffe2a659e109088f596162eca548c9"><span class="std std-ref">remove()</span></a> from the other systems first. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object you want to remove. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11objects_sys5clearEv">
+<span id="_CPPv3N3tnt3doo11objects_sys5clearEv"></span><span id="_CPPv2N3tnt3doo11objects_sys5clearEv"></span><span id="tnt::doo::objects_sys::clear"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1a75558034f5733958b7d4ecdbf6e7aa56"></span>void <code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11objects_sys5clearEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove all the objects from the objects system. </p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Please call <a class="reference internal" href="#structtnt_1_1doo_1_1objects__sys_1a75558034f5733958b7d4ecdbf6e7aa56"><span class="std std-ref">clear()</span></a> from the other systems first. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11objects_sys5angleE">
+<span id="_CPPv3N3tnt3doo11objects_sys5angleE"></span><span id="_CPPv2N3tnt3doo11objects_sys5angleE"></span><span id="tnt::doo::objects_sys::angle__std::vector:float:"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1ae634ccd1b99e314a33c7f489c04beb56"></span>std::vector&lt;float&gt; <code class="sig-name descname">angle</code><a class="headerlink" href="#_CPPv4N3tnt3doo11objects_sys5angleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11objects_sys6activeE">
+<span id="_CPPv3N3tnt3doo11objects_sys6activeE"></span><span id="_CPPv2N3tnt3doo11objects_sys6activeE"></span><span id="tnt::doo::objects_sys::active__tnt::sparse_set:object:"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1a24ea8ea17c78393b8b0388d69675cc3b"></span><a class="reference internal" href="../core/window.html#_CPPv43tnt" title="tnt">tnt</a>::sparse_set&lt;<a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a>&gt; <code class="sig-name descname">active</code><a class="headerlink" href="#_CPPv4N3tnt3doo11objects_sys6activeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The angles of the objects. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11objects_sys6parentE">
+<span id="_CPPv3N3tnt3doo11objects_sys6parentE"></span><span id="_CPPv2N3tnt3doo11objects_sys6parentE"></span><span id="tnt::doo::objects_sys::parent__std::vector:object:"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1a9a016580732cc1da4aa5517552349fc2"></span>std::vector&lt;<a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a>&gt; <code class="sig-name descname">parent</code><a class="headerlink" href="#_CPPv4N3tnt3doo11objects_sys6parentE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The id-s of all the active objects. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11objects_sys5scaleE">
+<span id="_CPPv3N3tnt3doo11objects_sys5scaleE"></span><span id="_CPPv2N3tnt3doo11objects_sys5scaleE"></span><span id="tnt::doo::objects_sys::scale__std::vector:Vector:"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1acb784fe3dbd28d8bea5b72f4552e279c"></span>std::vector&lt;<a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a>&gt; <code class="sig-name descname">scale</code><a class="headerlink" href="#_CPPv4N3tnt3doo11objects_sys5scaleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The id-s of the parents of the objects. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11objects_sys3posE">
+<span id="_CPPv3N3tnt3doo11objects_sys3posE"></span><span id="_CPPv2N3tnt3doo11objects_sys3posE"></span><span id="tnt::doo::objects_sys::pos__std::vector:Vector:"></span><span class="target" id="structtnt_1_1doo_1_1objects__sys_1ac04d2030160f75a287dfeb61ce4b7cf1"></span>std::vector&lt;<a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a>&gt; <code class="sig-name descname">pos</code><a class="headerlink" href="#_CPPv4N3tnt3doo11objects_sys3posE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The scales of the objects. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Physics.html" class="btn btn-neutral float-right" title="Physics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Cameras.html" class="btn btn-neutral float-left" title="Camera" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

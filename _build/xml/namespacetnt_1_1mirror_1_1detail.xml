@@ -1,0 +1,260 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1mirror_1_1detail" kind="namespace" language="C++">
+    <compoundname>tnt::mirror::detail</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_mirror_8hpp_1af5e98477ac7a59fa4793cbacae8f4c0c" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::mirror::detail::copyable</definition>
+        <argsstring></argsstring>
+        <name>copyable</name>
+        <initializer>= std::is_copy_constructible_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="26" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_mirror_8hpp_1a080bedf5aa22bbc4404abecba5deb704" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::mirror::detail::movable</definition>
+        <argsstring></argsstring>
+        <name>movable</name>
+        <initializer>= std::is_move_constructible_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="29" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_mirror_8hpp_1a4d68551bf61efd20f837c07f93b92fea" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::mirror::detail::default_constructible</definition>
+        <argsstring></argsstring>
+        <name>default_constructible</name>
+        <initializer>= std::is_default_constructible_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="32" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_mirror_8hpp_1aeaf5f1f73f01eee25c6551fa73b63fd8" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::mirror::detail::nothrow_copyable</definition>
+        <argsstring></argsstring>
+        <name>nothrow_copyable</name>
+        <initializer>= std::is_nothrow_copy_constructible_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="35" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_mirror_8hpp_1a35c2888557061ee6903718894476493e" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::mirror::detail::nothrow_movable</definition>
+        <argsstring></argsstring>
+        <name>nothrow_movable</name>
+        <initializer>= std::is_nothrow_move_constructible_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="38" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_mirror_8hpp_1ac8c6db43dbc83ec4ff0d65380147ffca" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::mirror::detail::nothrow_default_constructible</definition>
+        <argsstring></argsstring>
+        <name>nothrow_default_constructible</name>
+        <initializer>= std::is_nothrow_default_constructible_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="41" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_mirror_8hpp_1a214112f894e4559d98b20886c716f12f" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::mirror::detail::class_t</definition>
+        <argsstring></argsstring>
+        <name>class_t</name>
+        <initializer>= std::is_class_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="45" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_mirror_8hpp_1a3382b2c6b23173ca1a0fa961b1f2f076" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::mirror::detail::union_t</definition>
+        <argsstring></argsstring>
+        <name>union_t</name>
+        <initializer>= std::is_union_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="48" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_mirror_8hpp_1a6da6664b3fe81db4d0e65b9b94beb741" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::mirror::detail::enum_t</definition>
+        <argsstring></argsstring>
+        <name>enum_t</name>
+        <initializer>= std::is_enum_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="51" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_mirror_8hpp_1ac599221955e5520a69d2169381d29b64" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::mirror::detail::invocable</definition>
+        <argsstring></argsstring>
+        <name>invocable</name>
+        <initializer>= std::is_invocable_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="54" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_mirror_8hpp_1a4696491b609da7f51415676f3aeb67e0" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::mirror::detail::fundamental_t</definition>
+        <argsstring></argsstring>
+        <name>fundamental_t</name>
+        <initializer>= std::is_fundamental_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="57" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_mirror_8hpp_1a5dbc43ef2f7c29799be9f9c0ea64561b" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::mirror::detail::array_t</definition>
+        <argsstring></argsstring>
+        <name>array_t</name>
+        <initializer>= std::is_array_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="60" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_mirror_8hpp_1a026111a07a4aa760ed131175b372009d" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept tnt::mirror::detail::member</definition>
+        <argsstring></argsstring>
+        <name>member</name>
+        <initializer>= std::is_member_object_pointer_v&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="63" column="17" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="23" column="5"/>
+  </compounddef>
+</doxygen>

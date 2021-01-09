@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1bubble__sort__view" kind="class" language="C++" prot="public">
+    <compoundname>tnt::bubble_sort_view</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::ranges::view_interface&lt; bubble_sort_view&lt; R &gt; &gt;</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>std::ranges::input_range</type>
+        <declname>R</declname>
+        <defname>R</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1bubble__sort__view_1abdc3b4b564482dcfc66bd206122b0a7e" prot="private" static="no" mutable="no">
+        <type>R</type>
+        <definition>R tnt::bubble_sort_view&lt; R &gt;::base_</definition>
+        <argsstring></argsstring>
+        <name>base_</name>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Sort.hpp" line="20" column="11" bodyfile="E:/thing/cpp/tnt/include/types/Sort.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1bubble__sort__view_1a32fe6b13880a288722201790cce4869c" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::bubble_sort_view&lt; R &gt;::bubble_sort_view</definition>
+        <argsstring>() noexcept=default</argsstring>
+        <name>bubble_sort_view</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Sort.hpp" line="23" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1bubble__sort__view_1a530ecf9f47a1f75177fd20460d7caddb" prot="public" static="no" constexpr="yes" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr tnt::bubble_sort_view&lt; R &gt;::bubble_sort_view</definition>
+        <argsstring>(R &amp;&amp;r) requires std</argsstring>
+        <name>bubble_sort_view</name>
+        <param>
+          <type>R &amp;&amp;</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Sort.hpp" line="26" column="28" bodyfile="E:/thing/cpp/tnt/include/types/Sort.hpp" bodystart="26" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1bubble__sort__view_1ac3da606b9b6d806835e5fb66de1c9602" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr iterator</type>
+        <definition>constexpr iterator tnt::bubble_sort_view&lt; R &gt;::begin</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Sort.hpp" line="47" column="28" bodyfile="E:/thing/cpp/tnt/include/types/Sort.hpp" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1bubble__sort__view_1ab168b101f3f063769ba996dde800207d" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr auto</type>
+        <definition>constexpr auto tnt::bubble_sort_view&lt; R &gt;::end</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Sort.hpp" line="48" column="24" bodyfile="E:/thing/cpp/tnt/include/types/Sort.hpp" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1bubble__sort__view_1a303f7786a8e2f07027477463c6552765" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr iterator</type>
+        <definition>constexpr iterator tnt::bubble_sort_view&lt; R &gt;::cbegin</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>cbegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Sort.hpp" line="50" column="28" bodyfile="E:/thing/cpp/tnt/include/types/Sort.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1bubble__sort__view_1a24063c6cf000c4811aeeece9aa514647" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr auto</type>
+        <definition>constexpr auto tnt::bubble_sort_view&lt; R &gt;::cend</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>cend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Sort.hpp" line="51" column="24" bodyfile="E:/thing/cpp/tnt/include/types/Sort.hpp" bodystart="51" bodyend="51"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>tnt::bubble_sort_view&lt; R &gt;</label>
+        <link refid="classtnt_1_1bubble__sort__view"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::ranges::view_interface&lt; bubble_sort_view&lt; R &gt; &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::bubble_sort_view&lt; R &gt;</label>
+        <link refid="classtnt_1_1bubble__sort__view"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::ranges::view_interface&lt; bubble_sort_view&lt; R &gt; &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/types/Sort.hpp" line="17" column="5" bodyfile="E:/thing/cpp/tnt/include/types/Sort.hpp" bodystart="19" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1bubble__sort__view_1abdc3b4b564482dcfc66bd206122b0a7e" prot="private" virt="non-virtual"><scope>tnt::bubble_sort_view</scope><name>base_</name></member>
+      <member refid="classtnt_1_1bubble__sort__view_1ac3da606b9b6d806835e5fb66de1c9602" prot="public" virt="non-virtual"><scope>tnt::bubble_sort_view</scope><name>begin</name></member>
+      <member refid="classtnt_1_1bubble__sort__view_1a32fe6b13880a288722201790cce4869c" prot="public" virt="non-virtual"><scope>tnt::bubble_sort_view</scope><name>bubble_sort_view</name></member>
+      <member refid="classtnt_1_1bubble__sort__view_1a530ecf9f47a1f75177fd20460d7caddb" prot="public" virt="non-virtual"><scope>tnt::bubble_sort_view</scope><name>bubble_sort_view</name></member>
+      <member refid="classtnt_1_1bubble__sort__view_1a303f7786a8e2f07027477463c6552765" prot="public" virt="non-virtual"><scope>tnt::bubble_sort_view</scope><name>cbegin</name></member>
+      <member refid="classtnt_1_1bubble__sort__view_1a24063c6cf000c4811aeeece9aa514647" prot="public" virt="non-virtual"><scope>tnt::bubble_sort_view</scope><name>cend</name></member>
+      <member refid="classtnt_1_1bubble__sort__view_1ab168b101f3f063769ba996dde800207d" prot="public" virt="non-virtual"><scope>tnt::bubble_sort_view</scope><name>end</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

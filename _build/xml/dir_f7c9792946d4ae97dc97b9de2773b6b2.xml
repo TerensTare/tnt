@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_f7c9792946d4ae97dc97b9de2773b6b2" kind="dir">
+    <compoundname>E:/thing/cpp/tnt/include/physics</compoundname>
+    <innerfile refid="_contact_8hpp">Contact.hpp</innerfile>
+    <innerfile refid="_force_generator_8hpp">ForceGenerator.hpp</innerfile>
+    <innerfile refid="_link_8hpp">Link.hpp</innerfile>
+    <innerfile refid="_particle_8hpp">Particle.hpp</innerfile>
+    <innerfile refid="_world_8hpp">World.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/physics/"/>
+  </compounddef>
+</doxygen>

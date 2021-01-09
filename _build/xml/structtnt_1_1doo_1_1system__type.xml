@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1doo_1_1system__type" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::doo::system_type</compoundname>
+    <derivedcompoundref refid="structtnt_1_1doo_1_1system__base" prot="public" virt="non-virtual">tnt::doo::system_base&lt; T &gt;</derivedcompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>tnt::doo::system_base&lt; T &gt;</label>
+        <link refid="structtnt_1_1doo_1_1system__base"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::doo::system_type</label>
+        <link refid="structtnt_1_1doo_1_1system__type"/>
+      </node>
+    </inheritancegraph>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/System.hpp" line="26" column="5" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/System.hpp" bodystart="27" bodyend="28"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

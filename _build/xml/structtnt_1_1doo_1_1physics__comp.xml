@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1doo_1_1physics__comp" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::doo::physics_comp</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__comp_1a8c85104c1d621feef622f1c640cf7dbd" prot="public" static="no" mutable="no">
+        <type>body_type</type>
+        <definition>body_type tnt::doo::physics_comp::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <initializer>{body_type::dynamic}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="42" column="19" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__comp_1ad4402dea909fc961ef170dc2f6b50fbe" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::physics_comp::mass</definition>
+        <argsstring></argsstring>
+        <name>mass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="43" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__comp_1ac7be0d5a3437e7ca5d4735284f84aa03" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::physics_comp::damping</definition>
+        <argsstring></argsstring>
+        <name>damping</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="44" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__comp_1a46256008681d99394f18cb86bebc4c96" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::physics_comp::restitution</definition>
+        <argsstring></argsstring>
+        <name>restitution</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="45" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__comp_1a3b56135e43334ff0c7257d02ce0ebdd3" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::physics_comp::maxVel</definition>
+        <argsstring></argsstring>
+        <name>maxVel</name>
+        <initializer>{40.f, 40.f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="46" column="16" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__comp_1ac184dc734a79a45b7c9a8667bbead99d" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::physics_comp::maxAccel</definition>
+        <argsstring></argsstring>
+        <name>maxAccel</name>
+        <initializer>{15.f, 15.f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="47" column="16" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__comp_1adec65b74bbb407cd1a35cb150f9688ed" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref></type>
+        <definition>Rectangle tnt::doo::physics_comp::bound_box</definition>
+        <argsstring></argsstring>
+        <name>bound_box</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="48" column="19" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::doo::physics_comp</label>
+        <link refid="structtnt_1_1doo_1_1physics__comp"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>bound_box</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>maxAccel</edgelabel>
+          <edgelabel>maxVel</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::Rectangle</label>
+        <link refid="structtnt_1_1_rectangle"/>
+      </node>
+      <node id="3">
+        <label>tnt::Vector</label>
+        <link refid="structtnt_1_1_vector"/>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="40" column="5" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="41" bodyend="49"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1doo_1_1physics__comp_1adec65b74bbb407cd1a35cb150f9688ed" prot="public" virt="non-virtual"><scope>tnt::doo::physics_comp</scope><name>bound_box</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__comp_1ac7be0d5a3437e7ca5d4735284f84aa03" prot="public" virt="non-virtual"><scope>tnt::doo::physics_comp</scope><name>damping</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__comp_1ad4402dea909fc961ef170dc2f6b50fbe" prot="public" virt="non-virtual"><scope>tnt::doo::physics_comp</scope><name>mass</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__comp_1ac184dc734a79a45b7c9a8667bbead99d" prot="public" virt="non-virtual"><scope>tnt::doo::physics_comp</scope><name>maxAccel</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__comp_1a3b56135e43334ff0c7257d02ce0ebdd3" prot="public" virt="non-virtual"><scope>tnt::doo::physics_comp</scope><name>maxVel</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__comp_1a46256008681d99394f18cb86bebc4c96" prot="public" virt="non-virtual"><scope>tnt::doo::physics_comp</scope><name>restitution</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__comp_1a8c85104c1d621feef622f1c640cf7dbd" prot="public" virt="non-virtual"><scope>tnt::doo::physics_comp</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

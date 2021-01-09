@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1mirror_1_1enum__type" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::mirror::enum_type</compoundname>
+    <basecompoundref refid="structtnt_1_1mirror_1_1type" prot="public" virt="non-virtual">tnt::mirror::type&lt; enum_type&lt; T &gt;, T &gt;</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>detail::enum_t</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structtnt_1_1mirror_1_1enum__type_1a6e8ddcfd0353c0641fd20fa9f79bc192" prot="private" static="no" mutable="no">
+        <type>std::map&lt; char const *, T &gt;</type>
+        <definition>std::map&lt;char const *, T&gt; tnt::mirror::enum_type&lt; T &gt;::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="164" column="18" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1mirror_1_1enum__type_1a3e847854b224ed2d19e22331169d5fff" prot="public" static="no" const="no" explicit="yes" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::mirror::enum_type&lt; T &gt;::enum_type</definition>
+        <argsstring>() noexcept=default</argsstring>
+        <name>enum_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="144" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1mirror_1_1enum__type_1a03a5959f2e4ca251a3b268ff1a3830d4" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr char const  *</type>
+        <definition>constexpr char const* tnt::mirror::enum_type&lt; T &gt;::name</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="146" column="30" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="146" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1mirror_1_1enum__type_1a87f8b022497d53a8818504816881014d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1mirror_1_1enum__type" kindref="compound">enum_type</ref>&lt; T &gt;</type>
+        <definition>enum_type&lt;T&gt; tnt::mirror::enum_type&lt; T &gt;::reflect</definition>
+        <argsstring>(char const *Name, T const &amp;Arg)</argsstring>
+        <name>reflect</name>
+        <param>
+          <type>char const *</type>
+          <declname>Name</declname>
+        </param>
+        <param>
+          <type>T const &amp;</type>
+          <declname>Arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="148" column="26" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="148" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1mirror_1_1enum__type_1a3506b8c8cd665c77d748bbd869ed5971" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tnt::mirror::enum_type&lt; T &gt;::operator[]</definition>
+        <argsstring>(std::string_view key)</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="154" column="19" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="154" bodyend="160"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>tnt::mirror::type&lt; enum_type&lt; T &gt;, T &gt;</label>
+        <link refid="structtnt_1_1mirror_1_1type"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; enum_type&lt; T &gt;, T &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>tnt::crtp&lt; enum_type&lt; T &gt; &gt;</label>
+        <link refid="structtnt_1_1crtp"/>
+        <childnode refid="4" relation="template-instance">
+          <edgelabel>&lt; enum_type&lt; T &gt; &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::mirror::enum_type&lt; T &gt;</label>
+        <link refid="structtnt_1_1mirror_1_1enum__type"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>tnt::mirror::type&lt; T, V &gt;</label>
+        <link refid="structtnt_1_1mirror_1_1type"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>tnt::crtp&lt; T &gt;</label>
+        <link refid="structtnt_1_1crtp"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>tnt::mirror::type&lt; enum_type&lt; T &gt;, T &gt;</label>
+        <link refid="structtnt_1_1mirror_1_1type"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; enum_type&lt; T &gt;, T &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>tnt::crtp&lt; enum_type&lt; T &gt; &gt;</label>
+        <link refid="structtnt_1_1crtp"/>
+        <childnode refid="4" relation="template-instance">
+          <edgelabel>&lt; enum_type&lt; T &gt; &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::mirror::enum_type&lt; T &gt;</label>
+        <link refid="structtnt_1_1mirror_1_1enum__type"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>tnt::mirror::type&lt; T, V &gt;</label>
+        <link refid="structtnt_1_1mirror_1_1type"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>tnt::crtp&lt; T &gt;</label>
+        <link refid="structtnt_1_1crtp"/>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="142" column="5" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="143" bodyend="165"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1crtp_1adcfa2395d92981aabfe6bb76dbffeb3d" prot="public" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>base</name></member>
+      <member refid="structtnt_1_1crtp_1ac2ebdced22082dadcb0aa4698386fa34" prot="public" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>base</name></member>
+      <member refid="structtnt_1_1crtp_1a212757730fa4ca0435802becdef44256" prot="public" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>crtp</name></member>
+      <member refid="structtnt_1_1mirror_1_1enum__type_1a6e8ddcfd0353c0641fd20fa9f79bc192" prot="private" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>data</name></member>
+      <member refid="structtnt_1_1mirror_1_1enum__type_1a3e847854b224ed2d19e22331169d5fff" prot="public" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>enum_type</name></member>
+      <member refid="structtnt_1_1mirror_1_1type_1a84bca03a4ecccc87e943461e793a279a" prot="public" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>explicit</name></member>
+      <member refid="structtnt_1_1mirror_1_1type_1ab3401eeb6d4408c7fac6562a66481aed" prot="public" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>explicit</name></member>
+      <member refid="structtnt_1_1mirror_1_1type_1ab5bc73ec3885e7b5e9d0ea752361d7b9" prot="public" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>explicit</name></member>
+      <member refid="structtnt_1_1mirror_1_1enum__type_1a03a5959f2e4ca251a3b268ff1a3830d4" prot="public" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>name</name></member>
+      <member refid="structtnt_1_1mirror_1_1type_1ac6201faee35a02084036a4280ef60975" prot="public" virt="non-virtual" ambiguityscope="type&lt; enum_type&lt; T &gt;, T &gt;::"><scope>tnt::mirror::enum_type</scope><name>name</name></member>
+      <member refid="structtnt_1_1mirror_1_1enum__type_1a3506b8c8cd665c77d748bbd869ed5971" prot="public" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>operator[]</name></member>
+      <member refid="structtnt_1_1mirror_1_1enum__type_1a87f8b022497d53a8818504816881014d" prot="public" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>reflect</name></member>
+      <member refid="structtnt_1_1mirror_1_1type_1a06c2fc3a45e709c96f63a8f3ef9e353b" prot="public" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>size</name></member>
+      <member refid="structtnt_1_1crtp_1ad874f5ad17abdb584701a80cdb362a69" prot="public" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>super</name></member>
+      <member refid="structtnt_1_1mirror_1_1type_1a5665fcb2ceb0ba160302c41f93af3df5" prot="public" virt="non-virtual"><scope>tnt::mirror::enum_type</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

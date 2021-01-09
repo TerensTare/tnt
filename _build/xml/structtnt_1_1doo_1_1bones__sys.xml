@@ -1,0 +1,322 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1doo_1_1bones__sys" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::doo::bones_sys</compoundname>
+    <includes local="no">Bones.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1bones__sys_1a5add2b94b72eb2cc27a95219714102cb" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; tnt::doo::bones_sys::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="70" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1bones__sys_1a353ae8b26d46aa1d0240a0708821b8cc" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &gt;</type>
+        <definition>std::vector&lt;Vector&gt; tnt::doo::bones_sys::joint</definition>
+        <argsstring></argsstring>
+        <name>joint</name>
+        <briefdescription>
+<para>&lt; The length of each bone. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="71" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1bones__sys_1a66a05626526dd5e2ddf448738eacef22" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref>&lt; object &gt;</type>
+        <definition>sparse_set&lt;object&gt; tnt::doo::bones_sys::active</definition>
+        <argsstring></argsstring>
+        <name>active</name>
+        <briefdescription>
+<para>&lt; The datas of the bone trees. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="72" column="20" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1doo_1_1bones__sys_1a4066d1c6d06d16eff76355cb2d7d2a81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::bones_sys::add_object</definition>
+        <argsstring>(object const &amp;id, bone_comp const &amp;data_)</argsstring>
+        <name>add_object</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1doo_1_1bone__comp" kindref="compound">bone_comp</ref> const &amp;</type>
+          <declname>data_</declname>
+        </param>
+        <briefdescription>
+<para>Add a new object to the bones system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object that will have a bone component. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The data that the object will contain. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="41" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1bones__sys_1a7e1b2faed5b1381276ce9375dd1d5dd7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::bones_sys::from_json</definition>
+        <argsstring>(object const &amp;id, nlohmann::json const &amp;j)</argsstring>
+        <name>from_json</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>nlohmann::json const &amp;</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Add new objects to the bones system by using data from a json chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object to add to the bones system. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The json chunk containing the objects data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="46" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1bones__sys_1aaf3e4fcb0ba4224dfc3e560569750a4a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::bones_sys::to_json</definition>
+        <argsstring>(object const &amp;id, nlohmann::json &amp;j)</argsstring>
+        <name>to_json</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>nlohmann::json &amp;</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Store bones data of a specific object to a json chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object to serialize to json. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The json chunk where the data will be saved. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="51" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1bones__sys_1a472520efc1190004a7e78621ba30c21a" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::bones_sys::remove</definition>
+        <argsstring>(object const &amp;id) noexcept</argsstring>
+        <name>remove</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Remove an object from the bones system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object to remove. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="55" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1bones__sys_1a889fa5c3a9443e5b112e882181162c47" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::bones_sys::clear</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>clear</name>
+        <briefdescription>
+<para>Remove all the objects from the bones system. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="58" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1bones__sys_1a3d05780a7ed791b3657beb4b6d02f1c0" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::bones_sys::bottom</definition>
+        <argsstring>(object const &amp;id) const noexcept</argsstring>
+        <name>bottom</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get the other end of the bone of the given object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object that has the desired bone. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="63" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1bones__sys_1a12454a556fb1317bf4a739232840c813" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::bones_sys::follow</definition>
+        <argsstring>(object const &amp;id, Vector const &amp;target) noexcept</argsstring>
+        <name>follow</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>Move the desired joint towards <emphasis>target</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the joint you want to reach the target. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The destination you want the joint to reach. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="68" column="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A system that handles bones animations. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>tnt::sparse_set&lt; T &gt;</label>
+        <link refid="classtnt_1_1sparse__set"/>
+      </node>
+      <node id="1">
+        <label>tnt::doo::bones_sys</label>
+        <link refid="structtnt_1_1doo_1_1bones__sys"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>active</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::sparse_set&lt; object &gt;</label>
+        <link refid="classtnt_1_1sparse__set"/>
+        <childnode refid="3" relation="template-instance">
+          <edgelabel>&lt; object &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" line="36" column="12" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Bones.hpp" bodystart="37" bodyend="73"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1doo_1_1bones__sys_1a66a05626526dd5e2ddf448738eacef22" prot="public" virt="non-virtual"><scope>tnt::doo::bones_sys</scope><name>active</name></member>
+      <member refid="structtnt_1_1doo_1_1bones__sys_1a4066d1c6d06d16eff76355cb2d7d2a81" prot="public" virt="non-virtual"><scope>tnt::doo::bones_sys</scope><name>add_object</name></member>
+      <member refid="structtnt_1_1doo_1_1bones__sys_1a3d05780a7ed791b3657beb4b6d02f1c0" prot="public" virt="non-virtual"><scope>tnt::doo::bones_sys</scope><name>bottom</name></member>
+      <member refid="structtnt_1_1doo_1_1bones__sys_1a889fa5c3a9443e5b112e882181162c47" prot="public" virt="non-virtual"><scope>tnt::doo::bones_sys</scope><name>clear</name></member>
+      <member refid="structtnt_1_1doo_1_1bones__sys_1a12454a556fb1317bf4a739232840c813" prot="public" virt="non-virtual"><scope>tnt::doo::bones_sys</scope><name>follow</name></member>
+      <member refid="structtnt_1_1doo_1_1bones__sys_1a7e1b2faed5b1381276ce9375dd1d5dd7" prot="public" virt="non-virtual"><scope>tnt::doo::bones_sys</scope><name>from_json</name></member>
+      <member refid="structtnt_1_1doo_1_1bones__sys_1a353ae8b26d46aa1d0240a0708821b8cc" prot="public" virt="non-virtual"><scope>tnt::doo::bones_sys</scope><name>joint</name></member>
+      <member refid="structtnt_1_1doo_1_1bones__sys_1a5add2b94b72eb2cc27a95219714102cb" prot="public" virt="non-virtual"><scope>tnt::doo::bones_sys</scope><name>length</name></member>
+      <member refid="structtnt_1_1doo_1_1bones__sys_1a472520efc1190004a7e78621ba30c21a" prot="public" virt="non-virtual"><scope>tnt::doo::bones_sys</scope><name>remove</name></member>
+      <member refid="structtnt_1_1doo_1_1bones__sys_1aaf3e4fcb0ba4224dfc3e560569750a4a" prot="public" virt="non-virtual"><scope>tnt::doo::bones_sys</scope><name>to_json</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

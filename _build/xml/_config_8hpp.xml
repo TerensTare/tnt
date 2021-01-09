@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="_config_8hpp" kind="file" language="C++">
+    <compoundname>Config.hpp</compoundname>
+    <includedby refid="_input_8hpp" local="yes">E:/thing/cpp/tnt/include/core/Input.hpp</includedby>
+    <includedby refid="_window_8hpp" local="yes">E:/thing/cpp/tnt/include/core/Window.hpp</includedby>
+    <includedby refid="_audio_player_8hpp" local="yes">E:/thing/cpp/tnt/include/fileIO/AudioPlayer.hpp</includedby>
+    <includedby refid="_snipper_8hpp" local="yes">E:/thing/cpp/tnt/include/fileIO/Snipper.hpp</includedby>
+    <includedby refid="_texture_atlas_8hpp" local="yes">E:/thing/cpp/tnt/include/fileIO/TextureAtlas.hpp</includedby>
+    <includedby refid="_virtual_f_s_8hpp" local="yes">E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp</includedby>
+    <includedby refid="_rectangle_8hpp" local="yes">E:/thing/cpp/tnt/include/math/Rectangle.hpp</includedby>
+    <includedby refid="_tn_t_8hpp" local="yes">E:/thing/cpp/tnt/include/TnT.hpp</includedby>
+    <includedby refid="_lua_core_8hpp" local="yes">E:/thing/cpp/tnt/include/tolua/LuaCore.hpp</includedby>
+    <includedby refid="_lua_im_gui_8hpp" local="yes">E:/thing/cpp/tnt/include/tolua/LuaImGui.hpp</includedby>
+    <includedby refid="_lua_loader_8hpp" local="yes">E:/thing/cpp/tnt/include/tolua/LuaLoader.hpp</includedby>
+    <includedby refid="_lua_math_8hpp" local="yes">E:/thing/cpp/tnt/include/tolua/LuaMath.hpp</includedby>
+    <includedby refid="_expected_8hpp" local="yes">E:/thing/cpp/tnt/include/types/Expected.hpp</includedby>
+    <includedby refid="_benchmark_8hpp" local="yes">E:/thing/cpp/tnt/include/utils/Benchmark.hpp</includedby>
+    <includedby refid="_lua_utils_8hpp" local="yes">E:/thing/cpp/tnt/include/tolua/LuaUtils.hpp</includedby>
+    <includedby refid="_static_pimpl_8hpp" local="yes">E:/thing/cpp/tnt/include/types/StaticPimpl.hpp</includedby>
+    <includedby refid="_bench_8hpp" local="yes">E:/thing/cpp/tnt/include/utils/Bench.hpp</includedby>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>CONFIG_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CONFIG_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>clang-format<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>if<sp/>defined(_MSC_VER)<sp/>&amp;&amp;<sp/>!defined(__clang__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>ifdef<sp/>TNT_BUILD</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>define<sp/>TNT_API<sp/>__declspec(dllexport)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>define<sp/>TNT_EXPORT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//disable<sp/>warnings<sp/>on<sp/>extern<sp/>before<sp/>template<sp/>instantiation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>define<sp/>TNT_API<sp/>__declspec(dllimport)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>define<sp/>TNT_EXPORT<sp/>extern</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>endif<sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="preprocessor">#<sp/>elif<sp/>defined(__GNUC__)<sp/>||<sp/>(defined(__clang__)<sp/>&amp;&amp;<sp/>!defined(_MSC_VER))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>ifdef<sp/>TNT_BUILD</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>define<sp/>TNT_API<sp/>__attribute__((visibility(&quot;default&quot;)))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>define<sp/>TNT_EXPORT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>define<sp/>TNT_API</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>define<sp/>TNT_EXPORT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>endif<sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="preprocessor">//<sp/>clang-format<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//!CONFIG_HPP</highlight></codeline>
+    </programlisting>
+    <location file="E:/thing/cpp/tnt/include/core/Config.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_bungee_force" kind="class" language="C++" prot="public">
+    <compoundname>tnt::BungeeForce</compoundname>
+    <basecompoundref refid="classtnt_1_1_force_generator" prot="public" virt="non-virtual">tnt::ForceGenerator</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_bungee_force_1a75b5de51bc8bb6409365524e95ac75c4" prot="private" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1_particle" kindref="compound">Particle</ref> *</type>
+        <definition>Particle* tnt::BungeeForce::other</definition>
+        <argsstring></argsstring>
+        <name>other</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="95" column="14" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_bungee_force_1af9e9a0e8e13cb938d03f206c9a80734a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::BungeeForce::springc</definition>
+        <argsstring></argsstring>
+        <name>springc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="96" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_bungee_force_1a1b9eab5b9033cc708c8ea73b9ff6c981" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::BungeeForce::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="97" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_bungee_force_1af615ad69bf64895d7d9f7bf604a9dcbb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::BungeeForce::BungeeForce</definition>
+        <argsstring>(Particle *p, float c, float l)</argsstring>
+        <name>BungeeForce</name>
+        <param>
+          <type><ref refid="classtnt_1_1_particle" kindref="compound">Particle</ref> *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="90" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_bungee_force_1ae6fcc884fa0b894b0d9719f605e31df2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void tnt::BungeeForce::update</definition>
+        <argsstring>(Particle *particle, float duration) override</argsstring>
+        <name>update</name>
+        <reimplements refid="classtnt_1_1_force_generator_1a42208e6e8fff3f663bf93e6000a813ba">update</reimplements>
+        <param>
+          <type><ref refid="classtnt_1_1_particle" kindref="compound">Particle</ref> *</type>
+          <declname>particle</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="92" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>tnt::ForceGenerator</label>
+        <link refid="classtnt_1_1_force_generator"/>
+      </node>
+      <node id="1">
+        <label>tnt::BungeeForce</label>
+        <link refid="classtnt_1_1_bungee_force"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>tnt::ForceGenerator</label>
+        <link refid="classtnt_1_1_force_generator"/>
+      </node>
+      <node id="1">
+        <label>tnt::BungeeForce</label>
+        <link refid="classtnt_1_1_bungee_force"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="87" column="1" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="88" bodyend="98"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_bungee_force_1af615ad69bf64895d7d9f7bf604a9dcbb" prot="public" virt="non-virtual"><scope>tnt::BungeeForce</scope><name>BungeeForce</name></member>
+      <member refid="classtnt_1_1_bungee_force_1a1b9eab5b9033cc708c8ea73b9ff6c981" prot="private" virt="non-virtual"><scope>tnt::BungeeForce</scope><name>length</name></member>
+      <member refid="classtnt_1_1_bungee_force_1a75b5de51bc8bb6409365524e95ac75c4" prot="private" virt="non-virtual"><scope>tnt::BungeeForce</scope><name>other</name></member>
+      <member refid="classtnt_1_1_bungee_force_1af9e9a0e8e13cb938d03f206c9a80734a" prot="private" virt="non-virtual"><scope>tnt::BungeeForce</scope><name>springc</name></member>
+      <member refid="classtnt_1_1_bungee_force_1ae6fcc884fa0b894b0d9719f605e31df2" prot="public" virt="virtual"><scope>tnt::BungeeForce</scope><name>update</name></member>
+      <member refid="classtnt_1_1_force_generator_1ad0f559c3b3be1637f42f4f3c4bd6607d" prot="public" virt="virtual"><scope>tnt::BungeeForce</scope><name>~ForceGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

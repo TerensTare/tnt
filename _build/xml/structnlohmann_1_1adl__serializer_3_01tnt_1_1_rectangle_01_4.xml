@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structnlohmann_1_1adl__serializer_3_01tnt_1_1_rectangle_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>nlohmann::adl_serializer&lt; tnt::Rectangle &gt;</compoundname>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structnlohmann_1_1adl__serializer_3_01tnt_1_1_rectangle_01_4_1aa54d0d29fcd21e5acd0bbfd722a6e40f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void nlohmann::adl_serializer&lt; tnt::Rectangle &gt;::to_json</definition>
+        <argsstring>(nlohmann::json &amp;j, tnt::Rectangle const &amp;rect)</argsstring>
+        <name>to_json</name>
+        <param>
+          <type>nlohmann::json &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_rectangle" kindref="compound">tnt::Rectangle</ref> const &amp;</type>
+          <declname>rect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/json/JsonRectangle.hpp" line="12" column="28" bodyfile="E:/thing/cpp/tnt/include/json/JsonRectangle.hpp" bodystart="12" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="structnlohmann_1_1adl__serializer_3_01tnt_1_1_rectangle_01_4_1a11e33e550b4c3a27e6a57cce12155175" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void nlohmann::adl_serializer&lt; tnt::Rectangle &gt;::from_json</definition>
+        <argsstring>(nlohmann::json const &amp;j, tnt::Rectangle &amp;rect)</argsstring>
+        <name>from_json</name>
+        <param>
+          <type>nlohmann::json const &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_rectangle" kindref="compound">tnt::Rectangle</ref> &amp;</type>
+          <declname>rect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/json/JsonRectangle.hpp" line="17" column="28" bodyfile="E:/thing/cpp/tnt/include/json/JsonRectangle.hpp" bodystart="17" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/json/JsonRectangle.hpp" line="10" column="5" bodyfile="E:/thing/cpp/tnt/include/json/JsonRectangle.hpp" bodystart="11" bodyend="24"/>
+    <listofallmembers>
+      <member refid="structnlohmann_1_1adl__serializer_3_01tnt_1_1_rectangle_01_4_1a11e33e550b4c3a27e6a57cce12155175" prot="public" virt="non-virtual"><scope>nlohmann::adl_serializer&lt; tnt::Rectangle &gt;</scope><name>from_json</name></member>
+      <member refid="structnlohmann_1_1adl__serializer_3_01tnt_1_1_rectangle_01_4_1aa54d0d29fcd21e5acd0bbfd722a6e40f" prot="public" virt="non-virtual"><scope>nlohmann::adl_serializer&lt; tnt::Rectangle &gt;</scope><name>to_json</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

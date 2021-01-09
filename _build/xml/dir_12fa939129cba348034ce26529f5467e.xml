@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_12fa939129cba348034ce26529f5467e" kind="dir">
+    <compoundname>E:/thing/cpp/tnt/include/fileIO</compoundname>
+    <innerdir refid="dir_671a7eefc676844072bfd352cd489d5f">E:/thing/cpp/tnt/include/fileIO/cache</innerdir>
+    <innerfile refid="_asset_cache_8hpp">AssetCache.hpp</innerfile>
+    <innerfile refid="_audio_player_8hpp">AudioPlayer.hpp</innerfile>
+    <innerfile refid="_snipper_8hpp">Snipper.hpp</innerfile>
+    <innerfile refid="_texture_atlas_8hpp">TextureAtlas.hpp</innerfile>
+    <innerfile refid="_virtual_f_s_8hpp">VirtualFS.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/fileIO/"/>
+  </compounddef>
+</doxygen>

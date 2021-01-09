@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_contact" kind="class" language="C++" prot="public">
+    <compoundname>tnt::Contact</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_contact_1a4eb1ddf16278fd5d0c28b6f2e4ed5b4f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::Contact::restitution</definition>
+        <argsstring></argsstring>
+        <name>restitution</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="12" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/Contact.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_contact_1a60c1d6ef66b3fae4a600cbdbda61f60a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::Contact::penetration</definition>
+        <argsstring></argsstring>
+        <name>penetration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="13" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/Contact.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_contact_1accb19ac7cc6ff205265143249b55ce07" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::Contact::contactNormal</definition>
+        <argsstring></argsstring>
+        <name>contactNormal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="14" column="12" bodyfile="E:/thing/cpp/tnt/include/physics/Contact.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_contact_1a4ed279ac915c2ffc4b585aa97fad5d9a" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1_particle" kindref="compound">Particle</ref> *</type>
+        <definition>Particle* tnt::Contact::particles[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>particles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="15" column="14" bodyfile="E:/thing/cpp/tnt/include/physics/Contact.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classtnt_1_1_contact_1a274795e9632d5cb7d5d387fc31136fe5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class ContactResolver</definition>
+        <argsstring></argsstring>
+        <name>ContactResolver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="25" column="5" bodyfile="E:/thing/cpp/tnt/include/physics/Contact.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classtnt_1_1_contact_1a41e8ab86e8336fd143c3802eb4ebd1b3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Contact::resolve</definition>
+        <argsstring>(float duration)</argsstring>
+        <name>resolve</name>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="18" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_contact_1a1a37945fc01a9a6576e8880ffab63a64" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float tnt::Contact::calcSeparatingVelocity</definition>
+        <argsstring>() const</argsstring>
+        <name>calcSeparatingVelocity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="19" column="11"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classtnt_1_1_contact_1ad9e898634fa0f77f6f3d191a2486c705" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Contact::resolveVel</definition>
+        <argsstring>(float duration)</argsstring>
+        <name>resolveVel</name>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="22" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_contact_1a835de399181e7c38337e89d73f1a87e0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Contact::resolveInterpenetration</definition>
+        <argsstring>(float duration)</argsstring>
+        <name>resolveInterpenetration</name>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="23" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::Contact</label>
+        <link refid="classtnt_1_1_contact"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>particles</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>contactNormal</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>tnt::Vector</label>
+        <link refid="structtnt_1_1_vector"/>
+      </node>
+      <node id="2">
+        <label>tnt::Particle</label>
+        <link refid="classtnt_1_1_particle"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>acceleration</edgelabel>
+          <edgelabel>forceAccumulator</edgelabel>
+          <edgelabel>velocity</edgelabel>
+          <edgelabel>pos</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/physics/Contact.hpp" line="9" column="1" bodyfile="E:/thing/cpp/tnt/include/physics/Contact.hpp" bodystart="10" bodyend="26"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_contact_1a1a37945fc01a9a6576e8880ffab63a64" prot="protected" virt="non-virtual"><scope>tnt::Contact</scope><name>calcSeparatingVelocity</name></member>
+      <member refid="classtnt_1_1_contact_1accb19ac7cc6ff205265143249b55ce07" prot="public" virt="non-virtual"><scope>tnt::Contact</scope><name>contactNormal</name></member>
+      <member refid="classtnt_1_1_contact_1a274795e9632d5cb7d5d387fc31136fe5" prot="private" virt="non-virtual"><scope>tnt::Contact</scope><name>ContactResolver</name></member>
+      <member refid="classtnt_1_1_contact_1a4ed279ac915c2ffc4b585aa97fad5d9a" prot="public" virt="non-virtual"><scope>tnt::Contact</scope><name>particles</name></member>
+      <member refid="classtnt_1_1_contact_1a60c1d6ef66b3fae4a600cbdbda61f60a" prot="public" virt="non-virtual"><scope>tnt::Contact</scope><name>penetration</name></member>
+      <member refid="classtnt_1_1_contact_1a41e8ab86e8336fd143c3802eb4ebd1b3" prot="protected" virt="non-virtual"><scope>tnt::Contact</scope><name>resolve</name></member>
+      <member refid="classtnt_1_1_contact_1a835de399181e7c38337e89d73f1a87e0" prot="private" virt="non-virtual"><scope>tnt::Contact</scope><name>resolveInterpenetration</name></member>
+      <member refid="classtnt_1_1_contact_1ad9e898634fa0f77f6f3d191a2486c705" prot="private" virt="non-virtual"><scope>tnt::Contact</scope><name>resolveVel</name></member>
+      <member refid="classtnt_1_1_contact_1a4eb1ddf16278fd5d0c28b6f2e4ed5b4f" prot="public" virt="non-virtual"><scope>tnt::Contact</scope><name>restitution</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

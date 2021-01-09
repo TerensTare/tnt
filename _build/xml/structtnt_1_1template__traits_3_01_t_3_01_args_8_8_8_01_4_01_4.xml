@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1template__traits_3_01_t_3_01_args_8_8_8_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::template_traits&lt; T&lt; Args... &gt; &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>template&lt; typename... &gt; typename</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>Args</declname>
+        <defname>Args</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structtnt_1_1template__traits_3_01_t_3_01_args_8_8_8_01_4_01_4_1a086b7ac9283691647ae3eb210ec98a09" prot="public" static="no">
+        <type>tl::at_t&lt; <ref refid="structtnt_1_1type__list" kindref="compound">type_list</ref>&lt; Args... &gt;, Index &gt;</type>
+        <definition>using tnt::template_traits&lt; T&lt; Args... &gt; &gt;::arg_t =  tl::at_t&lt;type_list&lt;Args...&gt;, Index&gt;</definition>
+        <argsstring></argsstring>
+        <name>arg_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="104" column="9" bodyfile="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1template__traits_3_01_t_3_01_args_8_8_8_01_4_01_4_1a7ab2b2cfe9ffcaca377fd9107905e4cb" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>Index</declname>
+            <defname>Index</defname>
+          </param>
+        </templateparamlist>
+        <type>requires</type>
+        <definition>requires tnt::template_traits&lt; T&lt; Args... &gt; &gt;::requires</definition>
+        <argsstring></argsstring>
+        <name>requires</name>
+        <initializer>{ Index &lt; sizeof...(Args)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="103" column="18" bodyfile="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="100" column="5" bodyfile="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" bodystart="101" bodyend="105"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1template__traits_3_01_t_3_01_args_8_8_8_01_4_01_4_1a086b7ac9283691647ae3eb210ec98a09" prot="public" virt="non-virtual"><scope>tnt::template_traits&lt; T&lt; Args... &gt; &gt;</scope><name>arg_t</name></member>
+      <member refid="structtnt_1_1template__traits_3_01_t_3_01_args_8_8_8_01_4_01_4_1a7ab2b2cfe9ffcaca377fd9107905e4cb" prot="public" virt="non-virtual"><scope>tnt::template_traits&lt; T&lt; Args... &gt; &gt;</scope><name>requires</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

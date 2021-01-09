@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_buoyancy_force" kind="class" language="C++" prot="public">
+    <compoundname>tnt::BuoyancyForce</compoundname>
+    <basecompoundref refid="classtnt_1_1_force_generator" prot="public" virt="non-virtual">tnt::ForceGenerator</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_buoyancy_force_1a47121e0b8f95a640674a5d9875801dbb" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::BuoyancyForce::maxdepth</definition>
+        <argsstring></argsstring>
+        <name>maxdepth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="109" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_buoyancy_force_1a8d21744f8a09a692b0b686c42213d26a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::BuoyancyForce::vol</definition>
+        <argsstring></argsstring>
+        <name>vol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="110" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_buoyancy_force_1a6c2558f09ed601711abdb67796534f69" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::BuoyancyForce::waterheight</definition>
+        <argsstring></argsstring>
+        <name>waterheight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="111" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_buoyancy_force_1aab2781a7bb1e76da3438ca6f5d390a17" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::BuoyancyForce::liquiddensity</definition>
+        <argsstring></argsstring>
+        <name>liquiddensity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="112" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_buoyancy_force_1a718f399ae9391a47094cb07b13148a32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::BuoyancyForce::BuoyancyForce</definition>
+        <argsstring>(float maxDepth, float volume, float waterHeight, float liquidDensity=(float) 1000.0)</argsstring>
+        <name>BuoyancyForce</name>
+        <param>
+          <type>float</type>
+          <declname>maxDepth</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>volume</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>waterHeight</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>liquidDensity</declname>
+          <defval>(float) 1000.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="103" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_buoyancy_force_1ae25e491b028e16e1d3fbf548ff1ba6f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void tnt::BuoyancyForce::update</definition>
+        <argsstring>(Particle *particle, float duration) override</argsstring>
+        <name>update</name>
+        <reimplements refid="classtnt_1_1_force_generator_1a42208e6e8fff3f663bf93e6000a813ba">update</reimplements>
+        <param>
+          <type><ref refid="classtnt_1_1_particle" kindref="compound">Particle</ref> *</type>
+          <declname>particle</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="106" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>tnt::ForceGenerator</label>
+        <link refid="classtnt_1_1_force_generator"/>
+      </node>
+      <node id="1">
+        <label>tnt::BuoyancyForce</label>
+        <link refid="classtnt_1_1_buoyancy_force"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>tnt::ForceGenerator</label>
+        <link refid="classtnt_1_1_force_generator"/>
+      </node>
+      <node id="1">
+        <label>tnt::BuoyancyForce</label>
+        <link refid="classtnt_1_1_buoyancy_force"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="100" column="1" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="101" bodyend="113"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_buoyancy_force_1a718f399ae9391a47094cb07b13148a32" prot="public" virt="non-virtual"><scope>tnt::BuoyancyForce</scope><name>BuoyancyForce</name></member>
+      <member refid="classtnt_1_1_buoyancy_force_1aab2781a7bb1e76da3438ca6f5d390a17" prot="private" virt="non-virtual"><scope>tnt::BuoyancyForce</scope><name>liquiddensity</name></member>
+      <member refid="classtnt_1_1_buoyancy_force_1a47121e0b8f95a640674a5d9875801dbb" prot="private" virt="non-virtual"><scope>tnt::BuoyancyForce</scope><name>maxdepth</name></member>
+      <member refid="classtnt_1_1_buoyancy_force_1ae25e491b028e16e1d3fbf548ff1ba6f8" prot="public" virt="virtual"><scope>tnt::BuoyancyForce</scope><name>update</name></member>
+      <member refid="classtnt_1_1_buoyancy_force_1a8d21744f8a09a692b0b686c42213d26a" prot="private" virt="non-virtual"><scope>tnt::BuoyancyForce</scope><name>vol</name></member>
+      <member refid="classtnt_1_1_buoyancy_force_1a6c2558f09ed601711abdb67796534f69" prot="private" virt="non-virtual"><scope>tnt::BuoyancyForce</scope><name>waterheight</name></member>
+      <member refid="classtnt_1_1_force_generator_1ad0f559c3b3be1637f42f4f3c4bd6607d" prot="public" virt="virtual"><scope>tnt::BuoyancyForce</scope><name>~ForceGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

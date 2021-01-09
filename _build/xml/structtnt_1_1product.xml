@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1product" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::product</compoundname>
+    <templateparamlist>
+      <param>
+        <type>int</type>
+        <declname>First</declname>
+        <defname>First</defname>
+      </param>
+      <param>
+        <type>int...</type>
+        <declname>Rest</declname>
+        <defname>Rest</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structtnt_1_1product_1acbbc7ca31a81f395095a016a924678e6" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@11</name>
+        <enumvalue id="structtnt_1_1product_1acbbc7ca31a81f395095a016a924678e6abca7ef14b7da4bd0b0323913bc386c01" prot="public">
+          <name>value</name>
+          <initializer>= First * product&lt;Rest...&gt;::value * 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/MathUtils.hpp" line="113" column="9" bodyfile="E:/thing/cpp/tnt/include/math/MathUtils.hpp" bodystart="114" bodyend="116"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/math/MathUtils.hpp" line="111" column="5" bodyfile="E:/thing/cpp/tnt/include/math/MathUtils.hpp" bodystart="112" bodyend="117"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1product_1acbbc7ca31a81f395095a016a924678e6abca7ef14b7da4bd0b0323913bc386c01" prot="public" virt="non-virtual"><scope>tnt::product</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

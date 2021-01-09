@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1tl_1_1replace_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_t_00_01_u_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::tl::replace&lt; type_list&lt; T, Ts... &gt;, T, U &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>Ts</declname>
+        <defname>Ts</defname>
+      </param>
+      <param>
+        <type>typename U</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structtnt_1_1tl_1_1replace_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_t_00_01_u_01_4_1a002e5fcdd078cd0c630d568325534dd4" prot="public" static="no">
+        <type><ref refid="structtnt_1_1type__list" kindref="compound">type_list</ref>&lt; U, Ts... &gt;</type>
+        <definition>using tnt::tl::replace&lt; type_list&lt; T, Ts... &gt;, T, U &gt;::type =  type_list&lt;U, Ts...&gt;</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="136" column="13" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="134" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="135" bodyend="137"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1tl_1_1replace_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_t_00_01_u_01_4_1a002e5fcdd078cd0c630d568325534dd4" prot="public" virt="non-virtual"><scope>tnt::tl::replace&lt; type_list&lt; T, Ts... &gt;, T, U &gt;</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

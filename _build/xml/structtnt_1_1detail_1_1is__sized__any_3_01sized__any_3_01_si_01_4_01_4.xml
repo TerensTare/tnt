@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1detail_1_1is__sized__any_3_01sized__any_3_01_si_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::detail::is_sized_any&lt; sized_any&lt; Si &gt; &gt;</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">true_type</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>std::size_t</type>
+        <declname>Si</declname>
+        <defname>Si</defname>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>std::true_type</label>
+      </node>
+      <node id="1">
+        <label>tnt::detail::is_sized_any&lt; sized_any&lt; Si &gt; &gt;</label>
+        <link refid="structtnt_1_1detail_1_1is__sized__any_3_01sized__any_3_01_si_01_4_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>std::true_type</label>
+      </node>
+      <node id="1">
+        <label>tnt::detail::is_sized_any&lt; sized_any&lt; Si &gt; &gt;</label>
+        <link refid="structtnt_1_1detail_1_1is__sized__any_3_01sized__any_3_01_si_01_4_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/mirror/Any.hpp" line="270" column="9" bodyfile="E:/thing/cpp/tnt/include/mirror/Any.hpp" bodystart="271" bodyend="272"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1doo_1_1sprite__comp" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::doo::sprite_comp</compoundname>
+    <includes local="no">Sprites.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1sprite__comp_1a698bdb96f240c7ce9e04f923446c0b57" prot="public" static="no" mutable="no">
+        <type>SDL_Texture *</type>
+        <definition>SDL_Texture* tnt::doo::sprite_comp::tex</definition>
+        <argsstring></argsstring>
+        <name>tex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="33" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1sprite__comp_1a16a19a5fc2afd3f01728ebadeaf9c88b" prot="public" static="no" mutable="no">
+        <type>SDL_Rect</type>
+        <definition>SDL_Rect tnt::doo::sprite_comp::crop</definition>
+        <argsstring></argsstring>
+        <name>crop</name>
+        <briefdescription>
+<para>&lt; The texture handle for the object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="34" column="18" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1sprite__comp_1a2016c4cd5d90911a02b9899842cdea89" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int tnt::doo::sprite_comp::w</definition>
+        <argsstring></argsstring>
+        <name>w</name>
+        <briefdescription>
+<para>&lt; The area of the image represented on the sprite. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="37" column="13" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1sprite__comp_1a88c9a1b8c52bfbe9dac2af3bdc6d287c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int tnt::doo::sprite_comp::h</definition>
+        <argsstring></argsstring>
+        <name>h</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="37" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1doo_1_1sprite__comp_1ab2b192cfc9fba8677cab0df1f3084f8d" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::doo::sprite_comp::sprite_comp</definition>
+        <argsstring>(Window const &amp;win, std::string_view filename) noexcept</argsstring>
+        <name>sprite_comp</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Create a new sprite component from an image file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The window where the sprite will be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the image file to load. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="24" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1sprite__comp_1ac59cfe51b7efcad58b8d4f2a82ea73f7" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::doo::sprite_comp::sprite_comp</definition>
+        <argsstring>(Window const &amp;win, std::string_view filename, Rectangle const &amp;rect) noexcept</argsstring>
+        <name>sprite_comp</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref> const &amp;</type>
+          <declname>rect</declname>
+        </param>
+        <briefdescription>
+<para>Create a new sprite component from an image file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The window where the sprite will be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the image file to load. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rect</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The area of the image you want to have on the sprite. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="30" column="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A struct that handles an object&apos;s sprite data. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="19" column="5" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" bodystart="20" bodyend="38"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1doo_1_1sprite__comp_1a16a19a5fc2afd3f01728ebadeaf9c88b" prot="public" virt="non-virtual"><scope>tnt::doo::sprite_comp</scope><name>crop</name></member>
+      <member refid="structtnt_1_1doo_1_1sprite__comp_1a88c9a1b8c52bfbe9dac2af3bdc6d287c" prot="private" virt="non-virtual"><scope>tnt::doo::sprite_comp</scope><name>h</name></member>
+      <member refid="structtnt_1_1doo_1_1sprite__comp_1ab2b192cfc9fba8677cab0df1f3084f8d" prot="public" virt="non-virtual"><scope>tnt::doo::sprite_comp</scope><name>sprite_comp</name></member>
+      <member refid="structtnt_1_1doo_1_1sprite__comp_1ac59cfe51b7efcad58b8d4f2a82ea73f7" prot="public" virt="non-virtual"><scope>tnt::doo::sprite_comp</scope><name>sprite_comp</name></member>
+      <member refid="structtnt_1_1doo_1_1sprite__comp_1a698bdb96f240c7ce9e04f923446c0b57" prot="public" virt="non-virtual"><scope>tnt::doo::sprite_comp</scope><name>tex</name></member>
+      <member refid="structtnt_1_1doo_1_1sprite__comp_1a2016c4cd5d90911a02b9899842cdea89" prot="private" virt="non-virtual"><scope>tnt::doo::sprite_comp</scope><name>w</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

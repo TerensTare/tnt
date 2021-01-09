@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1is__detected" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::is_detected</compoundname>
+    <templateparamlist>
+      <param>
+        <type>template&lt; typename... &gt; typename</type>
+        <declname>Expression</declname>
+        <defname>Expression</defname>
+      </param>
+      <param>
+        <type>typename Attempt</type>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>Ts</declname>
+        <defname>Ts</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structtnt_1_1is__detected_1a0a964c1b8d14d8cebd2127341e8e3afb" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool tnt::is_detected&lt; Expression, Attempt, Ts &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="37" column="38" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="35" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="36" bodyend="38"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1is__detected_1a0a964c1b8d14d8cebd2127341e8e3afb" prot="public" virt="non-virtual"><scope>tnt::is_detected</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

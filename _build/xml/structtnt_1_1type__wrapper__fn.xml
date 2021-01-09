@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1type__wrapper__fn" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::type_wrapper_fn</compoundname>
+    <templateparamlist>
+      <param>
+        <type>template&lt; typename... &gt; typename</type>
+        <declname>P</declname>
+        <defname>P</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1type__wrapper__fn_1a950f85d67756a889692fa0c42946780f" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Ts</declname>
+            <defname>Ts</defname>
+          </param>
+        </templateparamlist>
+        <type>constexpr auto</type>
+        <definition>constexpr auto tnt::type_wrapper_fn&lt; P &gt;::operator()</definition>
+        <argsstring>(type_tag&lt; Ts &gt;...) noexcept</argsstring>
+        <name>operator()</name>
+        <param>
+          <type><ref refid="structtnt_1_1type__list" kindref="compound">type_tag</ref>&lt; Ts &gt;</type>
+          <declname>...</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/TypeListsv2.hpp" line="65" column="24" bodyfile="E:/thing/cpp/tnt/include/exp/TypeListsv2.hpp" bodystart="65" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/exp/TypeListsv2.hpp" line="62" column="5" bodyfile="E:/thing/cpp/tnt/include/exp/TypeListsv2.hpp" bodystart="63" bodyend="69"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1type__wrapper__fn_1a950f85d67756a889692fa0c42946780f" prot="public" virt="non-virtual"><scope>tnt::type_wrapper_fn</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

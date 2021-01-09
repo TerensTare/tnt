@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1task_1_1awaiter" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::task::awaiter</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structtnt_1_1task_1_1awaiter_1a1dcba4a066a410f6658cd379a4e52049" prot="private" static="no" mutable="no">
+        <type>friend</type>
+        <definition>friend tnt::task&lt; T &gt;::awaiter::task&lt; T &gt;</definition>
+        <argsstring></argsstring>
+        <name>task&lt; T &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Task.hpp" line="114" column="9" bodyfile="E:/thing/cpp/tnt/include/async/Task.hpp" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1task_1_1awaiter_1ae7f7823a4b04ad2eee33332994b189b2" prot="private" static="no" mutable="no">
+        <type>std::coroutine_handle&lt; typename <ref refid="classtnt_1_1task" kindref="compound">task</ref>&lt; T &gt;::<ref refid="structtnt_1_1task_1_1promise__type" kindref="compound">promise_type</ref> &gt;</type>
+        <definition>std::coroutine_handle&lt;typename task&lt;T&gt;::promise_type&gt; tnt::task&lt; T &gt;::awaiter::coro</definition>
+        <argsstring></argsstring>
+        <name>coro</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Task.hpp" line="119" column="32" bodyfile="E:/thing/cpp/tnt/include/async/Task.hpp" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1task_1_1awaiter_1a9a4b10625d0d1870bae25824f1a5340d" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::task&lt; T &gt;::awaiter::await_ready</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>await_ready</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Task.hpp" line="102" column="21" bodyfile="E:/thing/cpp/tnt/include/async/Task.hpp" bodystart="102" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1task_1_1awaiter_1ac18bda335cd04bfe5f5876e075785a98" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>std::coroutine_handle</type>
+        <definition>std::coroutine_handle tnt::task&lt; T &gt;::awaiter::await_suspend</definition>
+        <argsstring>(std::coroutine_handle&lt;&gt; ctx) noexcept</argsstring>
+        <name>await_suspend</name>
+        <param>
+          <type>std::coroutine_handle&lt;&gt;</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Task.hpp" line="104" column="17" bodyfile="E:/thing/cpp/tnt/include/async/Task.hpp" bodystart="104" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1task_1_1awaiter_1ae7d9f59f3abfd31d1445e76472c62f8e" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::task&lt; T &gt;::awaiter::await_resume</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>await_resume</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Task.hpp" line="111" column="21" bodyfile="E:/thing/cpp/tnt/include/async/Task.hpp" bodystart="111" bodyend="111"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="structtnt_1_1task_1_1awaiter_1add12a371d4644f4f433a0e6386b21c0b" prot="private" static="no" const="no" explicit="yes" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::task&lt; T &gt;::awaiter::awaiter</definition>
+        <argsstring>(std::coroutine_handle&lt; typename task&lt; T &gt;::promise_type &gt; handle) noexcept</argsstring>
+        <name>awaiter</name>
+        <param>
+          <type>std::coroutine_handle&lt; typename <ref refid="classtnt_1_1task" kindref="compound">task</ref>&lt; T &gt;::<ref refid="structtnt_1_1task_1_1promise__type" kindref="compound">promise_type</ref> &gt;</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Task.hpp" line="116" column="25" bodyfile="E:/thing/cpp/tnt/include/async/Task.hpp" bodystart="116" bodyend="117"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/async/Task.hpp" line="100" column="5" bodyfile="E:/thing/cpp/tnt/include/async/Task.hpp" bodystart="101" bodyend="120"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1task_1_1awaiter_1a9a4b10625d0d1870bae25824f1a5340d" prot="public" virt="non-virtual"><scope>tnt::task::awaiter</scope><name>await_ready</name></member>
+      <member refid="structtnt_1_1task_1_1awaiter_1ae7d9f59f3abfd31d1445e76472c62f8e" prot="public" virt="non-virtual"><scope>tnt::task::awaiter</scope><name>await_resume</name></member>
+      <member refid="structtnt_1_1task_1_1awaiter_1ac18bda335cd04bfe5f5876e075785a98" prot="public" virt="non-virtual"><scope>tnt::task::awaiter</scope><name>await_suspend</name></member>
+      <member refid="structtnt_1_1task_1_1awaiter_1add12a371d4644f4f433a0e6386b21c0b" prot="private" virt="non-virtual"><scope>tnt::task::awaiter</scope><name>awaiter</name></member>
+      <member refid="structtnt_1_1task_1_1awaiter_1ae7f7823a4b04ad2eee33332994b189b2" prot="private" virt="non-virtual"><scope>tnt::task::awaiter</scope><name>coro</name></member>
+      <member refid="structtnt_1_1task_1_1awaiter_1a1dcba4a066a410f6658cd379a4e52049" prot="private" virt="non-virtual"><scope>tnt::task::awaiter</scope><name>task&lt; T &gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

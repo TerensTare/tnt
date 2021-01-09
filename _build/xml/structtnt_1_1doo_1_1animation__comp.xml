@@ -1,0 +1,329 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1doo_1_1animation__comp" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::doo::animation_comp</compoundname>
+    <includes local="no">Animations.hpp</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structtnt_1_1doo_1_1animation__comp_1ab7effed4ca50b25ae8b518e2f68580ec" prot="public" static="no" strong="no">
+        <type>unsigned</type>
+        <name>wrap_mode</name>
+        <enumvalue id="structtnt_1_1doo_1_1animation__comp_1ab7effed4ca50b25ae8b518e2f68580eca619070f6c60fd52b347491a08ff23bfd" prot="public">
+          <name>single_run</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structtnt_1_1doo_1_1animation__comp_1ab7effed4ca50b25ae8b518e2f68580eca0911dff42d43627db62344ecc3b525fb" prot="public">
+          <name>loop</name>
+          <briefdescription>
+<para>&lt; Run the animation only once. </para>
+          </briefdescription>
+          <detaileddescription>
+<para>&lt; Run the animation infinitely. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>The wrap mode of the animation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="23" column="9" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="24" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="enum" id="structtnt_1_1doo_1_1animation__comp_1abc523485e6425901ee4c712b03313aae" prot="public" static="no" strong="no">
+        <type>unsigned</type>
+        <name>direction</name>
+        <enumvalue id="structtnt_1_1doo_1_1animation__comp_1abc523485e6425901ee4c712b03313aaea3b493d797e64f985456badd95dea93e1" prot="public">
+          <name>horizontal</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structtnt_1_1doo_1_1animation__comp_1abc523485e6425901ee4c712b03313aaeadeea9b8c4c0e74352dce6c3d4af40a3e" prot="public">
+          <name>vertical</name>
+          <briefdescription>
+<para>&lt; The frames are arranged horizontally. </para>
+          </briefdescription>
+          <detaileddescription>
+<para>&lt; The frames are arranged vertically. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>The direction the frames are arranged on the animation image. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="30" column="9" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="31" bodyend="34"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1animation__comp_1a2fa5a2bdc4356acc81f39b8b9c6d4c42" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tnt::doo::animation_comp::finished</definition>
+        <argsstring></argsstring>
+        <name>finished</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="50" column="14" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1animation__comp_1aa0319afa2b655f5d594b4ee294e61aad" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1doo_1_1animation__comp_1ab7effed4ca50b25ae8b518e2f68580ec" kindref="member">wrap_mode</ref></type>
+        <definition>wrap_mode tnt::doo::animation_comp::wrap</definition>
+        <argsstring></argsstring>
+        <name>wrap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="51" column="19" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1animation__comp_1a6957cff9b6d296662297a05f37a9ac27" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1doo_1_1animation__comp_1abc523485e6425901ee4c712b03313aae" kindref="member">direction</ref></type>
+        <definition>direction tnt::doo::animation_comp::dir</definition>
+        <argsstring></argsstring>
+        <name>dir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="52" column="19" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1animation__comp_1a8afb4fba376199e5e5a81881dc938d71" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::animation_comp::startX</definition>
+        <argsstring></argsstring>
+        <name>startX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="53" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1animation__comp_1a06b42f2f78255a73e3b4f4200f059943" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::animation_comp::startY</definition>
+        <argsstring></argsstring>
+        <name>startY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="53" column="22" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1animation__comp_1a552beb4fef61fae459712d7d4586260a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::animation_comp::speed</definition>
+        <argsstring></argsstring>
+        <name>speed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="54" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1animation__comp_1a0fb4e61b52a1f3e3795cfd75fb17f104" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::animation_comp::timePerFrame</definition>
+        <argsstring></argsstring>
+        <name>timePerFrame</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="54" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1animation__comp_1a4c7dabc21c67523f47f92a0a7d97ec1b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::animation_comp::elapsed</definition>
+        <argsstring></argsstring>
+        <name>elapsed</name>
+        <initializer>{0.f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="55" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1animation__comp_1a25470581fe5f8d862f5ef20602f7b6dd" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::animation_comp::spacing</definition>
+        <argsstring></argsstring>
+        <name>spacing</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="56" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1animation__comp_1a572a4dd29ffded4b3ac78b663baad4d4" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref></type>
+        <definition>Rectangle tnt::doo::animation_comp::clip</definition>
+        <argsstring></argsstring>
+        <name>clip</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="57" column="19" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1doo_1_1animation__comp_1a0a0a1e0485507feb56f6e94c121a932a" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr tnt::doo::animation_comp::animation_comp</definition>
+        <argsstring>(Rectangle const &amp;rect, int const framesCount, float const animSpeed, float const space, direction const &amp;dir_, wrap_mode const &amp;wrap_) noexcept</argsstring>
+        <name>animation_comp</name>
+        <param>
+          <type><ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref> const &amp;</type>
+          <declname>rect</declname>
+        </param>
+        <param>
+          <type>int const</type>
+          <declname>framesCount</declname>
+        </param>
+        <param>
+          <type>float const</type>
+          <declname>animSpeed</declname>
+        </param>
+        <param>
+          <type>float const</type>
+          <declname>space</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1doo_1_1animation__comp_1abc523485e6425901ee4c712b03313aae" kindref="member">direction</ref> const &amp;</type>
+          <declname>dir_</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1doo_1_1animation__comp_1ab7effed4ca50b25ae8b518e2f68580ec" kindref="member">wrap_mode</ref> const &amp;</type>
+          <declname>wrap_</declname>
+        </param>
+        <briefdescription>
+<para>Create a new animation component. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rect</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of a frame on the image. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>framesCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of frames that the animation has. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>animSpeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The speed the animation should be played with. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>space</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spacing between the frames of the sprites, 0.f if none. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dir_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The direction of the frames on the image. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>wrap_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The wrap mode of the animation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="43" column="19" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="43" bodyend="48"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A struct that holds the data for an animation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>tnt::Rectangle</label>
+        <link refid="structtnt_1_1_rectangle"/>
+      </node>
+      <node id="1">
+        <label>tnt::doo::animation_comp</label>
+        <link refid="structtnt_1_1doo_1_1animation__comp"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>clip</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" line="20" column="5" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Animations.hpp" bodystart="21" bodyend="58"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1a0a0a1e0485507feb56f6e94c121a932a" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>animation_comp</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1a572a4dd29ffded4b3ac78b663baad4d4" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>clip</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1a6957cff9b6d296662297a05f37a9ac27" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>dir</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1abc523485e6425901ee4c712b03313aae" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>direction</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1a4c7dabc21c67523f47f92a0a7d97ec1b" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>elapsed</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1a2fa5a2bdc4356acc81f39b8b9c6d4c42" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>finished</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1abc523485e6425901ee4c712b03313aaea3b493d797e64f985456badd95dea93e1" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>horizontal</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1ab7effed4ca50b25ae8b518e2f68580eca0911dff42d43627db62344ecc3b525fb" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>loop</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1ab7effed4ca50b25ae8b518e2f68580eca619070f6c60fd52b347491a08ff23bfd" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>single_run</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1a25470581fe5f8d862f5ef20602f7b6dd" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>spacing</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1a552beb4fef61fae459712d7d4586260a" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>speed</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1a8afb4fba376199e5e5a81881dc938d71" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>startX</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1a06b42f2f78255a73e3b4f4200f059943" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>startY</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1a0fb4e61b52a1f3e3795cfd75fb17f104" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>timePerFrame</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1abc523485e6425901ee4c712b03313aaeadeea9b8c4c0e74352dce6c3d4af40a3e" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>vertical</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1aa0319afa2b655f5d594b4ee294e61aad" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>wrap</name></member>
+      <member refid="structtnt_1_1doo_1_1animation__comp_1ab7effed4ca50b25ae8b518e2f68580ec" prot="public" virt="non-virtual"><scope>tnt::doo::animation_comp</scope><name>wrap_mode</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

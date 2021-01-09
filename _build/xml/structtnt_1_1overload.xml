@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1overload" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::overload</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Ts</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename...</type>
+        <declname>Ts</declname>
+        <defname>Ts</defname>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>tnt::overload&lt; Ts &gt;</label>
+        <link refid="structtnt_1_1overload"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Ts</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::overload&lt; Ts &gt;</label>
+        <link refid="structtnt_1_1overload"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Ts</label>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="9" column="5" bodyfile="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" bodystart="10" bodyend="12"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

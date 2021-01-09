@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_drag_force" kind="class" language="C++" prot="public">
+    <compoundname>tnt::DragForce</compoundname>
+    <basecompoundref refid="classtnt_1_1_force_generator" prot="public" virt="non-virtual">tnt::ForceGenerator</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_drag_force_1ae5dadd34ddf54f0b1faf88aa2d8489b9" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::DragForce::k1</definition>
+        <argsstring></argsstring>
+        <name>k1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="58" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_drag_force_1a3d60c6536cd65b6a08e181bc45002190" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::DragForce::k2</definition>
+        <argsstring></argsstring>
+        <name>k2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="58" column="14" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_drag_force_1a70a69a94b2a00f156642dfb85624eb54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::DragForce::DragForce</definition>
+        <argsstring>(float c1, float c2)</argsstring>
+        <name>DragForce</name>
+        <param>
+          <type>float</type>
+          <declname>c1</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>c2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="53" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_drag_force_1aed2c78fe76c00f867771a6ae9ca8b970" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void tnt::DragForce::update</definition>
+        <argsstring>(Particle *particle, float duration) override</argsstring>
+        <name>update</name>
+        <reimplements refid="classtnt_1_1_force_generator_1a42208e6e8fff3f663bf93e6000a813ba">update</reimplements>
+        <param>
+          <type><ref refid="classtnt_1_1_particle" kindref="compound">Particle</ref> *</type>
+          <declname>particle</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="55" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>tnt::DragForce</label>
+        <link refid="classtnt_1_1_drag_force"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::ForceGenerator</label>
+        <link refid="classtnt_1_1_force_generator"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::DragForce</label>
+        <link refid="classtnt_1_1_drag_force"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::ForceGenerator</label>
+        <link refid="classtnt_1_1_force_generator"/>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="50" column="1" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="51" bodyend="59"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_drag_force_1a70a69a94b2a00f156642dfb85624eb54" prot="public" virt="non-virtual"><scope>tnt::DragForce</scope><name>DragForce</name></member>
+      <member refid="classtnt_1_1_drag_force_1ae5dadd34ddf54f0b1faf88aa2d8489b9" prot="private" virt="non-virtual"><scope>tnt::DragForce</scope><name>k1</name></member>
+      <member refid="classtnt_1_1_drag_force_1a3d60c6536cd65b6a08e181bc45002190" prot="private" virt="non-virtual"><scope>tnt::DragForce</scope><name>k2</name></member>
+      <member refid="classtnt_1_1_drag_force_1aed2c78fe76c00f867771a6ae9ca8b970" prot="public" virt="virtual"><scope>tnt::DragForce</scope><name>update</name></member>
+      <member refid="classtnt_1_1_force_generator_1ad0f559c3b3be1637f42f4f3c4bd6607d" prot="public" virt="virtual"><scope>tnt::DragForce</scope><name>~ForceGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

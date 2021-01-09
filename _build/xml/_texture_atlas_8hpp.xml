@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="_texture_atlas_8hpp" kind="file" language="C++">
+    <compoundname>TextureAtlas.hpp</compoundname>
+    <includes refid="_config_8hpp" local="yes">core/Config.hpp</includes>
+    <includes refid="_rectangle_8hpp" local="yes">math/Rectangle.hpp</includes>
+    <includes refid="_window_8hpp" local="yes">core/Window.hpp</includes>
+    <includedby refid="_texture_atlases_8inl" local="yes">E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl</includedby>
+    <includedby refid="_tn_t_8hpp" local="yes">E:/thing/cpp/tnt/include/TnT.hpp</includedby>
+    <innerclass refid="classtnt_1_1_texture_atlas" prot="public">tnt::TextureAtlas</innerclass>
+    <innernamespace refid="namespacetnt">tnt</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>TNT_ASSETS_TEXTURE_ATLAS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TNT_ASSETS_TEXTURE_ATLAS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;core/Config.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;math/Rectangle.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;core/Window.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tnt</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10" refid="classtnt_1_1_texture_atlas" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">TNT_API<sp/><ref refid="classtnt_1_1_texture_atlas" kindref="compound">TextureAtlas</ref><sp/>final</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classtnt_1_1_texture_atlas" kindref="compound">TextureAtlas</ref>(<ref refid="classtnt_1_1_window" kindref="compound">Window</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;win,<sp/>std::string_view<sp/>file_,<sp/><ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;area)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Draw(<ref refid="classtnt_1_1_window" kindref="compound">Window</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;win,<sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;pos,<sp/><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;scale<sp/>=<sp/>{1.f,<sp/>1.f},<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>angle<sp/>=<sp/>0.f)<sp/>noexcept;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*filename;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref><sp/>clip;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>tnt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//!TNT_ASSETS_TEXTURE_ATLAS_HPP</highlight></codeline>
+    </programlisting>
+    <location file="E:/thing/cpp/tnt/include/fileIO/TextureAtlas.hpp"/>
+  </compounddef>
+</doxygen>

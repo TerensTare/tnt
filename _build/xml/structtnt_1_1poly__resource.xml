@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1poly__resource" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::poly_resource</compoundname>
+    <innerclass refid="structtnt_1_1poly__resource_1_1s1" prot="public">tnt::poly_resource::s1</innerclass>
+    <innerclass refid="structtnt_1_1poly__resource_1_1s2" prot="public">tnt::poly_resource::s2</innerclass>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>std::size_t</type>
+        <declname>Buffer</declname>
+        <defname>Buffer</defname>
+      </param>
+      <param>
+        <type>typename R</type>
+        <defval>std::pmr::monotonic_buffer_resource</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1poly__resource_1ae1279328ac8dda7c37029234d3400deb" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>S2</declname>
+            <defname>S2</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>tnt::poly_resource&lt; T, Buffer, R &gt;::requires</definition>
+        <argsstring></argsstring>
+        <name>requires</name>
+        <initializer>{ S2 &lt;= Buffer</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/PolyResource.hpp" line="30" column="9" bodyfile="E:/thing/cpp/tnt/include/types/PolyResource.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1poly__resource_1a4a86d2f6eaaee7cbcfe785e06535edf0" prot="public" static="no" mutable="no">
+        <type>std::conditional_t&lt;(sizeof(T)&lt;(sizeof(std::byte) *Buffer)), <ref refid="structtnt_1_1poly__resource_1_1s2" kindref="compound">s2</ref>, <ref refid="structtnt_1_1poly__resource_1_1s1" kindref="compound">s1</ref> &gt;</type>
+        <definition>std::conditional_t&lt;(sizeof(T) &lt; (sizeof(std::byte) * Buffer)), s2, s1&gt; tnt::poly_resource&lt; T, Buffer, R &gt;::resource</definition>
+        <argsstring></argsstring>
+        <name>resource</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/PolyResource.hpp" line="113" column="28" bodyfile="E:/thing/cpp/tnt/include/types/PolyResource.hpp" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1poly__resource_1aa101d4ca9d2ac014f5df29948206446c" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="rvalue" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>requires std::constructible_from&lt; T, Args... &gt;</type>
+        <definition>requires std::constructible_from&lt;T, Args...&gt; tnt::poly_resource&lt; T, Buffer, R &gt;::explicit</definition>
+        <argsstring>(sizeof...(Args) !=1) poly_resource(Args &amp;&amp;... args) noexcept(std::is_nothrow_constructible_v&lt; T, Args... &gt;)</argsstring>
+        <name>explicit</name>
+        <param>
+          <type>sizeof...(Args) !</type>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/PolyResource.hpp" line="18" column="16" bodyfile="E:/thing/cpp/tnt/include/types/PolyResource.hpp" bodystart="18" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1poly__resource_1a97d53315a587634206725918a92e7225" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::poly_resource&lt; T, Buffer, R &gt;::poly_resource</definition>
+        <argsstring>(poly_resource&lt; T, Buffer &gt; const &amp;other) requires std</argsstring>
+        <name>poly_resource</name>
+        <param>
+          <type><ref refid="structtnt_1_1poly__resource" kindref="compound">poly_resource</ref>&lt; T, Buffer &gt; const &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/PolyResource.hpp" line="23" column="16" bodyfile="E:/thing/cpp/tnt/include/types/PolyResource.hpp" bodystart="23" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1poly__resource_1aff3fe67113e34715299cfc3130112cf6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::poly_resource&lt; T, Buffer, R &gt;::poly_resource</definition>
+        <argsstring>(poly_resource&lt; T, Buffer &gt; &amp;&amp;other) requires std</argsstring>
+        <name>poly_resource</name>
+        <param>
+          <type><ref refid="structtnt_1_1poly__resource" kindref="compound">poly_resource</ref>&lt; T, Buffer &gt; &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/PolyResource.hpp" line="26" column="16" bodyfile="E:/thing/cpp/tnt/include/types/PolyResource.hpp" bodystart="26" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1poly__resource_1ab37aaf34d5786275fde9a3af2f7613ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::poly_resource&lt; T, Buffer, R &gt;::poly_resource</definition>
+        <argsstring>(poly_resource&lt; T, S2 &gt; const &amp;other) requires std</argsstring>
+        <name>poly_resource</name>
+        <param>
+          <type><ref refid="structtnt_1_1poly__resource" kindref="compound">poly_resource</ref>&lt; T, S2 &gt; const &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/PolyResource.hpp" line="31" column="16" bodyfile="E:/thing/cpp/tnt/include/types/PolyResource.hpp" bodystart="31" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1poly__resource_1a5cf74443ace363ce1414eddcbdcbfc0a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::poly_resource&lt; T, Buffer, R &gt;::poly_resource</definition>
+        <argsstring>(poly_resource&lt; T, S2 &gt; &amp;&amp;other) requires std</argsstring>
+        <name>poly_resource</name>
+        <param>
+          <type><ref refid="structtnt_1_1poly__resource" kindref="compound">poly_resource</ref>&lt; T, S2 &gt; &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/PolyResource.hpp" line="36" column="16" bodyfile="E:/thing/cpp/tnt/include/types/PolyResource.hpp" bodystart="36" bodyend="37"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/types/PolyResource.hpp" line="13" column="5" bodyfile="E:/thing/cpp/tnt/include/types/PolyResource.hpp" bodystart="14" bodyend="114"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1poly__resource_1aa101d4ca9d2ac014f5df29948206446c" prot="public" virt="non-virtual"><scope>tnt::poly_resource</scope><name>explicit</name></member>
+      <member refid="structtnt_1_1poly__resource_1a97d53315a587634206725918a92e7225" prot="public" virt="non-virtual"><scope>tnt::poly_resource</scope><name>poly_resource</name></member>
+      <member refid="structtnt_1_1poly__resource_1aff3fe67113e34715299cfc3130112cf6" prot="public" virt="non-virtual"><scope>tnt::poly_resource</scope><name>poly_resource</name></member>
+      <member refid="structtnt_1_1poly__resource_1ab37aaf34d5786275fde9a3af2f7613ae" prot="public" virt="non-virtual"><scope>tnt::poly_resource</scope><name>poly_resource</name></member>
+      <member refid="structtnt_1_1poly__resource_1a5cf74443ace363ce1414eddcbdcbfc0a" prot="public" virt="non-virtual"><scope>tnt::poly_resource</scope><name>poly_resource</name></member>
+      <member refid="structtnt_1_1poly__resource_1ae1279328ac8dda7c37029234d3400deb" prot="public" virt="non-virtual"><scope>tnt::poly_resource</scope><name>requires</name></member>
+      <member refid="structtnt_1_1poly__resource_1a4a86d2f6eaaee7cbcfe785e06535edf0" prot="public" virt="non-virtual"><scope>tnt::poly_resource</scope><name>resource</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1render__lock" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>tnt::render_lock</compoundname>
+    <includes local="no">Window.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1render__lock_1a8b3380ef8683604ed79d215f9f237311" prot="private" static="no" mutable="no">
+        <type>SDL_Renderer *</type>
+        <definition>SDL_Renderer* tnt::render_lock::ren</definition>
+        <argsstring></argsstring>
+        <name>ren</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Window.hpp" line="189" column="22" bodyfile="E:/thing/cpp/tnt/include/core/Window.hpp" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1render__lock_1a81b1279cfa3dc5e8342338428a83a3dc" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::render_lock::render_lock</definition>
+        <argsstring>() noexcept=delete</argsstring>
+        <name>render_lock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Window.hpp" line="176" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1render__lock_1a3a53c5848ddaf4412b6e83cfbb960368" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::render_lock::render_lock</definition>
+        <argsstring>(render_lock const &amp;) noexcept=delete</argsstring>
+        <name>render_lock</name>
+        <param>
+          <type><ref refid="classtnt_1_1render__lock" kindref="compound">render_lock</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Window.hpp" line="177" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1render__lock_1a63995426ec44506a82952a93756f58ab" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classtnt_1_1render__lock" kindref="compound">render_lock</ref> &amp;</type>
+        <definition>render_lock&amp; tnt::render_lock::operator=</definition>
+        <argsstring>(render_lock const &amp;) noexcept=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classtnt_1_1render__lock" kindref="compound">render_lock</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Window.hpp" line="178" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1render__lock_1afa018ba56e96be2ff998fbcb41c3d928" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::render_lock::render_lock</definition>
+        <argsstring>(render_lock &amp;&amp;) noexcept=delete</argsstring>
+        <name>render_lock</name>
+        <param>
+          <type><ref refid="classtnt_1_1render__lock" kindref="compound">render_lock</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Window.hpp" line="179" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1render__lock_1a0653df0446e41577fd637d359cfed270" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classtnt_1_1render__lock" kindref="compound">render_lock</ref> &amp;</type>
+        <definition>render_lock&amp; tnt::render_lock::operator=</definition>
+        <argsstring>(render_lock &amp;&amp;) noexcept=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classtnt_1_1render__lock" kindref="compound">render_lock</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Window.hpp" line="180" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1render__lock_1aa79c4f3f99403dec441ec95cae354600" prot="public" static="no" const="no" explicit="yes" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::render_lock::render_lock</definition>
+        <argsstring>(Window const &amp;win) noexcept</argsstring>
+        <name>render_lock</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <briefdescription>
+<para>Create a new <ref refid="classtnt_1_1render__lock" kindref="compound">render_lock</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The window to clear/render. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Window.hpp" line="184" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1render__lock_1ab60989f16e5c8b6e0accec153cc66ce2" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::render_lock::~render_lock</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>~render_lock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/core/Window.hpp" line="186" column="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A RAII class which clears the given window on its ctor, and calls Render on its destructor. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/core/Window.hpp" line="173" column="5" bodyfile="E:/thing/cpp/tnt/include/core/Window.hpp" bodystart="174" bodyend="190"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1render__lock_1a63995426ec44506a82952a93756f58ab" prot="public" virt="non-virtual"><scope>tnt::render_lock</scope><name>operator=</name></member>
+      <member refid="classtnt_1_1render__lock_1a0653df0446e41577fd637d359cfed270" prot="public" virt="non-virtual"><scope>tnt::render_lock</scope><name>operator=</name></member>
+      <member refid="classtnt_1_1render__lock_1a8b3380ef8683604ed79d215f9f237311" prot="private" virt="non-virtual"><scope>tnt::render_lock</scope><name>ren</name></member>
+      <member refid="classtnt_1_1render__lock_1a81b1279cfa3dc5e8342338428a83a3dc" prot="public" virt="non-virtual"><scope>tnt::render_lock</scope><name>render_lock</name></member>
+      <member refid="classtnt_1_1render__lock_1a3a53c5848ddaf4412b6e83cfbb960368" prot="public" virt="non-virtual"><scope>tnt::render_lock</scope><name>render_lock</name></member>
+      <member refid="classtnt_1_1render__lock_1afa018ba56e96be2ff998fbcb41c3d928" prot="public" virt="non-virtual"><scope>tnt::render_lock</scope><name>render_lock</name></member>
+      <member refid="classtnt_1_1render__lock_1aa79c4f3f99403dec441ec95cae354600" prot="public" virt="non-virtual"><scope>tnt::render_lock</scope><name>render_lock</name></member>
+      <member refid="classtnt_1_1render__lock_1ab60989f16e5c8b6e0accec153cc66ce2" prot="public" virt="non-virtual"><scope>tnt::render_lock</scope><name>~render_lock</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

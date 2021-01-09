@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bones &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Camera" href="Cameras.html" />
+    <link rel="prev" title="Base" href="Base.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../async.html">Async</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ecs.html">Entity Component System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Animations.html">Animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Base.html">Base</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Cameras.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Objects.html">Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Physics.html">Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts.html">Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sprites.html">Sprites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Steering.html">Steering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="System.html">System</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../file.html">File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imgui.html">ImGui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math.html">Math</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../ecs.html">Entity Component System</a> &raquo;</li>
+        
+      <li>Bones</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/ecs/Bones.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bones">
+<span id="tnt-ecs-bones-api"></span><h1>Bones<a class="headerlink" href="#bones" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><dl class="cpp type">
+<dt id="_CPPv4N3tnt3dooE">
+<span id="_CPPv3N3tnt3dooE"></span><span id="_CPPv2N3tnt3dooE"></span><span id="tnt::doo"></span><span class="target" id="namespacetnt_1_1doo"></span><em class="property">namespace </em><code class="sig-name descname">doo</code><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo5bonesE">
+<span id="_CPPv3N3tnt3doo5bonesE"></span><span id="_CPPv2N3tnt3doo5bonesE"></span><span id="tnt::doo::bones__tnt::doo::bones_sys"></span><span class="target" id="_bones_8hpp_1a8f5f38d0a3c963186f837ab149128470"></span><em class="property">struct</em> <a class="reference internal" href="../core/window.html#_CPPv43tnt" title="tnt">tnt</a>::<a class="reference internal" href="Animations.html#_CPPv4N3tnt3dooE" title="tnt::doo">doo</a>::<a class="reference internal" href="#_CPPv4N3tnt3doo9bones_sysE" title="tnt::doo::bones_sys">bones_sys</a> <code class="sig-name descname">bones</code><a class="headerlink" href="#_CPPv4N3tnt3doo5bonesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt3doo9bone_compE">
+<span id="_CPPv3N3tnt3doo9bone_compE"></span><span id="_CPPv2N3tnt3doo9bone_compE"></span><span id="tnt::doo::bone_comp"></span><span class="target" id="structtnt_1_1doo_1_1bone__comp"></span><em class="property">struct </em><code class="sig-name descname">bone_comp</code><a class="headerlink" href="#_CPPv4N3tnt3doo9bone_compE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;Bones.hpp&gt;</em><p>A basic struct representing a bone used for skeletal animation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo9bone_comp5jointE">
+<span id="_CPPv3N3tnt3doo9bone_comp5jointE"></span><span id="_CPPv2N3tnt3doo9bone_comp5jointE"></span><span id="tnt::doo::bone_comp::joint__Vector"></span><span class="target" id="structtnt_1_1doo_1_1bone__comp_1ad2e47ecfdb5c061e7a3c26ba316ae191"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">joint</code><a class="headerlink" href="#_CPPv4N3tnt3doo9bone_comp5jointE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo9bone_comp6lengthE">
+<span id="_CPPv3N3tnt3doo9bone_comp6lengthE"></span><span id="_CPPv2N3tnt3doo9bone_comp6lengthE"></span><span id="tnt::doo::bone_comp::length__float"></span><span class="target" id="structtnt_1_1doo_1_1bone__comp_1a6813d4ccc9b1808e278420f35be06aa4"></span>float <code class="sig-name descname">length</code><a class="headerlink" href="#_CPPv4N3tnt3doo9bone_comp6lengthE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; One end of the bone. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt3doo9bones_sysE">
+<span id="_CPPv3N3tnt3doo9bones_sysE"></span><span id="_CPPv2N3tnt3doo9bones_sysE"></span><span id="tnt::doo::bones_sys"></span><span class="target" id="structtnt_1_1doo_1_1bones__sys"></span><em class="property">struct </em><code class="sig-name descname">bones_sys</code><a class="headerlink" href="#_CPPv4N3tnt3doo9bones_sysE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;Bones.hpp&gt;</em><p>A system that handles bones animations. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo9bones_sys10add_objectERK6objectRK9bone_comp">
+<span id="_CPPv3N3tnt3doo9bones_sys10add_objectERK6objectRK9bone_comp"></span><span id="_CPPv2N3tnt3doo9bones_sys10add_objectERK6objectRK9bone_comp"></span><span id="tnt::doo::bones_sys::add_object__objectCR.bone_compCR"></span><span class="target" id="structtnt_1_1doo_1_1bones__sys_1a4066d1c6d06d16eff76355cb2d7d2a81"></span>void <code class="sig-name descname">add_object</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="#_CPPv4N3tnt3doo9bone_compE" title="tnt::doo::bone_comp">bone_comp</a> <em class="property">const</em> &amp;<em>data_</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo9bones_sys10add_objectERK6objectRK9bone_comp" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add a new object to the bones system. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object that will have a bone component. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_</span></code>: The data that the object will contain. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo9bones_sys9from_jsonERK6objectRKN8nlohmann4jsonE">
+<span id="_CPPv3N3tnt3doo9bones_sys9from_jsonERK6objectRKN8nlohmann4jsonE"></span><span id="_CPPv2N3tnt3doo9bones_sys9from_jsonERK6objectRKN8nlohmann4jsonE"></span><span id="tnt::doo::bones_sys::from_json__objectCR.nlohmann::jsonCR"></span><span class="target" id="structtnt_1_1doo_1_1bones__sys_1a7e1b2faed5b1381276ce9375dd1d5dd7"></span>void <code class="sig-name descname">from_json</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, nlohmann::json <em class="property">const</em> &amp;<em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo9bones_sys9from_jsonERK6objectRKN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add new objects to the bones system by using data from a json chunk. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to add to the bones system. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: The json chunk containing the objects data. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo9bones_sys7to_jsonERK6objectRN8nlohmann4jsonE">
+<span id="_CPPv3N3tnt3doo9bones_sys7to_jsonERK6objectRN8nlohmann4jsonE"></span><span id="_CPPv2N3tnt3doo9bones_sys7to_jsonERK6objectRN8nlohmann4jsonE"></span><span id="tnt::doo::bones_sys::to_json__objectCR.nlohmann::jsonR"></span><span class="target" id="structtnt_1_1doo_1_1bones__sys_1aaf3e4fcb0ba4224dfc3e560569750a4a"></span>void <code class="sig-name descname">to_json</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, nlohmann::json &amp;<em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo9bones_sys7to_jsonERK6objectRN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Store bones data of a specific object to a json chunk. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to serialize to json. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: The json chunk where the data will be saved. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo9bones_sys6removeERK6object">
+<span id="_CPPv3N3tnt3doo9bones_sys6removeERK6object"></span><span id="_CPPv2N3tnt3doo9bones_sys6removeERK6object"></span><span id="tnt::doo::bones_sys::remove__objectCR"></span><span class="target" id="structtnt_1_1doo_1_1bones__sys_1a472520efc1190004a7e78621ba30c21a"></span>void <code class="sig-name descname">remove</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo9bones_sys6removeERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove an object from the bones system. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to remove. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo9bones_sys5clearEv">
+<span id="_CPPv3N3tnt3doo9bones_sys5clearEv"></span><span id="_CPPv2N3tnt3doo9bones_sys5clearEv"></span><span id="tnt::doo::bones_sys::clear"></span><span class="target" id="structtnt_1_1doo_1_1bones__sys_1a889fa5c3a9443e5b112e882181162c47"></span>void <code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo9bones_sys5clearEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove all the objects from the bones system. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt3doo9bones_sys6bottomERK6object">
+<span id="_CPPv3NK3tnt3doo9bones_sys6bottomERK6object"></span><span id="_CPPv2NK3tnt3doo9bones_sys6bottomERK6object"></span><span id="tnt::doo::bones_sys::bottom__objectCRC"></span><span class="target" id="structtnt_1_1doo_1_1bones__sys_1a3d05780a7ed791b3657beb4b6d02f1c0"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">bottom</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt3doo9bones_sys6bottomERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the other end of the bone of the given object. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><a class="reference internal" href="../math/Vector.html#structtnt_1_1_vector"><span class="std std-ref">tnt::Vector</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object that has the desired bone. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo9bones_sys6followERK6objectRK6Vector">
+<span id="_CPPv3N3tnt3doo9bones_sys6followERK6objectRK6Vector"></span><span id="_CPPv2N3tnt3doo9bones_sys6followERK6objectRK6Vector"></span><span id="tnt::doo::bones_sys::follow__objectCR.VectorCR"></span><span class="target" id="structtnt_1_1doo_1_1bones__sys_1a12454a556fb1317bf4a739232840c813"></span>void <code class="sig-name descname">follow</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>target</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo9bones_sys6followERK6objectRK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Move the desired joint towards <em>target</em>. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the joint you want to reach the target. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">target</span></code>: The destination you want the joint to reach. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo9bones_sys6lengthE">
+<span id="_CPPv3N3tnt3doo9bones_sys6lengthE"></span><span id="_CPPv2N3tnt3doo9bones_sys6lengthE"></span><span id="tnt::doo::bones_sys::length__std::vector:float:"></span><span class="target" id="structtnt_1_1doo_1_1bones__sys_1a5add2b94b72eb2cc27a95219714102cb"></span>std::vector&lt;float&gt; <code class="sig-name descname">length</code><a class="headerlink" href="#_CPPv4N3tnt3doo9bones_sys6lengthE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo9bones_sys5jointE">
+<span id="_CPPv3N3tnt3doo9bones_sys5jointE"></span><span id="_CPPv2N3tnt3doo9bones_sys5jointE"></span><span id="tnt::doo::bones_sys::joint__std::vector:Vector:"></span><span class="target" id="structtnt_1_1doo_1_1bones__sys_1a353ae8b26d46aa1d0240a0708821b8cc"></span>std::vector&lt;<a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a>&gt; <code class="sig-name descname">joint</code><a class="headerlink" href="#_CPPv4N3tnt3doo9bones_sys5jointE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The length of each bone. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo9bones_sys6activeE">
+<span id="_CPPv3N3tnt3doo9bones_sys6activeE"></span><span id="_CPPv2N3tnt3doo9bones_sys6activeE"></span><span id="tnt::doo::bones_sys::active__sparse_set:object:"></span><span class="target" id="structtnt_1_1doo_1_1bones__sys_1a66a05626526dd5e2ddf448738eacef22"></span>sparse_set&lt;<a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a>&gt; <code class="sig-name descname">active</code><a class="headerlink" href="#_CPPv4N3tnt3doo9bones_sys6activeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The datas of the bone trees. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Cameras.html" class="btn btn-neutral float-right" title="Camera" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Base.html" class="btn btn-neutral float-left" title="Base" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

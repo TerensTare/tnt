@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Scripts &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Sprites" href="Sprites.html" />
+    <link rel="prev" title="Physics" href="Physics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../async.html">Async</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ecs.html">Entity Component System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Animations.html">Animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Base.html">Base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Bones.html">Bones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Cameras.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Objects.html">Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Physics.html">Physics</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sprites.html">Sprites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Steering.html">Steering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="System.html">System</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../file.html">File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imgui.html">ImGui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math.html">Math</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../ecs.html">Entity Component System</a> &raquo;</li>
+        
+      <li>Scripts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/ecs/Scripts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scripts">
+<span id="tnt-ecs-scripts-api"></span><h1>Scripts<a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><dl class="cpp type">
+<dt id="_CPPv4N3tnt3dooE">
+<span id="_CPPv3N3tnt3dooE"></span><span id="_CPPv2N3tnt3dooE"></span><span id="tnt::doo"></span><span class="target" id="namespacetnt_1_1doo"></span><em class="property">namespace </em><code class="sig-name descname">doo</code><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo7scriptsE">
+<span id="_CPPv3N3tnt3doo7scriptsE"></span><span id="_CPPv2N3tnt3doo7scriptsE"></span><span id="tnt::doo::scripts__tnt::doo::scripts_sys"></span><span class="target" id="_scripts_8hpp_1ab7f416273750e05775421c8dd23442e2"></span><em class="property">struct</em> <a class="reference internal" href="../core/window.html#_CPPv43tnt" title="tnt">tnt</a>::<a class="reference internal" href="Animations.html#_CPPv4N3tnt3dooE" title="tnt::doo">doo</a>::<a class="reference internal" href="#_CPPv4N3tnt3doo11scripts_sysE" title="tnt::doo::scripts_sys">scripts_sys</a> <code class="sig-name descname">scripts</code><a class="headerlink" href="#_CPPv4N3tnt3doo7scriptsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt3doo11scripts_sysE">
+<span id="_CPPv3N3tnt3doo11scripts_sysE"></span><span id="_CPPv2N3tnt3doo11scripts_sysE"></span><span id="tnt::doo::scripts_sys"></span><span class="target" id="structtnt_1_1doo_1_1scripts__sys"></span><em class="property">struct </em><code class="sig-name descname">scripts_sys</code><a class="headerlink" href="#_CPPv4N3tnt3doo11scripts_sysE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;Scripts.hpp&gt;</em><p>The system that handles the scripts of the objects. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11scripts_sys10add_objectERK6objectNSt11string_viewERKN3tnt3lua3libE">
+<span id="_CPPv3N3tnt3doo11scripts_sys10add_objectERK6objectNSt11string_viewERKN3tnt3lua3libE"></span><span id="_CPPv2N3tnt3doo11scripts_sys10add_objectERK6objectNSt11string_viewERKN3tnt3lua3libE"></span><span id="tnt::doo::scripts_sys::add_object__objectCR.std::string_view.tnt::lua::libCR"></span><span class="target" id="structtnt_1_1doo_1_1scripts__sys_1a54338ff2fa80c1e9bbb9b5f1bd6c9c93"></span>void <code class="sig-name descname">add_object</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, std::string_view <em>filename</em>, <a class="reference internal" href="../core/window.html#_CPPv43tnt" title="tnt">tnt</a>::<a class="reference internal" href="#_CPPv4N3tnt3luaE" title="tnt::lua">lua</a>::lib <em class="property">const</em> &amp;<em>libs</em> = <a class="reference internal" href="../core/window.html#_CPPv43tnt" title="tnt">tnt</a>::<a class="reference internal" href="#_CPPv4N3tnt3luaE" title="tnt::lua">lua</a>::lib::core<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11scripts_sys10add_objectERK6objectNSt11string_viewERKN3tnt3lua3libE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The name of the *.lua script to attach to the next object. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to add to the scripting system. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code>: The name of the .lua script file. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libs</span></code>: The desired libraries you need for this object. Defaults to tnt::lua::lib::core. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11scripts_sys4InitERK6object">
+<span id="_CPPv3N3tnt3doo11scripts_sys4InitERK6object"></span><span id="_CPPv2N3tnt3doo11scripts_sys4InitERK6object"></span><span id="tnt::doo::scripts_sys::Init__objectCR"></span><span class="target" id="structtnt_1_1doo_1_1scripts__sys_1a84188ed33da37784f69fd4ec518b97dd"></span>void <code class="sig-name descname">Init</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11scripts_sys4InitERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Run <code class="docutils literal notranslate"><span class="pre">init()</span></code> from the object’s lua script. If no function named init() is found, it does nothing. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to init(). </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11scripts_sys6reloadERK6object">
+<span id="_CPPv3N3tnt3doo11scripts_sys6reloadERK6object"></span><span id="_CPPv2N3tnt3doo11scripts_sys6reloadERK6object"></span><span id="tnt::doo::scripts_sys::reload__objectCR"></span><span class="target" id="structtnt_1_1doo_1_1scripts__sys_1a88b176ff3456ce52823272d01cf63a67"></span>void <code class="sig-name descname">reload</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11scripts_sys6reloadERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reload the script data of the desired object. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the desired object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4IDpEN3tnt3doo11scripts_sys4callEDcRK6objectNSt11string_viewEDpRR4Args">
+<span id="_CPPv3IDpEN3tnt3doo11scripts_sys4callERK6objectNSt11string_viewEDpRR4Args"></span><span id="_CPPv2IDpEN3tnt3doo11scripts_sys4callERK6objectNSt11string_viewEDpRR4Args"></span>template&lt;typename ...<code class="sig-name descname">Args</code>&gt;<br /><span class="target" id="structtnt_1_1doo_1_1scripts__sys_1a24094a27be58b5d06331f90a0923ca5d"></span>decltype(auto) <code class="sig-name descname">call</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, std::string_view <em>fn</em>, <a class="reference internal" href="#_CPPv4IDpEN3tnt3doo11scripts_sys4callEDcRK6objectNSt11string_viewEDpRR4Args" title="tnt::doo::scripts_sys::call::Args">Args</a>&amp;&amp;... <em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4IDpEN3tnt3doo11scripts_sys4callEDcRK6objectNSt11string_viewEDpRR4Args" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Call the desired function from the lua state of the given object. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object that has the function. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fn</span></code>: The name of the function. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">args</span></code>: The arguments to pass to the function. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11scripts_sys6UpdateERK6objectf">
+<span id="_CPPv3N3tnt3doo11scripts_sys6UpdateERK6objectf"></span><span id="_CPPv2N3tnt3doo11scripts_sys6UpdateERK6objectf"></span><span id="tnt::doo::scripts_sys::Update__objectCR.float"></span><span class="target" id="structtnt_1_1doo_1_1scripts__sys_1a6b6037724efe9dbc503e92f3452a6ee2"></span>void <code class="sig-name descname">Update</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, float <em>time_</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11scripts_sys6UpdateERK6objectf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Run update() from the script. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to update. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time_</span></code>: The elapsed time since the last update call. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11scripts_sys9from_jsonERK6objectRKN8nlohmann4jsonE">
+<span id="_CPPv3N3tnt3doo11scripts_sys9from_jsonERK6objectRKN8nlohmann4jsonE"></span><span id="_CPPv2N3tnt3doo11scripts_sys9from_jsonERK6objectRKN8nlohmann4jsonE"></span><span id="tnt::doo::scripts_sys::from_json__objectCR.nlohmann::jsonCR"></span><span class="target" id="structtnt_1_1doo_1_1scripts__sys_1ad60c4efbb6008e109b6ebcf99028e4c2"></span>void <code class="sig-name descname">from_json</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, nlohmann::json <em class="property">const</em> &amp;<em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11scripts_sys9from_jsonERK6objectRKN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Load script data from a json chunk. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to load from json. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: The json chunk that holds the data. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11scripts_sys7to_jsonERK6objectRN8nlohmann4jsonE">
+<span id="_CPPv3N3tnt3doo11scripts_sys7to_jsonERK6objectRN8nlohmann4jsonE"></span><span id="_CPPv2N3tnt3doo11scripts_sys7to_jsonERK6objectRN8nlohmann4jsonE"></span><span id="tnt::doo::scripts_sys::to_json__objectCR.nlohmann::jsonR"></span><span class="target" id="structtnt_1_1doo_1_1scripts__sys_1a23915d1ae71d0edc6b8848624623e8df"></span>void <code class="sig-name descname">to_json</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, nlohmann::json &amp;<em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11scripts_sys7to_jsonERK6objectRN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Store scripts data of a specific object to a json chunk. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to serialize to json. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: The json chunk where the data will be saved. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11scripts_sys10draw_imguiERK6objectRK6Window">
+<span id="_CPPv3N3tnt3doo11scripts_sys10draw_imguiERK6objectRK6Window"></span><span id="_CPPv2N3tnt3doo11scripts_sys10draw_imguiERK6objectRK6Window"></span><span id="tnt::doo::scripts_sys::draw_imgui__objectCR.WindowCR"></span><span class="target" id="structtnt_1_1doo_1_1scripts__sys_1ab4e73e578ea9c6ce39095b2ae1b73424"></span>void <code class="sig-name descname">draw_imgui</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="../core/window.html#_CPPv4N3tnt6WindowE" title="tnt::Window">Window</a> <em class="property">const</em> &amp;<em>win</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11scripts_sys10draw_imguiERK6objectRK6Window" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Draw widgets on the given window to modify the datas of the system. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the active object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The window where to draw the widgets. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11scripts_sys6removeERK6object">
+<span id="_CPPv3N3tnt3doo11scripts_sys6removeERK6object"></span><span id="_CPPv2N3tnt3doo11scripts_sys6removeERK6object"></span><span id="tnt::doo::scripts_sys::remove__objectCR"></span><span class="target" id="structtnt_1_1doo_1_1scripts__sys_1ab8619f4c6baaf243189d2f414bc5605f"></span>void <code class="sig-name descname">remove</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11scripts_sys6removeERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove the desired object from the scripts system. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object you want to remove. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11scripts_sys5clearEv">
+<span id="_CPPv3N3tnt3doo11scripts_sys5clearEv"></span><span id="_CPPv2N3tnt3doo11scripts_sys5clearEv"></span><span id="tnt::doo::scripts_sys::clear"></span><span class="target" id="structtnt_1_1doo_1_1scripts__sys_1aa138fa81976190eb4253b1f15219f7b7"></span>void <code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11scripts_sys5clearEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove all the objects from the scripts system. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11scripts_sys6activeE">
+<span id="_CPPv3N3tnt3doo11scripts_sys6activeE"></span><span id="_CPPv2N3tnt3doo11scripts_sys6activeE"></span><span id="tnt::doo::scripts_sys::active__sparse_set:object:"></span><span class="target" id="structtnt_1_1doo_1_1scripts__sys_1a6e8008c32da563be282a6303f1396d4d"></span>sparse_set&lt;<a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a>&gt; <code class="sig-name descname">active</code><a class="headerlink" href="#_CPPv4N3tnt3doo11scripts_sys6activeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11scripts_sys6statesE">
+<span id="_CPPv3N3tnt3doo11scripts_sys6statesE"></span><span id="_CPPv2N3tnt3doo11scripts_sys6statesE"></span><span id="tnt::doo::scripts_sys::states__std::vector:sol::state:"></span><span class="target" id="structtnt_1_1doo_1_1scripts__sys_1addb3623fdf77ff932a21530beceff8a6"></span>std::vector&lt;sol::state&gt; <code class="sig-name descname">states</code><a class="headerlink" href="#_CPPv4N3tnt3doo11scripts_sys6statesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The id-s of all the objects connected to scripts. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N3tnt3luaE">
+<span id="_CPPv3N3tnt3luaE"></span><span id="_CPPv2N3tnt3luaE"></span><span id="tnt::lua"></span><span class="target" id="namespacetnt_1_1lua"></span><em class="property">namespace </em><code class="sig-name descname">lua</code><a class="headerlink" href="#_CPPv4N3tnt3luaE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Sprites.html" class="btn btn-neutral float-right" title="Sprites" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Physics.html" class="btn btn-neutral float-left" title="Physics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

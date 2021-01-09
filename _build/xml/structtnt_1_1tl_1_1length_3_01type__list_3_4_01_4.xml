@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1tl_1_1length_3_01type__list_3_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::tl::length&lt; type_list&lt;&gt; &gt;</compoundname>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structtnt_1_1tl_1_1length_3_01type__list_3_4_01_4_1a9eb456e051cf28436dd1428baf6beeb5" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t tnt::tl::length&lt; type_list&lt;&gt; &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="30" column="44" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="28" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="29" bodyend="31"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1tl_1_1length_3_01type__list_3_4_01_4_1a9eb456e051cf28436dd1428baf6beeb5" prot="public" virt="non-virtual"><scope>tnt::tl::length&lt; type_list&lt;&gt; &gt;</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

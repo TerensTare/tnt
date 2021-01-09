@@ -1,0 +1,265 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1action__list" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>tnt::action_list</compoundname>
+      <sectiondef kind="private-type">
+      <memberdef kind="enum" id="classtnt_1_1action__list_1ac536e3053fa6442fe57f66cc84ac7d6d" prot="private" static="no" strong="no">
+        <type></type>
+        <name>action_type</name>
+        <enumvalue id="classtnt_1_1action__list_1ac536e3053fa6442fe57f66cc84ac7d6da847527ef1e907e36da259b39d4216d19" prot="private">
+          <name>block_timed</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classtnt_1_1action__list_1ac536e3053fa6442fe57f66cc84ac7d6daea56f96ce82f785253edba4f97a9a589" prot="private">
+          <name>block_loop</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="197" column="9" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="198" bodyend="208"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1action__list_1afb050af19b56893ea0424074e6dc23ef" prot="private" static="no" mutable="no">
+        <type>std::byte</type>
+        <definition>std::byte tnt::action_list::timed_memory[10 *sizeof(timed_action_fn)]</definition>
+        <argsstring>[10 *sizeof(timed_action_fn)]</argsstring>
+        <name>timed_memory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="211" column="19" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1action__list_1a56ac78d7f594b9f4c19e980b793c94fb" prot="private" static="no" mutable="no">
+        <type>std::byte</type>
+        <definition>std::byte tnt::action_list::loop_memory[10 *sizeof(loop_action_fn)]</definition>
+        <argsstring>[10 *sizeof(loop_action_fn)]</argsstring>
+        <name>loop_memory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="212" column="19" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1action__list_1aa3946c27a2dfa7592b6963e56c6c6ce3" prot="private" static="no" mutable="no">
+        <type>std::pmr::monotonic_buffer_resource</type>
+        <definition>std::pmr::monotonic_buffer_resource tnt::action_list::timed_buffer</definition>
+        <argsstring></argsstring>
+        <name>timed_buffer</name>
+        <initializer>{timed_memory, sizeof(timed_memory)}</initializer>
+        <briefdescription>
+<para>buffers </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="219" column="45" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="219" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1action__list_1ad7fcac035d01c155ab16fcb72805b794" prot="private" static="no" mutable="no">
+        <type>std::pmr::monotonic_buffer_resource</type>
+        <definition>std::pmr::monotonic_buffer_resource tnt::action_list::loop_buffer</definition>
+        <argsstring></argsstring>
+        <name>loop_buffer</name>
+        <initializer>{loop_memory, sizeof(loop_memory)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="220" column="45" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="220" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1action__list_1af9fb2c67b3fc328ef8647ba233404055" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; action_type &gt;</type>
+        <definition>std::vector&lt;action_type&gt; tnt::action_list::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="227" column="21" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="227" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1action__list_1a56f24f728872190d38831c8f516395e3" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; tnt::action_list::total_timed</definition>
+        <argsstring></argsstring>
+        <name>total_timed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="228" column="21" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="228" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1action__list_1a51395399b26ca50d79a70aab3ad78bab" prot="private" static="no" mutable="no">
+        <type>std::pmr::vector&lt; void(*)(float, float)&gt;</type>
+        <definition>std::pmr::vector&lt;void (*)(float, float)&gt; tnt::action_list::timed</definition>
+        <argsstring></argsstring>
+        <name>timed</name>
+        <initializer>{&amp;timed_buffer}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="234" column="26" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="234" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1action__list_1a77930c2e0e2662571fc2dc9fd6fc7330" prot="private" static="no" mutable="no">
+        <type>std::pmr::vector&lt; void(*)(float)&gt;</type>
+        <definition>std::pmr::vector&lt;void (*)(float)&gt; tnt::action_list::loop</definition>
+        <argsstring></argsstring>
+        <name>loop</name>
+        <initializer>{&amp;loop_buffer}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="235" column="26" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="235" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1action__list_1a4df45d68109c06131d39c087e4c06749" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::action_list::action_list</definition>
+        <argsstring>()=default</argsstring>
+        <name>action_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="116" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1action__list_1a435f6ee141d628f3857b461e26546921" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>loop_action</type>
+            <declname>A</declname>
+            <defname>A</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tnt::action_list::add</definition>
+        <argsstring>(A const &amp;action_)</argsstring>
+        <name>add</name>
+        <param>
+          <type>A const &amp;</type>
+          <declname>action_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="119" column="21" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="119" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1action__list_1a5eb4bb089e9d7314c4112601f98359a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>timed_action</type>
+            <declname>A</declname>
+            <defname>A</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tnt::action_list::add</definition>
+        <argsstring>(A const &amp;action_, float total)</argsstring>
+        <name>add</name>
+        <param>
+          <type>A const &amp;</type>
+          <declname>action_</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>total</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="139" column="21" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="139" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1action__list_1a52ee21997220f3b1a4916d5bf9e49c0a" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::action_list::empty</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="161" column="21" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="161" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1action__list_1ad8ff6d40014ebfff8048f594b3dd2ba4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::action_list::Update</definition>
+        <argsstring>(float elapsed)</argsstring>
+        <name>Update</name>
+        <param>
+          <type>float</type>
+          <declname>elapsed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="163" column="21" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="163" bodyend="194"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" line="113" column="5" bodyfile="E:/thing/cpp/tnt/include/exp/Actionsv2.hpp" bodystart="114" bodyend="240"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1action__list_1a4df45d68109c06131d39c087e4c06749" prot="public" virt="non-virtual"><scope>tnt::action_list</scope><name>action_list</name></member>
+      <member refid="classtnt_1_1action__list_1ac536e3053fa6442fe57f66cc84ac7d6d" prot="private" virt="non-virtual"><scope>tnt::action_list</scope><name>action_type</name></member>
+      <member refid="classtnt_1_1action__list_1a435f6ee141d628f3857b461e26546921" prot="public" virt="non-virtual"><scope>tnt::action_list</scope><name>add</name></member>
+      <member refid="classtnt_1_1action__list_1a5eb4bb089e9d7314c4112601f98359a2" prot="public" virt="non-virtual"><scope>tnt::action_list</scope><name>add</name></member>
+      <member refid="classtnt_1_1action__list_1ac536e3053fa6442fe57f66cc84ac7d6daea56f96ce82f785253edba4f97a9a589" prot="private" virt="non-virtual"><scope>tnt::action_list</scope><name>block_loop</name></member>
+      <member refid="classtnt_1_1action__list_1ac536e3053fa6442fe57f66cc84ac7d6da847527ef1e907e36da259b39d4216d19" prot="private" virt="non-virtual"><scope>tnt::action_list</scope><name>block_timed</name></member>
+      <member refid="classtnt_1_1action__list_1a52ee21997220f3b1a4916d5bf9e49c0a" prot="public" virt="non-virtual"><scope>tnt::action_list</scope><name>empty</name></member>
+      <member refid="classtnt_1_1action__list_1a77930c2e0e2662571fc2dc9fd6fc7330" prot="private" virt="non-virtual"><scope>tnt::action_list</scope><name>loop</name></member>
+      <member refid="classtnt_1_1action__list_1ad7fcac035d01c155ab16fcb72805b794" prot="private" virt="non-virtual"><scope>tnt::action_list</scope><name>loop_buffer</name></member>
+      <member refid="classtnt_1_1action__list_1a56ac78d7f594b9f4c19e980b793c94fb" prot="private" virt="non-virtual"><scope>tnt::action_list</scope><name>loop_memory</name></member>
+      <member refid="classtnt_1_1action__list_1af9fb2c67b3fc328ef8647ba233404055" prot="private" virt="non-virtual"><scope>tnt::action_list</scope><name>next</name></member>
+      <member refid="classtnt_1_1action__list_1a51395399b26ca50d79a70aab3ad78bab" prot="private" virt="non-virtual"><scope>tnt::action_list</scope><name>timed</name></member>
+      <member refid="classtnt_1_1action__list_1aa3946c27a2dfa7592b6963e56c6c6ce3" prot="private" virt="non-virtual"><scope>tnt::action_list</scope><name>timed_buffer</name></member>
+      <member refid="classtnt_1_1action__list_1afb050af19b56893ea0424074e6dc23ef" prot="private" virt="non-virtual"><scope>tnt::action_list</scope><name>timed_memory</name></member>
+      <member refid="classtnt_1_1action__list_1a56f24f728872190d38831c8f516395e3" prot="private" virt="non-virtual"><scope>tnt::action_list</scope><name>total_timed</name></member>
+      <member refid="classtnt_1_1action__list_1ad8ff6d40014ebfff8048f594b3dd2ba4" prot="public" virt="non-virtual"><scope>tnt::action_list</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

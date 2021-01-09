@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1failed__ensure" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::failed_ensure</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">exception</basecompoundref>
+    <includes local="no">Assert.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structtnt_1_1failed__ensure_1a749637b9bc466ae73b6d3fc51c76e6d3" prot="private" static="no" mutable="no">
+        <type>char const  *</type>
+        <definition>char const* tnt::failed_ensure::reason</definition>
+        <argsstring></argsstring>
+        <name>reason</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Assert.hpp" line="25" column="20" bodyfile="E:/thing/cpp/tnt/include/utils/Assert.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1failed__ensure_1ac2f96cd45052d5d957f88c24de1d8296" prot="public" static="no" const="no" explicit="yes" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::failed_ensure::failed_ensure</definition>
+        <argsstring>(char const *why) noexcept</argsstring>
+        <name>failed_ensure</name>
+        <param>
+          <type>char const *</type>
+          <declname>why</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Assert.hpp" line="20" column="25" bodyfile="E:/thing/cpp/tnt/include/utils/Assert.hpp" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1failed__ensure_1aa29ea6ee060251b104794fed51706a28" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>char const  *</type>
+        <definition>char const* tnt::failed_ensure::what</definition>
+        <argsstring>() const noexcept override</argsstring>
+        <name>what</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Assert.hpp" line="22" column="28" bodyfile="E:/thing/cpp/tnt/include/utils/Assert.hpp" bodystart="22" bodyend="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Exception thrown if the condition of ensure_t::operator() is false. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>tnt::failed_ensure</label>
+        <link refid="structtnt_1_1failed__ensure"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::exception</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::failed_ensure</label>
+        <link refid="structtnt_1_1failed__ensure"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::exception</label>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/utils/Assert.hpp" line="18" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Assert.hpp" bodystart="19" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1failed__ensure_1ac2f96cd45052d5d957f88c24de1d8296" prot="public" virt="non-virtual"><scope>tnt::failed_ensure</scope><name>failed_ensure</name></member>
+      <member refid="structtnt_1_1failed__ensure_1a749637b9bc466ae73b6d3fc51c76e6d3" prot="private" virt="non-virtual"><scope>tnt::failed_ensure</scope><name>reason</name></member>
+      <member refid="structtnt_1_1failed__ensure_1aa29ea6ee060251b104794fed51706a28" prot="public" virt="non-virtual"><scope>tnt::failed_ensure</scope><name>what</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

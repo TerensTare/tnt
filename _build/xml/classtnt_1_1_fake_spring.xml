@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_fake_spring" kind="class" language="C++" prot="public">
+    <compoundname>tnt::FakeSpring</compoundname>
+    <basecompoundref refid="classtnt_1_1_force_generator" prot="public" virt="non-virtual">tnt::ForceGenerator</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_fake_spring_1a9ed774e1118d8533505cd429ce77f9d4" prot="private" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> *</type>
+        <definition>Vector* tnt::FakeSpring::anchor</definition>
+        <argsstring></argsstring>
+        <name>anchor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="123" column="12" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_fake_spring_1a38c9b32abb8ce8c927d34973fe5c0c99" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::FakeSpring::springc</definition>
+        <argsstring></argsstring>
+        <name>springc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="124" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_fake_spring_1af7cd256c9f283f2d2b1284058fd9d7c8" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::FakeSpring::damping</definition>
+        <argsstring></argsstring>
+        <name>damping</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="125" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_fake_spring_1a547903fae993f181a127288b641066f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::FakeSpring::FakeSpring</definition>
+        <argsstring>(Vector *anch, float springC, float damp)</argsstring>
+        <name>FakeSpring</name>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> *</type>
+          <declname>anch</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>springC</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>damp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="118" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_fake_spring_1a8494708a95be32042095bc57a5329cd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void tnt::FakeSpring::update</definition>
+        <argsstring>(Particle *particle, float duration) override</argsstring>
+        <name>update</name>
+        <reimplements refid="classtnt_1_1_force_generator_1a42208e6e8fff3f663bf93e6000a813ba">update</reimplements>
+        <param>
+          <type><ref refid="classtnt_1_1_particle" kindref="compound">Particle</ref> *</type>
+          <declname>particle</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="120" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>tnt::FakeSpring</label>
+        <link refid="classtnt_1_1_fake_spring"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::ForceGenerator</label>
+        <link refid="classtnt_1_1_force_generator"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::FakeSpring</label>
+        <link refid="classtnt_1_1_fake_spring"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::ForceGenerator</label>
+        <link refid="classtnt_1_1_force_generator"/>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="115" column="1" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="116" bodyend="126"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_fake_spring_1a9ed774e1118d8533505cd429ce77f9d4" prot="private" virt="non-virtual"><scope>tnt::FakeSpring</scope><name>anchor</name></member>
+      <member refid="classtnt_1_1_fake_spring_1af7cd256c9f283f2d2b1284058fd9d7c8" prot="private" virt="non-virtual"><scope>tnt::FakeSpring</scope><name>damping</name></member>
+      <member refid="classtnt_1_1_fake_spring_1a547903fae993f181a127288b641066f5" prot="public" virt="non-virtual"><scope>tnt::FakeSpring</scope><name>FakeSpring</name></member>
+      <member refid="classtnt_1_1_fake_spring_1a38c9b32abb8ce8c927d34973fe5c0c99" prot="private" virt="non-virtual"><scope>tnt::FakeSpring</scope><name>springc</name></member>
+      <member refid="classtnt_1_1_fake_spring_1a8494708a95be32042095bc57a5329cd6" prot="public" virt="virtual"><scope>tnt::FakeSpring</scope><name>update</name></member>
+      <member refid="classtnt_1_1_force_generator_1ad0f559c3b3be1637f42f4f3c4bd6607d" prot="public" virt="virtual"><scope>tnt::FakeSpring</scope><name>~ForceGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

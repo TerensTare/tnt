@@ -1,0 +1,792 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1sparse__set" kind="class" language="C++" prot="public">
+    <compoundname>tnt::sparse_set</compoundname>
+    <templateparamlist>
+      <param>
+        <type>std::unsigned_integral</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classtnt_1_1sparse__set_1a79aa518fdfcbf19d05e949cf1daccd9f" prot="public" static="no">
+        <type>T</type>
+        <definition>using tnt::sparse_set&lt; T &gt;::value_type =  T</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="44" column="9" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classtnt_1_1sparse__set_1a726ced43dc483145f166724883bf0fd1" prot="public" static="no">
+        <type>value_type &amp;</type>
+        <definition>using tnt::sparse_set&lt; T &gt;::reference =  value_type &amp;</definition>
+        <argsstring></argsstring>
+        <name>reference</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="45" column="9" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classtnt_1_1sparse__set_1a305f0d25982dc9f7bc46924a5809b74c" prot="public" static="no">
+        <type>const value_type &amp;</type>
+        <definition>using tnt::sparse_set&lt; T &gt;::const_reference =  const value_type &amp;</definition>
+        <argsstring></argsstring>
+        <name>const_reference</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="46" column="9" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classtnt_1_1sparse__set_1abc07feac996c6d2941d364f28080ea30" prot="public" static="no">
+        <type><ref refid="classtnt_1_1sparse__iterator" kindref="compound">sparse_iterator</ref>&lt; T &gt;</type>
+        <definition>using tnt::sparse_set&lt; T &gt;::iterator =  sparse_iterator&lt;T&gt;</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="48" column="9" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classtnt_1_1sparse__set_1a4c8daa7df0e39ced8304e4c8372e6d1c" prot="public" static="no">
+        <type><ref refid="classtnt_1_1sparse__iterator" kindref="compound">sparse_iterator</ref>&lt; T &gt;</type>
+        <definition>using tnt::sparse_set&lt; T &gt;::const_iterator =  sparse_iterator&lt;T&gt;</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="49" column="9" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classtnt_1_1sparse__set_1a87b95298722ea11ddb70a46d82fbd993" prot="public" static="no">
+        <type><ref refid="structtnt_1_1sparse__sentinel" kindref="compound">sparse_sentinel</ref></type>
+        <definition>using tnt::sparse_set&lt; T &gt;::sentinel =  sparse_sentinel</definition>
+        <argsstring></argsstring>
+        <name>sentinel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="50" column="9" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classtnt_1_1sparse__set_1a654283cbc4e05f46e787735f48a43739" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr std::size_t</type>
+        <definition>constexpr std::size_t tnt::sparse_set&lt; T &gt;::null</definition>
+        <argsstring></argsstring>
+        <name>null</name>
+        <initializer>{(std::size_t)-1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="41" column="45" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1sparse__set_1ae6e36b66b487b759e4a109dec200fb82" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; T &gt;</type>
+        <definition>std::vector&lt;T&gt; tnt::sparse_set&lt; T &gt;::dense</definition>
+        <argsstring></argsstring>
+        <name>dense</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="224" column="21" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="224" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1sparse__set_1a135294af6351332b10062c533c6a8311" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::size_t &gt;</type>
+        <definition>std::vector&lt;std::size_t&gt; tnt::sparse_set&lt; T &gt;::sparse</definition>
+        <argsstring></argsstring>
+        <name>sparse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="225" column="21" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1sparse__set_1aef989b696550ad4f635a1f75cebd60c9" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t tnt::sparse_set&lt; T &gt;::size_</definition>
+        <argsstring></argsstring>
+        <name>size_</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="226" column="21" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="226" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1abff03ca4bdd26384712e33d8817b3557" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::sparse_set&lt; T &gt;::sparse_set</definition>
+        <argsstring>()=default</argsstring>
+        <name>sparse_set</name>
+        <briefdescription>
+<para>Create a new empty sparse set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="53" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a131cf816a9f70fe3c3907f370da12d5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::sparse_set&lt; T &gt;::sparse_set</definition>
+        <argsstring>(sparse_set&lt; T &gt; const &amp;)=default</argsstring>
+        <name>sparse_set</name>
+        <param>
+          <type><ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref>&lt; T &gt; const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="55" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1af12de9c7c6e6809b2f9799f9932cd1c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref> &amp;</type>
+        <definition>sparse_set&amp; tnt::sparse_set&lt; T &gt;::operator=</definition>
+        <argsstring>(sparse_set&lt; T &gt; const &amp;)=default</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref>&lt; T &gt; const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="56" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1afe34611c2d546feed66619acbaeaf72c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>tnt::sparse_set&lt; T &gt;::sparse_set</definition>
+        <argsstring>(sparse_set&lt; U &gt; const &amp;)=delete</argsstring>
+        <name>sparse_set</name>
+        <param>
+          <type><ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref>&lt; U &gt; const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="59" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1aac9b10bedb47486fa395bd6b0abea857" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref> &amp;</type>
+        <definition>sparse_set&amp; tnt::sparse_set&lt; T &gt;::operator=</definition>
+        <argsstring>(sparse_set&lt; U &gt; const &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref>&lt; U &gt; const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="61" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a0434dd7302751d0787eb988518653f32" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t tnt::sparse_set&lt; T &gt;::size</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>size</name>
+        <briefdescription>
+<para>Return the number of the elements stored on the sparse set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="65" column="29" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a0c959185db787f2627b41a9064a354ba" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::sparse_set&lt; T &gt;::empty</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>empty</name>
+        <briefdescription>
+<para>Check if the sparse set is empty or not. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>bool </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="69" column="22" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="69" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a9750f480fd9c4f378b76e94fd7682ec4" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::sparse_set&lt; T &gt;::clear</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>clear</name>
+        <briefdescription>
+<para>Set the size of the container to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="72" column="21" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="72" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a3c5e554120f3f48020c90d0dda2f3e17" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::sparse_set&lt; T &gt;::contains</definition>
+        <argsstring>(value_type const val) const noexcept</argsstring>
+        <name>contains</name>
+        <param>
+          <type>value_type const</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Check if the set contains a specific element. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="77" column="22" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="77" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a7558493bfc3414d047a721af38019625" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t tnt::sparse_set&lt; T &gt;::index</definition>
+        <argsstring>(value_type const val)</argsstring>
+        <name>index</name>
+        <param>
+          <type>value_type const</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Return the index of the given value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::size_t </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="85" column="29" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="85" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a5ef8b3ec055c75d9d298f28c24827481" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::sparse_set&lt; T &gt;::push_back</definition>
+        <argsstring>(value_type const val)</argsstring>
+        <name>push_back</name>
+        <param>
+          <type>value_type const</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Insert val at the end of the container. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value to insert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="92" column="21" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="92" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1ae6861e80699d3e5fb99c7e2d8f456a23" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::sparse_set&lt; T &gt;::pop_back</definition>
+        <argsstring>()</argsstring>
+        <name>pop_back</name>
+        <briefdescription>
+<para>Remove the last element of the sparse set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="98" column="21" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="98" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1aa7ee18c7e5660a1efbd92c8426371673" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::sparse_set&lt; T &gt;::erase</definition>
+        <argsstring>(value_type const val) noexcept</argsstring>
+        <name>erase</name>
+        <param>
+          <type>value_type const</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Remove the given element from the sparse set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value to be removed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="107" column="21" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="107" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a48b260469f5b3e33c6ead474a1e18a20" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::sparse_set&lt; T &gt;::insert</definition>
+        <argsstring>(std::size_t const index, value_type const val)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>std::size_t const</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>value_type const</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Add a new value at the given index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Where to add the value. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="120" column="21" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="120" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1aaf2235bb8696bca5b6a8191655acefd6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::sparse_set&lt; T &gt;::insert</definition>
+        <argsstring>(sparse_iterator&lt; T &gt; it, value_type const val)</argsstring>
+        <name>insert</name>
+        <param>
+          <type><ref refid="classtnt_1_1sparse__iterator" kindref="compound">sparse_iterator</ref>&lt; T &gt;</type>
+          <declname>it</declname>
+        </param>
+        <param>
+          <type>value_type const</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Add a new value before the given iterator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>it</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Where to add the value. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="139" column="21" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="139" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1aa8975b584d9a0c0f55ba71705104dbb9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_reference</type>
+        <definition>const_reference tnt::sparse_set&lt; T &gt;::at</definition>
+        <argsstring>(std::size_t const index) const</argsstring>
+        <name>at</name>
+        <param>
+          <type>std::size_t const</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Get the element at the given index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired index to access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const_reference </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="156" column="33" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="156" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a00d645be07ce458c2aa3c3409fe4cd04" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>const_reference</type>
+        <definition>const_reference tnt::sparse_set&lt; T &gt;::operator[]</definition>
+        <argsstring>(std::size_t const index) const noexcept</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>std::size_t const</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Get the element at the given index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired index to access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const_reference </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="166" column="33" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="166" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1ae8ee22ece5359ba687a75a1b6c8f1863" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>const_reference</type>
+        <definition>const_reference tnt::sparse_set&lt; T &gt;::front</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>front</name>
+        <briefdescription>
+<para>Return the first element of the sparse set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_reference </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="175" column="33" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="175" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1ae374f4162bac1b28f59e01352de4342a" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>const_reference</type>
+        <definition>const_reference tnt::sparse_set&lt; T &gt;::back</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>back</name>
+        <briefdescription>
+<para>Return the last element of the sparse set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_reference </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="183" column="33" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="183" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1aeeeb969a7d936ff0386f74e18e9adfc7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::sparse_set&lt; T &gt;::operator==</definition>
+        <argsstring>(sparse_set&lt; T &gt; const &amp;other) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type><ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref>&lt; T &gt; const &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="189" column="21" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="189" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a7382f6132c4075acc81905ef93ffcfa2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool tnt::sparse_set&lt; T &gt;::operator==</definition>
+        <argsstring>(sparse_set&lt; U &gt; const &amp;) const =delete</argsstring>
+        <name>operator==</name>
+        <param>
+          <type><ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref>&lt; U &gt; const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="195" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1ad8b9ba3cfb52c1bd51c53f2a06b1de23" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classtnt_1_1sparse__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator tnt::sparse_set&lt; T &gt;::begin</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>begin</name>
+        <briefdescription>
+<para>Return an iterator to the first element of the sparse set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>iterator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="199" column="25" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="199" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a9908d6945fa4d8a21e3acb9922ac6fc3" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classtnt_1_1sparse__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator tnt::sparse_set&lt; T &gt;::cbegin</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>cbegin</name>
+        <briefdescription>
+<para>Return an const_iterator to the first element of the sparse set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_iterator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="203" column="31" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="203" bodyend="203"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a25b5963f0e0d8e88ff1283b94689a003" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1sparse__sentinel" kindref="compound">sentinel</ref></type>
+        <definition>sentinel tnt::sparse_set&lt; T &gt;::end</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>end</name>
+        <briefdescription>
+<para>Return a sentinel that points to the end of the <ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>sentinel </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="207" column="25" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="207" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a08a44ecd70cd2ddce77da9b46a7e811d" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1sparse__sentinel" kindref="compound">sentinel</ref></type>
+        <definition>sentinel tnt::sparse_set&lt; T &gt;::cend</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>cend</name>
+        <briefdescription>
+<para>Return a constant sentinel that points to the end of the <ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>sentinel </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="211" column="25" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="211" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1sparse__set_1a13c0cf9a03a8b3cd2e2ae0257efd37a6" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classtnt_1_1sparse__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator tnt::sparse_set&lt; T &gt;::find</definition>
+        <argsstring>(value_type const val) const noexcept</argsstring>
+        <name>find</name>
+        <param>
+          <type>value_type const</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Return an iterator to the desired element, or <ref refid="classtnt_1_1sparse__set_1a25b5963f0e0d8e88ff1283b94689a003" kindref="member">end()</ref> if it is not found. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value to be wrapped on an iterator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const_iterator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="216" column="32" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="216" bodyend="221"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>tnt::sparse_set&lt; T &gt;</label>
+        <link refid="classtnt_1_1sparse__set"/>
+      </node>
+      <node id="2">
+        <label>tnt::sparse_set&lt; object &gt;</label>
+        <link refid="classtnt_1_1sparse__set"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; object &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>tnt::sparse_set&lt; camera &gt;</label>
+        <link refid="classtnt_1_1sparse__set"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; camera &gt;</edgelabel>
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="39" column="5" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="40" bodyend="227"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1sparse__set_1aa8975b584d9a0c0f55ba71705104dbb9" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>at</name></member>
+      <member refid="classtnt_1_1sparse__set_1ae374f4162bac1b28f59e01352de4342a" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>back</name></member>
+      <member refid="classtnt_1_1sparse__set_1ad8b9ba3cfb52c1bd51c53f2a06b1de23" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>begin</name></member>
+      <member refid="classtnt_1_1sparse__set_1a9908d6945fa4d8a21e3acb9922ac6fc3" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>cbegin</name></member>
+      <member refid="classtnt_1_1sparse__set_1a08a44ecd70cd2ddce77da9b46a7e811d" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>cend</name></member>
+      <member refid="classtnt_1_1sparse__set_1a9750f480fd9c4f378b76e94fd7682ec4" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>clear</name></member>
+      <member refid="classtnt_1_1sparse__set_1a4c8daa7df0e39ced8304e4c8372e6d1c" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>const_iterator</name></member>
+      <member refid="classtnt_1_1sparse__set_1a305f0d25982dc9f7bc46924a5809b74c" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>const_reference</name></member>
+      <member refid="classtnt_1_1sparse__set_1a3c5e554120f3f48020c90d0dda2f3e17" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>contains</name></member>
+      <member refid="classtnt_1_1sparse__set_1ae6e36b66b487b759e4a109dec200fb82" prot="private" virt="non-virtual"><scope>tnt::sparse_set</scope><name>dense</name></member>
+      <member refid="classtnt_1_1sparse__set_1a0c959185db787f2627b41a9064a354ba" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>empty</name></member>
+      <member refid="classtnt_1_1sparse__set_1a25b5963f0e0d8e88ff1283b94689a003" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>end</name></member>
+      <member refid="classtnt_1_1sparse__set_1aa7ee18c7e5660a1efbd92c8426371673" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>erase</name></member>
+      <member refid="classtnt_1_1sparse__set_1a13c0cf9a03a8b3cd2e2ae0257efd37a6" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>find</name></member>
+      <member refid="classtnt_1_1sparse__set_1ae8ee22ece5359ba687a75a1b6c8f1863" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>front</name></member>
+      <member refid="classtnt_1_1sparse__set_1a7558493bfc3414d047a721af38019625" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>index</name></member>
+      <member refid="classtnt_1_1sparse__set_1a48b260469f5b3e33c6ead474a1e18a20" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>insert</name></member>
+      <member refid="classtnt_1_1sparse__set_1aaf2235bb8696bca5b6a8191655acefd6" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>insert</name></member>
+      <member refid="classtnt_1_1sparse__set_1abc07feac996c6d2941d364f28080ea30" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>iterator</name></member>
+      <member refid="classtnt_1_1sparse__set_1a654283cbc4e05f46e787735f48a43739" prot="private" virt="non-virtual"><scope>tnt::sparse_set</scope><name>null</name></member>
+      <member refid="classtnt_1_1sparse__set_1af12de9c7c6e6809b2f9799f9932cd1c0" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>operator=</name></member>
+      <member refid="classtnt_1_1sparse__set_1aac9b10bedb47486fa395bd6b0abea857" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>operator=</name></member>
+      <member refid="classtnt_1_1sparse__set_1aeeeb969a7d936ff0386f74e18e9adfc7" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>operator==</name></member>
+      <member refid="classtnt_1_1sparse__set_1a7382f6132c4075acc81905ef93ffcfa2" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>operator==</name></member>
+      <member refid="classtnt_1_1sparse__set_1a00d645be07ce458c2aa3c3409fe4cd04" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>operator[]</name></member>
+      <member refid="classtnt_1_1sparse__set_1ae6861e80699d3e5fb99c7e2d8f456a23" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>pop_back</name></member>
+      <member refid="classtnt_1_1sparse__set_1a5ef8b3ec055c75d9d298f28c24827481" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>push_back</name></member>
+      <member refid="classtnt_1_1sparse__set_1a726ced43dc483145f166724883bf0fd1" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>reference</name></member>
+      <member refid="classtnt_1_1sparse__set_1a87b95298722ea11ddb70a46d82fbd993" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>sentinel</name></member>
+      <member refid="classtnt_1_1sparse__set_1a0434dd7302751d0787eb988518653f32" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>size</name></member>
+      <member refid="classtnt_1_1sparse__set_1aef989b696550ad4f635a1f75cebd60c9" prot="private" virt="non-virtual"><scope>tnt::sparse_set</scope><name>size_</name></member>
+      <member refid="classtnt_1_1sparse__set_1a135294af6351332b10062c533c6a8311" prot="private" virt="non-virtual"><scope>tnt::sparse_set</scope><name>sparse</name></member>
+      <member refid="classtnt_1_1sparse__set_1abff03ca4bdd26384712e33d8817b3557" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>sparse_set</name></member>
+      <member refid="classtnt_1_1sparse__set_1a131cf816a9f70fe3c3907f370da12d5d" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>sparse_set</name></member>
+      <member refid="classtnt_1_1sparse__set_1afe34611c2d546feed66619acbaeaf72c" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>sparse_set</name></member>
+      <member refid="classtnt_1_1sparse__set_1a79aa518fdfcbf19d05e949cf1daccd9f" prot="public" virt="non-virtual"><scope>tnt::sparse_set</scope><name>value_type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

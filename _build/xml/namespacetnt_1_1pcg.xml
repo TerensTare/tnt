@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1pcg" kind="namespace" language="C++">
+    <compoundname>tnt::pcg</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_noise_8hpp_1ad3e458f9b6b409c43dd438e473d8ad75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDL_Texture *</type>
+        <definition>SDL_Texture* tnt::pcg::staticNoise</definition>
+        <argsstring>(SDL_Renderer *ren, int w, int h)</argsstring>
+        <name>staticNoise</name>
+        <param>
+          <type>SDL_Renderer *</type>
+          <declname>ren</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+<para>Create a texture with some random noise on it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ren</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The renderer where the texture should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The width of the texture. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>h</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The height of the texture. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/pcg/Noise.hpp" line="19" column="17" declfile="E:/thing/cpp/tnt/include/pcg/Noise.hpp" declline="19" declcolumn="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/pcg/Noise.hpp" line="13" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1size__tag__t" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::size_tag_t</compoundname>
+    <templateparamlist>
+      <param>
+        <type>std::size_t</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1size__tag__t_1adb415af5c5fb3035c1804ed269a4c165" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::size_tag_t&lt; size_t &gt;::size_tag_t</definition>
+        <argsstring>()=default</argsstring>
+        <name>size_tag_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Any.hpp" line="37" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/mirror/Any.hpp" line="35" column="5" bodyfile="E:/thing/cpp/tnt/include/mirror/Any.hpp" bodystart="36" bodyend="38"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1size__tag__t_1adb415af5c5fb3035c1804ed269a4c165" prot="public" virt="non-virtual"><scope>tnt::size_tag_t</scope><name>size_tag_t</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

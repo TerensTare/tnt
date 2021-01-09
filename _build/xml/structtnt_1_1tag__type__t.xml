@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1tag__type__t" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::tag_type_t</compoundname>
+    <derivedcompoundref refid="structtnt_1_1android__t" prot="public" virt="non-virtual">tnt::android_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1avx2__t" prot="public" virt="non-virtual">tnt::avx2_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1avx__t" prot="public" virt="non-virtual">tnt::avx_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1clang__t" prot="public" virt="non-virtual">tnt::clang_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1gcc__t" prot="public" virt="non-virtual">tnt::gcc_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1ios__t" prot="public" virt="non-virtual">tnt::ios_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1linux__t" prot="public" virt="non-virtual">tnt::linux_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1macos__t" prot="public" virt="non-virtual">tnt::macos_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1msvc__t" prot="public" virt="non-virtual">tnt::msvc_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1sse2__t" prot="public" virt="non-virtual">tnt::sse2_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1sse3__t" prot="public" virt="non-virtual">tnt::sse3_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1sse4__1__t" prot="public" virt="non-virtual">tnt::sse4_1_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1sse4__2__t" prot="public" virt="non-virtual">tnt::sse4_2_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1sse__t" prot="public" virt="non-virtual">tnt::sse_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1ssse3__t" prot="public" virt="non-virtual">tnt::ssse3_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1unix__t" prot="public" virt="non-virtual">tnt::unix_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1windows__t" prot="public" virt="non-virtual">tnt::windows_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1x86sse2__t" prot="public" virt="non-virtual">tnt::x86sse2_t</derivedcompoundref>
+    <derivedcompoundref refid="structtnt_1_1x86sse__t" prot="public" virt="non-virtual">tnt::x86sse_t</derivedcompoundref>
+    <includes local="no">Traits.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1tag__type__t_1a140ff69d61dcf8f0e6383ac8a8e7b615" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::tag_type_t::tag_type_t</definition>
+        <argsstring>()=delete</argsstring>
+        <name>tag_type_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="52" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1tag__type__t_1a46564b65709bf2464a767c9dea8607a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::tag_type_t::tag_type_t</definition>
+        <argsstring>(tag_type_t const &amp;)=delete</argsstring>
+        <name>tag_type_t</name>
+        <param>
+          <type><ref refid="structtnt_1_1tag__type__t" kindref="compound">tag_type_t</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="54" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1tag__type__t_1a4bf1745744db97089081bd1c6e0f2f83" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structtnt_1_1tag__type__t" kindref="compound">tag_type_t</ref> &amp;</type>
+        <definition>tag_type_t&amp; tnt::tag_type_t::operator=</definition>
+        <argsstring>(tag_type_t const &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="structtnt_1_1tag__type__t" kindref="compound">tag_type_t</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="55" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1tag__type__t_1a0dc58c070932872a1965ff122f22aa1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::tag_type_t::tag_type_t</definition>
+        <argsstring>(tag_type_t &amp;&amp;)=delete</argsstring>
+        <name>tag_type_t</name>
+        <param>
+          <type><ref refid="structtnt_1_1tag__type__t" kindref="compound">tag_type_t</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="57" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1tag__type__t_1a43c5b273e245e957f27471ae521b4373" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structtnt_1_1tag__type__t" kindref="compound">tag_type_t</ref> &amp;</type>
+        <definition>tag_type_t&amp; tnt::tag_type_t::operator=</definition>
+        <argsstring>(tag_type_t &amp;&amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="structtnt_1_1tag__type__t" kindref="compound">tag_type_t</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="58" column="20"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A helper struct for tag-like types. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="18">
+        <label>tnt::windows_t</label>
+        <link refid="structtnt_1_1windows__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>tnt::gcc_t</label>
+        <link refid="structtnt_1_1gcc__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>tnt::sse4_1_t</label>
+        <link refid="structtnt_1_1sse4__1__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>tnt::macos_t</label>
+        <link refid="structtnt_1_1macos__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>tnt::avx2_t</label>
+        <link refid="structtnt_1_1avx2__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::android_t</label>
+        <link refid="structtnt_1_1android__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>tnt::sse3_t</label>
+        <link refid="structtnt_1_1sse3__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>tnt::clang_t</label>
+        <link refid="structtnt_1_1clang__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::tag_type_t</label>
+        <link refid="structtnt_1_1tag__type__t"/>
+      </node>
+      <node id="11">
+        <label>tnt::sse2_t</label>
+        <link refid="structtnt_1_1sse2__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>tnt::linux_t</label>
+        <link refid="structtnt_1_1linux__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>tnt::sse_t</label>
+        <link refid="structtnt_1_1sse__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>tnt::x86sse_t</label>
+        <link refid="structtnt_1_1x86sse__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>tnt::x86sse2_t</label>
+        <link refid="structtnt_1_1x86sse2__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>tnt::ssse3_t</label>
+        <link refid="structtnt_1_1ssse3__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>tnt::ios_t</label>
+        <link refid="structtnt_1_1ios__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>tnt::avx_t</label>
+        <link refid="structtnt_1_1avx__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>tnt::unix_t</label>
+        <link refid="structtnt_1_1unix__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>tnt::msvc_t</label>
+        <link refid="structtnt_1_1msvc__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>tnt::sse4_2_t</label>
+        <link refid="structtnt_1_1sse4__2__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="50" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="51" bodyend="59"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1tag__type__t_1a4bf1745744db97089081bd1c6e0f2f83" prot="public" virt="non-virtual"><scope>tnt::tag_type_t</scope><name>operator=</name></member>
+      <member refid="structtnt_1_1tag__type__t_1a43c5b273e245e957f27471ae521b4373" prot="public" virt="non-virtual"><scope>tnt::tag_type_t</scope><name>operator=</name></member>
+      <member refid="structtnt_1_1tag__type__t_1a140ff69d61dcf8f0e6383ac8a8e7b615" prot="public" virt="non-virtual"><scope>tnt::tag_type_t</scope><name>tag_type_t</name></member>
+      <member refid="structtnt_1_1tag__type__t_1a46564b65709bf2464a767c9dea8607a3" prot="public" virt="non-virtual"><scope>tnt::tag_type_t</scope><name>tag_type_t</name></member>
+      <member refid="structtnt_1_1tag__type__t_1a0dc58c070932872a1965ff122f22aa1d" prot="public" virt="non-virtual"><scope>tnt::tag_type_t</scope><name>tag_type_t</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

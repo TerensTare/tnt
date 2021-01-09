@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1views" kind="namespace" language="C++">
+    <compoundname>tnt::views</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_sort_8hpp_1ac2e8ba00c1cf6523e80ce1dd002ce750" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr <ref refid="structtnt_1_1bubble__sort__fn" kindref="compound">bubble_sort_fn</ref></type>
+        <definition>constexpr bubble_sort_fn tnt::views::bubble_sort</definition>
+        <argsstring></argsstring>
+        <name>bubble_sort</name>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/Sort.hpp" line="77" column="41" bodyfile="E:/thing/cpp/tnt/include/types/Sort.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/types/Sort.hpp" line="75" column="5"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1tmx_1_1_layer" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::tmx::Layer</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1tmx_1_1_layer_1a09199716eacd0fe89f4896906413a615" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; unsigned &gt;</type>
+        <definition>std::vector&lt;unsigned&gt; tnt::tmx::Layer::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_tiled/TileMap.hpp" line="25" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_tiled/TileMap.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/doo_tiled/TileMap.hpp" line="23" column="5" bodyfile="E:/thing/cpp/tnt/include/doo_tiled/TileMap.hpp" bodystart="24" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1tmx_1_1_layer_1a09199716eacd0fe89f4896906413a615" prot="public" virt="non-virtual"><scope>tnt::tmx::Layer</scope><name>data</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

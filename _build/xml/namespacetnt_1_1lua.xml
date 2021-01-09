@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1lua" kind="namespace" language="C++">
+    <compoundname>tnt::lua</compoundname>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="_lua_loader_8hpp_1ae4ab50123269e2db0fc9e62a7899b8df" prot="public" static="no" strong="yes">
+        <type>uint16_t</type>
+        <name>lib</name>
+        <enumvalue id="_lua_loader_8hpp_1ae4ab50123269e2db0fc9e62a7899b8dfa6ba8844da718b4a65f60dbfd0d92d6ef" prot="public">
+          <name>vector</name>
+          <initializer>= 1 &lt;&lt; 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_lua_loader_8hpp_1ae4ab50123269e2db0fc9e62a7899b8dfa2676d7b68ff2c97c5776c6e5da218c01" prot="public">
+          <name>rect</name>
+          <initializer>= 1 &lt;&lt; 1</initializer>
+          <briefdescription>
+<para>&lt; Export <ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref>. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_lua_loader_8hpp_1ae4ab50123269e2db0fc9e62a7899b8dfa05b8c74cbd96fbf2de4c1a352702fbf4" prot="public">
+          <name>window</name>
+          <initializer>= 1 &lt;&lt; 2</initializer>
+          <briefdescription>
+<para>&lt; Export <ref refid="structtnt_1_1_rectangle" kindref="compound">tnt::Rectangle</ref>. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_lua_loader_8hpp_1ae4ab50123269e2db0fc9e62a7899b8dfaa43c1b0aa53a0c908810c06ab1ff3967" prot="public">
+          <name>input</name>
+          <initializer>= 1 &lt;&lt; 3</initializer>
+          <briefdescription>
+<para>&lt; Export <ref refid="classtnt_1_1_window" kindref="compound">tnt::Window</ref>. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_lua_loader_8hpp_1ae4ab50123269e2db0fc9e62a7899b8dfaa5ca0b5894324f8bb54bb9fffad29d1e" prot="public">
+          <name>audio</name>
+          <initializer>= 1 &lt;&lt; 4</initializer>
+          <briefdescription>
+<para>&lt; Export namespace tnt::input. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_lua_loader_8hpp_1ae4ab50123269e2db0fc9e62a7899b8dfab84c5c4098a44514a715fbd45ce39925" prot="public">
+          <name>imgui</name>
+          <initializer>= 1 &lt;&lt; 5</initializer>
+          <briefdescription>
+<para>&lt; Export tnt::AudioManager. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_lua_loader_8hpp_1ae4ab50123269e2db0fc9e62a7899b8dfa2b3583e6e17721c54496bd04e57a0c15" prot="public">
+          <name>utils</name>
+          <initializer>= 1 &lt;&lt; 6</initializer>
+          <briefdescription>
+<para>&lt; Export tnt::ImGui. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_lua_loader_8hpp_1ae4ab50123269e2db0fc9e62a7899b8dfaa74ad8dfacd4f985eb3977517615ce25" prot="public">
+          <name>core</name>
+          <initializer>= window | input | audio</initializer>
+          <briefdescription>
+<para>&lt; Export <ref refid="classtnt_1_1sparse__set" kindref="compound">tnt::sparse_set</ref>. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_lua_loader_8hpp_1ae4ab50123269e2db0fc9e62a7899b8dfa7e676e9e663beb40fd133f5ee24487c2" prot="public">
+          <name>math</name>
+          <initializer>= vector | rect</initializer>
+          <briefdescription>
+<para>&lt; Export <ref refid="classtnt_1_1_window" kindref="compound">tnt::Window</ref>, tnt::input and tnt::AudioManager. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>An enum containing all of the engine&apos;s structures/functions that can be exported. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="todo_1_todo000004"><xreftitle>Todo</xreftitle><xrefdescription><para>Add support for easings and numerical springing. </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/tolua/LuaLoader.hpp" line="14" column="5" bodyfile="E:/thing/cpp/tnt/include/tolua/LuaLoader.hpp" bodystart="15" bodyend="25"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_lua_core_8hpp_1a24d8e1e2d12cc65e2aed3d368a64ab6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::lua::loadWindow</definition>
+        <argsstring>(sol::state_view lua_)</argsstring>
+        <name>loadWindow</name>
+        <param>
+          <type>sol::state_view</type>
+          <declname>lua_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/tolua/LuaCore.hpp" line="9" column="18" declfile="E:/thing/cpp/tnt/include/tolua/LuaCore.hpp" declline="9" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_lua_core_8hpp_1a821a5137ee0c90718783c490f05aec77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::lua::loadInput</definition>
+        <argsstring>(sol::state_view lua_)</argsstring>
+        <name>loadInput</name>
+        <param>
+          <type>sol::state_view</type>
+          <declname>lua_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/tolua/LuaCore.hpp" line="10" column="18" declfile="E:/thing/cpp/tnt/include/tolua/LuaCore.hpp" declline="10" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_lua_core_8hpp_1a3861a792799ea39404fbf39fba810ffe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::lua::loadAudio</definition>
+        <argsstring>(sol::state_view lua_)</argsstring>
+        <name>loadAudio</name>
+        <param>
+          <type>sol::state_view</type>
+          <declname>lua_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/tolua/LuaCore.hpp" line="11" column="17" bodyfile="E:/thing/cpp/tnt/include/tolua/LuaCore.hpp" bodystart="11" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="_lua_doo_ecs_8hpp_1a663e6d79669166d0820396d12ab639da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::lua::loadDooEcs</definition>
+        <argsstring>(sol::state_view lua_)</argsstring>
+        <name>loadDooEcs</name>
+        <param>
+          <type>sol::state_view</type>
+          <declname>lua_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/tolua/LuaDooEcs.hpp" line="8" column="10" declfile="E:/thing/cpp/tnt/include/tolua/LuaDooEcs.hpp" declline="8" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="_lua_im_gui_8hpp_1a95eac7f91478b912434c8e38b831fa3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::lua::loadImGui</definition>
+        <argsstring>(sol::state_view lua_)</argsstring>
+        <name>loadImGui</name>
+        <param>
+          <type>sol::state_view</type>
+          <declname>lua_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/tolua/LuaImGui.hpp" line="9" column="18" declfile="E:/thing/cpp/tnt/include/tolua/LuaImGui.hpp" declline="9" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_lua_loader_8hpp_1a9e1127f3368f65d4bebd8572185fd186" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::lua::load</definition>
+        <argsstring>(sol::state_view lua_, tnt::lua::lib const &amp;libs)</argsstring>
+        <name>load</name>
+        <param>
+          <type>sol::state_view</type>
+          <declname>lua_</declname>
+        </param>
+        <param>
+          <type>tnt::lua::lib const &amp;</type>
+          <declname>libs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/tolua/LuaLoader.hpp" line="27" column="18" declfile="E:/thing/cpp/tnt/include/tolua/LuaLoader.hpp" declline="27" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_lua_math_8hpp_1afa36b02f123473f696e331e54b996da4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::lua::loadVector</definition>
+        <argsstring>(sol::state_view lua_)</argsstring>
+        <name>loadVector</name>
+        <param>
+          <type>sol::state_view</type>
+          <declname>lua_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/tolua/LuaMath.hpp" line="9" column="18" declfile="E:/thing/cpp/tnt/include/tolua/LuaMath.hpp" declline="9" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_lua_math_8hpp_1a21166fbdf689c2bcadb32d710f5ad278" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::lua::loadRect</definition>
+        <argsstring>(sol::state_view lua_)</argsstring>
+        <name>loadRect</name>
+        <param>
+          <type>sol::state_view</type>
+          <declname>lua_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/tolua/LuaMath.hpp" line="10" column="18" declfile="E:/thing/cpp/tnt/include/tolua/LuaMath.hpp" declline="10" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_lua_utils_8hpp_1a33f46d24796ee529a6cb45f789c1f0cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::lua::loadSparseSet</definition>
+        <argsstring>(sol::state_view lua_)</argsstring>
+        <name>loadSparseSet</name>
+        <param>
+          <type>sol::state_view</type>
+          <declname>lua_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/tolua/LuaUtils.hpp" line="9" column="18" declfile="E:/thing/cpp/tnt/include/tolua/LuaUtils.hpp" declline="9" declcolumn="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Scripts.hpp" line="17" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Input &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Window" href="window.html" />
+    <link rel="prev" title="Graphics" href="Graphics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../core.html">Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Graphics.html">Graphics</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="window.html">Window</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../async.html">Async</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ecs.html">Entity Component System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file.html">File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imgui.html">ImGui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math.html">Math</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../core.html">Core</a> &raquo;</li>
+        
+      <li>Input</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/core/Input.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="input">
+<span id="tnt-core-input-api"></span><h1>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><dl class="cpp type">
+<dt id="_CPPv4N3tnt5inputE">
+<span id="_CPPv3N3tnt5inputE"></span><span id="_CPPv2N3tnt5inputE"></span><span id="tnt::input"></span><span class="target" id="namespacetnt_1_1input"></span><em class="property">namespace </em><code class="sig-name descname">input</code><a class="headerlink" href="#_CPPv4N3tnt5inputE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1a63eb8faa504fac518a003e89571ef15f"></span><code class="sig-name descname">TNT_API bool keyDown (SDL_Scancode key) noexcept</code></dt>
+<dd><p>Checks if a keyboard key is being held down. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>true if <code class="docutils literal notranslate"><span class="pre">key</span></code> is held down. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code>: The key to check. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1a0678b31046cd573ef73e0e8dafab49da"></span><code class="sig-name descname">TNT_API bool keyPressed (SDL_Scancode key) noexcept</code></dt>
+<dd><p>Checks if a keyboard key is pressed. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>true if <code class="docutils literal notranslate"><span class="pre">key</span></code> is pressed. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code>: The key to check. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1a32b73e8c3dd97bc747edf411442792ab"></span><code class="sig-name descname">TNT_API bool keyReleased (SDL_Scancode key) noexcept</code></dt>
+<dd><p>Checks if a keyboard key is released. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>true if <code class="docutils literal notranslate"><span class="pre">key</span></code> is released. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code>: The key to check. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1ade71b8d587d009c7e67ad775d3ca9486"></span><code class="sig-name descname">TNT_API SDL_Scancode lastKeyPressed (SDL_Event const &amp;e) noexcept</code></dt>
+<dd><p>Get the last key pressed by checking the event handler. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>SDL_Scancode </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">e</span></code>: The event handler to check. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1a443687b9c48637fc240ead8cf486a865"></span><code class="sig-name descname">TNT_API bool mouseButtonDown (Uint32 button) noexcept</code></dt>
+<dd><p>Checks if a mouse button is being held down. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>true if <code class="docutils literal notranslate"><span class="pre">button</span></code> is being held down. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">button</span></code>: The button to check. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1af375eadb74a55fe6b0d4bd0a6223309b"></span><code class="sig-name descname">TNT_API bool mouseButtonPressed (Uint32 button) noexcept</code></dt>
+<dd><p>Checks if a mouse button is pressed. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>true if <code class="docutils literal notranslate"><span class="pre">button</span></code> is pressed. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">button</span></code>: The button to check. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1a62d2c5c9f7412adbbd79ae8d51dab62c"></span><code class="sig-name descname">TNT_API bool mouseButtonReleased (Uint32 button) noexcept</code></dt>
+<dd><p>Checks if a mouse button is released. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>true if <code class="docutils literal notranslate"><span class="pre">button</span></code> is released. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">button</span></code>: The button to check. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1a495a37ce601af4c92ea142035aa42c9d"></span><code class="sig-name descname">TNT_API void updateCurrent ()</code></dt>
+<dd><p>Updates the current input handles. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1a6f35996a5e89c614453f8b47ef60f19d"></span><code class="sig-name descname">TNT_API void updatePrevious ()</code></dt>
+<dd><p>Updates the last input handles. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1a46749382666beaa26e7d9087923a329b"></span><code class="sig-name descname">TNT_API void updateJoystick ()</code></dt>
+<dd><p>Updates joystick-related datas. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1a9d9cbec592e4101b4dd025c9cd0e073f"></span><code class="sig-name descname">TNT_API void Update ()</code></dt>
+<dd><p>Updates all the input handles. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1abc770eee133f5d8377d9b204bae88b6e"></span><code class="sig-name descname">TNT_API unsigned lastMouseButton () noexcept</code></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The last mouse button pressed. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1a09e43328a34df8381b78bb30ae8bd863"></span><code class="sig-name descname">TNT_API std::pair&lt; int, int &gt; mousePosition () noexcept</code></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The position of the mouse as a <code class="docutils literal notranslate"><span class="pre">std::pair&lt;int,</span> <span class="pre">int&gt;</span></code>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1ae0d58f76f042cad0dada72f11f77675c"></span><code class="sig-name descname">TNT_API void setDefaultDeadZone (Sint16 sense) noexcept</code></dt>
+<dd><p>Set the default sensitivity to all the connected joysticks. </p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The default sensitivity of the joystick when connected is 8000. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sense</span></code>: The desired sensitivity. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1abf8eda0bb905b7fee13dd3e57a9160d5"></span><code class="sig-name descname">TNT_API void setDeadZone (SDL_JoystickID id, Sint16 sense) noexcept</code></dt>
+<dd><p>Set the sensitivity of a joystick. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the joystick. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sense</span></code>: The sensitivity of the joystick (from 0 to 32767). </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="_input_8hpp_1a7cb6b6c8b039eb6d3cbdf9851c839e58"></span><code class="sig-name descname">TNT_API Sint16 getDeadZone (SDL_JoystickID id) noexcept</code></dt>
+<dd><p>Get the sensitivity of the joystick. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Sint16 </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the joystick. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="window.html" class="btn btn-neutral float-right" title="Window" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Graphics.html" class="btn btn-neutral float-left" title="Graphics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

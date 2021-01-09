@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1doo_1_1object__data" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::doo::object_data</compoundname>
+    <includes local="no">Objects.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1object__data_1a092ad4035b06e55aa790e6c4aa77ae13" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::object_data::angle</definition>
+        <argsstring></argsstring>
+        <name>angle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="25" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1object__data_1a01a79a326544852ab0d424e37aa2407a" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::object_data::scale</definition>
+        <argsstring></argsstring>
+        <name>scale</name>
+        <briefdescription>
+<para>&lt; The angle of the object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="26" column="16" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1object__data_1a3d0b0f83b41fb0495ffc9cdac7b4e30c" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::object_data::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+<para>&lt; The scale of the object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="27" column="16" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1object__data_1a791c476991c0c7e62c21b10e34912580" prot="public" static="no" mutable="no">
+        <type>object</type>
+        <definition>object tnt::doo::object_data::parent</definition>
+        <argsstring></argsstring>
+        <name>parent</name>
+        <briefdescription>
+<para>&lt; The position of the object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="28" column="16" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1doo_1_1object__data_1a70d1c5ce72fb1ad5217a0a263645b4a1" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr tnt::doo::object_data::object_data</definition>
+        <argsstring>(float angle_, Vector const &amp;pos_, Vector const &amp;scale_, object const &amp;parent_=null) noexcept</argsstring>
+        <name>object_data</name>
+        <param>
+          <type>float</type>
+          <declname>angle_</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>pos_</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>scale_</declname>
+        </param>
+        <param>
+          <type>object const &amp;</type>
+          <declname>parent_</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Create a new object data handle from the given params. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>angle_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The initial angle of the object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scale_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The initial scale of the object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pos_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The initial position of the object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parent_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parent of the new object. Leave it as is if you don&apos;t want the object to have a parent. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="21" column="19" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" bodystart="21" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A struct that holds the basic data of an object. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>tnt::Vector</label>
+        <link refid="structtnt_1_1_vector"/>
+      </node>
+      <node id="1">
+        <label>tnt::doo::object_data</label>
+        <link refid="structtnt_1_1doo_1_1object__data"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>scale</edgelabel>
+          <edgelabel>pos</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" line="14" column="5" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Objects.hpp" bodystart="15" bodyend="29"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1doo_1_1object__data_1a092ad4035b06e55aa790e6c4aa77ae13" prot="public" virt="non-virtual"><scope>tnt::doo::object_data</scope><name>angle</name></member>
+      <member refid="structtnt_1_1doo_1_1object__data_1a70d1c5ce72fb1ad5217a0a263645b4a1" prot="public" virt="non-virtual"><scope>tnt::doo::object_data</scope><name>object_data</name></member>
+      <member refid="structtnt_1_1doo_1_1object__data_1a791c476991c0c7e62c21b10e34912580" prot="public" virt="non-virtual"><scope>tnt::doo::object_data</scope><name>parent</name></member>
+      <member refid="structtnt_1_1doo_1_1object__data_1a3d0b0f83b41fb0495ffc9cdac7b4e30c" prot="public" virt="non-virtual"><scope>tnt::doo::object_data</scope><name>pos</name></member>
+      <member refid="structtnt_1_1doo_1_1object__data_1a01a79a326544852ab0d424e37aa2407a" prot="public" virt="non-virtual"><scope>tnt::doo::object_data</scope><name>scale</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

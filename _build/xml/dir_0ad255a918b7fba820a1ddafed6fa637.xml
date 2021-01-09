@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_0ad255a918b7fba820a1ddafed6fa637" kind="dir">
+    <compoundname>E:/thing/cpp/tnt/include/types</compoundname>
+    <innerfile refid="_containers_8hpp">Containers.hpp</innerfile>
+    <innerfile refid="_expected_8hpp">Expected.hpp</innerfile>
+    <innerfile refid="_poly_resource_8hpp">PolyResource.hpp</innerfile>
+    <innerfile refid="_scope_utils_8hpp">ScopeUtils.hpp</innerfile>
+    <innerfile refid="_sort_8hpp">Sort.hpp</innerfile>
+    <innerfile refid="_sparse_set_8hpp">SparseSet.hpp</innerfile>
+    <innerfile refid="_static_pimpl_8hpp">StaticPimpl.hpp</innerfile>
+    <innerfile refid="_type_utils_8hpp">TypeUtils.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/types/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1_world_1_1_registration" kind="struct" language="C++" prot="protected">
+    <compoundname>tnt::World::Registration</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1_world_1_1_registration_1a9ea81fb3ed87b978f03b19281a85519c" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1_particle" kindref="compound">Particle</ref> *</type>
+        <definition>Particle* tnt::World::Registration::particle</definition>
+        <argsstring></argsstring>
+        <name>particle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/World.hpp" line="25" column="18" bodyfile="E:/thing/cpp/tnt/include/physics/World.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1_world_1_1_registration_1a8be8eefb9f2c8e0de9aa26d123563d6f" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_world_1_1_registration" kindref="compound">Registration</ref> *</type>
+        <definition>Registration* tnt::World::Registration::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/World.hpp" line="26" column="22" bodyfile="E:/thing/cpp/tnt/include/physics/World.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>tnt::Vector</label>
+        <link refid="structtnt_1_1_vector"/>
+      </node>
+      <node id="2">
+        <label>tnt::Particle</label>
+        <link refid="classtnt_1_1_particle"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>acceleration</edgelabel>
+          <edgelabel>forceAccumulator</edgelabel>
+          <edgelabel>velocity</edgelabel>
+          <edgelabel>pos</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::World::Registration</label>
+        <link refid="structtnt_1_1_world_1_1_registration"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>particle</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/physics/World.hpp" line="23" column="5" bodyfile="E:/thing/cpp/tnt/include/physics/World.hpp" bodystart="24" bodyend="27"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1_world_1_1_registration_1a8be8eefb9f2c8e0de9aa26d123563d6f" prot="public" virt="non-virtual"><scope>tnt::World::Registration</scope><name>next</name></member>
+      <member refid="structtnt_1_1_world_1_1_registration_1a9ea81fb3ed87b978f03b19281a85519c" prot="public" virt="non-virtual"><scope>tnt::World::Registration</scope><name>particle</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

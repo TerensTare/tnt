@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1start__batch__tag" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::start_batch_tag</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1start__batch__tag_1a1a05d933a9fac2ebe728289b84636be5" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::start_batch_tag::start_batch_tag</definition>
+        <argsstring>()=default</argsstring>
+        <name>start_batch_tag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="21" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="19" column="22" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="20" bodyend="22"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1start__batch__tag_1a1a05d933a9fac2ebe728289b84636be5" prot="public" virt="non-virtual"><scope>tnt::start_batch_tag</scope><name>start_batch_tag</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

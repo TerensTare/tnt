@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4" kind="class" language="C++" prot="public">
+    <compoundname>tnt::asset_cache&lt; TextureAtlas, I &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>unsigned</type>
+        <declname>I</declname>
+        <defname>I</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4_1a3acc74db787b5b2516f795ed84c370b0" prot="private" static="no" mutable="no">
+        <type>std::byte</type>
+        <definition>std::byte tnt::asset_cache&lt; TextureAtlas, I &gt;::memory[I *sizeof(TextureAtlas)]</definition>
+        <argsstring>[I *sizeof(TextureAtlas)]</argsstring>
+        <name>memory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" line="36" column="19" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4_1ae06c2487a65f519517fcedbe4a56f822" prot="private" static="no" mutable="no">
+        <type>std::pmr::monotonic_buffer_resource</type>
+        <definition>std::pmr::monotonic_buffer_resource tnt::asset_cache&lt; TextureAtlas, I &gt;::res</definition>
+        <argsstring></argsstring>
+        <name>res</name>
+        <initializer>{memory, sizeof(memory)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" line="37" column="45" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4_1ac11d3328ebb8b7714e005d64299d313f" prot="private" static="no" mutable="no">
+        <type>std::pmr::unordered_map&lt; std::string, <ref refid="classtnt_1_1_texture_atlas" kindref="compound">TextureAtlas</ref> &gt;</type>
+        <definition>std::pmr::unordered_map&lt;std::string, TextureAtlas&gt; tnt::asset_cache&lt; TextureAtlas, I &gt;::cache</definition>
+        <argsstring></argsstring>
+        <name>cache</name>
+        <initializer>{&amp;res}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" line="38" column="33" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4_1a753edc3f98961be04da950408ddcddc9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classtnt_1_1_texture_atlas" kindref="compound">TextureAtlas</ref> *</type>
+        <definition>TextureAtlas* tnt::asset_cache&lt; TextureAtlas, I &gt;::get</definition>
+        <argsstring>(tnt::Window const &amp;win, std::string_view path, Rectangle const &amp;rect)</argsstring>
+        <name>get</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">tnt::Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref> const &amp;</type>
+          <declname>rect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" line="16" column="30" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" bodystart="16" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4_1afc6481f5849db56d3e752ce2a6a86723" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::asset_cache&lt; TextureAtlas, I &gt;::load</definition>
+        <argsstring>(tnt::Window const &amp;win, std::string_view path, Rectangle const &amp;rect)</argsstring>
+        <name>load</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">tnt::Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref> const &amp;</type>
+          <declname>rect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" line="22" column="21" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" bodystart="22" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4_1a45d7f8732922e52c646c3938263d77a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::asset_cache&lt; TextureAtlas, I &gt;::remove</definition>
+        <argsstring>(std::string_view path)</argsstring>
+        <name>remove</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" line="28" column="21" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" bodystart="28" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" line="13" column="5" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl" bodystart="14" bodyend="39"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4_1ac11d3328ebb8b7714e005d64299d313f" prot="private" virt="non-virtual"><scope>tnt::asset_cache&lt; TextureAtlas, I &gt;</scope><name>cache</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4_1a753edc3f98961be04da950408ddcddc9" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; TextureAtlas, I &gt;</scope><name>get</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4_1afc6481f5849db56d3e752ce2a6a86723" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; TextureAtlas, I &gt;</scope><name>load</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4_1a3acc74db787b5b2516f795ed84c370b0" prot="private" virt="non-virtual"><scope>tnt::asset_cache&lt; TextureAtlas, I &gt;</scope><name>memory</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4_1a45d7f8732922e52c646c3938263d77a7" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; TextureAtlas, I &gt;</scope><name>remove</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_texture_atlas_00_01_i_01_4_1ae06c2487a65f519517fcedbe4a56f822" prot="private" virt="non-virtual"><scope>tnt::asset_cache&lt; TextureAtlas, I &gt;</scope><name>res</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

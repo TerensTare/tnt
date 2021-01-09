@@ -1,0 +1,351 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1pimpl" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>tnt::pimpl</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>std::size_t</type>
+        <declname>Size</declname>
+        <defname>Size</defname>
+      </param>
+      <param>
+        <type>std::size_t</type>
+        <declname>Align</declname>
+        <defname>Align</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1pimpl_1a3cb471248db05c4b6d274d0a0c2545c1" prot="private" static="no" mutable="no">
+        <type>T *</type>
+        <definition>T* tnt::pimpl&lt; T, Size, Align &gt;::ptr</definition>
+        <argsstring></argsstring>
+        <name>ptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="80" column="11" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1pimpl_1a2ab0e93fbf6177a8413b5ceaf8e15d0c" prot="private" static="no" mutable="no">
+        <type>std::aligned_storage_t&lt; Size, Align &gt;</type>
+        <definition>std::aligned_storage_t&lt;Size, Align&gt; tnt::pimpl&lt; T, Size, Align &gt;::storage</definition>
+        <argsstring></argsstring>
+        <name>storage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="81" column="32" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1pimpl_1a5413c9cfc1f470346e60451c262c5e33" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>tnt::pimpl&lt; T, Size, Align &gt;::pimpl</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>pimpl</name>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="20" column="25" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="20" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1a17e3e16c808629ec11bd1a83fd2518e3" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::pimpl&lt; T, Size, Align &gt;::pimpl</definition>
+        <argsstring>(pimpl &amp;&amp;other) noexcept</argsstring>
+        <name>pimpl</name>
+        <param>
+          <type><ref refid="classtnt_1_1pimpl" kindref="compound">pimpl</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="26" column="16" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="26" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1a1aec43d81e2816260947998fc3598597" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classtnt_1_1pimpl" kindref="compound">pimpl</ref> &amp;</type>
+        <definition>pimpl&amp; tnt::pimpl&lt; T, Size, Align &gt;::operator=</definition>
+        <argsstring>(pimpl&lt; T, Size, Align &gt; &amp;&amp;other) noexcept</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classtnt_1_1pimpl" kindref="compound">pimpl</ref>&lt; T, Size, Align &gt; &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="32" column="22" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="32" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1a816dcd9cd5eea48fc2841986d824ea64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::pimpl&lt; T, Size, Align &gt;::pimpl</definition>
+        <argsstring>(pimpl const &amp;)=delete</argsstring>
+        <name>pimpl</name>
+        <param>
+          <type><ref refid="classtnt_1_1pimpl" kindref="compound">pimpl</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="39" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1aeec24bddb06b35b8698dd49289b85601" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classtnt_1_1pimpl" kindref="compound">pimpl</ref> &amp;</type>
+        <definition>pimpl&amp; tnt::pimpl&lt; T, Size, Align &gt;::operator=</definition>
+        <argsstring>(pimpl const &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classtnt_1_1pimpl" kindref="compound">pimpl</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="40" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1a9e5841b3fbd4e16b4ba80eb8c853a3b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::pimpl&lt; T, Size, Align &gt;::~pimpl</definition>
+        <argsstring>()</argsstring>
+        <name>~pimpl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="42" column="16" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="42" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1af46d8b132a5c2ccad0bf5aa6c9295ade" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>T&amp; tnt::pimpl&lt; T, Size, Align &gt;::operator*</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>operator*</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="48" column="18" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1a000fbc3482c673c8271ff8df0d4a72da" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>const T &amp;</type>
+        <definition>const T&amp; tnt::pimpl&lt; T, Size, Align &gt;::operator*</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>operator*</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="49" column="24" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1ab3a5642bd0545930b2f021dc7ccd6608" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>T *</type>
+        <definition>T* tnt::pimpl&lt; T, Size, Align &gt;::operator&amp;</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>operator&amp;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="51" column="18" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1adb583dbb2b1250c60ec9cf6ae660702c" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>const T *</type>
+        <definition>const T* tnt::pimpl&lt; T, Size, Align &gt;::operator&amp;</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>operator&amp;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="52" column="24" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1a5cd0daf0d750bb1b4b4e8a77e149130b" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>T *</type>
+        <definition>T* tnt::pimpl&lt; T, Size, Align &gt;::operator-&gt;</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>operator-&gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="54" column="18" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1aded9befd461f87fbf98bf32cc75577fe" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>const T *</type>
+        <definition>const T* tnt::pimpl&lt; T, Size, Align &gt;::operator-&gt;</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>operator-&gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="55" column="24" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1aae302680f4d360b195a86d051f84fcb3" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::pimpl&lt; T, Size, Align &gt;::operator==</definition>
+        <argsstring>(std::nullptr_t) const noexcept</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>std::nullptr_t</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="57" column="21" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="57" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1ac182a2634c4962f6e06720f6d08489c0" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::pimpl&lt; T, Size, Align &gt;::empty</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="59" column="22" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1pimpl_1a719137dec862b9798a68e835b61564c5" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::pimpl&lt; T, Size, Align &gt;::reset</definition>
+        <argsstring>() noexcept(std::is_nothrow_destructible_v&lt; T &gt;)</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="61" column="21" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="61" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classtnt_1_1pimpl_1a559e5c4b3a5ea3a1dd4ce33e7a31628d" prot="private" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>S1</declname>
+            <defname>S1</defname>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>A1</declname>
+            <defname>A1</defname>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>S2</declname>
+            <defname>S2</defname>
+            <defval>sizeof(T)</defval>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>A2</declname>
+            <defname>A2</defname>
+            <defval>alignof(T)</defval>
+          </param>
+        </templateparamlist>
+        <type>constexpr void</type>
+        <definition>static constexpr void tnt::pimpl&lt; T, Size, Align &gt;::check</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>check</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="74" column="31" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="74" bodyend="78"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>tnt::pimpl&lt; unit, sizeof(unit), alignof(unit)&gt;</label>
+        <link refid="classtnt_1_1pimpl"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; unit, sizeof(unit), alignof(unit)&gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::pimpl&lt; T, Size, Align &gt;</label>
+        <link refid="classtnt_1_1pimpl"/>
+      </node>
+    </inheritancegraph>
+    <location file="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" line="16" column="5" bodyfile="E:/thing/cpp/tnt/include/types/StaticPimpl.hpp" bodystart="17" bodyend="82"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1pimpl_1a559e5c4b3a5ea3a1dd4ce33e7a31628d" prot="private" virt="non-virtual"><scope>tnt::pimpl</scope><name>check</name></member>
+      <member refid="classtnt_1_1pimpl_1ac182a2634c4962f6e06720f6d08489c0" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>empty</name></member>
+      <member refid="classtnt_1_1pimpl_1ab3a5642bd0545930b2f021dc7ccd6608" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>operator&amp;</name></member>
+      <member refid="classtnt_1_1pimpl_1adb583dbb2b1250c60ec9cf6ae660702c" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>operator&amp;</name></member>
+      <member refid="classtnt_1_1pimpl_1af46d8b132a5c2ccad0bf5aa6c9295ade" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>operator*</name></member>
+      <member refid="classtnt_1_1pimpl_1a000fbc3482c673c8271ff8df0d4a72da" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>operator*</name></member>
+      <member refid="classtnt_1_1pimpl_1a5cd0daf0d750bb1b4b4e8a77e149130b" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>operator-&gt;</name></member>
+      <member refid="classtnt_1_1pimpl_1aded9befd461f87fbf98bf32cc75577fe" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>operator-&gt;</name></member>
+      <member refid="classtnt_1_1pimpl_1a1aec43d81e2816260947998fc3598597" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>operator=</name></member>
+      <member refid="classtnt_1_1pimpl_1aeec24bddb06b35b8698dd49289b85601" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>operator=</name></member>
+      <member refid="classtnt_1_1pimpl_1aae302680f4d360b195a86d051f84fcb3" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>operator==</name></member>
+      <member refid="classtnt_1_1pimpl_1a5413c9cfc1f470346e60451c262c5e33" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>pimpl</name></member>
+      <member refid="classtnt_1_1pimpl_1a17e3e16c808629ec11bd1a83fd2518e3" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>pimpl</name></member>
+      <member refid="classtnt_1_1pimpl_1a816dcd9cd5eea48fc2841986d824ea64" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>pimpl</name></member>
+      <member refid="classtnt_1_1pimpl_1a3cb471248db05c4b6d274d0a0c2545c1" prot="private" virt="non-virtual"><scope>tnt::pimpl</scope><name>ptr</name></member>
+      <member refid="classtnt_1_1pimpl_1a719137dec862b9798a68e835b61564c5" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>reset</name></member>
+      <member refid="classtnt_1_1pimpl_1a2ab0e93fbf6177a8413b5ceaf8e15d0c" prot="private" virt="non-virtual"><scope>tnt::pimpl</scope><name>storage</name></member>
+      <member refid="classtnt_1_1pimpl_1a9e5841b3fbd4e16b4ba80eb8c853a3b0" prot="public" virt="non-virtual"><scope>tnt::pimpl</scope><name>~pimpl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

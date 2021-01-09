@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1_floor_3_01_numerator_00_011_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::Floor&lt; Numerator, 1 &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>int</type>
+        <declname>Numerator</declname>
+        <defname>Numerator</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structtnt_1_1_floor_3_01_numerator_00_011_01_4_1a6527d8a10a1ee8602372146a57b5b024" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@15</name>
+        <enumvalue id="structtnt_1_1_floor_3_01_numerator_00_011_01_4_1a6527d8a10a1ee8602372146a57b5b024af49df574562a4d0a8efc27d3a6d3fcec" prot="public">
+          <name>value</name>
+          <initializer>= Numerator</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/MathUtils.hpp" line="154" column="9" bodyfile="E:/thing/cpp/tnt/include/math/MathUtils.hpp" bodystart="155" bodyend="157"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/math/MathUtils.hpp" line="152" column="5" bodyfile="E:/thing/cpp/tnt/include/math/MathUtils.hpp" bodystart="153" bodyend="158"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1_floor_3_01_numerator_00_011_01_4_1a6527d8a10a1ee8602372146a57b5b024af49df574562a4d0a8efc27d3a6d3fcec" prot="public" virt="non-virtual"><scope>tnt::Floor&lt; Numerator, 1 &gt;</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

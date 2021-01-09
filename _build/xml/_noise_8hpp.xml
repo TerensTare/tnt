@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="_noise_8hpp" kind="file" language="C++">
+    <compoundname>Noise.hpp</compoundname>
+    <includedby refid="_tn_t_8hpp" local="yes">E:/thing/cpp/tnt/include/TnT.hpp</includedby>
+    <innernamespace refid="namespacetnt">tnt</innernamespace>
+    <innernamespace refid="namespacetnt_1_1pcg">tnt::pcg</innernamespace>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="_noise_8hpp_1aaf0bf7d020754fc614fe06552ea4d5d4" prot="public" static="no">
+        <type>struct SDL_Renderer</type>
+        <definition>typedef struct SDL_Renderer SDL_Renderer</definition>
+        <argsstring></argsstring>
+        <name>SDL_Renderer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/pcg/Noise.hpp" line="1" column="0" bodyfile="E:/thing/cpp/tnt/include/pcg/Noise.hpp" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_noise_8hpp_1a17850d7f1f5de457727cb3cf66b3a7f5" prot="public" static="no">
+        <type>struct SDL_Texture</type>
+        <definition>typedef struct SDL_Texture SDL_Texture</definition>
+        <argsstring></argsstring>
+        <name>SDL_Texture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/pcg/Noise.hpp" line="1" column="0" bodyfile="E:/thing/cpp/tnt/include/pcg/Noise.hpp" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>TNT_PCG_NOISE_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TNT_PCG_NOISE_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">SDL_Renderer;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">SDL_Renderer<sp/>SDL_Renderer;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">SDL_Texture;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">SDL_Texture<sp/>SDL_Texture;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO:<sp/>add<sp/>more<sp/>noise<sp/>generation<sp/>algorithms.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO:<sp/>add<sp/>maze<sp/>generation<sp/>algorithms.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tnt::pcg</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>SDL_Texture<sp/>*staticNoise(SDL_Renderer<sp/>*ren,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>w,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>h);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>tnt::pcg</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//!<sp/>TNT_PCG_NOISE_HPP</highlight></codeline>
+    </programlisting>
+    <location file="E:/thing/cpp/tnt/include/pcg/Noise.hpp"/>
+  </compounddef>
+</doxygen>

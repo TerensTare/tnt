@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_43e621d1f8059ef23e6d554162653e23" kind="dir">
+    <compoundname>E:/thing/cpp/tnt/include/mirror</compoundname>
+    <innerfile refid="_any_8hpp">Any.hpp</innerfile>
+    <innerfile refid="_mirror_8hpp">Mirror.hpp</innerfile>
+    <innerfile refid="_type_info_8hpp">TypeInfo.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/mirror/"/>
+  </compounddef>
+</doxygen>

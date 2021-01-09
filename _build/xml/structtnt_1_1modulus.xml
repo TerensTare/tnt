@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1modulus" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::modulus</compoundname>
+    <templateparamlist>
+      <param>
+        <type>int</type>
+        <declname>First</declname>
+        <defname>First</defname>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>Second</declname>
+        <defname>Second</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structtnt_1_1modulus_1a9db6341b71022914251ce20c927d884b" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@13</name>
+        <enumvalue id="structtnt_1_1modulus_1a9db6341b71022914251ce20c927d884bafdbe96341cf64cb95697502eb8b5dbf7" prot="public">
+          <name>value</name>
+          <initializer>= (First - (First % Second))</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/MathUtils.hpp" line="131" column="9" bodyfile="E:/thing/cpp/tnt/include/math/MathUtils.hpp" bodystart="132" bodyend="134"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/math/MathUtils.hpp" line="129" column="5" bodyfile="E:/thing/cpp/tnt/include/math/MathUtils.hpp" bodystart="130" bodyend="135"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1modulus_1a9db6341b71022914251ce20c927d884bafdbe96341cf64cb95697502eb8b5dbf7" prot="public" virt="non-virtual"><scope>tnt::modulus</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

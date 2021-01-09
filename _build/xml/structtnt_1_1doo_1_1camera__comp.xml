@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1doo_1_1camera__comp" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::doo::camera_comp</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1camera__comp_1a22bf175fdb247d8ebe9194c9306666bb" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::camera_comp::angle</definition>
+        <argsstring></argsstring>
+        <name>angle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="56" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1camera__comp_1af4ff1a820a21966010faa2ed883eeaf3" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::camera_comp::w</definition>
+        <argsstring></argsstring>
+        <name>w</name>
+        <briefdescription>
+<para>&lt; The angle of the camera. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="57" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1camera__comp_1a38fca7bdad9ac2f0116e8021c9699688" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::camera_comp::h</definition>
+        <argsstring></argsstring>
+        <name>h</name>
+        <briefdescription>
+<para>&lt; The width of the camera. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="58" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1camera__comp_1adf9b41d186640a19b75729e664622779" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::camera_comp::speed</definition>
+        <argsstring></argsstring>
+        <name>speed</name>
+        <briefdescription>
+<para>&lt; The height of the camera. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="59" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1camera__comp_1ae0bbd09fbfeffecadc2744001bccad6b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::camera_comp::shaking</definition>
+        <argsstring></argsstring>
+        <name>shaking</name>
+        <briefdescription>
+<para>&lt; The speed of the camera. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="60" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1camera__comp_1afafd247caef469709b64722bcd93b46e" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::doo::camera_comp::shakeLoss</definition>
+        <argsstring></argsstring>
+        <name>shakeLoss</name>
+        <briefdescription>
+<para>&lt; The amplitude of shaking. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="61" column="15" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1camera__comp_1a7e856c891a789e4a1c00d0f5c9da7c7d" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::camera_comp::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+<para>&lt; The amount of shaking decrease for second. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="62" column="16" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1camera__comp_1ad7fc973e7b33cd08d61326635fe3ff7a" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::camera_comp::scale</definition>
+        <argsstring></argsstring>
+        <name>scale</name>
+        <briefdescription>
+<para>&lt; The position of the camera. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="63" column="16" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1doo_1_1camera__comp_1a3e3a68802af9373573588099aed7bf48" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr tnt::doo::camera_comp::camera_comp</definition>
+        <argsstring>(float angle_, Vector const &amp;pos_, float w_, float h_, float speed_=5.f, float shaking_=.7f, float decrease_=1.f, Vector const &amp;scale_=Vector{1.f, 1.f}) noexcept</argsstring>
+        <name>camera_comp</name>
+        <param>
+          <type>float</type>
+          <declname>angle_</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>pos_</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>w_</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>h_</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>speed_</declname>
+          <defval>5.f</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>shaking_</declname>
+          <defval>.7f</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>decrease_</declname>
+          <defval>1.f</defval>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>scale_</declname>
+          <defval><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref>{1.f, 1.f}</defval>
+        </param>
+        <briefdescription>
+<para>Create a new camera. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>angle_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The angle of the camera. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pos_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position of the camera. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>w_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The width of the camera. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>h_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The height of the camera. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>speed_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The speed the camera follows its target (if any). 5 by default. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shaking_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The amplitude of shaking. .7f by default. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>decrease_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The amount of units the shaking factors decreases each second. 1.f by default. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scale_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scale of the objects drawed inside the camera. {1.f, 1.f} by default. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="49" column="19" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="49" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::doo::camera_comp</label>
+        <link refid="structtnt_1_1doo_1_1camera__comp"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>scale</edgelabel>
+          <edgelabel>pos</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::Vector</label>
+        <link refid="structtnt_1_1_vector"/>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="38" column="5" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="39" bodyend="64"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1doo_1_1camera__comp_1a22bf175fdb247d8ebe9194c9306666bb" prot="public" virt="non-virtual"><scope>tnt::doo::camera_comp</scope><name>angle</name></member>
+      <member refid="structtnt_1_1doo_1_1camera__comp_1a3e3a68802af9373573588099aed7bf48" prot="public" virt="non-virtual"><scope>tnt::doo::camera_comp</scope><name>camera_comp</name></member>
+      <member refid="structtnt_1_1doo_1_1camera__comp_1a38fca7bdad9ac2f0116e8021c9699688" prot="public" virt="non-virtual"><scope>tnt::doo::camera_comp</scope><name>h</name></member>
+      <member refid="structtnt_1_1doo_1_1camera__comp_1a7e856c891a789e4a1c00d0f5c9da7c7d" prot="public" virt="non-virtual"><scope>tnt::doo::camera_comp</scope><name>pos</name></member>
+      <member refid="structtnt_1_1doo_1_1camera__comp_1ad7fc973e7b33cd08d61326635fe3ff7a" prot="public" virt="non-virtual"><scope>tnt::doo::camera_comp</scope><name>scale</name></member>
+      <member refid="structtnt_1_1doo_1_1camera__comp_1afafd247caef469709b64722bcd93b46e" prot="public" virt="non-virtual"><scope>tnt::doo::camera_comp</scope><name>shakeLoss</name></member>
+      <member refid="structtnt_1_1doo_1_1camera__comp_1ae0bbd09fbfeffecadc2744001bccad6b" prot="public" virt="non-virtual"><scope>tnt::doo::camera_comp</scope><name>shaking</name></member>
+      <member refid="structtnt_1_1doo_1_1camera__comp_1adf9b41d186640a19b75729e664622779" prot="public" virt="non-virtual"><scope>tnt::doo::camera_comp</scope><name>speed</name></member>
+      <member refid="structtnt_1_1doo_1_1camera__comp_1af4ff1a820a21966010faa2ed883eeaf3" prot="public" virt="non-virtual"><scope>tnt::doo::camera_comp</scope><name>w</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

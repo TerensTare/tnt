@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1scope__success" kind="class" language="C++" prot="public">
+    <compoundname>tnt::scope_success</compoundname>
+    <includes local="no">ScopeUtils.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename F</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1scope__success_1a02e7cba95be0ef671d70369ea1c36199" prot="private" static="no" mutable="no">
+        <type>F</type>
+        <definition>F tnt::scope_success&lt; F &gt;::f</definition>
+        <argsstring></argsstring>
+        <name>f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="51" column="7" bodyfile="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1scope__success_1a2f341b050809abe51c8ab29110e30ee3" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int tnt::scope_success&lt; F &gt;::uncaught_exception_count</definition>
+        <argsstring></argsstring>
+        <name>uncaught_exception_count</name>
+        <initializer>= std::uncaught_exceptions()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="52" column="9" bodyfile="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1scope__success_1a6a94bd9d3163b7b11fc7cf6d139f4ecd" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::scope_success&lt; F &gt;::scope_success</definition>
+        <argsstring>(const F &amp;f_)</argsstring>
+        <name>scope_success</name>
+        <param>
+          <type>const F &amp;</type>
+          <declname>f_</declname>
+        </param>
+        <briefdescription>
+<para>Create a new <ref refid="classtnt_1_1scope__success" kindref="compound">scope_success</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The function to be wrapped by the <ref refid="classtnt_1_1scope__success" kindref="compound">scope_success</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>f_() might throw, as it can be caught normally. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="38" column="14" bodyfile="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1scope__success_1a167e679839d0cc5b7582bacbeb4a4ac9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::scope_success&lt; F &gt;::scope_success</definition>
+        <argsstring>(const scope_success &amp;)=delete</argsstring>
+        <name>scope_success</name>
+        <param>
+          <type>const <ref refid="classtnt_1_1scope__success" kindref="compound">scope_success</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="40" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1scope__success_1adca25d5b01f4528c164c4d07ff5447c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classtnt_1_1scope__success" kindref="compound">scope_success</ref> &amp;</type>
+        <definition>scope_success&amp; tnt::scope_success&lt; F &gt;::operator=</definition>
+        <argsstring>(const scope_success &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classtnt_1_1scope__success" kindref="compound">scope_success</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="41" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1scope__success_1ad084b41d21ed52c9608f651987810101" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::scope_success&lt; F &gt;::~scope_success</definition>
+        <argsstring>() noexcept(noexcept(f()))</argsstring>
+        <name>~scope_success</name>
+        <briefdescription>
+<para>Destroy the <ref refid="classtnt_1_1scope__success" kindref="compound">scope_success</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="44" column="5" bodyfile="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" bodystart="44" bodyend="48"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Execute function only if no exception is thrown in the scope. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>F</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the function to be wrapped by <ref refid="classtnt_1_1scope__success" kindref="compound">scope_success</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" line="32" column="3" bodyfile="E:/thing/cpp/tnt/include/types/ScopeUtils.hpp" bodystart="33" bodyend="53"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1scope__success_1a02e7cba95be0ef671d70369ea1c36199" prot="private" virt="non-virtual"><scope>tnt::scope_success</scope><name>f</name></member>
+      <member refid="classtnt_1_1scope__success_1adca25d5b01f4528c164c4d07ff5447c1" prot="public" virt="non-virtual"><scope>tnt::scope_success</scope><name>operator=</name></member>
+      <member refid="classtnt_1_1scope__success_1a6a94bd9d3163b7b11fc7cf6d139f4ecd" prot="public" virt="non-virtual"><scope>tnt::scope_success</scope><name>scope_success</name></member>
+      <member refid="classtnt_1_1scope__success_1a167e679839d0cc5b7582bacbeb4a4ac9" prot="public" virt="non-virtual"><scope>tnt::scope_success</scope><name>scope_success</name></member>
+      <member refid="classtnt_1_1scope__success_1a2f341b050809abe51c8ab29110e30ee3" prot="private" virt="non-virtual"><scope>tnt::scope_success</scope><name>uncaught_exception_count</name></member>
+      <member refid="classtnt_1_1scope__success_1ad084b41d21ed52c9608f651987810101" prot="public" virt="non-virtual"><scope>tnt::scope_success</scope><name>~scope_success</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

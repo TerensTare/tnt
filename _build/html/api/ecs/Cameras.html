@@ -1,0 +1,518 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Camera &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Objects" href="Objects.html" />
+    <link rel="prev" title="Bones" href="Bones.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../async.html">Async</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ecs.html">Entity Component System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Animations.html">Animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Base.html">Base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Bones.html">Bones</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Objects.html">Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Physics.html">Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts.html">Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sprites.html">Sprites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Steering.html">Steering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="System.html">System</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../file.html">File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imgui.html">ImGui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math.html">Math</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../ecs.html">Entity Component System</a> &raquo;</li>
+        
+      <li>Camera</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/ecs/Cameras.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="camera">
+<span id="tnt-ecs-camera-api"></span><h1>Camera<a class="headerlink" href="#camera" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><dl class="cpp type">
+<dt id="_CPPv4N3tnt3dooE">
+<span id="_CPPv3N3tnt3dooE"></span><span id="_CPPv2N3tnt3dooE"></span><span id="tnt::doo"></span><span class="target" id="namespacetnt_1_1doo"></span><em class="property">namespace </em><code class="sig-name descname">doo</code><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo7camerasE">
+<span id="_CPPv3N3tnt3doo7camerasE"></span><span id="_CPPv2N3tnt3doo7camerasE"></span><span id="tnt::doo::cameras__tnt::doo::cameras_sys"></span><span class="target" id="_cameras_8hpp_1aa56968271d1a3c8f63206fa40cb9e64e"></span><em class="property">struct</em> <a class="reference internal" href="../core/window.html#_CPPv43tnt" title="tnt">tnt</a>::<a class="reference internal" href="Animations.html#_CPPv4N3tnt3dooE" title="tnt::doo">doo</a>::<a class="reference internal" href="#_CPPv4N3tnt3doo11cameras_sysE" title="tnt::doo::cameras_sys">cameras_sys</a> <code class="sig-name descname">cameras</code><a class="headerlink" href="#_CPPv4N3tnt3doo7camerasE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt3doo11camera_compE">
+<span id="_CPPv3N3tnt3doo11camera_compE"></span><span id="_CPPv2N3tnt3doo11camera_compE"></span><span id="tnt::doo::camera_comp"></span><span class="target" id="structtnt_1_1doo_1_1camera__comp"></span><em class="property">struct </em><code class="sig-name descname">camera_comp</code><a class="headerlink" href="#_CPPv4N3tnt3doo11camera_compE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11camera_comp11camera_compEfRK6VectorfffffRK6Vector">
+<span id="_CPPv3N3tnt3doo11camera_comp11camera_compEfRK6VectorfffffRK6Vector"></span><span id="_CPPv2N3tnt3doo11camera_comp11camera_compEfRK6VectorfffffRK6Vector"></span><span id="tnt::doo::camera_comp::camera_comp__float.VectorCR.float.float.float.float.float.VectorCRCE"></span><span class="target" id="structtnt_1_1doo_1_1camera__comp_1a3e3a68802af9373573588099aed7bf48"></span><em class="property">constexpr</em> <code class="sig-name descname">camera_comp</code><span class="sig-paren">(</span>float <em>angle_</em>, <a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>pos_</em>, float <em>w_</em>, float <em>h_</em>, float <em>speed_</em> = 5.f, float <em>shaking_</em> = .7f, float <em>decrease_</em> = 1.f, <a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>scale_</em> = <a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a>{1.f, 1.f}<span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11camera_comp11camera_compEfRK6VectorfffffRK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new camera. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">angle_</span></code>: The angle of the camera. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pos_</span></code>: The position of the camera. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">w_</span></code>: The width of the camera. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h_</span></code>: The height of the camera. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">speed_</span></code>: The speed the camera follows its target (if any). 5 by default. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shaking_</span></code>: The amplitude of shaking. .7f by default. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decrease_</span></code>: The amount of units the shaking factors decreases each second. 1.f by default. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale_</span></code>: The scale of the objects drawed inside the camera. {1.f, 1.f} by default. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11camera_comp5angleE">
+<span id="_CPPv3N3tnt3doo11camera_comp5angleE"></span><span id="_CPPv2N3tnt3doo11camera_comp5angleE"></span><span id="tnt::doo::camera_comp::angle__float"></span><span class="target" id="structtnt_1_1doo_1_1camera__comp_1a22bf175fdb247d8ebe9194c9306666bb"></span>float <code class="sig-name descname">angle</code><a class="headerlink" href="#_CPPv4N3tnt3doo11camera_comp5angleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11camera_comp1wE">
+<span id="_CPPv3N3tnt3doo11camera_comp1wE"></span><span id="_CPPv2N3tnt3doo11camera_comp1wE"></span><span id="tnt::doo::camera_comp::w__float"></span><span class="target" id="structtnt_1_1doo_1_1camera__comp_1af4ff1a820a21966010faa2ed883eeaf3"></span>float <code class="sig-name descname">w</code><a class="headerlink" href="#_CPPv4N3tnt3doo11camera_comp1wE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The angle of the camera. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11camera_comp1hE">
+<span id="_CPPv3N3tnt3doo11camera_comp1hE"></span><span id="_CPPv2N3tnt3doo11camera_comp1hE"></span><span id="tnt::doo::camera_comp::h__float"></span><span class="target" id="structtnt_1_1doo_1_1camera__comp_1a38fca7bdad9ac2f0116e8021c9699688"></span>float <code class="sig-name descname">h</code><a class="headerlink" href="#_CPPv4N3tnt3doo11camera_comp1hE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The width of the camera. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11camera_comp5speedE">
+<span id="_CPPv3N3tnt3doo11camera_comp5speedE"></span><span id="_CPPv2N3tnt3doo11camera_comp5speedE"></span><span id="tnt::doo::camera_comp::speed__float"></span><span class="target" id="structtnt_1_1doo_1_1camera__comp_1adf9b41d186640a19b75729e664622779"></span>float <code class="sig-name descname">speed</code><a class="headerlink" href="#_CPPv4N3tnt3doo11camera_comp5speedE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The height of the camera. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11camera_comp7shakingE">
+<span id="_CPPv3N3tnt3doo11camera_comp7shakingE"></span><span id="_CPPv2N3tnt3doo11camera_comp7shakingE"></span><span id="tnt::doo::camera_comp::shaking__float"></span><span class="target" id="structtnt_1_1doo_1_1camera__comp_1ae0bbd09fbfeffecadc2744001bccad6b"></span>float <code class="sig-name descname">shaking</code><a class="headerlink" href="#_CPPv4N3tnt3doo11camera_comp7shakingE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The speed of the camera. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11camera_comp9shakeLossE">
+<span id="_CPPv3N3tnt3doo11camera_comp9shakeLossE"></span><span id="_CPPv2N3tnt3doo11camera_comp9shakeLossE"></span><span id="tnt::doo::camera_comp::shakeLoss__float"></span><span class="target" id="structtnt_1_1doo_1_1camera__comp_1afafd247caef469709b64722bcd93b46e"></span>float <code class="sig-name descname">shakeLoss</code><a class="headerlink" href="#_CPPv4N3tnt3doo11camera_comp9shakeLossE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The amplitude of shaking. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11camera_comp3posE">
+<span id="_CPPv3N3tnt3doo11camera_comp3posE"></span><span id="_CPPv2N3tnt3doo11camera_comp3posE"></span><span id="tnt::doo::camera_comp::pos__Vector"></span><span class="target" id="structtnt_1_1doo_1_1camera__comp_1a7e856c891a789e4a1c00d0f5c9da7c7d"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">pos</code><a class="headerlink" href="#_CPPv4N3tnt3doo11camera_comp3posE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The amount of shaking decrease for second. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11camera_comp5scaleE">
+<span id="_CPPv3N3tnt3doo11camera_comp5scaleE"></span><span id="_CPPv2N3tnt3doo11camera_comp5scaleE"></span><span id="tnt::doo::camera_comp::scale__Vector"></span><span class="target" id="structtnt_1_1doo_1_1camera__comp_1ad7fc973e7b33cd08d61326635fe3ff7a"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">scale</code><a class="headerlink" href="#_CPPv4N3tnt3doo11camera_comp5scaleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The position of the camera. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt3doo11cameras_sysE">
+<span id="_CPPv3N3tnt3doo11cameras_sysE"></span><span id="_CPPv2N3tnt3doo11cameras_sysE"></span><span id="tnt::doo::cameras_sys"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys"></span><em class="property">struct </em><code class="sig-name descname">cameras_sys</code><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sysE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11cameras_sys10add_objectERK11camera_comp">
+<span id="_CPPv3N3tnt3doo11cameras_sys10add_objectERK11camera_comp"></span><span id="_CPPv2N3tnt3doo11cameras_sys10add_objectERK11camera_comp"></span><span id="tnt::doo::cameras_sys::add_object__camera_compCR"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1ac1d13cd2f475daaa985f358150a74168"></span>void <code class="sig-name descname">add_object</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N3tnt3doo11camera_compE" title="tnt::doo::camera_comp">camera_comp</a> <em class="property">const</em> &amp;<em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys10add_objectERK11camera_comp" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add a new camera to the system. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: The data of the camera component. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11cameras_sys9from_jsonERKN8nlohmann4jsonE">
+<span id="_CPPv3N3tnt3doo11cameras_sys9from_jsonERKN8nlohmann4jsonE"></span><span id="_CPPv2N3tnt3doo11cameras_sys9from_jsonERKN8nlohmann4jsonE"></span><span id="tnt::doo::cameras_sys::from_json__nlohmann::jsonCR"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1a03a098589d766558aadded0dcd12d0e3"></span>void <code class="sig-name descname">from_json</code><span class="sig-paren">(</span>nlohmann::json <em class="property">const</em> &amp;<em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys9from_jsonERKN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Load camera data from a json chunk. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: The json chunk. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11cameras_sys7to_jsonERK6cameraRN8nlohmann4jsonE">
+<span id="_CPPv3N3tnt3doo11cameras_sys7to_jsonERK6cameraRN8nlohmann4jsonE"></span><span id="_CPPv2N3tnt3doo11cameras_sys7to_jsonERK6cameraRN8nlohmann4jsonE"></span><span id="tnt::doo::cameras_sys::to_json__cameraCR.nlohmann::jsonR"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1afc640dafdd40e39b597455cb064cd553"></span>void <code class="sig-name descname">to_json</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6cameraE" title="tnt::doo::camera">camera</a> <em class="property">const</em> &amp;<em>id</em>, nlohmann::json &amp;<em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys7to_jsonERK6cameraRN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Store camera data of a specific object to a json chunk. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the camera to serialize to json. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: The json chunk where the data will be saved. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11cameras_sys10draw_imguiERK6cameraRK6Window">
+<span id="_CPPv3N3tnt3doo11cameras_sys10draw_imguiERK6cameraRK6Window"></span><span id="_CPPv2N3tnt3doo11cameras_sys10draw_imguiERK6cameraRK6Window"></span><span id="tnt::doo::cameras_sys::draw_imgui__cameraCR.WindowCR"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1ab5e96d805d33f1acceeefbdfd0537708"></span>void <code class="sig-name descname">draw_imgui</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6cameraE" title="tnt::doo::camera">camera</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="../core/window.html#_CPPv4N3tnt6WindowE" title="tnt::Window">Window</a> <em class="property">const</em> &amp;<em>win</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys10draw_imguiERK6cameraRK6Window" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Draw widgets on the given window to modify the datas of the system. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the desired camera. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The window where the widgets will be drawed. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11cameras_sys6followERK6cameraRK6objectfRK6Vector">
+<span id="_CPPv3N3tnt3doo11cameras_sys6followERK6cameraRK6objectfRK6Vector"></span><span id="_CPPv2N3tnt3doo11cameras_sys6followERK6cameraRK6objectfRK6Vector"></span><span id="tnt::doo::cameras_sys::follow__cameraCR.objectCR.float.VectorCR"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1a8bcac788bdc606d1245ce23d6101a2aa"></span>void <code class="sig-name descname">follow</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6cameraE" title="tnt::doo::camera">camera</a> <em class="property">const</em> &amp;<em>cam</em>, <a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, float <em>time_</em>, <a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>off</em> = <a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a>{0.f, 0.f}<span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys6followERK6cameraRK6objectfRK6Vector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Center the given object to the center of the camera. Maintain. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cam</span></code>: The id of the camera. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object that should be centered. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time_</span></code>: The elapsed time since the last frame. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">off</span></code>: The offset that the object can have from the center of the camera. Defaulted to the center. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11cameras_sys5shakeERK6camera">
+<span id="_CPPv3N3tnt3doo11cameras_sys5shakeERK6camera"></span><span id="_CPPv2N3tnt3doo11cameras_sys5shakeERK6camera"></span><span id="tnt::doo::cameras_sys::shake__cameraCR"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1af1cad736be9030cea404553dfb84a7b4"></span>void <code class="sig-name descname">shake</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6cameraE" title="tnt::doo::camera">camera</a> <em class="property">const</em> &amp;<em>cam</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys5shakeERK6camera" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Shake the camera for the given amount of time. </p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Based on <a class="reference external" href="https://gist.github.com/ftvs/5822103">https://gist.github.com/ftvs/5822103</a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cam</span></code>: The id of the camera that should be shaked. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11cameras_sys11zoom_to_fitERK6cameraNSt4spanI6objectEE">
+<span id="_CPPv3N3tnt3doo11cameras_sys11zoom_to_fitERK6cameraNSt4spanI6objectEE"></span><span id="_CPPv2N3tnt3doo11cameras_sys11zoom_to_fitERK6cameraNSt4spanI6objectEE"></span><span id="tnt::doo::cameras_sys::zoom_to_fit__cameraCR.std::span:object:"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1aabba933cf022c0ab912fd0acbc6cfef7"></span>void <code class="sig-name descname">zoom_to_fit</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6cameraE" title="tnt::doo::camera">camera</a> <em class="property">const</em> &amp;<em>cam</em>, std::span&lt;<a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a>&gt; <em>objs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys11zoom_to_fitERK6cameraNSt4spanI6objectEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the camera zoom to fit all the given objects. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cam</span></code>: The id of the camera to zoom. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objs</span></code>: The id-s of the objects that should fit on the camera. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11cameras_sys6removeERK6camera">
+<span id="_CPPv3N3tnt3doo11cameras_sys6removeERK6camera"></span><span id="_CPPv2N3tnt3doo11cameras_sys6removeERK6camera"></span><span id="tnt::doo::cameras_sys::remove__cameraCR"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1ac0432a45dc250a4071d343a06ea2c674"></span>void <code class="sig-name descname">remove</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6cameraE" title="tnt::doo::camera">camera</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys6removeERK6camera" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove the given object from the camera system. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object you want to remove. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11cameras_sys5clearEv">
+<span id="_CPPv3N3tnt3doo11cameras_sys5clearEv"></span><span id="_CPPv2N3tnt3doo11cameras_sys5clearEv"></span><span id="tnt::doo::cameras_sys::clear"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1ab704693fa4f60531ebe11d2cddbde830"></span>void <code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys5clearEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove all the objects from the camera system. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11cameras_sys6activeE">
+<span id="_CPPv3N3tnt3doo11cameras_sys6activeE"></span><span id="_CPPv2N3tnt3doo11cameras_sys6activeE"></span><span id="tnt::doo::cameras_sys::active__sparse_set:camera:"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1aafb6610cd6b5645d152b7c845acb4f40"></span>sparse_set&lt;<a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6cameraE" title="tnt::doo::camera">camera</a>&gt; <code class="sig-name descname">active</code><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys6activeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11cameras_sys5angleE">
+<span id="_CPPv3N3tnt3doo11cameras_sys5angleE"></span><span id="_CPPv2N3tnt3doo11cameras_sys5angleE"></span><span id="tnt::doo::cameras_sys::angle__std::vector:float:"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1ae4d253ea25bc176bdceaecb1e8df948e"></span>std::vector&lt;float&gt; <code class="sig-name descname">angle</code><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys5angleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The id-s of all the active cameras. Not related to the id-s of the objects. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11cameras_sys5widthE">
+<span id="_CPPv3N3tnt3doo11cameras_sys5widthE"></span><span id="_CPPv2N3tnt3doo11cameras_sys5widthE"></span><span id="tnt::doo::cameras_sys::width__std::vector:float:"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1a1cae477540dc7df99f084c5e82d17a42"></span>std::vector&lt;float&gt; <code class="sig-name descname">width</code><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys5widthE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The angles of all the cameras. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11cameras_sys6heightE">
+<span id="_CPPv3N3tnt3doo11cameras_sys6heightE"></span><span id="_CPPv2N3tnt3doo11cameras_sys6heightE"></span><span id="tnt::doo::cameras_sys::height__std::vector:float:"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1a64a78b97adf1853a94b85786de50ac5d"></span>std::vector&lt;float&gt; <code class="sig-name descname">height</code><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys6heightE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The width of all the cameras. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11cameras_sys5speedE">
+<span id="_CPPv3N3tnt3doo11cameras_sys5speedE"></span><span id="_CPPv2N3tnt3doo11cameras_sys5speedE"></span><span id="tnt::doo::cameras_sys::speed__std::vector:float:"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1a6ae8098b7b174c1114a9e56f0d5ced4e"></span>std::vector&lt;float&gt; <code class="sig-name descname">speed</code><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys5speedE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The height of all the cameras. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11cameras_sys7shakingE">
+<span id="_CPPv3N3tnt3doo11cameras_sys7shakingE"></span><span id="_CPPv2N3tnt3doo11cameras_sys7shakingE"></span><span id="tnt::doo::cameras_sys::shaking__std::vector:float:"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1a8e1288164d2e02467167bd9f244b909b"></span>std::vector&lt;float&gt; <code class="sig-name descname">shaking</code><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys7shakingE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The speed the camera will approach to the player. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11cameras_sys9shakeLossE">
+<span id="_CPPv3N3tnt3doo11cameras_sys9shakeLossE"></span><span id="_CPPv2N3tnt3doo11cameras_sys9shakeLossE"></span><span id="tnt::doo::cameras_sys::shakeLoss__std::vector:float:"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1a9ddfc21562d219acf2a85b6ed718f27a"></span>std::vector&lt;float&gt; <code class="sig-name descname">shakeLoss</code><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys9shakeLossE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The amount of shaking for each camera. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11cameras_sys10shake_timeE">
+<span id="_CPPv3N3tnt3doo11cameras_sys10shake_timeE"></span><span id="_CPPv2N3tnt3doo11cameras_sys10shake_timeE"></span><span id="tnt::doo::cameras_sys::shake_time__std::vector:float:"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1a9e1a5185665b9238a141e9f6d49920df"></span>std::vector&lt;float&gt; <code class="sig-name descname">shake_time</code><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys10shake_timeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The amount of decreasing on the shaking of each camera per second. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11cameras_sys6targetE">
+<span id="_CPPv3N3tnt3doo11cameras_sys6targetE"></span><span id="_CPPv2N3tnt3doo11cameras_sys6targetE"></span><span id="tnt::doo::cameras_sys::target__std::vector:object:"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1a3b0a12424e29ee1a64c18c6aa4196989"></span>std::vector&lt;<a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a>&gt; <code class="sig-name descname">target</code><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys6targetE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The amount of time in milliseconds a camera should shake, if it is shaking. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11cameras_sys3posE">
+<span id="_CPPv3N3tnt3doo11cameras_sys3posE"></span><span id="_CPPv2N3tnt3doo11cameras_sys3posE"></span><span id="tnt::doo::cameras_sys::pos__std::vector:Vector:"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1a37ef3437a5abfcfeba61d4c7c986f763"></span>std::vector&lt;<a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a>&gt; <code class="sig-name descname">pos</code><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys3posE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The id-s of the object each camera is centered to. -1 if none. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11cameras_sys5scaleE">
+<span id="_CPPv3N3tnt3doo11cameras_sys5scaleE"></span><span id="_CPPv2N3tnt3doo11cameras_sys5scaleE"></span><span id="tnt::doo::cameras_sys::scale__std::vector:Vector:"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1ab0eefc3deaf64279de915e9d3b5ee434"></span>std::vector&lt;<a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a>&gt; <code class="sig-name descname">scale</code><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys5scaleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The position of each camera. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11cameras_sys6offsetE">
+<span id="_CPPv3N3tnt3doo11cameras_sys6offsetE"></span><span id="_CPPv2N3tnt3doo11cameras_sys6offsetE"></span><span id="tnt::doo::cameras_sys::offset__std::vector:Vector:"></span><span class="target" id="structtnt_1_1doo_1_1cameras__sys_1a19a7188e233924579813f10d98240cb6"></span>std::vector&lt;<a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a>&gt; <code class="sig-name descname">offset</code><a class="headerlink" href="#_CPPv4N3tnt3doo11cameras_sys6offsetE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The scale of the objects drawed on each camera. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Objects.html" class="btn btn-neutral float-right" title="Objects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Bones.html" class="btn btn-neutral float-left" title="Bones" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

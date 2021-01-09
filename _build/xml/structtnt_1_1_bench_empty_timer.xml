@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1_bench_empty_timer" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::BenchEmptyTimer</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1_bench_empty_timer_1aee0fa38ca35f8f5a01a5bd73daf9b94e" prot="public" static="no" constexpr="yes" const="no" explicit="yes" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr tnt::BenchEmptyTimer::BenchEmptyTimer</definition>
+        <argsstring>(const char *) noexcept</argsstring>
+        <name>BenchEmptyTimer</name>
+        <param>
+          <type>const char *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="54" column="28" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_bench_empty_timer_1aa9219e27eacc6719c04513259457f5c6" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr void</type>
+        <definition>constexpr void tnt::BenchEmptyTimer::Stop</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>Stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="55" column="24" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_bench_empty_timer_1aee0fa38ca35f8f5a01a5bd73daf9b94e" prot="public" static="no" constexpr="yes" const="no" explicit="yes" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr tnt::BenchEmptyTimer::BenchEmptyTimer</definition>
+        <argsstring>(const char *) noexcept</argsstring>
+        <name>BenchEmptyTimer</name>
+        <param>
+          <type>const char *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Benchmark.hpp" line="50" column="28" bodyfile="E:/thing/cpp/tnt/include/utils/Benchmark.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_bench_empty_timer_1aa9219e27eacc6719c04513259457f5c6" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr void</type>
+        <definition>constexpr void tnt::BenchEmptyTimer::Stop</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>Stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Benchmark.hpp" line="51" column="24" bodyfile="E:/thing/cpp/tnt/include/utils/Benchmark.hpp" bodystart="51" bodyend="51"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="52" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="53" bodyend="56"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1_bench_empty_timer_1aee0fa38ca35f8f5a01a5bd73daf9b94e" prot="public" virt="non-virtual"><scope>tnt::BenchEmptyTimer</scope><name>BenchEmptyTimer</name></member>
+      <member refid="structtnt_1_1_bench_empty_timer_1aee0fa38ca35f8f5a01a5bd73daf9b94e" prot="public" virt="non-virtual"><scope>tnt::BenchEmptyTimer</scope><name>BenchEmptyTimer</name></member>
+      <member refid="structtnt_1_1_bench_empty_timer_1aa9219e27eacc6719c04513259457f5c6" prot="public" virt="non-virtual"><scope>tnt::BenchEmptyTimer</scope><name>Stop</name></member>
+      <member refid="structtnt_1_1_bench_empty_timer_1aa9219e27eacc6719c04513259457f5c6" prot="public" virt="non-virtual"><scope>tnt::BenchEmptyTimer</scope><name>Stop</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

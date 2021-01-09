@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1generator" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>tnt::generator</compoundname>
+    <innerclass refid="structtnt_1_1generator_1_1iterator" prot="public">tnt::generator::iterator</innerclass>
+    <innerclass refid="structtnt_1_1generator_1_1promise__type" prot="public">tnt::generator::promise_type</innerclass>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1generator_1ac55aa2c711568a583dc26e0181545dd3" prot="private" static="no" mutable="no">
+        <type>std::coroutine_handle&lt; <ref refid="structtnt_1_1generator_1_1promise__type" kindref="compound">promise_type</ref> &gt;</type>
+        <definition>std::coroutine_handle&lt;promise_type&gt; tnt::generator&lt; T &gt;::coro</definition>
+        <argsstring></argsstring>
+        <name>coro</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="57" column="31" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1generator_1a2a17be4170310d59b6412507ae3608a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::generator&lt; T &gt;::generator</definition>
+        <argsstring>(generator const &amp;)=delete</argsstring>
+        <name>generator</name>
+        <param>
+          <type><ref refid="classtnt_1_1generator" kindref="compound">generator</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="19" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1generator_1aa9bf73d593d7b89bd9fd5ff10e99c182" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::generator&lt; T &gt;::generator</definition>
+        <argsstring>(generator &amp;&amp;g)</argsstring>
+        <name>generator</name>
+        <param>
+          <type><ref refid="classtnt_1_1generator" kindref="compound">generator</ref> &amp;&amp;</type>
+          <declname>g</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="21" column="16" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="21" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1generator_1a37240c968f964751ca06e3c3367300b6" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::generator&lt; T &gt;::~generator</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>~generator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="24" column="16" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="24" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1generator_1ab0ea96fc4393e97aa794ff0007f4e672" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tnt::generator&lt; T &gt;::current_value</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>current_value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="30" column="18" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1generator_1a693c25000040be5d5324a7a7e934cd0c" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::generator&lt; T &gt;::move_next</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>move_next</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="32" column="21" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="32" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1generator_1a1bc79485c6d93e5f04ac139d25055a23" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1generator_1_1iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator tnt::generator&lt; T &gt;::begin</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="38" column="25" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="38" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1generator_1aa109009b2f3dc78d3c8b8178d00dcca3" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1generator_1_1iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator tnt::generator&lt; T &gt;::end</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="51" column="25" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="51" bodyend="51"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classtnt_1_1generator_1aab9af76163a0024506974b0ccaf93c0f" prot="private" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::generator&lt; T &gt;::generator</definition>
+        <argsstring>(std::coroutine_handle&lt; promise_type &gt; h)</argsstring>
+        <name>generator</name>
+        <param>
+          <type>std::coroutine_handle&lt; <ref refid="structtnt_1_1generator_1_1promise__type" kindref="compound">promise_type</ref> &gt;</type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="54" column="25" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="54" bodyend="55"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="13" column="5" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="14" bodyend="58"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1generator_1a1bc79485c6d93e5f04ac139d25055a23" prot="public" virt="non-virtual"><scope>tnt::generator</scope><name>begin</name></member>
+      <member refid="classtnt_1_1generator_1ac55aa2c711568a583dc26e0181545dd3" prot="private" virt="non-virtual"><scope>tnt::generator</scope><name>coro</name></member>
+      <member refid="classtnt_1_1generator_1ab0ea96fc4393e97aa794ff0007f4e672" prot="public" virt="non-virtual"><scope>tnt::generator</scope><name>current_value</name></member>
+      <member refid="classtnt_1_1generator_1aa109009b2f3dc78d3c8b8178d00dcca3" prot="public" virt="non-virtual"><scope>tnt::generator</scope><name>end</name></member>
+      <member refid="classtnt_1_1generator_1a2a17be4170310d59b6412507ae3608a9" prot="public" virt="non-virtual"><scope>tnt::generator</scope><name>generator</name></member>
+      <member refid="classtnt_1_1generator_1aa9bf73d593d7b89bd9fd5ff10e99c182" prot="public" virt="non-virtual"><scope>tnt::generator</scope><name>generator</name></member>
+      <member refid="classtnt_1_1generator_1aab9af76163a0024506974b0ccaf93c0f" prot="private" virt="non-virtual"><scope>tnt::generator</scope><name>generator</name></member>
+      <member refid="classtnt_1_1generator_1a693c25000040be5d5324a7a7e934cd0c" prot="public" virt="non-virtual"><scope>tnt::generator</scope><name>move_next</name></member>
+      <member refid="classtnt_1_1generator_1a37240c968f964751ca06e3c3367300b6" prot="public" virt="non-virtual"><scope>tnt::generator</scope><name>~generator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

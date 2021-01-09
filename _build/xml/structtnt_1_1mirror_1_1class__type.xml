@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1mirror_1_1class__type" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::mirror::class_type</compoundname>
+    <basecompoundref refid="structtnt_1_1mirror_1_1type" prot="public" virt="non-virtual">tnt::mirror::type&lt; class_type&lt; T &gt;, T &gt;</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>detail::class_t</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structtnt_1_1mirror_1_1class__type_1a1d1b1e570e1f0e7719363070b1cefe64" prot="private" static="no" mutable="no">
+        <type>std::map&lt; char const *, void * &gt;</type>
+        <definition>std::map&lt;char const *, void *&gt; tnt::mirror::class_type&lt; T &gt;::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="138" column="18" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1mirror_1_1class__type_1a09c0f9fe29ae061fb33766252dc1cb00" prot="public" static="no" const="no" explicit="yes" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::mirror::class_type&lt; T &gt;::class_type</definition>
+        <argsstring>() noexcept=default</argsstring>
+        <name>class_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="106" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1mirror_1_1class__type_1a421a1fa8694f72a3fda0b508c5ec573e" prot="public" static="no" const="no" explicit="yes" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::mirror::class_type&lt; T &gt;::class_type</definition>
+        <argsstring>(std::map&lt; char const *, void * &gt; const &amp;data_) noexcept</argsstring>
+        <name>class_type</name>
+        <param>
+          <type>std::map&lt; char const *, void * &gt; const &amp;</type>
+          <declname>data_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="108" column="25" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="108" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1mirror_1_1class__type_1ab1fb5617c337a96a86c78a1a9beb7d21" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr char const  *</type>
+        <definition>constexpr char const* tnt::mirror::class_type&lt; T &gt;::name</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="111" column="30" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="111" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1mirror_1_1class__type_1a57737562eefabfc493d6dda27f7869ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1mirror_1_1class__type" kindref="compound">class_type</ref>&lt; T &gt;</type>
+        <definition>class_type&lt;T&gt; tnt::mirror::class_type&lt; T &gt;::reflect</definition>
+        <argsstring>(char const *Name, auto const T::*Arg)</argsstring>
+        <name>reflect</name>
+        <param>
+          <type>char const *</type>
+          <declname>Name</declname>
+        </param>
+        <param>
+          <type>auto const T::*</type>
+          <declname>Arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="113" column="27" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="113" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1mirror_1_1class__type_1aa5bee98ebcb890e1ad563e4e00f4e81b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1mirror_1_1class__type" kindref="compound">class_type</ref>&lt; T &gt;</type>
+        <definition>class_type&lt;T&gt; tnt::mirror::class_type&lt; T &gt;::create</definition>
+        <argsstring>(std::span&lt; std::pair&lt; char const *, void const * &gt;&gt; args)</argsstring>
+        <name>create</name>
+        <param>
+          <type>std::span&lt; std::pair&lt; char const *, void const * &gt;&gt;</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="120" column="27" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="120" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1mirror_1_1class__type_1afd82a1895daefcf6953ef6ac6de1fd01" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename R</type>
+          </param>
+        </templateparamlist>
+        <type>R *</type>
+        <definition>R* tnt::mirror::class_type&lt; T &gt;::operator[]</definition>
+        <argsstring>(std::string_view key)</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="129" column="19" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="129" bodyend="135"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>tnt::mirror::type&lt; class_type&lt; T &gt;, T &gt;</label>
+        <link refid="structtnt_1_1mirror_1_1type"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; class_type&lt; T &gt;, T &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>tnt::mirror::type&lt; T, V &gt;</label>
+        <link refid="structtnt_1_1mirror_1_1type"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::mirror::class_type&lt; T &gt;</label>
+        <link refid="structtnt_1_1mirror_1_1class__type"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>tnt::crtp&lt; T &gt;</label>
+        <link refid="structtnt_1_1crtp"/>
+      </node>
+      <node id="3">
+        <label>tnt::crtp&lt; class_type&lt; T &gt; &gt;</label>
+        <link refid="structtnt_1_1crtp"/>
+        <childnode refid="4" relation="template-instance">
+          <edgelabel>&lt; class_type&lt; T &gt; &gt;</edgelabel>
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>tnt::mirror::type&lt; class_type&lt; T &gt;, T &gt;</label>
+        <link refid="structtnt_1_1mirror_1_1type"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; class_type&lt; T &gt;, T &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>tnt::mirror::type&lt; T, V &gt;</label>
+        <link refid="structtnt_1_1mirror_1_1type"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::mirror::class_type&lt; T &gt;</label>
+        <link refid="structtnt_1_1mirror_1_1class__type"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>tnt::crtp&lt; T &gt;</label>
+        <link refid="structtnt_1_1crtp"/>
+      </node>
+      <node id="3">
+        <label>tnt::crtp&lt; class_type&lt; T &gt; &gt;</label>
+        <link refid="structtnt_1_1crtp"/>
+        <childnode refid="4" relation="template-instance">
+          <edgelabel>&lt; class_type&lt; T &gt; &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="104" column="5" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="105" bodyend="139"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1crtp_1adcfa2395d92981aabfe6bb76dbffeb3d" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>base</name></member>
+      <member refid="structtnt_1_1crtp_1ac2ebdced22082dadcb0aa4698386fa34" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>base</name></member>
+      <member refid="structtnt_1_1mirror_1_1class__type_1a09c0f9fe29ae061fb33766252dc1cb00" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>class_type</name></member>
+      <member refid="structtnt_1_1mirror_1_1class__type_1a421a1fa8694f72a3fda0b508c5ec573e" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>class_type</name></member>
+      <member refid="structtnt_1_1mirror_1_1class__type_1aa5bee98ebcb890e1ad563e4e00f4e81b" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>create</name></member>
+      <member refid="structtnt_1_1crtp_1a212757730fa4ca0435802becdef44256" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>crtp</name></member>
+      <member refid="structtnt_1_1mirror_1_1class__type_1a1d1b1e570e1f0e7719363070b1cefe64" prot="private" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>data</name></member>
+      <member refid="structtnt_1_1mirror_1_1type_1a84bca03a4ecccc87e943461e793a279a" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>explicit</name></member>
+      <member refid="structtnt_1_1mirror_1_1type_1ab3401eeb6d4408c7fac6562a66481aed" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>explicit</name></member>
+      <member refid="structtnt_1_1mirror_1_1type_1ab5bc73ec3885e7b5e9d0ea752361d7b9" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>explicit</name></member>
+      <member refid="structtnt_1_1mirror_1_1class__type_1ab1fb5617c337a96a86c78a1a9beb7d21" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>name</name></member>
+      <member refid="structtnt_1_1mirror_1_1type_1ac6201faee35a02084036a4280ef60975" prot="public" virt="non-virtual" ambiguityscope="type&lt; class_type&lt; T &gt;, T &gt;::"><scope>tnt::mirror::class_type</scope><name>name</name></member>
+      <member refid="structtnt_1_1mirror_1_1class__type_1afd82a1895daefcf6953ef6ac6de1fd01" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>operator[]</name></member>
+      <member refid="structtnt_1_1mirror_1_1class__type_1a57737562eefabfc493d6dda27f7869ac" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>reflect</name></member>
+      <member refid="structtnt_1_1mirror_1_1type_1a06c2fc3a45e709c96f63a8f3ef9e353b" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>size</name></member>
+      <member refid="structtnt_1_1crtp_1ad874f5ad17abdb584701a80cdb362a69" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>super</name></member>
+      <member refid="structtnt_1_1mirror_1_1type_1a5665fcb2ceb0ba160302c41f93af3df5" prot="public" virt="non-virtual"><scope>tnt::mirror::class_type</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

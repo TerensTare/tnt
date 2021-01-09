@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_force_generator" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>tnt::ForceGenerator</compoundname>
+    <derivedcompoundref refid="classtnt_1_1_anchored_spring_force" prot="public" virt="non-virtual">tnt::AnchoredSpringForce</derivedcompoundref>
+    <derivedcompoundref refid="classtnt_1_1_bungee_force" prot="public" virt="non-virtual">tnt::BungeeForce</derivedcompoundref>
+    <derivedcompoundref refid="classtnt_1_1_buoyancy_force" prot="public" virt="non-virtual">tnt::BuoyancyForce</derivedcompoundref>
+    <derivedcompoundref refid="classtnt_1_1_drag_force" prot="public" virt="non-virtual">tnt::DragForce</derivedcompoundref>
+    <derivedcompoundref refid="classtnt_1_1_fake_spring" prot="public" virt="non-virtual">tnt::FakeSpring</derivedcompoundref>
+    <derivedcompoundref refid="classtnt_1_1_gravity_force" prot="public" virt="non-virtual">tnt::GravityForce</derivedcompoundref>
+    <derivedcompoundref refid="classtnt_1_1_spring_force" prot="public" virt="non-virtual">tnt::SpringForce</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_force_generator_1ad0f559c3b3be1637f42f4f3c4bd6607d" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="virtual">
+        <type></type>
+        <definition>virtual tnt::ForceGenerator::~ForceGenerator</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>~ForceGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="14" column="13" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_force_generator_1a42208e6e8fff3f663bf93e6000a813ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void tnt::ForceGenerator::update</definition>
+        <argsstring>(Particle *particle, float duration)=0</argsstring>
+        <name>update</name>
+        <reimplementedby refid="classtnt_1_1_gravity_force_1a1321b55a85ddc9cd02ef65c8af677681">update</reimplementedby>
+        <reimplementedby refid="classtnt_1_1_drag_force_1aed2c78fe76c00f867771a6ae9ca8b970">update</reimplementedby>
+        <reimplementedby refid="classtnt_1_1_spring_force_1a77eada4c58e78139530b35949f9a3029">update</reimplementedby>
+        <reimplementedby refid="classtnt_1_1_anchored_spring_force_1a71629b15c1c0dee85343559bd05dcc5b">update</reimplementedby>
+        <reimplementedby refid="classtnt_1_1_bungee_force_1ae6fcc884fa0b894b0d9719f605e31df2">update</reimplementedby>
+        <reimplementedby refid="classtnt_1_1_buoyancy_force_1ae25e491b028e16e1d3fbf548ff1ba6f8">update</reimplementedby>
+        <reimplementedby refid="classtnt_1_1_fake_spring_1a8494708a95be32042095bc57a5329cd6">update</reimplementedby>
+        <param>
+          <type><ref refid="classtnt_1_1_particle" kindref="compound">Particle</ref> *</type>
+          <declname>particle</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="16" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>tnt::DragForce</label>
+        <link refid="classtnt_1_1_drag_force"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>tnt::FakeSpring</label>
+        <link refid="classtnt_1_1_fake_spring"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::ForceGenerator</label>
+        <link refid="classtnt_1_1_force_generator"/>
+      </node>
+      <node id="3">
+        <label>tnt::BungeeForce</label>
+        <link refid="classtnt_1_1_bungee_force"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>tnt::GravityForce</label>
+        <link refid="classtnt_1_1_gravity_force"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>tnt::SpringForce</label>
+        <link refid="classtnt_1_1_spring_force"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::AnchoredSpringForce</label>
+        <link refid="classtnt_1_1_anchored_spring_force"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>tnt::BuoyancyForce</label>
+        <link refid="classtnt_1_1_buoyancy_force"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="11" column="1" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="12" bodyend="17"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_force_generator_1a42208e6e8fff3f663bf93e6000a813ba" prot="public" virt="pure-virtual"><scope>tnt::ForceGenerator</scope><name>update</name></member>
+      <member refid="classtnt_1_1_force_generator_1ad0f559c3b3be1637f42f4f3c4bd6607d" prot="public" virt="virtual"><scope>tnt::ForceGenerator</scope><name>~ForceGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

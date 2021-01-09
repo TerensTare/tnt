@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1sine" kind="namespace" language="C++">
+    <compoundname>tnt::sine</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_easings_8hpp_1a3a578c03f7e68dca9f8156fa732d100d" prot="public" static="no" mutable="no">
+        <type>auto</type>
+        <definition>auto tnt::sine::EaseIn</definition>
+        <argsstring></argsstring>
+        <name>EaseIn</name>
+        <initializer>= [](float time, float begin, float change,
+                         float duration) -&gt; float {
+            return -change * cosf(time / duration * (PI / 2)) + begin;
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Easings.hpp" line="301" column="14" bodyfile="E:/thing/cpp/tnt/include/math/Easings.hpp" bodystart="301" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_easings_8hpp_1a44403407c555f19a47af6596584774be" prot="public" static="no" mutable="no">
+        <type>auto</type>
+        <definition>auto tnt::sine::EaseOut</definition>
+        <argsstring></argsstring>
+        <name>EaseOut</name>
+        <initializer>= [](float time, float begin, float change, float duration) -&gt; float {
+            return -change * sinf(time / duration * (PI / 2)) + begin;
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Easings.hpp" line="306" column="14" bodyfile="E:/thing/cpp/tnt/include/math/Easings.hpp" bodystart="306" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_easings_8hpp_1a13af46dfc232177479ee348e461d8024" prot="public" static="no" mutable="no">
+        <type>auto</type>
+        <definition>auto tnt::sine::EaseInOut</definition>
+        <argsstring></argsstring>
+        <name>EaseInOut</name>
+        <initializer>= [](float time, float begin, float change, float duration) -&gt; float {
+            return -change / 2 * (cosf(PI * time / duration) - 1) + begin;
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Easings.hpp" line="310" column="14" bodyfile="E:/thing/cpp/tnt/include/math/Easings.hpp" bodystart="310" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/math/Easings.hpp" line="299" column="5"/>
+  </compounddef>
+</doxygen>

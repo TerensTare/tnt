@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1poly__resource_1_1s1" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::poly_resource::s1</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1poly__resource_1_1s1_1a45b7b179c5e6b837c2f2bedb5a92cb5b" prot="public" static="no" mutable="no">
+        <type>std::byte</type>
+        <definition>std::byte tnt::poly_resource&lt; T, Buffer, R &gt;::s1::buffer[Buffer]</definition>
+        <argsstring>[Buffer]</argsstring>
+        <name>buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/PolyResource.hpp" line="93" column="23" bodyfile="E:/thing/cpp/tnt/include/types/PolyResource.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1poly__resource_1_1s1_1a836773c9f3fe377f93cd8aa8525c619a" prot="public" static="no" mutable="no">
+        <type>R</type>
+        <definition>R tnt::poly_resource&lt; T, Buffer, R &gt;::s1::res</definition>
+        <argsstring></argsstring>
+        <name>res</name>
+        <initializer>{buffer, Buffer}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/PolyResource.hpp" line="94" column="15" bodyfile="E:/thing/cpp/tnt/include/types/PolyResource.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1poly__resource_1_1s1_1a6bb682d303bf47365e2f64f709df9f35" prot="public" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tnt::poly_resource&lt; T, Buffer, R &gt;::s1::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/PolyResource.hpp" line="95" column="15" bodyfile="E:/thing/cpp/tnt/include/types/PolyResource.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1poly__resource_1_1s1_1a3f79768646558e888d80ab1a9a4c654f" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="rvalue" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>requires std::constructible_from&lt; T, Args... &gt;</type>
+        <definition>requires std::constructible_from&lt;T, Args...&gt; tnt::poly_resource&lt; T, Buffer, R &gt;::s1::explicit</definition>
+        <argsstring>(sizeof...(Args) !=1) poly_resource(Args &amp;&amp;... args) noexcept(std::is_nothrow_constructible_v&lt; T, Args... &gt;)</argsstring>
+        <name>explicit</name>
+        <param>
+          <type>sizeof...(Args) !</type>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/PolyResource.hpp" line="88" column="20" bodyfile="E:/thing/cpp/tnt/include/types/PolyResource.hpp" bodystart="88" bodyend="90"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/types/PolyResource.hpp" line="83" column="9" bodyfile="E:/thing/cpp/tnt/include/types/PolyResource.hpp" bodystart="84" bodyend="96"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1poly__resource_1_1s1_1a45b7b179c5e6b837c2f2bedb5a92cb5b" prot="public" virt="non-virtual"><scope>tnt::poly_resource::s1</scope><name>buffer</name></member>
+      <member refid="structtnt_1_1poly__resource_1_1s1_1a6bb682d303bf47365e2f64f709df9f35" prot="public" virt="non-virtual"><scope>tnt::poly_resource::s1</scope><name>data</name></member>
+      <member refid="structtnt_1_1poly__resource_1_1s1_1a3f79768646558e888d80ab1a9a4c654f" prot="public" virt="non-virtual"><scope>tnt::poly_resource::s1</scope><name>explicit</name></member>
+      <member refid="structtnt_1_1poly__resource_1_1s1_1a836773c9f3fe377f93cd8aa8525c619a" prot="public" virt="non-virtual"><scope>tnt::poly_resource::s1</scope><name>res</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

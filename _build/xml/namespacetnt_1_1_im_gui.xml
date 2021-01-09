@@ -1,0 +1,1395 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1_im_gui" kind="namespace" language="C++">
+    <compoundname>tnt::ImGui</compoundname>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3b" prot="public" static="no" strong="yes">
+        <type>unsigned</type>
+        <name>WindowFlags</name>
+        <enumvalue id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3ba2efd8ed8f44373d71412de644235f908" prot="public">
+          <name>Collapsible</name>
+          <initializer>= (1 &lt;&lt; 0)</initializer>
+          <briefdescription>
+<para>with a collapse button </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3ba070e2ab109093b213de9ede8dd0a5973" prot="public">
+          <name>Closable</name>
+          <initializer>= (1 &lt;&lt; 1)</initializer>
+          <briefdescription>
+<para>with a close button </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3baaff10bf1618da00a8a80b74044e719b2" prot="public">
+          <name>Resizable</name>
+          <initializer>= (1 &lt;&lt; 2)</initializer>
+          <briefdescription>
+<para>with a resize button </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3ba7088d0affb208681b3cdbec3f72c59e3" prot="public">
+          <name>Movable</name>
+          <initializer>= (1 &lt;&lt; 3)</initializer>
+          <briefdescription>
+<para>can be moved </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3bad9fa2bb4592e2e460b0a83d9c056423a" prot="public">
+          <name>WithTitleBar</name>
+          <initializer>= (1 &lt;&lt; 4)</initializer>
+          <briefdescription>
+<para>has a title bar </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3ba697964e4235aff412991fb25c2ad176f" prot="public">
+          <name>OpaqueBackground</name>
+          <initializer>= (1 &lt;&lt; 5)</initializer>
+          <briefdescription>
+<para>draw text and widgets, and the background </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3bab471a80b7c3913cef3272ba43cb82d16" prot="public">
+          <name>WidgetThenText</name>
+          <initializer>= (1 &lt;&lt; 6)</initializer>
+          <briefdescription>
+<para>draw the widget on the left and it&apos;s text on the right </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_im_gui_8hpp_1a50b9f27b019d9845e1d157be819f6a3ba7a1920d61156abc05a60135aefe8bc67" prot="public">
+          <name>Default</name>
+          <initializer>= Collapsible | Closable | Resizable | Movable | WithTitleBar | OpaqueBackground | WidgetThenText</initializer>
+          <briefdescription>
+<para>has all the enum&apos;s values OR-ed </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>An enum representing the flags that an ImGui window (not a game window) can have. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para>tnt::ImGui::Begin() </para>
+</simplesect>
+<simplesect kind="note"><para>This enum is not fully functional yet. This means that you should leave the default (last) argument of <computeroutput>tnt::ImGui::Begin()</computeroutput> as is. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="38" column="9" bodyfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" bodystart="39" bodyend="49"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_im_gui_8hpp_1a2ec55b5186088ca636f55c180cd8bae6" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::ImGui::make_context</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>make_context</name>
+        <briefdescription>
+<para>Creates a new context and makes ImGui ready to be used. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is automatically called by <computeroutput>tnt_imgui_begin()</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="61" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="61" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a1e14849ccf30a9310cabd1aa3d9e5668" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::ImGui::Begin</definition>
+        <argsstring>(Window const &amp;win, std::string_view name, int x, int y, WindowFlags flags=WindowFlags::Default) noexcept</argsstring>
+        <name>Begin</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>WindowFlags</type>
+          <declname>flags</declname>
+          <defval>WindowFlags::Default</defval>
+        </param>
+        <briefdescription>
+<para>Draw a new ImGui window on <computeroutput>win</computeroutput> at <computeroutput></computeroutput>(x,y) and handle events related to it. Widgets that don&apos;t require position parameters are drawn on this window. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The window where the drawing should happen. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired title for the window. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired x position. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired y position. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The flags the window should have. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::WindowFlags </para>
+</simplesect>
+<simplesect kind="note"><para><computeroutput>tnt::ImGui::End()</computeroutput> should be called for each <computeroutput>tnt::ImGui::Begin()</computeroutput>. </para>
+</simplesect>
+<simplesect kind="note"><para>For the moment, you CANNOT call <computeroutput>tnt::ImGui::Begin()</computeroutput> inside another <computeroutput>tnt::ImGui::Begin()</computeroutput> / <computeroutput>tnt::ImGui::End()</computeroutput> pair. That&apos;s the only case when this function returns false, but this is subject to change. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="76" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="76" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a5a52f12266c0299f3cdd7e1fee437200" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::ImGui::End</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>End</name>
+        <briefdescription>
+<para>Stop drawing widgets on the last window where <computeroutput>tnt::ImGui::Begin()</computeroutput> is called. Also update some context-related data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para>tnt::ImGui::Begin() </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="82" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="82" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a3f29b09ded45aed0bd8aba1f9262545e" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::ImGui::BeginSection</definition>
+        <argsstring>(Window const &amp;win, std::string_view text) noexcept</argsstring>
+        <name>BeginSection</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Draw a &quot;section&quot; on the current ImGui window, which contains widgets and can be collapsed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the drawing should happen. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text to be displayed on the section. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::EndSection() </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="89" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="89" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1ab233bdd330cd2af8b783969314271f30" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::ImGui::EndSection</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>EndSection</name>
+        <briefdescription>
+<para>Stop drawing widgets on the current &quot;section&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para>tnt::ImGui::BeginSection() </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="93" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="93" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1af9854d44e9035a6d7e2c3c5d11b3d239" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::ImGui::BeginList</definition>
+        <argsstring>(bool indexed) noexcept</argsstring>
+        <name>BeginList</name>
+        <param>
+          <type>bool</type>
+          <declname>indexed</declname>
+        </param>
+        <briefdescription>
+<para>Prepare the current ImGui window for drawing a list on it. Calling <computeroutput>BeginList()</computeroutput> inside another <computeroutput>BeginList()</computeroutput> / <computeroutput>EndList()</computeroutput> pair indents the second list. This is useful for making sublists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para>tnt::ImGui::EndList() </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::list_item() </para>
+</simplesect>
+<simplesect kind="note"><para><computeroutput>tnt::ImGui::EndList()</computeroutput> should be called for each <computeroutput>tnt::ImGui::BeginList()</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="101" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="101" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1ac59117c742ff20abdf5f6af01ddfeb95" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::ImGui::EndList</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>EndList</name>
+        <briefdescription>
+<para>End the current list of items. If this is a sublist (list inside another list) indentation is decreased. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para>tnt::ImGui::BeginList() </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::list_item() </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="107" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="107" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1aa807620297daa16dc944ecbb99ce6714" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::ImGui::BeginMenuBar</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>BeginMenuBar</name>
+        <briefdescription>
+<para>Prepare the last ImGui window to draw the menu bar on it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para>tnt::ImGui::EndMenuBar() </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::menu_button() </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::menu_item() </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="113" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="113" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1ad224e0a9859566f226185ffd7a0a25f5" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::ImGui::EndMenuBar</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>EndMenuBar</name>
+        <briefdescription>
+<para>Do the cleanup of the menu bar stuff on the last ImGui window. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para>tnt::ImGui::BeginMenuBar() </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::menu_button() </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::menu_item() </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="119" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="119" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a4c5ba21b6b012de4fa7ef3b0f0ee7be5" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::ImGui::button</definition>
+        <argsstring>(Window const &amp;win, std::string_view text) noexcept</argsstring>
+        <name>button</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Draw a button on the current ImGui window, with <computeroutput>text</computeroutput> on it. Returns true if the button is pressed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the button should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text that should be drawn on the button. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="126" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="126" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a98d5c8b7bf3d52ea228efa3b54465207" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::ImGui::slider_int</definition>
+        <argsstring>(Window const &amp;win, int min_, int max_, int *value) noexcept</argsstring>
+        <name>slider_int</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>min_</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Draw a vertical slider that modifies an <computeroutput>int</computeroutput> value on the current ImGui window. The widget returns <computeroutput>true</computeroutput> if the value has been modified, <computeroutput>false</computeroutput> otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the slider should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimun value the widget can set. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum value the widget can set. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value that the widget can modify. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="135" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="135" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a8787af0f541b60d36730bcb324e1b3ac" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::ImGui::slider_float</definition>
+        <argsstring>(Window const &amp;win, float min_, float max_, float *value) noexcept</argsstring>
+        <name>slider_float</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>min_</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>max_</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Draw a vertical slider that modifies an <computeroutput>float</computeroutput> value on the current ImGui window. The widget returns <computeroutput>true</computeroutput> if the value has been modified, <computeroutput>false</computeroutput> otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the slider should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimun value the widget can set. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum value the widget can set. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value that the widget can modify. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="144" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="144" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a3e991ebcb59ed74443c52835b19683fd" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::ImGui::hslider_int</definition>
+        <argsstring>(Window const &amp;win, std::string_view text, int min_, int max_, int *value) noexcept</argsstring>
+        <name>hslider_int</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>min_</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Draw a horizontal slider that modifies an <computeroutput>int</computeroutput> value on the current ImGui window. The widget returns <computeroutput>true</computeroutput> if the value has been modified, <computeroutput>false</computeroutput> otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the slider should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text that should be drawn next to the slider. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimun value the widget can set. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum value the widget can set. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value that the widget can modify. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="155" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="155" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1af5d28a54732732ebd9df0e3012f55d85" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::ImGui::hslider_float</definition>
+        <argsstring>(Window const &amp;win, std::string_view text, float min_, float max_, float *value) noexcept</argsstring>
+        <name>hslider_float</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>min_</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>max_</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Draw a horizontal slider that modifies an <computeroutput>float</computeroutput> value on the current ImGui window. The widget returns <computeroutput>true</computeroutput> if the value has been modified, <computeroutput>false</computeroutput> otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the slider should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text that should be drawn next to the slider. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimun value the widget can set. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum value the widget can set. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value that the widget can modify. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="166" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="166" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a86f5c3b8578924f4c3397db594355a04" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::ImGui::hslider_int2</definition>
+        <argsstring>(Window const &amp;win, std::string_view text, int min_, int max_, int *value1, int *value2) noexcept</argsstring>
+        <name>hslider_int2</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>min_</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>value1</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>value2</declname>
+        </param>
+        <briefdescription>
+<para>Draw two aligned horizontal sliders that modify 2 <computeroutput>int</computeroutput> values on the current ImGui window. The widget returns <computeroutput>true</computeroutput> if any of the values have been modified, <computeroutput>false</computeroutput> otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the slider should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text that should be drawn next to the sliders. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimun value the widget can set for the first <computeroutput>int</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum value the widget can set for the first <computeroutput>int</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first value that the widget can modify. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second value that the widget can modify. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="178" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="178" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a95a0c4eee040b5ff9812657b85406630" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::ImGui::hslider_float2</definition>
+        <argsstring>(Window const &amp;win, std::string_view text, float min_, float max_, float *value1, float *value2) noexcept</argsstring>
+        <name>hslider_float2</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>min_</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>max_</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>value1</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>value2</declname>
+        </param>
+        <briefdescription>
+<para>Draw two aligned horizontal sliders that modify 2 <computeroutput>float</computeroutput> values on the current ImGui window. The widget returns <computeroutput>true</computeroutput> if any of the values have been modified, <computeroutput>false</computeroutput> otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the slider should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text that should be drawn next to the sliders. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimun value the widget can set for the first <computeroutput>float</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum value the widget can set for the first <computeroutput>float</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first value that the widget can modify. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second value that the widget can modify. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="190" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="190" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a59cccfa5552f5a69aad6c3ada6665596" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::ImGui::hslider_vec</definition>
+        <argsstring>(Window const &amp;win, std::string_view text, float min1, float max1, float min2, float max2, tnt::Vector *value) noexcept</argsstring>
+        <name>hslider_vec</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>min1</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>max1</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>min2</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>max2</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref> *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Draw two aligned horizontal sliders that modify a <computeroutput><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref>&apos;s</computeroutput> value on the current ImGui window. The widget returns <computeroutput>true</computeroutput> if any of the values have been modified, <computeroutput>false</computeroutput> otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the slider should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text that should be drawn next to the sliders. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimun value the widget can set for the first <computeroutput>float</computeroutput> of the <computeroutput><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref></computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum value the widget can set for the first <computeroutput>float</computeroutput> of the <computeroutput><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref></computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimun value the widget can set for the second <computeroutput>float</computeroutput> of the <computeroutput><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref></computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum value the widget can set for the second <computeroutput>float</computeroutput> of the <computeroutput><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref></computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <computeroutput><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref></computeroutput> that the widget can modify. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="203" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="203" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1ab88d3bb85dbaccc072380b5cf64a7263" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::ImGui::checkbox</definition>
+        <argsstring>(Window const &amp;win, std::string_view text, bool *value) noexcept</argsstring>
+        <name>checkbox</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Draw a checkbox with <computeroutput>text</computeroutput> on the side of it. Returns <computeroutput>true</computeroutput> if modified, <computeroutput>false</computeroutput> otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the checkbox should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text that should be displayed next to the checkbox. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value representing the state of the checkbox. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="213" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="213" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a4be4e6e464f056d16c509c86f73c7f7f" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::ImGui::menu_button</definition>
+        <argsstring>(Window const &amp;win, std::string_view text) noexcept</argsstring>
+        <name>menu_button</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Draw a menu button on the current window. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the menu button will be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the menu button. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::BeginMenuBar() </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::EndMenuBar() </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::menu_item() </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="222" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="222" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1adb0e445e1803d8c1dad06aaccc960431" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API bool</type>
+        <definition>TNT_API bool tnt::ImGui::menu_item</definition>
+        <argsstring>(Window const &amp;win, std::string_view text) noexcept</argsstring>
+        <name>menu_item</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Draw a menu bar with options from the <computeroutput>options</computeroutput> array. Returns the index of the pressed menu button (if any), or -1 otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the menu should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text to be shown on the item&apos;s button. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::BeginMenuBar() </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::EndMenuBar() </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::menu_button() </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="232" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="232" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a57acd0433ae844ed0dc63bfcaf4e0a39" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::ImGui::progress_bar</definition>
+        <argsstring>(Window const &amp;win, std::string_view text, int min_, int max_, int *value) noexcept</argsstring>
+        <name>progress_bar</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>min_</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Draw a progress bar with text on the side of it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the progress bar should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text that should be displayed next to the progress bar. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimum value of the progress bar. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum value of the progress bar. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value that shows the current progress bar index. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<xrefsect id="todo_1_todo000003"><xreftitle>Todo</xreftitle><xrefdescription><para>(maybe) return 1 if *value == max_ </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="241" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="241" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a6106b1d0539ff05dc838b53e5c34bcc1" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::ImGui::newline</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>newline</name>
+        <briefdescription>
+<para>Add an empty line on the current window. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="245" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="245" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1ac408406c75c66b57dcf783c9fb18407f" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::ImGui::text</definition>
+        <argsstring>(Window const &amp;win, std::string_view text) noexcept</argsstring>
+        <name>text</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Draw <computeroutput>text</computeroutput> on the current window. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the text should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text that should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="250" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="250" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1aeaf586e24f9bc50af6e0172a40c336a2" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::ImGui::colored_text</definition>
+        <argsstring>(Window const &amp;win, std::string_view text, unsigned char r, unsigned char g, unsigned char b, unsigned char a) noexcept</argsstring>
+        <name>colored_text</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>unsigned char</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>unsigned char</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>unsigned char</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>unsigned char</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>Draw <computeroutput>text</computeroutput> with the specified color. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the text should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text that should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The red &quot;component&quot; of the text color. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The green &quot;component&quot; of the text color. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The blue &quot;component&quot; of the text color. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transparent &quot;component&quot; of the text color. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="259" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="259" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_im_gui_8hpp_1a7701a76800d03478059debb38025775b" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::ImGui::list_item</definition>
+        <argsstring>(Window const &amp;win, std::string_view text) noexcept</argsstring>
+        <name>list_item</name>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Add a new item to the current list. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The game window where the list item should be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text of the list item. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>tnt::ImGui::BeginList() </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::ImGui::EndList() </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="268" column="22" declfile="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" declline="268" declcolumn="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/imgui/ImGui.hpp" line="31" column="5"/>
+  </compounddef>
+</doxygen>

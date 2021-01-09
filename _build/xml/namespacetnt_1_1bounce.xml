@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1bounce" kind="namespace" language="C++">
+    <compoundname>tnt::bounce</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_easings_8hpp_1a79db07b1c7b6c9230fe602f2458675e2" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto tnt::bounce::EaseOut</definition>
+        <argsstring></argsstring>
+        <name>EaseOut</name>
+        <initializer>= [](float time, float begin, float change,
+                                           float duration) -&gt; float {
+            if ((time /= duration) &lt; (1 / 2.75f))
+                return change * (7.5625f * time * time) + begin;
+            else if (time &lt; (2 / 2.75f))
+            {
+                time -= (1.5f / 2.75f);
+                return change * (7.5625f * time * time + .75f) + begin;
+            }
+            else if (time &lt; (2.5f / 2.75f))
+            {
+                time -= (2.25f / 2.75f);
+                return change * (7.5625f * time * time + .9375f) + begin;
+            }
+            else
+            {
+                time -= (2.625f / 2.75f);
+                return change * (7.5625f * time * time + .984375f) + begin;
+            }
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Easings.hpp" line="47" column="31" bodyfile="E:/thing/cpp/tnt/include/math/Easings.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_easings_8hpp_1a99e6b9f644d0c8d8e1399f521b739abe" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto tnt::bounce::EaseIn</definition>
+        <argsstring></argsstring>
+        <name>EaseIn</name>
+        <initializer>= [](float time, float begin, float change,
+                                          float duration) -&gt; float {
+            return change - EaseOut(duration - time, 0, change, duration) +
+                   begin;
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Easings.hpp" line="68" column="31" bodyfile="E:/thing/cpp/tnt/include/math/Easings.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_easings_8hpp_1ace807160a8a4663e1637c2c6af1f52a9" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto tnt::bounce::EaseInOut</definition>
+        <argsstring></argsstring>
+        <name>EaseInOut</name>
+        <initializer>= [](float time, float begin, float change,
+                                             float duration) -&gt; float {
+            if (time &lt; duration / 2)
+                return EaseIn(time * 2, 0, change, duration) * .5f + begin;
+            else
+                return EaseOut(time * 2 - duration, 0, change, duration) * .5f +
+                       change * .5f + begin;
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Easings.hpp" line="74" column="31" bodyfile="E:/thing/cpp/tnt/include/math/Easings.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/math/Easings.hpp" line="45" column="5"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1vfs" kind="namespace" language="C++">
+    <compoundname>tnt::vfs</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_virtual_f_s_8hpp_1a90a4b6c9cb228a32716eb183757752a2" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>constexpr const char *</type>
+        <definition>constexpr const char* tnt::vfs::path_sep</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>path_sep</name>
+        <briefdescription>
+<para>Return the path separator used by the OS. &quot;\\&quot; on Windows, &quot;/&quot; otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="todo_1_todo000002"><xreftitle>Todo</xreftitle><xrefdescription><para>(maybe) Use consteval ?? </para>
+</xrefdescription></xrefsect><simplesect kind="return"><para>constexpr const char* </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" line="56" column="26" bodyfile="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" bodystart="56" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="_virtual_f_s_8hpp_1a824c4d5f5fd684ca5ac98fb994c18eaf" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::vfs::mount</definition>
+        <argsstring>(char const *path, char const *alias) noexcept</argsstring>
+        <name>mount</name>
+        <param>
+          <type>char const *</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>alias</declname>
+        </param>
+        <briefdescription>
+<para>Make <emphasis>alias</emphasis> evaluate to <emphasis>path</emphasis> when used with <emphasis>tnt::vfs::absolute</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to be aliased. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>alias</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The alias of <emphasis>path</emphasis>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>If <emphasis>alias</emphasis> has already been assigned to a different path, a debug log will be emmited and the old path will be replaced by the new one. </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::vfs::absolute. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" line="69" column="18" declfile="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" declline="69" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_virtual_f_s_8hpp_1af6cf5bf209174e1b5b18dabee764cfe1" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API void</type>
+        <definition>TNT_API void tnt::vfs::unmount</definition>
+        <argsstring>(char const *path) noexcept</argsstring>
+        <name>unmount</name>
+        <param>
+          <type>char const *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Remove <emphasis>path</emphasis> from the defined aliases. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The alias path to be removed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>If <emphasis>path</emphasis> was never assigned, a debug log will be emmited and nothing will happen. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" line="74" column="18" declfile="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" declline="74" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_virtual_f_s_8hpp_1af7a8aa15472f8daaa295a182a6529bfe" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>TNT_API std::string</type>
+        <definition>TNT_API std::string tnt::vfs::absolute</definition>
+        <argsstring>(std::string_view path) noexcept</argsstring>
+        <name>absolute</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Get the absolute path from a(n) absolute/relative/aliased path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to be turned to an absolute path. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" line="79" column="25" declfile="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" declline="79" declcolumn="25"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" line="51" column="1"/>
+  </compounddef>
+</doxygen>

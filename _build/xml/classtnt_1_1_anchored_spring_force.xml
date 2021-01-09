@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_anchored_spring_force" kind="class" language="C++" prot="public">
+    <compoundname>tnt::AnchoredSpringForce</compoundname>
+    <basecompoundref refid="classtnt_1_1_force_generator" prot="public" virt="non-virtual">tnt::ForceGenerator</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_anchored_spring_force_1a99a68af0f07d327ae55f1aad68a74863" prot="private" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> *</type>
+        <definition>Vector* tnt::AnchoredSpringForce::anchor</definition>
+        <argsstring></argsstring>
+        <name>anchor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="82" column="12" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_anchored_spring_force_1a89ee35c9a744ff4914934c271fc6bb10" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::AnchoredSpringForce::springc</definition>
+        <argsstring></argsstring>
+        <name>springc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="83" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_anchored_spring_force_1a55ca5dc07838b7fdd3988778a7491d77" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::AnchoredSpringForce::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="84" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_anchored_spring_force_1ad1834357d18207f5cf320cafc1165113" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::AnchoredSpringForce::AnchoredSpringForce</definition>
+        <argsstring>(Vector *anch, float c, float restl)</argsstring>
+        <name>AnchoredSpringForce</name>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> *</type>
+          <declname>anch</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>restl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="77" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_anchored_spring_force_1a71629b15c1c0dee85343559bd05dcc5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void tnt::AnchoredSpringForce::update</definition>
+        <argsstring>(Particle *particle, float duration) override</argsstring>
+        <name>update</name>
+        <reimplements refid="classtnt_1_1_force_generator_1a42208e6e8fff3f663bf93e6000a813ba">update</reimplements>
+        <param>
+          <type><ref refid="classtnt_1_1_particle" kindref="compound">Particle</ref> *</type>
+          <declname>particle</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="79" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>tnt::ForceGenerator</label>
+        <link refid="classtnt_1_1_force_generator"/>
+      </node>
+      <node id="1">
+        <label>tnt::AnchoredSpringForce</label>
+        <link refid="classtnt_1_1_anchored_spring_force"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>tnt::ForceGenerator</label>
+        <link refid="classtnt_1_1_force_generator"/>
+      </node>
+      <node id="1">
+        <label>tnt::AnchoredSpringForce</label>
+        <link refid="classtnt_1_1_anchored_spring_force"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" line="74" column="1" bodyfile="E:/thing/cpp/tnt/include/physics/ForceGenerator.hpp" bodystart="75" bodyend="85"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_anchored_spring_force_1a99a68af0f07d327ae55f1aad68a74863" prot="private" virt="non-virtual"><scope>tnt::AnchoredSpringForce</scope><name>anchor</name></member>
+      <member refid="classtnt_1_1_anchored_spring_force_1ad1834357d18207f5cf320cafc1165113" prot="public" virt="non-virtual"><scope>tnt::AnchoredSpringForce</scope><name>AnchoredSpringForce</name></member>
+      <member refid="classtnt_1_1_anchored_spring_force_1a55ca5dc07838b7fdd3988778a7491d77" prot="private" virt="non-virtual"><scope>tnt::AnchoredSpringForce</scope><name>length</name></member>
+      <member refid="classtnt_1_1_anchored_spring_force_1a89ee35c9a744ff4914934c271fc6bb10" prot="private" virt="non-virtual"><scope>tnt::AnchoredSpringForce</scope><name>springc</name></member>
+      <member refid="classtnt_1_1_anchored_spring_force_1a71629b15c1c0dee85343559bd05dcc5b" prot="public" virt="virtual"><scope>tnt::AnchoredSpringForce</scope><name>update</name></member>
+      <member refid="classtnt_1_1_force_generator_1ad0f559c3b3be1637f42f4f3c4bd6607d" prot="public" virt="virtual"><scope>tnt::AnchoredSpringForce</scope><name>~ForceGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1as__sentinel__t" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::as_sentinel_t</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/types/SparseSet.hpp" line="22" column="22" bodyfile="E:/thing/cpp/tnt/include/types/SparseSet.hpp" bodystart="23" bodyend="24"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

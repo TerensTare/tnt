@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_afd937d70611a55c9601734fb033a9b9" kind="dir">
+    <compoundname>E:/thing/cpp/tnt/include/json</compoundname>
+    <innerfile refid="_json_rectangle_8hpp">JsonRectangle.hpp</innerfile>
+    <innerfile refid="_json_vector_8hpp">JsonVector.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/json/"/>
+  </compounddef>
+</doxygen>

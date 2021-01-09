@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1power_3_010_00_01_expo_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::power&lt; 0, Expo &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>int</type>
+        <declname>Expo</declname>
+        <defname>Expo</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structtnt_1_1power_3_010_00_01_expo_01_4_1a18f1ee825ce90a396f97d0cbc751c35a" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@8</name>
+        <enumvalue id="structtnt_1_1power_3_010_00_01_expo_01_4_1a18f1ee825ce90a396f97d0cbc751c35aa8b65c8ed3e7d582c9f688316f983210f" prot="public">
+          <name>value</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/MathUtils.hpp" line="86" column="9" bodyfile="E:/thing/cpp/tnt/include/math/MathUtils.hpp" bodystart="87" bodyend="89"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/math/MathUtils.hpp" line="84" column="5" bodyfile="E:/thing/cpp/tnt/include/math/MathUtils.hpp" bodystart="85" bodyend="90"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1power_3_010_00_01_expo_01_4_1a18f1ee825ce90a396f97d0cbc751c35aa8b65c8ed3e7d582c9f688316f983210f" prot="public" virt="non-virtual"><scope>tnt::power&lt; 0, Expo &gt;</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1detail_1_1is__sized__any" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::detail::is_sized_any</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">false_type</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>std::false_type</label>
+      </node>
+      <node id="1">
+        <label>tnt::detail::is_sized_any&lt; T &gt;</label>
+        <link refid="structtnt_1_1detail_1_1is__sized__any"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>std::false_type</label>
+      </node>
+      <node id="1">
+        <label>tnt::detail::is_sized_any&lt; T &gt;</label>
+        <link refid="structtnt_1_1detail_1_1is__sized__any"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/mirror/Any.hpp" line="48" column="9" bodyfile="E:/thing/cpp/tnt/include/mirror/Any.hpp" bodystart="49" bodyend="50"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,540 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1doo_1_1cameras__sys" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::doo::cameras_sys</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1cameras__sys_1aafb6610cd6b5645d152b7c845acb4f40" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref>&lt; camera &gt;</type>
+        <definition>sparse_set&lt;camera&gt; tnt::doo::cameras_sys::active</definition>
+        <argsstring></argsstring>
+        <name>active</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="117" column="20" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1cameras__sys_1ae4d253ea25bc176bdceaecb1e8df948e" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; tnt::doo::cameras_sys::angle</definition>
+        <argsstring></argsstring>
+        <name>angle</name>
+        <briefdescription>
+<para>&lt; The id-s of all the active cameras. Not related to the id-s of the objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="119" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1cameras__sys_1a1cae477540dc7df99f084c5e82d17a42" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; tnt::doo::cameras_sys::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <briefdescription>
+<para>&lt; The angles of all the cameras. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="120" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1cameras__sys_1a64a78b97adf1853a94b85786de50ac5d" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; tnt::doo::cameras_sys::height</definition>
+        <argsstring></argsstring>
+        <name>height</name>
+        <briefdescription>
+<para>&lt; The width of all the cameras. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="121" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1cameras__sys_1a6ae8098b7b174c1114a9e56f0d5ced4e" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; tnt::doo::cameras_sys::speed</definition>
+        <argsstring></argsstring>
+        <name>speed</name>
+        <briefdescription>
+<para>&lt; The height of all the cameras. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="122" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1cameras__sys_1a8e1288164d2e02467167bd9f244b909b" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; tnt::doo::cameras_sys::shaking</definition>
+        <argsstring></argsstring>
+        <name>shaking</name>
+        <briefdescription>
+<para>&lt; The speed the camera will approach to the player. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="123" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1cameras__sys_1a9ddfc21562d219acf2a85b6ed718f27a" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; tnt::doo::cameras_sys::shakeLoss</definition>
+        <argsstring></argsstring>
+        <name>shakeLoss</name>
+        <briefdescription>
+<para>&lt; The amount of shaking for each camera. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="124" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1cameras__sys_1a9e1a5185665b9238a141e9f6d49920df" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; tnt::doo::cameras_sys::shake_time</definition>
+        <argsstring></argsstring>
+        <name>shake_time</name>
+        <briefdescription>
+<para>&lt; The amount of decreasing on the shaking of each camera per second. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="125" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1cameras__sys_1a3b0a12424e29ee1a64c18c6aa4196989" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; object &gt;</type>
+        <definition>std::vector&lt;object&gt; tnt::doo::cameras_sys::target</definition>
+        <argsstring></argsstring>
+        <name>target</name>
+        <briefdescription>
+<para>&lt; The amount of time in milliseconds a camera should shake, if it is shaking. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="127" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1cameras__sys_1a37ef3437a5abfcfeba61d4c7c986f763" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &gt;</type>
+        <definition>std::vector&lt;Vector&gt; tnt::doo::cameras_sys::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+<para>&lt; The id-s of the object each camera is centered to. -1 if none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="128" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1cameras__sys_1ab0eefc3deaf64279de915e9d3b5ee434" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &gt;</type>
+        <definition>std::vector&lt;Vector&gt; tnt::doo::cameras_sys::scale</definition>
+        <argsstring></argsstring>
+        <name>scale</name>
+        <briefdescription>
+<para>&lt; The position of each camera. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="129" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1cameras__sys_1a19a7188e233924579813f10d98240cb6" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &gt;</type>
+        <definition>std::vector&lt;Vector&gt; tnt::doo::cameras_sys::offset</definition>
+        <argsstring></argsstring>
+        <name>offset</name>
+        <briefdescription>
+<para>&lt; The scale of the objects drawed on each camera. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="130" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1doo_1_1cameras__sys_1ac1d13cd2f475daaa985f358150a74168" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::cameras_sys::add_object</definition>
+        <argsstring>(camera_comp const &amp;data)</argsstring>
+        <name>add_object</name>
+        <param>
+          <type><ref refid="structtnt_1_1doo_1_1camera__comp" kindref="compound">camera_comp</ref> const &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Add a new camera to the system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The data of the camera component. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="75" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1cameras__sys_1a03a098589d766558aadded0dcd12d0e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::cameras_sys::from_json</definition>
+        <argsstring>(nlohmann::json const &amp;j)</argsstring>
+        <name>from_json</name>
+        <param>
+          <type>nlohmann::json const &amp;</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Load camera data from a json chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The json chunk. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="79" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1cameras__sys_1afc640dafdd40e39b597455cb064cd553" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::cameras_sys::to_json</definition>
+        <argsstring>(camera const &amp;id, nlohmann::json &amp;j)</argsstring>
+        <name>to_json</name>
+        <param>
+          <type>camera const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>nlohmann::json &amp;</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Store camera data of a specific object to a json chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the camera to serialize to json. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The json chunk where the data will be saved. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="84" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1cameras__sys_1ab5e96d805d33f1acceeefbdfd0537708" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::cameras_sys::draw_imgui</definition>
+        <argsstring>(camera const &amp;id, Window const &amp;win) noexcept</argsstring>
+        <name>draw_imgui</name>
+        <param>
+          <type>camera const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <briefdescription>
+<para>Draw widgets on the given window to modify the datas of the system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the desired camera. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The window where the widgets will be drawed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="89" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1cameras__sys_1a8bcac788bdc606d1245ce23d6101a2aa" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::cameras_sys::follow</definition>
+        <argsstring>(camera const &amp;cam, object const &amp;id, float time_, Vector const &amp;off=Vector{0.f, 0.f}) noexcept</argsstring>
+        <name>follow</name>
+        <param>
+          <type>camera const &amp;</type>
+          <declname>cam</declname>
+        </param>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>time_</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>off</declname>
+          <defval><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref>{0.f, 0.f}</defval>
+        </param>
+        <briefdescription>
+<para>Center the given object to the center of the camera. Maintain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cam</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the camera. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object that should be centered. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>time_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The elapsed time since the last frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>off</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The offset that the object can have from the center of the camera. Defaulted to the center. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="96" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1cameras__sys_1af1cad736be9030cea404553dfb84a7b4" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::cameras_sys::shake</definition>
+        <argsstring>(camera const &amp;cam) noexcept</argsstring>
+        <name>shake</name>
+        <param>
+          <type>camera const &amp;</type>
+          <declname>cam</declname>
+        </param>
+        <briefdescription>
+<para>Shake the camera for the given amount of time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cam</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the camera that should be shaked. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<xrefsect id="todo_1_todo000001"><xreftitle>Todo</xreftitle><xrefdescription><para>Return to the original posiition after shaking. </para>
+<para>Shake for a fixed amount of time with shake_for(). </para>
+</xrefdescription></xrefsect><simplesect kind="note"><para>Based on <ulink url="https://gist.github.com/ftvs/5822103">https://gist.github.com/ftvs/5822103</ulink> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="103" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1cameras__sys_1aabba933cf022c0ab912fd0acbc6cfef7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::cameras_sys::zoom_to_fit</definition>
+        <argsstring>(camera const &amp;cam, std::span&lt; object &gt; objs)</argsstring>
+        <name>zoom_to_fit</name>
+        <param>
+          <type>camera const &amp;</type>
+          <declname>cam</declname>
+        </param>
+        <param>
+          <type>std::span&lt; object &gt;</type>
+          <declname>objs</declname>
+        </param>
+        <briefdescription>
+<para>Set the camera zoom to fit all the given objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cam</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the camera to zoom. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>objs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id-s of the objects that should fit on the camera. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="108" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1cameras__sys_1ac0432a45dc250a4071d343a06ea2c674" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::cameras_sys::remove</definition>
+        <argsstring>(camera const &amp;id) noexcept</argsstring>
+        <name>remove</name>
+        <param>
+          <type>camera const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Remove the given object from the camera system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object you want to remove. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="112" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1cameras__sys_1ab704693fa4f60531ebe11d2cddbde830" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::cameras_sys::clear</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>clear</name>
+        <briefdescription>
+<para>Remove all the objects from the camera system. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="115" column="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>tnt::sparse_set&lt; T &gt;</label>
+        <link refid="classtnt_1_1sparse__set"/>
+      </node>
+      <node id="1">
+        <label>tnt::doo::cameras_sys</label>
+        <link refid="structtnt_1_1doo_1_1cameras__sys"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>active</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::sparse_set&lt; camera &gt;</label>
+        <link refid="classtnt_1_1sparse__set"/>
+        <childnode refid="3" relation="template-instance">
+          <edgelabel>&lt; camera &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" line="66" column="12" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Cameras.hpp" bodystart="67" bodyend="131"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1aafb6610cd6b5645d152b7c845acb4f40" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>active</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1ac1d13cd2f475daaa985f358150a74168" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>add_object</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1ae4d253ea25bc176bdceaecb1e8df948e" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>angle</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1ab704693fa4f60531ebe11d2cddbde830" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>clear</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1ab5e96d805d33f1acceeefbdfd0537708" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>draw_imgui</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1a8bcac788bdc606d1245ce23d6101a2aa" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>follow</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1a03a098589d766558aadded0dcd12d0e3" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>from_json</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1a64a78b97adf1853a94b85786de50ac5d" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>height</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1a19a7188e233924579813f10d98240cb6" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>offset</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1a37ef3437a5abfcfeba61d4c7c986f763" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>pos</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1ac0432a45dc250a4071d343a06ea2c674" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>remove</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1ab0eefc3deaf64279de915e9d3b5ee434" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>scale</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1af1cad736be9030cea404553dfb84a7b4" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>shake</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1a9e1a5185665b9238a141e9f6d49920df" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>shake_time</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1a9ddfc21562d219acf2a85b6ed718f27a" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>shakeLoss</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1a8e1288164d2e02467167bd9f244b909b" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>shaking</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1a6ae8098b7b174c1114a9e56f0d5ced4e" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>speed</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1a3b0a12424e29ee1a64c18c6aa4196989" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>target</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1afc640dafdd40e39b597455cb064cd553" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>to_json</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1a1cae477540dc7df99f084c5e82d17a42" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>width</name></member>
+      <member refid="structtnt_1_1doo_1_1cameras__sys_1aabba933cf022c0ab912fd0acbc6cfef7" prot="public" virt="non-virtual"><scope>tnt::doo::cameras_sys</scope><name>zoom_to_fit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

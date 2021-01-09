@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structnlohmann_1_1adl__serializer_3_01tnt_1_1_vector_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>nlohmann::adl_serializer&lt; tnt::Vector &gt;</compoundname>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structnlohmann_1_1adl__serializer_3_01tnt_1_1_vector_01_4_1a9456bd9f94d522f56f10f08f6980a646" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void nlohmann::adl_serializer&lt; tnt::Vector &gt;::to_json</definition>
+        <argsstring>(nlohmann::json &amp;j, tnt::Vector const &amp;v)</argsstring>
+        <name>to_json</name>
+        <param>
+          <type>nlohmann::json &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref> const &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/json/JsonVector.hpp" line="12" column="28" bodyfile="E:/thing/cpp/tnt/include/json/JsonVector.hpp" bodystart="12" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="structnlohmann_1_1adl__serializer_3_01tnt_1_1_vector_01_4_1a058c359797c8e5a958e403b6168082f4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void nlohmann::adl_serializer&lt; tnt::Vector &gt;::from_json</definition>
+        <argsstring>(nlohmann::json const &amp;j, tnt::Vector &amp;v)</argsstring>
+        <name>from_json</name>
+        <param>
+          <type>nlohmann::json const &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref> &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/json/JsonVector.hpp" line="17" column="28" bodyfile="E:/thing/cpp/tnt/include/json/JsonVector.hpp" bodystart="17" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/json/JsonVector.hpp" line="10" column="5" bodyfile="E:/thing/cpp/tnt/include/json/JsonVector.hpp" bodystart="11" bodyend="22"/>
+    <listofallmembers>
+      <member refid="structnlohmann_1_1adl__serializer_3_01tnt_1_1_vector_01_4_1a058c359797c8e5a958e403b6168082f4" prot="public" virt="non-virtual"><scope>nlohmann::adl_serializer&lt; tnt::Vector &gt;</scope><name>from_json</name></member>
+      <member refid="structnlohmann_1_1adl__serializer_3_01tnt_1_1_vector_01_4_1a9456bd9f94d522f56f10f08f6980a646" prot="public" virt="non-virtual"><scope>nlohmann::adl_serializer&lt; tnt::Vector &gt;</scope><name>to_json</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

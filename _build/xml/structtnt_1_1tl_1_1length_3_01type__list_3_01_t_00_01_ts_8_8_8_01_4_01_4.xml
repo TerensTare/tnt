@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1tl_1_1length_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::tl::length&lt; type_list&lt; T, Ts... &gt; &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>Ts</declname>
+        <defname>Ts</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structtnt_1_1tl_1_1length_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_01_4_1a9ad584310c507e5bc97a5d24ca4bb972" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t tnt::tl::length&lt; type_list&lt; T, Ts... &gt; &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>{1 + <ref refid="structtnt_1_1tl_1_1length" kindref="compound">length</ref>&lt;<ref refid="structtnt_1_1type__list" kindref="compound">type_list</ref>&lt;Ts...&gt;&gt;::value}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="36" column="44" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="34" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="35" bodyend="37"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1tl_1_1length_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_01_4_1a9ad584310c507e5bc97a5d24ca4bb972" prot="public" virt="non-virtual"><scope>tnt::tl::length&lt; type_list&lt; T, Ts... &gt; &gt;</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

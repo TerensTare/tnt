@@ -1,0 +1,257 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1detail_1_1base__action" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>tnt::detail::base_action</compoundname>
+    <derivedcompoundref refid="classtnt_1_1_action" prot="public" virt="non-virtual">tnt::Action</derivedcompoundref>
+    <derivedcompoundref refid="classtnt_1_1_blocking_action" prot="public" virt="non-virtual">tnt::BlockingAction</derivedcompoundref>
+    <includes local="no">Actions.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classtnt_1_1detail_1_1base__action_1a96ce7a7165e675dee00d00971833ca5a" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tnt::detail::base_action::finished</definition>
+        <argsstring></argsstring>
+        <name>finished</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="52" column="18" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1detail_1_1base__action_1ac5778051794bcff5bd1cbabac3982b64" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tnt::detail::base_action::blocking</definition>
+        <argsstring></argsstring>
+        <name>blocking</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="53" column="18" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1detail_1_1base__action_1a4128b58c1a23129ce7bc4709ca388811" prot="protected" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned tnt::detail::base_action::lane</definition>
+        <argsstring></argsstring>
+        <name>lane</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="54" column="22" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1detail_1_1base__action_1a9ef09e905150340879b1bd11c2e258e8" prot="protected" static="no" mutable="no">
+        <type>long long</type>
+        <definition>long long tnt::detail::base_action::elapsed</definition>
+        <argsstring></argsstring>
+        <name>elapsed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="55" column="23" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1detail_1_1base__action_1a96771863a141fba9042fa9cd07167870" prot="protected" static="no" mutable="no">
+        <type>long long</type>
+        <definition>long long tnt::detail::base_action::duration</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="56" column="23" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1detail_1_1base__action_1a7c33167bcedaf46242dea08de75071c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::detail::base_action::base_action</definition>
+        <argsstring>(long long duration_, bool blocks)</argsstring>
+        <name>base_action</name>
+        <param>
+          <type>long long</type>
+          <declname>duration_</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>blocks</declname>
+        </param>
+        <briefdescription>
+<para>Create a basic action that runs for a certain duration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>duration_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Determine for how long the action should run. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>blocks</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Determine if the action is blocking or not. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="25" column="13" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="25" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1detail_1_1base__action_1a01467634724587dd6cec588d6314da53" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="virtual">
+        <type></type>
+        <definition>virtual tnt::detail::base_action::~base_action</definition>
+        <argsstring>() noexcept=default</argsstring>
+        <name>~base_action</name>
+        <briefdescription>
+<para>The destructor of <ref refid="classtnt_1_1detail_1_1base__action" kindref="compound">base_action</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="29" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1detail_1_1base__action_1a91776f41be946661732a6cc15afb7dde" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void tnt::detail::base_action::Update</definition>
+        <argsstring>(long long elapsed_)=0</argsstring>
+        <name>Update</name>
+        <reimplementedby refid="classtnt_1_1_delay_1a567400c7edfc69a1f29208d17a6d6dcf">Update</reimplementedby>
+        <param>
+          <type>long long</type>
+          <declname>elapsed_</declname>
+        </param>
+        <briefdescription>
+<para>Update the stats of the action. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>elapsed_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The elapsed time since the last Update call. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="33" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1detail_1_1base__action_1ae3f93b7ed8bbb5c1bfee3fe4d05eb034" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::detail::base_action::isBlocking</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>isBlocking</name>
+        <briefdescription>
+<para>Check if the action is a blocking action. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="36" column="25" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1detail_1_1base__action_1abb1f692ebf0e1f5fa66d13b8c9563a11" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::detail::base_action::isFinished</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>isFinished</name>
+        <briefdescription>
+<para>Check if the action should continue running. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="39" column="25" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="39" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classtnt_1_1detail_1_1base__action_1ad6df7abd1c9ade8c4fbe16fcbd197837" prot="protected" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::detail::base_action::Tick</definition>
+        <argsstring>(long long elapsed_) noexcept</argsstring>
+        <name>Tick</name>
+        <param>
+          <type>long long</type>
+          <declname>elapsed_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="42" column="25" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="42" bodyend="50"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The base representation of an action. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>tnt::BlockingAction</label>
+        <link refid="classtnt_1_1_blocking_action"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::Action</label>
+        <link refid="classtnt_1_1_action"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>tnt::SingleRunAction</label>
+        <link refid="classtnt_1_1_single_run_action"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::detail::base_action</label>
+        <link refid="classtnt_1_1detail_1_1base__action"/>
+      </node>
+      <node id="5">
+        <label>tnt::Delay</label>
+        <link refid="classtnt_1_1_delay"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="E:/thing/cpp/tnt/include/utils/Actions.hpp" line="19" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/Actions.hpp" bodystart="20" bodyend="57"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1detail_1_1base__action_1a7c33167bcedaf46242dea08de75071c1" prot="public" virt="non-virtual"><scope>tnt::detail::base_action</scope><name>base_action</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1ac5778051794bcff5bd1cbabac3982b64" prot="protected" virt="non-virtual"><scope>tnt::detail::base_action</scope><name>blocking</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a96771863a141fba9042fa9cd07167870" prot="protected" virt="non-virtual"><scope>tnt::detail::base_action</scope><name>duration</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a9ef09e905150340879b1bd11c2e258e8" prot="protected" virt="non-virtual"><scope>tnt::detail::base_action</scope><name>elapsed</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a96ce7a7165e675dee00d00971833ca5a" prot="protected" virt="non-virtual"><scope>tnt::detail::base_action</scope><name>finished</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1ae3f93b7ed8bbb5c1bfee3fe4d05eb034" prot="public" virt="non-virtual"><scope>tnt::detail::base_action</scope><name>isBlocking</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1abb1f692ebf0e1f5fa66d13b8c9563a11" prot="public" virt="non-virtual"><scope>tnt::detail::base_action</scope><name>isFinished</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a4128b58c1a23129ce7bc4709ca388811" prot="protected" virt="non-virtual"><scope>tnt::detail::base_action</scope><name>lane</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1ad6df7abd1c9ade8c4fbe16fcbd197837" prot="protected" virt="non-virtual"><scope>tnt::detail::base_action</scope><name>Tick</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a91776f41be946661732a6cc15afb7dde" prot="public" virt="pure-virtual"><scope>tnt::detail::base_action</scope><name>Update</name></member>
+      <member refid="classtnt_1_1detail_1_1base__action_1a01467634724587dd6cec588d6314da53" prot="public" virt="virtual"><scope>tnt::detail::base_action</scope><name>~base_action</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

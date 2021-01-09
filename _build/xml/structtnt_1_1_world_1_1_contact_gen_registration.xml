@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1_world_1_1_contact_gen_registration" kind="struct" language="C++" prot="protected">
+    <compoundname>tnt::World::ContactGenRegistration</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1_world_1_1_contact_gen_registration_1ab10fdfa699fb45a7c0b073f89b5b9317" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1_contact_generator" kindref="compound">ContactGenerator</ref> *</type>
+        <definition>ContactGenerator* tnt::World::ContactGenRegistration::gen</definition>
+        <argsstring></argsstring>
+        <name>gen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/World.hpp" line="30" column="26" bodyfile="E:/thing/cpp/tnt/include/physics/World.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1_world_1_1_contact_gen_registration_1ae82a4eed2466028f45273c90b1107184" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_world_1_1_contact_gen_registration" kindref="compound">ContactGenRegistration</ref> *</type>
+        <definition>ContactGenRegistration* tnt::World::ContactGenRegistration::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/World.hpp" line="31" column="32" bodyfile="E:/thing/cpp/tnt/include/physics/World.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>tnt::ContactGenerator</label>
+        <link refid="classtnt_1_1_contact_generator"/>
+      </node>
+      <node id="1">
+        <label>tnt::World::ContactGenRegistration</label>
+        <link refid="structtnt_1_1_world_1_1_contact_gen_registration"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>gen</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/physics/World.hpp" line="28" column="5" bodyfile="E:/thing/cpp/tnt/include/physics/World.hpp" bodystart="29" bodyend="32"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1_world_1_1_contact_gen_registration_1ab10fdfa699fb45a7c0b073f89b5b9317" prot="public" virt="non-virtual"><scope>tnt::World::ContactGenRegistration</scope><name>gen</name></member>
+      <member refid="structtnt_1_1_world_1_1_contact_gen_registration_1ae82a4eed2466028f45273c90b1107184" prot="public" virt="non-virtual"><scope>tnt::World::ContactGenRegistration</scope><name>next</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

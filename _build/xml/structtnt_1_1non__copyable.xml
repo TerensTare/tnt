@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1non__copyable" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::non_copyable</compoundname>
+    <derivedcompoundref refid="structtnt_1_1singleton" prot="public" virt="non-virtual">tnt::singleton&lt; T, Deleter &gt;</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1non__copyable_1ab4d02244e26c9f4007e4a1e4f0229de4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::non_copyable::non_copyable</definition>
+        <argsstring>()=default</argsstring>
+        <name>non_copyable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="58" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1non__copyable_1a6078497ff7df263ba84a844756f51662" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::non_copyable::non_copyable</definition>
+        <argsstring>(non_copyable const &amp;)=delete</argsstring>
+        <name>non_copyable</name>
+        <param>
+          <type><ref refid="structtnt_1_1non__copyable" kindref="compound">non_copyable</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="59" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1non__copyable_1a6e4195531ae8942b4ab225973c2fb571" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structtnt_1_1non__copyable" kindref="compound">non_copyable</ref> &amp;</type>
+        <definition>non_copyable&amp; tnt::non_copyable::operator=</definition>
+        <argsstring>(non_copyable const &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="structtnt_1_1non__copyable" kindref="compound">non_copyable</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="60" column="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>tnt::singleton&lt; T, Deleter &gt;</label>
+        <link refid="structtnt_1_1singleton"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::non_copyable</label>
+        <link refid="structtnt_1_1non__copyable"/>
+      </node>
+    </inheritancegraph>
+    <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="56" column="5" bodyfile="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" bodystart="57" bodyend="61"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1non__copyable_1ab4d02244e26c9f4007e4a1e4f0229de4" prot="public" virt="non-virtual"><scope>tnt::non_copyable</scope><name>non_copyable</name></member>
+      <member refid="structtnt_1_1non__copyable_1a6078497ff7df263ba84a844756f51662" prot="public" virt="non-virtual"><scope>tnt::non_copyable</scope><name>non_copyable</name></member>
+      <member refid="structtnt_1_1non__copyable_1a6e4195531ae8942b4ab225973c2fb571" prot="public" virt="non-virtual"><scope>tnt::non_copyable</scope><name>operator=</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

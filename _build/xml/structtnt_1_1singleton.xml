@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1singleton" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::singleton</compoundname>
+    <basecompoundref refid="structtnt_1_1non__copyable" prot="public" virt="non-virtual">tnt::non_copyable</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>typename Deleter</type>
+        <defval>std::default_delete&lt;T&gt;</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1singleton_1aeef624c9bb9b8d676aa363961cfbd7ff" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::singleton&lt; T, Deleter &gt;::~singleton</definition>
+        <argsstring>() noexcept(noexcept(Deleter()))</argsstring>
+        <name>~singleton</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="73" column="9" bodyfile="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" bodystart="73" bodyend="73"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structtnt_1_1singleton_1aeeea29338a832c124a898c1464babfff" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>static T&amp; tnt::singleton&lt; T, Deleter &gt;::This</definition>
+        <argsstring>() noexcept(std::is_nothrow_constructible_v&lt; T &gt;)</argsstring>
+        <name>This</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="75" column="18" bodyfile="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" bodystart="75" bodyend="79"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>tnt::singleton&lt; T, Deleter &gt;</label>
+        <link refid="structtnt_1_1singleton"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::non_copyable</label>
+        <link refid="structtnt_1_1non__copyable"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::singleton&lt; T, Deleter &gt;</label>
+        <link refid="structtnt_1_1singleton"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::non_copyable</label>
+        <link refid="structtnt_1_1non__copyable"/>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="71" column="5" bodyfile="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" bodystart="72" bodyend="80"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1non__copyable_1ab4d02244e26c9f4007e4a1e4f0229de4" prot="public" virt="non-virtual"><scope>tnt::singleton</scope><name>non_copyable</name></member>
+      <member refid="structtnt_1_1non__copyable_1a6078497ff7df263ba84a844756f51662" prot="public" virt="non-virtual"><scope>tnt::singleton</scope><name>non_copyable</name></member>
+      <member refid="structtnt_1_1non__copyable_1a6e4195531ae8942b4ab225973c2fb571" prot="public" virt="non-virtual"><scope>tnt::singleton</scope><name>operator=</name></member>
+      <member refid="structtnt_1_1singleton_1aeeea29338a832c124a898c1464babfff" prot="public" virt="non-virtual"><scope>tnt::singleton</scope><name>This</name></member>
+      <member refid="structtnt_1_1singleton_1aeef624c9bb9b8d676aa363961cfbd7ff" prot="public" virt="non-virtual"><scope>tnt::singleton</scope><name>~singleton</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

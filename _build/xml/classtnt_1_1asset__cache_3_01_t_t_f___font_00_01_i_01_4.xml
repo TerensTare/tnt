@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4" kind="class" language="C++" prot="public">
+    <compoundname>tnt::asset_cache&lt; TTF_Font, I &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>unsigned</type>
+        <declname>I</declname>
+        <defname>I</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1abe3e3c9087ba2d4ab2f13ff4a5058195" prot="private" static="no" mutable="no">
+        <type>std::byte</type>
+        <definition>std::byte tnt::asset_cache&lt; TTF_Font, I &gt;::memory[I *sizeof(TTF_Font *)]</definition>
+        <argsstring>[I *sizeof(TTF_Font *)]</argsstring>
+        <name>memory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" line="50" column="19" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1aaba1ea83ff388b09f1151a54b749302a" prot="private" static="no" mutable="no">
+        <type>std::pmr::monotonic_buffer_resource</type>
+        <definition>std::pmr::monotonic_buffer_resource tnt::asset_cache&lt; TTF_Font, I &gt;::res</definition>
+        <argsstring></argsstring>
+        <name>res</name>
+        <initializer>{memory, sizeof(memory)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" line="51" column="45" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1a97b9d675208fc02bbce586886965d113" prot="private" static="no" mutable="no">
+        <type>std::pmr::unordered_map&lt; std::string, TTF_Font * &gt;</type>
+        <definition>std::pmr::unordered_map&lt;std::string, TTF_Font *&gt; tnt::asset_cache&lt; TTF_Font, I &gt;::cache</definition>
+        <argsstring></argsstring>
+        <name>cache</name>
+        <initializer>{&amp;res}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" line="52" column="33" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1ab6e9943936c741efab629c3797164ca4" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::asset_cache&lt; TTF_Font, I &gt;::~asset_cache</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>~asset_cache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" line="19" column="16" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" bodystart="19" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1a42bd7e6dba65aabdf31cb6746f83f783" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>TTF_Font *</type>
+        <definition>TTF_Font* tnt::asset_cache&lt; TTF_Font, I &gt;::get</definition>
+        <argsstring>(std::string_view path, int size)</argsstring>
+        <name>get</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" line="26" column="26" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" bodystart="26" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1a2c1025e96a41b9322c908c9ffad22e26" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::asset_cache&lt; TTF_Font, I &gt;::load</definition>
+        <argsstring>(std::string_view path, int size)</argsstring>
+        <name>load</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" line="32" column="21" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" bodystart="32" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1aea86db05744223647b6d2f33b035f99d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::asset_cache&lt; TTF_Font, I &gt;::remove</definition>
+        <argsstring>(std::string_view path)</argsstring>
+        <name>remove</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" line="38" column="21" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" bodystart="38" bodyend="47"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" line="16" column="5" bodyfile="E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl" bodystart="17" bodyend="53"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1a97b9d675208fc02bbce586886965d113" prot="private" virt="non-virtual"><scope>tnt::asset_cache&lt; TTF_Font, I &gt;</scope><name>cache</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1a42bd7e6dba65aabdf31cb6746f83f783" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; TTF_Font, I &gt;</scope><name>get</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1a2c1025e96a41b9322c908c9ffad22e26" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; TTF_Font, I &gt;</scope><name>load</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1abe3e3c9087ba2d4ab2f13ff4a5058195" prot="private" virt="non-virtual"><scope>tnt::asset_cache&lt; TTF_Font, I &gt;</scope><name>memory</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1aea86db05744223647b6d2f33b035f99d" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; TTF_Font, I &gt;</scope><name>remove</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1aaba1ea83ff388b09f1151a54b749302a" prot="private" virt="non-virtual"><scope>tnt::asset_cache&lt; TTF_Font, I &gt;</scope><name>res</name></member>
+      <member refid="classtnt_1_1asset__cache_3_01_t_t_f___font_00_01_i_01_4_1ab6e9943936c741efab629c3797164ca4" prot="public" virt="non-virtual"><scope>tnt::asset_cache&lt; TTF_Font, I &gt;</scope><name>~asset_cache</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

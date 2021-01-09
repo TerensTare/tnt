@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structfmt_1_1formatter_3_01tnt_1_1_vector_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>fmt::formatter&lt; tnt::Vector &gt;</compoundname>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structfmt_1_1formatter_3_01tnt_1_1_vector_01_4_1aebf81b0ccb485fef37a3f2d2ba1bc8e0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fmt::formatter&lt; tnt::Vector &gt;::presentation</definition>
+        <argsstring></argsstring>
+        <name>presentation</name>
+        <initializer>{&apos; &apos;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/format/FormatedVector.hpp" line="12" column="14" bodyfile="E:/thing/cpp/tnt/include/format/FormatedVector.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structfmt_1_1formatter_3_01tnt_1_1_vector_01_4_1af3514199d5c5d025ca595121a1b5efd3" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr auto</type>
+        <definition>constexpr auto fmt::formatter&lt; tnt::Vector &gt;::parse</definition>
+        <argsstring>(format_parse_context &amp;ctx)</argsstring>
+        <name>parse</name>
+        <param>
+          <type>format_parse_context &amp;</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/format/FormatedVector.hpp" line="14" column="24" bodyfile="E:/thing/cpp/tnt/include/format/FormatedVector.hpp" bodystart="14" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="structfmt_1_1formatter_3_01tnt_1_1_vector_01_4_1a5cf499b02b9565542ea67bbc90630bd4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename FormatContext</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto fmt::formatter&lt; tnt::Vector &gt;::format</definition>
+        <argsstring>(tnt::Vector const &amp;vec, FormatContext &amp;ctx)</argsstring>
+        <name>format</name>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref> const &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <param>
+          <type>FormatContext &amp;</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/format/FormatedVector.hpp" line="27" column="21" bodyfile="E:/thing/cpp/tnt/include/format/FormatedVector.hpp" bodystart="27" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/format/FormatedVector.hpp" line="10" column="5" bodyfile="E:/thing/cpp/tnt/include/format/FormatedVector.hpp" bodystart="11" bodyend="31"/>
+    <listofallmembers>
+      <member refid="structfmt_1_1formatter_3_01tnt_1_1_vector_01_4_1a5cf499b02b9565542ea67bbc90630bd4" prot="public" virt="non-virtual"><scope>fmt::formatter&lt; tnt::Vector &gt;</scope><name>format</name></member>
+      <member refid="structfmt_1_1formatter_3_01tnt_1_1_vector_01_4_1af3514199d5c5d025ca595121a1b5efd3" prot="public" virt="non-virtual"><scope>fmt::formatter&lt; tnt::Vector &gt;</scope><name>parse</name></member>
+      <member refid="structfmt_1_1formatter_3_01tnt_1_1_vector_01_4_1aebf81b0ccb485fef37a3f2d2ba1bc8e0" prot="public" virt="non-virtual"><scope>fmt::formatter&lt; tnt::Vector &gt;</scope><name>presentation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

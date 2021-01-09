@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1end__batch__tag" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::end_batch_tag</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1end__batch__tag_1a0024082c85a5622bb4b76b2e2c665f74" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::end_batch_tag::end_batch_tag</definition>
+        <argsstring>()=default</argsstring>
+        <name>end_batch_tag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="26" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="24" column="22" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="25" bodyend="27"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1end__batch__tag_1a0024082c85a5622bb4b76b2e2c665f74" prot="public" virt="non-virtual"><scope>tnt::end_batch_tag</scope><name>end_batch_tag</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

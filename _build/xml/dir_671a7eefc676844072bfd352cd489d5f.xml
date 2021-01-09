@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_671a7eefc676844072bfd352cd489d5f" kind="dir">
+    <compoundname>E:/thing/cpp/tnt/include/fileIO/cache</compoundname>
+    <innerfile refid="file_i_o_2cache_2_base_8hpp">Base.hpp</innerfile>
+    <innerfile refid="_fonts_8inl">Fonts.inl</innerfile>
+    <innerfile refid="_music_8inl">Music.inl</innerfile>
+    <innerfile refid="_texture_atlases_8inl">TextureAtlases.inl</innerfile>
+    <innerfile refid="_textures_8inl">Textures.inl</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/fileIO/cache/"/>
+  </compounddef>
+</doxygen>

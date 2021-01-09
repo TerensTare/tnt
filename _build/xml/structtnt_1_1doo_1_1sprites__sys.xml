@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1doo_1_1sprites__sys" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::doo::sprites_sys</compoundname>
+    <includes local="no">Sprites.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1sprites__sys_1aec26a0832c1bf8ae652f52e3b5e21b63" prot="public" static="no" mutable="no">
+        <type>camera</type>
+        <definition>camera tnt::doo::sprites_sys::target</definition>
+        <argsstring></argsstring>
+        <name>target</name>
+        <initializer>{null_v&lt;camera&gt;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="90" column="16" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1sprites__sys_1aee89f9d31724f128fbae479a41adee3a" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; SDL_Texture * &gt;</type>
+        <definition>std::vector&lt;SDL_Texture *&gt; tnt::doo::sprites_sys::tex</definition>
+        <argsstring></argsstring>
+        <name>tex</name>
+        <briefdescription>
+<para>&lt; The camera where the objects will be drawed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="92" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1sprites__sys_1addf8078c538932ef08f3dfab59fd01f9" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; SDL_Rect &gt;</type>
+        <definition>std::vector&lt;SDL_Rect&gt; tnt::doo::sprites_sys::clip</definition>
+        <argsstring></argsstring>
+        <name>clip</name>
+        <briefdescription>
+<para>&lt; The texture data of the objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="93" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1sprites__sys_1a0bc01e2be40c2db86d9f29cdd4122f94" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref>&lt; object &gt;</type>
+        <definition>sparse_set&lt;object&gt; tnt::doo::sprites_sys::active</definition>
+        <argsstring></argsstring>
+        <name>active</name>
+        <briefdescription>
+<para>&lt; The cropped area from the image. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="94" column="20" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1doo_1_1sprites__sys_1ad2958efdbe7ddb45d100e71e56df6ace" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::sprites_sys::add_object</definition>
+        <argsstring>(object const &amp;id, sprite_comp const &amp;sprite)</argsstring>
+        <name>add_object</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1doo_1_1sprite__comp" kindref="compound">sprite_comp</ref> const &amp;</type>
+          <declname>sprite</declname>
+        </param>
+        <briefdescription>
+<para>Add a new object to the sprites system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object to add to the sprites system. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sprite</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The sprite component of the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="51" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1sprites__sys_1a4e85e1af006cbd43f08b38c90ca410d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::sprites_sys::from_json</definition>
+        <argsstring>(object const &amp;id, Window const &amp;win, nlohmann::json const &amp;j)</argsstring>
+        <name>from_json</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <param>
+          <type>nlohmann::json const &amp;</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Load the sprite data of the objects from a given json chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object to load from json. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The window where the loaded sprite component will be drawed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The json chunk from where to load the sprite data of the objects. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="57" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1sprites__sys_1ace62d63338ed6aaf2fc25fe7b459be87" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::sprites_sys::to_json</definition>
+        <argsstring>(object const &amp;id, nlohmann::json &amp;j)</argsstring>
+        <name>to_json</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>nlohmann::json &amp;</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Store sprites data of a specific object to a json chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object to serialize to json. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The json chunk where the data will be saved. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="62" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1sprites__sys_1a1961baf333e5a744299a7515e7efbe92" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::sprites_sys::draw_imgui</definition>
+        <argsstring>(object const &amp;id, Window const &amp;win) noexcept</argsstring>
+        <name>draw_imgui</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <briefdescription>
+<para>Draw widgets on the given window to modify the datas of the system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the active object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The window where to draw the widgets. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="67" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1sprites__sys_1abad32f3da205bd87cc946fe40716a549" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref></type>
+        <definition>Rectangle tnt::doo::sprites_sys::draw_area</definition>
+        <argsstring>(object const &amp;id) const noexcept</argsstring>
+        <name>draw_area</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get a <emphasis><ref refid="structtnt_1_1_rectangle" kindref="compound">tnt::Rectangle</ref></emphasis> that contains the area where the object will be drawed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structtnt_1_1_rectangle" kindref="compound">tnt::Rectangle</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="72" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1sprites__sys_1a3f4bd85a97fc2965d53f7ddd2809ee63" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::sprites_sys::target_cam</definition>
+        <argsstring>(camera const &amp;cam) noexcept</argsstring>
+        <name>target_cam</name>
+        <param>
+          <type>camera const &amp;</type>
+          <declname>cam</declname>
+        </param>
+        <briefdescription>
+<para>Draw all the following objects to the given camera. If passed tnt::doo::null, the objects will be drawed as if no camera was set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cam</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the target camera. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="76" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1sprites__sys_1a299997054c834258bf4abca0e14f37dd" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::sprites_sys::Draw</definition>
+        <argsstring>(object const &amp;id, Window const &amp;win) const noexcept</argsstring>
+        <name>Draw</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <briefdescription>
+<para>Draw object with the given id on the given window. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object to draw. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The window where the object will be drawed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="81" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1sprites__sys_1a15289f0ba4eca356d7cb02a297699d09" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::sprites_sys::remove</definition>
+        <argsstring>(object const &amp;id) noexcept</argsstring>
+        <name>remove</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Remove the desired object from the sprites system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object you want to remove. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="85" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1sprites__sys_1a76d8d12bdb8a5f0a63ea91f59fd3ebce" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::sprites_sys::clear</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>clear</name>
+        <briefdescription>
+<para>Remove all the objects from the sprites system. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="88" column="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A struct that handles the sprite data for all the objects. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>tnt::sparse_set&lt; T &gt;</label>
+        <link refid="classtnt_1_1sparse__set"/>
+      </node>
+      <node id="2">
+        <label>tnt::sparse_set&lt; object &gt;</label>
+        <link refid="classtnt_1_1sparse__set"/>
+        <childnode refid="3" relation="template-instance">
+          <edgelabel>&lt; object &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::doo::sprites_sys</label>
+        <link refid="structtnt_1_1doo_1_1sprites__sys"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>active</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" line="41" column="12" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Sprites.hpp" bodystart="42" bodyend="95"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1doo_1_1sprites__sys_1a0bc01e2be40c2db86d9f29cdd4122f94" prot="public" virt="non-virtual"><scope>tnt::doo::sprites_sys</scope><name>active</name></member>
+      <member refid="structtnt_1_1doo_1_1sprites__sys_1ad2958efdbe7ddb45d100e71e56df6ace" prot="public" virt="non-virtual"><scope>tnt::doo::sprites_sys</scope><name>add_object</name></member>
+      <member refid="structtnt_1_1doo_1_1sprites__sys_1a76d8d12bdb8a5f0a63ea91f59fd3ebce" prot="public" virt="non-virtual"><scope>tnt::doo::sprites_sys</scope><name>clear</name></member>
+      <member refid="structtnt_1_1doo_1_1sprites__sys_1addf8078c538932ef08f3dfab59fd01f9" prot="public" virt="non-virtual"><scope>tnt::doo::sprites_sys</scope><name>clip</name></member>
+      <member refid="structtnt_1_1doo_1_1sprites__sys_1a299997054c834258bf4abca0e14f37dd" prot="public" virt="non-virtual"><scope>tnt::doo::sprites_sys</scope><name>Draw</name></member>
+      <member refid="structtnt_1_1doo_1_1sprites__sys_1abad32f3da205bd87cc946fe40716a549" prot="public" virt="non-virtual"><scope>tnt::doo::sprites_sys</scope><name>draw_area</name></member>
+      <member refid="structtnt_1_1doo_1_1sprites__sys_1a1961baf333e5a744299a7515e7efbe92" prot="public" virt="non-virtual"><scope>tnt::doo::sprites_sys</scope><name>draw_imgui</name></member>
+      <member refid="structtnt_1_1doo_1_1sprites__sys_1a4e85e1af006cbd43f08b38c90ca410d9" prot="public" virt="non-virtual"><scope>tnt::doo::sprites_sys</scope><name>from_json</name></member>
+      <member refid="structtnt_1_1doo_1_1sprites__sys_1a15289f0ba4eca356d7cb02a297699d09" prot="public" virt="non-virtual"><scope>tnt::doo::sprites_sys</scope><name>remove</name></member>
+      <member refid="structtnt_1_1doo_1_1sprites__sys_1aec26a0832c1bf8ae652f52e3b5e21b63" prot="public" virt="non-virtual"><scope>tnt::doo::sprites_sys</scope><name>target</name></member>
+      <member refid="structtnt_1_1doo_1_1sprites__sys_1a3f4bd85a97fc2965d53f7ddd2809ee63" prot="public" virt="non-virtual"><scope>tnt::doo::sprites_sys</scope><name>target_cam</name></member>
+      <member refid="structtnt_1_1doo_1_1sprites__sys_1aee89f9d31724f128fbae479a41adee3a" prot="public" virt="non-virtual"><scope>tnt::doo::sprites_sys</scope><name>tex</name></member>
+      <member refid="structtnt_1_1doo_1_1sprites__sys_1ace62d63338ed6aaf2fc25fe7b459be87" prot="public" virt="non-virtual"><scope>tnt::doo::sprites_sys</scope><name>to_json</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

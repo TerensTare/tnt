@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_bench_valid_timer" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>tnt::BenchValidTimer</compoundname>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classtnt_1_1_bench_valid_timer_1a3c6ec7ddfae617257149332bab7bab22" prot="private" static="no">
+        <type>std::chrono::time_point&lt; std::chrono::high_resolution_clock &gt;</type>
+        <definition>using tnt::BenchValidTimer::unit =  std::chrono::time_point&lt;std::chrono::high_resolution_clock&gt;</definition>
+        <argsstring></argsstring>
+        <name>unit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="44" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classtnt_1_1_bench_valid_timer_1a3c6ec7ddfae617257149332bab7bab22" prot="private" static="no">
+        <type>std::chrono::time_point&lt; std::chrono::high_resolution_clock &gt;</type>
+        <definition>using tnt::BenchValidTimer::unit =  std::chrono::time_point&lt;std::chrono::high_resolution_clock&gt;</definition>
+        <argsstring></argsstring>
+        <name>unit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Benchmark.hpp" line="41" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/Benchmark.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_bench_valid_timer_1a616d9a0ff97a2392ac2624f7a08f828f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tnt::BenchValidTimer::m_Stopped</definition>
+        <argsstring></argsstring>
+        <name>m_Stopped</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="46" column="14" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_bench_valid_timer_1abfbf19680b2d729487ed24fc476272af" prot="private" static="no" mutable="no">
+        <type>std::hash&lt; std::thread::id &gt;</type>
+        <definition>std::hash&lt;std::thread::id&gt; tnt::BenchValidTimer::hash</definition>
+        <argsstring></argsstring>
+        <name>hash</name>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="47" column="19" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_bench_valid_timer_1a3f5d58b23e9ba50fb4ad53b029710e0b" prot="private" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char * tnt::BenchValidTimer::m_Name</definition>
+        <argsstring></argsstring>
+        <name>m_Name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="48" column="20" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_bench_valid_timer_1a9274acd8f958520bffb91dbcd057f243" prot="private" static="no" mutable="no">
+        <type>unit</type>
+        <definition>unit tnt::BenchValidTimer::m_StartTimepoint</definition>
+        <argsstring></argsstring>
+        <name>m_StartTimepoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="49" column="14" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_bench_valid_timer_1ae524673a64d229a623fba0f9d1fc4883" prot="private" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1pimpl" kindref="compound">pimpl</ref>&lt; unit, sizeof(unit), alignof(unit)&gt;</type>
+        <definition>pimpl&lt;unit, sizeof(unit), alignof(unit)&gt; tnt::BenchValidTimer::m_StartTimepoint</definition>
+        <argsstring></argsstring>
+        <name>m_StartTimepoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Benchmark.hpp" line="45" column="15" bodyfile="E:/thing/cpp/tnt/include/utils/Benchmark.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_bench_valid_timer_1a36f406bd658f1a09d7ee0202512d45a0" prot="public" static="no" const="no" explicit="yes" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::BenchValidTimer::BenchValidTimer</definition>
+        <argsstring>(const char *name) noexcept</argsstring>
+        <name>BenchValidTimer</name>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="38" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_bench_valid_timer_1a4bfc5e3b20d737ebbb2180c75fb5137b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::BenchValidTimer::~BenchValidTimer</definition>
+        <argsstring>()</argsstring>
+        <name>~BenchValidTimer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="39" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_bench_valid_timer_1ad79032a9e77356f2272d2bbf92bc3d39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::BenchValidTimer::Stop</definition>
+        <argsstring>()</argsstring>
+        <name>Stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="41" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_bench_valid_timer_1a36f406bd658f1a09d7ee0202512d45a0" prot="public" static="no" const="no" explicit="yes" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>tnt::BenchValidTimer::BenchValidTimer</definition>
+        <argsstring>(const char *name) noexcept</argsstring>
+        <name>BenchValidTimer</name>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Benchmark.hpp" line="35" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_bench_valid_timer_1a4bfc5e3b20d737ebbb2180c75fb5137b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::BenchValidTimer::~BenchValidTimer</definition>
+        <argsstring>()</argsstring>
+        <name>~BenchValidTimer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Benchmark.hpp" line="36" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_bench_valid_timer_1ad79032a9e77356f2272d2bbf92bc3d39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::BenchValidTimer::Stop</definition>
+        <argsstring>()</argsstring>
+        <name>Stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Benchmark.hpp" line="38" column="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/Bench.hpp" line="35" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Bench.hpp" bodystart="36" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_bench_valid_timer_1a36f406bd658f1a09d7ee0202512d45a0" prot="public" virt="non-virtual"><scope>tnt::BenchValidTimer</scope><name>BenchValidTimer</name></member>
+      <member refid="classtnt_1_1_bench_valid_timer_1a36f406bd658f1a09d7ee0202512d45a0" prot="public" virt="non-virtual"><scope>tnt::BenchValidTimer</scope><name>BenchValidTimer</name></member>
+      <member refid="classtnt_1_1_bench_valid_timer_1abfbf19680b2d729487ed24fc476272af" prot="private" virt="non-virtual"><scope>tnt::BenchValidTimer</scope><name>hash</name></member>
+      <member refid="classtnt_1_1_bench_valid_timer_1a3f5d58b23e9ba50fb4ad53b029710e0b" prot="private" virt="non-virtual"><scope>tnt::BenchValidTimer</scope><name>m_Name</name></member>
+      <member refid="classtnt_1_1_bench_valid_timer_1a9274acd8f958520bffb91dbcd057f243" prot="private" virt="non-virtual"><scope>tnt::BenchValidTimer</scope><name>m_StartTimepoint</name></member>
+      <member refid="classtnt_1_1_bench_valid_timer_1ae524673a64d229a623fba0f9d1fc4883" prot="private" virt="non-virtual"><scope>tnt::BenchValidTimer</scope><name>m_StartTimepoint</name></member>
+      <member refid="classtnt_1_1_bench_valid_timer_1a616d9a0ff97a2392ac2624f7a08f828f" prot="private" virt="non-virtual"><scope>tnt::BenchValidTimer</scope><name>m_Stopped</name></member>
+      <member refid="classtnt_1_1_bench_valid_timer_1ad79032a9e77356f2272d2bbf92bc3d39" prot="public" virt="non-virtual"><scope>tnt::BenchValidTimer</scope><name>Stop</name></member>
+      <member refid="classtnt_1_1_bench_valid_timer_1ad79032a9e77356f2272d2bbf92bc3d39" prot="public" virt="non-virtual"><scope>tnt::BenchValidTimer</scope><name>Stop</name></member>
+      <member refid="classtnt_1_1_bench_valid_timer_1a3c6ec7ddfae617257149332bab7bab22" prot="private" virt="non-virtual"><scope>tnt::BenchValidTimer</scope><name>unit</name></member>
+      <member refid="classtnt_1_1_bench_valid_timer_1a3c6ec7ddfae617257149332bab7bab22" prot="private" virt="non-virtual"><scope>tnt::BenchValidTimer</scope><name>unit</name></member>
+      <member refid="classtnt_1_1_bench_valid_timer_1a4bfc5e3b20d737ebbb2180c75fb5137b" prot="public" virt="non-virtual"><scope>tnt::BenchValidTimer</scope><name>~BenchValidTimer</name></member>
+      <member refid="classtnt_1_1_bench_valid_timer_1a4bfc5e3b20d737ebbb2180c75fb5137b" prot="public" virt="non-virtual"><scope>tnt::BenchValidTimer</scope><name>~BenchValidTimer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

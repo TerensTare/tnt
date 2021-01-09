@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1y__comb" kind="class" language="C++" prot="public">
+    <compoundname>tnt::y_comb</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename Fn</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1y__comb_1a04d32d60ab1fc23898bb0103da0af994" prot="public" static="no" constexpr="yes" const="no" explicit="yes" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr tnt::y_comb&lt; Fn &gt;::y_comb</definition>
+        <argsstring>(Fn &amp;&amp;fn_) noexcept(std::is_nothrow_move_constructible_v&lt; Fn &gt;)</argsstring>
+        <name>y_comb</name>
+        <param>
+          <type>Fn &amp;&amp;</type>
+          <declname>fn_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="23" column="28" bodyfile="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" bodystart="23" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" line="20" column="5" bodyfile="E:/thing/cpp/tnt/include/types/TypeUtils.hpp" bodystart="21" bodyend="38"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1y__comb_1a04d32d60ab1fc23898bb0103da0af994" prot="public" virt="non-virtual"><scope>tnt::y_comb</scope><name>y_comb</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

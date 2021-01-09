@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1is__os_3_01unix__t_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::is_os&lt; unix_t &gt;</compoundname>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structtnt_1_1is__os_3_01unix__t_01_4_1a711dcb63dbd5d2ce1f3a969f1bb6d99d" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool tnt::is_os&lt; unix_t &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="149" column="38" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="144" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="145" bodyend="151"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1is__os_3_01unix__t_01_4_1a711dcb63dbd5d2ce1f3a969f1bb6d99d" prot="public" virt="non-virtual"><scope>tnt::is_os&lt; unix_t &gt;</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

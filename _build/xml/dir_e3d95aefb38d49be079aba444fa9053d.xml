@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_e3d95aefb38d49be079aba444fa9053d" kind="dir">
+    <compoundname>E:/thing/cpp/tnt/include/async</compoundname>
+    <innerfile refid="_co_utils_8hpp">CoUtils.hpp</innerfile>
+    <innerfile refid="_generator_8hpp">Generator.hpp</innerfile>
+    <innerfile refid="_task_8hpp">Task.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/async/"/>
+  </compounddef>
+</doxygen>

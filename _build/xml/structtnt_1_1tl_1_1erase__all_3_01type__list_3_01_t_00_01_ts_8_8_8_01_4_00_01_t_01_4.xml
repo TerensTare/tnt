@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1tl_1_1erase__all_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_t_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::tl::erase_all&lt; type_list&lt; T, Ts... &gt;, T &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>Ts</declname>
+        <defname>Ts</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structtnt_1_1tl_1_1erase__all_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_t_01_4_1aebac4f7160af70d5077e81cbc1adad65" prot="public" static="no">
+        <type>typename <ref refid="structtnt_1_1tl_1_1erase__all" kindref="compound">erase_all</ref>&lt; <ref refid="structtnt_1_1type__list" kindref="compound">type_list</ref>&lt; Ts... &gt;, T &gt;::type</type>
+        <definition>using tnt::tl::erase_all&lt; type_list&lt; T, Ts... &gt;, T &gt;::type =  typename erase_all&lt;type_list&lt;Ts...&gt;, T&gt;::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="121" column="13" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="119" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="120" bodyend="122"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1tl_1_1erase__all_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_t_01_4_1aebac4f7160af70d5077e81cbc1adad65" prot="public" virt="non-virtual"><scope>tnt::tl::erase_all&lt; type_list&lt; T, Ts... &gt;, T &gt;</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

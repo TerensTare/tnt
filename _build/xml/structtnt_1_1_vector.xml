@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1_vector" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::Vector</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1_vector_1a39284725e8634d5a06a389b69251b1c6" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::Vector::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="129" column="15" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1_vector_1abdb3ce202928bb6090295cfc5e48bd85" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::Vector::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="130" column="15" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1_vector_1a7737eef130b97481885dfd106dd9cdfa" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr tnt::Vector::Vector</definition>
+        <argsstring>(float _x=0.f, float _y=0.f) noexcept</argsstring>
+        <name>Vector</name>
+        <param>
+          <type>float</type>
+          <declname>_x</declname>
+          <defval>0.f</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>_y</declname>
+          <defval>0.f</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="21" column="19" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="21" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1ab26d37464e31ae607344ab64f622d18a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::Vector::Vector</definition>
+        <argsstring>(const Vector &amp;)=default</argsstring>
+        <name>Vector</name>
+        <param>
+          <type>const <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="34" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1a0255c6a2f582f7e772b81ca32decf4e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tnt::Vector::Vector</definition>
+        <argsstring>(Vector &amp;&amp;)=default</argsstring>
+        <name>Vector</name>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="35" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1a3034129c3fb884a5e1729e89a63a9ae6" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr float</type>
+        <definition>constexpr float tnt::Vector::MagnitudeSqr</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>MagnitudeSqr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="37" column="25" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1a8f88805c321b258c2c08c4c68e38b8e9" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr float</type>
+        <definition>constexpr float tnt::Vector::Magnitude</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>Magnitude</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="38" column="25" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="38" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1a5fc6f1e5a27c8b2ad276c371630d1303" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr void</type>
+        <definition>constexpr void tnt::Vector::Normalize</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>Normalize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="43" column="24" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="43" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1aff46cc2941fda1dcdc1361cff32b529b" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>constexpr Vector tnt::Vector::Normalized</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>Normalized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="50" column="26" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="50" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1adcb63845cb810e2397407c896ff9843f" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>constexpr Vector tnt::Vector::operator-</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>operator-</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="56" column="26" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1afd2dc5116333fed47a2788240da6c748" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+        <definition>constexpr Vector&amp; tnt::Vector::operator+=</definition>
+        <argsstring>(const Vector &amp;rhs) noexcept</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type>const <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="58" column="26" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="58" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1a048996c8313952ea145a46847d2e4b69" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+        <definition>constexpr Vector&amp; tnt::Vector::operator-=</definition>
+        <argsstring>(const Vector &amp;rhs) noexcept</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type>const <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="65" column="26" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="65" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1a79947080c5ba8937f5449d2d3ac55276" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+        <definition>constexpr Vector&amp; tnt::Vector::operator*=</definition>
+        <argsstring>(const Vector &amp;rhs) noexcept</argsstring>
+        <name>operator*=</name>
+        <param>
+          <type>const <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="72" column="26" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="72" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1adc51f611eaf20210c34f01a6ddbb3f49" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+        <definition>constexpr Vector&amp; tnt::Vector::operator*=</definition>
+        <argsstring>(float rhs) noexcept</argsstring>
+        <name>operator*=</name>
+        <param>
+          <type>float</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="79" column="26" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="79" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1aac15bb2a1cbbb5348947ed2af841845a" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+        <definition>constexpr Vector&amp; tnt::Vector::operator/=</definition>
+        <argsstring>(const Vector &amp;rhs) noexcept</argsstring>
+        <name>operator/=</name>
+        <param>
+          <type>const <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="86" column="26" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="86" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1a1b676c6f61188045d90384f5bc11c456" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+        <definition>constexpr Vector&amp; tnt::Vector::operator/=</definition>
+        <argsstring>(float rhs) noexcept</argsstring>
+        <name>operator/=</name>
+        <param>
+          <type>float</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="93" column="26" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="93" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1a3972a89f8855e66d01eae5fb742f76a7" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+        <definition>constexpr Vector&amp; tnt::Vector::operator=</definition>
+        <argsstring>(const Vector &amp;rhs) noexcept</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="100" column="26" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="100" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1a3372fae196b64b33e5052ad17222204d" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool tnt::Vector::operator&lt;</definition>
+        <argsstring>(const Vector &amp;rhs) const noexcept</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type>const <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="116" column="19" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="116" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1_vector_1a193e5fc2123a8aa5f95def0972045f46" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool tnt::Vector::operator&gt;</definition>
+        <argsstring>(const Vector &amp;rhs) const noexcept</argsstring>
+        <name>operator&gt;</name>
+        <param>
+          <type>const <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="122" column="24" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="122" bodyend="126"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/math/Vector.hpp" line="19" column="5" bodyfile="E:/thing/cpp/tnt/include/math/Vector.hpp" bodystart="20" bodyend="131"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1_vector_1a8f88805c321b258c2c08c4c68e38b8e9" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>Magnitude</name></member>
+      <member refid="structtnt_1_1_vector_1a3034129c3fb884a5e1729e89a63a9ae6" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>MagnitudeSqr</name></member>
+      <member refid="structtnt_1_1_vector_1a5fc6f1e5a27c8b2ad276c371630d1303" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>Normalize</name></member>
+      <member refid="structtnt_1_1_vector_1aff46cc2941fda1dcdc1361cff32b529b" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>Normalized</name></member>
+      <member refid="structtnt_1_1_vector_1a79947080c5ba8937f5449d2d3ac55276" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>operator*=</name></member>
+      <member refid="structtnt_1_1_vector_1adc51f611eaf20210c34f01a6ddbb3f49" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>operator*=</name></member>
+      <member refid="structtnt_1_1_vector_1afd2dc5116333fed47a2788240da6c748" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>operator+=</name></member>
+      <member refid="structtnt_1_1_vector_1adcb63845cb810e2397407c896ff9843f" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>operator-</name></member>
+      <member refid="structtnt_1_1_vector_1a048996c8313952ea145a46847d2e4b69" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>operator-=</name></member>
+      <member refid="structtnt_1_1_vector_1aac15bb2a1cbbb5348947ed2af841845a" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>operator/=</name></member>
+      <member refid="structtnt_1_1_vector_1a1b676c6f61188045d90384f5bc11c456" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>operator/=</name></member>
+      <member refid="structtnt_1_1_vector_1a3372fae196b64b33e5052ad17222204d" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>operator&lt;</name></member>
+      <member refid="structtnt_1_1_vector_1a3972a89f8855e66d01eae5fb742f76a7" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>operator=</name></member>
+      <member refid="structtnt_1_1_vector_1a193e5fc2123a8aa5f95def0972045f46" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>operator&gt;</name></member>
+      <member refid="structtnt_1_1_vector_1a7737eef130b97481885dfd106dd9cdfa" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>Vector</name></member>
+      <member refid="structtnt_1_1_vector_1ab26d37464e31ae607344ab64f622d18a" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>Vector</name></member>
+      <member refid="structtnt_1_1_vector_1a0255c6a2f582f7e772b81ca32decf4e8" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>Vector</name></member>
+      <member refid="structtnt_1_1_vector_1a39284725e8634d5a06a389b69251b1c6" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>x</name></member>
+      <member refid="structtnt_1_1_vector_1abdb3ce202928bb6090295cfc5e48bd85" prot="public" virt="non-virtual"><scope>tnt::Vector</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

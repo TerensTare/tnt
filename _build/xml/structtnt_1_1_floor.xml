@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1_floor" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::Floor</compoundname>
+    <templateparamlist>
+      <param>
+        <type>int</type>
+        <declname>Numerator</declname>
+        <defname>Numerator</defname>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>Denominator</declname>
+        <defname>Denominator</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structtnt_1_1_floor_1ab648ac3cc4de02a0255126fc89daf00e" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@14</name>
+        <enumvalue id="structtnt_1_1_floor_1ab648ac3cc4de02a0255126fc89daf00eaccaaa57cd7622c7532bf606e34431d08" prot="public">
+          <name>remain</name>
+          <initializer>= Numerator - ((int)(Numerator / Denominator) * Denominator)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structtnt_1_1_floor_1ab648ac3cc4de02a0255126fc89daf00ea5396493406817137949b04a613af5941" prot="public">
+          <name>value</name>
+          <initializer>= ((Numerator - remain) / Denominator)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/MathUtils.hpp" line="144" column="9" bodyfile="E:/thing/cpp/tnt/include/math/MathUtils.hpp" bodystart="145" bodyend="148"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/math/MathUtils.hpp" line="139" column="5" bodyfile="E:/thing/cpp/tnt/include/math/MathUtils.hpp" bodystart="140" bodyend="149"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1_floor_1ab648ac3cc4de02a0255126fc89daf00eaccaaa57cd7622c7532bf606e34431d08" prot="public" virt="non-virtual"><scope>tnt::Floor</scope><name>remain</name></member>
+      <member refid="structtnt_1_1_floor_1ab648ac3cc4de02a0255126fc89daf00ea5396493406817137949b04a613af5941" prot="public" virt="non-virtual"><scope>tnt::Floor</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

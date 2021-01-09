@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1doo_1_1steering__sys" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::doo::steering_sys</compoundname>
+    <includes local="no">Steering.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1doo_1_1steering__sys_1a786c421869a86592866fb8a17c85b7cf" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::steering_sys::Seek</definition>
+        <argsstring>(object const &amp;id, Vector const &amp;target) const noexcept</argsstring>
+        <name>Seek</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>Move object <emphasis>id</emphasis> towards <emphasis>target</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the moving object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired position in global coordinates. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Use <ref refid="structtnt_1_1doo_1_1steering__sys_1ae4fde9e88d5b8136e505559832c078d5" kindref="member">Pursuit</ref> if <emphasis>target</emphasis> is supposed to be moving. It gives more &quot;natural&quot; results. </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="structtnt_1_1doo_1_1steering__sys_1ae4fde9e88d5b8136e505559832c078d5" kindref="member">Pursuit</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Steering.hpp" line="21" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1steering__sys_1af35d3b098b9db71b8d837776a5d979fe" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::steering_sys::Flee</definition>
+        <argsstring>(object const &amp;id, Vector const &amp;target) const noexcept</argsstring>
+        <name>Flee</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>Move object <emphasis>id</emphasis> away from <emphasis>target</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the moving object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position that the object will avoid. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Use <ref refid="structtnt_1_1doo_1_1steering__sys_1ab07d86fa137679fce2be7a20d40f2682" kindref="member">RangedFlee</ref> if you want <emphasis>obj</emphasis> to stay at a certain distance away from target. </para>
+</simplesect>
+<simplesect kind="note"><para>Use <ref refid="structtnt_1_1doo_1_1steering__sys_1a5b01981e47d5410c66db10f119bb0f06" kindref="member">Evade</ref> if <emphasis>target</emphasis> is supposed to be moving. It gives more &quot;natural&quot; results. </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="structtnt_1_1doo_1_1steering__sys_1ab07d86fa137679fce2be7a20d40f2682" kindref="member">RangedFlee</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="structtnt_1_1doo_1_1steering__sys_1a5b01981e47d5410c66db10f119bb0f06" kindref="member">Evade</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Steering.hpp" line="30" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1steering__sys_1ab07d86fa137679fce2be7a20d40f2682" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::steering_sys::RangedFlee</definition>
+        <argsstring>(object const &amp;id, Vector const &amp;target, float range) const noexcept</argsstring>
+        <name>RangedFlee</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>range</declname>
+        </param>
+        <briefdescription>
+<para>Move object <emphasis>id</emphasis> away from <emphasis>target</emphasis> if it is close enough. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the moving object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The center of the circular area to be avoided. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>range</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimum distance that the object and the target can have. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="structtnt_1_1doo_1_1steering__sys_1af35d3b098b9db71b8d837776a5d979fe" kindref="member">Flee</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="structtnt_1_1doo_1_1steering__sys_1a5b01981e47d5410c66db10f119bb0f06" kindref="member">Evade</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Steering.hpp" line="38" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1steering__sys_1a843f966b89b8a9d6d712ad84cce72b45" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::steering_sys::Arrive</definition>
+        <argsstring>(object const &amp;id, Vector const &amp;target) const noexcept</argsstring>
+        <name>Arrive</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> const &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>Direct the given object towards <emphasis>target</emphasis> with a speed that decreases as distance decreases. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object to make seek towards <emphasis>target</emphasis>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position where <emphasis>obj</emphasis> will be directed to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Steering.hpp" line="43" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1steering__sys_1ae4fde9e88d5b8136e505559832c078d5" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::steering_sys::Pursuit</definition>
+        <argsstring>(object const &amp;id, object const &amp;target) const noexcept</argsstring>
+        <name>Pursuit</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>object const &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>Direct the first object towards <emphasis>target</emphasis>. Useful when <emphasis>target</emphasis> is supposed to be moving. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object to make seek towards <emphasis>target</emphasis>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object which <emphasis>obj</emphasis> will follow. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Use <ref refid="structtnt_1_1doo_1_1steering__sys_1a786c421869a86592866fb8a17c85b7cf" kindref="member">Seek</ref> if <emphasis>target</emphasis> is not supposed to be moving. </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="structtnt_1_1doo_1_1steering__sys_1a786c421869a86592866fb8a17c85b7cf" kindref="member">Seek</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Steering.hpp" line="50" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1steering__sys_1a5b01981e47d5410c66db10f119bb0f06" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::steering_sys::Evade</definition>
+        <argsstring>(object const &amp;id, object const &amp;target) const noexcept</argsstring>
+        <name>Evade</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>object const &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>Move object <emphasis>id</emphasis> away from <emphasis>target</emphasis>. Useful when <emphasis>target</emphasis> is supposed to be moving. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object to flee away from <emphasis>target</emphasis>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object which <emphasis>obj</emphasis> will avoid. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Use <ref refid="structtnt_1_1doo_1_1steering__sys_1af35d3b098b9db71b8d837776a5d979fe" kindref="member">Flee</ref> if <emphasis>target</emphasis> is not supposed to be moving. </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::steer::Flee </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Steering.hpp" line="57" column="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A system that adds support steering behaviours to the objects. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Steering.hpp" line="9" column="12" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Steering.hpp" bodystart="10" bodyend="58"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1doo_1_1steering__sys_1a843f966b89b8a9d6d712ad84cce72b45" prot="public" virt="non-virtual"><scope>tnt::doo::steering_sys</scope><name>Arrive</name></member>
+      <member refid="structtnt_1_1doo_1_1steering__sys_1a5b01981e47d5410c66db10f119bb0f06" prot="public" virt="non-virtual"><scope>tnt::doo::steering_sys</scope><name>Evade</name></member>
+      <member refid="structtnt_1_1doo_1_1steering__sys_1af35d3b098b9db71b8d837776a5d979fe" prot="public" virt="non-virtual"><scope>tnt::doo::steering_sys</scope><name>Flee</name></member>
+      <member refid="structtnt_1_1doo_1_1steering__sys_1ae4fde9e88d5b8136e505559832c078d5" prot="public" virt="non-virtual"><scope>tnt::doo::steering_sys</scope><name>Pursuit</name></member>
+      <member refid="structtnt_1_1doo_1_1steering__sys_1ab07d86fa137679fce2be7a20d40f2682" prot="public" virt="non-virtual"><scope>tnt::doo::steering_sys</scope><name>RangedFlee</name></member>
+      <member refid="structtnt_1_1doo_1_1steering__sys_1a786c421869a86592866fb8a17c85b7cf" prot="public" virt="non-virtual"><scope>tnt::doo::steering_sys</scope><name>Seek</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

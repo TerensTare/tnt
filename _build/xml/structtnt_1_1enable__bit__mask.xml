@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1enable__bit__mask" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::enable_bit_mask</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">false_type</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>enum_type</type>
+        <declname>E</declname>
+        <defname>E</defname>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>false_type</label>
+      </node>
+      <node id="1">
+        <label>tnt::enable_bit_mask&lt; E &gt;</label>
+        <link refid="structtnt_1_1enable__bit__mask"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>false_type</label>
+      </node>
+      <node id="1">
+        <label>tnt::enable_bit_mask&lt; E &gt;</label>
+        <link refid="structtnt_1_1enable__bit__mask"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/utils/BitFlags.hpp" line="15" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/BitFlags.hpp" bodystart="16" bodyend="17"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

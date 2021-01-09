@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1vfs__handle" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>tnt::vfs_handle</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1vfs__handle_1aa121e81ecc2449576db05dd70e402a8f" prot="private" static="no" mutable="yes">
+        <type>std::mutex</type>
+        <definition>std::mutex tnt::vfs_handle::mtx</definition>
+        <argsstring></argsstring>
+        <name>mtx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" line="46" column="28" bodyfile="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1vfs__handle_1aa0eed1acde1d42972e3a27c159bbf179" prot="private" static="no" mutable="no">
+        <type>std::map&lt; const char *, char const *, std::less&lt;&gt; &gt;</type>
+        <definition>std::map&lt;const char *, char const *, std::less&lt;&gt; &gt; tnt::vfs_handle::entries</definition>
+        <argsstring></argsstring>
+        <name>entries</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" line="47" column="18" bodyfile="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classtnt_1_1vfs__handle_1adcd2d247080427664c24ceae1c7a66f9" prot="private" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::vfs_handle::mount</definition>
+        <argsstring>(char const *path, char const *alias) noexcept</argsstring>
+        <name>mount</name>
+        <param>
+          <type>char const *</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>alias</declname>
+        </param>
+        <briefdescription>
+<para>Make <emphasis>alias</emphasis> evaluate to <emphasis>path</emphasis> when used with <emphasis>tnt::vfs::absolute</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to be aliased. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>alias</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The alias of <emphasis>path</emphasis>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>If <emphasis>alias</emphasis> has already been assigned to a different path, a debug log will be emmited and the old path will be replaced by the new one. </para>
+</simplesect>
+<simplesect kind="see"><para>tnt::vfs::absolute. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" line="33" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1vfs__handle_1a118842233b1558b6ac428f735760918e" prot="private" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::vfs_handle::unmount</definition>
+        <argsstring>(char const *path) noexcept</argsstring>
+        <name>unmount</name>
+        <param>
+          <type>char const *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Remove <emphasis>path</emphasis> from the defined aliases. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The alias path to be removed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>If <emphasis>path</emphasis> was never assigned, a debug log will be emmited and nothing will happen. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" line="38" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1vfs__handle_1a7789cb0a2cece9367cb1c1935c30677a" prot="private" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string tnt::vfs_handle::absolute</definition>
+        <argsstring>(std::string_view path) const noexcept</argsstring>
+        <name>absolute</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Get the absolute path from a(n) absolute/relative/aliased path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to be turned to an absolute path. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" line="43" column="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" line="26" column="5" bodyfile="E:/thing/cpp/tnt/include/fileIO/VirtualFS.hpp" bodystart="27" bodyend="48"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1vfs__handle_1a7789cb0a2cece9367cb1c1935c30677a" prot="private" virt="non-virtual"><scope>tnt::vfs_handle</scope><name>absolute</name></member>
+      <member refid="classtnt_1_1vfs__handle_1aa0eed1acde1d42972e3a27c159bbf179" prot="private" virt="non-virtual"><scope>tnt::vfs_handle</scope><name>entries</name></member>
+      <member refid="classtnt_1_1vfs__handle_1adcd2d247080427664c24ceae1c7a66f9" prot="private" virt="non-virtual"><scope>tnt::vfs_handle</scope><name>mount</name></member>
+      <member refid="classtnt_1_1vfs__handle_1aa121e81ecc2449576db05dd70e402a8f" prot="private" virt="non-virtual"><scope>tnt::vfs_handle</scope><name>mtx</name></member>
+      <member refid="classtnt_1_1vfs__handle_1a118842233b1558b6ac428f735760918e" prot="private" virt="non-virtual"><scope>tnt::vfs_handle</scope><name>unmount</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

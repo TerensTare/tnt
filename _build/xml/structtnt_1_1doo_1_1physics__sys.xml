@@ -1,0 +1,802 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1doo_1_1physics__sys" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::doo::physics_sys</compoundname>
+    <includes local="no">Physics.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__sys_1a8f41be642b33e55cca8da06a2d6f7da2" prot="public" static="no" mutable="no">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref></type>
+        <definition>tnt::Vector tnt::doo::physics_sys::totalForce</definition>
+        <argsstring></argsstring>
+        <name>totalForce</name>
+        <initializer>{0.f, 0.f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="141" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__sys_1ab75dc625dd119ded0f168a289eee6830" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; tnt::doo::physics_sys::inv_mass</definition>
+        <argsstring></argsstring>
+        <name>inv_mass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="143" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__sys_1ace0e464dba86136f8e0d8aa78bc6a74e" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; tnt::doo::physics_sys::damping</definition>
+        <argsstring></argsstring>
+        <name>damping</name>
+        <briefdescription>
+<para>&lt; The inverse of the mass of each objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="145" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__sys_1a8a412f16c96dcd55ddfc7bd02079f26f" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; tnt::doo::physics_sys::restitution</definition>
+        <argsstring></argsstring>
+        <name>restitution</name>
+        <briefdescription>
+<para>&lt; The damping of the objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="146" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__sys_1afe29011dae4761970c9ff2e8d087c65a" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &gt;</type>
+        <definition>std::vector&lt;Vector&gt; tnt::doo::physics_sys::vel</definition>
+        <argsstring></argsstring>
+        <name>vel</name>
+        <briefdescription>
+<para>&lt; The restitution of the objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="148" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__sys_1a0a81d27af6e52075ce7be61d484e91b8" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &gt;</type>
+        <definition>std::vector&lt;Vector&gt; tnt::doo::physics_sys::maxVel</definition>
+        <argsstring></argsstring>
+        <name>maxVel</name>
+        <briefdescription>
+<para>&lt; The velocities of the objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="149" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__sys_1af23a6a368ae0720a0cf0ac7f2ced1f1c" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &gt;</type>
+        <definition>std::vector&lt;Vector&gt; tnt::doo::physics_sys::accel</definition>
+        <argsstring></argsstring>
+        <name>accel</name>
+        <briefdescription>
+<para>&lt; The maximal velocities of the objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="150" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__sys_1a0944e6628f321f6bbe449906a9e2657b" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref> &gt;</type>
+        <definition>std::vector&lt;Vector&gt; tnt::doo::physics_sys::maxAccel</definition>
+        <argsstring></argsstring>
+        <name>maxAccel</name>
+        <briefdescription>
+<para>&lt; The accelerations of the objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="151" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__sys_1ae5cc55451b3c822498708af973ace403" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structtnt_1_1_rectangle" kindref="compound">Rectangle</ref> &gt;</type>
+        <definition>std::vector&lt;Rectangle&gt; tnt::doo::physics_sys::bound_box</definition>
+        <argsstring></argsstring>
+        <name>bound_box</name>
+        <briefdescription>
+<para>&lt; The maximal accelerations of the objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="152" column="21" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1doo_1_1physics__sys_1a2cc84a45779ace93b7180d470e1fd93f" prot="public" static="no" mutable="no">
+        <type><ref refid="classtnt_1_1sparse__set" kindref="compound">sparse_set</ref>&lt; object &gt;</type>
+        <definition>sparse_set&lt;object&gt; tnt::doo::physics_sys::active</definition>
+        <argsstring></argsstring>
+        <name>active</name>
+        <briefdescription>
+<para>&lt; The bounding boxes of the bodies. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="154" column="20" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1a856de00447aadec1291232817a2d4378" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::physics_sys::add_object</definition>
+        <argsstring>(object const &amp;id, physics_comp const &amp;body)</argsstring>
+        <name>add_object</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1doo_1_1physics__comp" kindref="compound">physics_comp</ref> const &amp;</type>
+          <declname>body</declname>
+        </param>
+        <briefdescription>
+<para>Add a new object to the physics system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object to add to the physics system. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>body</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The physics component that has the data of the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The position of the bounding box of the component is considered to be relative to the position of the body. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="64" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1a7d62b917ab713574c04b0c724c045537" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::physics_sys::addForce</definition>
+        <argsstring>(object const &amp;id, tnt::Vector const &amp;force) noexcept</argsstring>
+        <name>addForce</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref> const &amp;</type>
+          <declname>force</declname>
+        </param>
+        <briefdescription>
+<para>Apply the given force to the object with the given id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>force</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The force to apply to the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="69" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1ab22d8606d91f846d757178410434c5ba" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::physics_sys::addGlobalForce</definition>
+        <argsstring>(tnt::Vector const &amp;force) noexcept</argsstring>
+        <name>addGlobalForce</name>
+        <param>
+          <type><ref refid="structtnt_1_1_vector" kindref="compound">tnt::Vector</ref> const &amp;</type>
+          <declname>force</declname>
+        </param>
+        <briefdescription>
+<para>Add a force that would be applied to each object when Update is called. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>force</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The force to be applied. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="73" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1a25c65d26e2403bcf8a4b30e6e5ddcb6c" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::physics_sys::Update</definition>
+        <argsstring>(object const &amp;id, float time_) noexcept</argsstring>
+        <name>Update</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>time_</declname>
+        </param>
+        <briefdescription>
+<para>Update the physics data of the object with the given id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object to update. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>time_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time that passed since the last update call. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="78" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1a796320b0baedf6b22e6605c98b06b3ee" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::doo::physics_sys::colliding</definition>
+        <argsstring>(object const &amp;id, object const &amp;id2) noexcept</argsstring>
+        <name>colliding</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id2</declname>
+        </param>
+        <briefdescription>
+<para>Check if the bounding boxes of the two objects are colliding. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the first object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the second object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="84" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1a6e0c1c9a5f4cdd7b2053432b681360d5" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::physics_sys::resolveVel</definition>
+        <argsstring>(object const &amp;id, object const &amp;id2) noexcept</argsstring>
+        <name>resolveVel</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id2</declname>
+        </param>
+        <briefdescription>
+<para>Resolve the velocity between two objects that have collided. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the first object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the second object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is called by <ref refid="structtnt_1_1doo_1_1physics__sys_1a53d95f7d70b783d2a42fb6a0ce20f04c" kindref="member">resolve()</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="90" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1a2ca81a9dd9914629a0fcbdc3bb121fe6" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::physics_sys::resolveInterpenetration</definition>
+        <argsstring>(object const &amp;id, object const &amp;id2) noexcept</argsstring>
+        <name>resolveInterpenetration</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id2</declname>
+        </param>
+        <briefdescription>
+<para>Resolve the interpenetration between two objects that have collided. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the first object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the second object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is called by <ref refid="structtnt_1_1doo_1_1physics__sys_1a53d95f7d70b783d2a42fb6a0ce20f04c" kindref="member">resolve()</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="96" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1a53d95f7d70b783d2a42fb6a0ce20f04c" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::physics_sys::resolve</definition>
+        <argsstring>(object const &amp;id, object const &amp;id2) noexcept</argsstring>
+        <name>resolve</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id2</declname>
+        </param>
+        <briefdescription>
+<para>Resolve the collision between two objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the first object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the second object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="101" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1a111d941ca78e04531eedc9d5c1839905" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::physics_sys::from_json</definition>
+        <argsstring>(object const &amp;id, nlohmann::json const &amp;j)</argsstring>
+        <name>from_json</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>nlohmann::json const &amp;</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Load objects physics data from a json chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object to load from json. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The json chunk that contains the objects data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="106" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1ab742fbd0b0c252d48f4d88137c3d4393" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::physics_sys::to_json</definition>
+        <argsstring>(object const &amp;id, nlohmann::json &amp;j)</argsstring>
+        <name>to_json</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>nlohmann::json &amp;</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Store physics data of a specific object to a json chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object to serialize to json. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The json chunk where the data will be saved. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="111" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1a8bf8b08ec1acce04140b52205cfb1dce" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::physics_sys::draw_imgui</definition>
+        <argsstring>(object const &amp;id, Window const &amp;win) noexcept</argsstring>
+        <name>draw_imgui</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="classtnt_1_1_window" kindref="compound">Window</ref> const &amp;</type>
+          <declname>win</declname>
+        </param>
+        <briefdescription>
+<para>Draw widgets on the given window to modify the datas of the system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the active object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>win</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The window where to draw the widgets. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="116" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1a909ff9832970deb3a6b121754f1f6c92" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::physics_sys::remove</definition>
+        <argsstring>(object const &amp;id) noexcept</argsstring>
+        <name>remove</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Remove the desired object from the physics system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object you want to remove. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="120" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1af4499d93974a22a0dd971df562a71b2b" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::doo::physics_sys::clear</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>clear</name>
+        <briefdescription>
+<para>Remove all the objects from the physics system. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="123" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1a688de39a0f077e2288d3858f0717b72e" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::physics_sys::gVel</definition>
+        <argsstring>(object const &amp;id) const noexcept</argsstring>
+        <name>gVel</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get the velocity of the object in global context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="127" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1a6ec4932a6c6de1da0daaf1c467c805b1" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::physics_sys::gMaxVel</definition>
+        <argsstring>(object const &amp;id) const noexcept</argsstring>
+        <name>gMaxVel</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get the maximal velocity of the object in global context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="131" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1a95bc63e99af924d5b89df77b7b9af5bf" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::physics_sys::gAccel</definition>
+        <argsstring>(object const &amp;id) const noexcept</argsstring>
+        <name>gAccel</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get the acceleration of the object in global context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="135" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1doo_1_1physics__sys_1ad1c2fbc5d2c7a40738cfe0735e5812c5" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structtnt_1_1_vector" kindref="compound">Vector</ref></type>
+        <definition>Vector tnt::doo::physics_sys::gMaxAccel</definition>
+        <argsstring>(object const &amp;id) const noexcept</argsstring>
+        <name>gMaxAccel</name>
+        <param>
+          <type>object const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get the maximum acceleration of the object in global context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="139" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A struct that handles the physics data of all the objects. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>tnt::sparse_set&lt; T &gt;</label>
+        <link refid="classtnt_1_1sparse__set"/>
+      </node>
+      <node id="3">
+        <label>tnt::sparse_set&lt; object &gt;</label>
+        <link refid="classtnt_1_1sparse__set"/>
+        <childnode refid="4" relation="template-instance">
+          <edgelabel>&lt; object &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::Vector</label>
+        <link refid="structtnt_1_1_vector"/>
+      </node>
+      <node id="1">
+        <label>tnt::doo::physics_sys</label>
+        <link refid="structtnt_1_1doo_1_1physics__sys"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>totalForce</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>active</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" line="52" column="12" bodyfile="E:/thing/cpp/tnt/include/doo_ecs/Physics.hpp" bodystart="53" bodyend="155"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1af23a6a368ae0720a0cf0ac7f2ced1f1c" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>accel</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a2cc84a45779ace93b7180d470e1fd93f" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>active</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a856de00447aadec1291232817a2d4378" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>add_object</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a7d62b917ab713574c04b0c724c045537" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>addForce</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1ab22d8606d91f846d757178410434c5ba" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>addGlobalForce</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1ae5cc55451b3c822498708af973ace403" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>bound_box</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1af4499d93974a22a0dd971df562a71b2b" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>clear</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a796320b0baedf6b22e6605c98b06b3ee" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>colliding</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1ace0e464dba86136f8e0d8aa78bc6a74e" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>damping</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a8bf8b08ec1acce04140b52205cfb1dce" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>draw_imgui</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a111d941ca78e04531eedc9d5c1839905" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>from_json</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a95bc63e99af924d5b89df77b7b9af5bf" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>gAccel</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1ad1c2fbc5d2c7a40738cfe0735e5812c5" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>gMaxAccel</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a6ec4932a6c6de1da0daaf1c467c805b1" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>gMaxVel</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a688de39a0f077e2288d3858f0717b72e" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>gVel</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1ab75dc625dd119ded0f168a289eee6830" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>inv_mass</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a0944e6628f321f6bbe449906a9e2657b" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>maxAccel</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a0a81d27af6e52075ce7be61d484e91b8" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>maxVel</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a909ff9832970deb3a6b121754f1f6c92" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>remove</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a53d95f7d70b783d2a42fb6a0ce20f04c" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>resolve</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a2ca81a9dd9914629a0fcbdc3bb121fe6" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>resolveInterpenetration</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a6e0c1c9a5f4cdd7b2053432b681360d5" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>resolveVel</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a8a412f16c96dcd55ddfc7bd02079f26f" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>restitution</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1ab742fbd0b0c252d48f4d88137c3d4393" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>to_json</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a8f41be642b33e55cca8da06a2d6f7da2" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>totalForce</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1a25c65d26e2403bcf8a4b30e6e5ddcb6c" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>Update</name></member>
+      <member refid="structtnt_1_1doo_1_1physics__sys_1afe29011dae4761970c9ff2e8d087c65a" prot="public" virt="non-virtual"><scope>tnt::doo::physics_sys</scope><name>vel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

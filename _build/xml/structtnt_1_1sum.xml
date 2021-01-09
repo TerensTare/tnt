@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1sum" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::sum</compoundname>
+    <templateparamlist>
+      <param>
+        <type>int</type>
+        <declname>First</declname>
+        <defname>First</defname>
+      </param>
+      <param>
+        <type>int...</type>
+        <declname>Rest</declname>
+        <defname>Rest</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structtnt_1_1sum_1ac4293e99bf0ddfd34830f715f15f6d93" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@9</name>
+        <enumvalue id="structtnt_1_1sum_1ac4293e99bf0ddfd34830f715f15f6d93a8592989352016187c234843de4da8ab7" prot="public">
+          <name>value</name>
+          <initializer>= First + sum&lt;Rest...&gt;::value + 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/math/MathUtils.hpp" line="95" column="9" bodyfile="E:/thing/cpp/tnt/include/math/MathUtils.hpp" bodystart="96" bodyend="98"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/math/MathUtils.hpp" line="93" column="5" bodyfile="E:/thing/cpp/tnt/include/math/MathUtils.hpp" bodystart="94" bodyend="99"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1sum_1ac4293e99bf0ddfd34830f715f15f6d93a8592989352016187c234843de4da8ab7" prot="public" virt="non-virtual"><scope>tnt::sum</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

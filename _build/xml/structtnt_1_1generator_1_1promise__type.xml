@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1generator_1_1promise__type" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::generator::promise_type</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structtnt_1_1generator_1_1promise__type_1aca1d0b60ca2046ff7ee284abac7f36f7" prot="private" static="no" mutable="no">
+        <type>T const  *</type>
+        <definition>T const* tnt::generator&lt; T &gt;::promise_type::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="82" column="17" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtnt_1_1generator_1_1promise__type_1a1e42fd371f134c2be98ccc970931408f" prot="private" static="no" mutable="no">
+        <type>friend</type>
+        <definition>friend tnt::generator&lt; T &gt;::promise_type::generator&lt; T &gt;</definition>
+        <argsstring></argsstring>
+        <name>generator&lt; T &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="84" column="9" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1generator_1_1promise__type_1a8f24ca764ff510115172be9a02a82efa" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>std::suspend_always</type>
+        <definition>std::suspend_always tnt::generator&lt; T &gt;::promise_type::initial_suspend</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>initial_suspend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="63" column="36" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1generator_1_1promise__type_1a9faad7f54abda20a0f83eb47b8711450" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>std::suspend_always</type>
+        <definition>std::suspend_always tnt::generator&lt; T &gt;::promise_type::final_suspend</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>final_suspend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="64" column="36" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1generator_1_1promise__type_1a9850848a300ef622ae3cdc4c9bd65be0" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classtnt_1_1generator" kindref="compound">generator</ref>&lt; T &gt;</type>
+        <definition>generator&lt;T&gt; tnt::generator&lt; T &gt;::promise_type::get_return_object</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>get_return_object</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="66" column="26" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1generator_1_1promise__type_1ab713165166936d6b466711a5cb1e954b" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::generator&lt; T &gt;::promise_type::unhandled_exception</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>unhandled_exception</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="71" column="22" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1generator_1_1promise__type_1ad2fb0173588abb4cc7af37ca7b57627d" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>std::suspend_never</type>
+        <definition>std::suspend_never tnt::generator&lt; T &gt;::promise_type::return_void</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>return_void</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="73" column="35" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1generator_1_1promise__type_1a2c41cd33aef505fa44ef1f2c1ab22567" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>std::suspend_always</type>
+        <definition>std::suspend_always tnt::generator&lt; T &gt;::promise_type::yield_value</definition>
+        <argsstring>(T const &amp;val) noexcept</argsstring>
+        <name>yield_value</name>
+        <param>
+          <type>T const &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="75" column="36" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="75" bodyend="79"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/async/Generator.hpp" line="61" column="5" bodyfile="E:/thing/cpp/tnt/include/async/Generator.hpp" bodystart="62" bodyend="85"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1generator_1_1promise__type_1a9faad7f54abda20a0f83eb47b8711450" prot="public" virt="non-virtual"><scope>tnt::generator::promise_type</scope><name>final_suspend</name></member>
+      <member refid="structtnt_1_1generator_1_1promise__type_1a1e42fd371f134c2be98ccc970931408f" prot="private" virt="non-virtual"><scope>tnt::generator::promise_type</scope><name>generator&lt; T &gt;</name></member>
+      <member refid="structtnt_1_1generator_1_1promise__type_1a9850848a300ef622ae3cdc4c9bd65be0" prot="public" virt="non-virtual"><scope>tnt::generator::promise_type</scope><name>get_return_object</name></member>
+      <member refid="structtnt_1_1generator_1_1promise__type_1a8f24ca764ff510115172be9a02a82efa" prot="public" virt="non-virtual"><scope>tnt::generator::promise_type</scope><name>initial_suspend</name></member>
+      <member refid="structtnt_1_1generator_1_1promise__type_1ad2fb0173588abb4cc7af37ca7b57627d" prot="public" virt="non-virtual"><scope>tnt::generator::promise_type</scope><name>return_void</name></member>
+      <member refid="structtnt_1_1generator_1_1promise__type_1ab713165166936d6b466711a5cb1e954b" prot="public" virt="non-virtual"><scope>tnt::generator::promise_type</scope><name>unhandled_exception</name></member>
+      <member refid="structtnt_1_1generator_1_1promise__type_1aca1d0b60ca2046ff7ee284abac7f36f7" prot="private" virt="non-virtual"><scope>tnt::generator::promise_type</scope><name>value</name></member>
+      <member refid="structtnt_1_1generator_1_1promise__type_1a2c41cd33aef505fa44ef1f2c1ab22567" prot="public" virt="non-virtual"><scope>tnt::generator::promise_type</scope><name>yield_value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

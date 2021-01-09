@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1macos__t" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::macos_t</compoundname>
+    <basecompoundref refid="structtnt_1_1tag__type__t" prot="public" virt="non-virtual">tnt::tag_type_t</basecompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>tnt::macos_t</label>
+        <link refid="structtnt_1_1macos__t"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::tag_type_t</label>
+        <link refid="structtnt_1_1tag__type__t"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>tnt::macos_t</label>
+        <link refid="structtnt_1_1macos__t"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tnt::tag_type_t</label>
+        <link refid="structtnt_1_1tag__type__t"/>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="71" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="72" bodyend="73"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1tag__type__t_1a4bf1745744db97089081bd1c6e0f2f83" prot="public" virt="non-virtual"><scope>tnt::macos_t</scope><name>operator=</name></member>
+      <member refid="structtnt_1_1tag__type__t_1a43c5b273e245e957f27471ae521b4373" prot="public" virt="non-virtual"><scope>tnt::macos_t</scope><name>operator=</name></member>
+      <member refid="structtnt_1_1tag__type__t_1a140ff69d61dcf8f0e6383ac8a8e7b615" prot="public" virt="non-virtual"><scope>tnt::macos_t</scope><name>tag_type_t</name></member>
+      <member refid="structtnt_1_1tag__type__t_1a46564b65709bf2464a767c9dea8607a3" prot="public" virt="non-virtual"><scope>tnt::macos_t</scope><name>tag_type_t</name></member>
+      <member refid="structtnt_1_1tag__type__t_1a0dc58c070932872a1965ff122f22aa1d" prot="public" virt="non-virtual"><scope>tnt::macos_t</scope><name>tag_type_t</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

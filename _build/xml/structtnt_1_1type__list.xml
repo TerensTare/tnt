@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1type__list" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::type_list</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename...</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/exp/TypeListsv2.hpp" line="16" column="5" bodyfile="E:/thing/cpp/tnt/include/exp/TypeListsv2.hpp" bodystart="17" bodyend="18"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

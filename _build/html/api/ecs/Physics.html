@@ -1,0 +1,651 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Physics &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Scripts" href="Scripts.html" />
+    <link rel="prev" title="Objects" href="Objects.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../async.html">Async</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ecs.html">Entity Component System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Animations.html">Animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Base.html">Base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Bones.html">Bones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Cameras.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Objects.html">Objects</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts.html">Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sprites.html">Sprites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Steering.html">Steering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="System.html">System</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../file.html">File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imgui.html">ImGui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math.html">Math</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../ecs.html">Entity Component System</a> &raquo;</li>
+        
+      <li>Physics</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/ecs/Physics.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="physics">
+<span id="tnt-ecs-physics-api"></span><h1>Physics<a class="headerlink" href="#physics" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><dl class="cpp type">
+<dt id="_CPPv4N3tnt3dooE">
+<span id="_CPPv3N3tnt3dooE"></span><span id="_CPPv2N3tnt3dooE"></span><span id="tnt::doo"></span><span class="target" id="namespacetnt_1_1doo"></span><em class="property">namespace </em><code class="sig-name descname">doo</code><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt3doo9body_typeE">
+<span id="_CPPv3N3tnt3doo9body_typeE"></span><span id="_CPPv2N3tnt3doo9body_typeE"></span><span class="target" id="_physics_8hpp_1a9f5610e6eb13ad2ba7c43aa2f790698f"></span><em class="property">enum </em><code class="sig-name descname">body_type</code><a class="headerlink" href="#_CPPv4N3tnt3doo9body_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt3doo9body_type5fixedE">
+<span id="_CPPv3N3tnt3doo9body_type5fixedE"></span><span id="_CPPv2N3tnt3doo9body_type5fixedE"></span><span class="target" id="_physics_8hpp_1a9f5610e6eb13ad2ba7c43aa2f790698facec315e3d0975e5cc2811d5d8725f149"></span><em class="property">enumerator </em><code class="sig-name descname">fixed</code> = 0<a class="headerlink" href="#_CPPv4N3tnt3doo9body_type5fixedE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt3doo9body_type9kinematicE">
+<span id="_CPPv3N3tnt3doo9body_type9kinematicE"></span><span id="_CPPv2N3tnt3doo9body_type9kinematicE"></span><span class="target" id="_physics_8hpp_1a9f5610e6eb13ad2ba7c43aa2f790698fa82221355e8922f4e93a2455d99c04aa2"></span><em class="property">enumerator </em><code class="sig-name descname">kinematic</code><a class="headerlink" href="#_CPPv4N3tnt3doo9body_type9kinematicE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The body is fixed in a certain position. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt3doo9body_type7dynamicE">
+<span id="_CPPv3N3tnt3doo9body_type7dynamicE"></span><span id="_CPPv2N3tnt3doo9body_type7dynamicE"></span><span class="target" id="_physics_8hpp_1a9f5610e6eb13ad2ba7c43aa2f790698fab72f3bd391ba731a35708bfd8cd8a68f"></span><em class="property">enumerator </em><code class="sig-name descname">dynamic</code><a class="headerlink" href="#_CPPv4N3tnt3doo9body_type7dynamicE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The body can move freely and collide only with kinematic bodies. </p>
+<p>&lt; The body can move freely and collide with dynamic or fixed bodies. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv4N3tnt3doo14collision_typeE">
+<span id="_CPPv3N3tnt3doo14collision_typeE"></span><span id="_CPPv2N3tnt3doo14collision_typeE"></span><span class="target" id="_physics_8hpp_1add982859657881a9e71cf1d9591a6e36"></span><em class="property">enum </em><code class="sig-name descname">collision_type</code><a class="headerlink" href="#_CPPv4N3tnt3doo14collision_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt3doo14collision_type4noneE">
+<span id="_CPPv3N3tnt3doo14collision_type4noneE"></span><span id="_CPPv2N3tnt3doo14collision_type4noneE"></span><span class="target" id="_physics_8hpp_1add982859657881a9e71cf1d9591a6e36a334c4a4c42fdb79d7ebc3e73b517e6f8"></span><em class="property">enumerator </em><code class="sig-name descname">none</code> = 0<a class="headerlink" href="#_CPPv4N3tnt3doo14collision_type4noneE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt3doo14collision_type10horizontalE">
+<span id="_CPPv3N3tnt3doo14collision_type10horizontalE"></span><span id="_CPPv2N3tnt3doo14collision_type10horizontalE"></span><span class="target" id="_physics_8hpp_1add982859657881a9e71cf1d9591a6e36a4505cad087312551a6fbbe6ebe163e0f"></span><em class="property">enumerator </em><code class="sig-name descname">horizontal</code><a class="headerlink" href="#_CPPv4N3tnt3doo14collision_type10horizontalE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The objects don’t collide. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N3tnt3doo14collision_type8verticalE">
+<span id="_CPPv3N3tnt3doo14collision_type8verticalE"></span><span id="_CPPv2N3tnt3doo14collision_type8verticalE"></span><span class="target" id="_physics_8hpp_1add982859657881a9e71cf1d9591a6e36ae6dec152d6a941fccb0a5e8cc2579cc3"></span><em class="property">enumerator </em><code class="sig-name descname">vertical</code><a class="headerlink" href="#_CPPv4N3tnt3doo14collision_type8verticalE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The objects collide on their left/right side. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo4betaE">
+<span id="_CPPv3N3tnt3doo4betaE"></span><span id="_CPPv2N3tnt3doo4betaE"></span><span id="tnt::doo::beta__float"></span><span class="target" id="_physics_8hpp_1a7b905843cce213bb57b029a84e3ed23f"></span><em class="property">constexpr</em> float <code class="sig-name descname">beta</code> = {0.05f}<a class="headerlink" href="#_CPPv4N3tnt3doo4betaE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo7gravityE">
+<span id="_CPPv3N3tnt3doo7gravityE"></span><span id="_CPPv2N3tnt3doo7gravityE"></span><span id="tnt::doo::gravity__Vector"></span><span class="target" id="_physics_8hpp_1a50aee30a7f93a57a17092a8e216e80a0"></span><em class="property">constexpr</em> <a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">gravity</code> = {0.f, 10.f}<a class="headerlink" href="#_CPPv4N3tnt3doo7gravityE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; A constant used for baumgarte stabilization. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo7physicsE">
+<span id="_CPPv3N3tnt3doo7physicsE"></span><span id="_CPPv2N3tnt3doo7physicsE"></span><span id="tnt::doo::physics__tnt::doo::physics_sys"></span><span class="target" id="_physics_8hpp_1a848083bd92fcc5a4eea14d73f323a8af"></span><em class="property">struct</em> <a class="reference internal" href="../core/window.html#_CPPv43tnt" title="tnt">tnt</a>::<a class="reference internal" href="Animations.html#_CPPv4N3tnt3dooE" title="tnt::doo">doo</a>::<a class="reference internal" href="#_CPPv4N3tnt3doo11physics_sysE" title="tnt::doo::physics_sys">physics_sys</a> <code class="sig-name descname">physics</code><a class="headerlink" href="#_CPPv4N3tnt3doo7physicsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt3doo12physics_compE">
+<span id="_CPPv3N3tnt3doo12physics_compE"></span><span id="_CPPv2N3tnt3doo12physics_compE"></span><span id="tnt::doo::physics_comp"></span><span class="target" id="structtnt_1_1doo_1_1physics__comp"></span><em class="property">struct </em><code class="sig-name descname">physics_comp</code><a class="headerlink" href="#_CPPv4N3tnt3doo12physics_compE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo12physics_comp4typeE">
+<span id="_CPPv3N3tnt3doo12physics_comp4typeE"></span><span id="_CPPv2N3tnt3doo12physics_comp4typeE"></span><span id="tnt::doo::physics_comp::type__body_type"></span><span class="target" id="structtnt_1_1doo_1_1physics__comp_1a8c85104c1d621feef622f1c640cf7dbd"></span><a class="reference internal" href="#_CPPv4N3tnt3doo9body_typeE" title="tnt::doo::body_type">body_type</a> <code class="sig-name descname">type</code> = {<a class="reference internal" href="#_CPPv4N3tnt3doo9body_typeE" title="tnt::doo::body_type">body_type</a>::<a class="reference internal" href="#_CPPv4N3tnt3doo9body_type7dynamicE" title="tnt::doo::body_type::dynamic">dynamic</a>}<a class="headerlink" href="#_CPPv4N3tnt3doo12physics_comp4typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo12physics_comp4massE">
+<span id="_CPPv3N3tnt3doo12physics_comp4massE"></span><span id="_CPPv2N3tnt3doo12physics_comp4massE"></span><span id="tnt::doo::physics_comp::mass__float"></span><span class="target" id="structtnt_1_1doo_1_1physics__comp_1ad4402dea909fc961ef170dc2f6b50fbe"></span>float <code class="sig-name descname">mass</code><a class="headerlink" href="#_CPPv4N3tnt3doo12physics_comp4massE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo12physics_comp7dampingE">
+<span id="_CPPv3N3tnt3doo12physics_comp7dampingE"></span><span id="_CPPv2N3tnt3doo12physics_comp7dampingE"></span><span id="tnt::doo::physics_comp::damping__float"></span><span class="target" id="structtnt_1_1doo_1_1physics__comp_1ac7be0d5a3437e7ca5d4735284f84aa03"></span>float <code class="sig-name descname">damping</code><a class="headerlink" href="#_CPPv4N3tnt3doo12physics_comp7dampingE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo12physics_comp11restitutionE">
+<span id="_CPPv3N3tnt3doo12physics_comp11restitutionE"></span><span id="_CPPv2N3tnt3doo12physics_comp11restitutionE"></span><span id="tnt::doo::physics_comp::restitution__float"></span><span class="target" id="structtnt_1_1doo_1_1physics__comp_1a46256008681d99394f18cb86bebc4c96"></span>float <code class="sig-name descname">restitution</code><a class="headerlink" href="#_CPPv4N3tnt3doo12physics_comp11restitutionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo12physics_comp6maxVelE">
+<span id="_CPPv3N3tnt3doo12physics_comp6maxVelE"></span><span id="_CPPv2N3tnt3doo12physics_comp6maxVelE"></span><span id="tnt::doo::physics_comp::maxVel__Vector"></span><span class="target" id="structtnt_1_1doo_1_1physics__comp_1a3b56135e43334ff0c7257d02ce0ebdd3"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">maxVel</code> = {40.f, 40.f}<a class="headerlink" href="#_CPPv4N3tnt3doo12physics_comp6maxVelE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo12physics_comp8maxAccelE">
+<span id="_CPPv3N3tnt3doo12physics_comp8maxAccelE"></span><span id="_CPPv2N3tnt3doo12physics_comp8maxAccelE"></span><span id="tnt::doo::physics_comp::maxAccel__Vector"></span><span class="target" id="structtnt_1_1doo_1_1physics__comp_1ac184dc734a79a45b7c9a8667bbead99d"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">maxAccel</code> = {15.f, 15.f}<a class="headerlink" href="#_CPPv4N3tnt3doo12physics_comp8maxAccelE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo12physics_comp9bound_boxE">
+<span id="_CPPv3N3tnt3doo12physics_comp9bound_boxE"></span><span id="_CPPv2N3tnt3doo12physics_comp9bound_boxE"></span><span id="tnt::doo::physics_comp::bound_box__Rectangle"></span><span class="target" id="structtnt_1_1doo_1_1physics__comp_1adec65b74bbb407cd1a35cb150f9688ed"></span>Rectangle <code class="sig-name descname">bound_box</code><a class="headerlink" href="#_CPPv4N3tnt3doo12physics_comp9bound_boxE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4N3tnt3doo11physics_sysE">
+<span id="_CPPv3N3tnt3doo11physics_sysE"></span><span id="_CPPv2N3tnt3doo11physics_sysE"></span><span id="tnt::doo::physics_sys"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys"></span><em class="property">struct </em><code class="sig-name descname">physics_sys</code><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sysE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;Physics.hpp&gt;</em><p>A struct that handles the physics data of all the objects. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11physics_sys10add_objectERK6objectRK12physics_comp">
+<span id="_CPPv3N3tnt3doo11physics_sys10add_objectERK6objectRK12physics_comp"></span><span id="_CPPv2N3tnt3doo11physics_sys10add_objectERK6objectRK12physics_comp"></span><span id="tnt::doo::physics_sys::add_object__objectCR.physics_compCR"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a856de00447aadec1291232817a2d4378"></span>void <code class="sig-name descname">add_object</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="#_CPPv4N3tnt3doo12physics_compE" title="tnt::doo::physics_comp">physics_comp</a> <em class="property">const</em> &amp;<em>body</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys10add_objectERK6objectRK12physics_comp" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add a new object to the physics system. </p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The position of the bounding box of the component is considered to be relative to the position of the body. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to add to the physics system. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">body</span></code>: The physics component that has the data of the object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11physics_sys8addForceERK6objectRKN3tnt6VectorE">
+<span id="_CPPv3N3tnt3doo11physics_sys8addForceERK6objectRKN3tnt6VectorE"></span><span id="_CPPv2N3tnt3doo11physics_sys8addForceERK6objectRKN3tnt6VectorE"></span><span id="tnt::doo::physics_sys::addForce__objectCR.tnt::VectorCR"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a7d62b917ab713574c04b0c724c045537"></span>void <code class="sig-name descname">addForce</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="../core/window.html#_CPPv43tnt" title="tnt">tnt</a>::<a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>force</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys8addForceERK6objectRKN3tnt6VectorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Apply the given force to the object with the given id. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">force</span></code>: The force to apply to the object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11physics_sys14addGlobalForceERKN3tnt6VectorE">
+<span id="_CPPv3N3tnt3doo11physics_sys14addGlobalForceERKN3tnt6VectorE"></span><span id="_CPPv2N3tnt3doo11physics_sys14addGlobalForceERKN3tnt6VectorE"></span><span id="tnt::doo::physics_sys::addGlobalForce__tnt::VectorCR"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1ab22d8606d91f846d757178410434c5ba"></span>void <code class="sig-name descname">addGlobalForce</code><span class="sig-paren">(</span><a class="reference internal" href="../core/window.html#_CPPv43tnt" title="tnt">tnt</a>::<a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <em class="property">const</em> &amp;<em>force</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys14addGlobalForceERKN3tnt6VectorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add a force that would be applied to each object when Update is called. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">force</span></code>: The force to be applied. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11physics_sys6UpdateERK6objectf">
+<span id="_CPPv3N3tnt3doo11physics_sys6UpdateERK6objectf"></span><span id="_CPPv2N3tnt3doo11physics_sys6UpdateERK6objectf"></span><span id="tnt::doo::physics_sys::Update__objectCR.float"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a25c65d26e2403bcf8a4b30e6e5ddcb6c"></span>void <code class="sig-name descname">Update</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, float <em>time_</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys6UpdateERK6objectf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Update the physics data of the object with the given id. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to update. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time_</span></code>: The time that passed since the last update call. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11physics_sys9collidingERK6objectRK6object">
+<span id="_CPPv3N3tnt3doo11physics_sys9collidingERK6objectRK6object"></span><span id="_CPPv2N3tnt3doo11physics_sys9collidingERK6objectRK6object"></span><span id="tnt::doo::physics_sys::colliding__objectCR.objectCR"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a796320b0baedf6b22e6605c98b06b3ee"></span>bool <code class="sig-name descname">colliding</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id2</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys9collidingERK6objectRK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if the bounding boxes of the two objects are colliding. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>bool </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the first object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">id2</span></code>: The id of the second object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11physics_sys10resolveVelERK6objectRK6object">
+<span id="_CPPv3N3tnt3doo11physics_sys10resolveVelERK6objectRK6object"></span><span id="_CPPv2N3tnt3doo11physics_sys10resolveVelERK6objectRK6object"></span><span id="tnt::doo::physics_sys::resolveVel__objectCR.objectCR"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a6e0c1c9a5f4cdd7b2053432b681360d5"></span>void <code class="sig-name descname">resolveVel</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id2</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys10resolveVelERK6objectRK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resolve the velocity between two objects that have collided. </p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This is called by <a class="reference internal" href="#structtnt_1_1doo_1_1physics__sys_1a53d95f7d70b783d2a42fb6a0ce20f04c"><span class="std std-ref">resolve()</span></a>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the first object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">id2</span></code>: The id of the second object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11physics_sys23resolveInterpenetrationERK6objectRK6object">
+<span id="_CPPv3N3tnt3doo11physics_sys23resolveInterpenetrationERK6objectRK6object"></span><span id="_CPPv2N3tnt3doo11physics_sys23resolveInterpenetrationERK6objectRK6object"></span><span id="tnt::doo::physics_sys::resolveInterpenetration__objectCR.objectCR"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a2ca81a9dd9914629a0fcbdc3bb121fe6"></span>void <code class="sig-name descname">resolveInterpenetration</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id2</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys23resolveInterpenetrationERK6objectRK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resolve the interpenetration between two objects that have collided. </p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This is called by <a class="reference internal" href="#structtnt_1_1doo_1_1physics__sys_1a53d95f7d70b783d2a42fb6a0ce20f04c"><span class="std std-ref">resolve()</span></a>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the first object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">id2</span></code>: The id of the second object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11physics_sys7resolveERK6objectRK6object">
+<span id="_CPPv3N3tnt3doo11physics_sys7resolveERK6objectRK6object"></span><span id="_CPPv2N3tnt3doo11physics_sys7resolveERK6objectRK6object"></span><span id="tnt::doo::physics_sys::resolve__objectCR.objectCR"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a53d95f7d70b783d2a42fb6a0ce20f04c"></span>void <code class="sig-name descname">resolve</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id2</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys7resolveERK6objectRK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resolve the collision between two objects. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the first object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">id2</span></code>: The id of the second object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11physics_sys9from_jsonERK6objectRKN8nlohmann4jsonE">
+<span id="_CPPv3N3tnt3doo11physics_sys9from_jsonERK6objectRKN8nlohmann4jsonE"></span><span id="_CPPv2N3tnt3doo11physics_sys9from_jsonERK6objectRKN8nlohmann4jsonE"></span><span id="tnt::doo::physics_sys::from_json__objectCR.nlohmann::jsonCR"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a111d941ca78e04531eedc9d5c1839905"></span>void <code class="sig-name descname">from_json</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, nlohmann::json <em class="property">const</em> &amp;<em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys9from_jsonERK6objectRKN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Load objects physics data from a json chunk. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to load from json. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: The json chunk that contains the objects data. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11physics_sys7to_jsonERK6objectRN8nlohmann4jsonE">
+<span id="_CPPv3N3tnt3doo11physics_sys7to_jsonERK6objectRN8nlohmann4jsonE"></span><span id="_CPPv2N3tnt3doo11physics_sys7to_jsonERK6objectRN8nlohmann4jsonE"></span><span id="tnt::doo::physics_sys::to_json__objectCR.nlohmann::jsonR"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1ab742fbd0b0c252d48f4d88137c3d4393"></span>void <code class="sig-name descname">to_json</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, nlohmann::json &amp;<em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys7to_jsonERK6objectRN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Store physics data of a specific object to a json chunk. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to serialize to json. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: The json chunk where the data will be saved. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11physics_sys10draw_imguiERK6objectRK6Window">
+<span id="_CPPv3N3tnt3doo11physics_sys10draw_imguiERK6objectRK6Window"></span><span id="_CPPv2N3tnt3doo11physics_sys10draw_imguiERK6objectRK6Window"></span><span id="tnt::doo::physics_sys::draw_imgui__objectCR.WindowCR"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a8bf8b08ec1acce04140b52205cfb1dce"></span>void <code class="sig-name descname">draw_imgui</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="../core/window.html#_CPPv4N3tnt6WindowE" title="tnt::Window">Window</a> <em class="property">const</em> &amp;<em>win</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys10draw_imguiERK6objectRK6Window" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Draw widgets on the given window to modify the datas of the system. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the active object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: The window where to draw the widgets. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11physics_sys6removeERK6object">
+<span id="_CPPv3N3tnt3doo11physics_sys6removeERK6object"></span><span id="_CPPv2N3tnt3doo11physics_sys6removeERK6object"></span><span id="tnt::doo::physics_sys::remove__objectCR"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a909ff9832970deb3a6b121754f1f6c92"></span>void <code class="sig-name descname">remove</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys6removeERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove the desired object from the physics system. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object you want to remove. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11physics_sys5clearEv">
+<span id="_CPPv3N3tnt3doo11physics_sys5clearEv"></span><span id="_CPPv2N3tnt3doo11physics_sys5clearEv"></span><span id="tnt::doo::physics_sys::clear"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1af4499d93974a22a0dd971df562a71b2b"></span>void <code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys5clearEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove all the objects from the physics system. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt3doo11physics_sys4gVelERK6object">
+<span id="_CPPv3NK3tnt3doo11physics_sys4gVelERK6object"></span><span id="_CPPv2NK3tnt3doo11physics_sys4gVelERK6object"></span><span id="tnt::doo::physics_sys::gVel__objectCRC"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a688de39a0f077e2288d3858f0717b72e"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">gVel</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt3doo11physics_sys4gVelERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the velocity of the object in global context. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt3doo11physics_sys7gMaxVelERK6object">
+<span id="_CPPv3NK3tnt3doo11physics_sys7gMaxVelERK6object"></span><span id="_CPPv2NK3tnt3doo11physics_sys7gMaxVelERK6object"></span><span id="tnt::doo::physics_sys::gMaxVel__objectCRC"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a6ec4932a6c6de1da0daaf1c467c805b1"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">gMaxVel</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt3doo11physics_sys7gMaxVelERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the maximal velocity of the object in global context. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt3doo11physics_sys6gAccelERK6object">
+<span id="_CPPv3NK3tnt3doo11physics_sys6gAccelERK6object"></span><span id="_CPPv2NK3tnt3doo11physics_sys6gAccelERK6object"></span><span id="tnt::doo::physics_sys::gAccel__objectCRC"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a95bc63e99af924d5b89df77b7b9af5bf"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">gAccel</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt3doo11physics_sys6gAccelERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the acceleration of the object in global context. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3tnt3doo11physics_sys9gMaxAccelERK6object">
+<span id="_CPPv3NK3tnt3doo11physics_sys9gMaxAccelERK6object"></span><span id="_CPPv2NK3tnt3doo11physics_sys9gMaxAccelERK6object"></span><span id="tnt::doo::physics_sys::gMaxAccel__objectCRC"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1ad1c2fbc5d2c7a40738cfe0735e5812c5"></span><a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">gMaxAccel</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span> <em class="property">const</em> <em class="property">noexcept</em><a class="headerlink" href="#_CPPv4NK3tnt3doo11physics_sys9gMaxAccelERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the maximum acceleration of the object in global context. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11physics_sys10totalForceE">
+<span id="_CPPv3N3tnt3doo11physics_sys10totalForceE"></span><span id="_CPPv2N3tnt3doo11physics_sys10totalForceE"></span><span id="tnt::doo::physics_sys::totalForce__tnt::Vector"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a8f41be642b33e55cca8da06a2d6f7da2"></span><a class="reference internal" href="../core/window.html#_CPPv43tnt" title="tnt">tnt</a>::<a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a> <code class="sig-name descname">totalForce</code> = {0.f, 0.f}<a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys10totalForceE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11physics_sys8inv_massE">
+<span id="_CPPv3N3tnt3doo11physics_sys8inv_massE"></span><span id="_CPPv2N3tnt3doo11physics_sys8inv_massE"></span><span id="tnt::doo::physics_sys::inv_mass__std::vector:float:"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1ab75dc625dd119ded0f168a289eee6830"></span>std::vector&lt;float&gt; <code class="sig-name descname">inv_mass</code><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys8inv_massE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11physics_sys7dampingE">
+<span id="_CPPv3N3tnt3doo11physics_sys7dampingE"></span><span id="_CPPv2N3tnt3doo11physics_sys7dampingE"></span><span id="tnt::doo::physics_sys::damping__std::vector:float:"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1ace0e464dba86136f8e0d8aa78bc6a74e"></span>std::vector&lt;float&gt; <code class="sig-name descname">damping</code><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys7dampingE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The inverse of the mass of each objects. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11physics_sys11restitutionE">
+<span id="_CPPv3N3tnt3doo11physics_sys11restitutionE"></span><span id="_CPPv2N3tnt3doo11physics_sys11restitutionE"></span><span id="tnt::doo::physics_sys::restitution__std::vector:float:"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a8a412f16c96dcd55ddfc7bd02079f26f"></span>std::vector&lt;float&gt; <code class="sig-name descname">restitution</code><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys11restitutionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The damping of the objects. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11physics_sys3velE">
+<span id="_CPPv3N3tnt3doo11physics_sys3velE"></span><span id="_CPPv2N3tnt3doo11physics_sys3velE"></span><span id="tnt::doo::physics_sys::vel__std::vector:Vector:"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1afe29011dae4761970c9ff2e8d087c65a"></span>std::vector&lt;<a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a>&gt; <code class="sig-name descname">vel</code><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys3velE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The restitution of the objects. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11physics_sys6maxVelE">
+<span id="_CPPv3N3tnt3doo11physics_sys6maxVelE"></span><span id="_CPPv2N3tnt3doo11physics_sys6maxVelE"></span><span id="tnt::doo::physics_sys::maxVel__std::vector:Vector:"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a0a81d27af6e52075ce7be61d484e91b8"></span>std::vector&lt;<a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a>&gt; <code class="sig-name descname">maxVel</code><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys6maxVelE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The velocities of the objects. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11physics_sys5accelE">
+<span id="_CPPv3N3tnt3doo11physics_sys5accelE"></span><span id="_CPPv2N3tnt3doo11physics_sys5accelE"></span><span id="tnt::doo::physics_sys::accel__std::vector:Vector:"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1af23a6a368ae0720a0cf0ac7f2ced1f1c"></span>std::vector&lt;<a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a>&gt; <code class="sig-name descname">accel</code><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys5accelE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The maximal velocities of the objects. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11physics_sys8maxAccelE">
+<span id="_CPPv3N3tnt3doo11physics_sys8maxAccelE"></span><span id="_CPPv2N3tnt3doo11physics_sys8maxAccelE"></span><span id="tnt::doo::physics_sys::maxAccel__std::vector:Vector:"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a0944e6628f321f6bbe449906a9e2657b"></span>std::vector&lt;<a class="reference internal" href="../math/Vector.html#_CPPv4N3tnt6VectorE" title="tnt::Vector">Vector</a>&gt; <code class="sig-name descname">maxAccel</code><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys8maxAccelE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The accelerations of the objects. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11physics_sys9bound_boxE">
+<span id="_CPPv3N3tnt3doo11physics_sys9bound_boxE"></span><span id="_CPPv2N3tnt3doo11physics_sys9bound_boxE"></span><span id="tnt::doo::physics_sys::bound_box__std::vector:Rectangle:"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1ae5cc55451b3c822498708af973ace403"></span>std::vector&lt;Rectangle&gt; <code class="sig-name descname">bound_box</code><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys9bound_boxE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The maximal accelerations of the objects. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N3tnt3doo11physics_sys6activeE">
+<span id="_CPPv3N3tnt3doo11physics_sys6activeE"></span><span id="_CPPv2N3tnt3doo11physics_sys6activeE"></span><span id="tnt::doo::physics_sys::active__sparse_set:object:"></span><span class="target" id="structtnt_1_1doo_1_1physics__sys_1a2cc84a45779ace93b7180d470e1fd93f"></span>sparse_set&lt;<a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a>&gt; <code class="sig-name descname">active</code><a class="headerlink" href="#_CPPv4N3tnt3doo11physics_sys6activeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>&lt; The bounding boxes of the bodies. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N3tnt3doo4physE">
+<span id="_CPPv3N3tnt3doo4physE"></span><span id="_CPPv2N3tnt3doo4physE"></span><span id="tnt::doo::phys"></span><span class="target" id="namespacetnt_1_1doo_1_1phys"></span><em class="property">namespace </em><code class="sig-name descname">phys</code><a class="headerlink" href="#_CPPv4N3tnt3doo4physE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Scripts.html" class="btn btn-neutral float-right" title="Scripts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Objects.html" class="btn btn-neutral float-left" title="Objects" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1mirror" kind="namespace" language="C++">
+    <compoundname>tnt::mirror</compoundname>
+    <innerclass refid="structtnt_1_1mirror_1_1array__tag__t" prot="public">tnt::mirror::array_tag_t</innerclass>
+    <innerclass refid="structtnt_1_1mirror_1_1class__tag__t" prot="public">tnt::mirror::class_tag_t</innerclass>
+    <innerclass refid="structtnt_1_1mirror_1_1class__type" prot="public">tnt::mirror::class_type</innerclass>
+    <innerclass refid="structtnt_1_1mirror_1_1enum__tag__t" prot="public">tnt::mirror::enum_tag_t</innerclass>
+    <innerclass refid="structtnt_1_1mirror_1_1enum__type" prot="public">tnt::mirror::enum_type</innerclass>
+    <innerclass refid="structtnt_1_1mirror_1_1invocable__tag__t" prot="public">tnt::mirror::invocable_tag_t</innerclass>
+    <innerclass refid="structtnt_1_1mirror_1_1mirror__t" prot="public">tnt::mirror::mirror_t</innerclass>
+    <innerclass refid="structtnt_1_1mirror_1_1type" prot="public">tnt::mirror::type</innerclass>
+    <innerclass refid="structtnt_1_1mirror_1_1union__tag__t" prot="public">tnt::mirror::union_tag_t</innerclass>
+    <innernamespace refid="namespacetnt_1_1mirror_1_1detail">tnt::mirror::detail</innernamespace>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="_mirror_8hpp_1ab0320ff9ab99bd1f3a168fcee784d4e1" prot="public" static="no">
+        <type>std::variant&lt; <ref refid="structtnt_1_1mirror_1_1class__tag__t" kindref="compound">class_tag_t</ref>, <ref refid="structtnt_1_1mirror_1_1enum__tag__t" kindref="compound">enum_tag_t</ref>, <ref refid="structtnt_1_1mirror_1_1union__tag__t" kindref="compound">union_tag_t</ref> &gt;</type>
+        <definition>using tnt::mirror::type_varint = typedef std::variant&lt;class_tag_t, enum_tag_t, union_tag_t&gt;</definition>
+        <argsstring></argsstring>
+        <name>type_varint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="82" column="5" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="21" column="1"/>
+  </compounddef>
+</doxygen>

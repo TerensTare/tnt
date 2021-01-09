@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="file_i_o_2cache_2_base_8hpp" kind="file" language="C++">
+    <compoundname>Base.hpp</compoundname>
+    <includedby refid="_fonts_8inl" local="yes">E:/thing/cpp/tnt/include/fileIO/cache/Fonts.inl</includedby>
+    <includedby refid="_music_8inl" local="yes">E:/thing/cpp/tnt/include/fileIO/cache/Music.inl</includedby>
+    <includedby refid="_texture_atlases_8inl" local="yes">E:/thing/cpp/tnt/include/fileIO/cache/TextureAtlases.inl</includedby>
+    <includedby refid="_textures_8inl" local="yes">E:/thing/cpp/tnt/include/fileIO/cache/Textures.inl</includedby>
+    <innerclass refid="structtnt_1_1asset__cache" prot="public">tnt::asset_cache</innerclass>
+    <innernamespace refid="namespacetnt">tnt</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>TNT_FILE_IO_ASSETS_CACHE_BASE_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TNT_FILE_IO_ASSETS_CACHE_BASE_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tnt</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>I&gt;</highlight></codeline>
+<codeline lineno="7" refid="structtnt_1_1asset__cache" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtnt_1_1asset__cache" kindref="compound">asset_cache</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>constexpr<sp/><ref refid="structtnt_1_1asset__cache" kindref="compound">asset_cache</ref>()<sp/>noexcept<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>tnt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//!TNT_FILE_IO_ASSETS_CACHE_BASE_HPP</highlight></codeline>
+    </programlisting>
+    <location file="E:/thing/cpp/tnt/include/fileIO/cache/Base.hpp"/>
+  </compounddef>
+</doxygen>

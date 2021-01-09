@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1is__os" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::is_os</compoundname>
+    <templateparamlist>
+      <param>
+        <type>os</type>
+        <declname>O</declname>
+        <defname>O</defname>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="91" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="91" bodyend="-1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

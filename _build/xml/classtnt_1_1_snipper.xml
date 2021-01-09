@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_snipper" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>tnt::Snipper</compoundname>
+    <includes local="no">Snipper.hpp</includes>
+      <sectiondef kind="user-defined">
+      <header>The file that should be watched.</header>
+      <description><para>Watch <computeroutput>name</computeroutput> to check if it has been modified. </para>
+</description>
+      <memberdef kind="variable" id="classtnt_1_1_snipper_1a5d8d6e820cf2031a5126bd11835531e9" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr std::size_t</type>
+        <definition>constexpr std::size_t tnt::Snipper::msvc_size</definition>
+        <argsstring></argsstring>
+        <name>msvc_size</name>
+        <initializer>{96}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" line="69" column="38" bodyfile="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_snipper_1a9f3c51296de57e578deaf84e5d44b1c6" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr std::size_t</type>
+        <definition>constexpr std::size_t tnt::Snipper::other_size</definition>
+        <argsstring></argsstring>
+        <name>other_size</name>
+        <initializer>{88}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" line="70" column="38" bodyfile="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_snipper_1a40f1ab9f9433e3b6be7a33a20a23d48f" prot="private" static="no" mutable="no">
+        <type>std::conditional_t&lt; is_msvc_v, <ref refid="classtnt_1_1pimpl" kindref="compound">pimpl</ref>&lt; impl, msvc_size, 8 &gt;, <ref refid="classtnt_1_1pimpl" kindref="compound">pimpl</ref>&lt; impl, other_size, 8 &gt; &gt;</type>
+        <definition>std::conditional_t&lt;is_msvc_v, pimpl&lt;impl, msvc_size, 8&gt;, pimpl&lt;impl, other_size, 8&gt; &gt; tnt::Snipper::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" line="75" column="13" bodyfile="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_snipper_1a7e8ede5255e753e907e5df10ff95e606" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Snipper::watchFile</definition>
+        <argsstring>(std::string_view name)</argsstring>
+        <name>watchFile</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" line="39" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_snipper_1a094c990f7c6f50b538a2f11b33aba8b5" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>detail::callable&lt;&gt;</type>
+            <declname>Func</declname>
+            <defname>Func</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tnt::Snipper::onModify</definition>
+        <argsstring>(std::string_view file, Func &amp;&amp;func) noexcept(detail::safe_callable&lt; Func &gt;)</argsstring>
+        <name>onModify</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>Func &amp;&amp;</type>
+          <declname>func</declname>
+        </param>
+        <briefdescription>
+<para>Call a function if <computeroutput>file</computeroutput> has been modified. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Func</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A generic function representation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The file that should be checked if it is modified or not. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>func</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The function that should be called if <computeroutput>file</computeroutput> has been modified. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The file watcher silently adds <computeroutput>file</computeroutput> to it&apos;s watch list if the file isn&apos;t there already. </para>
+</simplesect>
+<simplesect kind="note"><para>The function is <computeroutput>noexcept</computeroutput> only if Func() is <computeroutput>noexcept</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" line="49" column="21" bodyfile="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" bodystart="49" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_snipper_1add8a773cc1321a28b8a093622ee6b9c8" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Snipper::unwatchFile</definition>
+        <argsstring>(std::string_view filename) noexcept</argsstring>
+        <name>unwatchFile</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Stops watching a file if it was already watching it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>If the file wasn&apos;t being watched, the file watcher doesn&apos;r report anything. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" line="59" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_snipper_1a76c9f598ca2e8327085eb9374e0b9926" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::Snipper::isModified</definition>
+        <argsstring>(std::string_view file) noexcept</argsstring>
+        <name>isModified</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+<para>Check if <computeroutput>file</computeroutput> has been modified since the last check. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the file to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" line="64" column="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A basic file watcher. Useful for asset hotloading and other stuff. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" line="34" column="5" bodyfile="E:/thing/cpp/tnt/include/fileIO/Snipper.hpp" bodystart="35" bodyend="76"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_snipper_1a40f1ab9f9433e3b6be7a33a20a23d48f" prot="private" virt="non-virtual"><scope>tnt::Snipper</scope><name>data</name></member>
+      <member refid="classtnt_1_1_snipper_1a76c9f598ca2e8327085eb9374e0b9926" prot="public" virt="non-virtual"><scope>tnt::Snipper</scope><name>isModified</name></member>
+      <member refid="classtnt_1_1_snipper_1a5d8d6e820cf2031a5126bd11835531e9" prot="private" virt="non-virtual"><scope>tnt::Snipper</scope><name>msvc_size</name></member>
+      <member refid="classtnt_1_1_snipper_1a094c990f7c6f50b538a2f11b33aba8b5" prot="public" virt="non-virtual"><scope>tnt::Snipper</scope><name>onModify</name></member>
+      <member refid="classtnt_1_1_snipper_1a9f3c51296de57e578deaf84e5d44b1c6" prot="private" virt="non-virtual"><scope>tnt::Snipper</scope><name>other_size</name></member>
+      <member refid="classtnt_1_1_snipper_1add8a773cc1321a28b8a093622ee6b9c8" prot="public" virt="non-virtual"><scope>tnt::Snipper</scope><name>unwatchFile</name></member>
+      <member refid="classtnt_1_1_snipper_1a7e8ede5255e753e907e5df10ff95e606" prot="public" virt="non-virtual"><scope>tnt::Snipper</scope><name>watchFile</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

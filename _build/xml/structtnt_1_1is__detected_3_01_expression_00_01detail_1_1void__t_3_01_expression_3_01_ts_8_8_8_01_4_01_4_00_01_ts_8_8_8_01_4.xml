@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1is__detected_3_01_expression_00_01detail_1_1void__t_3_01_expression_3_01_ts_8_8_8_01_4_01_4_00_01_ts_8_8_8_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>tnt::is_detected&lt; Expression, detail::void_t&lt; Expression&lt; Ts... &gt; &gt;, Ts... &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>template&lt; typename... &gt; class</type>
+        <declname>Expression</declname>
+        <defname>Expression</defname>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>Ts</declname>
+        <defname>Ts</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structtnt_1_1is__detected_3_01_expression_00_01detail_1_1void__t_3_01_expression_3_01_ts_8_8_8_01_4_01_4_00_01_ts_8_8_8_01_4_1a2defb64217ce1f4a1584e71ec2f29c5c" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool tnt::is_detected&lt; Expression, detail::void_t&lt; Expression&lt; Ts... &gt; &gt;, Ts... &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="43" column="38" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/Traits.hpp" line="41" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Traits.hpp" bodystart="42" bodyend="44"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1is__detected_3_01_expression_00_01detail_1_1void__t_3_01_expression_3_01_ts_8_8_8_01_4_01_4_00_01_ts_8_8_8_01_4_1a2defb64217ce1f4a1584e71ec2f29c5c" prot="public" virt="non-virtual"><scope>tnt::is_detected&lt; Expression, detail::void_t&lt; Expression&lt; Ts... &gt; &gt;, Ts... &gt;</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

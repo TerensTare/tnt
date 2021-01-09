@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_e7396e7a1ad4f35a34754703dd0be5f2" kind="dir">
+    <compoundname>E:/thing/cpp/tnt/include/doo_ecs</compoundname>
+    <innerfile refid="_animations_8hpp">Animations.hpp</innerfile>
+    <innerfile refid="doo__ecs_2_base_8hpp">Base.hpp</innerfile>
+    <innerfile refid="_bones_8hpp">Bones.hpp</innerfile>
+    <innerfile refid="_cameras_8hpp">Cameras.hpp</innerfile>
+    <innerfile refid="_objects_8hpp">Objects.hpp</innerfile>
+    <innerfile refid="_physics_8hpp">Physics.hpp</innerfile>
+    <innerfile refid="_scripts_8hpp">Scripts.hpp</innerfile>
+    <innerfile refid="_sprites_8hpp">Sprites.hpp</innerfile>
+    <innerfile refid="_steering_8hpp">Steering.hpp</innerfile>
+    <innerfile refid="_system_8hpp">System.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/doo_ecs/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structtnt_1_1mirror_1_1mirror__t" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>tnt::mirror::mirror_t</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtnt_1_1mirror_1_1mirror__t_1a58d1b066664c3010d5e65373ec3a4c74" prot="public" static="no" constexpr="yes" const="no" explicit="yes" inline="no" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr tnt::mirror::mirror_t::mirror_t</definition>
+        <argsstring>() noexcept=default</argsstring>
+        <name>mirror_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="170" column="28"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1mirror_1_1mirror__t_1a6683a15c6811db8726221a2a3d35c0e1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>detail::class_t</type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto tnt::mirror::mirror_t::reflect</definition>
+        <argsstring>(char const *Name, auto &amp;&amp;Arg)</argsstring>
+        <name>reflect</name>
+        <param>
+          <type>char const *</type>
+          <declname>Name</declname>
+        </param>
+        <param>
+          <type>auto &amp;&amp;</type>
+          <declname>Arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="173" column="21" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="173" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="structtnt_1_1mirror_1_1mirror__t_1a6683a15c6811db8726221a2a3d35c0e1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>detail::enum_t</type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto tnt::mirror::mirror_t::reflect</definition>
+        <argsstring>(char const *Name, auto &amp;&amp;Arg)</argsstring>
+        <name>reflect</name>
+        <param>
+          <type>char const *</type>
+          <declname>Name</declname>
+        </param>
+        <param>
+          <type>auto &amp;&amp;</type>
+          <declname>Arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="178" column="21" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="178" bodyend="180"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" line="168" column="5" bodyfile="E:/thing/cpp/tnt/include/mirror/Mirror.hpp" bodystart="169" bodyend="181"/>
+    <listofallmembers>
+      <member refid="structtnt_1_1mirror_1_1mirror__t_1a58d1b066664c3010d5e65373ec3a4c74" prot="public" virt="non-virtual"><scope>tnt::mirror::mirror_t</scope><name>mirror_t</name></member>
+      <member refid="structtnt_1_1mirror_1_1mirror__t_1a6683a15c6811db8726221a2a3d35c0e1" prot="public" virt="non-virtual"><scope>tnt::mirror::mirror_t</scope><name>reflect</name></member>
+      <member refid="structtnt_1_1mirror_1_1mirror__t_1a6683a15c6811db8726221a2a3d35c0e1" prot="public" virt="non-virtual"><scope>tnt::mirror::mirror_t</scope><name>reflect</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

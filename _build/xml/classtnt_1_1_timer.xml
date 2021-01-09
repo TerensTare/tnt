@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_timer" kind="class" language="C++" prot="public">
+    <compoundname>tnt::Timer</compoundname>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classtnt_1_1_timer_1a37cfcf3dfdc373e80840fbda78577a0f" prot="private" static="no">
+        <type>std::chrono::duration&lt; float, std::milli &gt;</type>
+        <definition>using tnt::Timer::fast_milli =  std::chrono::duration&lt;float, std::milli&gt;</definition>
+        <argsstring></argsstring>
+        <name>fast_milli</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Timer.hpp" line="13" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/Timer.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_timer_1a51d32768a7f369e18cc47828d4628d01" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tnt::Timer::isPaused</definition>
+        <argsstring></argsstring>
+        <name>isPaused</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Timer.hpp" line="70" column="14" bodyfile="E:/thing/cpp/tnt/include/utils/Timer.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_timer_1a924c68c07068758c74a9283d7b94eed3" prot="private" static="no" mutable="no">
+        <type>std::chrono::high_resolution_clock::time_point</type>
+        <definition>std::chrono::high_resolution_clock::time_point tnt::Timer::beginning</definition>
+        <argsstring></argsstring>
+        <name>beginning</name>
+        <initializer>{std::chrono::high_resolution_clock::now()}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Timer.hpp" line="71" column="56" bodyfile="E:/thing/cpp/tnt/include/utils/Timer.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_timer_1ae4f5e809b3eb4202177d0e11c6a22f45" prot="private" static="no" mutable="no">
+        <type>std::chrono::high_resolution_clock::time_point</type>
+        <definition>std::chrono::high_resolution_clock::time_point tnt::Timer::pausedTime</definition>
+        <argsstring></argsstring>
+        <name>pausedTime</name>
+        <initializer>{std::chrono::high_resolution_clock::now()}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Timer.hpp" line="72" column="56" bodyfile="E:/thing/cpp/tnt/include/utils/Timer.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_timer_1a4920ec9a04123af15c1193492d21f8be" prot="private" static="no" mutable="no">
+        <type>fast_milli</type>
+        <definition>fast_milli tnt::Timer::deltaPaused</definition>
+        <argsstring></argsstring>
+        <name>deltaPaused</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Timer.hpp" line="73" column="20" bodyfile="E:/thing/cpp/tnt/include/utils/Timer.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_timer_1a5febd35c09759c9d301cdd2401195fcb" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Timer::start</definition>
+        <argsstring>() noexcept(noexcept(std::chrono::duration_cast&lt; fast_milli &gt;(std::chrono::high_resolution_clock::now() - pausedTime)))</argsstring>
+        <name>start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Timer.hpp" line="16" column="21" bodyfile="E:/thing/cpp/tnt/include/utils/Timer.hpp" bodystart="16" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_timer_1a4494dae6cf61769d1a41d5c9e2d0fd75" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Timer::reset</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Timer.hpp" line="30" column="21" bodyfile="E:/thing/cpp/tnt/include/utils/Timer.hpp" bodystart="30" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_timer_1ab096a86e9d0675fe710e89c05bbcaa2e" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tnt::Timer::stop</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Timer.hpp" line="38" column="21" bodyfile="E:/thing/cpp/tnt/include/utils/Timer.hpp" bodystart="38" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_timer_1a4d8dd9f19177ef61fd3f7ff647fdf85c" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tnt::Timer::paused</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>paused</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Timer.hpp" line="44" column="21" bodyfile="E:/thing/cpp/tnt/include/utils/Timer.hpp" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_timer_1aef3269cadbb0501f1ff8b5f6aa3c6b22" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>fast_milli</type>
+        <definition>fast_milli tnt::Timer::deltaTime</definition>
+        <argsstring>() noexcept(noexcept(std::chrono::duration_cast&lt; fast_milli &gt;(std::chrono::high_resolution_clock::now() - beginning - deltaPaused)))</argsstring>
+        <name>deltaTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Timer.hpp" line="46" column="27" bodyfile="E:/thing/cpp/tnt/include/utils/Timer.hpp" bodystart="46" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classtnt_1_1_timer_1afd4e1a9a6048482e9e930c3e7190aa1d" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float tnt::Timer::deltaCount</definition>
+        <argsstring>() noexcept(noexcept(std::chrono::duration_cast&lt; fast_milli &gt;(std::chrono::high_resolution_clock::now() - beginning - deltaPaused)))</argsstring>
+        <name>deltaCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/Timer.hpp" line="57" column="22" bodyfile="E:/thing/cpp/tnt/include/utils/Timer.hpp" bodystart="57" bodyend="67"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/Timer.hpp" line="11" column="5" bodyfile="E:/thing/cpp/tnt/include/utils/Timer.hpp" bodystart="12" bodyend="74"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_timer_1a924c68c07068758c74a9283d7b94eed3" prot="private" virt="non-virtual"><scope>tnt::Timer</scope><name>beginning</name></member>
+      <member refid="classtnt_1_1_timer_1afd4e1a9a6048482e9e930c3e7190aa1d" prot="public" virt="non-virtual"><scope>tnt::Timer</scope><name>deltaCount</name></member>
+      <member refid="classtnt_1_1_timer_1a4920ec9a04123af15c1193492d21f8be" prot="private" virt="non-virtual"><scope>tnt::Timer</scope><name>deltaPaused</name></member>
+      <member refid="classtnt_1_1_timer_1aef3269cadbb0501f1ff8b5f6aa3c6b22" prot="public" virt="non-virtual"><scope>tnt::Timer</scope><name>deltaTime</name></member>
+      <member refid="classtnt_1_1_timer_1a37cfcf3dfdc373e80840fbda78577a0f" prot="private" virt="non-virtual"><scope>tnt::Timer</scope><name>fast_milli</name></member>
+      <member refid="classtnt_1_1_timer_1a51d32768a7f369e18cc47828d4628d01" prot="private" virt="non-virtual"><scope>tnt::Timer</scope><name>isPaused</name></member>
+      <member refid="classtnt_1_1_timer_1a4d8dd9f19177ef61fd3f7ff647fdf85c" prot="public" virt="non-virtual"><scope>tnt::Timer</scope><name>paused</name></member>
+      <member refid="classtnt_1_1_timer_1ae4f5e809b3eb4202177d0e11c6a22f45" prot="private" virt="non-virtual"><scope>tnt::Timer</scope><name>pausedTime</name></member>
+      <member refid="classtnt_1_1_timer_1a4494dae6cf61769d1a41d5c9e2d0fd75" prot="public" virt="non-virtual"><scope>tnt::Timer</scope><name>reset</name></member>
+      <member refid="classtnt_1_1_timer_1a5febd35c09759c9d301cdd2401195fcb" prot="public" virt="non-virtual"><scope>tnt::Timer</scope><name>start</name></member>
+      <member refid="classtnt_1_1_timer_1ab096a86e9d0675fe710e89c05bbcaa2e" prot="public" virt="non-virtual"><scope>tnt::Timer</scope><name>stop</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

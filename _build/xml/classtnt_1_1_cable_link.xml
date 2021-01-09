@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classtnt_1_1_cable_link" kind="class" language="C++" prot="public">
+    <compoundname>tnt::CableLink</compoundname>
+    <basecompoundref refid="classtnt_1_1_bodies_link" prot="public" virt="non-virtual">tnt::BodiesLink</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classtnt_1_1_cable_link_1aeb5aa8b98969cd52363d0ee68d12184b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::CableLink::maxLength</definition>
+        <argsstring></argsstring>
+        <name>maxLength</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Link.hpp" line="24" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/Link.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtnt_1_1_cable_link_1a9786bc4b9fb786573fb622b39687c2e5" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tnt::CableLink::restitution</definition>
+        <argsstring></argsstring>
+        <name>restitution</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Link.hpp" line="25" column="11" bodyfile="E:/thing/cpp/tnt/include/physics/Link.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtnt_1_1_cable_link_1a5326d9d747c295f2669c299d70768fa4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>unsigned</type>
+        <definition>virtual unsigned tnt::CableLink::fillContact</definition>
+        <argsstring>(Contact *contact, unsigned limit) const override</argsstring>
+        <name>fillContact</name>
+        <reimplements refid="classtnt_1_1_bodies_link_1a9d314e9fa8fe1da4b871ae4c2731b9d8">fillContact</reimplements>
+        <param>
+          <type><ref refid="classtnt_1_1_contact" kindref="compound">Contact</ref> *</type>
+          <declname>contact</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>limit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/physics/Link.hpp" line="22" column="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>tnt::BodiesLink</label>
+        <link refid="classtnt_1_1_bodies_link"/>
+      </node>
+      <node id="1">
+        <label>tnt::CableLink</label>
+        <link refid="classtnt_1_1_cable_link"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>tnt::BodiesLink</label>
+        <link refid="classtnt_1_1_bodies_link"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>particles</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>tnt::CableLink</label>
+        <link refid="classtnt_1_1_cable_link"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>tnt::Vector</label>
+        <link refid="structtnt_1_1_vector"/>
+      </node>
+      <node id="3">
+        <label>tnt::Particle</label>
+        <link refid="classtnt_1_1_particle"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>acceleration</edgelabel>
+          <edgelabel>forceAccumulator</edgelabel>
+          <edgelabel>velocity</edgelabel>
+          <edgelabel>pos</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/thing/cpp/tnt/include/physics/Link.hpp" line="19" column="1" bodyfile="E:/thing/cpp/tnt/include/physics/Link.hpp" bodystart="20" bodyend="26"/>
+    <listofallmembers>
+      <member refid="classtnt_1_1_cable_link_1a5326d9d747c295f2669c299d70768fa4" prot="public" virt="virtual"><scope>tnt::CableLink</scope><name>fillContact</name></member>
+      <member refid="classtnt_1_1_bodies_link_1ad51b9bf02fa97bef06f385858ce7c997" prot="protected" virt="non-virtual"><scope>tnt::CableLink</scope><name>getLength</name></member>
+      <member refid="classtnt_1_1_cable_link_1aeb5aa8b98969cd52363d0ee68d12184b" prot="public" virt="non-virtual"><scope>tnt::CableLink</scope><name>maxLength</name></member>
+      <member refid="classtnt_1_1_bodies_link_1ab00ec13ec348d184f330911f729a541e" prot="public" virt="non-virtual"><scope>tnt::CableLink</scope><name>particles</name></member>
+      <member refid="classtnt_1_1_cable_link_1a9786bc4b9fb786573fb622b39687c2e5" prot="public" virt="non-virtual"><scope>tnt::CableLink</scope><name>restitution</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>System &mdash; The TnT engine 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="File" href="../file.html" />
+    <link rel="prev" title="Steering" href="Steering.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The TnT engine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to The TnT engine’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../async.html">Async</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ecs.html">Entity Component System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Animations.html">Animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Base.html">Base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Bones.html">Bones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Cameras.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Objects.html">Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Physics.html">Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts.html">Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sprites.html">Sprites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Steering.html">Steering</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">System</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../file.html">File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imgui.html">ImGui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math.html">Math</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The TnT engine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../ecs.html">Entity Component System</a> &raquo;</li>
+        
+      <li>System</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/ecs/System.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="system">
+<span id="tnt-ecs-system-api"></span><h1>System<a class="headerlink" href="#system" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp type">
+<dt id="_CPPv43tnt">
+<span id="_CPPv33tnt"></span><span id="_CPPv23tnt"></span><span id="tnt"></span><span class="target" id="namespacetnt"></span><em class="property">namespace </em><code class="sig-name descname">tnt</code><br /></dt>
+<dd><dl class="cpp type">
+<dt id="_CPPv4N3tnt3dooE">
+<span id="_CPPv3N3tnt3dooE"></span><span id="_CPPv2N3tnt3dooE"></span><span id="tnt::doo"></span><span class="target" id="namespacetnt_1_1doo"></span><em class="property">namespace </em><code class="sig-name descname">doo</code><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="cpp var">
+<dt>
+<span class="target" id="_system_8hpp_1ae18891fb460b39615069c8efe12da3c8"></span><code class="sig-name descname">template&lt;typename T&gt; concept system  = requires { typename T::component; }        and requires (T &amp;t, object const&amp; o, nlohmann::json&amp; j,            typename T::component const&amp; c) {            { t.add_object(o, c) } -&gt; detail::void_type;            { t.remove(o) } -&gt; detail::void_type;            { t.clear() } -&gt; detail::void_type;            { t.Update(o, 1.f) } -&gt; detail::void_type;            { t.from_json(o, j) } -&gt; detail::void_type;            { t.to_json(o, j) } -&gt; detail::void_type;            { t.active } -&gt; std::same_as&lt;tnt::sparse_set&lt;tnt::doo::object&gt;&gt;;        }</code></dt>
+<dd><p>A concept representing the minimal requirements that a type must fulfill to be a DOO ECS system. </p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4I_6systemEN3tnt3doo11system_baseE">
+<span id="_CPPv3I_6systemEN3tnt3doo11system_baseE"></span><span id="_CPPv2I_6systemEN3tnt3doo11system_baseE"></span>template&lt;system <code class="sig-name descname">T</code>&gt;<br /><span class="target" id="structtnt_1_1doo_1_1system__base"></span><em class="property">struct </em><code class="sig-name descname">system_base</code> : <em class="property">public</em> <a class="reference internal" href="../core/window.html#_CPPv43tnt" title="tnt">tnt</a>::crtp&lt;<a class="reference internal" href="#_CPPv4I_6systemEN3tnt3doo11system_baseE" title="tnt::doo::system_base::T">T</a>&gt;<a class="headerlink" href="#_CPPv4I_6systemEN3tnt3doo11system_baseE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;System.hpp&gt;</em><p>A helper class for defining custom DOO ECS systems. </p>
+<p><dl class="simple">
+<dt><strong>Template Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code>: The class that will be used as a system. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp type">
+<dt id="_CPPv4N3tnt3doo11system_base9componentE">
+<span id="_CPPv3N3tnt3doo11system_base9componentE"></span><span id="_CPPv2N3tnt3doo11system_base9componentE"></span><span class="target" id="structtnt_1_1doo_1_1system__base_1aa4ece7897533e040c1053b5f833ec54d"></span><em class="property">using </em><code class="sig-name descname">component</code> = <em class="property">typename</em> <a class="reference internal" href="#_CPPv4I_6systemEN3tnt3doo11system_baseE" title="tnt::doo::system_base::T">T</a>::component<a class="headerlink" href="#_CPPv4N3tnt3doo11system_base9componentE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The component type stored by this system. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11system_base10add_objectERK6objectRK9component">
+<span id="_CPPv3N3tnt3doo11system_base10add_objectERK6objectRK9component"></span><span id="_CPPv2N3tnt3doo11system_base10add_objectERK6objectRK9component"></span><span id="tnt::doo::system_base::add_object__objectCR.componentCR"></span><span class="target" id="structtnt_1_1doo_1_1system__base_1a49aed09a5a359072aabcec9ce792b42e"></span>void <code class="sig-name descname">add_object</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, <a class="reference internal" href="#_CPPv4N3tnt3doo11system_base9componentE" title="tnt::doo::system_base::component">component</a> <em class="property">const</em> &amp;<em>c</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11system_base10add_objectERK6objectRK9component" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add the data of the object with given id to the system. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">c</span></code>: The component data. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11system_base6UpdateERK6objectf">
+<span id="_CPPv3N3tnt3doo11system_base6UpdateERK6objectf"></span><span id="_CPPv2N3tnt3doo11system_base6UpdateERK6objectf"></span><span id="tnt::doo::system_base::Update__objectCR.float"></span><span class="target" id="structtnt_1_1doo_1_1system__base_1aed73d359a1f776cad5d492101a583266"></span>void <code class="sig-name descname">Update</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, float <em>time_</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11system_base6UpdateERK6objectf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Update the data of the desired object. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time_</span></code>: The time elapsed since the last Update call. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11system_base6removeERK6object">
+<span id="_CPPv3N3tnt3doo11system_base6removeERK6object"></span><span id="_CPPv2N3tnt3doo11system_base6removeERK6object"></span><span id="tnt::doo::system_base::remove__objectCR"></span><span class="target" id="structtnt_1_1doo_1_1system__base_1a8468f1337caa3d31a559ee8dad08f0d4"></span>void <code class="sig-name descname">remove</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11system_base6removeERK6object" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove the data of the desired object from the system. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the object to remove. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="structtnt_1_1doo_1_1system__base_1acdad724498b17b75f066384063b6d869"></span><code class="sig-name descname">void clear () noexcept(noexcept(super.clear()))</code></dt>
+<dd><p>Remove the data of all the objects from the system. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11system_base9from_jsonERK6objectRKN8nlohmann4jsonE">
+<span id="_CPPv3N3tnt3doo11system_base9from_jsonERK6objectRKN8nlohmann4jsonE"></span><span id="_CPPv2N3tnt3doo11system_base9from_jsonERK6objectRKN8nlohmann4jsonE"></span><span id="tnt::doo::system_base::from_json__objectCR.nlohmann::jsonCR"></span><span class="target" id="structtnt_1_1doo_1_1system__base_1ac4c126cfec07200371f7c0da6fe93c79"></span>void <code class="sig-name descname">from_json</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, nlohmann::json <em class="property">const</em> &amp;<em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11system_base9from_jsonERK6objectRKN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Load the data of an object from a json chunk. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the desired object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: The json chunk containing the data of the component. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N3tnt3doo11system_base7to_jsonERK6objectRN8nlohmann4jsonE">
+<span id="_CPPv3N3tnt3doo11system_base7to_jsonERK6objectRN8nlohmann4jsonE"></span><span id="_CPPv2N3tnt3doo11system_base7to_jsonERK6objectRN8nlohmann4jsonE"></span><span id="tnt::doo::system_base::to_json__objectCR.nlohmann::jsonR"></span><span class="target" id="structtnt_1_1doo_1_1system__base_1a0665d28b6e9cb1f08862fa40f8a9fd0f"></span>void <code class="sig-name descname">to_json</code><span class="sig-paren">(</span><a class="reference internal" href="Base.html#_CPPv4N3tnt3doo6objectE" title="tnt::doo::object">object</a> <em class="property">const</em> &amp;<em>id</em>, nlohmann::json &amp;<em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3tnt3doo11system_base7to_jsonERK6objectRN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Serialize the component data of the given object to a json chunk. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the desired object. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: The json chunk where the data will be stored. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N3tnt3doo6detailE">
+<span id="_CPPv3N3tnt3doo6detailE"></span><span id="_CPPv2N3tnt3doo6detailE"></span><span id="tnt::doo::detail"></span><span class="target" id="namespacetnt_1_1doo_1_1detail"></span><em class="property">namespace </em><code class="sig-name descname">detail</code><a class="headerlink" href="#_CPPv4N3tnt3doo6detailE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="cpp var">
+<dt>
+<span class="target" id="_system_8hpp_1ac5d44d0841ad46e646af7fff85112249"></span><code class="sig-name descname">template&lt;typename T&gt; concept void_type   = std::is_void_v&lt;T&gt;</code></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../file.html" class="btn btn-neutral float-right" title="File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Steering.html" class="btn btn-neutral float-left" title="Steering" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, Terens Tare
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

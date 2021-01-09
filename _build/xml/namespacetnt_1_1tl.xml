@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacetnt_1_1tl" kind="namespace" language="C++">
+    <compoundname>tnt::tl</compoundname>
+    <innerclass refid="structtnt_1_1tl_1_1append" prot="public">tnt::tl::append</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1append_3_01type__list_3_01_ts_8_8_8_01_4_00_01_t_01_4" prot="public">tnt::tl::append&lt; type_list&lt; Ts... &gt;, T &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1at" prot="public">tnt::tl::at</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1at_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_010_01_4" prot="public">tnt::tl::at&lt; type_list&lt; T, Ts... &gt;, 0 &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1at_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_index_01_4" prot="public">tnt::tl::at&lt; type_list&lt; T, Ts... &gt;, Index &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1at_3_01type__list_3_4_00_01_index_01_4" prot="public">tnt::tl::at&lt; type_list&lt;&gt;, Index &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1erase" prot="public">tnt::tl::erase</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1erase_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_e_01_4" prot="public">tnt::tl::erase&lt; type_list&lt; T, Ts... &gt;, E &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1erase_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_t_01_4" prot="public">tnt::tl::erase&lt; type_list&lt; T, Ts... &gt;, T &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1erase_3_01type__list_3_4_00_01_t_01_4" prot="public">tnt::tl::erase&lt; type_list&lt;&gt;, T &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1erase__all" prot="public">tnt::tl::erase_all</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1erase__all_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_e_01_4" prot="public">tnt::tl::erase_all&lt; type_list&lt; T, Ts... &gt;, E &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1erase__all_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_t_01_4" prot="public">tnt::tl::erase_all&lt; type_list&lt; T, Ts... &gt;, T &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1erase__all_3_01type__list_3_4_00_01_t_01_4" prot="public">tnt::tl::erase_all&lt; type_list&lt;&gt;, T &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1index" prot="public">tnt::tl::index</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1index_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_f_01_4" prot="public">tnt::tl::index&lt; type_list&lt; T, Ts... &gt;, F &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1index_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_t_01_4" prot="public">tnt::tl::index&lt; type_list&lt; T, Ts... &gt;, T &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1length" prot="public">tnt::tl::length</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1length_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_01_4" prot="public">tnt::tl::length&lt; type_list&lt; T, Ts... &gt; &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1length_3_01type__list_3_4_01_4" prot="public">tnt::tl::length&lt; type_list&lt;&gt; &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1replace" prot="public">tnt::tl::replace</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1replace_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_o_00_01_n_01_4" prot="public">tnt::tl::replace&lt; type_list&lt; T, Ts... &gt;, O, N &gt;</innerclass>
+    <innerclass refid="structtnt_1_1tl_1_1replace_3_01type__list_3_01_t_00_01_ts_8_8_8_01_4_00_01_t_00_01_u_01_4" prot="public">tnt::tl::replace&lt; type_list&lt; T, Ts... &gt;, T, U &gt;</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="_type_lists_8hpp_1a2cae6bf743db6c4aee2b998512fca389" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename List</type>
+          </param>
+          <param>
+            <type>size_t</type>
+            <declname>Index</declname>
+            <defname>Index</defname>
+          </param>
+        </templateparamlist>
+        <type>typename <ref refid="structtnt_1_1tl_1_1at" kindref="compound">at</ref>&lt; List, Index &gt;::type</type>
+        <definition>using tnt::tl::at_t = typedef typename at&lt;List, Index&gt;::type</definition>
+        <argsstring></argsstring>
+        <name>at_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="153" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_type_lists_8hpp_1afaf8f2ee01d4a4aadd88487349d26f4e" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename List</type>
+          </param>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>typename <ref refid="structtnt_1_1tl_1_1append" kindref="compound">append</ref>&lt; List, T &gt;::type</type>
+        <definition>using tnt::tl::append_t = typedef typename append&lt;List, T&gt;::type</definition>
+        <argsstring></argsstring>
+        <name>append_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="159" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_type_lists_8hpp_1aa177f743aab165f179b0c314d8578f46" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename List</type>
+          </param>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>typename <ref refid="structtnt_1_1tl_1_1erase" kindref="compound">erase</ref>&lt; List, T &gt;::type</type>
+        <definition>using tnt::tl::erase_t = typedef typename erase&lt;List, T&gt;::type</definition>
+        <argsstring></argsstring>
+        <name>erase_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="162" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_type_lists_8hpp_1aa31717a52a698dfe581b3cee7acd0e11" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename List</type>
+          </param>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>typename <ref refid="structtnt_1_1tl_1_1erase__all" kindref="compound">erase_all</ref>&lt; List, T &gt;::type</type>
+        <definition>using tnt::tl::erase_all_t = typedef typename erase_all&lt;List, T&gt;::type</definition>
+        <argsstring></argsstring>
+        <name>erase_all_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="165" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_type_lists_8hpp_1afd0a067fcd2721f1c3a56fcb08572608" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename List</type>
+          </param>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>typename <ref refid="structtnt_1_1tl_1_1replace" kindref="compound">replace</ref>&lt; List, T, U &gt;::type</type>
+        <definition>using tnt::tl::replace_t = typedef typename replace&lt;List, T, U&gt;::type</definition>
+        <argsstring></argsstring>
+        <name>replace_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="168" column="9" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_type_lists_8hpp_1a79019a14a24efefc9f254b5a5c0adfb9" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t tnt::tl::length_v</definition>
+        <argsstring></argsstring>
+        <name>length_v</name>
+        <initializer>{<ref refid="structtnt_1_1tl_1_1length" kindref="compound">length</ref>&lt;T&gt;::value}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="150" column="33" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_type_lists_8hpp_1a50254524ffc0baf7f4c705ba6ab85fda" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename List</type>
+          </param>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t tnt::tl::index_v</definition>
+        <argsstring></argsstring>
+        <name>index_v</name>
+        <initializer>= <ref refid="structtnt_1_1tl_1_1index" kindref="compound">index</ref>&lt;List, T&gt;::value</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="156" column="33" bodyfile="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/thing/cpp/tnt/include/utils/TypeLists.hpp" line="18" column="5"/>
+  </compounddef>
+</doxygen>
