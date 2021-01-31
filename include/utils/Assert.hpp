@@ -7,7 +7,7 @@
 // STATIC_CHECK is used for compile time only.
 #define STATIC_CHECK(expn) typedef char __C_ASSERT__##expn[(expn) ? 1 : -1]
 
-// TODO: boolean concept for ensure_t
+// TODO: boolean concept for ensure
 
 // TODO(maybe):
 // remove the why parameter from failed_ensure ?? (you already know why)

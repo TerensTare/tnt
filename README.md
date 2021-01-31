@@ -4,6 +4,8 @@
 ![Gitter](https://img.shields.io/gitter/room/TerensTare/tnt?style=for-the-badge)
 ![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/TnT2d?style=for-the-badge)
 
+[![Documentation Status](https://readthedocs.org/projects/the-tnt-engine/badge/?version=latest)](https://the-tnt-engine.readthedocs.io/en/latest/?badge=latest)
+
 TnT is a 2d Game Engine written in C++. At the time of speaking the engine uses
 features from the C++17 standard (because at the time of speaking there is no C++ compiler that fully supports C++20 features), but one of the goals of the engine is to use C++20 features such as modules, concepts, etc.
 

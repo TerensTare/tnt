@@ -93,7 +93,7 @@ namespace tnt
     } // namespace bench
 
     BenchValidTimer::BenchValidTimer(const char *name) noexcept
-        : m_Name{name}, m_Stopped{false},
+        : hash{}, m_Stopped{false}, m_Name{name},
           m_StartTimepoint{std::chrono::high_resolution_clock::now()} {}
 
     BenchValidTimer::~BenchValidTimer()
@@ -108,7 +108,7 @@ namespace tnt
 
         long long start =
             std::chrono::time_point_cast<std::chrono::microseconds>(
-                *m_StartTimepoint)
+                m_StartTimepoint)
                 .time_since_epoch()
                 .count();
         long long end =
@@ -119,7 +119,7 @@ namespace tnt
 
         // (maybe) store a global hash object to avoid constructing every Stop() call ??
         std::size_t threadID =
-            std::hash<std::thread::id>{}(std::this_thread::get_id());
+            hash(std::this_thread::get_id());
         WriteProfile({m_Name, start, end, threadID});
 
         m_Stopped = true;

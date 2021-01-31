@@ -110,6 +110,7 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "damping", &physics_sys::damping,
         "restitution", &physics_sys::restitution,
         "active", &physics_sys::active,
+        "force", &physics_sys::force,
         "bound", &physics_sys::bound_box);
 
     // animations

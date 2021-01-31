@@ -42,6 +42,7 @@ namespace tnt
 
     inline constexpr size_tag_t<(std::size_t)-1> deduce_size{};
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
     namespace detail
     {
         template <typename T>
@@ -52,6 +53,7 @@ namespace tnt
         template <typename T>
         concept not_any = not is_sized_any<std::remove_cvref_t<T>>::value;
     } // namespace detail
+#endif
 
     template <std::size_t S>
     class sized_any final

@@ -20,6 +20,7 @@ namespace tnt::doo
     inline namespace phys
     {
         inline constexpr float beta{0.05f};         /// < A constant used for baumgarte stabilization.
+        inline constexpr float slop{0.01f};         /// < A constant used for positional correction.
         inline constexpr Vector gravity{0.f, 10.f}; /// < A vector acting as the gravity force.
     }                                               // namespace phys
 
@@ -66,11 +67,11 @@ namespace tnt::doo
         /// @brief Apply the given force to the object with the given id.
         /// @param id The id of the object.
         /// @param force The force to apply to the object.
-        void addForce(object const &id, tnt::Vector const &force) noexcept;
+        [[deprecated("is deprecated. Use operator+= on ::force[id] instead.")]] void addForce(object const &id, tnt::Vector const &force_) noexcept;
 
         /// @brief Add a force that would be applied to each object when Update is called.
         /// @param force The force to be applied.
-        void addGlobalForce(tnt::Vector const &force) noexcept;
+        [[deprecated("is deprecated. Use operator+= on ::totalForce instead.")]] void addGlobalForce(tnt::Vector const &force_) noexcept;
 
         /// @brief Update the physics data of the object with the given id.
         /// @param id The id of the object to update.
@@ -82,18 +83,6 @@ namespace tnt::doo
         /// @param id2 The id of the second object.
         /// @return bool
         bool colliding(object const &id, object const &id2) noexcept;
-
-        /// @brief Resolve the velocity between two objects that have collided.
-        /// @param id The id of the first object.
-        /// @param id2 The id of the second object.
-        /// @note This is called by resolve().
-        void resolveVel(object const &id, object const &id2) noexcept;
-
-        /// @brief Resolve the interpenetration between two objects that have collided.
-        /// @param id The id of the first object.
-        /// @param id2 The id of the second object.
-        /// @note This is called by resolve().
-        void resolveInterpenetration(object const &id, object const &id2) noexcept;
 
         /// @brief Resolve the collision between two objects.
         /// @param id The id of the first object.
@@ -108,7 +97,7 @@ namespace tnt::doo
         /// @brief Store physics data of a specific object to a json chunk.
         /// @param id The id of the object to serialize to json.
         /// @param j The json chunk where the data will be saved.
-        void to_json(object const &id, nlohmann::json &j) ;
+        void to_json(object const &id, nlohmann::json &j);
 
         /// @brief Draw widgets on the given window to modify the datas of the system.
         /// @param id The id of the active object.
@@ -149,6 +138,7 @@ namespace tnt::doo
         std::vector<Vector> maxVel;       /// < The maximal velocities of the objects.
         std::vector<Vector> accel;        /// < The accelerations of the objects.
         std::vector<Vector> maxAccel;     /// < The maximal accelerations of the objects.
+        std::vector<Vector> force;        /// < The total force applied to an object on a certain moment.
         std::vector<Rectangle> bound_box; /// < The bounding boxes of the bodies.
 
         sparse_set<object> active; /// < The id-s of all the objects of the physics system.

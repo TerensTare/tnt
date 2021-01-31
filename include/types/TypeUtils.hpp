@@ -14,27 +14,33 @@ namespace tnt
     template <typename... Ts>
     overload(Ts...) -> overload<Ts...>;
 
-        // thx riptutorial
+    // thx riptutorial
     // https://riptutorial.com/cplusplus/example/8508/recursive-lambdas
+    /// @brief A helper class for defining a y combinator, which helps on defining recursive functions.
+    /// @tparam Fn The type of the recursive function.
+    /// @note If you are using the class with lambdas, you have to specify the return type of the lambda. The same applies for functions, so you can't use y_comb with functions that have `auto` return type.
     template <typename Fn>
     class y_comb
     {
     public:
+        /// @brief Create a new recursive function using an y combinator.
+        /// @param fn_ The recursive function helper.
         explicit constexpr y_comb(Fn &&fn_) noexcept(std::is_nothrow_move_constructible_v<Fn>)
             : fn{std::move(fn_)} {}
 
+        /// @brief Call the function with the given @a args...
         template <typename... Args>
-        constexpr std::invoke_result_t<Fn, Args...> operator()(Args &&... args)
-            // clang-format off
-            noexcept(std::is_nothrow_invocable_v<Fn, Args...>)
-            requires std::invocable<Fn, Args...>
+        // clang-format off
+            requires std::invocable<Fn, y_comb<Fn>&, Args...>
+        constexpr decltype(auto) operator()(Args &&... args) const
+            noexcept(std::is_nothrow_invocable_v<Fn, y_comb<Fn>&, Args...>)
         {
             // clang-format on
             return fn(*this, std::forward<Args>(args)...);
         }
 
     private:
-        Fn fn;
+        /*[[no_unique_address]]*/ Fn fn;
     };
 
     template <typename Fn>
@@ -70,7 +76,7 @@ namespace tnt
     template <typename T, typename Deleter = std::default_delete<T>>
     struct singleton : non_copyable
     {
-        ~singleton() noexcept(noexcept(Deleter())) { Deleter(); }
+        ~singleton() noexcept(noexcept(Deleter{}())) { Deleter{}(); }
 
         static T &This() noexcept(std::is_nothrow_constructible_v<T>)
         {
@@ -84,13 +90,11 @@ namespace tnt
     template <typename T>
     struct crtp
     {
-        constexpr crtp() noexcept
-            : super{static_cast<T &>(*this)} {}
-
         constexpr T &base() noexcept { return static_cast<T &>(*this); }
-        constexpr T const &base() const noexcept { return static_cast<T const &>(*this); }
-
-        T &super;
+        constexpr T const &base() const noexcept
+        {
+            return static_cast<T const &>(*this);
+        }
     };
 
     template <typename>

@@ -10,23 +10,22 @@
 
 namespace tnt
 {
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
     namespace detail
     {
-        // void_t
         template <typename... Ts>
         using void_t = void;
 
-        // is_same_v
         template <typename T, typename U>
         inline constexpr bool is_same_v{false};
 
         template <typename T>
         inline constexpr bool is_same_v<T, T>{true};
 
-        // is_any_of
         template <typename T, typename... Ts>
-        inline constexpr bool is_any_of_v{(is_same_v<T, Ts> || ...)};
+        inline constexpr bool is_any_of_v{(... or is_same_v<T, Ts>)};
     } // namespace detail
+#endif
 
     // thx Jonathan Boccara
     // https://www.fluentcpp.com/2020/05/29/how-to-make-derived-classes-implement-more-than-assignment/
@@ -50,7 +49,7 @@ namespace tnt
     struct tag_type_t
     {
         tag_type_t() = delete;
-        
+
         tag_type_t(tag_type_t const &) = delete;
         tag_type_t &operator=(tag_type_t const &) = delete;
 
@@ -87,6 +86,8 @@ namespace tnt
     template <typename T>
     concept os = detail::is_any_of_v<T, windows_t, linux_t, macos_t, ios_t, android_t, unix_t>;
 
+    /// @brief Check if the os where the app is running matches O.
+    /// @tparam O The os tag.
     template <os O>
     struct is_os;
 
@@ -177,6 +178,8 @@ namespace tnt
     template <typename T>
     concept compiler = detail::is_any_of_v<T, gcc_t, clang_t, msvc_t>;
 
+    /// @brief Check if the compiler being used matches C.
+    /// @tparam C The compiler tag.
     template <compiler C>
     struct is_compiler;
 
@@ -216,6 +219,48 @@ namespace tnt
     inline constexpr bool is_gcc_v{is_compiler<gcc_t>::value};
     inline constexpr bool is_clang_v{is_compiler<clang_t>::value};
     inline constexpr bool is_msvc_v{is_compiler<msvc_t>::value};
+
+    // debug/release build
+
+    struct debug_t final : tag_type_t
+    {
+    };
+
+    struct release_t final : tag_type_t
+    {
+    };
+
+    template <typename T>
+    concept build_type = detail::is_any_of_v<T, debug_t, release_t>;
+
+    template <build_type T>
+    struct is_build;
+
+    template <>
+    struct is_build<debug_t>
+    {
+#if defined(_DEBUG) || defined(DEBUG)
+        inline static constexpr bool value{true};
+#else
+        inline static constexpr bool value{false};
+#endif
+    };
+
+    template <>
+    struct is_build<release_t>
+    {
+#if defined(NDEBUG) || !(defined(DEBUG) && defined(_DEBUG))
+        inline static constexpr bool value{true};
+#else
+        inline static constexpr bool value{false};
+#endif
+    };
+
+    template <build_type T>
+    inline static constexpr bool is_build_v{is_build<T>::value};
+
+    inline static constexpr bool is_debug_v{is_build<debug_t>::value};
+    inline static constexpr bool is_release_v{is_build<release_t>::value};
 
     // simd instructions
 
@@ -266,6 +311,8 @@ namespace tnt
                             ssse3_t, sse4_1_t, sse4_2_t,
                             avx_t, avx2_t>;
 
+    /// @brief Check if the machine where the app is running supports the given SIMD instructions.
+    /// @tparam S The desired SIMD instructions tag.
     template <simd_instruction S>
     struct is_simd;
 

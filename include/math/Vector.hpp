@@ -148,6 +148,12 @@ namespace tnt
         return Vector{vec.x * num, vec.y * num};
     }
 
+    constexpr Vector operator*(const float &num,
+                               const Vector &vec) noexcept
+    {
+        return Vector{vec.x * num, vec.y * num};
+    }
+
     constexpr Vector operator/(const Vector &vec,
                                const float &num) noexcept
     {

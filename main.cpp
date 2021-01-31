@@ -26,7 +26,6 @@
 #include "imgui/ImGui.hpp"
 #include "fileIO/VirtualFS.hpp"
 
-#include "utils/Logger.hpp"
 #include "utils/Timer.hpp"
 #include "utils/Benchmark.hpp"
 
@@ -99,7 +98,7 @@ auto load_proj = [](tnt::Window const &window, nlohmann::json const &j, nfdchar_
 
 auto save_proj = [](nlohmann::json &proj) {};
 
-auto update_from_input = [](tnt::doo::object const &active, float dt) noexcept -> void {
+auto update_from_input = [](tnt::doo::object const &active, float const dt) noexcept -> void {
     float const &dst{dt * .05f};                     // 10 pixel/sec
     float const &rot{dt * .02f};                     // 20 degree/sec
     tnt::Vector const &zoom{dt * .001f, dt * .001f}; // 1 pixel/sec
@@ -146,8 +145,8 @@ auto doo_loop = [](tnt::Window const &window, tnt::doo::object &active, float dt
 
 auto draw_imgui = [](tnt::Window const &window, tnt::doo::object &active, float dt,
                      bool &project, bool &game, bool &help) noexcept -> void {
-    constexpr const char *game_text[]{"Play", "Pause"};
-    constexpr const char *help_text[]{"Show Help", "Hide Help"};
+    static constexpr const char *game_text[]{"Play", "Pause"};
+    static constexpr const char *help_text[]{"Show Help", "Hide Help"};
 
     if (tnt::ImGui::Begin(window, "Components", 500, 300))
     {

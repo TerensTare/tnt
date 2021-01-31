@@ -16,7 +16,7 @@
 
 namespace tnt::ImGui
 {
-    inline static struct theme_t final
+    struct theme_t final
     {
         inline ~theme_t() noexcept
         {
@@ -28,8 +28,6 @@ namespace tnt::ImGui
                 TTF_CloseFont(tnt::ImGui::theme.font_data);
             }
         }
-
-        bool init{false};
 
         int w, h;
         int font_size;
@@ -48,6 +46,8 @@ namespace tnt::ImGui
         SDL_Color idle_color;   // for drawing non-active parts
         SDL_Color active_color; // for drawing active parts
         SDL_Color static_color; // for drawing non-movable parts
+
+        bool init{false}, _[7]; // _ is used only for padding
 
         SDL_Texture *button_text;
         SDL_Texture *checkbox_tick;
@@ -85,12 +85,12 @@ namespace tnt::ImGui
     {
         bool menu_called;
         bool collapsed;
-        WindowFlags win_flags;
+        WindowFlags win_flags, _; // _ is unused, it is just for padding
         int x, y, w, h;
         int next_x, next_y; // used to arrange widgets on the window.
         int menu_index, menu_txt_size, last_menu_txt_size, menu_item_index;
         int context_menu_index;
-        int list_indent_level, list_index, list_number;
+        int list_indent_level, list_index, list_number, __; // __ is unused, it is just for padding
         std::string title;
     };
 

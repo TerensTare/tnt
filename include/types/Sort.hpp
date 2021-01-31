@@ -6,7 +6,7 @@
 #include <ranges>
 #include <span>
 
-#include "utils/TypeUtils.hpp"
+#include "types/TypeUtils.hpp"
 
 // TODO: unfinished
 // TODO: write this header using std::sortable types.

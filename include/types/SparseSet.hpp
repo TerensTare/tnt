@@ -14,6 +14,9 @@
 // constexpr.
 // recheck operator <=>.
 
+// TODO(maybe):
+// std::default_sentinel_t
+
 namespace tnt
 {
     template <std::unsigned_integral>
@@ -28,7 +31,7 @@ namespace tnt
         template <std::unsigned_integral T>
         inline bool operator==(sparse_iterator<T> const &rhs) const noexcept
         {
-            return (rhs.index < 0 || rhs.index >= rhs.owner->size());
+            return rhs.index >= rhs.owner->size();
         }
 
         template <std::unsigned_integral T>

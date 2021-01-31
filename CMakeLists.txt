@@ -169,6 +169,14 @@ target_include_directories(
 
 if(MSVC)
     target_compile_options(TnT PRIVATE /fp:fast)
+
+    # Add tnt.natvis to the build
+    set(TNT_ADD_NATVIS TRUE)
+    target_sources(
+        ${PROJECT_NAME}
+        INTERFACE
+            $<INSTALL_INTERFACE:extra/tnt.natvis>
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/extra/tnt.natvis>)
 else()
     target_compile_options(TnT PRIVATE --ffast-math)
 endif()
@@ -203,20 +211,34 @@ install(
     FILES_MATCHING
     PATTERN "*.hpp")
 
+if(TNT_ADD_NATVIS)
+    install(
+        FILES extra/tnt.natvis
+        DESTINATION .)
+endif()
+
 # ######################################################################################################################################################################################################
 # TnTConfigVersion.cmake stuff #
 # ######################################################################################################################################################################################################
 
 include(CMakePackageConfigHelpers)
 
-configure_package_config_file(${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake.in ${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake INSTALL_DESTINATION ${INSTALL_CONFIGDIR})
+configure_package_config_file(
+    ${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake.in
+    ${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake
+    INSTALL_DESTINATION ${INSTALL_CONFIGDIR})
 
 write_basic_package_version_file(
     ${CMAKE_CURRENT_BINARY_DIR}/TnTConfigVersion.cmake
     VERSION ${PROJECT_VERSION}
     COMPATIBILITY AnyNewerVersion)
 
-install(FILES ${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/TnTConfigVersion.cmake DESTINATION ${INSTALL_CONFIGDIR})
+install(
+    FILES ${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/TnTConfigVersion.cmake
+    DESTINATION ${INSTALL_CONFIGDIR})
+
+export(PACKAGE TnT)
 
 # ######################################################################################################################################################################################################
 # The editor #

@@ -5,27 +5,6 @@
 
 namespace tnt
 {
-    // call the destructor of the object when it goes out of scope.
-    // template <typename Constructor, typename Destructor>
-    // class scope_guard
-    // {
-    // public:
-    //     template <typename... Args>
-    //     scope_guard(Args &&...args):data{} {}
-
-    //     ~scope_guard()
-    //     {
-    //         data->~T();
-    //     }
-
-    //     scope_guard(scope_guard const &guard) : data{guard.data} {}
-    //     scope_guard(scope_guard &&guard) : data{std::move(guard.data)} {}
-    //     scope_guard &operator=(scope_guard const &) = delete;
-
-    // private:
-    //     T *data;
-    // };
-
     /// @brief Execute function only if no exception is thrown in the scope.
     /// @tparam F The type of the function to be wrapped by scope_success.
     template <typename F>

@@ -23,6 +23,7 @@ TNT_EXPORT template class TNT_API std::map<char const *, char const *, std::less
 
 namespace tnt
 {
+    /// @brief Utility class that can be used to hold file aliases different from the global ones.
     class TNT_API vfs_handle final
     {
         /// @brief Make @a alias evaluate to @a path when used with @a tnt::vfs::absolute.

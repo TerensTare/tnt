@@ -1,6 +1,8 @@
 #ifndef TNT_MATH_UTILS_HPP
 #define TNT_MATH_UTILS_HPP
 
+#include <cmath>
+
 // TODO:
 // fractions
 // sine, cosine, abs, ceil, clamp (maybe) log, lerp ??

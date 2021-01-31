@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 #include "math/Vector.hpp"
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace nlohmann
 {
     template <>
@@ -21,5 +22,6 @@ namespace nlohmann
         }
     };
 } // namespace nlohmann
+#endif
 
 #endif //!TNT_JSON_SERIALIZE_VECTOR_HPP

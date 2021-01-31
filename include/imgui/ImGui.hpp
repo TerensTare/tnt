@@ -35,7 +35,7 @@ namespace tnt
         /// @sa @ref tnt::ImGui::Begin()
         /// @note This enum is not fully functional yet. This means that you should
         /// leave the default (last) argument of @c tnt::ImGui::Begin() as is.
-        enum class WindowFlags : unsigned
+        enum class WindowFlags : std::uint8_t
         {
             Collapsible = (1 << 0),      ///< with a collapse button
             Closable = (1 << 1),         ///< with a close button

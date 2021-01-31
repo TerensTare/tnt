@@ -5,10 +5,39 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [0.1.0a16]
 ### Added
+- `tnt::type_name` on `TypeInfo.hpp` if you need only the name of a type.
+`tnt::operator<<` for `tnt::type_info` so that it can be used with `std::cout`.
+- `tnt::Vector::operator*` with `float` as first argument, making some code easier to read.
+- `tnt::physics_sys::force`, that stores the force being applied to the objects on a certain moment. Related functions are updated accordingly.
+- `tnt::is_debug_v` and `tnt::is_release_v` on `utils/Traits.hpp`.
+- `extra/tnt.natvis` will be installed when building the `install` target.
+- `utils/FLogger.hpp`, which adds support for writing log output to a file by using functions on `tnt::logger`.
+- `tnt::lua::registerLoader` to add the TnT modules loader to the given lua state.
+- `tnt::drawCircle` and `tnt::fillCircle` on `core/Graphics`.
 - Deduction guides for classes on `types/ScopeUtils.hpp`.
 
+### Changed
+- Updated `tnt::type_info` and `tnt::type_id<T>` to work without `friend`.
+- `tnt::physics_sys::AddForce` and `tnt::physics_sys::addGlobalForce` are no longer profiled.
+- `tnt::ImGui::WindowFlags` is now 8 bit.
+- `tnt::logger` will now print the logging message type from `ERROR:` to `[ERROR]` to provide more readable output.
+- Moved `tnt::logger::printable` to `namespace detail`.
+- TnT libraries on Lua now MUST be `required` when used with `tnt::scripts_sys` from the Data Oriented ECS. Otherwise, the good ol' `lua::load*` functions are still available for use.
+- The third argument of `tnt::scripts_sys::add_object`, since TnT libraries can now be `require`d from a Lua script.
+- `tnt::crtp<T>::super` is now `protected`.
+- Functions on `core/Graphics` are now marked as `noexcept`.
+
 ### Fixed
+- Small tweaks.
+- Some incorrect things on `exp/TypeListsv2.hpp`.
 - Some incorrect things on `doo_ecs/System.hpp`.
+
+### Deprecated
+- `tnt::physics_sys::addForce` and `tnt::physics_sys::addGlobalForce`. Instead, just add the desired force to the `tnt::physics_sys::force[id]` and `tnt::physics_sys::totalForce` variables accordingly.
+
+### Removed
+- `tnt::physics_sys::resolveVelocity` and `tnt::physics_sys::resolveInterpenetration`. Use `tnt::physics_sys::resolve` instead.
+- `tnt::crtp<T>::super`. It gave issues when assigning a derived class. Use `tnt::crtp<T>::base` instead.
 
 
 ## [0.1.0a15]

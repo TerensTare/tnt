@@ -11,6 +11,7 @@ namespace tnt::lua
 {
     /// @brief An enum containing all of the engine's structures/functions that can be exported.
     /// @todo Add support for easings and numerical springing.
+    /// @todo Add support for vfs_handle and graphics.
     enum class lib : uint16_t
     {
         vector = 1 << 0,               /// < Export @ref tnt::Vector.
@@ -25,6 +26,8 @@ namespace tnt::lua
     };
 
     TNT_API void load(sol::state_view lua_, tnt::lua::lib const &libs);
+
+    TNT_API void registerLoader(lua_State *L, bool clear_old = false) noexcept;
 } // namespace tnt::lua
 
 namespace tnt

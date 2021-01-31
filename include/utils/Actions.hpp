@@ -13,29 +13,20 @@
 
 namespace tnt
 {
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
     namespace detail
     {
-        /// @brief The base representation of an action.
         class base_action
         {
         public:
-            /// @brief Create a basic action that runs for a certain duration.
-            /// @param duration_ Determine for how long the action should run.
-            /// @param blocks Determine if the action is blocking or not.
             base_action(long long duration_, bool blocks)
                 : finished{false}, blocking{blocks}, elapsed{0}, duration{duration_} {}
 
-            /// @brief The destructor of base_action.
             virtual ~base_action() noexcept = default;
 
-            /// @brief Update the stats of the action.
-            /// @param elapsed_ The elapsed time since the last Update call.
             virtual void Update(long long elapsed_) = 0;
 
-            /// @brief Check if the action is a blocking action.
             inline bool isBlocking() const noexcept { return blocking; }
-
-            /// @brief Check if the action should continue running.
             inline bool isFinished() const noexcept { return finished; }
 
         protected:
@@ -56,6 +47,7 @@ namespace tnt
             long long duration;
         };
     } // namespace detail
+#endif
 
     /// @brief A basic non-blocking action.
     class Action : public detail::base_action

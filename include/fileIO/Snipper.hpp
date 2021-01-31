@@ -19,6 +19,7 @@
 // std::map<std::string, std::pair<std::string, fs::file_time_type>> instead of tnt::File ??
 // move the two concepts to TypeUtils.hpp ??
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace tnt::detail
 {
     template <typename T, typename... Args>
@@ -27,6 +28,7 @@ namespace tnt::detail
     template <typename T, typename... Args>
     concept safe_callable = std::is_nothrow_invocable_v<T, Args...>;
 } // namespace tnt::detail
+#endif
 
 namespace tnt
 {

@@ -22,17 +22,20 @@ namespace tnt::doo
 
         [[unlikely]] if (id > inv_mass.capacity())
         {
-            inv_mass.reserve(id - inv_mass.capacity());
+            std::size_t const diff{id - inv_mass.capacity()};
 
-            damping.reserve(id - inv_mass.capacity());
-            restitution.reserve(id - inv_mass.capacity());
+            inv_mass.reserve(diff);
 
-            vel.reserve(id - inv_mass.capacity());
-            maxVel.reserve(id - inv_mass.capacity());
-            accel.reserve(id - inv_mass.capacity());
-            maxAccel.reserve(id - inv_mass.capacity());
+            damping.reserve(diff);
+            restitution.reserve(diff);
 
-            bound_box.reserve(id - inv_mass.capacity());
+            vel.reserve(diff);
+            maxVel.reserve(diff);
+            accel.reserve(diff);
+            maxAccel.reserve(diff);
+            force.reserve(diff);
+
+            bound_box.reserve(diff);
         }
 
         inv_mass.emplace(inv_mass.cbegin() + id, if_else(body.type == body_type::fixed, 0.f, 1 / body.mass));
@@ -54,6 +57,7 @@ namespace tnt::doo
             accel.emplace(accel.cbegin() + id, -gAccel(objects.parent[id]));
             maxAccel.emplace(maxAccel.cbegin() + id, body.maxAccel - gMaxAccel(objects.parent[id]));
         }
+        force.emplace_back();
 
         active.insert(id, id);
 
@@ -66,21 +70,14 @@ namespace tnt::doo
                               objects.gScale(id).y * sprites.clip[id].h);
     }
 
-    void physics_sys::addForce(object const &id, Vector const &force) noexcept
+    void physics_sys::addForce(object const &id, Vector const &force_) noexcept
     {
-        PROFILE_FUNCTION();
-
-        accel[id] += (force * inv_mass[id]);
-        accel[id] = if_else(accel[id] > maxAccel[id], maxAccel[id], accel[id]);
+        force[id] += force_;
     }
 
-    void physics_sys::addGlobalForce(Vector const &force) noexcept
+    void physics_sys::addGlobalForce(Vector const &force_) noexcept
     {
-        PROFILE_FUNCTION();
-
-        totalForce += force;
-        for (auto const &id : active)
-            addForce(id, totalForce);
+        totalForce += force_;
     }
 
     void physics_sys::Update(object const &id, float time_) noexcept
@@ -92,12 +89,19 @@ namespace tnt::doo
             check(time_ > 0.f, "Calling tnt::doo::physics_sys::Update with parameter time_ equal to 0. Objects will not be updated!!");
             float const &damp{std::powf(damping[id], time_)};
 
-            objects.pos[id] += (physics.vel[id] * time_);
-            bound_box[id] += (physics.vel[id] * time_);
+            force[id] += totalForce;
+
+            objects.pos[id] += (vel[id] * time_);
+            bound_box[id] += (vel[id] * time_);
 
             vel[id] += (accel[id] * time_);
             vel[id] *= damp;
-            vel[id] = if_else(vel[id] > maxVel[id], maxVel[id], vel[id]);
+            vel[id] = std::min(maxVel[id], vel[id]);
+
+            accel[id] += (force[id] * inv_mass[id]);
+            accel[id] = std::min(maxAccel[id], accel[id]);
+
+            force[id] = VECTOR_ZERO;
         }
     }
 
@@ -114,7 +118,7 @@ namespace tnt::doo
         return ret;
     }
 
-    void physics_sys::resolveVel(object const &id, object const &id2) noexcept
+    void physics_sys::resolve(object const &id, object const &id2) noexcept
     {
         if (active.contains(id) && active.contains(id2))
         {
@@ -123,53 +127,44 @@ namespace tnt::doo
             Vector const &normal{(objects.gPos(id) - objects.gPos(id2)).Normalized()};
 
             float const &sep_vel = [this, &normal](object const &id, object const &id2) noexcept -> float {
-                Vector const &rel_vel{gVel(id) - gVel(id2)};
+                Vector const &rel_vel{gVel(id2) - gVel(id)};
                 return Dot(rel_vel, normal);
             }(id, id2);
 
             if (sep_vel > 0.f)
                 return;
 
-            float const &res{if_else(restitution[id] < restitution[id2],
-                                     restitution[id], restitution[id2])};
+            float const &res{std::min(restitution[id], restitution[id2])};
 
-            float new_sep_vel{-sep_vel * res};
-            Vector const &acc_caused_vel{gAccel(id) - gAccel(id2)};
+            float j{-(1.f + res) * sep_vel};
+            j /= (inv_mass[id] + inv_mass[id2]);
 
-            if (float const &acc_caused_sep_vel{
-                    Dot(acc_caused_vel, normal)};
-                acc_caused_sep_vel < 0.f)
+            float const &total_mass{1.f / inv_mass[id] + 1.f / inv_mass[id2]};
+
+            Vector const &impulse{normal * j};
+            vel[id] -= impulse * (total_mass / inv_mass[id]);
+            vel[id] = std::min(maxVel[id], vel[id]);
+
+            vel[id2] += impulse * (total_mass / inv_mass[id2]);
+            vel[id2] = std::min(maxVel[id2], vel[id2]);
+
+            // TODO:
+            // apply positional correction using slop
+            float pen{0.f};
+
+            Vector const &n{objects.pos[id2] - objects.pos[id]};
+            float const &x_overlap{bound_box[id].w + bound_box[id2].w - std::fabsf(n.x)};
+            if (x_overlap > 0.f)
             {
-                new_sep_vel += res * acc_caused_sep_vel;
-                if (new_sep_vel < 0.f)
-                    new_sep_vel = 0.f;
+                float const &y_overlap{bound_box[id].h + bound_box[id2].h - std::fabsf(n.y)};
+                if (y_overlap > 0.f)
+                    pen = std::max(x_overlap, y_overlap);
             }
 
-            float const &delta_vel{new_sep_vel - sep_vel};
-            float const &total_inv_mass{inv_mass[id] + inv_mass[id2]};
-            float const &impulse{delta_vel / total_inv_mass};
-            Vector const &impulse_per_mass{normal * impulse};
-
-            vel[id] += impulse_per_mass * inv_mass[id];
-            vel[id] = if_else(vel[id] > maxVel[id],
-                              maxVel[id], vel[id]);
-
-            vel[id2] -= impulse_per_mass * inv_mass[id2];
-            vel[id2] = if_else(vel[id2] > maxVel[id2],
-                               maxVel[id2], vel[id2]);
+            Vector const &correction{std::max(pen - phys::slop, 0.f) / (inv_mass[id] + inv_mass[id2])};
+            objects.pos[id] -= inv_mass[id] * correction;
+            objects.pos[id2] += inv_mass[id2] * correction;
         }
-    }
-
-    void physics_sys::resolveInterpenetration(object const &id, object const &id2) noexcept
-    {
-    }
-
-    void physics_sys::resolve(object const &id, object const &id2) noexcept
-    {
-        PROFILE_FUNCTION();
-
-        resolveVel(id, id2);
-        resolveInterpenetration(id, id2);
     }
 
     void physics_sys::from_json(object const &id, nlohmann::json const &j)
@@ -239,6 +234,7 @@ namespace tnt::doo
         maxVel.erase(maxVel.cbegin() + id);
         accel.erase(accel.cbegin() + id);
         maxAccel.erase(maxAccel.cbegin() + id);
+        force.erase(force.cbegin() + id);
 
         bound_box.erase(bound_box.cbegin() + id);
     }
@@ -256,6 +252,7 @@ namespace tnt::doo
         maxVel.clear();
         accel.clear();
         maxAccel.clear();
+        force.clear();
 
         bound_box.clear();
     }

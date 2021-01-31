@@ -8,30 +8,35 @@
 #include "tolua/LuaMath.hpp"
 #include "tolua/LuaUtils.hpp"
 
-#include "core/Window.hpp"
-#include "core/Input.hpp"
-#include "fileIO/AudioPlayer.hpp"
+#include "utils/Logger.hpp"
 
-// auto luaLoad = [](char const *l) -> void {
-//     using tnt::lua_ctx;
-//     using namespace tnt::lua;
+inline static int lua_custom_require(lua_State *L)
+{
+    using namespace tnt::lua;
+    std::string const pack{sol::stack::get<std::string>(L, 1)};
 
-//     if (l == "core")
-//     {
-//         loadWindow(lua_ctx);
-//         loadInput(lua_ctx);
-//         // loadAudio(lua_ctx);
-//     }
-//     else if (l == "math")
-//     {
-//         loadVector(lua_ctx);
-//         loadRect(lua_ctx);
-//     }
-//     else if (l == "ecs")
-//         loadDooEcs(lua_ctx);
-//     else if (l == "imgui")
-//         loadImGui(lua_ctx);
-// };
+    if (pack == "vector")
+        loadVector(L);
+    else if (pack == "rect")
+        loadRect(L);
+    else if (pack == "window")
+        loadWindow(L);
+    else if (pack == "input")
+        loadInput(L);
+    else if (pack == "audio")
+        loadAudio(L);
+    else if (pack == "imgui")
+        loadImGui(L);
+    else if (pack == "utils")
+        loadSparseSet(L);
+    else
+        tnt::logger::error("[lua] Trying to load unknown module {}!!", pack);
+
+    std::string const script{fmt::format("return {}", pack)};
+    luaL_loadbuffer(L, script.data(), script.size(), pack.c_str());
+
+    return 1;
+}
 
 void tnt::lua::load(sol::state_view lua_, tnt::lua::lib const &libs)
 {
@@ -49,4 +54,10 @@ void tnt::lua::load(sol::state_view lua_, tnt::lua::lib const &libs)
         loadImGui(lua_);
     if (has_flag(libs, lib::utils))
         loadSparseSet(lua_);
+}
+
+void tnt::lua::registerLoader(lua_State *L, bool clear_old) noexcept
+{
+    sol::state_view lua_{L};
+    lua_.add_package_loader(lua_custom_require, clear_old);
 }

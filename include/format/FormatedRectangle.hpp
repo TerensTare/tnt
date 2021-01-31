@@ -4,6 +4,7 @@
 #include <fmt/format-inl.h>
 #include "math/Rectangle.hpp"
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace fmt
 {
     template <>
@@ -31,5 +32,6 @@ namespace fmt
         }
     };
 } // namespace fmt
+#endif
 
 #endif //!TNT_FMT_FORMATED_RECTANGLE_HPP

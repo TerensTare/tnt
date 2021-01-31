@@ -37,8 +37,7 @@ namespace tnt::doo
         /// @param id The id of the object to add to the scripting system.
         /// @param filename The name of the .lua script file.
         /// @param libs The desired libraries you need for this object. Defaults to @ref tnt::lua::lib::core.
-        void add_object(object const &id, std::string_view filename,
-                        tnt::lua::lib const &libs = tnt::lua::lib::core);
+        void add_object(object const &id, std::string_view filename);
 
         /// @brief Run `init()` from the object's lua script. If no function named init() is found, it does nothing.
         /// @param id The id of the object to init().
@@ -93,7 +92,7 @@ namespace tnt::doo
         /// @brief Remove all the objects from the scripts system.
         void clear() noexcept;
 
-        sparse_set<object> active;      /// < The id-s of all the objects connected to scripts.
+        tnt::sparse_set<object> active;      /// < The id-s of all the objects connected to scripts.
         std::vector<sol::state> states; /// < The lua handles of the objects.
     } scripts;                          /// < An instance of scripts_sys
 } // namespace tnt::doo

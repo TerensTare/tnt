@@ -1,6 +1,8 @@
 #ifndef CONFIG_HPP
 #define CONFIG_HPP
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
 // clang-format off
 # if defined(_MSC_VER) && !defined(__clang__)
 #   ifdef TNT_BUILD
@@ -21,5 +23,7 @@
 #   endif
 # endif //!_MSC_VER
 // clang-format on
+
+#endif
 
 #endif //!CONFIG_HPP

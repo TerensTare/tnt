@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 #include "math/Rectangle.hpp"
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace nlohmann
 {
     template <>
@@ -23,5 +24,6 @@ namespace nlohmann
         }
     };
 } // namespace nlohmann
+#endif
 
 #endif //!TNT_JSON_SERIALIZE_RECTANGLE_HPP

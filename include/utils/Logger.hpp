@@ -1,8 +1,9 @@
 #ifndef TNT_LOGGER_HPP
 #define TNT_LOGGER_HPP
 
-#include <fmt/core.h>
 #include <fmt/color.h>
+
+#include "utils/Traits.hpp"
 
 // TODO: unfinished
 // TODO: support writing to files.
@@ -27,6 +28,7 @@
 // Priorities are in ascending order:
 namespace tnt::logger
 {
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
     namespace detail
     {
         inline constexpr fmt::text_style crimson{fmt::fg(fmt::color::crimson)};
@@ -35,82 +37,83 @@ namespace tnt::logger
         inline constexpr fmt::text_style red{fmt::fg(fmt::color::red)};
         inline constexpr fmt::text_style slate_blue{fmt::fg(fmt::color::slate_blue)};
         inline constexpr fmt::text_style yellow{fmt::fg(fmt::color::yellow)};
+
+        template <typename T>
+        concept printable = requires(T t) { fmt::print("{}", t); };
     } // namespace detail
+#endif
 
-    template <typename T>
-    concept printable = requires(T t) { fmt::print("{}", t); };
-
-    template <printable... Args>
-    inline void trace(std::string_view format, Args &&... args)
+    template <detail::printable... Args>
+    inline void trace(std::string_view format, Args &&...args)
     {
         if constexpr (sizeof...(Args) > 0)
-            fmt::print(detail::slate_blue, "{} TRACE: {}\n", __TIME__,
+            fmt::print(detail::slate_blue, "{} [TRACE] {}\n", __TIME__,
                        fmt::format(format, std::forward<Args>(args)...));
         else
-            fmt::print(detail::slate_blue, "{} TRACE: {}\n", __TIME__, format);
+            fmt::print(detail::slate_blue, "{} [TRACE] {}\n", __TIME__, format);
     }
 
-    template <printable... Args>
-    inline void debug(std::string_view format, Args &&... args)
+    template <detail::printable... Args>
+    inline void debug(std::string_view format, Args &&...args)
     {
         if constexpr (sizeof...(Args) > 0)
-            fmt::print("{} DEBUG: {}\n", __TIME__,
+            fmt::print("{} [DEBUG] {}\n", __TIME__,
                        fmt::format(format, std::forward<Args>(args)...));
         else
-            fmt::print("{} DEBUG: {}\n", __TIME__, format);
+            fmt::print("{} [DEBUG] {}\n", __TIME__, format);
     }
 
-    template <printable... Args>
-    inline void info(std::string_view format, Args &&... args)
+    template <detail::printable... Args>
+    inline void info(std::string_view format, Args &&...args)
     {
         if constexpr (sizeof...(Args) > 0)
-            fmt::print("{} INFO: {}\n", __TIME__,
+            fmt::print("{} [INFO] {}\n", __TIME__,
                        fmt::format(format, std::forward<Args>(args)...));
         else
-            fmt::print("{} INFO: {}\n", __TIME__, format);
+            fmt::print("{} [INFO] {}\n", __TIME__, format);
     }
 
-    template <printable... Args>
-    inline void notice(std::string_view format, Args &&... args)
+    template <detail::printable... Args>
+    inline void notice(std::string_view format, Args &&...args)
     {
         if constexpr (sizeof...(Args) > 0)
-            fmt::print(detail::cyan, "{} NOTICE: {}\n", __TIME__,
+            fmt::print(detail::cyan, "{} [NOTICE] {}\n", __TIME__,
                        fmt::format(format, std::forward<Args>(args)...));
         else
-            fmt::print(detail::cyan, "{} NOTICE: {}\n", __TIME__, format);
+            fmt::print(detail::cyan, "{} [NOTICE] {}\n", __TIME__, format);
     }
 
-    template <printable... Args>
-    inline void warning(std::string_view format, Args &&... args)
+    template <detail::printable... Args>
+    inline void warning(std::string_view format, Args &&...args)
     {
         if constexpr (sizeof...(Args) > 0)
             fmt::print(detail::yellow,
-                       "{} WARNING: {}\n", __TIME__,
+                       "{} [WARNING] {}\n", __TIME__,
                        fmt::format(format, std::forward<Args>(args)...));
         else
-            fmt::print(detail::yellow, "{} WARNING: {}\n", __TIME__, format);
+            fmt::print(detail::yellow, "{} [WARNING] {}\n", __TIME__, format);
     }
 
-    template <printable... Args>
-    [[noreturn]] inline void error(std::string_view format, Args &&... args)
+    template <detail::printable... Args>
+    [[noreturn]] inline void error(std::string_view format, Args &&...args)
     {
         if constexpr (sizeof...(Args) > 0)
-            fmt::print(detail::red, "{} ERROR: {}\n", __TIME__,
+            fmt::print(detail::red, "{} [ERROR] {}\n", __TIME__,
                        fmt::format(format, std::forward<Args>(args)...));
         else
-            fmt::print(detail::red, "{} ERROR: {}\n", __TIME__, format);
+            fmt::print(detail::red, "{} [ERROR] {}\n", __TIME__, format);
 
         std::quick_exit(-1);
     }
 
-    template <printable... Args>
-    inline void critical(std::string_view format, Args &&... args)
+    template <detail::printable... Args>
+    inline void critical(std::string_view format, Args &&...args)
     {
         if constexpr (sizeof...(Args) > 0)
-            fmt::print(detail::crimson, "{} CRITICAL: {}\n", __TIME__,
+            fmt::print(detail::crimson, "{} [CRITICAL] {}\n", __TIME__,
                        fmt::format(format, std::forward<Args>(args)...));
         else
-            fmt::print(detail::crimson, "{} CRITICAL: {}\n", __TIME__, format);
+            fmt::print(detail::crimson, "{} [CRITICAL] {}\n", __TIME__, format);
     }
 } // namespace tnt::logger
 

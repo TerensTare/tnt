@@ -14,8 +14,7 @@
 
 namespace tnt::doo
 {
-    void scripts_sys::add_object(object const &id, std::string_view filename,
-                                 tnt::lua::lib const &libs)
+    void scripts_sys::add_object(object const &id, std::string_view filename)
     {
         PROFILE_FUNCTION();
 
@@ -25,14 +24,16 @@ namespace tnt::doo
         active.insert(id, id);
         states.emplace(states.cbegin() + id);
 
-        states[id].open_libraries(sol::lib::base);
-        states[id]["id"] = id + 1;
-        states[id]["file"] = vfs::absolute(filename);
+        auto& s{states[id]};
 
-        lua::load(states[id], libs);
-        lua::loadDooEcs(states[id]);
+        s.open_libraries(sol::lib::package, sol::lib::base);
+        s["id"] = id + 1;
+        s["file"] = vfs::absolute(filename);
 
-        states[id].safe_script_file(vfs::absolute(filename));
+        lua::registerLoader(s, true);
+        lua::loadDooEcs(s);
+
+        s.safe_script_file(vfs::absolute(filename));
     }
 
     void scripts_sys::Init(object const &id)
@@ -79,18 +80,7 @@ namespace tnt::doo
         if (j.contains("script"))
         {
             PROFILE_FUNCTION();
-            // if (j["script"].contains("libs"))
-            // {
-            // nlohmann::json const &jlib{j["script"]["libs"]};
-            // lua::lib arr[]{j["script"]["libs"]};
-            // lua::lib libs{};
-            // for (int i{0}; i < std::size(arr); ++i)
-            //     libs |= arr[i];
-            //     add_object(id, j["script"]["file"], lua::lib::core | lua::lib::math | lua::lib::utils);
-            // }
-            // else
-            add_object(id, j["script"]["file"],
-                       lua::lib::input | lua::lib::math | lua::lib::utils);
+            add_object(id, j["script"]["file"]);
         }
     }
 

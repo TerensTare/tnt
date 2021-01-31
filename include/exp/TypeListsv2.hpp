@@ -7,7 +7,6 @@
 // merge type_fn and value_fn using concepts (same for bind_*)
 // reduce template instantiations (probably use operator| somewhere)
 
-
 // thx Oleg Fatkhiev
 // https://2019.cppconf-moscow.ru/en/talks/2zq0btoxldq6tmo3g7cvuo/
 namespace tnt
@@ -40,6 +39,12 @@ namespace tnt
         {
             return P<Ts...>::value;
         }
+
+        template <typename... Ts>
+        constexpr auto operator()(type_list<Ts...>) noexcept
+        {
+            return P<Ts...>::value;
+        }
     };
 
     template <template <typename...> typename P>
@@ -50,6 +55,12 @@ namespace tnt
     {
         template <typename... Ts>
         constexpr auto operator()(type_tag<Ts>...) noexcept
+        {
+            return P<Us..., Ts...>::value;
+        }
+
+        template <typename... Ts>
+        constexpr auto operator()(type_list<Ts...>) noexcept
         {
             return P<Us..., Ts...>::value;
         }
@@ -66,6 +77,12 @@ namespace tnt
         {
             return make_tag<typename P<Ts...>::type>;
         }
+
+        template <typename... Ts>
+        constexpr auto operator()(type_list<Ts...>) noexcept
+        {
+            return make_tag<typename P<Ts...>::type>;
+        }
     };
 
     template <template <typename...> typename P>
@@ -76,6 +93,12 @@ namespace tnt
     {
         template <typename... Ts>
         constexpr auto operator()(type_tag<Ts>...) noexcept
+        {
+            return make_tag<typename P<Us..., Ts...>::type>;
+        }
+
+        template <typename... Ts>
+        constexpr auto operator()(type_list<Ts...>) noexcept
         {
             return make_tag<typename P<Us..., Ts...>::type>;
         }
@@ -120,10 +143,10 @@ namespace tnt
         constexpr type_tag<T> front(type_list<T, Ts...>) noexcept { return {}; }
 
         template <typename T, typename... Ts>
-        constexpr type_list<Ts...> back(type_list<T, Ts...>) noexcept { return tl::v2::back(make_list<Ts...>); }
+        constexpr auto back(type_list<T, Ts...>) noexcept { return tl::v2::back(make_list<Ts...>); }
 
         template <typename T>
-        constexpr type_tag<T> back(type_list<T>) noexcept { return {}; }
+        constexpr type_tag<T> back(type_tag<T>) noexcept { return {}; }
 
         // push_front/push_back
         template <typename T, typename... Ts>
@@ -168,7 +191,7 @@ namespace tnt
             return []<std::size_t... S>(std::index_sequence<S...>) noexcept->std::size_t
             {
                 return std::min({[]<std::size_t I>(std::integral_constant<std::size_t, I>) noexcept -> std::size_t {
-                    if constexpr (std::is_same_v<tl::v2::get<I>(make_list<Ts...>), T>)
+                    if constexpr (tl::get<I>(make_list<Ts...>) == make_tag<T>)
                         return I;
                     else
                         return sizeof...(Ts);
@@ -249,9 +272,9 @@ namespace tnt
         constexpr type_list<typename P<Ts>::type...> transform(type_list<Ts...>) noexcept { return {}; }
 
         template <typename P, typename... Ts>
-        constexpr type_list<decltype(P{}(make_tag<Ts>))...> transform(P, type_list<Ts...>) noexcept
+        constexpr auto transform(P, type_list<Ts...>) noexcept
         {
-            return make_list<decltype(P{}(make_tag<Ts>))...>;
+            return (empty_list{} | ... | P{}(make_tag<Ts>));
         }
 
         template <typename... Ts>
@@ -292,9 +315,9 @@ namespace tnt
                                            typename T>(F, type_tag<T>) noexcept
             {
                 if constexpr (F<T>::value)
-                    return make_tag<T>;
-                else
                     return empty_list{};
+                else
+                    return make_tag<T>;
             };
 
             return (empty_list{} | ... | filter_one(P{}, make_list<Ts>));
@@ -306,9 +329,9 @@ namespace tnt
             constexpr auto filter_one = []<typename F, typename T>(
                                             F, type_tag<T>) noexcept {
                 if constexpr (F{}(make_tag<T>))
-                    return make_tag<T>;
-                else
                     return empty_list{};
+                else
+                    return make_tag<T>;
             };
 
             return (empty_list{} | ... | filter_one(P{}, make_tag<Ts>));

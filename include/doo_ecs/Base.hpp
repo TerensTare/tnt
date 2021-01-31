@@ -1,6 +1,8 @@
 #ifndef TNT_DOO_ECS_BASE_HPP
 #define TNT_DOO_ECS_BASE_HPP
 
+#include <concepts>
+
 // TODO:
 // optimizations (ex. use pmr)
 // particle_sys

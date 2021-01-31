@@ -2,9 +2,9 @@
 #define BENCHMARK_HPP
 
 #include <chrono>
+#include <thread>
 
 #include "core/Config.hpp"
-#include "types/StaticPimpl.hpp"
 
 // TODO: more noexcept stuff here
 
@@ -38,14 +38,13 @@ namespace tnt
         void Stop();
 
     private:
-        using unit = std::chrono::time_point<std::chrono::high_resolution_clock>;
-
+        std::hash<std::thread::id> hash;
         bool m_Stopped;
         const char *m_Name;
-        pimpl<unit, sizeof(unit), alignof(unit)> m_StartTimepoint;
+        std::chrono::time_point<std::chrono::high_resolution_clock> m_StartTimepoint;
     };
 
-    struct TNT_API BenchEmptyTimer final
+    struct BenchEmptyTimer final
     {
         explicit constexpr BenchEmptyTimer(const char *) noexcept {}
         constexpr void Stop() noexcept {}
