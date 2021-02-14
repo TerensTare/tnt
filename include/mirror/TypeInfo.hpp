@@ -5,26 +5,18 @@
 
 namespace tnt
 {
-    namespace detail
-    {
-        template <typename T>
-        using unwrapped = std::remove_cvref_t<std::decay_t<std::remove_all_extents_t<T>>>;
-    } // namespace detail
-
-    struct [[nodiscard]] type_info
+    struct [[nodiscard]] type_info final
     {
         constexpr type_info(type_info const &other) noexcept
-            : name_{other.name_}, name_s{other.name_s}, index{other.index} {}
+            : name_{other.name_}, index{other.index} {}
 
         constexpr type_info(type_info &&other) noexcept
             : name_{std::exchange(other.name_, {})},
-              name_s{std::exchange(other.name_s, {})},
               index{std::exchange(other.index, {})} {}
 
         constexpr type_info &operator=(type_info const &other) noexcept
         {
             name_ = other.name_;
-            name_s = other.name_s;
             index = other.index;
             return *this;
         }
@@ -34,33 +26,33 @@ namespace tnt
             if (this != &other)
             {
                 name_ = std::exchange(other.name_, {});
-                name_s = std::exchange(other.name_s, {});
                 index = std::exchange(other.index, {});
             }
             return *this;
         }
 
         constexpr std::size_t hash() const noexcept { return index; }
+        constexpr auto name() const noexcept { return name_; }
 
-        constexpr const char *name() const noexcept { return name_; }
-
-        constexpr bool operator==(type_info const &other) const noexcept
+        [[nodiscard]] constexpr bool operator==(type_info const &other) const noexcept
         {
             return index == other.index;
         }
 
-    protected:
-        constexpr type_info() noexcept {}
+    private:
+        constexpr type_info(std::string_view n, std::size_t const &h) noexcept
+            : name_{n}, index{h} {}
 
-        const char *name_{""};
-        std::size_t name_s{};
-
+        std::string_view name_;
         std::size_t index{};
+
+        template <typename T>
+        friend constexpr type_info type_id() noexcept;
     };
 
     inline std::ostream &operator<<(std::ostream &o, type_info const &t)
     {
-        return (o << std::string_view{t.name()});
+        return (o << t.name());
     }
 
     template <typename T>
@@ -71,29 +63,17 @@ namespace tnt
 #if defined(_MSC_VER) and not defined(__clang__)
         return {__FUNCSIG__ + 120, sizeof(__FUNCSIG__) - 128};
 #elif defined(__clang__)
-        return {__PRETTY_FUNCTION__ + 39, sizeof(__PRETTY_FUNCTION__) - 43};
+        return {__PRETTY_FUNCTION__ + 39, sizeof(__PRETTY_FUNCTION__) - 41};
 #elif defined(__GNUC__)
-        return {__PRETTY_FUNCTION__ + 54, sizeof(__PRETTY_FUNCTION__) - 107};
+        return {__PRETTY_FUNCTION__ + 54, sizeof(__PRETTY_FUNCTION__) - 105};
 #endif
     }
 
     template <typename T>
-    constexpr auto type_id() noexcept
+    constexpr type_info type_id() noexcept
     {
-        if constexpr (not std::same_as<T, detail::unwrapped<T>>)
-            return type_id<detail::unwrapped<T>>();
-
-        struct info : type_info
-        {
-            constexpr info(std::string_view n, std::size_t const &h) noexcept
-            {
-                name_ = n.data();
-                name_s = n.size();
-                index = h;
-            }
-        };
-
         std::size_t addr{};
+        constexpr std::string_view name{type_name<T>()};
         addr = [&name]<std::size_t... S>(std::index_sequence<S...>, std::size_t & addr) noexcept
         {
             // thx PaperBirdMaster
@@ -105,7 +85,7 @@ namespace tnt
         }
         (std::make_index_sequence<name.size()>{}, addr);
 
-        return info{name, addr};
+        return {name, addr};
     }
 
     template <typename T>

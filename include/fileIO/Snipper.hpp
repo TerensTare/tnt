@@ -2,9 +2,11 @@
 #define TNT_FILE_SNIPPER_HPP
 
 #include <filesystem>
+#include <mutex>
+#include <unordered_map>
 
 #include "core/Config.hpp"
-#include "types/StaticPimpl.hpp"
+#include "types/HashedString.hpp"
 #include "utils/Traits.hpp"
 
 // TODO:
@@ -66,15 +68,10 @@ namespace tnt
         bool isModified(std::string_view file) noexcept;
 
     private:
-        struct impl;
+        using file = std::pair<std::string, std::filesystem::file_time_type>;
 
-        static constexpr std::size_t msvc_size{96};
-        static constexpr std::size_t other_size{88};
-
-        std::conditional_t<is_msvc_v,
-                           pimpl<impl, msvc_size, 8>,
-                           pimpl<impl, other_size, 8>>
-            data;
+        std::recursive_mutex mtx;
+        std::unordered_map<typename tnt::hashed_string::hash_type, file> files;
     };
 } // namespace tnt
 

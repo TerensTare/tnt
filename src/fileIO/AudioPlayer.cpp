@@ -3,10 +3,8 @@
 
 #include "utils/Logger.hpp"
 
-inline static tnt::small_music_cache *music{tnt::default_music_cache()};
-inline static tnt::small_sfx_cache *sfx{tnt::default_sfx_cache()};
-
 tnt::AudioPlayer::AudioPlayer(int frequency, unsigned short format, int channels, int chunksize) noexcept
+    : music{tnt::default_music_cache()}, sfx{tnt::default_sfx_cache()}
 {
     if (Mix_OpenAudio(frequency, format, channels, chunksize) < 0)
         logger::error("Couldn't initialize SDL_Mixer!! Error: {}", Mix_GetError());

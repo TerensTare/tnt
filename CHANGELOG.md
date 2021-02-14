@@ -3,6 +3,30 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a17]
+### Added
+- `{fmt}` support for `tnt::type_info`. See `format/FormatedTypeInfo.hpp`.
+- Support for the function from `core/Graphics` on Lua (table `tnt:gfx`). There is a new entry on `tnt::lua::lib` named `graphics` and some entries now have an updated value.
+- `tnt::hashed_string`, a non-mutable string with a pre-computed hash value on `types/HashedString.hpp`. `std::hash` (`types/HashedString.hpp`) and `fmt::formatter` (`format/FormatedHashString.hpp`) specialisations are provided.
+
+### Fixed
+- `tnt::type_info::name()` will now correctly show the type name stored.
+
+### Changed
+- `tnt::type_info::operator==` is now `[[nodiscard]]` to avoid accidentally using comparing instead of assignment.
+- `tnt::type_info::name()` will now return a `std::string_view`.
+- `tnt::type_info` is now `final` to avoid unintended usage.
+- `tnt::type_id` will not strip `const&` from the type name anymore.
+- Fixed warnings about `tnt::doo::physics_sys::addForce` being used on `tnt::doo::steering_sys`.
+- `tnt::AudioPlayer` now contains a pointer to the audio cache and one to the sfx cache.
+- `tnt::Snipper`, `tnt::vfs_handle` and `tnt::vfs::*` now use `std:unordered_map`.
+- `tnt::Snipper`, `tnt::vfs_handle`, `tnt::vfs::*`, `tnt::asset_cache` pre-defined specialisations now use `tnt::hashed_string::hash_type` as key.
+- Updated `extra/.editorconfig`to match the style used on the codebase.
+
+### Removed
+- `physics` folder, it was unused.
+
+
 ## [0.1.0a16]
 ### Added
 - `tnt::type_name` on `TypeInfo.hpp` if you need only the name of a type.

@@ -17,7 +17,7 @@ namespace tnt
     {
     public:
         template <typename... Args>
-        inline explicit pimpl(Args &&... args)
+        inline explicit pimpl(Args &&...args)
             : ptr{reinterpret_cast<T *>(&storage)}
         {
             new (ptr) T{std::forward<Args>(args)...};

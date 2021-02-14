@@ -19,8 +19,9 @@ namespace tnt::lua
         window = 1 << 2,               /// < Export @ref tnt::Window.
         input = 1 << 3,                /// < Export namespace @ref tnt::input.
         audio = 1 << 4,                /// < Export @ref tnt::AudioManager.
-        imgui = 1 << 5,                /// < Export @ref tnt::ImGui.
-        utils = 1 << 6,                /// < Export @ref tnt::sparse_set.
+        graphics = 1 << 5,             /// < Exports functions available from core/Graphics.
+        imgui = 1 << 6,                /// < Export @ref tnt::ImGui.
+        utils = 1 << 7,                /// < Export @ref tnt::sparse_set.
         core = window | input | audio, /// < Export @ref tnt::Window, @ref tnt::input and @ref tnt::AudioManager.
         math = vector | rect,          /// < Export @ref tnt::Vector, @ref tnt::Rectangle.
     };

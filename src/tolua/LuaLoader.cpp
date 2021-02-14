@@ -25,6 +25,8 @@ inline static int lua_custom_require(lua_State *L)
         loadInput(L);
     else if (pack == "audio")
         loadAudio(L);
+    else if (pack == "graphics")
+        loadGraphics(L);
     else if (pack == "imgui")
         loadImGui(L);
     else if (pack == "utils")
@@ -46,6 +48,8 @@ void tnt::lua::load(sol::state_view lua_, tnt::lua::lib const &libs)
         loadInput(lua_);
     if (has_flag(libs, lib::audio))
         loadAudio(lua_);
+    if (has_flag(libs, lib::graphics))
+        loadGraphics(lua_);
     if (has_flag(libs, lib::vector))
         loadVector(lua_);
     if (has_flag(libs, lib::rect))

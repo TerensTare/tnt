@@ -10,7 +10,7 @@
 
 # TODO:
 # 1. The runner on Windows doesn't know the location of vcvars64.bat. Add that to the PATH using env:.
-# 2. Use PVS-Studio for statical analysis on every commit.
+# 2. Use PVS-Studio for static analysis on every commit.
 # 3. Move containings of assets folder to the binary folder.
 # 4. Add support for x86 builds.
 

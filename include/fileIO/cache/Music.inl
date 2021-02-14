@@ -1,9 +1,13 @@
 #ifndef TNT_MUSIC_SFX_ASSET_CACHE_INL
 #define TNT_MUSIC_SFX_ASSET_CACHE_INL
 
+#include <memory_resource>
 #include <SDL2/SDL_mixer.h>
 
 #include "fileIO/cache/Base.hpp"
+#include "fileIO/VirtualFS.hpp"
+
+#include "types/HashedString.hpp"
 
 namespace tnt
 {
@@ -18,15 +22,15 @@ namespace tnt
                     Mix_FreeMusic(it.second);
         }
 
-        inline Mix_Music *get(std::string_view path)
+        [[nodiscard]] inline Mix_Music *get(std::string_view path)
         {
             load(path);
-            return cache[vfs::absolute(path)];
+            return cache[fnv1a<char>(vfs::absolute(path))];
         }
 
         inline void load(std::string_view path)
         {
-            const char *p{vfs::absolute(path).c_str()};
+            hashed_string p{vfs::absolute(path).c_str()};
             cache.try_emplace(p, Mix_LoadMUS(p));
         }
 
@@ -44,7 +48,9 @@ namespace tnt
     private:
         std::byte memory[I * sizeof(Mix_Music *)];
         std::pmr::monotonic_buffer_resource res{memory, sizeof(memory)};
-        std::pmr::unordered_map<std::string, Mix_Music *> cache{&res};
+        std::pmr::unordered_map<
+            typename tnt::hashed_string::hash_type, Mix_Music *>
+            cache{&res};
     };
 
     template <unsigned I>
@@ -68,12 +74,12 @@ namespace tnt
         [[nodiscard]] inline Mix_Chunk *get(std::string_view path)
         {
             load(path);
-            return cache[vfs::absolute(path)];
+            return cache[fnv1a<char>(vfs::absolute(path))];
         }
 
         inline void load(std::string_view path)
         {
-            const char *p{vfs::absolute(path).c_str()};
+            hashed_string p{vfs::absolute(path).c_str()};
             cache.try_emplace(p, Mix_LoadWAV(p));
         }
 
@@ -91,7 +97,9 @@ namespace tnt
     private:
         std::byte memory[I * sizeof(Mix_Chunk *)];
         std::pmr::monotonic_buffer_resource res{memory, sizeof(memory)};
-        std::pmr::unordered_map<std::string, Mix_Chunk *> cache{&res};
+        std::pmr::unordered_map<
+            typename tnt::hashed_string::hash_type, Mix_Chunk *>
+            cache{&res};
     };
 
     template <int I>

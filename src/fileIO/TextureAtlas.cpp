@@ -9,13 +9,13 @@ inline static tnt::texture_cache<3> *cache;
 tnt::TextureAtlas::TextureAtlas(tnt::Window const &win, std::string_view file, tnt::Rectangle const &area) noexcept
     : filename{file.data()}, clip{area}
 {
-    cache->load(win.getRenderer(), file);
+    cache->load(win.getRenderer(), filename.data());
 }
 
 void tnt::TextureAtlas::Draw(tnt::Window const &win, tnt::Vector const &pos, tnt::Vector const &scale, float angle) noexcept
 {
     SDL_FRect const &dst{pos.x, pos.y, clip.w * scale.x, clip.h * scale.y};
-    SDL_Texture *tex{cache->get(win.getRenderer(), filename)};
+    SDL_Texture *tex{cache->get(win.getRenderer(), filename.data())};
     SDL_Rect const &from{(SDL_Rect)clip};
     SDL_RenderCopyExF(win.getRenderer(), tex, &from, &dst, angle, nullptr, SDL_FLIP_NONE);
 }

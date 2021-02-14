@@ -4,10 +4,14 @@
 #include <sol/forward.hpp>
 #include "core/Config.hpp"
 
+// TODO:
+// handle functions from core/Graphics that use std::span.
+
 namespace tnt::lua
 {
     TNT_API void loadWindow(sol::state_view lua_);
     TNT_API void loadInput(sol::state_view lua_);
+    TNT_API void loadGraphics(sol::state_view lua_);
     inline void loadAudio(sol::state_view lua_){}; // TODO
 } // namespace tnt::lua
 

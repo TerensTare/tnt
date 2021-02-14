@@ -139,8 +139,10 @@ list(FILTER SOURCE_FILES EXCLUDE REGEX "LuaDooEcs.cpp$")
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 add_library(TnT::TnT ALIAS TnT)
 
-target_compile_definitions(${PROJECT_NAME} PUBLIC # When in Debug or RelWithDebInfo build, enable profiling
-                                                  $<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:TNT_PROFILING TNT_BUILD SOL_PRINT_ERRORS=1 SOL_NO_EXCEPTIONS=1)
+target_compile_definitions(
+    ${PROJECT_NAME} PUBLIC # When in Debug or RelWithDebInfo build, enable profiling
+        $<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:TNT_PROFILING TNT_BUILD SOL_PRINT_ERRORS=1 SOL_NO_EXCEPTIONS=1
+)
 
 set_target_properties(
     ${PROJECT_NAME}

@@ -5,7 +5,11 @@
 #include "doo_ecs/Physics.hpp"
 #include "doo_ecs/Steering.hpp"
 
-#include "types/TypeUtils.hpp"
+// TODO:
+// should you clamp (instead of just min) the negative velocities ??
+
+// TODO(maybe):
+// the velocity doesn't need to be clamped at the end ??
 
 namespace tnt::doo
 {
@@ -13,11 +17,10 @@ namespace tnt::doo
     {
         [[likely]] if (physics.active.contains(id))
         {
-            physics.addForce(id, (target - objects.gPos(id)).Normalized() *
-                                         physics.gMaxVel(id).Magnitude() -
-                                     physics.gVel(id));
-            physics.vel[id] = if_else(physics.vel[id] > physics.maxVel[id],
-                                      physics.maxVel[id], physics.vel[id]);
+            physics.force[id] += (target - objects.gPos(id)).Normalized() *
+                                     physics.gMaxVel(id).Magnitude() -
+                                 physics.gVel(id);
+            physics.vel[id] = std::min(physics.maxVel[id], physics.vel[id]);
         }
     }
 
@@ -25,11 +28,10 @@ namespace tnt::doo
     {
         [[likely]] if (physics.active.contains(id))
         {
-            physics.addForce(id, (objects.gPos(id) - target).Normalized() *
-                                         physics.gMaxVel(id).Magnitude() -
-                                     physics.gVel(id));
-            physics.vel[id] = if_else(physics.vel[id] > physics.maxVel[id],
-                                      physics.maxVel[id], physics.vel[id]);
+            physics.force[id] += (objects.gPos(id) - target).Normalized() *
+                                     physics.gMaxVel(id).Magnitude() -
+                                 physics.gVel(id);
+            physics.vel[id] = std::min(physics.maxVel[id], physics.vel[id]);
         }
     }
 
@@ -41,10 +43,9 @@ namespace tnt::doo
             if (Vector const &deltaPos{objects.gPos(id) - target};
                 (deltaPos - target).MagnitudeSqr() - dstSquared > FLT_EPSILON)
             {
-                physics.addForce(id, deltaPos.Normalized() * physics.gMaxVel(id).Magnitude() -
-                                         physics.gVel(id));
-                physics.vel[id] = if_else(physics.vel[id] > physics.maxVel[id],
-                                          physics.maxVel[id], physics.vel[id]);
+                physics.force[id] += deltaPos.Normalized() * physics.gMaxVel(id).Magnitude() -
+                                     physics.gVel(id);
+                physics.vel[id] = std::min(physics.maxVel[id], physics.vel[id]);
             }
         }
     }
@@ -60,9 +61,8 @@ namespace tnt::doo
                 float const &speed{dst / (2 * decel_tweak)};
                 Vector const &vel{to_target * speed * 2 * decel_tweak};
 
-                physics.addForce(id, vel - physics.gVel(id));
-                physics.vel[id] = if_else(physics.vel[id] > physics.maxVel[id],
-                                          physics.maxVel[id], physics.vel[id]);
+                physics.force[id] += vel - physics.gVel(id);
+                physics.vel[id] = std::min(physics.maxVel[id], physics.vel[id]);
             }
         }
     }

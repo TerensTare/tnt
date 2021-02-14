@@ -2,8 +2,10 @@
 #define TNT_ASSETS_TEXTURE_ATLAS_HPP
 
 #include "core/Config.hpp"
-#include "math/Rectangle.hpp"
 #include "core/Window.hpp"
+
+#include "math/Rectangle.hpp"
+#include "types/HashedString.hpp"
 
 namespace tnt
 {
@@ -15,7 +17,7 @@ namespace tnt
         void Draw(Window const &win, Vector const &pos, Vector const &scale = {1.f, 1.f}, float angle = 0.f) noexcept;
 
     private:
-        const char *filename;
+        tnt::hashed_string filename;
         Rectangle clip;
     };
 } // namespace tnt

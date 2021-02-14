@@ -61,9 +61,9 @@ namespace tnt
             return resource.data;
         }
 
-        inline const T *operator->() const requires std::copyable<T>
+        inline const T &operator->() const requires std::copyable<T>
         {
-            return &resource.data;
+            return resource.data;
         }
 
         inline T &get() requires std::copyable<T>

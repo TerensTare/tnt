@@ -3,6 +3,7 @@
 
 #include <sol/sol.hpp>
 
+#include "core/Graphics.hpp"
 #include "core/Window.hpp"
 #include "core/Input.hpp"
 
@@ -39,4 +40,16 @@ void tnt::lua::loadInput(sol::state_view lua_)
 
     input["update"] = &input::updateCurrent;
     input["update_last"] = &input::updatePrevious;
+}
+
+void tnt::lua::loadGraphics(sol::state_view lua_)
+{
+    auto gfx{lua_["gfx"].get_or_create<sol::table>()};
+
+    gfx["line"] = &drawLine;
+    gfx["hline"] = &drawHorizontalLine;
+    gfx["vline"] = &drawVerticalLine;
+    gfx["lines"] = &drawLines;
+    gfx["circle_line"] = &drawCircle;
+    gfx["circle"] = &fillCircle;
 }

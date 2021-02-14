@@ -7,6 +7,8 @@
 #include "fileIO/TextureAtlas.hpp"
 #include "fileIO/cache/Base.hpp"
 
+#include "types/HashedString.hpp"
+
 namespace tnt
 {
     template <unsigned I>
@@ -35,7 +37,9 @@ namespace tnt
     private:
         std::byte memory[I * sizeof(TextureAtlas)];
         std::pmr::monotonic_buffer_resource res{memory, sizeof(memory)};
-        std::pmr::unordered_map<std::string, TextureAtlas> cache{&res};
+        std::pmr::unordered_map<
+            typename tnt::hashed_string::hash_type, TextureAtlas>
+            cache{&res};
     };
 
     template <unsigned I>

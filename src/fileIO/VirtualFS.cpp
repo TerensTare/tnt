@@ -1,14 +1,10 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-#include <map>
-
 #include <filesystem>
 
 #include "fileIO/VirtualFS.hpp"
-
 #include "utils/Logger.hpp"
-#include "utils/Traits.hpp"
 
 namespace tnt
 {
@@ -16,8 +12,8 @@ namespace tnt
     {
         mtx.lock();
 
-        if (!entries.contains(alias))
-            entries[alias] = path;
+        if (tnt::hashed_string str{alias}; !entries.contains(str))
+            entries[str] = path;
         else
             logger::debug("vfs: Replacing alias path {} with a new path.", alias);
 
@@ -28,8 +24,8 @@ namespace tnt
     {
         mtx.lock();
 
-        if (entries.contains(path))
-            entries.erase(path);
+        if (tnt::hashed_string str{path}; entries.contains(str))
+            entries.erase(str);
         else
             logger::debug("vfs: Trying to unmount() a non-existent alias path. Nothing will happen.");
 
@@ -50,21 +46,21 @@ namespace tnt
         std::lock_guard _{mtx};
 
         // Otherwise, the path must be an alias. Check if it is just an alias or it is an alias + some other path.
-        if (entries.count(path) > 0)
-            return entries.at(path.data());
+        if (tnt::hashed_string str{path.data()}; entries.count(str) > 0)
+            return entries.at(str);
 
         // if it is an alias + some other path, check it's validity.
         if (std::string_view::size_type const &it{path.find("://")};
             it != path.npos)
         {
-            if (std::string const &alias{path.data(), it};
-                entries.count(alias) > 0)
-                return base + entries.find(alias)->second +
+            std::string const &alias{path.data(), it};
+            if (auto const &h{fnv1a<char>(alias)};
+                entries.count(h) > 0)
+                return base + entries.find(h)->second +
                        vfs::path_sep() + (path.data() + it + 3);
-            else
-                logger::error("vfs: Using non-existent alias \"{}\" "
-                              "with absolute()!!",
-                              alias);
+            logger::error("vfs_handle: Using non-existent alias \"{}\" "
+                          "with absolute()!!",
+                          alias);
         }
 
         return base + path.data();
@@ -73,20 +69,20 @@ namespace tnt
 
 namespace tnt::vfs
 {
-    inline static std::map<char const *, char const *, std::less<>> entries{};
+    inline static std::unordered_map<typename hashed_string::hash_type, char const *> entries{};
 
     void mount(char const *path, char const *alias) noexcept
     {
-        if (!entries.contains(alias))
-            entries[alias] = path;
+        if (tnt::hashed_string str{alias}; !entries.contains(str))
+            entries[str] = path;
         else
             logger::debug("vfs: Replacing alias path {} with a new path.", alias);
     }
 
     void unmount(char const *path) noexcept
     {
-        if (entries.contains(path))
-            entries.erase(path);
+        if (tnt::hashed_string str{path}; entries.contains(str))
+            entries.erase(str);
         else
             logger::debug("vfs: Trying to unmount() a non-existent alias path. Nothing will happen.");
     }
@@ -103,21 +99,21 @@ namespace tnt::vfs
             return base + (path.data() + 2);
 
         // Otherwise, the path must be an alias. Check if it is just an alias or it is an alias + some other path.
-        if (entries.count(path) > 0)
-            return entries.at(path.data());
+        if (tnt::hashed_string str{path.data()}; entries.count(str) > 0)
+            return entries[str];
 
         // if it is an alias + some other path, check it's validity.
         if (std::string_view::size_type const &it{path.find("://")};
             it != path.npos)
         {
-            if (std::string const &alias{path.data(), it};
-                entries.count(alias) > 0)
-                return base + entries.find(alias)->second +
-                       path_sep() + (path.data() + it + 3);
-            else
-                logger::error("vfs: Using non-existent alias \"{}\" "
-                              "with absolute()!!",
-                              alias);
+            std::string const &alias{path.data(), it};
+            if (auto const &h{fnv1a<char>(alias)};
+                entries.count(h) > 0)
+                return base + entries.find(h)->second +
+                       vfs::path_sep() + (path.data() + it + 3);
+            logger::error("vfs: Using non-existent alias \"{}\" "
+                          "with absolute()!!",
+                          alias);
         }
 
         return base + path.data();

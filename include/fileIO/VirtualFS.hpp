@@ -1,11 +1,12 @@
 #ifndef TNT_VIRTUAL_FILE_SYSTEM_HPP
 #define TNT_VIRTUAL_FILE_SYSTEM_HPP
 
-#include <map>
+#include <unordered_map>
 #include <mutex>
 #include <string>
 
 #include "core/Config.hpp"
+#include "types/HashedString.hpp"
 #include "utils/Traits.hpp"
 
 // TODO:
@@ -17,9 +18,8 @@
 // separate alias directories from alias files ??
 // constexpr ops ??
 
-TNT_EXPORT template struct TNT_API std::less<void>;
 TNT_EXPORT class TNT_API std::mutex;
-TNT_EXPORT template class TNT_API std::map<char const *, char const *, std::less<>>;
+// TNT_EXPORT template class TNT_API std::unordered_map<typename tnt::hashed_string::hash_type, char const *>;
 
 namespace tnt
 {
@@ -45,14 +45,13 @@ namespace tnt
 
     private:
         mutable std::mutex mtx;
-        std::map<const char *, char const *, std::less<>> entries;
+        std::unordered_map<typename tnt::hashed_string::hash_type, char const *> entries;
     };
 } // namespace tnt
 
 namespace tnt::vfs
 {
     /// @brief Return the path separator used by the OS. "\\" on Windows, "/" otherwise.
-    /// @todo (maybe) Use consteval ??
     /// @return constexpr const char*
     constexpr const char *path_sep() noexcept
     {

@@ -4,7 +4,7 @@
 #include <span>
 
 #include "core/Window.hpp"
-#include "math/Rectangle.hpp"
+#include "math/Vector.hpp"
 
 // TODO:
 // load this to Lua

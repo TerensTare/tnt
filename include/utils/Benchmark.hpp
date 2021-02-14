@@ -14,6 +14,8 @@
 // code taken from
 // https://gist.github.com/TheCherno/31f135eea6ee729ab5f26a6908eb3a5e
 
+TNT_EXPORT template class TNT_API std::chrono::time_point<std::chrono::high_resolution_clock>;
+
 namespace tnt
 {
     namespace bench

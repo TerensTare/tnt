@@ -1,14 +1,15 @@
 #ifndef TNT_FONTS_ASSETS_CACHE_INL
 #define TNT_FONTS_ASSETS_CACHE_INL
 
-#include <map>
 #include <memory_resource>
-#include <string_view>
+#include <unordered_map>
 
 #include <SDL2/SDL_ttf.h>
 
 #include "fileIO/cache/Base.hpp"
 #include "fileIO/VirtualFS.hpp"
+
+#include "types/HashedString.hpp"
 
 namespace tnt
 {
@@ -26,18 +27,18 @@ namespace tnt
         [[nodiscard]] inline TTF_Font *get(std::string_view path, int size)
         {
             load(path, size);
-            return cache[vfs::absolute(path)];
+            return cache[fnv1a<char>(vfs::absolute(path))];
         }
 
         inline void load(std::string_view path, int size)
         {
-            const char *p{vfs::absolute(path).c_str()};
-            cache.try_emplace(p, TTF_OpenFont(p, size));
+            tnt::hashed_string p{vfs::absolute(path).c_str()};
+            cache.try_emplace(p, TTF_OpenFont(p.data(), size));
         }
 
         inline void remove(std::string_view path)
         {
-            if (const char *p{vfs::absolute(path).c_str()};
+            if (tnt::hashed_string p{vfs::absolute(path).c_str()};
                 cache.contains(p))
             {
                 TTF_CloseFont(cache[p]);
@@ -49,7 +50,9 @@ namespace tnt
     private:
         std::byte memory[I * sizeof(TTF_Font *)];
         std::pmr::monotonic_buffer_resource res{memory, sizeof(memory)};
-        std::pmr::unordered_map<std::string, TTF_Font *> cache{&res};
+        std::pmr::unordered_map<
+            typename tnt::hashed_string::hash_type, TTF_Font *>
+            cache{&res};
     };
 
     template <unsigned I>

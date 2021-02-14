@@ -7,13 +7,13 @@
 #include "pcg/Noise.hpp"
 #include "pcg/Random.hpp"
 
+#include "async/CoUtils.hpp"
 #include "utils/Logger.hpp"
-#include "utils/CoUtils.hpp"
 
 SDL_Texture *tnt::pcg::staticNoise(SDL_Renderer *ren, int w, int h)
 {
-    SDL_PixelFormat pixelFmt;
     SDL_Texture *ret = SDL_CreateTexture(ren, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, w, h);
+    SDL_PixelFormat pixelFmt;
     SDL_QueryTexture(ret, &pixelFmt.format, nullptr, nullptr, nullptr);
 
     std::vector<Uint32> pixels;

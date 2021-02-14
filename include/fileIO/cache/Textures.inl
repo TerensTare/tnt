@@ -9,6 +9,8 @@
 #include "fileIO/cache/Base.hpp"
 #include "fileIO/VirtualFS.hpp"
 
+#include "types/HashedString.hpp"
+
 namespace tnt
 {
     template <unsigned I>
@@ -26,30 +28,32 @@ namespace tnt
                                               std::string_view path)
         {
             load(ren, path);
-            return cache[vfs::absolute(path)];
+            return cache[fnv1a<char>(vfs::absolute(path))];
         }
 
         inline void load(SDL_Renderer *ren, std::string_view path)
         {
-            const char *p{vfs::absolute(path).c_str()};
-            cache.try_emplace(p, IMG_LoadTexture(ren, p));
+            hashed_string str{vfs::absolute(path)};
+            cache.try_emplace(str.hash(), IMG_LoadTexture(ren, str.data()));
         }
 
         inline void remove(std::string_view path)
         {
-            if (const char *p{vfs::absolute(path).c_str()};
-                cache.contains(p))
+            if (hashed_string str{vfs::absolute(path)};
+                cache.contains(str))
             {
-                SDL_DestroyTexture(cache[p]);
-                cache.erase(p);
-                cache[p] = nullptr;
+                SDL_DestroyTexture(cache[str]);
+                cache.erase(str);
+                cache[str] = nullptr;
             }
         }
 
     private:
         std::byte memory[I * sizeof(SDL_Texture *)];
         std::pmr::monotonic_buffer_resource res{memory, sizeof(memory)};
-        std::pmr::unordered_map<std::string, SDL_Texture *> cache{&res};
+        std::pmr::unordered_map<
+            typename tnt::hashed_string::hash_type, SDL_Texture *>
+            cache{&res};
     };
 
     template <unsigned I>
