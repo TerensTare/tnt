@@ -9,7 +9,7 @@
 
 #if defined(_MSC_VER) and not defined(__clang__)
 #pragma warning(push)
-#pragma warning(disable: 4275)
+#pragma warning(disable : 4275)
 #endif
 
 #include "core/Window.hpp"
@@ -48,6 +48,8 @@ using tnt::doo::sprites;
 // export to executable.
 // extensions.
 // multi-window support.
+// access systems in a Data Oriented way
+// ie. access all objects of a system then continue with the others
 
 auto load_proj = [](tnt::Window const &window, nlohmann::json const &j, nfdchar_t *base) {
     tnt::safe_ensure(j.contains("name"), "Project file doesn't have \"name\" field!!");
@@ -72,16 +74,16 @@ auto load_proj = [](tnt::Window const &window, nlohmann::json const &j, nfdchar_
         p /= it.get<std::string_view>();
         tnt::logger::debug("Loading object from {}.", p.string());
 
-        nlohmann::json j;
-        std::ifstream{p.c_str()} >> j;
+        nlohmann::json object;
+        std::ifstream{p.c_str()} >> object;
 
-        tnt::doo::object const &obj{objects.from_json(j)};
+        tnt::doo::object const &obj{objects.from_json(object)};
 
-        physics.from_json(obj, j);
-        sprites.from_json(obj, window, j);
-        animations.from_json(obj, j);
-        scripts.from_json(obj, j);
-        bones.from_json(obj, j);
+        physics.from_json(obj, object);
+        sprites.from_json(obj, window, object);
+        animations.from_json(obj, object);
+        scripts.from_json(obj, object);
+        bones.from_json(obj, object);
     }
 
     if (j.contains("cameras"))
@@ -96,7 +98,7 @@ auto load_proj = [](tnt::Window const &window, nlohmann::json const &j, nfdchar_
         }
 };
 
-auto save_proj = [](nlohmann::json &proj) {};
+auto save_proj = []([[maybe_unused]] nlohmann::json &proj) {};
 
 auto update_from_input = [](tnt::doo::object const &active, float const dt) noexcept -> void {
     float const &dst{dt * .05f};                     // 10 pixel/sec
@@ -207,12 +209,14 @@ auto draw_imgui = [](tnt::Window const &window, tnt::doo::object &active, float 
 
 int main(int argc, char **argv)
 {
+    static_cast<void>(argc);
+    static_cast<void>(argv);
+
     tnt::bench::BeginSession("Editor", "benchmark.json");
 
     tnt::Window window{"The TnT Engine", 800, 600};
     window.setIcon("assets/TnT.ico");
 
-    float dt{0.f};
     bool game{false};
     bool help{false};
     bool project{false};
@@ -226,10 +230,8 @@ int main(int argc, char **argv)
 
     tnt_imgui_init(window);
 
-    while (window.isOpened())
+    for (float dt{timer.deltaCount()}; window.isOpened(); dt = timer.deltaCount())
     {
-        dt = timer.deltaCount();
-
         while (SDL_PollEvent(&e))
             window.handleEvents(e);
         tnt::input::Update();

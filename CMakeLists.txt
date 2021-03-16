@@ -58,48 +58,30 @@ endif()
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 if(NOT DEFINED CMAKE_PREFIX_PATH)
     set(CMAKE_PREFIX_PATH "")
 endif()
 
 list(APPEND CMAKE_PREFIX_PATH $ENV{VCPKG_ROOT}/installed/$ENV{VCPKG_DEFAULT_TRIPLET})
 
+add_library(project_config INTERFACE)
+target_compile_features(project_config INTERFACE cxx_std_20)
+
 include(cmake/StandardProjectSettings.cmake)
+include(cmake/CompilerWarnings.cmake)
+include(cmake/Sanitizers.cmake)
+include(cmake/StaticAnalyzers.cmake)
 
 add_library(project_warnings INTERFACE)
-include(cmake/CompilerWarnings.cmake)
 set_project_warnings(project_warnings)
-include(cmake/Sanitizers.cmake)
-enable_sanitizers(project_options)
-include(cmake/StaticAnalyzers.cmake)
+enable_sanitizers(project_config)
 
 # ######################################################################################################################################################################################################
 # Documentation #
 # ######################################################################################################################################################################################################
 
-option(BUILD_DOCS "Build TnT's documentation" ON)
-if(BUILD_DOCS)
-    find_package(Doxygen)
-    if(DOXYGEN_FOUND)
-        set(DOXYGEN_IN ${PROJECT_SOURCE_DIR}/Doxyfile.in)
-        set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/docs/Doxyfile)
-        set(DOXYGEN_INPUT_DIR ${PROJECT_SOURCE_DIR}/include)
-        set(DOXYGEN_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/docs)
-        file(WRITE ${DOXYGEN_OUT} "")
-        configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
-        add_custom_target(
-            DOCUMENTATION ALL
-            COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-            WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/docs
-            COMMENT "Generating documentation with Doxygen"
-            VERBATIM)
-    else()
-        message("Not generating documentation because Doxygen was not found")
-    endif()
-endif()
+include(cmake/Doxygen.cmake)
+build_docs()
 
 # ######################################################################################################################################################################################################
 # Find the dependecies #
@@ -128,21 +110,22 @@ file(
     src/fileIO/*.cpp
     src/ImGui/ImGui.cpp
     src/math/*.cpp
+    src/pcg/*.cpp
     src/tolua/*.cpp
     src/utils/Benchmark.cpp
     $<DEFINED
     ${TNT_DO_EXPERIMENTS}>:src/exp/Runtimer.cpp)
 
-list(FILTER SOURCE_FILES EXCLUDE REGEX "Context.cpp$")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "LuaDooEcs.cpp$")
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 add_library(TnT::TnT ALIAS TnT)
 
 target_compile_definitions(
-    ${PROJECT_NAME} PUBLIC # When in Debug or RelWithDebInfo build, enable profiling
-        $<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:TNT_PROFILING TNT_BUILD SOL_PRINT_ERRORS=1 SOL_NO_EXCEPTIONS=1
-)
+    ${PROJECT_NAME} PUBLIC
+    TNT_BUILD SOL_PRINT_ERRORS=1 SOL_NO_EXCEPTIONS=1
+    $<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:TNT_PROFILING # When in Debug or RelWithDebInfo build, enable profiling
+    FMT_COMPILE_TIME_CHECKS=1)
 
 set_target_properties(
     ${PROJECT_NAME}
@@ -162,7 +145,10 @@ target_link_libraries(
             sol2::sol2
             fmt::fmt
             nlohmann_json
-            nlohmann_json::nlohmann_json)
+            nlohmann_json::nlohmann_json
+            # utility targets
+            project_warnings
+            project_config)
 
 target_include_directories(
     ${PROJECT_NAME}
@@ -174,11 +160,7 @@ if(MSVC)
 
     # Add tnt.natvis to the build
     set(TNT_ADD_NATVIS TRUE)
-    target_sources(
-        ${PROJECT_NAME}
-        INTERFACE
-            $<INSTALL_INTERFACE:extra/tnt.natvis>
-            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/extra/tnt.natvis>)
+    target_sources(${PROJECT_NAME} INTERFACE $<INSTALL_INTERFACE:extra/tnt.natvis> $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/extra/tnt.natvis>)
 else()
     target_compile_options(TnT PRIVATE --ffast-math)
 endif()
@@ -214,9 +196,7 @@ install(
     PATTERN "*.hpp")
 
 if(TNT_ADD_NATVIS)
-    install(
-        FILES extra/tnt.natvis
-        DESTINATION .)
+    install(FILES extra/tnt.natvis DESTINATION .)
 endif()
 
 # ######################################################################################################################################################################################################
@@ -225,20 +205,14 @@ endif()
 
 include(CMakePackageConfigHelpers)
 
-configure_package_config_file(
-    ${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake.in
-    ${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake
-    INSTALL_DESTINATION ${INSTALL_CONFIGDIR})
+configure_package_config_file(${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake.in ${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake INSTALL_DESTINATION ${INSTALL_CONFIGDIR})
 
 write_basic_package_version_file(
     ${CMAKE_CURRENT_BINARY_DIR}/TnTConfigVersion.cmake
     VERSION ${PROJECT_VERSION}
     COMPATIBILITY AnyNewerVersion)
 
-install(
-    FILES ${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/TnTConfigVersion.cmake
-    DESTINATION ${INSTALL_CONFIGDIR})
+install(FILES ${CMAKE_CURRENT_LIST_DIR}/cmake/TnTConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/TnTConfigVersion.cmake DESTINATION ${INSTALL_CONFIGDIR})
 
 export(PACKAGE TnT)
 
@@ -261,10 +235,6 @@ if(BUILD_EDITOR)
 
     add_executable(TnTEditor main.cpp ${EXE_SOURCES} src/tolua/LuaDooEcs.cpp)
 
-    # add_library(project_options INTERFACE) target_compile_features(project_options INTERFACE cxx_std_20)
-    set(CMAKE_CXX_STANDARD 20)
-    set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
     if(MSVC)
         target_compile_options(TnTEditor PRIVATE /fp:fast)
     else()
@@ -285,7 +255,10 @@ if(BUILD_EDITOR)
                 fmt::fmt
                 nlohmann_json
                 nlohmann_json::nlohmann_json
-                unofficial::nativefiledialog::nfd)
+                unofficial::nativefiledialog::nfd
+                # utility targets
+                project_warnings
+                project_config)
 
     install(TARGETS TnTEditor)
 endif()

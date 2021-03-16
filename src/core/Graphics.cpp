@@ -47,6 +47,20 @@ void tnt::drawVerticalLine(Window const &win, float const x, float const y1, flo
     SDL_SetRenderDrawColor(ren, rgba[0], rgba[1], rgba[2], rgba[3]);
 }
 
+void tnt::drawLines(Window const &win, std::span<SDL_FPoint> points,
+                    SDL_Color const &color) noexcept
+{
+    SDL_Renderer *ren = win.getRenderer();
+    Uint8 rgba[4]{0, 0, 0, 0};
+
+    SDL_GetRenderDrawColor(ren, rgba, rgba + 1, rgba + 2, rgba + 3);
+    SDL_SetRenderDrawColor(ren, color.r, color.g, color.b, color.a);
+
+    SDL_RenderDrawLinesF(ren, points.data(), static_cast<int>(points.size()));
+
+    SDL_SetRenderDrawColor(ren, rgba[0], rgba[1], rgba[2], rgba[3]);
+}
+
 void tnt::drawCircle(Window const &win, tnt::Vector const &topleft,
                      float const radius, SDL_Color const &color,
                      unsigned const thickness) noexcept

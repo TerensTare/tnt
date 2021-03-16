@@ -188,12 +188,12 @@ namespace tnt
                 (fabs(lhs.h - rhs.h) < FLT_EPSILON));
     }
 
-    inline std::ostream &operator<<(std::ostream &os,
+    inline std::ostream &operator<<(std::ostream &os_,
                                     tnt::Rectangle const &rhs)
     {
-        os << "{" << rhs.x << ", " << rhs.y << ", " << rhs.w << ", " << rhs.h
+        os_ << "{" << rhs.x << ", " << rhs.y << ", " << rhs.w << ", " << rhs.h
            << "}";
-        return os;
+        return os_;
     }
 } // namespace tnt
 

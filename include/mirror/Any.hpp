@@ -64,7 +64,7 @@ namespace tnt
 
         template <std::size_t S2>
         constexpr sized_any(sized_any<S2> const &other) noexcept
-            : buff{}, data{static_cast<void *>(&buff)}, info{other.info},
+            : buff{other.buff}, data{static_cast<void *>(&buff)}, info{other.info},
               dtor{[&other](sized_any &a) { other.dtor(a); }}
         {
             // if constexpr (S2 > S)

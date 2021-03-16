@@ -1,10 +1,7 @@
 #ifndef TNT_VECTOR_HPP
 #define TNT_VECTOR_HPP
 
-#if defined(__cpp_impl_three_way_comparison) && __has_include(<compare>)
 #include <compare>
-#endif
-
 #include <ostream>
 
 #include "math/MathUtils.hpp"
@@ -97,14 +94,9 @@ namespace tnt
             return *this;
         }
 
-        constexpr Vector &operator=(const Vector &rhs) noexcept
-        {
-            x = rhs.x;
-            y = rhs.y;
-            return *this;
-        }
+        constexpr Vector &operator=(Vector const &) noexcept = default;
+        constexpr Vector &operator=(Vector &&) noexcept = default;
 
-#if defined(__cpp_impl_three_way_comparison) && __has_include(<compare>)
         constexpr auto operator<=>(Vector const &rhs) const noexcept
         {
             if (auto const &cmp{x <=> rhs.x}; cmp != 0)
@@ -112,19 +104,6 @@ namespace tnt
             else
                 return y <=> rhs.y;
         }
-#else
-        constexpr bool operator<(const Vector &rhs) const noexcept
-        {
-            return (x - rhs.x < FLT_EPSILON) ||
-                   ((x - rhs.x == FLT_EPSILON) && (y - rhs.y < FLT_EPSILON));
-        }
-
-        constexpr bool operator>(const Vector &rhs) const noexcept
-        {
-            return (x - rhs.x > FLT_EPSILON) ||
-                   ((x - rhs.x == FLT_EPSILON) && (y - rhs.y > FLT_EPSILON));
-        }
-#endif
 
         float x;
         float y;
@@ -219,26 +198,6 @@ namespace tnt
     {
         return (lhs <= rhs) && (lhs >= rhs);
     }
-
-#if !defined(__cpp_impl_three_way_comparison) && !__has_include(<compare>)
-    constexpr bool operator<=(Vector const &lhs,
-                              Vector const &rhs) noexcept
-    {
-        return !(lhs > rhs);
-    }
-
-    constexpr bool operator>=(const Vector &lhs,
-                              const Vector &rhs) noexcept
-    {
-        return !(lhs < rhs);
-    }
-
-    constexpr bool operator!=(const Vector &lhs,
-                              const Vector &rhs) noexcept
-    {
-        return !(lhs == rhs);
-    }
-#endif
 
     inline constexpr Vector VECTOR_ZERO{0.f, 0.f};
     inline constexpr Vector VECTOR_ONE{1.f, 1.f};

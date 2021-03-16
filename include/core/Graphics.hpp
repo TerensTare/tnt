@@ -7,12 +7,12 @@
 #include "math/Vector.hpp"
 
 // TODO:
-// load this to Lua
 // more shapes
-// general polygons
+// don't change color if it is the same
 
 // TODO(maybe):
 // custom thickness for circles ??
+// general polygons ??
 
 namespace tnt
 {
@@ -49,7 +49,7 @@ namespace tnt
     /// @param win The window where the lines will be drawed.
     /// @param points The points that define the lines borders. points.size() should be even.
     /// @param color The color that will be used to draw the lines.
-    TNT_API void drawLines(Window const &win, std::span<tnt::Vector> points,
+    TNT_API void drawLines(Window const &win, std::span<SDL_FPoint> points,
                            SDL_Color const &color = SDL_Color{255, 255, 255}) noexcept;
 
     /// @brief Draw an empty circle with the given @a radius and @a color on @a win.

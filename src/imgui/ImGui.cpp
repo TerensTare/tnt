@@ -216,7 +216,7 @@ namespace tnt::ImGui
     };
 
     inline auto update_context = []() noexcept -> void {
-        tnt::input::Update();
+        // tnt::input::Update();
         context.mouse_down = input::mouseButtonDown(0);
     };
 
@@ -485,7 +485,7 @@ namespace tnt::ImGui
         else
         {
             if (context.active == 0)
-                context.active = -1;
+                context.active = static_cast<std::size_t>(-1);
         }
 
         SDL_PumpEvents();

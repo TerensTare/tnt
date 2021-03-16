@@ -27,13 +27,12 @@ namespace tnt
         task(task const &) = delete;
         task &operator=(task const &) = delete;
 
-        inline task(task &&t) noexcept
-            : coro{std::exchange(t.coro, {})} {}
+        constexpr task(task &&t) noexcept
+            : coro{std::exchange(t.coro, nullptr)} {}
 
         inline task &operator=(task &&t)
         {
-            coro = t.coro;
-            t.coro = nullptr;
+            coro = std::exchange(t.coro, nullptr);
             return *this;
         }
 
@@ -45,7 +44,7 @@ namespace tnt
 
         inline awaiter operator co_await() &&noexcept { return awaiter{coro}; }
 
-        inline T get() noexcept
+        inline T get() const noexcept
         {
             if (not coro.done())
                 coro.resume();
@@ -53,7 +52,7 @@ namespace tnt
         }
 
     private:
-        inline explicit task(std::coroutine_handle<promise_type> h) noexcept
+        explicit constexpr task(std::coroutine_handle<promise_type> h) noexcept
             : coro{h} {}
 
         std::coroutine_handle<promise_type> coro;
@@ -64,8 +63,8 @@ namespace tnt
     {
         struct final_awaiter final
         {
-            inline bool await_ready() const noexcept { return false; }
-            inline void await_resume() const noexcept {}
+            constexpr bool await_ready() const noexcept { return false; }
+            constexpr void await_resume() const noexcept {}
 
             inline std::coroutine_handle<> await_suspend(std::coroutine_handle<promise_type> handle) const noexcept
             {
@@ -78,8 +77,8 @@ namespace tnt
             return task<T>{std::coroutine_handle<promise_type>::from_promise(*this)};
         }
 
-        inline std::suspend_always initial_suspend() const noexcept { return {}; }
-        inline final_awaiter final_suspend() const noexcept { return {}; }
+        constexpr std::suspend_always initial_suspend() const noexcept { return {}; }
+        constexpr final_awaiter final_suspend() const noexcept { return {}; }
 
         inline std::suspend_never return_value(T val) noexcept
         {
@@ -99,7 +98,7 @@ namespace tnt
     template <typename T>
     struct task<T>::awaiter final
     {
-        inline bool await_ready() const noexcept { return false; }
+        constexpr bool await_ready() const noexcept { return false; }
 
         inline std::coroutine_handle<> await_suspend(
             std::coroutine_handle<> ctx) noexcept
@@ -108,12 +107,12 @@ namespace tnt
             return coro;
         }
 
-        inline void await_resume() const noexcept {}
+        constexpr void await_resume() const noexcept {}
 
     private:
         friend task<T>;
 
-        inline explicit awaiter(std::coroutine_handle<typename task<T>::promise_type> handle) noexcept
+        explicit constexpr awaiter(std::coroutine_handle<typename task<T>::promise_type> handle) noexcept
             : coro{handle} {}
 
         std::coroutine_handle<typename task<T>::promise_type> coro;

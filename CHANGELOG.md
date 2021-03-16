@@ -3,6 +3,25 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a18]
+### Added
+- `operator==` for `tnt::bit_mask` types.
+- `utils/SDL_forward.hpp`, which forward-declares some opaque SDL `struct`s.
+- `tnt::Vector` now is move assignable.
+- `tnt::value_name` which returns a string representation of the value passed as a template parameter. It can be especially useful when used with enums.
+- Conversion operator from `tnt::basic_hashed_string<Char>` to `std::basic_string_view<Char>`.
+
+### Fixed
+- Some warnings related to the naming of some local variables.
+
+### Changed
+- Operators overloaded for `tnt::bit_mask` are now marked `noexcept`.
+- Separated the documentation part of the build from the rest. See `cmake/Doxygen.cmake`.
+- `pcg/Random.hpp` now has a corresponding source file.
+- Rewrote `tnt::generator<T>` to allow custom allocator support.
+- Minor quality of life improvements for `tnt::generator<T>` and `tnt::task<T>`.
+
+
 ## [0.1.0a17]
 ### Added
 - `{fmt}` support for `tnt::type_info`. See `format/FormatedTypeInfo.hpp`.

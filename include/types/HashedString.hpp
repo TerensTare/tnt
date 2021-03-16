@@ -21,7 +21,7 @@ namespace tnt
         {
             typename std::char_traits<T>::char_type;
         }
-        &&(std::is_same_v<T, typename std::char_traits<T>::char_type> == true);
+        &&std::same_as<T, typename std::char_traits<T>::char_type>;
     } // namespace detail
 
     // thx Jesse C. Slicer
@@ -68,6 +68,7 @@ namespace tnt
 
         constexpr operator const char_type *() const noexcept { return str; }
         constexpr operator hash_type() const noexcept { return hash_; }
+        constexpr operator std::basic_string_view<char_type>() const noexcept { return str; }
 
     private:
         const char_type *str;

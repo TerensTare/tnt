@@ -61,11 +61,25 @@ namespace tnt
         // thx Boost.UT authors
         // https://github.com/boost-ext/ut/blob/3b05dca6a629497910cf8e92aebcaead0124c8b4/include/boost/ut.hpp#L228
 #if defined(_MSC_VER) and not defined(__clang__)
-        return {__FUNCSIG__ + 120, sizeof(__FUNCSIG__) - 128};
+        return {__FUNCSIG__ + 89, sizeof(__FUNCSIG__) - 106};
 #elif defined(__clang__)
         return {__PRETTY_FUNCTION__ + 39, sizeof(__PRETTY_FUNCTION__) - 41};
 #elif defined(__GNUC__)
         return {__PRETTY_FUNCTION__ + 54, sizeof(__PRETTY_FUNCTION__) - 105};
+#endif
+    }
+
+    template <auto A>
+    [[nodiscard]] constexpr std::string_view value_name() noexcept
+    {
+        // thx Boost.UT authors
+        // https://github.com/boost-ext/ut/blob/3b05dca6a629497910cf8e92aebcaead0124c8b4/include/boost/ut.hpp#L228
+#if defined(_MSC_VER) and not defined(__clang__)
+        return {__FUNCSIG__ + 89, sizeof(__FUNCSIG__) - 106};
+#elif defined(__clang__)
+        return {__PRETTY_FUNCTION__ + 40, sizeof(__PRETTY_FUNCTION__) - 42};
+#elif defined(__GNUC__)
+        return {__PRETTY_FUNCTION__ + 60, sizeof(__PRETTY_FUNCTION__) - 111};
 #endif
     }
 
@@ -89,18 +103,18 @@ namespace tnt
     }
 
     template <typename T>
-    constexpr type_info type_id(T) noexcept { return type_id<T>(); }
+    constexpr type_info type_id(T &&) noexcept { return type_id<T>(); }
 } // namespace tnt
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace std
 {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
     template <>
     struct hash<tnt::type_info>
     {
         constexpr std::size_t operator()(tnt::type_info const &t) const noexcept { return t.hash(); }
     };
-#endif
 } // namespace std
+#endif
 
 #endif //!TNT_TYPE_INFO_MIRROR_HPP

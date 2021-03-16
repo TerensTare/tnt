@@ -71,7 +71,7 @@ namespace tnt::doo
         j["sprite"]["crop"] = {clip[id].x, clip[id].y, clip[id].w, clip[id].h};
     }
 
-    void sprites_sys::draw_imgui(object const &id, Window const &win) noexcept {}
+    void sprites_sys::draw_imgui(object const &, Window const &) noexcept {}
 
     Rectangle sprites_sys::draw_area(object const &id) const noexcept
     {

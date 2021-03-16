@@ -49,7 +49,7 @@ namespace tnt::doo
         constexpr camera_comp(float angle_, Vector const &pos_,
                               float w_, float h_, float speed_ = 5.f,
                               float shaking_ = .7f, float decrease_ = 1.f,
-                              Vector const &scale_ = Vector{1.f, 1.f}) noexcept
+                              Vector const &scale_ = VECTOR_ONE) noexcept
             : angle{angle_}, w{w_}, h{h_}, speed{speed_}, pos{pos_},
               shaking{shaking_}, shakeLoss{decrease_}, scale{scale_} {}
 

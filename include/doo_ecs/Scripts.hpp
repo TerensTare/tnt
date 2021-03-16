@@ -52,7 +52,7 @@ namespace tnt::doo
         /// @param fn The name of the function.
         /// @param args The arguments to pass to the function.
         template <typename... Args>
-        inline decltype(auto) call(object const &id, std::string_view fn, Args &&... args)
+        inline decltype(auto) call(object const &id, std::string_view fn, Args &&...args)
         {
             sol::safe_function fun{states[id][fn].get_or_create<sol::safe_function>()};
             if (auto const &res = fun(std::forward<Args>(args)...);
@@ -78,12 +78,12 @@ namespace tnt::doo
         /// @brief Store scripts data of a specific object to a json chunk.
         /// @param id The id of the object to serialize to json.
         /// @param j The json chunk where the data will be saved.
-        void to_json(object const &id, nlohmann::json &j) ;
+        void to_json(object const &id, nlohmann::json &j);
 
         /// @brief Draw widgets on the given window to modify the datas of the system.
         /// @param id The id of the active object.
         /// @param win The window where to draw the widgets.
-        inline void draw_imgui(object const &id, Window const &win) noexcept {}
+        inline void draw_imgui(object const &, Window const &) noexcept {}
 
         /// @brief Remove the desired object from the scripts system.
         /// @param id The id of the object you want to remove.
@@ -92,7 +92,7 @@ namespace tnt::doo
         /// @brief Remove all the objects from the scripts system.
         void clear() noexcept;
 
-        tnt::sparse_set<object> active;      /// < The id-s of all the objects connected to scripts.
+        tnt::sparse_set<object> active; /// < The id-s of all the objects connected to scripts.
         std::vector<sol::state> states; /// < The lua handles of the objects.
     } scripts;                          /// < An instance of scripts_sys
 } // namespace tnt::doo

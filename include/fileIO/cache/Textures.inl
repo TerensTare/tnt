@@ -11,6 +11,9 @@
 
 #include "types/HashedString.hpp"
 
+// TODO:
+// handle cases of textures from different windows. (maybe) add the hash of the window's title ?? (or sth similar)
+
 namespace tnt
 {
     template <unsigned I>

@@ -1,11 +1,14 @@
 #ifndef TNT_PCG_RANDOM_HPP
 #define TNT_PCG_RANDOM_HPP
 
-#include <random>
+#include <concepts>
+
+#include "core/Config.hpp"
 #include "math/Vector.hpp"
 
-// TODO: randomColor, etc.
-// TODO: split this into header/source.
+// TODO:
+// randomColor, etc.
+// constexpr halton*
 
 namespace tnt
 {
@@ -13,25 +16,13 @@ namespace tnt
     /// @param min_ The minimum value of the float.
     /// @param max_ The maximum value of the float.
     /// @return float
-    inline float randomFloat(float min_, float max_)
-    {
-        static std::random_device device;
-        static std::default_random_engine eng{device()};
-        static std::uniform_real_distribution<float> dist{min_, std::nextafter(max_, std::numeric_limits<float>::max())};
-        return dist(eng);
-    }
+    TNT_API float randomFloat(float min_, float max_);
 
     /// @brief Get a random int on range @c [min_,max_].
     /// @param min_ The minimum value of the int.
     /// @param max_ The maximum value of the int.
     /// @return int
-    inline int randomInt(int min_, int max_)
-    {
-        static std::random_device device;
-        static std::default_random_engine generator{device()};
-        static std::uniform_int_distribution dist{min_, max_};
-        return dist(generator);
-    }
+    TNT_API int randomInt(int min_, int max_);
 
     /// @brief Get a tnt::Vector with randomly generated coordinates.
     /// @param minX The minimum value of the x coordinate.
@@ -39,26 +30,18 @@ namespace tnt
     /// @param minY The minimum value of the y coordinate.
     /// @param maxY The maximum value of the y coordinate.
     /// @return @ref tnt::Vector
-    inline tnt::Vector randomVector(float minX, float maxX, float minY, float maxY)
-    {
-        return {randomFloat(minX, maxX), randomFloat(minY, maxY)};
-    }
+    TNT_API Vector randomVector(float minX, float maxX, float minY, float maxY);
 
     /// @brief Create a randomly generated Vector with magnitude 1.
     /// @return @ref tnt::Vector
-    inline tnt::Vector randomUnitVector()
-    {
-        float const &angle{randomFloat(0.f, 2_pi)};
-        return Vector{cosf(angle), sinf(angle)};
-    }
+    TNT_API Vector randomUnitVector();
 
     /// @brief Generate a random number using a Halton sequence.
     template <std::integral I>
     inline auto halton1(I const base, I index) noexcept
     {
-        decltype(base) result{0};
-        for (decltype(base) denom{1};
-             index > 0; index = floor(index / base))
+        I result{0};
+        for (I denom{1}; index > 0; index = floor(index / base))
         {
             denom *= base;
             result += (index % base) / denom;

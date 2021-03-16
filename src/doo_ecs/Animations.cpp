@@ -83,10 +83,10 @@ namespace tnt::doo
         {
             PROFILE_FUNCTION();
 
-            Rectangle const &rect{j["sprite"]["crop"]};
+            Rectangle const rect{j["sprite"]["crop"]};
             nlohmann::json const &chunk{j["anim"]};
             int const &frames{chunk["frames"]};
-            float const &speed{chunk["speed"]};
+            float const &speed_{chunk["speed"]};
             float const &space{if_else(chunk.contains("space"),
                                        chunk["space"], 0.f)};
             animation_comp::direction const dir_{
@@ -100,7 +100,7 @@ namespace tnt::doo
                         if_then(chunk["wrap"] == "loop",
                                 animation_comp::loop))};
 
-            add_object(id, animation_comp{rect, frames, speed, space, dir_, wrap_});
+            add_object(id, animation_comp{rect, frames, speed_, space, dir_, wrap_});
         }
     }
 

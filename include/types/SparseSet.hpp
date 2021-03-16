@@ -100,7 +100,7 @@ namespace tnt
         /// @brief Remove the last element of the sparse set.
         inline void pop_back()
         {
-            safe_ensure(!empty(), "Calling pop_back() on empty sparse_set!!");
+            safe_ensure(not empty(), "Calling pop_back() on empty sparse_set!!");
 
             sparse[dense[--size_]] = null;
         }
@@ -122,13 +122,12 @@ namespace tnt
         /// @param val The desired value.
         inline void insert(std::size_t const index, value_type const val)
         {
-            if (val == (T)null && index < size_ &&
+            if (val == static_cast<value_type>(-1) && index < size_ &&
                 contains(dense[index]))
                 erase(dense[index]);
             else
             {
-                if (val == size_)
-                    ++size_;
+                size_ += (val == size_);
 
                 sparse.insert(sparse.cbegin() + val,
                               *dense.insert(dense.cbegin() + index, val));
@@ -141,7 +140,7 @@ namespace tnt
         /// @param val The desired value.
         inline void insert(sparse_iterator<T> it, value_type const val)
         {
-            if (val == (T)null && contains(*it))
+            if (val == static_cast<value_type>(-1) && contains(*it))
                 erase(*it);
             else
             {

@@ -1,6 +1,8 @@
 .vscode
 build
 logs
+cmake-*
+.idea
 TODO.md
 
 # MSVC stuff

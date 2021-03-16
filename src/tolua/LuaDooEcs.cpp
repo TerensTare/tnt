@@ -12,12 +12,12 @@
 
 #include "tolua/LuaDooEcs.hpp"
 
-void tnt::lua::loadDooEcs(sol::state_view lua_)
-{
-    using namespace doo;
+// TODO:
+// split this into different functions, to make it more readable
 
-    // TODO: cameras
-    // TODO(maybe): remove Draw/Update/draw_imgui functions ??
+inline void load_object_sys(sol::state_view lua_)
+{
+    using namespace tnt::doo;
 
     lua_.new_usertype<object_data>(
         "object_data",
@@ -48,7 +48,13 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "pos", &objects_sys::pos,
         "gPos", [](objects_sys &, object const &id) { return objects.gPos(id - 1); });
 
-    // sprites
+    lua_["objects"] = &objects;
+}
+
+inline void load_sprites_sys(sol::state_view lua_)
+{
+    using namespace tnt::doo;
+
     lua_.new_usertype<sprite_comp>(
         "sprite_comp",
         sol::constructors<
@@ -61,7 +67,7 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "sprites_sys",
         "new", sol::no_constructor,
         "add_object", [](sprites_sys &, object const &id, sprite_comp const &s) { sprites.add_object(id - 1, s); },
-        "draw", [](sprites_sys &, object const &id, Window const &win) { sprites.Draw(id - 1, win); },
+        "draw", [](sprites_sys &, object const &id, tnt::Window const &win) { sprites.Draw(id - 1, win); },
         "draw_area", [](sprites_sys &, object const &id) { return sprites.draw_area(id - 1); },
 
         "remove", [](sprites_sys &, object const &id) { sprites.remove(id - 1); },
@@ -70,11 +76,17 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "active", &sprites_sys::active,
         "clip", &sprites_sys::clip);
 
-    // physics
+    lua_["sprites"] = &sprites;
+}
+
+inline void load_physics_sys(sol::state_view lua_)
+{
+    using namespace tnt::doo;
+
     lua_.new_usertype<physics_comp>(
         "phys_comp",
-        sol::factories([](body_type b, float m, float d, float r, Vector const &mv, Vector const &ma, Rectangle const &bound) { return physics_comp{b, m, d, r, mv, ma, bound}; },
-                       [](body_type b, float m, float d, float r, Rectangle const &bound) {
+        sol::factories([](body_type b, float m, float d, float r, tnt::Vector const &mv, tnt::Vector const &ma, tnt::Rectangle const &bound) { return physics_comp{b, m, d, r, mv, ma, bound}; },
+                       [](body_type b, float m, float d, float r, tnt::Rectangle const &bound) {
                            return physics_comp{.type{b}, .mass{m}, .damping{d}, .restitution{r}, .bound_box{bound}};
                        }),
         "type", &physics_comp::type,
@@ -89,8 +101,8 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "physics_sys",
         "new", sol::no_constructor,
         "add_object", [](physics_sys &, object const &id, physics_comp const &p) { physics.add_object(id - 1, p); },
-        "add_force", [](physics_sys &, object const &id, Vector const &f) { physics.addForce(id - 1, f); },
-        "add_glob_force", &physics_sys::addGlobalForce,
+        "add_force", [](physics_sys &, object const &id, tnt::Vector const &f) { physics.force[id - 1] += f; },
+        "add_glob_force", [](physics_sys &, tnt::Vector const &f) { physics.totalForce += f; },
         "update", [](physics_sys &, object const &id, float dt) { physics.Update(id - 1, dt); },
         "colliding", [](physics_sys &, object const &id, object const &id2) { return physics.colliding(id - 1, id2 - 1); },
         "resolve", [](physics_sys &, object const &id, object const &id2) { physics.resolve(id - 1, id2 - 1); },
@@ -113,7 +125,13 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "force", &physics_sys::force,
         "bound", &physics_sys::bound_box);
 
-    // animations
+    lua_["physics"] = &physics;
+}
+
+inline void load_animations_sys(sol::state_view lua_)
+{
+    using namespace tnt::doo;
+
     lua_.new_enum("anim_wrap",
                   "single_run", animation_comp::wrap_mode::single_run,
                   "loop", animation_comp::wrap_mode::loop);
@@ -124,7 +142,7 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
 
     lua_.new_usertype<animation_comp>(
         "anim_comp",
-        sol::constructors<animation_comp(Rectangle const &,
+        sol::constructors<animation_comp(tnt::Rectangle const &,
                                          int const, float const, float const,
                                          animation_comp::direction const &,
                                          animation_comp::wrap_mode const &) noexcept>{});
@@ -149,12 +167,12 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "current", &animations_sys::current,
         "running", &animations_sys::active);
 
-    lua_.new_usertype<bone_comp>(
-        "bone_comp", sol::factories([](Vector const &joint, float const length) noexcept {
-            return bone_comp{.joint{joint}, .length{length}};
-        }),
-        "joint", &bone_comp::joint,
-        "length", &bone_comp::length);
+    lua_["animations"] = &animations;
+}
+
+inline void load_bones_sys(sol::state_view lua_)
+{
+    using namespace tnt::doo;
 
     lua_.new_usertype<bones_sys>(
         "bones_sys", "new", sol::no_constructor,
@@ -162,26 +180,48 @@ void tnt::lua::loadDooEcs(sol::state_view lua_)
         "add_object", [](bones_sys &, object const &id, bone_comp const &b) { bones.add_object(id - 1, b); },
         "remove", [](bones_sys &, object const &id) { bones.remove(id - 1); },
         "clear", &bones_sys::clear,
-        "follow", [](bones_sys &, object const &id, Vector const &p) { bones.follow(id - 1, p); },
+        "follow", [](bones_sys &, object const &id, tnt::Vector const &p) { bones.follow(id - 1, p); },
 
         "active", &bones_sys::active,
         "joint", &bones_sys::joint,
         "length", &bones_sys::length);
 
+    lua_.new_usertype<bone_comp>(
+        "bone_comp", sol::factories([](tnt::Vector const &joint, float const length) noexcept {
+            return bone_comp{.joint{joint}, .length{length}};
+        }),
+        "joint", &bone_comp::joint,
+        "length", &bone_comp::length);
+
+    lua_["steer"] = &steer;
+}
+
+inline void load_steer_sys(sol::state_view lua_)
+{
+    using namespace tnt::doo;
+
     lua_.new_usertype<steering_sys>(
         "steering_sys", "new", sol::no_constructor,
 
-        "seek", [](steering_sys &, object const &id, Vector const &dst) { steer.Seek(id - 1, dst); },
-        "flee", [](steering_sys &, object const &id, Vector const &dst) { steer.Flee(id - 1, dst); },
-        "ranged_flee", [](steering_sys &, object const &id, Vector const &dst, float const r) { steer.RangedFlee(id - 1, dst, r); },
-        "arrive", [](steering_sys &, object const &id, Vector const &dst) { steer.Arrive(id - 1, dst); },
+        "seek", [](steering_sys &, object const &id, tnt::Vector const &dst) { steer.Seek(id - 1, dst); },
+        "flee", [](steering_sys &, object const &id, tnt::Vector const &dst) { steer.Flee(id - 1, dst); },
+        "ranged_flee", [](steering_sys &, object const &id, tnt::Vector const &dst, float const r) { steer.RangedFlee(id - 1, dst, r); },
+        "arrive", [](steering_sys &, object const &id, tnt::Vector const &dst) { steer.Arrive(id - 1, dst); },
         "pursuit", [](steering_sys &, object const &id, object const &id2) { steer.Pursuit(id - 1, id2 - 1); },
         "evade", [](steering_sys &, object const &id, object const &id2) { steer.Evade(id - 1, id2 - 1); });
 
-    lua_["objects"] = &objects;
-    lua_["sprites"] = &sprites;
-    lua_["physics"] = &physics;
-    lua_["animations"] = &animations;
-    lua_["steer"] = &steer;
     lua_["bones"] = &bones;
+}
+
+void tnt::lua::loadDooEcs(sol::state_view lua_)
+{
+    // TODO: cameras
+    // TODO(maybe): remove Draw/Update/draw_imgui functions ??
+
+    load_object_sys(lua_);
+    load_sprites_sys(lua_);
+    load_physics_sys(lua_);
+    load_animations_sys(lua_);
+    load_bones_sys(lua_);
+    load_steer_sys(lua_);
 }

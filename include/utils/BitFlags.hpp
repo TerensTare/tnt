@@ -17,7 +17,7 @@ namespace tnt
     };
 
     template <typename T>
-    concept bit_mask = enum_type<T> && (enable_bit_mask<T>::value == true);
+    concept bit_mask = enum_type<T> and (enable_bit_mask<T>::value == true);
 
     template <bit_mask E>
     constexpr bool has_flag(E const &bit, E const &flag) noexcept
@@ -45,7 +45,7 @@ namespace tnt
 } // namespace tnt
 
 template <tnt::bit_mask E>
-constexpr E operator|(E const &a, E const &b)
+constexpr E operator|(E const &a, E const &b) noexcept
 {
     using type = std::underlying_type_t<E>;
     return static_cast<E>(
@@ -53,7 +53,7 @@ constexpr E operator|(E const &a, E const &b)
 }
 
 template <tnt::bit_mask E>
-constexpr E operator&(E const &a, E const &b)
+constexpr E operator&(E const &a, E const &b) noexcept
 {
     using type = std::underlying_type_t<E>;
     return static_cast<E>(
@@ -61,7 +61,7 @@ constexpr E operator&(E const &a, E const &b)
 }
 
 template <tnt::bit_mask E>
-constexpr E operator^(E const &a, E const &b)
+constexpr E operator^(E const &a, E const &b) noexcept
 {
     using type = std::underlying_type_t<E>;
     return static_cast<E>(
@@ -76,7 +76,7 @@ constexpr E operator~(E const &a)
 }
 
 template <tnt::bit_mask E>
-constexpr E &operator|=(E &a, E const &b)
+constexpr E &operator|=(E &a, E const &b) noexcept
 {
     using type = std::underlying_type_t<E>;
     a = static_cast<E>(
@@ -85,7 +85,7 @@ constexpr E &operator|=(E &a, E const &b)
 }
 
 template <tnt::bit_mask E>
-constexpr E &operator&=(E &a, E const &b)
+constexpr E &operator&=(E &a, E const &b) noexcept
 {
     using type = std::underlying_type_t<E>;
     a = static_cast<E>(
@@ -94,12 +94,19 @@ constexpr E &operator&=(E &a, E const &b)
 }
 
 template <tnt::bit_mask E>
-constexpr E &operator^=(E &a, E const &b)
+constexpr E &operator^=(E &a, E const &b) noexcept
 {
     using type = std::underlying_type_t<E>;
     a = static_cast<E>(
         static_cast<type>(a) ^ static_cast<type>(b));
     return a;
+}
+
+template <tnt::bit_mask E>
+constexpr bool operator==(E const &a, E const &b) noexcept
+{
+    using type = std::underlying_type_t<E>;
+    return static_cast<type>(a) == static_cast<type>(b);
 }
 
 #endif //!TNT_UTILS_ENUM_CLASS_BIT_FLAGS_HPP

@@ -50,14 +50,14 @@ namespace tnt::doo
     {
         PROFILE_FUNCTION();
 
-        float angle{0.f};
+        float angle_{0.f};
         float speed_{5.f};
         float shaking_{.7f};
         float shake_loss_{1.f};
         Vector scale_{1.f, 1.f};
 
         if (j.contains("angle"))
-            angle = j["angle"];
+            angle_ = j["angle"];
         if (j.contains("speed"))
             speed_ = j["speed"];
         if (j.contains("scale"))
@@ -67,7 +67,7 @@ namespace tnt::doo
         if (j.contains("shake_loss"))
             shake_loss_ = j["shake_loss"];
 
-        add_object({angle, j["pos"].get<Vector>(),
+        add_object({angle_, j["pos"].get<Vector>(),
                     j["w"].get<float>(), j["h"].get<float>(),
                     speed_, shaking_, shake_loss_, scale_});
     }
