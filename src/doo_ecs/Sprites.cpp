@@ -1,6 +1,8 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+#include <nlohmann/json.hpp>
+
 #include "doo_ecs/Bones.hpp"
 #include "doo_ecs/Cameras.hpp"
 #include "doo_ecs/Objects.hpp"

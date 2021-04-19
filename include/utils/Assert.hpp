@@ -48,10 +48,10 @@ namespace tnt
         }};
 
     /// @brief A version of ensure_t that just prints a warning on false predicate.
-    inline auto check{[](bool cond, char const *message) noexcept {
+    inline auto check = [](bool cond, char const *message) noexcept {
         if (!cond)
-            logger::warning("Predication failed!! {}", message);
-    }};
+            logger::warning("Predicate failed!! {}", message);
+    };
 } // namespace tnt
 
 #endif //!TNT_ASSERT_UTILITIES_HPP

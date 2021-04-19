@@ -7,20 +7,16 @@
 
 #include "core/Config.hpp"
 
-// TODO:
-// add comparison operators for two Excepted<T>.
-// use the custom type_id.
-
 namespace tnt
 {
-    struct TNT_API invalid final
+    struct TNT_API [[deprecated]] invalid final
     {
     };
 
     // code taken from
     // https://bell0bytes.eu/expected/
     template <class T>
-    class TNT_API Expected
+    class TNT_API [[deprecated("Please use tnt::expected from exp/Expected.hpp instead.")]] Expected
     {
     protected:
         union
@@ -33,7 +29,7 @@ namespace tnt
 
     public:
         explicit Expected(T const &r) : result{r}, gotResult{true} {}
-        explicit Expected(T &&r) : result{std::move(r)}, gotResult{true} {}
+        explicit Expected(T && r) : result{std::move(r)}, gotResult{true} {}
 
         inline Expected(Expected const &e) : gotResult{e.gotResult}
         {
@@ -43,7 +39,7 @@ namespace tnt
                 new (&spam) std::exception_ptr{e.spam};
         }
 
-        inline Expected(Expected &&e) : gotResult{e.gotResult}
+        inline Expected(Expected && e) : gotResult{e.gotResult}
         {
             if (gotResult)
                 new (&result) T{std::move(e.result)};

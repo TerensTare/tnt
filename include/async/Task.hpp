@@ -9,19 +9,22 @@
 // make await_resume return sth.
 // custom allocators.
 // test.
-
-// TODO(maybe): specialisation for task<void> ??
+// task<void> and task<T&>
 
 namespace tnt
 {
     // thx Lewiss Baker and Kirit Sælensminde
     // https://lewissbaker.github.io/2020/05/11/understanding_symmetric_transfer
     // https://kirit.com/How%20C%2B%2B%20coroutines%20work/A%20more%20realistic%20coroutine
-    template <typename T>
+    template <typename T = void>
     class task final
     {
+        struct void_promise;
+        struct value_promise;
+
     public:
-        struct promise_type;
+        using promise_type = std::conditional_t<
+            std::is_void_v<T>, void_promise, value_promise>;
         struct awaiter;
 
         task(task const &) = delete;
@@ -59,14 +62,46 @@ namespace tnt
     };
 
     template <typename T>
-    struct task<T>::promise_type final
+    struct task<T>::void_promise final
     {
         struct final_awaiter final
         {
             constexpr bool await_ready() const noexcept { return false; }
             constexpr void await_resume() const noexcept {}
 
-            inline std::coroutine_handle<> await_suspend(std::coroutine_handle<promise_type> handle) const noexcept
+            inline std::coroutine_handle<> await_suspend(std::coroutine_handle<void_promise> handle) const noexcept
+            {
+                return handle.promise().ctx;
+            }
+        };
+
+        constexpr void return_void() noexcept {}
+
+        inline task<T> get_return_object() noexcept
+        {
+            return task<T>{std::coroutine_handle<void_promise>::from_promise(*this)};
+        }
+
+        constexpr std::suspend_always initial_suspend() const noexcept { return {}; }
+        constexpr final_awaiter final_suspend() const noexcept { return {}; }
+
+        [[noreturn]] inline void unhandled_exception() const noexcept { std::terminate(); }
+
+    private:
+        std::coroutine_handle<> ctx;
+
+        friend task<T>;
+    };
+
+    template <typename T>
+    struct task<T>::value_promise final
+    {
+        struct final_awaiter final
+        {
+            constexpr bool await_ready() const noexcept { return false; }
+            constexpr void await_resume() const noexcept {}
+
+            inline std::coroutine_handle<> await_suspend(std::coroutine_handle<value_promise> handle) const noexcept
             {
                 return handle.promise().ctx;
             }
@@ -74,7 +109,7 @@ namespace tnt
 
         inline task<T> get_return_object() noexcept
         {
-            return task<T>{std::coroutine_handle<promise_type>::from_promise(*this)};
+            return task<T>{std::coroutine_handle<value_promise>::from_promise(*this)};
         }
 
         constexpr std::suspend_always initial_suspend() const noexcept { return {}; }

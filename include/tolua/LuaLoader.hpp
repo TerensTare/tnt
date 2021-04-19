@@ -24,6 +24,9 @@ namespace tnt::lua
         utils = 1 << 7,                /// < Export @ref tnt::sparse_set.
         core = window | input | audio, /// < Export @ref tnt::Window, @ref tnt::input and @ref tnt::AudioManager.
         math = vector | rect,          /// < Export @ref tnt::Vector, @ref tnt::Rectangle.
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+        count // internal use only
+#endif
     };
 
     TNT_API void load(sol::state_view lua_, tnt::lua::lib const &libs);

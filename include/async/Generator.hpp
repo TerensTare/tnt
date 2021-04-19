@@ -211,7 +211,9 @@ struct std::coroutine_traits<tnt::generator<T, Alloc>, std::allocator_arg_t, All
     using promise_type = typename tnt::generator<T, Alloc>::promise_type;
 };
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <std::copyable T, tnt::detail::allocator_for<std::byte> Alloc>
 inline constexpr bool std::ranges::enable_view<tnt::generator<T, Alloc>> = true;
+#endif
 
 #endif //!TNT_ASYNCHRONOUS_COROUTINE_GENERATOR_HPP

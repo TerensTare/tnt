@@ -2,6 +2,7 @@
 #define TNT_TYPE_INFO_MIRROR_HPP
 
 #include <functional>
+#include "mirror/Light.hpp"
 
 namespace tnt
 {
@@ -53,34 +54,6 @@ namespace tnt
     inline std::ostream &operator<<(std::ostream &o, type_info const &t)
     {
         return (o << t.name());
-    }
-
-    template <typename T>
-    [[nodiscard]] constexpr std::string_view type_name() noexcept
-    {
-        // thx Boost.UT authors
-        // https://github.com/boost-ext/ut/blob/3b05dca6a629497910cf8e92aebcaead0124c8b4/include/boost/ut.hpp#L228
-#if defined(_MSC_VER) and not defined(__clang__)
-        return {__FUNCSIG__ + 89, sizeof(__FUNCSIG__) - 106};
-#elif defined(__clang__)
-        return {__PRETTY_FUNCTION__ + 39, sizeof(__PRETTY_FUNCTION__) - 41};
-#elif defined(__GNUC__)
-        return {__PRETTY_FUNCTION__ + 54, sizeof(__PRETTY_FUNCTION__) - 105};
-#endif
-    }
-
-    template <auto A>
-    [[nodiscard]] constexpr std::string_view value_name() noexcept
-    {
-        // thx Boost.UT authors
-        // https://github.com/boost-ext/ut/blob/3b05dca6a629497910cf8e92aebcaead0124c8b4/include/boost/ut.hpp#L228
-#if defined(_MSC_VER) and not defined(__clang__)
-        return {__FUNCSIG__ + 89, sizeof(__FUNCSIG__) - 106};
-#elif defined(__clang__)
-        return {__PRETTY_FUNCTION__ + 40, sizeof(__PRETTY_FUNCTION__) - 42};
-#elif defined(__GNUC__)
-        return {__PRETTY_FUNCTION__ + 60, sizeof(__PRETTY_FUNCTION__) - 111};
-#endif
     }
 
     template <typename T>

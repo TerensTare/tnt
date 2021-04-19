@@ -64,15 +64,6 @@ namespace tnt::doo
         /// to be relative to the position of the body.
         void add_object(object const &id, physics_comp const &body);
 
-        /// @brief Apply the given force to the object with the given id.
-        /// @param id The id of the object.
-        /// @param force The force to apply to the object.
-        [[deprecated("is deprecated. Use operator+= on ::force[id] instead.")]] void addForce(object const &id, tnt::Vector const &force_) noexcept;
-
-        /// @brief Add a force that would be applied to each object when Update is called.
-        /// @param force The force to be applied.
-        [[deprecated("is deprecated. Use operator+= on ::totalForce instead.")]] void addGlobalForce(tnt::Vector const &force_) noexcept;
-
         /// @brief Update the physics data of the object with the given id.
         /// @param id The id of the object to update.
         /// @param time_ The time that passed since the last update call.

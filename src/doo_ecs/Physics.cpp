@@ -1,6 +1,8 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+#include <nlohmann/json.hpp>
+
 #include "doo_ecs/Objects.hpp"
 #include "doo_ecs/Physics.hpp"
 #include "doo_ecs/Sprites.hpp"
@@ -68,16 +70,6 @@ namespace tnt::doo
                               objects.gPos(id),
                               objects.gScale(id).x * sprites.clip[id].w,
                               objects.gScale(id).y * sprites.clip[id].h);
-    }
-
-    void physics_sys::addForce(object const &id, Vector const &force_) noexcept
-    {
-        force[id] += force_;
-    }
-
-    void physics_sys::addGlobalForce(Vector const &force_) noexcept
-    {
-        totalForce += force_;
     }
 
     void physics_sys::Update(object const &id, float time_) noexcept
@@ -150,7 +142,7 @@ namespace tnt::doo
 
             // TODO:
             // apply positional correction using slop
-            float pen{0.f};
+            float pen{};
 
             Vector const &n{objects.pos[id2] - objects.pos[id]};
             float const &x_overlap{bound_box[id].w + bound_box[id2].w - std::fabsf(n.x)};
@@ -161,7 +153,7 @@ namespace tnt::doo
                     pen = std::max(x_overlap, y_overlap);
             }
 
-            Vector const &correction{std::max(pen - phys::slop, 0.f) / (inv_mass[id] + inv_mass[id2])};
+            Vector const &correction{std::max(pen - phys::slop, 0.f) / (inv_mass[id] + inv_mass[id2]), 0.f};
             objects.pos[id] -= inv_mass[id] * correction;
             objects.pos[id2] += inv_mass[id2] * correction;
         }

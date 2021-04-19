@@ -12,7 +12,6 @@
 // TODO:
 // noexcept
 // draw_imgui
-// if the system provides remove and active, but not clear, declare clear to be remove on each object
 
 // TODO(maybe):
 // store base() in a member reference ??
@@ -35,7 +34,6 @@ namespace tnt::doo
             typename T::component const& c) {
             { t.add_object(o, c) } -> detail::void_type;
             { t.remove(o) } -> detail::void_type;
-            { t.clear() } -> detail::void_type;
             { t.Update(o, 1.f) } -> detail::void_type;
 
             { t.from_json(o, j) } -> detail::void_type;
@@ -60,7 +58,8 @@ namespace tnt::doo
         /// @brief Add the data of the object with given id to the system.
         /// @param id The id of the object.
         /// @param c The component data.
-        inline void add_object(object const &id, component const &c)
+        inline void add_object(object const &id, component const &c) noexcept(
+            noexcept(this->base().add_object(id, c)))
         {
             this->base().add_object(id, c);
         }
@@ -68,25 +67,36 @@ namespace tnt::doo
         /// @brief Update the data of the desired object.
         /// @param id The id of the object.
         /// @param time_ The time elapsed since the last Update call.
-        inline void Update(object const &id, float time_)
+        inline void Update(object const &id, float time_) noexcept(
+            noexcept(this->base().Update(id, time_)))
         {
             this->base().Update(id, time_);
         }
 
         /// @brief Remove the data of the desired object from the system.
         /// @param id The id of the object to remove.
-        inline void remove(object const &id)
+        inline void remove(object const &id) noexcept(
+            noexcept(this->base().remove(id)))
         {
             this->base().remove(id);
         }
 
         /// @brief Remove the data of all the objects from the system.
-        inline void clear() noexcept(noexcept(base().clear())) { this->base().clear(); }
+        inline void clear()
+        {
+            if constexpr (requires { this->base().clear(); })
+                this->base().clear();
+            else
+                for (auto const &active = this->base().active;
+                     auto const &o : active)
+                    this->base().remove(o);
+        }
 
         /// @brief Load the data of an object from a json chunk.
         /// @param id The id of the desired object.
         /// @param j The json chunk containing the data of the component.
-        inline void from_json(object const &id, nlohmann::json const &j)
+        inline void from_json(object const &id, nlohmann::json const &j) noexcept(
+            noexcept(this->base().from_json(id, j)))
         {
             this->base().from_json(id, j);
         }
@@ -94,7 +104,8 @@ namespace tnt::doo
         /// @brief Serialize the component data of the given object to a json chunk.
         /// @param id The id of the desired object.
         /// @param j The json chunk where the data will be stored.
-        inline void to_json(object const &id, nlohmann::json &j)
+        inline void to_json(object const &id, nlohmann::json &j) noexcept(
+            noexcept(this->base().to_json(id, j)))
         {
             this->base().to_json(id, j);
         }

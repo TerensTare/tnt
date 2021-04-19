@@ -33,7 +33,6 @@
         "sol2",
         "nlohmann-json",
         "fmt",
-        "yasm",
         "nativefiledialog"
     ]
 }

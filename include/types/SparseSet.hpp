@@ -58,10 +58,18 @@ namespace tnt
         sparse_set(sparse_set<T> const &) = default;
         sparse_set &operator=(sparse_set<T> const &) = default;
 
+        sparse_set(sparse_set<T> &&) = default;
+        sparse_set &operator=(sparse_set<T> &&) = default;
+
         template <typename U>
         sparse_set(sparse_set<U> const &) = delete;
         template <typename U>
         sparse_set &operator=(sparse_set<U> const &) = delete;
+
+        template <typename U>
+        sparse_set(sparse_set<U> &&) = delete;
+        template <typename U>
+        sparse_set &operator=(sparse_set<U> &&) = delete;
 
         /// @brief Return the number of the elements stored on the sparse set.
         /// @return std::size_t

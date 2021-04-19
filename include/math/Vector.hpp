@@ -15,8 +15,19 @@ namespace tnt
 {
     struct Vector
     {
-        constexpr Vector(float _x = 0.f, float _y = 0.f) noexcept
+        constexpr Vector() noexcept = default;
+
+        explicit constexpr Vector(float _x) noexcept
+            : x{_x}, y{.0f} {}
+
+        constexpr Vector(float _x, float _y) noexcept
             : x{_x}, y{_y} {}
+
+        Vector(const Vector &) noexcept = default;
+        Vector(Vector &&) noexcept = default;
+
+        constexpr Vector &operator=(Vector const &) noexcept = default;
+        constexpr Vector &operator=(Vector &&) noexcept = default;
 
         // template <typename T1, typename T2 = T1,
         // 		  typename = std::enable_if_t<
@@ -27,9 +38,6 @@ namespace tnt
         // Vector(T1 _x = 0, T2 _y = 0)
         // 	: x{static_cast<float>(_x)},
         // 	  y{static_cast<float>(_y)} {} // TODO(experimental)
-
-        Vector(const Vector &) = default;
-        Vector(Vector &&) = default;
 
         constexpr float MagnitudeSqr() const noexcept { return x * x + y * y; }
         constexpr float Magnitude() const noexcept
@@ -93,9 +101,6 @@ namespace tnt
             y /= rhs;
             return *this;
         }
-
-        constexpr Vector &operator=(Vector const &) noexcept = default;
-        constexpr Vector &operator=(Vector &&) noexcept = default;
 
         constexpr auto operator<=>(Vector const &rhs) const noexcept
         {

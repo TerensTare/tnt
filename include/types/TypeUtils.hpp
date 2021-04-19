@@ -1,7 +1,7 @@
 #ifndef TNT_TYPE_UTILS_HPP
 #define TNT_TYPE_UTILS_HPP
 
-#include "utils/TypeLists.hpp"
+#include "types/TypeLists.hpp"
 
 namespace tnt
 {
@@ -18,7 +18,7 @@ namespace tnt
     // https://riptutorial.com/cplusplus/example/8508/recursive-lambdas
     /// @brief A helper class for defining a y combinator, which helps on defining recursive functions.
     /// @tparam Fn The type of the recursive function.
-    /// @note If you are using the class with lambdas, you have to specify the return type of the lambda. The same applies for functions, so you can't use y_comb with functions that have `auto` return type.
+    /// @note You have to specify the return type of the invocable, so you can't use y_comb with functions/lambdas that have `auto` return type.
     template <typename Fn>
     class y_comb
     {
@@ -105,11 +105,33 @@ namespace tnt
     {
         template <std::size_t Index>
         requires requires { Index < sizeof...(Args); }
-        using arg_t = tl::at_t<type_list<Args...>, Index>;
+        using arg_t = typename tl::detail::get<Index, type_list<Args...>>::type;
     };
 
     template <typename T, std::size_t I>
     using template_arg_t = typename template_traits<T>::template arg_t<I>;
+
+    // clang-format off
+    template <typename T, template <typename...> typename Expr, typename...Args>
+    concept conceptify = requires { { Expr<T, Args...>::value } -> std::same_as<bool const>; }
+        and (Expr<T, Args...>::value == true);
+
+    /// @brief Run a function in a partially unrolled loop.
+    /// @param fn The function to call.
+    template <std::size_t Factor, std::size_t N, typename Fn, typename... Args>
+        requires std::invocable<Fn, Args...>
+    constexpr void unroll(Fn &&fn, Args &&...args) noexcept(std::is_nothrow_invocable_v<Fn, Args...>)
+    {
+        static_assert(N % Factor == 0, "Make sure N is a multiplier of Factor!!");
+        for (std::size_t i = 0, j = N / Factor; i < j; ++i)
+            [fn = std::forward<Fn>(fn),
+                ...args = std::forward<Args>(args) ]<std::size_t... Is>(
+                    std::index_sequence<Is...>)
+            {
+                (((void)(std::invoke(fn, args...), Is)), ...);
+            }(std::make_index_sequence<Factor>{});
+    }
+    // clang-format on
 } // namespace tnt
 
 #endif //! TNT_TYPE_UTILS_HPP

@@ -48,6 +48,7 @@ using tnt::doo::sprites;
 // export to executable.
 // extensions.
 // multi-window support.
+// (maybe)
 // access systems in a Data Oriented way
 // ie. access all objects of a system then continue with the others
 
@@ -158,7 +159,7 @@ auto draw_imgui = [](tnt::Window const &window, tnt::doo::object &active, float 
         tnt::ImGui::newline();
         if (tnt::ImGui::button(window, "Load"))
         {
-            if (nfdchar_t * name{nullptr}; NFD_OpenDialog("tnt", nullptr, &name) == NFD_OKAY)
+            if (nfdchar_t * name{nullptr}; NFD_OpenDialog("TnT", nullptr, &name) == NFD_OKAY)
             {
                 tnt::logger::info("Loading project \"{}\"...", name);
 

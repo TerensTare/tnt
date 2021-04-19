@@ -109,6 +109,8 @@ file(
     src/core/*.cpp
     src/fileIO/*.cpp
     src/ImGui/ImGui.cpp
+    src/json/*.cpp
+    src/ldtk/*.cpp
     src/math/*.cpp
     src/pcg/*.cpp
     src/tolua/*.cpp
@@ -122,10 +124,8 @@ add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 add_library(TnT::TnT ALIAS TnT)
 
 target_compile_definitions(
-    ${PROJECT_NAME} PUBLIC
-    TNT_BUILD SOL_PRINT_ERRORS=1 SOL_NO_EXCEPTIONS=1
-    $<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:TNT_PROFILING # When in Debug or RelWithDebInfo build, enable profiling
-    FMT_COMPILE_TIME_CHECKS=1)
+    ${PROJECT_NAME} PUBLIC TNT_BUILD SOL_PRINT_ERRORS=1 SOL_NO_EXCEPTIONS=1 $<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:TNT_PROFILING # When in Debug or RelWithDebInfo build, enable profiling
+                           FMT_COMPILE_TIME_CHECKS=1)
 
 set_target_properties(
     ${PROJECT_NAME}
@@ -135,20 +135,19 @@ set_target_properties(
 
 target_link_libraries(
     ${PROJECT_NAME}
-    PRIVATE SDL2::SDL2
-            SDL2::SDL2main
-            SDL2::SDL2_image
-            SDL2::SDL2_mixer
-            SDL2::SDL2_net
-            SDL2::SDL2_ttf
-            ${LUA_LIBRARIES}
-            sol2::sol2
-            fmt::fmt
-            nlohmann_json
-            nlohmann_json::nlohmann_json
-            # utility targets
-            project_warnings
-            project_config)
+    PUBLIC SDL2::SDL2
+           SDL2::SDL2main
+           SDL2::SDL2_image
+           SDL2::SDL2_mixer
+           SDL2::SDL2_net
+           SDL2::SDL2_ttf
+           ${LUA_LIBRARIES}
+           sol2::sol2
+           fmt::fmt
+           nlohmann_json
+           nlohmann_json::nlohmann_json
+           # utility targets
+    PRIVATE project_warnings project_config)
 
 target_include_directories(
     ${PROJECT_NAME}
@@ -244,17 +243,6 @@ if(BUILD_EDITOR)
     target_link_libraries(
         TnTEditor
         PRIVATE TnT::TnT
-                SDL2::SDL2
-                SDL2::SDL2main
-                SDL2::SDL2_image
-                SDL2::SDL2_mixer
-                SDL2::SDL2_net
-                SDL2::SDL2_ttf
-                ${LUA_LIBRARIES}
-                sol2::sol2
-                fmt::fmt
-                nlohmann_json
-                nlohmann_json::nlohmann_json
                 unofficial::nativefiledialog::nfd
                 # utility targets
                 project_warnings

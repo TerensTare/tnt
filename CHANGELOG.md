@@ -3,6 +3,46 @@
 All changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0a19]
+### Added
+- `tnt::unroll` on `types/TypeUtils.hpp`, which emulates a partially unrolled loop.
+- `json/JsonEnum.hpp`, which adds support for automatically generating json bindings for desired enum types on request. For enabling automatic enum bindings, please modify `tnt::enum_traits<T>` from `types/EnumTraits.hpp` to `true` for your enum `T` like this:
+```cpp
+    enum my_enum { /* some custom values */ };
+
+    #include "types/EnumTraits.hpp" // needed for tnt::enum_traits
+
+    template <>
+    struct tnt::enum_traits<my_enum>
+    {
+        inline static constexpr my_enum count = my_enum::count; // change this if your enum doesn't have count at the end as a "sentinel"
+        inline static constexpr bool jsonable = true;
+    };
+```
+- `tnt::enum_sentinel<T>`, a variable template that signalises "end of parsing" to enum-stringifying functions on `mirror/Light.hpp`. It can be specialised for your custom enums, and it defaults to `T::count`.
+- `tnt::enum_name` for getting a string representation of an enum's name either at compile time or run time.
+- `tnt::enum_value` for getting an concrete enum value from a string representation either at compile time or run time.
+- Support for `tnt::task<void>`.
+- `mirror/Light.hpp` which contains some basic reflection facilities. `tnt::type_name` and `tnt::value_name` now live there.
+- `tnt::conceptify` on `types/TypeUtils.hpp`, which helps convert simple type traits to concepts without you needing to write `requires`.
+
+### Changed
+- Reduced template instantiations on the new type lists implementation. You can find them on `types/TypeLists.hpp`.
+- Improved `tnt::range` to cover some corner cases.
+- `tnt::enums` now returns an array of pairs containing the name and the value of the enum.
+- `tnt::Vector` is now trivially default constructible. Also the constructor which has a single parameter is now explicit.
+- `include/json/*`'s folder files now have a corresponding source file on `src/json`. Also the "registration" technique is changed, but shouldn't affect the code that uses these files.
+- `tnt::doo::system_base<T>::clear` now works even if `T` doesn't provide a `clear` method by calling `remove` on each object on `T::active`. Also `tnt::doo::system` doesn't `require` types to provide a `clear` method anymore.
+- Methods of `tnt::system<T>` are now conditionally `noexcept` depending on the implementation of these methods on `T`.
+
+### Deprecated
+- `tnt::Expected`. Use `tnt::expected` from the same file instead as it offers exceptionless error handling and `constexpr` usage.
+
+### Removed
+- Old typelists implementation. It is replaced by the implementation that was previously found on folder `exp`.
+- `[[deprecated]]` functions on `tnt::doo::physics_sys`.
+
+
 ## [0.1.0a18]
 ### Added
 - `operator==` for `tnt::bit_mask` types.

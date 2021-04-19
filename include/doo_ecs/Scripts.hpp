@@ -12,21 +12,6 @@
 // TODO:
 // find a way to support script reloading.
 // remove unnecessary #include-s.
-// load custom Lua bindings for each objects from json or code.
-
-namespace tnt::lua
-{
-    NLOHMANN_JSON_SERIALIZE_ENUM(
-        lib, {{lib::audio, "audio"},
-              {lib::core, "core"},
-              {lib::imgui, "imgui"},
-              {lib::input, "input"},
-              {lib::math, "math"},
-              {lib::rect, "rect"},
-              {lib::utils, "utils"},
-              {lib::vector, "vector"},
-              {lib::window, "window"}})
-}
 
 namespace tnt::doo
 {
@@ -36,7 +21,6 @@ namespace tnt::doo
         /// @brief The name of the *.lua script to attach to the next object.
         /// @param id The id of the object to add to the scripting system.
         /// @param filename The name of the .lua script file.
-        /// @param libs The desired libraries you need for this object. Defaults to @ref tnt::lua::lib::core.
         void add_object(object const &id, std::string_view filename);
 
         /// @brief Run `init()` from the object's lua script. If no function named init() is found, it does nothing.

@@ -2,6 +2,7 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
 #include <execution>
+#include <nlohmann/json.hpp>
 
 #include "doo_ecs/Cameras.hpp"
 #include "doo_ecs/Objects.hpp"

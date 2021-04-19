@@ -25,8 +25,8 @@ SDL_Texture *tnt::pcg::staticNoise(SDL_Renderer *ren, int w, int h)
         return nullptr;
     }
 
-    for (int const &i : range(0, h))
-        for (int const &j : range(0, w))
+    for (int i = 0; i < h; ++i)
+        for (int j = 0; j < w; ++j)
         {
             const uint8_t &r{static_cast<Uint8>(randomInt(0, 255))};
             const uint8_t &g{static_cast<Uint8>(randomInt(0, 255))};
