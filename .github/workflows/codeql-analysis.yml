@@ -2,7 +2,7 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [master, ]
+    branches: [master]
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [master]
@@ -13,34 +13,34 @@ env:
   VCPKG_FEATURE_FLAGS: manifests,binarycaching
 
 jobs:
-  strategy:
-      fail-fast: false
-      matrix:
-        config:
-        - name: "Windows"
-          os: windows-latest
-          build_type: "Release"
-          triplet: 'x64-windows'
-          vcpkg-path: "C:\\vcpkg"
-          mono: ''
-
-        - name: "Ubuntu"
-          os: ubuntu-latest
-          build-type: "Release"
-          triplet: 'x64-linux'
-          vcpkg-path: "/usr/local/share/vcpkg"
-          mono: 'mono'
-
-        - name: "MacOS"
-          os: macos-latest
-          build_type: "Release"
-          triplet: 'x64-osx'
-          vcpkg-path: "/usr/local/share/vcpkg"
-          mono: 'mono'
-
   analyse:
     name: Analyse
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.config.os }}
+
+    strategy:
+        fail-fast: false
+        matrix:
+          config:
+          - name: "Windows"
+            os: windows-latest
+            build_type: "Release"
+            triplet: 'x64-windows'
+            vcpkg-path: "C:\\vcpkg"
+            mono: ''
+
+          - name: "Ubuntu"
+            os: ubuntu-latest
+            build-type: "Release"
+            triplet: 'x64-linux'
+            vcpkg-path: "/usr/local/share/vcpkg"
+            mono: 'mono'
+
+          - name: "MacOS"
+            os: macos-latest
+            build_type: "Release"
+            triplet: 'x64-osx'
+            vcpkg-path: "/usr/local/share/vcpkg"
+            mono: 'mono'
 
     steps:
     - name: Checkout repository

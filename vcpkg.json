@@ -30,6 +30,7 @@
         },
         "sdl2-ttf",
         "sdl2-net",
+        "lua",
         "sol2",
         "nlohmann-json",
         "fmt",
